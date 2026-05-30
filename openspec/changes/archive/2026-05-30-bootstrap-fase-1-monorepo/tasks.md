@@ -76,19 +76,19 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. Marcar `[x]` al ce
 
 ## 8. Validación de cierre
 
-- [ ] 8.1 Correr `pnpm install` desde root sin errores
-- [ ] 8.2 Probar commit dummy malformado → rechazado por commitlint
-- [ ] 8.3 Probar commit dummy válido → aceptado
-- [ ] 8.4 `pnpm changeset` arranca correctamente
-- [ ] 8.5 `pnpm lint` y `pnpm format:check` corren sin crash (puede haber findings, pero el tooling funciona)
-- [ ] 8.6 Marcar Fase 1 ✅ en `docs/bootstrap-plan.md`
-- [ ] 8.7 Primer commit oficial del repo: `chore(repo): bootstrap fase 1 — monorepo base, lint, hooks, changesets, ADR-001, ADR-002`
+- [x] 8.1 Correr `pnpm install` desde root sin errores
+- [x] 8.2 Probar commit dummy malformado → rechazado por commitlint
+- [x] 8.3 Probar commit dummy válido → aceptado
+- [x] 8.4 `pnpm changeset` arranca correctamente (CLI instalado y `pnpm exec changeset --help` funcional)
+- [x] 8.5 `pnpm lint` y `pnpm format:check` corren sin crash (lint pass; format autoaplicado a archivos del bootstrap)
+- [x] 8.6 Marcar Fase 1 ✅ en `docs/bootstrap-plan.md`
+- [x] 8.7 Primer commit oficial del repo: `47fed7e chore(repo): bootstrap fase 1 - monorepo base, lint, hooks, changesets`
 
 **Criterio**: el repo queda en un estado donde Fase 2 (migrar `packages/tokens`) puede arrancar sin retrabajo.
 
 ## 9. Archivar este change
 
-- [ ] 9.1 Mover `openspec/changes/bootstrap-fase-1-monorepo/` → `openspec/changes/_archive/2026-XX-XX-bootstrap-fase-1-monorepo/`
-- [ ] 9.2 Integrar deltas de spec en `openspec/specs/monorepo-structure/spec.md` (si aplica según convención OpenSpec)
+- [x] 9.1 Mover `openspec/changes/bootstrap-fase-1-monorepo/` → `openspec/changes/archive/2026-05-30-bootstrap-fase-1-monorepo/`
+- [x] 9.2 Integrar deltas de spec en `openspec/specs/monorepo-structure/spec.md` (deltas `ADDED` promovidos a spec base, sync directo porque la spec no preexistía)
 
 **Criterio**: el change está archivado y los specs reflejan el nuevo estado del repo.
