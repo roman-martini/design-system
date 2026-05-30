@@ -1,0 +1,61 @@
+{
+  "component": {
+    "button": {
+      "height": {
+        "sm": { "value": "{dimension.32}" },
+        "md": { "value": "{dimension.40}" },
+        "lg": { "value": "{dimension.48}" }
+      },
+      "padding-x": {
+        "sm": { "value": "{dimension.12}" },
+        "md": { "value": "{dimension.16}" },
+        "lg": { "value": "{dimension.24}" }
+      },
+      "font-size": {
+        "sm": { "value": "{semantic.font.size.button-sm}" },
+        "md": { "value": "{semantic.font.size.button-md}" },
+        "lg": { "value": "{semantic.font.size.button-lg}" }
+      },
+      "font-weight":  { "value": "{semantic.font.weight.button}" },
+      "radius":       { "value": "{semantic.radius.md}" },
+      "gap":          { "value": "{dimension.8}" },
+      "focus-ring-color": { "value": "{semantic.color.focus-ring}" },
+      "focus-ring-width": { "value": "{dimension.3}" },
+      "primary": {
+        "bg":        { "value": "{semantic.color.bg.primary}" },
+        "bg-hover":  { "value": "{semantic.color.bg.primary-hover}" },
+        "bg-active": { "value": "{semantic.color.bg.primary-active}" },
+        "text":      { "value": "{semantic.color.text.inverse}" },
+        "border":    { "value": "{semantic.color.bg.primary}" }
+      },
+      "secondary": {
+        "bg":        { "value": "{semantic.color.bg.secondary}" },
+        "bg-hover":  { "value": "{semantic.color.bg.secondary-hover}" },
+        "bg-active": { "value": "{semantic.color.bg.secondary-active}" },
+        "text":      { "value": "{semantic.color.text.primary}" },
+        "border":    { "value": "{semantic.color.border.default}" }
+      },
+      "danger": {
+        "bg":        { "value": "{semantic.color.bg.danger}" },
+        "bg-hover":  { "value": "{semantic.color.bg.danger-hover}" },
+        "bg-active": { "value": "{semantic.color.bg.danger-active}" },
+        "text":      { "value": "{semantic.color.text.inverse}" },
+        "border":    { "value": "{semantic.color.bg.danger}" }
+      },
+      "ghost": {
+        "bg":        { "value": "transparent" },
+        "bg-hover":  { "value": "{semantic.color.bg.secondary-hover}" },
+        "bg-active": { "value": "{semantic.color.bg.secondary-active}" },
+        "text":      { "value": "{semantic.color.text.primary}" },
+        "border":    { "value": "transparent" }
+      },
+      "link": {
+        "bg":           { "value": "transparent" },
+        "bg-hover":     { "value": "transparent" },
+        "text":         { "value": "{semantic.color.text.link}" },
+        "text-hover":   { "value": "{semantic.color.text.link-hover}" },
+        "border":       { "value": "transparent" }
+      }
+    }
+  }
+}

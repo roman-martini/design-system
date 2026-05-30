@@ -1,0 +1,43 @@
+{
+  "semantic": {
+    "font": {
+      "family": {
+        "body": { "value": "{font.family.sans}" },
+        "code": { "value": "{font.family.mono}" }
+      },
+      "size": {
+        "heading-1": { "value": "{font.size.4xl}" },
+        "heading-2": { "value": "{font.size.3xl}" },
+        "heading-3": { "value": "{font.size.2xl}" },
+        "heading-4": { "value": "{font.size.xl}" },
+        "heading-5": { "value": "{font.size.lg}" },
+        "heading-6": { "value": "{font.size.md}" },
+        "body-lg":   { "value": "{font.size.lg}" },
+        "body-md":   { "value": "{font.size.md}" },
+        "body-sm":   { "value": "{font.size.sm}" },
+        "body-xs":   { "value": "{font.size.xs}" },
+        "label-lg":  { "value": "{font.size.md}" },
+        "label-md":  { "value": "{font.size.sm}" },
+        "label-sm":  { "value": "{font.size.xs}" },
+        "code-md":   { "value": "{font.size.sm}" },
+        "button-sm": { "value": "{font.size.sm}" },
+        "button-md": { "value": "{font.size.md}" },
+        "button-lg": { "value": "{font.size.lg}" }
+      },
+      "weight": {
+        "heading":  { "value": "{font.weight.bold}" },
+        "subhead":  { "value": "{font.weight.semibold}" },
+        "body":     { "value": "{font.weight.regular}" },
+        "label":    { "value": "{font.weight.medium}" },
+        "button":   { "value": "{font.weight.semibold}" },
+        "code":     { "value": "{font.weight.regular}" }
+      },
+      "line-height": {
+        "heading": { "value": "{font.line-height.tight}" },
+        "body":    { "value": "{font.line-height.normal}" },
+        "label":   { "value": "{font.line-height.snug}" },
+        "code":    { "value": "{font.line-height.relaxed}" }
+      }
+    }
+  }
+}

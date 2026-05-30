@@ -1,0 +1,12 @@
+{
+  "semantic": {
+    "shadow": {
+      "card":    { "value": "{shadow.sm}" },
+      "card-hover": { "value": "{shadow.md}" },
+      "dropdown":{ "value": "{shadow.md}" },
+      "modal":   { "value": "{shadow.xl}" },
+      "toast":   { "value": "{shadow.lg}" },
+      "input":   { "value": "{shadow.inner}" }
+    }
+  }
+}

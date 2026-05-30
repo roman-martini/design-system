@@ -1,0 +1,47 @@
+schema: spec-driven
+
+context: |
+  agent-design-sistem es un monorepo pnpm con librerías de arquitectura frontend
+  publicadas bajo el scope npm `@romanmartinidev`.
+
+  Librerías:
+    - @romanmartinidev/tokens     — design tokens (Style Dictionary 4.x)
+    - @romanmartinidev/components — componentes Angular (ng-packagr, APF)
+
+  Apps:
+    - apps/playground — app Angular 21 + Vitest + Storybook 10 para
+      validación de componentes y prototipado de casos reales.
+
+  Stack: pnpm workspaces, TypeScript 5.9, Angular 21, ng-packagr,
+  Style Dictionary 4, Vitest 4, Storybook 10, Changesets,
+  ESLint + Prettier, Husky + lint-staged + commitlint.
+
+  Prioridades estrictas (en orden):
+    1. Aplicar buenas prácticas.
+    2. Diseños/arquitecturas que escalen ordenado.
+    3. Mantenibilidad vía estándares y convenciones claras.
+
+  Convenciones del repo:
+    - Commits: Conventional Commits.
+    - Decisiones arquitectónicas: ADRs en formato MADR en docs/architecture/adr/.
+    - Cambios significativos (nueva lib, refactor mayor, cambio de tooling base):
+      arrancan como propuesta OpenSpec en openspec/changes/.
+    - Cambios triviales o de implementación local NO requieren propuesta OpenSpec.
+    - Las libs publicables: peerDependencies para Angular, dependencies internas
+      vía workspace:*, README por package, build optimizado para publicación.
+
+rules:
+  proposal:
+    - Toda propuesta declara explícitamente cuál(es) prioridad(es) del repo
+      respalda (buenas prácticas / escalabilidad / mantenibilidad).
+    - Incluir sección "Alternativas evaluadas" con ≥2 opciones y por qué se
+      descartaron, alineado con el formato de ADR.
+    - Si la propuesta toca ≥2 packages o es one-way door, indicar que
+      generará un ADR al cerrarse.
+    - Indicar qué fase del bootstrap-plan o área del repo afecta.
+  tasks:
+    - Tareas en chunks de ≤2 horas de trabajo efectivo.
+    - Cada tarea con criterio de aceptación binario (cumple / no cumple),
+      no descripciones ambiguas.
+    - Si una tarea modifica configuración compartida (root package.json,
+      tsconfig base, ESLint config), marcarla como "afecta-todo-el-repo".

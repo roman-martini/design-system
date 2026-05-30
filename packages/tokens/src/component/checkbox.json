@@ -1,0 +1,22 @@
+{
+  "component": {
+    "checkbox": {
+      "size": {
+        "sm": { "value": "{dimension.16}" },
+        "md": { "value": "{dimension.20}" }
+      },
+      "radius":       { "value": "{semantic.radius.sm}" },
+      "border-width": { "value": "{dimension.2}" },
+      "bg-off":         { "value": "{color.white}" },
+      "bg-off-hover":   { "value": "{color.neutral.50}" },
+      "bg-on":          { "value": "{semantic.color.bg.primary}" },
+      "bg-on-hover":    { "value": "{semantic.color.bg.primary-hover}" },
+      "border-off":     { "value": "{color.neutral.400}" },
+      "border-on":      { "value": "{semantic.color.bg.primary}" },
+      "check-color":    { "value": "{color.white}" },
+      "focus-ring":     { "value": "{semantic.color.focus-ring}" },
+      "label-font-size":{ "value": "{font.size.sm}" },
+      "label-color":    { "value": "{semantic.color.text.primary}" }
+    }
+  }
+}

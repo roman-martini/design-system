@@ -1,0 +1,28 @@
+{
+  "component": {
+    "card": {
+      "padding": {
+        "sm": { "value": "{dimension.16}" },
+        "md": { "value": "{dimension.24}" },
+        "lg": { "value": "{dimension.32}" }
+      },
+      "header-gap":  { "value": "{dimension.4}" },
+      "footer-gap":  { "value": "{dimension.16}" },
+      "radius":      { "value": "{semantic.radius.xl}" },
+      "bg":          { "value": "{semantic.color.bg.surface}" },
+      "bg-elevated": { "value": "{semantic.color.bg.elevated}" },
+      "border":      { "value": "{semantic.color.border.default}" },
+      "shadow":      { "value": "{semantic.shadow.card}" },
+      "shadow-hover":{ "value": "{semantic.shadow.card-hover}" },
+      "title": {
+        "font-size":   { "value": "{semantic.font.size.heading-5}" },
+        "font-weight": { "value": "{semantic.font.weight.subhead}" },
+        "color":       { "value": "{semantic.color.text.primary}" }
+      },
+      "subtitle": {
+        "font-size": { "value": "{semantic.font.size.body-sm}" },
+        "color":     { "value": "{semantic.color.text.secondary}" }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "component": {
+    "tabs": {
+      "size": {
+        "sm": {
+          "height": { "value": "32px" },
+          "font-size": { "value": "{font.size.sm}" }
+        },
+        "md": {
+          "height": { "value": "40px" },
+          "font-size": { "value": "{font.size.md}" }
+        },
+        "lg": {
+          "height": { "value": "48px" },
+          "font-size": { "value": "{font.size.lg}" }
+        }
+      },
+      "padding": { "value": "{semantic.space.md}" },
+      "gap": { "value": "{semantic.space.sm}" },
+      "radius": { "value": "{semantic.radius.md}" },
+      "font-weight": { "value": "{font.weight.medium}" },
+      "line-height": { "value": "{font.line-height.snug}" },
+      "underline": {
+        "color-default": { "value": "{semantic.color.text.secondary}" },
+        "color-hover": { "value": "{semantic.color.text.primary}" },
+        "color-active": { "value": "{semantic.color.text.primary}" },
+        "underline-default": { "value": "transparent" },
+        "underline-hover": { "value": "{semantic.color.bg.primary}" },
+        "underline-active": { "value": "{semantic.color.text.primary}" },
+        "underline-width": { "value": "2px" }
+      },
+      "pills": {
+        "bg-default": { "value": "{semantic.color.bg.base}" },
+        "bg-hover": { "value": "{semantic.color.bg.primary-subtle}" },
+        "bg-active": { "value": "{semantic.color.bg.primary}" },
+        "text-default": { "value": "{semantic.color.text.secondary}" },
+        "text-active": { "value": "{semantic.color.text.inverse}" }
+      },
+      "contained": {
+        "bg-default": { "value": "{semantic.color.bg.surface}" },
+        "bg-hover": { "value": "{semantic.color.bg.primary-subtle}" },
+        "bg-active": { "value": "{semantic.color.bg.primary}" },
+        "text-default": { "value": "{semantic.color.text.secondary}" },
+        "text-active": { "value": "{semantic.color.text.inverse}" }
+      }
+    }
+  }
+}

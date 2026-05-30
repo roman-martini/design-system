@@ -1,0 +1,19 @@
+{
+  "semantic": {
+    "z-index": {
+      "hide":     { "value": "-1" },
+      "auto":     { "value": "auto" },
+      "base":     { "value": "0" },
+      "docked":   { "value": "10" },
+      "dropdown": { "value": "1000" },
+      "sticky":   { "value": "1020" },
+      "banner":   { "value": "1030" },
+      "overlay":  { "value": "1040" },
+      "modal":    { "value": "1050" },
+      "popover":  { "value": "1060" },
+      "skiplink": { "value": "1070" },
+      "toast":    { "value": "1080" },
+      "tooltip":  { "value": "1090" }
+    }
+  }
+}

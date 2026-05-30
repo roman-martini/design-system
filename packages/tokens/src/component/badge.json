@@ -1,0 +1,51 @@
+{
+  "component": {
+    "badge": {
+      "padding-x": {
+        "sm": { "value": "{dimension.6}" },
+        "md": { "value": "{dimension.10}" }
+      },
+      "padding-y": {
+        "sm": { "value": "{dimension.2}" },
+        "md": { "value": "{dimension.4}" }
+      },
+      "font-size": {
+        "sm": { "value": "{font.size.xs}" },
+        "md": { "value": "{font.size.sm}" }
+      },
+      "font-weight": { "value": "{font.weight.medium}" },
+      "radius":      { "value": "{semantic.radius.full}" },
+      "dot-size":    { "value": "{dimension.6}" },
+      "default": {
+        "bg":     { "value": "{semantic.color.bg.secondary-hover}" },
+        "text":   { "value": "{semantic.color.text.secondary}" },
+        "border": { "value": "{semantic.color.border.default}" }
+      },
+      "primary": {
+        "bg":     { "value": "{semantic.color.bg.primary-subtle}" },
+        "text":   { "value": "{semantic.color.text.link}" },
+        "border": { "value": "{semantic.color.border.primary}" }
+      },
+      "success": {
+        "bg":     { "value": "{semantic.color.bg.success-subtle}" },
+        "text":   { "value": "{semantic.color.text.success}" },
+        "border": { "value": "{semantic.color.border.success}" }
+      },
+      "warning": {
+        "bg":     { "value": "{semantic.color.bg.warning-subtle}" },
+        "text":   { "value": "{semantic.color.text.warning}" },
+        "border": { "value": "{semantic.color.border.warning}" }
+      },
+      "danger": {
+        "bg":     { "value": "{semantic.color.bg.danger-subtle}" },
+        "text":   { "value": "{semantic.color.text.danger}" },
+        "border": { "value": "{semantic.color.border.danger}" }
+      },
+      "info": {
+        "bg":     { "value": "{semantic.color.bg.info-subtle}" },
+        "text":   { "value": "{semantic.color.text.info}" },
+        "border": { "value": "{semantic.color.border.info}" }
+      }
+    }
+  }
+}

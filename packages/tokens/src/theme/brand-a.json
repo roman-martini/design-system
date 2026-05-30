@@ -1,0 +1,23 @@
+{
+  "semantic": {
+    "color": {
+      "bg": {
+        "primary":        { "value": "{color.green.600}" },
+        "primary-hover":  { "value": "{color.green.700}" },
+        "primary-active": { "value": "{color.green.800}" },
+        "primary-subtle": { "value": "{color.green.50}" }
+      },
+      "border": {
+        "primary": { "value": "{color.green.500}" }
+      },
+      "text": {
+        "link":       { "value": "{color.green.700}" },
+        "link-hover": { "value": "{color.green.800}" }
+      },
+      "icon": {
+        "primary": { "value": "{color.green.600}" }
+      },
+      "focus-ring": { "value": "{color.green.200}" }
+    }
+  }
+}

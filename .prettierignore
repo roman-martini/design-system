@@ -1,0 +1,27 @@
+# Dependencies y build outputs
+node_modules/
+dist/
+build/
+out/
+coverage/
+.angular/
+.changeset/
+storybook-static/
+documentation/
+pnpm-lock.yaml
+*.tsbuildinfo
+
+# Scaffold importado (no editar manualmente: se sincroniza desde upstream)
+.claude/
+
+# Material histórico / de referencia (no normativo)
+contexto_inicial.md
+docs/4.0_arquitectura_frontend/
+docs/DESIGN_SYSTEM_ROADMAP.md
+docs/taxonomias_arq_software.md
+docs/_archive/
+
+# Packages que se migran/refactorizan en fases posteriores del bootstrap
+# (formato se aplica en su fase, no en Fase 1)
+packages/tokens/src/
+packages/tokens/sd.config.mjs

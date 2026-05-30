@@ -1,0 +1,43 @@
+{
+  "component": {
+    "input": {
+      "height": {
+        "sm": { "value": "{dimension.32}" },
+        "md": { "value": "{dimension.40}" },
+        "lg": { "value": "{dimension.48}" }
+      },
+      "padding-x": {
+        "sm": { "value": "{dimension.10}" },
+        "md": { "value": "{dimension.12}" },
+        "lg": { "value": "{dimension.14}" }
+      },
+      "font-size": {
+        "sm": { "value": "{font.size.sm}" },
+        "md": { "value": "{font.size.md}" },
+        "lg": { "value": "{font.size.lg}" }
+      },
+      "radius":       { "value": "{semantic.radius.md}" },
+      "border-width": { "value": "{dimension.1}" },
+      "bg":              { "value": "{semantic.color.bg.surface}" },
+      "bg-disabled":     { "value": "{semantic.color.bg.disabled}" },
+      "text":            { "value": "{semantic.color.text.primary}" },
+      "text-placeholder":{ "value": "{semantic.color.text.tertiary}" },
+      "text-disabled":   { "value": "{semantic.color.text.disabled}" },
+      "border":          { "value": "{semantic.color.border.default}" },
+      "border-hover":    { "value": "{semantic.color.border.strong}" },
+      "border-focus":    { "value": "{semantic.color.border.primary}" },
+      "border-error":    { "value": "{semantic.color.border.danger}" },
+      "focus-ring":      { "value": "{semantic.color.focus-ring}" },
+      "label": {
+        "font-size":   { "value": "{semantic.font.size.label-md}" },
+        "font-weight": { "value": "{semantic.font.weight.label}" },
+        "color":       { "value": "{semantic.color.text.secondary}" },
+        "gap":         { "value": "{dimension.6}" }
+      },
+      "helper": {
+        "font-size": { "value": "{font.size.xs}" },
+        "gap":       { "value": "{dimension.4}" }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@ds/tokens",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node sd.config.mjs",
+    "watch": "node --watch sd.config.mjs"
+  },
+  "exports": {
+    "./css": "./dist/tokens.css"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.3.0"
+  }
+}

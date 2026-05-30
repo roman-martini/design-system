@@ -1,0 +1,23 @@
+{
+  "semantic": {
+    "space": {
+      "2xs": { "value": "{dimension.2}" },
+      "xs":  { "value": "{dimension.4}" },
+      "sm":  { "value": "{dimension.8}" },
+      "md":  { "value": "{dimension.16}" },
+      "lg":  { "value": "{dimension.24}" },
+      "xl":  { "value": "{dimension.32}" },
+      "2xl": { "value": "{dimension.48}" },
+      "3xl": { "value": "{dimension.64}" }
+    },
+    "radius": {
+      "xs":   { "value": "{dimension.2}" },
+      "sm":   { "value": "{dimension.4}" },
+      "md":   { "value": "{dimension.6}" },
+      "lg":   { "value": "{dimension.8}" },
+      "xl":   { "value": "{dimension.12}" },
+      "2xl":  { "value": "{dimension.16}" },
+      "full": { "value": "9999px" }
+    }
+  }
+}

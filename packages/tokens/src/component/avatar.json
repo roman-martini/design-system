@@ -1,0 +1,27 @@
+{
+  "component": {
+    "avatar": {
+      "size": {
+        "xs": { "value": "{dimension.24}" },
+        "sm": { "value": "{dimension.32}" },
+        "md": { "value": "{dimension.40}" },
+        "lg": { "value": "{dimension.48}" },
+        "xl": { "value": "{dimension.64}" }
+      },
+      "font-size": {
+        "xs": { "value": "{font.size.xs}" },
+        "sm": { "value": "{font.size.xs}" },
+        "md": { "value": "{font.size.sm}" },
+        "lg": { "value": "{font.size.md}" },
+        "xl": { "value": "{font.size.xl}" }
+      },
+      "font-weight":   { "value": "{font.weight.semibold}" },
+      "bg":            { "value": "{semantic.color.bg.primary-subtle}" },
+      "text":          { "value": "{semantic.color.text.link}" },
+      "border-color":  { "value": "{semantic.color.bg.surface}" },
+      "border-width":  { "value": "{dimension.2}" },
+      "status-size":   { "value": "{dimension.10}" },
+      "status-border": { "value": "{dimension.2}" }
+    }
+  }
+}
