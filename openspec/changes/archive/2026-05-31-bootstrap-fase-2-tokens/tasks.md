@@ -89,7 +89,7 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. Marcar `[x]` al ce
 - [x] 7.2 `pnpm lint` pasa
 - [x] 7.3 `pnpm format:check` pasa (auto-formateados 6 archivos del bootstrap)
 - [x] 7.4 Marcar Fase 2 ✅ en `docs/bootstrap-plan.md`
-- [ ] 7.5 Proponer mensaje de commit y esperar OK de Roman (regla: cero commits sin permiso explícito)
+- [x] 7.5 Proponer mensaje de commit y esperar OK de Roman → aprobado y commiteado en `af8bcc6`
 
 **Criterio**: los 5 puntos pasan; Roman aprueba el mensaje del commit antes de ejecutarlo.
 
@@ -97,8 +97,8 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. Marcar `[x]` al ce
 
 > Estas tareas se ejecutan vía `/opsx:archive bootstrap-fase-2-tokens` (no manualmente).
 
-- [ ] 8.1 Verificar que `openspec/changes/bootstrap-fase-2-tokens/` queda en `openspec/changes/archive/YYYY-MM-DD-bootstrap-fase-2-tokens/`
-- [ ] 8.2 Verificar que los deltas `ADDED Requirements` de `design-tokens-package` quedan promovidos a `openspec/specs/design-tokens-package/spec.md` (con header `## Purpose` agregado)
+- [x] 8.1 Verificar que `openspec/changes/bootstrap-fase-2-tokens/` queda en `openspec/changes/archive/2026-05-31-bootstrap-fase-2-tokens/`
+- [x] 8.2 Verificar que los deltas `ADDED Requirements` de `design-tokens-package` quedan promovidos a `openspec/specs/design-tokens-package/spec.md` (con header `## Purpose` agregado) — `openspec validate --all` pasa para los 2 specs
 - [ ] 8.3 Proponer mensaje de commit del archive y esperar OK de Roman
 
 **Criterio**: change en archive, spec base creada y validada (`openspec validate --all` pasa).
