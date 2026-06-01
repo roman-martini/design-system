@@ -24,7 +24,7 @@ agent-design-sistem/
 │   │   ├── README.md            # Visión general
 │   │   ├── decisions-log.md     # Índice tabular de decisiones
 │   │   └── adr/                 # ADRs en formato MADR
-│   ├── 4.0_arquitectura_frontend/  # Material de referencia (no normativo)
+│   ├── reference/                  # Material de referencia (no normativo, otros repos)
 │   └── bootstrap-plan.md        # Plan de bootstrap del repo (durante setup inicial)
 ├── openspec/                    # Specs y propuestas de cambio significativo
 │   ├── config.yaml
@@ -61,19 +61,19 @@ agent-design-sistem/
 
 Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si tenés una duda, mirá la tabla:
 
-| Pregunta                                                    | Fuente de verdad                                                   | Naturaleza                                                                |
-| ----------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------- |
-| ¿Qué debe hacer el sistema?                                 | `openspec/specs/<capability>/spec.md`                              | Contratos testables (Given/When/Then)                                     |
-| ¿Qué cambios significativos están en curso?                 | `openspec/changes/<change-name>/`                                  | Propuesta activa (`proposal.md` + `design.md` + `tasks.md` + spec deltas) |
-| ¿Cuál es el historial de cambios cerrados?                  | `openspec/changes/_archive/`                                       | Auditoría de cambios pasados                                              |
-| ¿Por qué se decidió X?                                      | `docs/architecture/adr/ADR-NNN-*.md`                               | Decisión inmutable + opciones evaluadas                                   |
-| ¿Hay un índice de todas las decisiones?                     | `docs/architecture/decisions-log.md`                               | Tabla cronológica                                                         |
-| ¿Cómo está organizado el repo (visión general, principios)? | `docs/architecture/README.md`                                      | Mapa mental                                                               |
-| ¿Cómo trabajo como dev en este repo?                        | `CONTRIBUTING.md`                                                  | Flujo de PR, commits, changesets                                          |
-| ¿Cómo arranco como dev nuevo?                               | `README.md` (root)                                                 | Quickstart                                                                |
-| ¿Cómo debe trabajar Claude acá?                             | `CLAUDE.md` (este archivo)                                         | Contrato Claude ↔ repo                                                    |
-| Plan de bootstrap del repo (temporal)                       | `docs/bootstrap-plan.md`                                           | Índice de fases — se archiva al cerrar Fase 5                             |
-| Material de investigación de referencia (no normativo)      | `docs/4.0_arquitectura_frontend/`, `docs/DESIGN_SYSTEM_ROADMAP.md` | Histórico/inspiración                                                     |
+| Pregunta                                                    | Fuente de verdad                      | Naturaleza                                                                |
+| ----------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------- |
+| ¿Qué debe hacer el sistema?                                 | `openspec/specs/<capability>/spec.md` | Contratos testables (Given/When/Then)                                     |
+| ¿Qué cambios significativos están en curso?                 | `openspec/changes/<change-name>/`     | Propuesta activa (`proposal.md` + `design.md` + `tasks.md` + spec deltas) |
+| ¿Cuál es el historial de cambios cerrados?                  | `openspec/changes/archive/`           | Auditoría de cambios pasados                                              |
+| ¿Por qué se decidió X?                                      | `docs/architecture/adr/ADR-NNN-*.md`  | Decisión inmutable + opciones evaluadas                                   |
+| ¿Hay un índice de todas las decisiones?                     | `docs/architecture/decisions-log.md`  | Tabla cronológica                                                         |
+| ¿Cómo está organizado el repo (visión general, principios)? | `docs/architecture/README.md`         | Mapa mental                                                               |
+| ¿Cómo trabajo como dev en este repo?                        | `CONTRIBUTING.md`                     | Flujo de PR, commits, changesets                                          |
+| ¿Cómo arranco como dev nuevo?                               | `README.md` (root)                    | Quickstart                                                                |
+| ¿Cómo debe trabajar Claude acá?                             | `CLAUDE.md` (este archivo)            | Contrato Claude ↔ repo                                                    |
+| Plan de bootstrap del repo (temporal)                       | `docs/bootstrap-plan.md`              | Índice de fases — se archiva al cerrar Fase 5                             |
+| Material de investigación de referencia (no normativo)      | `docs/reference/`                     | Histórico/inspiración                                                     |
 
 ### Reglas para no mezclar
 
@@ -174,5 +174,5 @@ pnpm -r publish
 ## Referencias
 
 - Bootstrap plan vigente: `docs/bootstrap-plan.md`
-- Material de investigación: `docs/4.0_arquitectura_frontend/`
+- Material de investigación: `docs/reference/`
 - Contexto original del proyecto: `contexto_inicial.md`

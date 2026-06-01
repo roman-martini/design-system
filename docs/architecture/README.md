@@ -414,4 +414,4 @@ Ver tabla maestra: [openspec/IDS.md](../../openspec/IDS.md).
 
 ## Material de referencia (no normativo)
 
-[`docs/4.0_arquitectura_frontend/`](../4.0_arquitectura_frontend/) contiene material de investigación traído de otro repo. **No es normativo**: la fuente de verdad son los ADRs y specs.
+[`docs/reference/`](../reference/) contiene material de investigación traído de otros repos (taxonomías de arquitectura, arquitectura frontend, design systems industry). **No es normativo**: la fuente de verdad son los ADRs y specs.

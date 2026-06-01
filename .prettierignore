@@ -16,10 +16,7 @@ pnpm-lock.yaml
 
 # Material histórico / de referencia (no normativo)
 contexto_inicial.md
-docs/4.0_arquitectura_frontend/
-docs/DESIGN_SYSTEM_ROADMAP.md
-docs/taxonomias_arq_software.md
-docs/_archive/
+docs/reference/
 
 # Packages que se migran/refactorizan en fases posteriores del bootstrap
 # (formato se aplica en su fase, no en Fase 1)
