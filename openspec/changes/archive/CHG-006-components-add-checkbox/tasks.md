@@ -89,25 +89,25 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario.
 
 ## 9. Validación de cierre
 
-- [ ] 9.1 `openspec validate --changes` pasa para `components-add-checkbox`
-- [ ] 9.2 `pnpm lint` pasa
-- [ ] 9.3 `pnpm format:check` pasa (formatear si necesario)
-- [ ] 9.4 `pnpm -r build` pasa (tokens + components + playground)
-- [ ] 9.5 `pnpm -F @romanmartinidev/components exec vitest run` pasa (Button 3/3 + Checkbox ≥9 = 12/12 ó más)
-- [ ] 9.6 `pnpm -F playground exec vitest run` pasa (al menos 3/3)
-- [ ] 9.7 `pnpm -F playground exec ng run playground:build-storybook` pasa; Checkbox stories visibles en `storybook-static/index.json`
-- [ ] 9.8 `npm pack --dry-run` desde `packages/components/` post-Checkbox: tarball sigue sin incluir `*.stories.ts` ni `*.spec.ts` (verificación de `files` + `tsconfig.lib.json exclude` siguen aplicando)
-- [ ] 9.9 Proponer mensaje de commit y esperar OK de Roman (regla: cero commits sin permiso explícito)
+- [x] 9.1 `openspec validate --changes` pasa para `components-add-checkbox`
+- [x] 9.2 `pnpm lint` pasa
+- [x] 9.3 `pnpm format:check` pasa (formatear si necesario)
+- [x] 9.4 `pnpm -r build` pasa (tokens + components + playground)
+- [x] 9.5 `pnpm -F @romanmartinidev/components exec vitest run` pasa (Button 3/3 + Checkbox ≥9 = 12/12 ó más)
+- [x] 9.6 `pnpm -F playground exec vitest run` pasa (al menos 3/3)
+- [x] 9.7 `pnpm -F playground exec ng run playground:build-storybook` pasa; Checkbox stories visibles en `storybook-static/index.json`
+- [x] 9.8 `npm pack --dry-run` desde `packages/components/` post-Checkbox: tarball sigue sin incluir `*.stories.ts` ni `*.spec.ts` (verificación de `files` + `tsconfig.lib.json exclude` siguen aplicando)
+- [x] 9.9 Proponer mensaje de commit y esperar OK de Roman (regla: cero commits sin permiso explícito) — commit `a620ab4`
 
 **Criterio**: los 9 puntos pasan; Roman aprueba el commit antes de ejecutar.
 
 ## 10. Archivar este change
 
-- [ ] 10.1 Mover `openspec/changes/components-add-checkbox/` → `openspec/changes/archive/CHG-006-components-add-checkbox/`
-- [ ] 10.2 Promover los `ADDED Requirements` del delta a la spec base `openspec/specs/SPC-003-components-package/spec.md` (agregar requirement "Componente Checkbox" + "@angular/forms peerDependency" después de los requirements existentes)
-- [ ] 10.3 Actualizar frontmatter del proposal archivado: `status: archived` + `archived: 2026-06-XX`
-- [ ] 10.4 Actualizar `openspec/IDS.md`: fila CHG-006 status `archived`, próximo disponible `CHG-007`
-- [ ] 10.5 `openspec validate --all` pasa para 5 specs base
+- [x] 10.1 Mover `openspec/changes/components-add-checkbox/` → `openspec/changes/archive/CHG-006-components-add-checkbox/`
+- [x] 10.2 Promover los `ADDED Requirements` del delta a la spec base `openspec/specs/SPC-003-components-package/spec.md` (agregar requirement "Componente Checkbox" + "@angular/forms peerDependency" después de los requirements existentes)
+- [x] 10.3 Actualizar frontmatter del proposal archivado: `status: archived` + `archived: 2026-06-01`
+- [x] 10.4 Actualizar `openspec/IDS.md`: fila CHG-006 status `archived`, próximo disponible `CHG-007`
+- [x] 10.5 `openspec validate --all` pasa para 5 specs base
 - [ ] 10.6 Proponer mensaje del commit del archive y esperar OK de Roman
 
 **Criterio**: change archivado, requirements promovidos a SPC-003, openspec valida, commit aprobado.

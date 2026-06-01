@@ -2,7 +2,8 @@
 id: CHG-006
 name: components-add-checkbox
 type: change
-status: active
+status: archived
+archived: 2026-06-01
 modifies-specs:
   - SPC-003 (components-package — agrega Checkbox)
 related-adrs:
