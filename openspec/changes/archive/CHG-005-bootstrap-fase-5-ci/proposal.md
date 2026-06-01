@@ -2,7 +2,8 @@
 id: CHG-005
 name: bootstrap-fase-5-ci
 type: change
-status: active
+status: archived
+archived: 2026-06-01
 introduces-specs:
   - SPC-005 (ci-cd-pipeline)
 related-adrs:
