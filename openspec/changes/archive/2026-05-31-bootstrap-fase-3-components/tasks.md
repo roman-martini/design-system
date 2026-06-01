@@ -67,7 +67,7 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. Marcar `[x]` al ce
 - [x] 8.4 `pnpm -r build` pasa (tokens + components buildean OK)
 - [x] 8.5 `pnpm -F @romanmartinidev/components exec vitest run` reporta 3/3 tests passing
 - [x] 8.6 Marcar Fase 3 ✅ en `docs/bootstrap-plan.md`
-- [ ] 8.7 Proponer mensaje de commit y esperar OK de Roman (regla: cero commits sin permiso explícito)
+- [x] 8.7 Proponer mensaje de commit y esperar OK de Roman → aprobado y commiteado en `c3aaeba`
 
 **Criterio**: todos los puntos pasan; Roman aprueba el mensaje del commit antes de ejecutarlo.
 
