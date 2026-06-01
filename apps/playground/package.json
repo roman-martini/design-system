@@ -1,0 +1,44 @@
+{
+  "name": "playground",
+  "version": "0.0.0",
+  "private": true,
+  "description": "App Angular 21 zoneless — laboratorio interno para validar @romanmartinidev/tokens y @romanmartinidev/components",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "vitest",
+    "storybook": "ng run playground:storybook",
+    "build-storybook": "ng run playground:build-storybook"
+  },
+  "dependencies": {
+    "@angular/common": "^21.2.0",
+    "@angular/compiler": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@angular/platform-browser": "^21.2.0",
+    "@romanmartinidev/components": "workspace:*",
+    "@romanmartinidev/tokens": "workspace:*",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@analogjs/vite-plugin-angular": "^2.5.2",
+    "@analogjs/vitest-angular": "^2.5.2",
+    "@angular/build": "^21.2.13",
+    "@angular/cli": "^21.2.13",
+    "@angular/compiler-cli": "^21.2.0",
+    "@storybook/addon-a11y": "^10",
+    "@storybook/addon-docs": "^10",
+    "@storybook/angular": "^10",
+    "jsdom": "^27.0.0",
+    "storybook": "^10",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}

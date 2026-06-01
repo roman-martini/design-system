@@ -1,0 +1,14 @@
+/* Tokens del sistema de diseño — DEBE ir primero para que --ds-* esté disponible globalmente */
+@import '@romanmartinidev/tokens/css';
+
+/* Estilos globales del playground */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--ds-semantic-color-bg-base);
+  color: var(--ds-semantic-color-text-primary);
+  font-family: var(--ds-font-family-sans);
+  font-size: var(--ds-font-size-md);
+  line-height: var(--ds-font-line-height-normal);
+}

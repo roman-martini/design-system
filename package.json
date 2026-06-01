@@ -16,6 +16,10 @@
     "pnpm": ">=9.0.0"
   },
   "scripts": {
+    "dev": "pnpm -F playground start",
+    "start": "pnpm -F playground start",
+    "storybook": "pnpm -F playground storybook",
+    "storybook:build": "pnpm -F playground build-storybook",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "lint": "eslint .",

@@ -160,7 +160,7 @@ Identificados al diagnosticar el repo. Algunos ya están resueltos en el plan; q
 - [x] Fase 1 — **completada** (2026-05-30)
 - [x] Fase 2 — **completada** (2026-05-31)
 - [x] Fase 3 — **completada** (2026-05-31)
-- [ ] Fase 4
+- [x] Fase 4 — **completada** (2026-06-01)
 - [ ] Fase 5
 
 Actualizar este checklist al cerrar cada fase. Cuando todo esté completado, archivar este documento.

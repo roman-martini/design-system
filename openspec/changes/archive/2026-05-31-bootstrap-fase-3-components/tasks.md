@@ -75,9 +75,9 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. Marcar `[x]` al ce
 
 > Estas tareas se ejecutan vía flujo manual o `/opsx:archive bootstrap-fase-3-components`.
 
-- [ ] 9.1 Mover `openspec/changes/bootstrap-fase-3-components/` → `openspec/changes/archive/YYYY-MM-DD-bootstrap-fase-3-components/`
-- [ ] 9.2 Promover `ADDED Requirements` del delta a `openspec/specs/components-package/spec.md` (con header `## Purpose` requerido por OpenSpec validate)
-- [ ] 9.3 `openspec validate --all` pasa para 3 specs base (monorepo-structure + design-tokens-package + components-package)
-- [ ] 9.4 Proponer mensaje del commit del archive y esperar OK de Roman
+- [x] 9.1 Movido a `openspec/changes/archive/2026-05-31-bootstrap-fase-3-components/`
+- [x] 9.2 Promovidos 12 ADDED Requirements a `openspec/specs/components-package/spec.md` con header `## Purpose`
+- [x] 9.3 `openspec validate --all` pasa: ✓ monorepo-structure, ✓ design-tokens-package, ✓ components-package (3/3)
+- [x] 9.4 Proponer mensaje del commit del archive y esperar OK de Roman → aprobado y commiteado en `c53e5c5`
 
 **Criterio**: change archivado, spec base creada y validada, commit del archive aprobado por Roman antes de ejecutar.

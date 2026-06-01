@@ -28,5 +28,5 @@
     "enableI18nLegacyMessageIdFormat": false
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts"]
+  "exclude": ["src/**/*.spec.ts", "src/**/*.stories.ts"]
 }

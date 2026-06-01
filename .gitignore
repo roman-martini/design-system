@@ -62,3 +62,8 @@ documentation/
 .eslintcache
 .stylelintcache
 .prettiercache
+
+# Notas personales (no commitear)
+NOTAS.md
+notas.md
+TODO.md
