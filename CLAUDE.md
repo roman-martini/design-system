@@ -24,8 +24,7 @@ agent-design-sistem/
 │   │   ├── README.md            # Visión general
 │   │   ├── decisions-log.md     # Índice tabular de decisiones
 │   │   └── adr/                 # ADRs en formato MADR
-│   ├── reference/                  # Material de referencia (no normativo, otros repos)
-│   └── bootstrap-plan.md        # Plan de bootstrap del repo (durante setup inicial)
+│   └── reference/                  # Material de referencia (no normativo, otros repos)
 ├── openspec/                    # Specs y propuestas de cambio significativo
 │   ├── config.yaml
 │   ├── specs/
@@ -72,7 +71,7 @@ Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si te
 | ¿Cómo trabajo como dev en este repo?                        | `CONTRIBUTING.md`                     | Flujo de PR, commits, changesets                                          |
 | ¿Cómo arranco como dev nuevo?                               | `README.md` (root)                    | Quickstart                                                                |
 | ¿Cómo debe trabajar Claude acá?                             | `CLAUDE.md` (este archivo)            | Contrato Claude ↔ repo                                                    |
-| Plan de bootstrap del repo (temporal)                       | `docs/bootstrap-plan.md`              | Índice de fases — se archiva al cerrar Fase 5                             |
+| Componentes futuros + tokens faltantes (backlog del DS)     | `docs/architecture/FUTURE-WORK.md`    | Backlog inspiracional (no normativo)                                      |
 | Material de investigación de referencia (no normativo)      | `docs/reference/`                     | Histórico/inspiración                                                     |
 
 ### Reglas para no mezclar
@@ -166,13 +165,13 @@ pnpm -r publish
 
 1. **Leer siempre primero** `docs/architecture/README.md`, `docs/architecture/decisions-log.md` y los ADRs aceptados antes de proponer cambios estructurales.
 2. **Detectar y marcar malas prácticas**. Si el código viola las prioridades de arriba, mencionarlo y proponer alternativa fundamentada — no continuar en silencio.
-3. **No saltarse fases del bootstrap** mientras esté en curso (ver `docs/bootstrap-plan.md`).
+3. **Cambios significativos siguen el flujo de OpenSpec** — propuesta → review → apply → archive. Ver `openspec/IDS.md` para el catálogo de changes/specs.
 4. **No modificar ADRs aceptados.** Para cambiar una decisión, crear un nuevo ADR.
 5. **Documentar decisiones nuevas.** Toda decisión arquitectónica significativa actualiza `decisions-log.md` y genera ADR si corresponde.
 6. **No crear archivos `*.md` de planificación o resumen ad-hoc** salvo que se pidan explícitamente. Las decisiones van a ADRs; los cambios significativos van a OpenSpec.
 
 ## Referencias
 
-- Bootstrap plan vigente: `docs/bootstrap-plan.md`
+- Síntesis arquitectónica: `docs/architecture/README.md`
 - Material de investigación: `docs/reference/`
 - Contexto original del proyecto: `contexto_inicial.md`

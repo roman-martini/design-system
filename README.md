@@ -91,7 +91,7 @@ Setup como mantenedor (una vez): secret `NPM_TOKEN` + branch protection rules. C
 
 ## Estado del repo
 
-Bootstrap **completo** (Fases 0–5). Ver [`docs/bootstrap-plan.md`](docs/bootstrap-plan.md) para el plan de fases y [`docs/architecture/`](docs/architecture/) para la fuente de verdad arquitectónica.
+Bootstrap **completo** (Fases 0–5). Ver [`docs/architecture/`](docs/architecture/) para la fuente de verdad arquitectónica (síntesis + ADRs + specs) y [`openspec/IDS.md`](openspec/IDS.md) para el catálogo de changes históricos.
 
 ## Licencia
 

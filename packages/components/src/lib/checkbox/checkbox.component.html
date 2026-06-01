@@ -1,0 +1,14 @@
+<label class="checkbox" [class.checkbox--disabled]="disabled()">
+  <input
+    #inputEl
+    type="checkbox"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    [attr.aria-checked]="ariaChecked()"
+    [attr.data-size]="size()"
+    (change)="handleInput($event)"
+  />
+  <span class="checkbox__label">
+    <ng-content>{{ label() }}</ng-content>
+  </span>
+</label>

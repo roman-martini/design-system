@@ -22,4 +22,11 @@ describe('App', () => {
     const buttons = fixture.nativeElement.querySelectorAll('rmd-button');
     expect(buttons.length).toBeGreaterThan(0);
   });
+
+  it('renders at least one rmd-checkbox', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const checkboxes = fixture.nativeElement.querySelectorAll('rmd-checkbox');
+    expect(checkboxes.length).toBeGreaterThan(0);
+  });
 });

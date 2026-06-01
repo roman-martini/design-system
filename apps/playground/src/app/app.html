@@ -3,8 +3,8 @@
     <h1>Playground</h1>
     <p>
       Laboratorio interno de <code>@romanmartinidev/components</code>. Renderiza
-      <code>&lt;rmd-button&gt;</code> consumiendo tokens <code>--ds-*</code> desde
-      <code>@romanmartinidev/tokens</code>.
+      <code>&lt;rmd-button&gt;</code> y <code>&lt;rmd-checkbox&gt;</code> consumiendo tokens
+      <code>--ds-*</code> desde <code>@romanmartinidev/tokens</code>.
     </p>
   </header>
 
@@ -33,6 +33,35 @@
         Primary disabled
       </rmd-button>
       <rmd-button variant="secondary" [disabled]="true">Secondary disabled</rmd-button>
+    </div>
+  </section>
+
+  <section class="playground__section">
+    <h2>Checkbox — estados</h2>
+    <div class="playground__row">
+      <rmd-checkbox [(checked)]="checkboxState" label="Toggle controlled" />
+      <rmd-checkbox [checked]="true" label="Checked default" />
+      <rmd-checkbox [indeterminate]="indeterminateState()" label="Indeterminate" />
+      <rmd-checkbox [disabled]="true" label="Disabled" />
+    </div>
+  </section>
+
+  <section class="playground__section">
+    <h2>Checkbox — sizes</h2>
+    <div class="playground__row">
+      <rmd-checkbox size="sm" label="Small" />
+      <rmd-checkbox size="md" label="Medium" />
+      <rmd-checkbox size="lg" label="Large" />
+    </div>
+  </section>
+
+  <section class="playground__section">
+    <h2>Checkbox — con ReactiveForm</h2>
+    <div class="playground__row">
+      <rmd-checkbox [formControl]="subscribeCtrl">
+        Suscribirse al newsletter (rich content con <code>&lt;ng-content&gt;</code>)
+      </rmd-checkbox>
+      <code>ctrl.value = {{ subscribeCtrl.value }}</code>
     </div>
   </section>
 </main>

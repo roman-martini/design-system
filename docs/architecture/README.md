@@ -87,7 +87,7 @@ agent-design-sistem/
 │   │   ├── PLAYBOOK.md        # Cómo replicar la arq en otro repo
 │   │   ├── adr/               # ADRs en formato MADR
 │   │   └── decisions-log.md   # Índice cronológico de ADRs
-│   └── bootstrap-plan.md      # Plan operativo del bootstrap (temporal)
+│   └── reference/                # Material de investigación (no normativo)
 ├── openspec/
 │   ├── IDS.md                 # Tabla maestra CHG/SPC ↔ nombre ↔ path
 │   ├── specs/                 # Contratos testables (SPC-NNN-*)
