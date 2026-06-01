@@ -159,7 +159,7 @@ Identificados al diagnosticar el repo. Algunos ya están resueltos en el plan; q
 - [x] Fase 0 — **completada** (2026-05-29)
 - [x] Fase 1 — **completada** (2026-05-30)
 - [x] Fase 2 — **completada** (2026-05-31)
-- [ ] Fase 3
+- [x] Fase 3 — **completada** (2026-05-31)
 - [ ] Fase 4
 - [ ] Fase 5
 

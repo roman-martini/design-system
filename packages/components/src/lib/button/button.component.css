@@ -1,0 +1,77 @@
+:host {
+  display: inline-block;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-semantic-space-2xs);
+  padding: var(--ds-semantic-space-sm) var(--ds-semantic-space-md);
+  border: 1px solid transparent;
+  border-radius: var(--ds-semantic-radius-md);
+  font-family: inherit;
+  font-weight: var(--ds-font-weight-medium);
+  line-height: var(--ds-font-line-height-tight);
+  cursor: pointer;
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out);
+}
+
+button:focus-visible {
+  box-shadow: var(--ds-semantic-shadow-focus);
+  outline: none;
+}
+
+button:disabled {
+  opacity: var(--ds-opacity-50);
+  cursor: not-allowed;
+}
+
+/* variant: primary (default) */
+button[data-variant='primary'] {
+  background-color: var(--ds-semantic-color-bg-primary);
+  color: var(--ds-semantic-color-text-inverse);
+}
+button[data-variant='primary']:hover:not(:disabled) {
+  background-color: var(--ds-semantic-color-bg-primary-hover);
+}
+button[data-variant='primary']:active:not(:disabled) {
+  background-color: var(--ds-semantic-color-bg-primary-active);
+}
+
+/* variant: secondary */
+button[data-variant='secondary'] {
+  background-color: var(--ds-semantic-color-bg-secondary);
+  color: var(--ds-semantic-color-text-primary);
+  border-color: var(--ds-semantic-color-border-default);
+}
+button[data-variant='secondary']:hover:not(:disabled) {
+  background-color: var(--ds-semantic-color-bg-secondary-hover);
+}
+button[data-variant='secondary']:active:not(:disabled) {
+  background-color: var(--ds-semantic-color-bg-secondary-active);
+}
+
+/* variant: ghost */
+button[data-variant='ghost'] {
+  background-color: transparent;
+  color: var(--ds-semantic-color-text-primary);
+}
+button[data-variant='ghost']:hover:not(:disabled) {
+  background-color: var(--ds-semantic-color-bg-secondary-hover);
+}
+
+/* size */
+button[data-size='sm'] {
+  padding: var(--ds-semantic-space-2xs) var(--ds-semantic-space-sm);
+  font-size: var(--ds-font-size-sm);
+}
+button[data-size='md'] {
+  font-size: var(--ds-font-size-md);
+}
+button[data-size='lg'] {
+  padding: var(--ds-semantic-space-md) var(--ds-semantic-space-lg);
+  font-size: var(--ds-font-size-lg);
+}

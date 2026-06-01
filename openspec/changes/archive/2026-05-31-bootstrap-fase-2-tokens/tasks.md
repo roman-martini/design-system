@@ -99,6 +99,6 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. Marcar `[x]` al ce
 
 - [x] 8.1 Verificar que `openspec/changes/bootstrap-fase-2-tokens/` queda en `openspec/changes/archive/2026-05-31-bootstrap-fase-2-tokens/`
 - [x] 8.2 Verificar que los deltas `ADDED Requirements` de `design-tokens-package` quedan promovidos a `openspec/specs/design-tokens-package/spec.md` (con header `## Purpose` agregado) — `openspec validate --all` pasa para los 2 specs
-- [ ] 8.3 Proponer mensaje de commit del archive y esperar OK de Roman
+- [x] 8.3 Proponer mensaje de commit del archive y esperar OK de Roman → aprobado y commiteado en `ed1c68c`
 
 **Criterio**: change en archive, spec base creada y validada (`openspec validate --all` pasa).

@@ -1,0 +1,65 @@
+{
+  "name": "@romanmartinidev/components",
+  "version": "0.1.0",
+  "description": "Componentes Angular del sistema de diseño romanmartinidev — standalone + signals, consumen @romanmartinidev/tokens",
+  "author": "Roman Martini <roman.martini.dev@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "design-system",
+    "components",
+    "ng-packagr",
+    "standalone",
+    "signals",
+    "romanmartinidev"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/romanmartinidev/agent-design-sistem.git",
+    "directory": "packages/components"
+  },
+  "homepage": "https://github.com/romanmartinidev/agent-design-sistem/tree/main/packages/components#readme",
+  "bugs": {
+    "url": "https://github.com/romanmartinidev/agent-design-sistem/issues"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=9.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json",
+    "watch": "ng-packagr -p ng-package.json --watch",
+    "test": "vitest"
+  },
+  "peerDependencies": {
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@romanmartinidev/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@analogjs/vite-plugin-angular": "^2.5.2",
+    "@analogjs/vitest-angular": "^2.5.2",
+    "@angular/build": "^21",
+    "@angular/common": "^21",
+    "@angular/compiler": "^21",
+    "@angular/compiler-cli": "^21",
+    "@angular/core": "^21",
+    "@angular/platform-browser": "^21",
+    "jsdom": "^27",
+    "ng-packagr": "~21.0",
+    "rxjs": "~7.8",
+    "tslib": "^2",
+    "typescript": "~5.9",
+    "vitest": "^4",
+    "zone.js": "^0.16.2"
+  }
+}
