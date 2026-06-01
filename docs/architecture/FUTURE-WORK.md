@@ -8,13 +8,13 @@ Rescate del roadmap del repo de investigación previo, **realineado** al naming 
 
 ## Estado actual respecto a los niveles de madurez
 
-| Nivel | Tema                                                    | Estado           | Coverage                                                                                         |
-| ----- | ------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------ |
-| 1     | Cerrar deuda — componentes base + tokens                | 🟡 En curso      | 1/11 componentes (Button), tokens base completos                                                 |
-| 2     | Calidad profesional — tests, a11y CI, stylelint, bundle | 🔴 Sin empezar   | 0%                                                                                               |
-| 3     | Distribución y consumo — monorepo, publish, versionado  | 🟢 Casi completo | Monorepo + ng-packagr + Changesets ya hechos (CHG-001..003). Falta CI/release (Fase 5 = CHG-005) |
-| 4     | Escalado real — multi-framework, mobile, Figma sync     | 🔴 Sin empezar   | 0% — diferido a "cuando aparezca necesidad real"                                                 |
-| 5     | Patterns / Templates / Recipes                          | 🔴 Sin empezar   | 0% — útil cuando haya ≥10 componentes                                                            |
+| Nivel | Tema                                                    | Estado         | Coverage                                                                                |
+| ----- | ------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------- |
+| 1     | Cerrar deuda — componentes base + tokens                | 🟡 En curso    | 1/11 componentes (Button), tokens base completos                                        |
+| 2     | Calidad profesional — tests, a11y CI, stylelint, bundle | 🔴 Sin empezar | 0%                                                                                      |
+| 3     | Distribución y consumo — monorepo, publish, versionado  | ✅ Completo    | Monorepo (CHG-001) + ng-packagr (CHG-003) + Changesets (CHG-001) + CI/release (CHG-005) |
+| 4     | Escalado real — multi-framework, mobile, Figma sync     | 🔴 Sin empezar | 0% — diferido a "cuando aparezca necesidad real"                                        |
+| 5     | Patterns / Templates / Recipes                          | 🔴 Sin empezar | 0% — útil cuando haya ≥10 componentes                                                   |
 
 ---
 

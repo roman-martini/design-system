@@ -80,9 +80,18 @@ Resumen rápido:
 - Cambios arquitectónicos one-way door requieren un ADR en `docs/architecture/adr/`.
 - Cambios significativos arrancan como propuesta en `openspec/changes/`.
 
+## CI / Release
+
+Dos workflows GitHub Actions automatizan validación y publishing:
+
+- **`pr.yml`** corre en cada PR: format check, lint, build recursivo, tests, OpenSpec validate, changeset enforcement. PR rojo si algo falla.
+- **`release.yml`** corre al merge a `main`: si hay changesets pendientes, abre PR `chore(repo): version packages`; al merge de ese PR, publica los packages cambiados a npm.
+
+Setup como mantenedor (una vez): secret `NPM_TOKEN` + branch protection rules. Checklist completo en [`CONTRIBUTING.md § CI / Release`](CONTRIBUTING.md#ci--release). Decisión arquitectónica en [`ADR-006`](docs/architecture/adr/ADR-006-estrategia-ci-cd.md).
+
 ## Estado del repo
 
-En **bootstrap inicial**. Ver [`docs/bootstrap-plan.md`](docs/bootstrap-plan.md) para el plan de fases.
+Bootstrap **completo** (Fases 0–5). Ver [`docs/bootstrap-plan.md`](docs/bootstrap-plan.md) para el plan de fases y [`docs/architecture/`](docs/architecture/) para la fuente de verdad arquitectónica.
 
 ## Licencia
 

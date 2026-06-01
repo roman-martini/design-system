@@ -161,6 +161,6 @@ Identificados al diagnosticar el repo. Algunos ya están resueltos en el plan; q
 - [x] Fase 2 — **completada** (2026-05-31)
 - [x] Fase 3 — **completada** (2026-05-31)
 - [x] Fase 4 — **completada** (2026-06-01)
-- [ ] Fase 5
+- [x] Fase 5 — **completada** (2026-06-01)
 
-Actualizar este checklist al cerrar cada fase. Cuando todo esté completado, archivar este documento.
+**Bootstrap del repo: COMPLETO.** Este documento puede archivarse a `docs/_archive/` o eliminarse — su rol terminó. La fuente de verdad vigente es [`docs/architecture/`](architecture/) (síntesis + ADRs + specs).

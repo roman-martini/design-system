@@ -105,11 +105,127 @@ Mientras los packages no lleguen a 1.0, respetamos semver pero entendiendo que l
 
 ### Release (mantenedores)
 
-```bash
-pnpm version       # aplica changesets a versiones + CHANGELOG
-git push --follow-tags
-pnpm release       # build + publish
+El release está automatizado vía GitHub Actions + Changesets (ver [`docs/architecture/adr/ADR-006-estrategia-ci-cd.md`](docs/architecture/adr/ADR-006-estrategia-ci-cd.md)). El mantenedor NO publica manualmente — todo pasa por el workflow `release.yml`. Ver sección [CI / Release](#ci--release) más abajo.
+
+## CI / Release
+
+El repo usa **dos workflows de GitHub Actions** que se autovalidan en cada PR y orquestan releases automáticos vía Changesets.
+
+### Workflow `pr.yml` — Validación en cada PR
+
+**Trigger**: `pull_request` apuntando a `main`.
+
+Valida en orden:
+
+1. `pnpm format:check` — fallo: corré `pnpm format` y commiteá.
+2. `pnpm lint` — fallo: corré `pnpm lint --fix` y revisá los errores no auto-fixables.
+3. `pnpm -r build` — fallo: revisá el error de build localmente con el mismo comando.
+4. `pnpm -r test` — fallo: corré `pnpm test` localmente y arreglá los specs.
+5. `openspec validate --all` — fallo: corré `openspec validate --all` localmente y arreglá la spec/change.
+6. **Changeset enforcement** — fallo: el PR toca `packages/*` sin agregar un changeset. Corré `pnpm changeset` y agregá el archivo generado al PR.
+
+Si cualquier step falla, el PR queda con check rojo y NO debería mergearse (la branch protection lo bloquea, ver más abajo).
+
+### Workflow `release.yml` — Release con Changesets
+
+**Trigger**: `push` a `main` (cualquier merge dispara el workflow).
+
+Tiene dos modos según el estado del repo:
+
+**Modo 1 — Hay changesets pendientes en `.changeset/`**:
+
+El workflow abre o actualiza un PR titulado `chore(repo): version packages` con:
+
+- Bumps de versión en `packages/*/package.json`.
+- CHANGELOG.md actualizado por package afectado.
+- Los archivos `.changeset/*.md` consumidos eliminados.
+
+**Modo 2 — No hay changesets pendientes** (típicamente porque el PR de release recién se mergeó):
+
+El workflow ejecuta `pnpm release` (build + publish) y publica los packages cambiados a npm.
+
+### Flujo completo de release
+
+```mermaid
+sequenceDiagram
+    actor Dev
+    actor Maintainer
+    participant GH as GitHub
+    participant NPM as npm
+
+    Dev->>GH: PR con changeset (pnpm changeset)
+    GH->>GH: pr.yml valida (lint + test + build + openspec + changeset)
+    Maintainer->>GH: Merge PR
+    GH->>GH: release.yml detecta changesets pendientes
+    GH->>GH: Abre/actualiza PR "chore(repo): version packages"
+    Note right of GH: PR de release tiene<br/>bumps + CHANGELOG +<br/>borra .changeset/*.md
+    Maintainer->>GH: Revisa CHANGELOG + merge PR de release
+    GH->>GH: release.yml ya no encuentra changesets pendientes
+    GH->>NPM: pnpm release (build + publish)
+    NPM-->>GH: Packages publicados
 ```
+
+### Cómo agregar un changeset
+
+```bash
+pnpm changeset
+```
+
+El CLI interactivo te pregunta:
+
+1. **Qué packages cambiaron** (selección con espacio).
+2. **Tipo de bump**:
+   - `patch`: bug fix sin cambios de API (`0.1.0 → 0.1.1`).
+   - `minor`: feature nueva backward-compatible (`0.1.0 → 0.2.0` en pre-1.0; `1.0.0 → 1.1.0` en post-1.0).
+   - `major`: breaking change (`0.1.0 → 0.2.0` en pre-1.0; `1.0.0 → 2.0.0` en post-1.0).
+3. **Descripción** del cambio para el CHANGELOG.
+
+Genera un archivo en `.changeset/<random-name>.md`. **Commiteá ese archivo junto con tus cambios** en el PR.
+
+### Branch protection (acción del mantenedor)
+
+Las branch protection rules se configuran **manualmente** en GitHub UI (Settings → Branches → Add rule para `main`). El mantenedor debe aplicar este checklist:
+
+- [x] **Require pull request reviews before merging** — minimum 1 reviewer (vacío si trabajás solo, pero igual te obliga a abrir PR).
+- [x] **Require status checks to pass before merging**:
+  - [x] Require branches to be up to date before merging.
+  - [x] Status checks required: `Validate` (job del workflow `pr.yml`).
+- [x] **Require linear history** (recomendado — fuerza rebase merge en lugar de merge commits).
+- [x] **Do not allow bypassing the above settings**.
+- [x] **Restrict who can push to matching branches** — solo el mantenedor.
+- [x] **Restrict pushes that create matching branches** — bloquear creación de branches `main` desde forks.
+- [ ] **Allow force pushes**: NO marcar.
+- [ ] **Allow deletions**: NO marcar.
+
+Estas reglas garantizan que ningún PR llegue a `main` sin pasar `pr.yml` y que `main` nunca se reescribe destructivamente.
+
+### Secrets requeridos (acción del mantenedor)
+
+En GitHub Settings → Secrets and variables → Actions → New repository secret:
+
+| Secret          | Cómo obtener                                                                                                     | Permisos requeridos                    |
+| --------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| **`NPM_TOKEN`** | `npm token create --read-only=false --cidr=0.0.0.0/0` (o vía UI: npmjs.com → Access Tokens → Generate New Token) | Publish sobre scope `@romanmartinidev` |
+
+**`GITHUB_TOKEN`** lo provee GitHub Actions automáticamente, no requiere setup.
+
+Si `NPM_TOKEN` falta, el workflow `release.yml` fallará en el step de publish con error de autenticación de npm.
+
+### Lint local de workflows (opcional)
+
+Antes de commitear cambios a `.github/workflows/`, podés validar el YAML con [`actionlint`](https://github.com/rhysd/actionlint):
+
+```bash
+# Vía Docker (sin instalar nada):
+docker run --rm -v "$(pwd):/repo" -w /repo rhysd/actionlint:latest -color
+
+# O instalando localmente:
+brew install actionlint  # macOS
+go install github.com/rhysd/actionlint/cmd/actionlint@latest  # Go
+actionlint .github/workflows/*.yml
+```
+
+No es obligatorio (no está en el workflow CI), pero evita errores de sintaxis YAML antes del push.
 
 ## Cambios significativos: OpenSpec
 

@@ -14,6 +14,7 @@
 | 2026-05-31 | frontend    | Arquitectura de design tokens: SD 4 + jerarquía primitives→semantic→component→theme + prefix `--ds-*` + theming via CSS vars y `[data-theme]`/`[data-brand]`         | [ADR-003](adr/ADR-003-arquitectura-design-tokens.md) ✅      |
 | 2026-05-31 | frontend    | Arquitectura de components: ng-packagr + flat por componente + standalone+signals + prefix `rmd-` + CSS plain con tokens vía vars + tokens como peerDependency       | [ADR-004](adr/ADR-004-arquitectura-components.md) ✅         |
 | 2026-06-01 | frontend    | Arquitectura del playground: ng new Angular 21 zoneless + Storybook 10 + stories co-ubicadas en `packages/components/` + Vitest + single page + tokens vía `@import` | [ADR-005](adr/ADR-005-arquitectura-playground.md) ✅         |
+| 2026-06-01 | transversal | Estrategia CI/CD: GitHub Actions + 2 workflows (PR validation + release con Changesets que abre PR) + composite action de setup + branch protection documentada      | [ADR-006](adr/ADR-006-estrategia-ci-cd.md) ✅                |
 
 ## Cómo agregar una entrada
 

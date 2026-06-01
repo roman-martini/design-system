@@ -12,8 +12,9 @@ Los IDs son **permanentes**. Los paths de los directorios llevan el ID al inicio
 | **CHG-002** | bootstrap-fase-2-tokens     | archived | 2026-05-31    | [SPC-002](specs/SPC-002-design-tokens-package/spec.md) | [ADR-003](../docs/architecture/adr/ADR-003-arquitectura-design-tokens.md)                                                                               | [archive/CHG-002-bootstrap-fase-2-tokens](changes/archive/CHG-002-bootstrap-fase-2-tokens/)         |
 | **CHG-003** | bootstrap-fase-3-components | archived | 2026-05-31    | [SPC-003](specs/SPC-003-components-package/spec.md)    | [ADR-004](../docs/architecture/adr/ADR-004-arquitectura-components.md)                                                                                  | [archive/CHG-003-bootstrap-fase-3-components](changes/archive/CHG-003-bootstrap-fase-3-components/) |
 | **CHG-004** | bootstrap-fase-4-playground | archived | 2026-06-01    | [SPC-004](specs/SPC-004-playground-app/spec.md)        | [ADR-005](../docs/architecture/adr/ADR-005-arquitectura-playground.md)                                                                                  | [archive/CHG-004-bootstrap-fase-4-playground](changes/archive/CHG-004-bootstrap-fase-4-playground/) |
+| **CHG-005** | bootstrap-fase-5-ci         | active   | —             | SPC-005 (ci-cd-pipeline) — pendiente de promocionar    | [ADR-006](../docs/architecture/adr/ADR-006-estrategia-ci-cd.md)                                                                                         | [bootstrap-fase-5-ci](changes/bootstrap-fase-5-ci/)                                                 |
 
-**Próximo ID disponible**: `CHG-005`.
+**Próximo ID disponible**: `CHG-006`.
 
 ## Specs
 
@@ -24,12 +25,13 @@ Los IDs son **permanentes**. Los paths de los directorios llevan el ID al inicio
 | **SPC-003** | components-package    | active | [CHG-003](changes/archive/CHG-003-bootstrap-fase-3-components/) | [specs/SPC-003-components-package/spec.md](specs/SPC-003-components-package/spec.md)       |
 | **SPC-004** | playground-app        | active | [CHG-004](changes/archive/CHG-004-bootstrap-fase-4-playground/) | [specs/SPC-004-playground-app/spec.md](specs/SPC-004-playground-app/spec.md)               |
 
-**Próximo ID disponible**: `SPC-005`.
+**Próximo ID disponible**: `SPC-006` (SPC-005 ci-cd-pipeline se promueve al archivar CHG-005).
 
 ## Convención
 
 - **IDs son permanentes**. Si un change se reemplaza o un spec se deprecia, el ID original no se reutiliza; el nuevo recibe el siguiente disponible.
-- **Paths incluyen el ID al inicio**: `openspec/specs/SPC-NNN-<name>/` y `openspec/changes/archive/CHG-NNN-<name>/`. Los changes activos (no archivados) viven en `openspec/changes/CHG-NNN-<name>/`.
+- **Paths incluyen el ID al inicio para items archivados/inmutables**: `openspec/specs/SPC-NNN-<name>/` y `openspec/changes/archive/CHG-NNN-<name>/`.
+- **Los changes ACTIVOS viven en `openspec/changes/<name>/` sin prefijo** — el CLI de OpenSpec (`openspec status --change <name>`, `openspec validate --change <name>`) exige nombres lowercase kebab-case sin prefijo en mayúsculas. El ID vive en el frontmatter YAML del `proposal.md`. Al archivar, el directorio se renombra a `CHG-NNN-<name>` y se mueve a `archive/`.
 - **Frontmatter YAML al inicio** del `proposal.md` (para changes) y `spec.md` (para specs):
 
 ```yaml

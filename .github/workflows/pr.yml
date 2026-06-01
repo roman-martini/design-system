@@ -1,0 +1,71 @@
+name: PR
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full history para changeset status --since=origin/main
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build (recursive)
+        run: pnpm -r build
+
+      - name: Test (recursive)
+        run: pnpm -r test
+
+      - name: OpenSpec validate
+        run: npx --yes openspec validate --all
+
+      - name: Changeset enforcement
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Fetch main para diff
+          git fetch origin main --depth=1 || true
+
+          # Detecta cambios bajo packages/*, excluyendo README.md y CHANGELOG.md de cada package
+          PKG_CHANGES=$(git diff --name-only origin/main...HEAD -- 'packages/' \
+            | grep -vE 'packages/[^/]+/(README|CHANGELOG)\.md$' \
+            || true)
+
+          if [ -z "$PKG_CHANGES" ]; then
+            echo "✓ No hay cambios en packages/* que requieran changeset."
+            exit 0
+          fi
+
+          echo "Cambios detectados en packages/*:"
+          echo "$PKG_CHANGES" | sed 's/^/  - /'
+          echo ""
+
+          # Verifica si hay changesets nuevos vs main
+          if pnpm changeset status --since=origin/main 2>&1 | grep -qE '^🦋|---.*\.md$|changeset.*found'; then
+            echo "✓ Changeset encontrado para el PR."
+            exit 0
+          fi
+
+          echo "✗ Este PR toca packages/* sin agregar un changeset."
+          echo "  Corré: pnpm changeset"
+          echo "  Y agregá el archivo generado al PR."
+          exit 1

@@ -370,13 +370,19 @@ Validado en el hook `commit-msg` por commitlint con `@commitlint/config-conventi
 
 ## Pipeline de releases
 
-> **TBD — Fase 5 del bootstrap.** Esta sección se completa con la decisión formalizada en ADR-006 (estimado).
+**Decisión formal**: [ADR-006 — Estrategia de CI/CD](adr/ADR-006-estrategia-ci-cd.md).
+**Contrato testable**: [SPC-005 ci-cd-pipeline](../../openspec/specs/SPC-005-ci-cd-pipeline/spec.md) (post-archive).
 
-Plan tentativo:
+Dos workflows GitHub Actions:
 
-- **CI** (GitHub Actions): workflow `pr` que corre `pnpm install` + `pnpm lint` + `pnpm test` + `pnpm -r build` + `openspec validate --all`.
-- **Release**: workflow `release` con [`changesets/action`](https://github.com/changesets/action) — abre PR de release o publica automáticamente al merge a `main`.
-- **Storybook deploy**: Chromatic o GH Pages — TBD.
+- **`pr.yml`** (trigger: `pull_request` a `main`) — corre `format:check` + `lint` + `pnpm -r build` + `pnpm -r test` + `openspec validate --all` + changeset enforcement (PRs que tocan `packages/*` requieren changeset, excepto README/CHANGELOG).
+- **`release.yml`** (trigger: `push` a `main`) — usa [`changesets/action@v1`](https://github.com/changesets/action) en modo dual: abre PR `chore(repo): version packages` si hay changesets pendientes; ejecuta `pnpm release` (build + publish) si no hay (post-merge del PR de release).
+
+**Composite action** `.github/actions/setup/` extrae setup pnpm + node (`node-version-file: '.nvmrc'`) + cache + install. Reutilizada en ambos workflows.
+
+**Branch protection** documentada como checklist en [`CONTRIBUTING.md § Branch protection`](../../CONTRIBUTING.md#branch-protection-acci%C3%B3n-del-mantenedor) — se configura manualmente en GitHub UI.
+
+**Out of scope** (follow-ups documentados en ADR-006): Storybook deploy, a11y CI con axe, bundle budget con size-limit, visual regression (Chromatic/Playwright), Sigstore provenance, validación de título del PR.
 
 ## Catálogo de ADRs
 
@@ -387,6 +393,7 @@ Plan tentativo:
 | [ADR-003](adr/ADR-003-arquitectura-design-tokens.md)      | Arquitectura de design tokens     | frontend/tokens     | Aceptado |
 | [ADR-004](adr/ADR-004-arquitectura-components.md)         | Arquitectura de components        | frontend/components | Aceptado |
 | [ADR-005](adr/ADR-005-arquitectura-playground.md)         | Arquitectura del playground       | frontend/playground | Aceptado |
+| [ADR-006](adr/ADR-006-estrategia-ci-cd.md)                | Estrategia de CI/CD               | transversal/ci      | Aceptado |
 
 Ver índice completo: [decisions-log.md](decisions-log.md).
 
