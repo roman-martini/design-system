@@ -1,3 +1,12 @@
+---
+id: SPC-003
+name: components-package
+type: spec
+status: active
+introduced-by: CHG-003
+created: 2026-05-31
+---
+
 # components-package
 
 ## Purpose

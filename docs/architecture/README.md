@@ -66,7 +66,7 @@ flowchart LR
     components --> playground
 ```
 
-**Definición testable** (el "qué debe cumplir el sistema"): ver el requirement **"Grafo de dependencias internas es un DAG"** en el spec [`monorepo-structure`](../../openspec/specs/monorepo-structure/spec.md). El requirement formaliza las reglas de arriba en escenarios Given/When/Then verificables.
+**Definición testable** (el "qué debe cumplir el sistema"): ver el requirement **"Grafo de dependencias internas es un DAG"** en el spec [`SPC-001 monorepo-structure`](../../openspec/specs/SPC-001-monorepo-structure/spec.md). El requirement formaliza las reglas de arriba en escenarios Given/When/Then verificables.
 
 > Por convención del repo, los principios y diagramas viven en `docs/architecture/`; los contratos testables del sistema viven en `openspec/specs/`. Ver [`CLAUDE.md → Fuentes de verdad`](../../CLAUDE.md).
 

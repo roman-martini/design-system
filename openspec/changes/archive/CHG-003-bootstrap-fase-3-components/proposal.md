@@ -1,3 +1,15 @@
+---
+id: CHG-003
+name: bootstrap-fase-3-components
+type: change
+status: archived
+archived: 2026-05-31
+introduces-specs:
+  - SPC-003 (components-package)
+related-adrs:
+  - ADR-004
+---
+
 ## Why
 
 Después de Fase 2 (`@romanmartinidev/tokens` publicable y auditado), el repo necesita su segunda librería: **`@romanmartinidev/components`** — un set de componentes Angular que consumen los tokens vía `workspace:*` y se distribuyen siguiendo Angular Package Format con ng-packagr.

@@ -108,6 +108,15 @@ Toda decisión one-way door o que afecta ≥2 packages genera un ADR en formato 
 
 Todo cambio significativo (nueva lib, refactor mayor, cambio de tooling base) arranca como propuesta en `openspec/changes/`. Los cambios triviales o de implementación local **no** requieren propuesta OpenSpec.
 
+**IDs de Changes y Specs** (`CHG-NNN` y `SPC-NNN`):
+
+- Cada change recibe un ID **permanente** (`CHG-001`, `CHG-002`, …) declarado en el **frontmatter YAML** del `proposal.md`.
+- Cada spec base recibe `SPC-NNN` análogo, declarado en el frontmatter de `spec.md`.
+- Los IDs son permanentes — si un change/spec se reemplaza, el nuevo recibe el siguiente disponible, el original mantiene el suyo.
+- Los **paths NO cambian** al asignar ID (los directorios siguen con kebab-case). El ID vive solo en el frontmatter para evitar romper referencias.
+- Tabla maestra: [`openspec/IDS.md`](openspec/IDS.md) — único lugar para resolver `CHG-NNN` ↔ nombre y obtener próximo ID disponible.
+- Convención del frontmatter detallada en `openspec/IDS.md → Convención`.
+
 ### Versionado
 
 - Cada PR que afecta una lib publicable agrega un changeset con `pnpm changeset`.

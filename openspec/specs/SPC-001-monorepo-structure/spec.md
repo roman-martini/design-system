@@ -1,3 +1,12 @@
+---
+id: SPC-001
+name: monorepo-structure
+type: spec
+status: active
+introduced-by: CHG-001
+created: 2026-05-30
+---
+
 # monorepo-structure
 
 ## Purpose

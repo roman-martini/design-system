@@ -1,3 +1,15 @@
+---
+id: CHG-002
+name: bootstrap-fase-2-tokens
+type: change
+status: archived
+archived: 2026-05-31
+introduces-specs:
+  - SPC-002 (design-tokens-package)
+related-adrs:
+  - ADR-003
+---
+
 ## Why
 
 `packages/tokens` quedó dentro del monorepo después de Fase 1 pero todavía con metadata insuficiente para publicarse a npm (`@ds/tokens` placeholder, sin `engines`, `publishConfig`, `repository`, `license`, README ni `files`). Además, una auditoría rápida de los JSON existentes encontró bugs concretos (ej. `border.subtle` con la jerarquía rota en light theme) y huecos en cobertura (ej. falta de `shadow.focus` para accesibilidad). Fase 2 cierra esa brecha: deja el package listo para publicar como `@romanmartinidev/tokens`, audita y corrige bugs de severidad alta, y formaliza la arquitectura de tokens vía **ADR-003**.

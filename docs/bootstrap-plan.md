@@ -10,11 +10,11 @@
 
 ```
 openspec/changes/
-├── bootstrap-fase-1-monorepo/      ← Fase 1
-├── bootstrap-fase-2-tokens/        ← Fase 2 (futuro)
-├── bootstrap-fase-3-components/    ← Fase 3 (futuro)
-├── bootstrap-fase-4-playground/    ← Fase 4 (futuro)
-└── bootstrap-fase-5-ci/            ← Fase 5 (futuro)
+├── CHG-001-bootstrap-fase-1-monorepo/   ← Fase 1 (archivado)
+├── CHG-002-bootstrap-fase-2-tokens/     ← Fase 2 (archivado)
+├── CHG-003-bootstrap-fase-3-components/ ← Fase 3 (archivado)
+├── CHG-004-bootstrap-fase-4-playground/ ← Fase 4 (archivado)
+└── CHG-005-bootstrap-fase-5-ci/         ← Fase 5 (futuro)
 ```
 
 Cada change contiene `proposal.md` + `design.md` + `tasks.md` + spec deltas. Este documento es solo el índice y la justificación del orden. **El detalle ejecutable vive en cada change.**

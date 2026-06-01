@@ -1,3 +1,15 @@
+---
+id: CHG-004
+name: bootstrap-fase-4-playground
+type: change
+status: archived
+archived: 2026-06-01
+introduces-specs:
+  - SPC-004 (playground-app)
+related-adrs:
+  - ADR-005
+---
+
 ## Why
 
 Después de Fase 3 (`@romanmartinidev/components` con Button + ng-packagr APF + tests Vitest passing), el monorepo necesita su laboratorio: **`apps/playground`** — una app Angular 21 que consume las dos libs vía `workspace:*` y aloja el setup de **Storybook 10** con stories co-ubicadas en `packages/components/src/lib/<comp>/<comp>.stories.ts`.
