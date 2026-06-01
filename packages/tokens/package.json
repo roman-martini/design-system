@@ -1,13 +1,55 @@
 {
-  "name": "@ds/tokens",
+  "name": "@romanmartinidev/tokens",
   "version": "0.1.0",
+  "description": "Design tokens del sistema de diseño romanmartinidev (CSS variables + JS via Style Dictionary)",
+  "author": "Roman Martini <roman.martini.dev@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "style-dictionary",
+    "css-variables",
+    "theming",
+    "romanmartinidev"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/romanmartinidev/agent-design-sistem.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://github.com/romanmartinidev/agent-design-sistem/tree/main/packages/tokens#readme",
+  "bugs": {
+    "url": "https://github.com/romanmartinidev/agent-design-sistem/issues"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=9.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.js"
+    },
+    "./css": "./dist/tokens.css",
+    "./themes/dark": "./dist/themes/dark.css",
+    "./themes/brand-a": "./dist/themes/brand-a.css",
+    "./themes/brand-b": "./dist/themes/brand-b.css"
+  },
+  "sideEffects": [
+    "./dist/*.css",
+    "./dist/themes/*.css"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "node sd.config.mjs",
     "watch": "node --watch sd.config.mjs"
-  },
-  "exports": {
-    "./css": "./dist/tokens.css"
   },
   "devDependencies": {
     "style-dictionary": "^4.3.0"

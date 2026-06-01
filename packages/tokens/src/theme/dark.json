@@ -62,6 +62,9 @@
         "info":    { "value": "{color.teal.400}" }
       },
       "focus-ring": { "value": "{color.blue.700}" }
+    },
+    "shadow": {
+      "focus": { "value": "0 0 0 3px {color.blue.400}" }
     }
   }
 }

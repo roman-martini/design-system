@@ -6,7 +6,8 @@
       "dropdown":{ "value": "{shadow.md}" },
       "modal":   { "value": "{shadow.xl}" },
       "toast":   { "value": "{shadow.lg}" },
-      "input":   { "value": "{shadow.inner}" }
+      "input":   { "value": "{shadow.inner}" },
+      "focus":   { "value": "{shadow.focus}" }
     }
   }
 }
