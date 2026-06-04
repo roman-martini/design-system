@@ -15,7 +15,8 @@
       "Bash(pnpm -F playground exec ng run playground:build-storybook)",
       "Bash(npm pack *)",
       "Bash(git restore *)",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

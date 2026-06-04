@@ -32,6 +32,22 @@ context: |
     semantic referencia primitives. component referencia semantic o primitives.
     theme SOLO redefine semantic (no agrega). Sin referencias circulares.
 
+  Reglas de dependencia entre packages (DAG sin ciclos, SPC-001):
+    - tokens NO depende de nada del monorepo.
+    - components depende de tokens como peerDependency (workspace:*).
+    - playground depende de tokens y components como dependencies (workspace:*).
+    - NUNCA: dependencia de tokens o components hacia playground.
+
+  Surface de libs publicables (ADR-004):
+    - peerDependencies para Angular (@angular/core, @angular/common; +
+      @angular/forms cuando algún componente implementa ControlValueAccessor)
+      y para deps internas del monorepo con workspace:* (Changesets reescribe
+      a versión semver al publicar).
+    - public-api.ts es el único barrel; solo lo reexportado allí es API pública.
+    - Build con ng-packagr produce Angular Package Format (FESM2022 + types).
+    - Tarballs NO incluyen *.stories.ts ni *.spec.ts (verificado con
+      npm pack --dry-run).
+
   Convenciones del repo:
     - Commits Conventional Commits + commitlint.
     - Decisiones one-way door o que afectan ≥2 packages generan ADR en
@@ -54,6 +70,13 @@ context: |
 rules:
   proposal:
     - >-
+      ANTES de redactar, leer estos archivos canónicos: CLAUDE.md
+      (prioridades), docs/architecture/README.md (catálogo packages/specs/
+      ADRs), docs/architecture/decisions-log.md (ADRs aceptados),
+      openspec/IDS.md (próximo ID disponible) y openspec/BACKLOG.md
+      (¿este change ya estaba en el backlog?). Sin esa lectura previa,
+      NO continuar.
+    - >-
       Toda propuesta declara explícitamente cuál(es) prioridad(es) del repo
       respalda (buenas prácticas / escalabilidad / mantenibilidad).
     - >-
@@ -72,6 +95,12 @@ rules:
       nuevo con campo "Reemplaza ADR-NNN").
 
   specs:
+    - >-
+      ANTES de redactar, leer la spec base correspondiente en
+      openspec/specs/SPC-NNN-<capability>/spec.md para entender qué
+      requirements existen, su numeración y estilo. El delta debe respetar
+      el estilo. Si la capability es nueva, leer al menos otra spec base
+      como referencia de formato.
     - >-
       Usar formato MADR-like con RFC 2119. Requirements con SHALL/MUST en
       cláusulas normativas; nunca should/may para requisitos obligatorios.
@@ -93,6 +122,11 @@ rules:
 
   design:
     - >-
+      ANTES de redactar, leer proposal.md de este change y los ADRs listados
+      en `related-adrs`. Las decisions del design NO deben contradecir ADRs
+      aceptados. Si lo hacen, marcar explícitamente como "supersede" y
+      planificar el ADR nuevo al archivar.
+    - >-
       Solo crear design.md cuando aplica al menos uno de los criterios
       cross-cutting (≥2 packages), nueva dep externa, modelo de datos
       significativo, complejidad de seguridad/performance/migración, o
@@ -110,6 +144,10 @@ rules:
       archivar el change. El design.md muere; el ADR queda eterno.
 
   tasks:
+    - >-
+      ANTES de redactar, leer proposal.md, design.md (si existe) y los
+      deltas en specs/ para entender el alcance real. Las tasks deben cubrir
+      TODO el delta + los Goals declarados en el design (si existe).
     - Tareas en chunks de ≤2 horas de trabajo efectivo.
     - >-
       Cada tarea con criterio de aceptación binario (cumple / no cumple),
