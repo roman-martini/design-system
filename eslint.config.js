@@ -10,6 +10,7 @@ export default tseslint.config(
       '**/coverage/**',
       '**/.angular/**',
       '**/.changeset/**',
+      '**/.claude/**',
       '**/build/**',
       '**/out/**',
       '**/storybook-static/**',

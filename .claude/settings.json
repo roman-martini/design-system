@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m ' *)",
+      "Bash(pnpm add *)",
+      "Edit(/.claude/skills/research-design-system/**)",
+      "Bash(node .claude/skills/research-design-system/scripts/extract-design.mjs \"https://www.polymer.co/features\")",
+      "Bash(git add *)"
+    ]
+  }
+}
