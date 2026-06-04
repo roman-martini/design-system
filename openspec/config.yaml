@@ -4,13 +4,12 @@ context: |
   agent-design-sistem es un monorepo pnpm con librerías de arquitectura frontend
   publicadas bajo el scope npm `@romanmartinidev`.
 
-  Librerías:
-    - @romanmartinidev/tokens     — design tokens (Style Dictionary 4.x)
-    - @romanmartinidev/components — componentes Angular (ng-packagr, APF)
+  Packages publicables:
+    - @romanmartinidev/tokens     (packages/tokens/)     — design tokens (Style Dictionary 4)
+    - @romanmartinidev/components (packages/components/) — componentes Angular (ng-packagr, APF)
 
-  Apps:
-    - apps/playground — app Angular 21 + Vitest + Storybook 10 para
-      validación de componentes y prototipado de casos reales.
+  App interna (no publicable):
+    - apps/playground — Angular 21 zoneless + Storybook 10 + Vitest 4
 
   Stack: pnpm workspaces, TypeScript 5.9, Angular 21, ng-packagr,
   Style Dictionary 4, Vitest 4, Storybook 10, Changesets,
@@ -21,27 +20,115 @@ context: |
     2. Diseños/arquitecturas que escalen ordenado.
     3. Mantenibilidad vía estándares y convenciones claras.
 
+  Convenciones de naming (ADR-007 supersede ADR-004 §4 + §5):
+    - CSS custom properties con prefix `--ds-*`.
+    - Selector HTML con prefix `ds-` (ej. `ds-button`, `ds-checkbox`).
+    - Class TypeScript con prefix `Ds`, sin sufijo `Component` (ej. `DsButton`, `DsCheckbox`).
+    - Types públicos con prefix `Ds<Name><TypeName>` (ej. `DsButtonSize`).
+    - Folder/file en kebab-case (`button/`, `button.component.ts`).
+
+  Jerarquía de tokens (ADR-003):
+    primitives → semantic → component → theme.
+    semantic referencia primitives. component referencia semantic o primitives.
+    theme SOLO redefine semantic (no agrega). Sin referencias circulares.
+
   Convenciones del repo:
-    - Commits: Conventional Commits.
-    - Decisiones arquitectónicas: ADRs en formato MADR en docs/architecture/adr/.
-    - Cambios significativos (nueva lib, refactor mayor, cambio de tooling base):
-      arrancan como propuesta OpenSpec en openspec/changes/.
-    - Cambios triviales o de implementación local NO requieren propuesta OpenSpec.
-    - Las libs publicables: peerDependencies para Angular, dependencies internas
-      vía workspace:*, README por package, build optimizado para publicación.
+    - Commits Conventional Commits + commitlint.
+    - Decisiones one-way door o que afectan ≥2 packages generan ADR en
+      formato MADR en docs/architecture/adr/.
+    - Cambios significativos arrancan como propuesta OpenSpec en
+      openspec/changes/ con ID CHG-NNN permanente en el frontmatter.
+    - Cambios triviales o de implementación local van por commit directo,
+      sin propuesta.
+    - Libs publicables declaran Angular como peerDependencies y deps
+      internas con workspace:*.
+
+  Fuentes de verdad canónicas (NO duplicar contenido — apuntar):
+    - CLAUDE.md                          contrato Claude ↔ repo.
+    - docs/architecture/README.md        síntesis arquitectónica + catálogos.
+    - docs/architecture/decisions-log.md índice cronológico de ADRs.
+    - docs/architecture/adr/             ADRs aceptados (inmutables).
+    - openspec/IDS.md                    catálogo CHGs/SPCs + próximo ID.
+    - openspec/BACKLOG.md                items pendientes con disparador concreto.
 
 rules:
   proposal:
-    - Toda propuesta declara explícitamente cuál(es) prioridad(es) del repo
+    - >-
+      Toda propuesta declara explícitamente cuál(es) prioridad(es) del repo
       respalda (buenas prácticas / escalabilidad / mantenibilidad).
-    - Incluir sección "Alternativas evaluadas" con ≥2 opciones y por qué se
+    - >-
+      Incluir sección "Alternativas evaluadas" con ≥2 opciones y por qué se
       descartaron, alineado con el formato de ADR.
-    - Si la propuesta toca ≥2 packages o es one-way door, indicar que
+    - >-
+      Si la propuesta toca ≥2 packages o es one-way door, indicar que
       generará un ADR al cerrarse.
-    - Indicar qué fase del bootstrap-plan o área del repo afecta.
+    - >-
+      Frontmatter YAML obligatorio con los campos id (CHG-NNN), name, type
+      "change", status "active", modifies-specs o introduces-specs, y
+      related-adrs. Verificar próximo ID disponible en openspec/IDS.md antes
+      de asignar.
+    - >-
+      NO contradecir ADRs aceptados sin declarar reemplazo explícito (ADR
+      nuevo con campo "Reemplaza ADR-NNN").
+
+  specs:
+    - >-
+      Usar formato MADR-like con RFC 2119. Requirements con SHALL/MUST en
+      cláusulas normativas; nunca should/may para requisitos obligatorios.
+    - >-
+      Cada requirement con header tres-hashtags `### Requirement: <nombre>`,
+      descripción, y al menos un scenario.
+    - >-
+      Scenarios con exactamente cuatro hashtags `#### Scenario: <nombre>` y
+      formato WHEN/THEN (o GIVEN/WHEN/THEN cuando hay precondición).
+    - >-
+      Para deltas usar `## ADDED Requirements`, `## MODIFIED Requirements`
+      (incluir contenido COMPLETO actualizado del requirement, no solo el
+      diff), `## REMOVED Requirements` (con campos Reason y Migration), o
+      `## RENAMED Requirements` con FROM/TO.
+    - >-
+      Naming en specs SIEMPRE con prefijos actuales (`Ds<Name>` para class,
+      `ds-<name>` para selector). No usar nombres históricos (`rmd-*`,
+      `<Name>Component`) salvo en menciones explícitas a historia (archive).
+
+  design:
+    - >-
+      Solo crear design.md cuando aplica al menos uno de los criterios
+      cross-cutting (≥2 packages), nueva dep externa, modelo de datos
+      significativo, complejidad de seguridad/performance/migración, o
+      ambigüedad técnica que beneficia de cerrarse antes de codear.
+    - >-
+      Secciones obligatorias en este orden Context, Goals/Non-Goals,
+      Decisions (con alternativas por cada decisión y "por qué" explícito),
+      Risks/Trade-offs (formato Risk → Mitigation), Migration Plan (si
+      aplica), Open Questions.
+    - >-
+      Pseudocódigo solo embebido en el documento, marcado como pseudocódigo;
+      nunca como código ejecutable en el repo.
+    - >-
+      Decisiones one-way door tomadas en el design se promueven a ADR al
+      archivar el change. El design.md muere; el ADR queda eterno.
+
   tasks:
     - Tareas en chunks de ≤2 horas de trabajo efectivo.
-    - Cada tarea con criterio de aceptación binario (cumple / no cumple),
+    - >-
+      Cada tarea con criterio de aceptación binario (cumple / no cumple),
       no descripciones ambiguas.
-    - Si una tarea modifica configuración compartida (root package.json,
-      tsconfig base, ESLint config), marcarla como "afecta-todo-el-repo".
+    - >-
+      Si una tarea modifica configuración compartida (root package.json,
+      tsconfig base, eslint.config.js, CI workflow, pnpm-workspace.yaml),
+      marcarla como "afecta-todo-el-repo".
+    - >-
+      Última tarea de implementación SIEMPRE es "Proponer mensaje de commit
+      y esperar OK del usuario" — regla del repo de cero commits sin permiso
+      explícito.
+    - >-
+      Incluir una tarea de validación de cierre que corre, en este orden,
+      openspec validate --changes, pnpm lint, pnpm format:check, pnpm -r
+      build, tests de los packages tocados, build de storybook (si toca
+      components), y npm pack --dry-run desde packages/components/ (si
+      publicable cambia).
+    - >-
+      Incluir tarea final de archive que mueve a openspec/changes/archive/
+      CHG-NNN-<name>/, sincroniza la spec base, actualiza openspec/IDS.md,
+      y propone commit de archive.
