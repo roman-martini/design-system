@@ -228,13 +228,13 @@ packages/components/src/
 
 ```ts
 @Component({
-  selector: 'rmd-button',
+  selector: 'ds-button',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<button [disabled]="disabled()" (click)="handleClick($event)"><ng-content /></button>`,
   styleUrl: './button.component.css',
 })
-export class ButtonComponent {
+export class DsButton {
   variant = input<'primary' | 'secondary' | 'ghost'>('primary');
   disabled = input<boolean>(false);
   clicked = output<MouseEvent>();
@@ -244,18 +244,21 @@ export class ButtonComponent {
 - `input()` / `output()` / `model()` signals (no `@Input()` / `@Output()`).
 - Sin `NgModule`s.
 
-### Selector prefix `rmd-`
+### Prefijo unificado `Ds` / `ds-`
 
-**Parte del contrato API público**. Coexiste con `--ds-*` (CSS variables) — son namespaces ortogonales.
+**Parte del contrato API público**. Coexiste con `--ds-*` (CSS variables) bajo el mismo prefijo conceptual `Ds` (Design System).
+
+Decisión formal: [ADR-007 — Convención de naming y prefijos](adr/ADR-007-naming-prefijos.md). Supersede parcialmente §4 y §5 de ADR-004.
 
 ### Naming convention
 
-| Pieza    | Convención            | Ejemplo               |
-| -------- | --------------------- | --------------------- |
-| Carpeta  | kebab-case            | `button/`             |
-| Archivo  | `<name>.component.ts` | `button.component.ts` |
-| Class    | `<Name>Component`     | `ButtonComponent`     |
-| Selector | `rmd-<name>`          | `rmd-button`          |
+| Pieza    | Convención                          | Ejemplo               |
+| -------- | ----------------------------------- | --------------------- |
+| Carpeta  | kebab-case                          | `button/`             |
+| Archivo  | `<name>.component.ts`               | `button.component.ts` |
+| Class    | `Ds<Name>` (sin sufijo `Component`) | `DsButton`            |
+| Selector | `ds-<name>`                         | `ds-button`           |
+| Types    | `Ds<Name><TypeName>`                | `DsButtonVariant`     |
 
 ### Styles: CSS plain + tokens via vars
 

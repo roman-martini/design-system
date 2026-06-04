@@ -10,10 +10,10 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export type CheckboxSize = 'sm' | 'md' | 'lg';
+export type DsCheckboxSize = 'sm' | 'md' | 'lg';
 
 @Component({
-  selector: 'rmd-checkbox',
+  selector: 'ds-checkbox',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './checkbox.component.html',
@@ -21,17 +21,17 @@ export type CheckboxSize = 'sm' | 'md' | 'lg';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CheckboxComponent),
+      useExisting: forwardRef(() => DsCheckbox),
       multi: true,
     },
   ],
 })
-export class CheckboxComponent implements ControlValueAccessor {
+export class DsCheckbox implements ControlValueAccessor {
   readonly checked = model<boolean>(false);
   readonly disabled = model<boolean>(false);
   readonly indeterminate = input<boolean>(false);
   readonly label = input<string>('');
-  readonly size = input<CheckboxSize>('md');
+  readonly size = input<DsCheckboxSize>('md');
 
   private readonly inputRef = viewChild.required<ElementRef<HTMLInputElement>>('inputEl');
 

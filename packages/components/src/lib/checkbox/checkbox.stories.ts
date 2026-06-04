@@ -2,13 +2,13 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
-import { CheckboxComponent } from './checkbox.component';
+import { DsCheckbox } from './checkbox.component';
 
-const meta: Meta<CheckboxComponent> = {
+const meta: Meta<DsCheckbox> = {
   title: 'Components/Checkbox',
-  component: CheckboxComponent,
+  component: DsCheckbox,
   tags: ['autodocs'],
-  decorators: [moduleMetadata({ imports: [CheckboxComponent] })],
+  decorators: [moduleMetadata({ imports: [DsCheckbox] })],
   argTypes: {
     checked: { control: { type: 'boolean' } },
     indeterminate: { control: { type: 'boolean' } },
@@ -30,12 +30,12 @@ const meta: Meta<CheckboxComponent> = {
 
 export default meta;
 
-type Story = StoryObj<CheckboxComponent>;
+type Story = StoryObj<DsCheckbox>;
 
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<rmd-checkbox
+    template: `<ds-checkbox
       [checked]="checked"
       [indeterminate]="indeterminate"
       [disabled]="disabled"
@@ -59,9 +59,9 @@ export const Disabled: Story = {
     props: args,
     template: `
       <div style="display:flex; flex-direction:column; gap:0.75rem;">
-        <rmd-checkbox [disabled]="true" [size]="size" label="Disabled unchecked" />
-        <rmd-checkbox [disabled]="true" [checked]="true" [size]="size" label="Disabled checked" />
-        <rmd-checkbox [disabled]="true" [indeterminate]="true" [size]="size" label="Disabled indeterminate" />
+        <ds-checkbox [disabled]="true" [size]="size" label="Disabled unchecked" />
+        <ds-checkbox [disabled]="true" [checked]="true" [size]="size" label="Disabled checked" />
+        <ds-checkbox [disabled]="true" [indeterminate]="true" [size]="size" label="Disabled indeterminate" />
       </div>
     `,
   }),
@@ -73,9 +73,9 @@ export const Sizes: Story = {
     props: args,
     template: `
       <div style="display:flex; flex-direction:column; gap:0.75rem;">
-        <rmd-checkbox size="sm" [checked]="checked" [label]="label || 'Small'" />
-        <rmd-checkbox size="md" [checked]="checked" [label]="label || 'Medium (default)'" />
-        <rmd-checkbox size="lg" [checked]="checked" [label]="label || 'Large'" />
+        <ds-checkbox size="sm" [checked]="checked" [label]="label || 'Small'" />
+        <ds-checkbox size="md" [checked]="checked" [label]="label || 'Medium (default)'" />
+        <ds-checkbox size="lg" [checked]="checked" [label]="label || 'Large'" />
       </div>
     `,
   }),
@@ -85,15 +85,15 @@ export const WithRichContent: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <rmd-checkbox [checked]="checked" [size]="size">
+      <ds-checkbox [checked]="checked" [size]="size">
         Acepto los <a href="#" style="color: var(--ds-semantic-color-text-link);">términos y condiciones</a>
-      </rmd-checkbox>
+      </ds-checkbox>
     `,
   }),
 };
 
 export const WithReactiveForm: Story = {
-  decorators: [moduleMetadata({ imports: [CheckboxComponent, ReactiveFormsModule] })],
+  decorators: [moduleMetadata({ imports: [DsCheckbox, ReactiveFormsModule] })],
   parameters: { controls: { exclude: ['checked'] } },
   render: (args) => {
     const ctrl = new FormControl<boolean>(false, { nonNullable: true });
@@ -101,7 +101,7 @@ export const WithReactiveForm: Story = {
       props: { ...args, ctrl },
       template: `
         <div style="display:flex; flex-direction:column; gap:1rem;">
-          <rmd-checkbox [formControl]="ctrl" [size]="size">Suscribirse al newsletter</rmd-checkbox>
+          <ds-checkbox [formControl]="ctrl" [size]="size">Suscribirse al newsletter</ds-checkbox>
           <pre style="margin:0; font-family: var(--ds-font-family-mono); font-size: var(--ds-font-size-sm);">ctrl.value = {{ ctrl.value }}</pre>
         </div>
       `,

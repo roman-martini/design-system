@@ -1,6 +1,6 @@
 # FUTURE-WORK — Backlog del Design System
 
-Rescate del roadmap del repo de investigación previo, **realineado** al naming y estructura actuales (`rmd-` selectores, `--ds-*` CSS vars, monorepo pnpm + Angular 21 zoneless).
+Rescate del roadmap del repo de investigación previo, **realineado** al naming y estructura actuales (`ds-` selectores, `--ds-*` CSS vars, monorepo pnpm + Angular 21 zoneless).
 
 > Este documento es **inspirativo, no normativo**. Cada componente / feature concreta se propone como **change OpenSpec** (`CHG-NNN`) cuando llegue su turno, con su propio `proposal.md` + `design.md` + `tasks.md` + spec deltas. No tomar este backlog como contrato.
 
@@ -24,23 +24,23 @@ Cada uno = un change OpenSpec (`components-add-<name>` o similar) con su propio 
 
 ### Prioridad alta — usabilidad para una app real
 
-| Componente             | Selector                        | Variantes / props                                                                                                 | Sizes       | Tokens nuevos             | Notas                                                                                                            |
-| ---------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **Checkbox**           | `rmd-checkbox`                  | `checked`, `indeterminate`, `disabled`, `label`                                                                   | sm/md       | `component/checkbox.json` | Indeterminate vía `effect()` + `viewChild()`. ARIA `aria-checked="mixed"`                                        |
-| **Radio + RadioGroup** | `rmd-radio` / `rmd-radio-group` | `value` model + `name` en group                                                                                   | sm/md       | `component/radio.json`    | Radio se inyecta el group con `inject(RadioGroupComponent, { optional: true })` → funciona standalone o en grupo |
-| **Modal / Dialog**     | `rmd-modal`                     | `[(open)]`, `[modalFooter]` slot, focus trap, body scroll lock, cierre por ESC/overlay/X, fade+scale anim         | sm/md/lg/xl | `component/modal.json`    | Requiere z-index tokens (ver abajo)                                                                              |
-| **Select / Combobox**  | `rmd-select`                    | `[options]`, `[(value)]`, keyboard nav (↑↓ Enter Esc Home End), variante con search/filter, variante multi-select | sm/md/lg    | `component/select.json`   | Requiere `@floating-ui/dom`                                                                                      |
-| **Tabs**               | `rmd-tabs` / `rmd-tab`          | Variantes underline/pills/contained, `[(activeIndex)]`, keyboard nav (← →, Home, End)                             | —           | `component/tabs.json`     | —                                                                                                                |
+| Componente             | Selector                      | Variantes / props                                                                                                 | Sizes       | Tokens nuevos             | Notas                                                                                                     |
+| ---------------------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------- | ------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Checkbox**           | `ds-checkbox`                 | `checked`, `indeterminate`, `disabled`, `label`                                                                   | sm/md       | `component/checkbox.json` | Indeterminate vía `effect()` + `viewChild()`. ARIA `aria-checked="mixed"`                                 |
+| **Radio + RadioGroup** | `ds-radio` / `ds-radio-group` | `value` model + `name` en group                                                                                   | sm/md       | `component/radio.json`    | Radio se inyecta el group con `inject(DsRadioGroup, { optional: true })` → funciona standalone o en grupo |
+| **Modal / Dialog**     | `ds-modal`                    | `[(open)]`, `[modalFooter]` slot, focus trap, body scroll lock, cierre por ESC/overlay/X, fade+scale anim         | sm/md/lg/xl | `component/modal.json`    | Requiere z-index tokens (ver abajo)                                                                       |
+| **Select / Combobox**  | `ds-select`                   | `[options]`, `[(value)]`, keyboard nav (↑↓ Enter Esc Home End), variante con search/filter, variante multi-select | sm/md/lg    | `component/select.json`   | Requiere `@floating-ui/dom`                                                                               |
+| **Tabs**               | `ds-tabs` / `ds-tab`          | Variantes underline/pills/contained, `[(activeIndex)]`, keyboard nav (← →, Home, End)                             | —           | `component/tabs.json`     | —                                                                                                         |
 
 ### Prioridad media — completitud
 
-| Componente               | Selector                     | Variantes / props                                                                            | Tokens nuevos                                          | Notas                       |
-| ------------------------ | ---------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------ | --------------------------- |
-| **Tooltip**              | Directiva `[rmdTooltip]`     | Placement top/bottom/left/right + auto, delay configurable, trigger hover + focus            | `component/tooltip.json`                               | Requiere `@floating-ui/dom` |
-| **Toast / Notification** | `rmd-toast` + `ToastService` | Variantes success/warning/danger/info, 6 posiciones, auto-dismiss, stacking, acción opcional | `component/toast.json` (hereda de alert si suficiente) | Requiere z-index alto       |
-| **Spinner**              | `rmd-spinner`                | Círculo girando, sizes xs/sm/md/lg                                                           | `component/spinner.json`                               | —                           |
-| **Skeleton**             | `rmd-skeleton`               | Bloque pulsante, props `width`, `height`, `radius`, `shape: 'text' \| 'rect' \| 'circle'`    | `component/skeleton.json`                              | —                           |
-| **Progress**             | `rmd-progress`               | Barra determinada (con value) o indeterminada                                                | `component/progress.json`                              | —                           |
+| Componente               | Selector                      | Variantes / props                                                                            | Tokens nuevos                                          | Notas                       |
+| ------------------------ | ----------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------ | --------------------------- |
+| **Tooltip**              | Directiva `[rmdTooltip]`      | Placement top/bottom/left/right + auto, delay configurable, trigger hover + focus            | `component/tooltip.json`                               | Requiere `@floating-ui/dom` |
+| **Toast / Notification** | `ds-toast` + `DsToastService` | Variantes success/warning/danger/info, 6 posiciones, auto-dismiss, stacking, acción opcional | `component/toast.json` (hereda de alert si suficiente) | Requiere z-index alto       |
+| **Spinner**              | `ds-spinner`                  | Círculo girando, sizes xs/sm/md/lg                                                           | `component/spinner.json`                               | —                           |
+| **Skeleton**             | `ds-skeleton`                 | Bloque pulsante, props `width`, `height`, `radius`, `shape: 'text' \| 'rect' \| 'circle'`    | `component/skeleton.json`                              | —                           |
+| **Progress**             | `ds-progress`                 | Barra determinada (con value) o indeterminada                                                | `component/progress.json`                              | —                           |
 
 ### Prioridad baja / nice-to-have
 

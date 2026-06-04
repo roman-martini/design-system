@@ -3,7 +3,7 @@
     <h1>Playground</h1>
     <p>
       Laboratorio interno de <code>@romanmartinidev/components</code>. Renderiza
-      <code>&lt;rmd-button&gt;</code> y <code>&lt;rmd-checkbox&gt;</code> consumiendo tokens
+      <code>&lt;ds-button&gt;</code> y <code>&lt;ds-checkbox&gt;</code> consumiendo tokens
       <code>--ds-*</code> desde <code>@romanmartinidev/tokens</code>.
     </p>
   </header>
@@ -11,56 +11,56 @@
   <section class="playground__section">
     <h2>Variants</h2>
     <div class="playground__row">
-      <rmd-button variant="primary" (clicked)="handleClick('primary')">Primary</rmd-button>
-      <rmd-button variant="secondary" (clicked)="handleClick('secondary')">Secondary</rmd-button>
-      <rmd-button variant="ghost" (clicked)="handleClick('ghost')">Ghost</rmd-button>
+      <ds-button variant="primary" (clicked)="handleClick('primary')">Primary</ds-button>
+      <ds-button variant="secondary" (clicked)="handleClick('secondary')">Secondary</ds-button>
+      <ds-button variant="ghost" (clicked)="handleClick('ghost')">Ghost</ds-button>
     </div>
   </section>
 
   <section class="playground__section">
     <h2>Sizes</h2>
     <div class="playground__row">
-      <rmd-button size="sm" (clicked)="handleClick('sm')">Small</rmd-button>
-      <rmd-button size="md" (clicked)="handleClick('md')">Medium</rmd-button>
-      <rmd-button size="lg" (clicked)="handleClick('lg')">Large</rmd-button>
+      <ds-button size="sm" (clicked)="handleClick('sm')">Small</ds-button>
+      <ds-button size="md" (clicked)="handleClick('md')">Medium</ds-button>
+      <ds-button size="lg" (clicked)="handleClick('lg')">Large</ds-button>
     </div>
   </section>
 
   <section class="playground__section">
     <h2>Disabled</h2>
     <div class="playground__row">
-      <rmd-button [disabled]="true" (clicked)="handleClick('should-not-fire')">
+      <ds-button [disabled]="true" (clicked)="handleClick('should-not-fire')">
         Primary disabled
-      </rmd-button>
-      <rmd-button variant="secondary" [disabled]="true">Secondary disabled</rmd-button>
+      </ds-button>
+      <ds-button variant="secondary" [disabled]="true">Secondary disabled</ds-button>
     </div>
   </section>
 
   <section class="playground__section">
     <h2>Checkbox — estados</h2>
     <div class="playground__row">
-      <rmd-checkbox [(checked)]="checkboxState" label="Toggle controlled" />
-      <rmd-checkbox [checked]="true" label="Checked default" />
-      <rmd-checkbox [indeterminate]="indeterminateState()" label="Indeterminate" />
-      <rmd-checkbox [disabled]="true" label="Disabled" />
+      <ds-checkbox [(checked)]="checkboxState" label="Toggle controlled" />
+      <ds-checkbox [checked]="true" label="Checked default" />
+      <ds-checkbox [indeterminate]="indeterminateState()" label="Indeterminate" />
+      <ds-checkbox [disabled]="true" label="Disabled" />
     </div>
   </section>
 
   <section class="playground__section">
     <h2>Checkbox — sizes</h2>
     <div class="playground__row">
-      <rmd-checkbox size="sm" label="Small" />
-      <rmd-checkbox size="md" label="Medium" />
-      <rmd-checkbox size="lg" label="Large" />
+      <ds-checkbox size="sm" label="Small" />
+      <ds-checkbox size="md" label="Medium" />
+      <ds-checkbox size="lg" label="Large" />
     </div>
   </section>
 
   <section class="playground__section">
     <h2>Checkbox — con ReactiveForm</h2>
     <div class="playground__row">
-      <rmd-checkbox [formControl]="subscribeCtrl">
+      <ds-checkbox [formControl]="subscribeCtrl">
         Suscribirse al newsletter (rich content con <code>&lt;ng-content&gt;</code>)
-      </rmd-checkbox>
+      </ds-checkbox>
       <code>ctrl.value = {{ subscribeCtrl.value }}</code>
     </div>
   </section>

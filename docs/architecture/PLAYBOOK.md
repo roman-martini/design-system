@@ -568,7 +568,7 @@ Al replicar esta arquitectura, **mantener estas convenciones** o documentar expl
 
 - **Prefijos**:
   - `--ds-*` para CSS variables (tokens, agnóstico al framework consumidor).
-  - `<org>-` para selectores Angular (ej. `rmd-`, `myorg-`).
+  - `<system>-` para selectores Angular (ej. `ds-`, `myorg-`). En este repo: `ds-` (Design System, agnóstico). Ver [ADR-007](adr/ADR-007-naming-prefijos.md).
 - **Naming components Angular**: `<Name>Component` clase + `<name>.component.ts` archivo + `<org>-<name>` selector.
 - **Standalone + signals**: nunca NgModules en libs nuevas.
 - **CSS plain con tokens via vars**: sin SCSS, sin CSS-in-JS.

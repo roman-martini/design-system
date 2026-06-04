@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type DsButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type DsButtonSize = 'sm' | 'md' | 'lg';
 
 @Component({
-  selector: 'rmd-button',
+  selector: 'ds-button',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -20,9 +20,9 @@ export type ButtonSize = 'sm' | 'md' | 'lg';
   `,
   styleUrl: './button.component.css',
 })
-export class ButtonComponent {
-  readonly variant = input<ButtonVariant>('primary');
-  readonly size = input<ButtonSize>('md');
+export class DsButton {
+  readonly variant = input<DsButtonVariant>('primary');
+  readonly size = input<DsButtonSize>('md');
   readonly disabled = input<boolean>(false);
   readonly clicked = output<MouseEvent>();
 

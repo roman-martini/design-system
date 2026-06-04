@@ -31,15 +31,15 @@ Sin esto, los componentes pintan sin estilos (las variables `--ds-*` no están d
 
 ```ts
 import { Component, signal } from '@angular/core';
-import { ButtonComponent } from '@romanmartinidev/components';
+import { DsButton } from '@romanmartinidev/components';
 
 @Component({
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [DsButton],
   template: `
-    <rmd-button variant="primary" size="md" [disabled]="loading()" (clicked)="handleSubmit($event)">
+    <ds-button variant="primary" size="md" [disabled]="loading()" (clicked)="handleSubmit($event)">
       Enviar
-    </rmd-button>
+    </ds-button>
   `,
 })
 export class MyFormComponent {
@@ -51,23 +51,45 @@ export class MyFormComponent {
 }
 ```
 
+### Ejemplo: Checkbox con FormControl
+
+```ts
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { DsCheckbox } from '@romanmartinidev/components';
+
+@Component({
+  standalone: true,
+  imports: [DsCheckbox, ReactiveFormsModule],
+  template: `<ds-checkbox [formControl]="terms">Acepto los términos</ds-checkbox>`,
+})
+export class MyFormComponent {
+  terms = new FormControl(false, { nonNullable: true });
+}
+```
+
 ## Componentes disponibles
 
-| Componente        | Selector     | Variants                        | Sizes            | Estado |
-| ----------------- | ------------ | ------------------------------- | ---------------- | ------ |
-| `ButtonComponent` | `rmd-button` | `primary`, `secondary`, `ghost` | `sm`, `md`, `lg` | ✅     |
+| Componente   | Selector      | Variants / Estado                            | Sizes            | Estado |
+| ------------ | ------------- | -------------------------------------------- | ---------------- | ------ |
+| `DsButton`   | `ds-button`   | `primary`, `secondary`, `ghost`              | `sm`, `md`, `lg` | ✅     |
+| `DsCheckbox` | `ds-checkbox` | `checked`, `indeterminate`, `disabled` + CVA | `sm`, `md`, `lg` | ✅     |
 
-Más componentes en changes futuros (Input, Card, Modal, Alert, etc.).
+Más componentes en changes futuros (Radio, Modal, Input, Card, etc.).
 
 ## Convenciones
 
-- **Standalone components** + signal-based API (`input()`, `output()`).
-- **Selector prefix `rmd-`** — parte del contrato API público.
+- **Standalone components** + signal-based API (`input()`, `output()`, `model()`).
+- **Prefix unificado `Ds` / `ds-` / `--ds-*`** — parte del contrato API público.
+  - Selector HTML: `ds-<name>`.
+  - Class TypeScript: `Ds<Name>` (sin sufijo `Component`).
+  - CSS custom properties: `--ds-*`.
 - **CSS plain** consumiendo tokens vía `var(--ds-*)`. Sin pre-procesadores.
 - **ViewEncapsulation Emulated** (default Angular) — los estilos no leak.
 - **Arquitectura flat por componente** — una carpeta `src/lib/<name>/` por componente.
 
-Detalle completo en [ADR-004](../../docs/architecture/adr/ADR-004-arquitectura-components.md).
+Detalle de arquitectura en [ADR-004](../../docs/architecture/adr/ADR-004-arquitectura-components.md).
+Detalle de naming y prefijos en [ADR-007](../../docs/architecture/adr/ADR-007-naming-prefijos.md).
 
 ## Build (solo desarrollo)
 
@@ -81,7 +103,7 @@ pnpm -F @romanmartinidev/components watch   # ng-packagr en watch mode
 
 Pre-1.0. La superficie API puede cambiar entre minors según política del repo. Cambios significativos siguen el flujo de [Changesets](../../CONTRIBUTING.md).
 
-**El prefix `rmd-` queda parte del contrato API público**: cambiarlo es BREAKING y exige un ADR que reemplace al ADR-004.
+**El prefix `Ds` / `ds-` queda parte del contrato API público**: cambiarlo es BREAKING y exige un ADR que reemplace al ADR-007.
 
 ## Licencia
 

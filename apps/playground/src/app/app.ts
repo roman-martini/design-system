@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { ButtonComponent, CheckboxComponent } from '@romanmartinidev/components';
+import { DsButton, DsCheckbox } from '@romanmartinidev/components';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ButtonComponent, CheckboxComponent, ReactiveFormsModule],
+  imports: [DsButton, DsCheckbox, ReactiveFormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

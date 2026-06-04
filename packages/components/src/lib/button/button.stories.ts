@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
-import { ButtonComponent } from './button.component';
+import { DsButton } from './button.component';
 
-const meta: Meta<ButtonComponent> = {
+const meta: Meta<DsButton> = {
   title: 'Components/Button',
-  component: ButtonComponent,
+  component: DsButton,
   tags: ['autodocs'],
-  decorators: [moduleMetadata({ imports: [ButtonComponent] })],
+  decorators: [moduleMetadata({ imports: [DsButton] })],
   argTypes: {
     variant: {
       control: { type: 'inline-radio' },
@@ -30,12 +30,12 @@ const meta: Meta<ButtonComponent> = {
 
 export default meta;
 
-type Story = StoryObj<ButtonComponent>;
+type Story = StoryObj<DsButton>;
 
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<rmd-button [variant]="variant" [size]="size" [disabled]="disabled">Click me</rmd-button>`,
+    template: `<ds-button [variant]="variant" [size]="size" [disabled]="disabled">Click me</ds-button>`,
   }),
 };
 
@@ -47,9 +47,9 @@ export const Variants: Story = {
     props: args,
     template: `
       <div style="display:flex; gap:1rem; align-items:center;">
-        <rmd-button variant="primary" [size]="size" [disabled]="disabled">Primary</rmd-button>
-        <rmd-button variant="secondary" [size]="size" [disabled]="disabled">Secondary</rmd-button>
-        <rmd-button variant="ghost" [size]="size" [disabled]="disabled">Ghost</rmd-button>
+        <ds-button variant="primary" [size]="size" [disabled]="disabled">Primary</ds-button>
+        <ds-button variant="secondary" [size]="size" [disabled]="disabled">Secondary</ds-button>
+        <ds-button variant="ghost" [size]="size" [disabled]="disabled">Ghost</ds-button>
       </div>
     `,
   }),
@@ -63,9 +63,9 @@ export const Sizes: Story = {
     props: args,
     template: `
       <div style="display:flex; gap:1rem; align-items:center;">
-        <rmd-button [variant]="variant" size="sm" [disabled]="disabled">Small</rmd-button>
-        <rmd-button [variant]="variant" size="md" [disabled]="disabled">Medium</rmd-button>
-        <rmd-button [variant]="variant" size="lg" [disabled]="disabled">Large</rmd-button>
+        <ds-button [variant]="variant" size="sm" [disabled]="disabled">Small</ds-button>
+        <ds-button [variant]="variant" size="md" [disabled]="disabled">Medium</ds-button>
+        <ds-button [variant]="variant" size="lg" [disabled]="disabled">Large</ds-button>
       </div>
     `,
   }),
@@ -79,9 +79,9 @@ export const Disabled: Story = {
     props: args,
     template: `
       <div style="display:flex; gap:1rem; align-items:center;">
-        <rmd-button variant="primary" [size]="size" [disabled]="disabled">Primary disabled</rmd-button>
-        <rmd-button variant="secondary" [size]="size" [disabled]="disabled">Secondary disabled</rmd-button>
-        <rmd-button variant="ghost" [size]="size" [disabled]="disabled">Ghost disabled</rmd-button>
+        <ds-button variant="primary" [size]="size" [disabled]="disabled">Primary disabled</ds-button>
+        <ds-button variant="secondary" [size]="size" [disabled]="disabled">Secondary disabled</ds-button>
+        <ds-button variant="ghost" [size]="size" [disabled]="disabled">Ghost disabled</ds-button>
       </div>
     `,
   }),

@@ -1,1 +1,1 @@
-export { ButtonComponent, type ButtonVariant, type ButtonSize } from './button.component';
+export { DsButton, type DsButtonVariant, type DsButtonSize } from './button.component';

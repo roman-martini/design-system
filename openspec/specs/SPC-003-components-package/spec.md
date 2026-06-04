@@ -86,26 +86,46 @@ Los componentes SHALL ser **standalone** (`standalone: true` o decorator standal
 
 ### Requirement: Selector prefix fijo
 
-Todos los componentes SHALL usar el prefix `rmd-` en su selector. El prefix queda parte del contrato API público — cambiarlo es **BREAKING** y exige un ADR nuevo que reemplace al ADR-004.
+Todos los componentes SHALL usar el prefix `ds-` en su selector (ej. `ds-button`, `ds-checkbox`). El prefix queda parte del contrato API público — cambiarlo es **BREAKING** y exige un ADR nuevo que reemplace al ADR-007.
 
-#### Scenario: Button tiene selector rmd-button
+#### Scenario: Button tiene selector ds-button
 
 - **WHEN** se inspecciona `button.component.ts`
-- **THEN** el decorator `@Component` SHALL declarar `selector: 'rmd-button'`
+- **THEN** el decorator `@Component` SHALL declarar `selector: 'ds-button'`
 
-#### Scenario: componente sin prefix rmd- es rechazado
+#### Scenario: Checkbox tiene selector ds-checkbox
 
-- **WHEN** alguien agrega `@Component({ selector: 'app-button', ... })` (o cualquier prefix distinto)
-- **THEN** SHALL ser rechazado por revisión (Angular ESLint `@angular-eslint/component-selector` con prefix configurado puede automatizar)
+- **WHEN** se inspecciona `checkbox.component.ts`
+- **THEN** el decorator `@Component` SHALL declarar `selector: 'ds-checkbox'`
+
+#### Scenario: componente sin prefix ds- es rechazado
+
+- **WHEN** alguien agrega `@Component({ selector: 'rmd-button', ... })` o cualquier prefix distinto de `ds-`
+- **THEN** SHALL ser rechazado por revisión (Angular ESLint `@angular-eslint/component-selector` con prefix `ds` configurado puede automatizar)
 
 ### Requirement: Naming convention de class y archivo
 
-Las classes de componentes SHALL llamarse `<Name>Component` (PascalCase con sufijo `Component`). Los archivos SHALL nombrarse `<name>.component.ts` (kebab-case con sufijo `.component.ts`). El `<Name>` SHALL coincidir entre carpeta, archivo, class y selector (ej. carpeta `button/`, archivo `button.component.ts`, class `ButtonComponent`, selector `rmd-button`).
+Las classes de componentes SHALL llamarse `Ds<Name>` (PascalCase con prefix `Ds`, **sin** sufijo `Component`). Los archivos SHALL nombrarse `<name>.component.ts` (kebab-case con sufijo `.component.ts`). El `<Name>` SHALL coincidir entre carpeta, archivo, class y selector (ej. carpeta `button/`, archivo `button.component.ts`, class `DsButton`, selector `ds-button`).
+
+Types públicos exportados por un componente SHALL también llevar prefix `Ds<Name><TypeName>` (ej. `DsButtonVariant`, `DsButtonSize`, `DsCheckboxSize`).
 
 #### Scenario: Button cumple la convención
 
 - **WHEN** se inspecciona la implementación de Button
-- **THEN** carpeta `src/lib/button/`, archivo `button.component.ts`, class `ButtonComponent`, selector `rmd-button` SHALL coincidir
+- **THEN** carpeta `src/lib/button/`, archivo `button.component.ts`, class `DsButton`, selector `ds-button` SHALL coincidir
+- **AND** los types públicos SHALL ser `DsButtonVariant` y `DsButtonSize`
+
+#### Scenario: Checkbox cumple la convención
+
+- **WHEN** se inspecciona la implementación de Checkbox
+- **THEN** carpeta `src/lib/checkbox/`, archivo `checkbox.component.ts`, class `DsCheckbox`, selector `ds-checkbox` SHALL coincidir
+- **AND** el type público SHALL ser `DsCheckboxSize`
+
+#### Scenario: class TypeScript NO lleva sufijo Component
+
+- **WHEN** se inspecciona la class exportada de un componente
+- **THEN** SHALL NO terminar en `Component` (ej. `DsButton` ✓; `DsButtonComponent` ✗)
+- **AND** SHALL empezar con prefix `Ds`
 
 ### Requirement: Styles plain CSS consumiendo tokens via CSS variables
 
@@ -120,7 +140,7 @@ Los componentes SHALL usar archivos `.css` (no `.scss`, no `.less`). El styling 
 #### Scenario: tokens se aplican automáticamente
 
 - **GIVEN** un consumidor que importó `@romanmartinidev/tokens/css` antes de usar componentes
-- **WHEN** renderiza `<rmd-button>` sin override
+- **WHEN** renderiza `<ds-button>` sin override
 - **THEN** las variables `--ds-*` SHALL resolverse desde `:root` y el botón SHALL pintarse con el design system aplicado
 
 ### Requirement: ViewEncapsulation Emulated en componentes
@@ -135,9 +155,9 @@ Los componentes SHALL usar `ViewEncapsulation.Emulated` (el default de Angular).
 
 #### Scenario: estilos no leak a otros componentes
 
-- **GIVEN** dos componentes consumidores hermanos (`<rmd-button>` y otro componente con clase `.button` propia)
+- **GIVEN** dos componentes consumidores hermanos (`<ds-button>` y otro componente con clase `.button` propia)
 - **WHEN** se renderizan en la misma página
-- **THEN** los estilos de `button.component.css` SHALL aplicar solo al `<rmd-button>` (el atributo `_ngcontent-*` de Angular Emulated los aísla)
+- **THEN** los estilos de `button.component.css` SHALL aplicar solo al `<ds-button>` (el atributo `_ngcontent-*` de Angular Emulated los aísla)
 
 ### Requirement: Surface de exports a través de public-api.ts
 
@@ -145,7 +165,7 @@ El package SHALL exponer `src/public-api.ts` como entry point. Solo lo re-export
 
 #### Scenario: import de Button funciona
 
-- **WHEN** un consumidor escribe `import { ButtonComponent } from '@romanmartinidev/components';`
+- **WHEN** un consumidor escribe `import { DsButton } from '@romanmartinidev/components';`
 - **THEN** el bundler SHALL resolver al export desde `dist/index.d.ts` y `dist/fesm2022/<entry>.mjs` (rutas exactas las define ng-packagr)
 
 #### Scenario: import a internals está bloqueado
@@ -208,24 +228,24 @@ El package SHALL NO depender de ninguna app en `apps/*`. SHALL declarar `@romanm
 
 ### Requirement: Componente Checkbox
 
-El package SHALL exponer `CheckboxComponent` (selector `rmd-checkbox`) cumpliendo las convenciones de [ADR-004](../../../docs/architecture/adr/ADR-004-arquitectura-components.md): standalone, OnPush, signal-based API. El componente SHALL implementar `ControlValueAccessor` para integración nativa con Angular Forms (reactivos y template-driven). SHALL soportar estado `checked` (model two-way), `indeterminate` (input one-way), `disabled` (model two-way; CVA puede mutarlo), `label` (input string fallback), `size` ('sm' | 'md' | 'lg' con default 'md').
+El package SHALL exponer `DsCheckbox` (selector `ds-checkbox`) cumpliendo las convenciones de [ADR-004](../../../docs/architecture/adr/ADR-004-arquitectura-components.md) (arquitectura) y [ADR-007](../../../docs/architecture/adr/ADR-007-naming-prefijos.md) (naming): standalone, OnPush, signal-based API, prefix `Ds` en class y `ds-` en selector. El componente SHALL implementar `ControlValueAccessor` para integración nativa con Angular Forms (reactivos y template-driven). SHALL soportar estado `checked` (model two-way), `indeterminate` (input one-way), `disabled` (model two-way; CVA puede mutarlo), `label` (input string fallback), `size` ('sm' | 'md' | 'lg' con default 'md').
 
-#### Scenario: estructura de archivos sigue ADR-004
+#### Scenario: estructura de archivos sigue ADR-004 + ADR-007
 
 - **WHEN** se inspecciona `packages/components/src/lib/checkbox/`
 - **THEN** existen: `checkbox.component.ts`, `checkbox.component.html`, `checkbox.component.css`, `checkbox.component.spec.ts`, `checkbox.stories.ts`, `index.ts`
-- **AND** la class se llama `CheckboxComponent` y el selector es `rmd-checkbox`
+- **AND** la class se llama `DsCheckbox` y el selector es `ds-checkbox`
 
 #### Scenario: two-way binding con [(checked)]
 
-- **GIVEN** un consumidor con `<rmd-checkbox [(checked)]="state()" />` y `state = signal(false)`
+- **GIVEN** un consumidor con `<ds-checkbox [(checked)]="state()" />` y `state = signal(false)`
 - **WHEN** el usuario hace click en el checkbox
 - **THEN** `state()` SHALL pasar a `true`
 - **AND** otro click SHALL volverlo a `false`
 
 #### Scenario: integración con FormControl reactivo
 
-- **GIVEN** un consumidor con `<rmd-checkbox [formControl]="ctrl" />` y `ctrl = new FormControl(false)`
+- **GIVEN** un consumidor con `<ds-checkbox [formControl]="ctrl" />` y `ctrl = new FormControl(false)`
 - **WHEN** se ejecuta `ctrl.setValue(true)`
 - **THEN** el checkbox renderizado SHALL aparecer marcado
 - **AND** un click del usuario SHALL actualizar `ctrl.value` a `false`
@@ -239,7 +259,7 @@ El package SHALL exponer `CheckboxComponent` (selector `rmd-checkbox`) cumpliend
 
 #### Scenario: indeterminate con aria-checked="mixed"
 
-- **GIVEN** `<rmd-checkbox [indeterminate]="true" [(checked)]="state" />`
+- **GIVEN** `<ds-checkbox [indeterminate]="true" [(checked)]="state" />`
 - **WHEN** se inspecciona el DOM renderizado
 - **THEN** el `<input type="checkbox">` SHALL tener `indeterminate` propiedad true (sincronizada vía `effect()`)
 - **AND** el host element SHALL tener `aria-checked="mixed"`
@@ -247,21 +267,21 @@ El package SHALL exponer `CheckboxComponent` (selector `rmd-checkbox`) cumpliend
 
 #### Scenario: label via input string
 
-- **GIVEN** `<rmd-checkbox label="Acepto términos" />` sin contenido entre tags
+- **GIVEN** `<ds-checkbox label="Acepto términos" />` sin contenido entre tags
 - **WHEN** se renderiza
 - **THEN** el componente SHALL mostrar el texto "Acepto términos" como label
 - **AND** el label SHALL estar asociado al input por estructura `<label><input>...</label>`
 
 #### Scenario: label via <ng-content> tiene precedencia sobre input string
 
-- **GIVEN** `<rmd-checkbox label="ignored">Acepto los <a href="/tos">términos</a></rmd-checkbox>`
+- **GIVEN** `<ds-checkbox label="ignored">Acepto los <a href="/tos">términos</a></ds-checkbox>`
 - **WHEN** se renderiza
 - **THEN** el componente SHALL mostrar el contenido proyectado (con el link)
 - **AND** SHALL ignorar el input string `label`
 
 #### Scenario: sizes sm/md/lg consumen tokens
 
-- **WHEN** se renderiza `<rmd-checkbox size="sm" />`, `size="md"`, y `size="lg"`
+- **WHEN** se renderiza `<ds-checkbox size="sm" />`, `size="md"`, y `size="lg"`
 - **THEN** el box visible del input SHALL escalar entre tres tamaños distintos (sm < md < lg)
 - **AND** los tamaños SHALL referenciar variables `var(--ds-dimension-*)` o `var(--ds-semantic-*)` exclusivamente (NO valores px hardcoded en el CSS)
 
@@ -274,7 +294,7 @@ El package SHALL exponer `CheckboxComponent` (selector `rmd-checkbox`) cumpliend
 
 #### Scenario: respeta variant disabled
 
-- **GIVEN** `<rmd-checkbox [disabled]="true" [(checked)]="state" />` con `state = signal(false)`
+- **GIVEN** `<ds-checkbox [disabled]="true" [(checked)]="state" />` con `state = signal(false)`
 - **WHEN** el usuario hace click
 - **THEN** `state()` SHALL permanecer en `false`
 - **AND** el cursor sobre el host SHALL ser `not-allowed`
@@ -284,7 +304,7 @@ El package SHALL exponer `CheckboxComponent` (selector `rmd-checkbox`) cumpliend
 
 - **WHEN** se inspecciona `packages/components/src/public-api.ts`
 - **THEN** SHALL contener `export * from './lib/checkbox';`
-- **AND** un consumidor SHALL poder hacer `import { CheckboxComponent } from '@romanmartinidev/components';`
+- **AND** un consumidor SHALL poder hacer `import { DsCheckbox, type DsCheckboxSize } from '@romanmartinidev/components';`
 
 ### Requirement: @angular/forms como peerDependency
 

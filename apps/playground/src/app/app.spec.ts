@@ -16,17 +16,17 @@ describe('App', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('renders at least one rmd-button', () => {
+  it('renders at least one ds-button', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    const buttons = fixture.nativeElement.querySelectorAll('rmd-button');
+    const buttons = fixture.nativeElement.querySelectorAll('ds-button');
     expect(buttons.length).toBeGreaterThan(0);
   });
 
-  it('renders at least one rmd-checkbox', () => {
+  it('renders at least one ds-checkbox', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    const checkboxes = fixture.nativeElement.querySelectorAll('rmd-checkbox');
+    const checkboxes = fixture.nativeElement.querySelectorAll('ds-checkbox');
     expect(checkboxes.length).toBeGreaterThan(0);
   });
 });

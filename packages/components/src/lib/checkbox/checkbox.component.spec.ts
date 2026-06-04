@@ -3,19 +3,19 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { CheckboxComponent } from './checkbox.component';
+import { DsCheckbox } from './checkbox.component';
 
-describe('CheckboxComponent', () => {
-  let fixture: ComponentFixture<CheckboxComponent>;
-  let component: CheckboxComponent;
+describe('DsCheckbox', () => {
+  let fixture: ComponentFixture<DsCheckbox>;
+  let component: DsCheckbox;
   let inputEl: HTMLInputElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CheckboxComponent],
+      imports: [DsCheckbox],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CheckboxComponent);
+    fixture = TestBed.createComponent(DsCheckbox);
     component = fixture.componentInstance;
     fixture.detectChanges();
     inputEl = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -118,24 +118,24 @@ describe('CheckboxComponent', () => {
 // Integración con ReactiveFormsModule (host component)
 @Component({
   standalone: true,
-  imports: [CheckboxComponent, ReactiveFormsModule],
-  template: `<rmd-checkbox [formControl]="ctrl" />`,
+  imports: [DsCheckbox, ReactiveFormsModule],
+  template: `<ds-checkbox [formControl]="ctrl" />`,
 })
-class CheckboxFormHost {
+class DsCheckboxFormHost {
   readonly ctrl = new FormControl<boolean>(false, { nonNullable: true });
 }
 
-describe('CheckboxComponent + FormControl', () => {
-  let hostFixture: ComponentFixture<CheckboxFormHost>;
-  let host: CheckboxFormHost;
+describe('DsCheckbox + FormControl', () => {
+  let hostFixture: ComponentFixture<DsCheckboxFormHost>;
+  let host: DsCheckboxFormHost;
   let inputEl: HTMLInputElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CheckboxFormHost],
+      imports: [DsCheckboxFormHost],
     }).compileComponents();
 
-    hostFixture = TestBed.createComponent(CheckboxFormHost);
+    hostFixture = TestBed.createComponent(DsCheckboxFormHost);
     host = hostFixture.componentInstance;
     hostFixture.detectChanges();
     inputEl = hostFixture.nativeElement.querySelector('input') as HTMLInputElement;

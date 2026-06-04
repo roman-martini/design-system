@@ -155,3 +155,14 @@ Stack ya presente en el monorepo. `@angular/build` requerido como devDep (peer d
 - Cuando el package crezca a ≥5 componentes, evaluar sub-paths en `exports` en ADR posterior.
 - Si aparece motivación (multi-tema simultáneo, theming a nivel componente vía CSS vars locales tipo `--rmd-button-bg-override`), documentar en ADR posterior.
 - Política definitiva de versionado pre-1.0 → 1.0: diferida al primer release público (mismo open question que en tokens).
+
+## Nota de supersesión parcial
+
+El **2026-06-01**, las siguientes secciones de este ADR fueron superseded por [ADR-007](ADR-007-naming-prefijos.md):
+
+- **§4 Selector prefix `rmd-`** → reemplazado por `ds-` (ej. `ds-button`).
+- **§5 Naming convention**, columna **"Class TypeScript"** → reemplazado por `Ds<Name>` (sin sufijo `Component`).
+
+Las demás decisiones (§1 build tool, §2 arquitectura flat, §3 standalone+signals, §6 CSS plain, §7 ViewEncapsulation, §8 testing, §9 surface de exports, §10 peerDependency a tokens) siguen **Aceptadas** sin cambios. El estado global de este ADR sigue siendo **Aceptado** porque la mayoría de las decisiones continúan vigentes.
+
+Las menciones a `rmd-` y a class names sin prefijo en el cuerpo de este documento se preservan como **contexto histórico**: representan el estado del sistema al momento de ADR-004 y son inmutables. Ver ADR-007 para el estado actual de naming.

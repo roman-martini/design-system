@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { ButtonComponent } from './button.component';
+import { DsButton } from './button.component';
 
-describe('ButtonComponent', () => {
-  let fixture: ComponentFixture<ButtonComponent>;
-  let component: ButtonComponent;
+describe('DsButton', () => {
+  let fixture: ComponentFixture<DsButton>;
+  let component: DsButton;
   let buttonEl: HTMLButtonElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ButtonComponent],
+      imports: [DsButton],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ButtonComponent);
+    fixture = TestBed.createComponent(DsButton);
     component = fixture.componentInstance;
     fixture.detectChanges();
     buttonEl = fixture.nativeElement.querySelector('button') as HTMLButtonElement;

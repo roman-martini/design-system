@@ -1,0 +1,124 @@
+## MODIFIED Requirements
+
+### Requirement: Selector prefix fijo
+
+Todos los componentes SHALL usar el prefix `ds-` en su selector (ej. `ds-button`, `ds-checkbox`). El prefix queda parte del contrato API público — cambiarlo es **BREAKING** y exige un ADR nuevo que reemplace al ADR-007.
+
+#### Scenario: Button tiene selector ds-button
+
+- **WHEN** se inspecciona `button.component.ts`
+- **THEN** el decorator `@Component` SHALL declarar `selector: 'ds-button'`
+
+#### Scenario: Checkbox tiene selector ds-checkbox
+
+- **WHEN** se inspecciona `checkbox.component.ts`
+- **THEN** el decorator `@Component` SHALL declarar `selector: 'ds-checkbox'`
+
+#### Scenario: componente sin prefix ds- es rechazado
+
+- **WHEN** alguien agrega `@Component({ selector: 'rmd-button', ... })` o cualquier prefix distinto de `ds-`
+- **THEN** SHALL ser rechazado por revisión (Angular ESLint `@angular-eslint/component-selector` con prefix `ds` configurado puede automatizar)
+
+### Requirement: Naming convention de class y archivo
+
+Las classes de componentes SHALL llamarse `Ds<Name>` (PascalCase con prefix `Ds`, **sin** sufijo `Component`). Los archivos SHALL nombrarse `<name>.component.ts` (kebab-case con sufijo `.component.ts`). El `<Name>` SHALL coincidir entre carpeta, archivo, class y selector (ej. carpeta `button/`, archivo `button.component.ts`, class `DsButton`, selector `ds-button`).
+
+Types públicos exportados por un componente SHALL también llevar prefix `Ds<Name><TypeName>` (ej. `DsButtonVariant`, `DsButtonSize`, `DsCheckboxSize`).
+
+#### Scenario: Button cumple la convención
+
+- **WHEN** se inspecciona la implementación de Button
+- **THEN** carpeta `src/lib/button/`, archivo `button.component.ts`, class `DsButton`, selector `ds-button` SHALL coincidir
+- **AND** los types públicos SHALL ser `DsButtonVariant` y `DsButtonSize`
+
+#### Scenario: Checkbox cumple la convención
+
+- **WHEN** se inspecciona la implementación de Checkbox
+- **THEN** carpeta `src/lib/checkbox/`, archivo `checkbox.component.ts`, class `DsCheckbox`, selector `ds-checkbox` SHALL coincidir
+- **AND** el type público SHALL ser `DsCheckboxSize`
+
+#### Scenario: class TypeScript NO lleva sufijo Component
+
+- **WHEN** se inspecciona la class exportada de un componente
+- **THEN** SHALL NO terminar en `Component` (ej. `DsButton` ✓; `DsButtonComponent` ✗)
+- **AND** SHALL empezar con prefix `Ds`
+
+### Requirement: Componente Checkbox
+
+El package SHALL exponer `DsCheckbox` (selector `ds-checkbox`) cumpliendo las convenciones de [ADR-004](../../../docs/architecture/adr/ADR-004-arquitectura-components.md) (arquitectura) y [ADR-007](../../../docs/architecture/adr/ADR-007-naming-prefijos.md) (naming): standalone, OnPush, signal-based API, prefix `Ds` en class y `ds-` en selector. El componente SHALL implementar `ControlValueAccessor` para integración nativa con Angular Forms (reactivos y template-driven). SHALL soportar estado `checked` (model two-way), `indeterminate` (input one-way), `disabled` (model two-way; CVA puede mutarlo), `label` (input string fallback), `size` ('sm' | 'md' | 'lg' con default 'md').
+
+#### Scenario: estructura de archivos sigue ADR-004 + ADR-007
+
+- **WHEN** se inspecciona `packages/components/src/lib/checkbox/`
+- **THEN** existen: `checkbox.component.ts`, `checkbox.component.html`, `checkbox.component.css`, `checkbox.component.spec.ts`, `checkbox.stories.ts`, `index.ts`
+- **AND** la class se llama `DsCheckbox` y el selector es `ds-checkbox`
+
+#### Scenario: two-way binding con [(checked)]
+
+- **GIVEN** un consumidor con `<ds-checkbox [(checked)]="state()" />` y `state = signal(false)`
+- **WHEN** el usuario hace click en el checkbox
+- **THEN** `state()` SHALL pasar a `true`
+- **AND** otro click SHALL volverlo a `false`
+
+#### Scenario: integración con FormControl reactivo
+
+- **GIVEN** un consumidor con `<ds-checkbox [formControl]="ctrl" />` y `ctrl = new FormControl(false)`
+- **WHEN** se ejecuta `ctrl.setValue(true)`
+- **THEN** el checkbox renderizado SHALL aparecer marcado
+- **AND** un click del usuario SHALL actualizar `ctrl.value` a `false`
+
+#### Scenario: setDisabledState del CVA
+
+- **GIVEN** un Checkbox dentro de un FormControl
+- **WHEN** se ejecuta `ctrl.disable()`
+- **THEN** el `<input type="checkbox">` interno SHALL tener `disabled` true
+- **AND** clicks en el host SHALL ser ignorados
+
+#### Scenario: indeterminate con aria-checked="mixed"
+
+- **GIVEN** `<ds-checkbox [indeterminate]="true" [(checked)]="state" />`
+- **WHEN** se inspecciona el DOM renderizado
+- **THEN** el `<input type="checkbox">` SHALL tener `indeterminate` propiedad true (sincronizada vía `effect()`)
+- **AND** el host element SHALL tener `aria-checked="mixed"`
+- **AND** visualmente SHALL renderizarse con un guion (-) en vez del check (✓)
+
+#### Scenario: label via input string
+
+- **GIVEN** `<ds-checkbox label="Acepto términos" />` sin contenido entre tags
+- **WHEN** se renderiza
+- **THEN** el componente SHALL mostrar el texto "Acepto términos" como label
+- **AND** el label SHALL estar asociado al input por estructura `<label><input>...</label>`
+
+#### Scenario: label via <ng-content> tiene precedencia sobre input string
+
+- **GIVEN** `<ds-checkbox label="ignored">Acepto los <a href="/tos">términos</a></ds-checkbox>`
+- **WHEN** se renderiza
+- **THEN** el componente SHALL mostrar el contenido proyectado (con el link)
+- **AND** SHALL ignorar el input string `label`
+
+#### Scenario: sizes sm/md/lg consumen tokens
+
+- **WHEN** se renderiza `<ds-checkbox size="sm" />`, `size="md"`, y `size="lg"`
+- **THEN** el box visible del input SHALL escalar entre tres tamaños distintos (sm < md < lg)
+- **AND** los tamaños SHALL referenciar variables `var(--ds-dimension-*)` o `var(--ds-semantic-*)` exclusivamente (NO valores px hardcoded en el CSS)
+
+#### Scenario: focus visible respeta accesibilidad WCAG
+
+- **GIVEN** un Checkbox renderizado
+- **WHEN** el usuario navega con Tab y enfoca el checkbox
+- **THEN** SHALL aplicarse `box-shadow: var(--ds-semantic-shadow-focus)` (ring de focus alrededor del input)
+- **AND** SHALL desaparecer el outline default del browser (no doble ring)
+
+#### Scenario: respeta variant disabled
+
+- **GIVEN** `<ds-checkbox [disabled]="true" [(checked)]="state" />` con `state = signal(false)`
+- **WHEN** el usuario hace click
+- **THEN** `state()` SHALL permanecer en `false`
+- **AND** el cursor sobre el host SHALL ser `not-allowed`
+- **AND** el opacity SHALL aplicarse via token (`var(--ds-opacity-50)` o equivalente semántico)
+
+#### Scenario: exportado desde public-api.ts
+
+- **WHEN** se inspecciona `packages/components/src/public-api.ts`
+- **THEN** SHALL contener `export * from './lib/checkbox';`
+- **AND** un consumidor SHALL poder hacer `import { DsCheckbox, type DsCheckboxSize } from '@romanmartinidev/components';`

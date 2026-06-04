@@ -5,7 +5,17 @@
       "Bash(pnpm add *)",
       "Edit(/.claude/skills/research-design-system/**)",
       "Bash(node .claude/skills/research-design-system/scripts/extract-design.mjs \"https://www.polymer.co/features\")",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(pnpm lint *)",
+      "Bash(pnpm -F @romanmartinidev/components build)",
+      "Bash(pnpm format *)",
+      "Bash(pnpm -r build)",
+      "Bash(pnpm -F @romanmartinidev/components exec vitest run)",
+      "Bash(pnpm -F playground exec vitest run)",
+      "Bash(pnpm -F playground exec ng run playground:build-storybook)",
+      "Bash(npm pack *)",
+      "Bash(git restore *)",
+      "Bash(git mv *)"
     ]
   }
 }
