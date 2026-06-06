@@ -1,172 +1,94 @@
 schema: spec-driven
 
 context: |
-  agent-design-sistem es un monorepo pnpm con librerías de arquitectura frontend
-  publicadas bajo el scope npm `@romanmartinidev`.
+  agent-design-sistem — monorepo pnpm con librerías de arquitectura frontend
+  bajo el scope npm `@romanmartinidev`.
 
   Packages publicables:
-    - @romanmartinidev/tokens     (packages/tokens/)     — design tokens (Style Dictionary 4)
-    - @romanmartinidev/components (packages/components/) — componentes Angular (ng-packagr, APF)
+    - @romanmartinidev/tokens     (packages/tokens/)     — design tokens Style Dictionary 4
+    - @romanmartinidev/components (packages/components/) — componentes Angular ng-packagr APF
 
-  App interna (no publicable):
+  App interna no publicable:
     - apps/playground — Angular 21 zoneless + Storybook 10 + Vitest 4
 
-  Stack: pnpm workspaces, TypeScript 5.9, Angular 21, ng-packagr,
-  Style Dictionary 4, Vitest 4, Storybook 10, Changesets,
-  ESLint + Prettier, Husky + lint-staged + commitlint.
+  Stack:
+    - pnpm workspaces + TypeScript 5.9 + Angular 21 + ng-packagr 21
+    - Style Dictionary 4 + Vitest 4 + Storybook 10 + Changesets
+    - ESLint + Prettier + Husky + lint-staged + commitlint
 
-  Prioridades estrictas (en orden):
-    1. Aplicar buenas prácticas.
-    2. Diseños/arquitecturas que escalen ordenado.
-    3. Mantenibilidad vía estándares y convenciones claras.
+  Prioridades estrictas en orden:
+    1. Aplicar buenas prácticas
+    2. Diseños/arquitecturas que escalen ordenado
+    3. Mantenibilidad vía estándares y convenciones claras
 
-  Convenciones de naming (ADR-007 supersede ADR-004 §4 + §5):
-    - CSS custom properties con prefix `--ds-*`.
-    - Selector HTML con prefix `ds-` (ej. `ds-button`, `ds-checkbox`).
-    - Class TypeScript con prefix `Ds`, sin sufijo `Component` (ej. `DsButton`, `DsCheckbox`).
-    - Types públicos con prefix `Ds<Name><TypeName>` (ej. `DsButtonSize`).
-    - Folder/file en kebab-case (`button/`, `button.component.ts`).
+  Convenciones de naming (ADR-007 supersede ADR-004 §4+§5):
+    - Selector HTML con prefix `ds-` (ej. `ds-button`)
+    - Class TypeScript con prefix `Ds` sin sufijo `Component` (ej. `DsButton`)
+    - Types públicos con prefix `Ds<Name><TypeName>` (ej. `DsButtonSize`)
+    - CSS custom properties con prefix `--ds-*`
+    - Folder y file kebab-case (`button/`, `button.component.ts`)
 
   Jerarquía de tokens (ADR-003):
     primitives → semantic → component → theme.
     semantic referencia primitives. component referencia semantic o primitives.
-    theme SOLO redefine semantic (no agrega). Sin referencias circulares.
+    theme solo redefine semantic. Sin referencias circulares.
 
-  Reglas de dependencia entre packages (DAG sin ciclos, ver spec monorepo-structure):
-    - tokens NO depende de nada del monorepo.
-    - components depende de tokens como peerDependency (workspace:*).
-    - playground depende de tokens y components como dependencies (workspace:*).
-    - NUNCA: dependencia de tokens o components hacia playground.
+  Reglas de dependencia (DAG sin ciclos, spec monorepo-structure):
+    - tokens no depende del monorepo
+    - components depende de tokens como peerDependency con workspace:*
+    - playground depende de tokens y components como dependencies
+    - nunca dependencia de tokens o components hacia playground
 
   Surface de libs publicables (ADR-004):
-    - peerDependencies para Angular (@angular/core, @angular/common; +
-      @angular/forms cuando algún componente implementa ControlValueAccessor)
-      y para deps internas del monorepo con workspace:* (Changesets reescribe
-      a versión semver al publicar).
-    - public-api.ts es el único barrel; solo lo reexportado allí es API pública.
-    - Build con ng-packagr produce Angular Package Format (FESM2022 + types).
-    - Tarballs NO incluyen *.stories.ts ni *.spec.ts (verificado con
-      npm pack --dry-run).
+    - peerDependencies para @angular/core y @angular/common; @angular/forms si hay ControlValueAccessor
+    - public-api.ts es el único barrel
+    - ng-packagr produce Angular Package Format (FESM2022 + types)
+    - Tarballs no incluyen *.stories.ts ni *.spec.ts
 
-  Convenciones del repo:
-    - Commits Conventional Commits + commitlint.
-    - Decisiones one-way door o que afectan ≥2 packages generan ADR en
-      formato MADR en docs/architecture/adr/.
-    - Cambios significativos arrancan como propuesta OpenSpec en
-      openspec/changes/ con ID aaa-NNN permanente en el frontmatter.
-    - Cambios triviales o de implementación local van por commit directo,
-      sin propuesta.
-    - Libs publicables declaran Angular como peerDependencies y deps
-      internas con workspace:*.
+  Product language for specs:
+    - Specs describen comportamiento testable observable, no implementación
+    - Requirements con SHALL/MUST expresan contratos del producto
+    - Detalles de cómo (effect, viewChild, etc.) van en design.md o tasks.md
+    - Evitar SHALL negativos cuando una formulación positiva expresa lo mismo
 
-  Fuentes de verdad canónicas (NO duplicar contenido — apuntar):
-    - CLAUDE.md                          contrato Claude ↔ repo.
-    - docs/architecture/README.md        síntesis arquitectónica + catálogos.
-    - docs/architecture/decisions-log.md índice cronológico de ADRs.
-    - docs/architecture/adr/             ADRs aceptados (inmutables).
-    - openspec/IDS.md                    catálogo CHGs/SPCs + próximo ID.
-    - openspec/BACKLOG.md                items pendientes con disparador concreto.
+  Cambios e IDs (ADR-008):
+    - Changes con ID aaa-NNN permanente en frontmatter
+    - Specs identificadas por carpeta sin ID
+    - Cambios significativos arrancan como propuesta OpenSpec
+    - Cambios triviales o de implementación local van por commit directo
+
+  Fuentes de verdad canónicas:
+    - CLAUDE.md                          contrato Claude ↔ repo
+    - docs/architecture/README.md        síntesis arquitectónica + catálogos
+    - docs/architecture/decisions-log.md índice de ADRs
+    - docs/architecture/adr/             ADRs aceptados inmutables
+    - openspec/IDS.md                    catálogo de changes + próximo ID
+    - openspec/BACKLOG.md                items pendientes con disparador
 
 rules:
   proposal:
-    - >-
-      ANTES de redactar, leer estos archivos canónicos: CLAUDE.md
-      (prioridades), docs/architecture/README.md (catálogo packages/specs/
-      ADRs), docs/architecture/decisions-log.md (ADRs aceptados),
-      openspec/IDS.md (próximo ID disponible) y openspec/BACKLOG.md
-      (¿este change ya estaba en el backlog?). Sin esa lectura previa,
-      NO continuar.
-    - >-
-      Toda propuesta declara explícitamente cuál(es) prioridad(es) del repo
-      respalda (buenas prácticas / escalabilidad / mantenibilidad).
-    - >-
-      Incluir sección "Alternativas evaluadas" con ≥2 opciones y por qué se
-      descartaron, alineado con el formato de ADR.
-    - >-
-      Si la propuesta toca ≥2 packages o es one-way door, indicar que
-      generará un ADR al cerrarse.
-    - >-
-      Frontmatter YAML obligatorio con los campos id (aaa-NNN), name, type
-      "change", status "active", modifies-specs o introduces-specs, y
-      related-adrs. Verificar próximo ID disponible en openspec/IDS.md antes
-      de asignar.
-    - >-
-      NO contradecir ADRs aceptados sin declarar reemplazo explícito (ADR
-      nuevo con campo "Reemplaza ADR-NNN").
+    - Antes de redactar leer CLAUDE.md, architecture/README.md, decisions-log.md, IDS.md y BACKLOG.md
+    - Declarar cuál de las 3 prioridades del repo respalda la propuesta
+    - Incluir sección "Alternativas evaluadas" con al menos 2 opciones descartadas
+    - Si toca 2 o más packages o es one-way door, indicar que generará un ADR al cerrarse
+    - No contradecir ADRs aceptados sin declarar supersede explícito
 
   specs:
-    - >-
-      ANTES de redactar, leer la spec base correspondiente en
-      openspec/specs/<capability>/spec.md para entender qué requirements
-      existen, su numeración y estilo. El delta debe respetar el estilo.
-      Si la capability es nueva, leer al menos otra spec base como
-      referencia de formato.
-    - >-
-      Usar formato MADR-like con RFC 2119. Requirements con SHALL/MUST en
-      cláusulas normativas; nunca should/may para requisitos obligatorios.
-    - >-
-      Cada requirement con header tres-hashtags `### Requirement: <nombre>`,
-      descripción, y al menos un scenario.
-    - >-
-      Scenarios con exactamente cuatro hashtags `#### Scenario: <nombre>` y
-      formato WHEN/THEN (o GIVEN/WHEN/THEN cuando hay precondición).
-    - >-
-      Para deltas usar `## ADDED Requirements`, `## MODIFIED Requirements`
-      (incluir contenido COMPLETO actualizado del requirement, no solo el
-      diff), `## REMOVED Requirements` (con campos Reason y Migration), o
-      `## RENAMED Requirements` con FROM/TO.
-    - >-
-      Naming en specs SIEMPRE con prefijos actuales (`Ds<Name>` para class,
-      `ds-<name>` para selector). No usar nombres históricos (`rmd-*`,
-      `<Name>Component`) salvo en menciones explícitas a historia (archive).
+    - Antes de redactar leer la spec base correspondiente
+    - Usar lenguaje de comportamiento observable, no de implementación interna
+    - Naming siempre con prefijos actuales `Ds<Name>` y `ds-<name>`, no históricos
+    - Para deltas usar ADDED, MODIFIED (contenido completo), REMOVED (con Reason+Migration) o RENAMED
 
   design:
-    - >-
-      ANTES de redactar, leer proposal.md de este change y los ADRs listados
-      en `related-adrs`. Las decisions del design NO deben contradecir ADRs
-      aceptados. Si lo hacen, marcar explícitamente como "supersede" y
-      planificar el ADR nuevo al archivar.
-    - >-
-      Solo crear design.md cuando aplica al menos uno de los criterios
-      cross-cutting (≥2 packages), nueva dep externa, modelo de datos
-      significativo, complejidad de seguridad/performance/migración, o
-      ambigüedad técnica que beneficia de cerrarse antes de codear.
-    - >-
-      Secciones obligatorias en este orden Context, Goals/Non-Goals,
-      Decisions (con alternativas por cada decisión y "por qué" explícito),
-      Risks/Trade-offs (formato Risk → Mitigation), Migration Plan (si
-      aplica), Open Questions.
-    - >-
-      Pseudocódigo solo embebido en el documento, marcado como pseudocódigo;
-      nunca como código ejecutable en el repo.
-    - >-
-      Decisiones one-way door tomadas en el design se promueven a ADR al
-      archivar el change. El design.md muere; el ADR queda eterno.
+    - Antes de redactar leer proposal.md y los ADRs en related-adrs
+    - Solo crear design.md cuando hay cross-cutting, dep externa nueva, complejidad de seguridad o ambigüedad técnica
+    - Documentar alternativas evaluadas con por-qué explícito por cada decisión
+    - Promover decisiones one-way door a ADR al archivar el change
 
   tasks:
-    - >-
-      ANTES de redactar, leer proposal.md, design.md (si existe) y los
-      deltas en specs/ para entender el alcance real. Las tasks deben cubrir
-      TODO el delta + los Goals declarados en el design (si existe).
-    - Tareas en chunks de ≤2 horas de trabajo efectivo.
-    - >-
-      Cada tarea con criterio de aceptación binario (cumple / no cumple),
-      no descripciones ambiguas.
-    - >-
-      Si una tarea modifica configuración compartida (root package.json,
-      tsconfig base, eslint.config.js, CI workflow, pnpm-workspace.yaml),
-      marcarla como "afecta-todo-el-repo".
-    - >-
-      Última tarea de implementación SIEMPRE es "Proponer mensaje de commit
-      y esperar OK del usuario" — regla del repo de cero commits sin permiso
-      explícito.
-    - >-
-      Incluir una tarea de validación de cierre que corre, en este orden,
-      openspec validate --changes, pnpm lint, pnpm format:check, pnpm -r
-      build, tests de los packages tocados, build de storybook (si toca
-      components), y npm pack --dry-run desde packages/components/ (si
-      publicable cambia).
-    - >-
-      Incluir tarea final de archive que mueve a openspec/changes/archive/
-      <id>-<name>/, sincroniza la spec base, actualiza openspec/IDS.md,
-      y propone commit de archive.
+    - Antes de redactar leer proposal.md, design.md y los deltas en specs/
+    - Tareas en chunks de hasta 2 horas con criterio de aceptación binario
+    - Marcar tareas que afectan config compartida como "afecta-todo-el-repo"
+    - Última tarea de implementación siempre es proponer mensaje de commit y esperar OK
+    - Incluir tarea de validación final con openspec validate, lint, format, build, tests, storybook, npm pack
+    - Incluir tarea final de archive con sincronización de spec base e IDS.md

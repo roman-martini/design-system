@@ -18,7 +18,8 @@
       "Bash(git mv *)",
       "WebFetch(domain:github.com)",
       "Bash(pnpm dev *)",
-      "PowerShell($conn = Get-NetTCPConnection -LocalPort 4200 -State Listen -ErrorAction SilentlyContinue; if \\($conn\\) { $pids = $conn.OwningProcess | Select-Object -Unique; foreach \\($p in $pids\\) { try { $proc = Get-Process -Id $p -ErrorAction Stop; Stop-Process -Id $p -Force; \"Killed PID $p \\($\\($proc.ProcessName\\)\\)\" } catch { \"PID $p not found\" } } } else { \"Port 4200 already free\" })"
+      "PowerShell($conn = Get-NetTCPConnection -LocalPort 4200 -State Listen -ErrorAction SilentlyContinue; if \\($conn\\) { $pids = $conn.OwningProcess | Select-Object -Unique; foreach \\($p in $pids\\) { try { $proc = Get-Process -Id $p -ErrorAction Stop; Stop-Process -Id $p -Force; \"Killed PID $p \\($\\($proc.ProcessName\\)\\)\" } catch { \"PID $p not found\" } } } else { \"Port 4200 already free\" })",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
