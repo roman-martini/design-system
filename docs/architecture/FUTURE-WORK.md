@@ -2,7 +2,7 @@
 
 Rescate del roadmap del repo de investigación previo, **realineado** al naming y estructura actuales (`ds-` selectores, `--ds-*` CSS vars, monorepo pnpm + Angular 21 zoneless).
 
-> Este documento es **inspirativo, no normativo**. Cada componente / feature concreta se propone como **change OpenSpec** (`CHG-NNN`) cuando llegue su turno, con su propio `proposal.md` + `design.md` + `tasks.md` + spec deltas. No tomar este backlog como contrato.
+> Este documento es **inspirativo, no normativo**. Cada componente / feature concreta se propone como **change OpenSpec** (`aaa-NNN`) cuando llegue su turno, con su propio `proposal.md` + `design.md` + `tasks.md` + spec deltas. No tomar este backlog como contrato.
 
 ---
 
@@ -12,7 +12,7 @@ Rescate del roadmap del repo de investigación previo, **realineado** al naming 
 | ----- | ------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------- |
 | 1     | Cerrar deuda — componentes base + tokens                | 🟡 En curso    | 1/11 componentes (Button), tokens base completos                                        |
 | 2     | Calidad profesional — tests, a11y CI, stylelint, bundle | 🔴 Sin empezar | 0%                                                                                      |
-| 3     | Distribución y consumo — monorepo, publish, versionado  | ✅ Completo    | Monorepo (CHG-001) + ng-packagr (CHG-003) + Changesets (CHG-001) + CI/release (CHG-005) |
+| 3     | Distribución y consumo — monorepo, publish, versionado  | ✅ Completo    | Monorepo (aaa-001) + ng-packagr (aaa-003) + Changesets (aaa-001) + CI/release (aaa-005) |
 | 4     | Escalado real — multi-framework, mobile, Figma sync     | 🔴 Sin empezar | 0% — diferido a "cuando aparezca necesidad real"                                        |
 | 5     | Patterns / Templates / Recipes                          | 🔴 Sin empezar | 0% — útil cuando haya ≥10 componentes                                                   |
 
@@ -147,10 +147,10 @@ Convención `[data-density="compact"]` con overrides de heights y paddings — s
 
 ### Nivel 3 — Distribución y consumo (casi completo)
 
-- ✅ Monorepo pnpm workspaces (CHG-001).
-- ✅ ng-packagr para publicar `@romanmartinidev/components` (CHG-003).
-- ✅ Changesets configurado (CHG-001).
-- ⏳ **CI + release con GitHub Actions** (Fase 5 = CHG-005).
+- ✅ Monorepo pnpm workspaces (aaa-001).
+- ✅ ng-packagr para publicar `@romanmartinidev/components` (aaa-003).
+- ✅ Changesets configurado (aaa-001).
+- ⏳ **CI + release con GitHub Actions** (Fase 5 = aaa-005).
 - ⏳ **Tokens TypeScript estructurados** (objeto vs constantes planas) — diferido a `tokens-rich-types` change futuro.
 - ⏳ **Docs de migración / consumo** — README de cada package ya cubre uso básico; falta guide cuando haya v1.0.
 

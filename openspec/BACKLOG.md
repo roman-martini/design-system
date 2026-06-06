@@ -2,8 +2,9 @@
 
 Lista de cambios pendientes (componentes, tokens, refactors, tooling).
 Cada ítem indica si va por **OpenSpec** (cambios significativos al kit
-publicable o tooling base) o por **commit directo** (housekeeping, docs,
-ajustes locales) — siguiendo la regla del [CLAUDE.md](../CLAUDE.md):
+publicable o tooling base, IDs `aaa-NNN`) o por **commit directo**
+(housekeeping, docs, ajustes locales) — siguiendo la regla del
+[CLAUDE.md](../CLAUDE.md):
 _"Todo cambio significativo arranca como propuesta en `openspec/changes/`.
 Los cambios triviales o de implementación local **no** requieren propuesta
 OpenSpec."_
@@ -38,7 +39,7 @@ existe; hay que auditar completitud antes de bloquear `components-add-modal`.
   Tooltip, Toast, Popover, Banner.
 - Sumar faltantes manteniendo escala en miles (Bootstrap-style, decisión
   registrada en `docs/design/research/atlassian-design.md`).
-- Delta SPC-002.
+- Delta design-tokens-package.
 
 **Disparador**: al activar `components-add-modal` o `components-add-tooltip`.
 
@@ -51,14 +52,14 @@ existe; hay que auditar completitud antes de bloquear `components-add-modal`.
 **Tipo**: OpenSpec (kit, `@romanmartinidev/components`).
 
 **Origen**: FUTURE-WORK Nivel 1. Es el siguiente componente del backlog
-de prioridad alta. Sigue el patrón establecido en CHG-006 (Checkbox CVA).
+de prioridad alta. Sigue el patrón establecido en aaa-006 (Checkbox CVA).
 
 **Alcance propuesto**:
 
 - `DsRadio` + `DsRadioGroup` con ControlValueAccessor, 3 sizes, label dual.
 - Composición: `DsRadio` usa `inject(DsRadioGroup, { optional: true })`
   para funcionar standalone o anidado.
-- Delta SPC-003 (sumar 2 requirements).
+- Delta components-package (sumar 2 requirements).
 - Changeset minor.
 
 **Decisiones pendientes**:
@@ -90,7 +91,7 @@ y potencialmente mejora Checkbox (que hoy usa SVG inline en CSS).
 - Decidir distribución: inline SVG en componente vs package separado
   `@romanmartinidev/icons`.
 - Aplicar al primer componente que la necesite (probablemente Modal).
-- Delta SPC-003.
+- Delta components-package.
 
 **Disparador**: al activar `components-add-modal` o
 `components-add-select`.
@@ -111,7 +112,7 @@ y potencialmente mejora Checkbox (que hoy usa SVG inline en CSS).
   ESC/overlay/X, fade+scale animation.
 - 4 sizes (sm/md/lg/xl).
 - Stack manager para múltiples modales abiertos.
-- Delta SPC-003.
+- Delta components-package.
 
 **Bloqueado por**:
 
@@ -152,7 +153,7 @@ en playground o en componente.
 
 **Origen**: post-bootstrap quedaron archivos sin destino claro:
 
-- `contexto_post_fases.md` (D pendiente — borrado durante CHG-006 pero
+- `contexto_post_fases.md` (D pendiente — borrado durante aaa-006 pero
   sin commit).
 - `contexto_inicial.md` → `docs/contexto_inicial.md` (rename pendiente).
 
@@ -163,7 +164,7 @@ en playground o en componente.
 - Commit `chore(docs): housekeeping post-bootstrap`.
 
 **Estado**: pendiente — cambios visibles en `git status`. Activar entre
-CHG-007 y CHG-008.
+aaa-007 y el próximo change.
 
 ---
 
@@ -179,7 +180,7 @@ CHG-007 y CHG-008.
   - Tokens huérfanos (definidos en JSON pero no referenciados).
   - CSS de componentes con valores hardcoded fuera de `var(--ds-*)`.
   - Semantic tokens que no consumen primitives (bypass de jerarquía).
-- Wrapper command `/ds:audit-tokens` (patrón establecido en CHG-007).
+- Wrapper command `/ds:audit-tokens` (patrón establecido en aaa-007).
 
 **Disparador**: cuando el package `tokens` crezca a >100 tokens o aparezca
 el primer drift detectado en code review.
@@ -198,7 +199,7 @@ el primer drift detectado en code review.
 
 - Skill que guía el flujo de "sumar componente nuevo" siguiendo ADR-004 +
   ADR-007: estructura flat, naming `Ds<Name>`, CVA si aplica, tests,
-  story, public-api, spec delta de SPC-003, changeset.
+  story, public-api, spec delta de components-package, changeset.
 
 **Disparador**: cuando haya ≥3 CHGs de "add component" archivados con
 estructura repetitiva clara (probable después de Radio + Modal).
@@ -265,7 +266,7 @@ profesional" de FUTURE-WORK).
 
 **Disparador**: <evento concreto que activa este ítem>
 
-**Estado**: pendiente | en exploración | propuesta activa (link al `CHG-NNN-slug`) | archivado
+**Estado**: pendiente | en exploración | propuesta activa (link al `aaa-NNN-slug`) | archivado
 ```
 
 ---

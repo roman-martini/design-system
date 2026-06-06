@@ -1,69 +1,94 @@
-# OpenSpec — Índice maestro de IDs
+# OpenSpec — Catálogo de Changes
 
-Tabla de referencia de **Changes** (`CHG-NNN`) y **Specs** (`SPC-NNN`) del repo. Ver convención en [`CLAUDE.md → Fuentes de verdad`](../CLAUDE.md).
+Tabla de referencia de **Changes** del repo. Las **specs** ya no usan IDs: se identifican por su nombre de carpeta en `openspec/specs/<name>/` (ver [`docs/architecture/README.md`](../docs/architecture/README.md) sección "Catálogo de Specs").
 
-Los IDs son **permanentes**. Los paths de los directorios llevan el ID al inicio (`CHG-001-<name>`, `SPC-001-<name>`) y el frontmatter YAML del `proposal.md` / `spec.md` repite el ID para que sea parseable.
+Decisión formal: [ADR-008 — Convención de IDs de OpenSpec](../docs/architecture/adr/ADR-008-convencion-ids-openspec.md).
 
-## Changes
-
-| ID          | Nombre                      | Estado   | Fecha archive | Specs introducidas                                           | ADRs relacionados                                                                                                                                                    | Path                                                                                                |
-| ----------- | --------------------------- | -------- | ------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| **CHG-001** | bootstrap-fase-1-monorepo   | archived | 2026-05-30    | [SPC-001](specs/SPC-001-monorepo-structure/spec.md)          | [ADR-001](../docs/architecture/adr/ADR-001-monorepo-pnpm-workspaces.md), [ADR-002](../docs/architecture/adr/ADR-002-conventional-commits-changesets.md)              | [archive/CHG-001-bootstrap-fase-1-monorepo](changes/archive/CHG-001-bootstrap-fase-1-monorepo/)     |
-| **CHG-002** | bootstrap-fase-2-tokens     | archived | 2026-05-31    | [SPC-002](specs/SPC-002-design-tokens-package/spec.md)       | [ADR-003](../docs/architecture/adr/ADR-003-arquitectura-design-tokens.md)                                                                                            | [archive/CHG-002-bootstrap-fase-2-tokens](changes/archive/CHG-002-bootstrap-fase-2-tokens/)         |
-| **CHG-003** | bootstrap-fase-3-components | archived | 2026-05-31    | [SPC-003](specs/SPC-003-components-package/spec.md)          | [ADR-004](../docs/architecture/adr/ADR-004-arquitectura-components.md)                                                                                               | [archive/CHG-003-bootstrap-fase-3-components](changes/archive/CHG-003-bootstrap-fase-3-components/) |
-| **CHG-004** | bootstrap-fase-4-playground | archived | 2026-06-01    | [SPC-004](specs/SPC-004-playground-app/spec.md)              | [ADR-005](../docs/architecture/adr/ADR-005-arquitectura-playground.md)                                                                                               | [archive/CHG-004-bootstrap-fase-4-playground](changes/archive/CHG-004-bootstrap-fase-4-playground/) |
-| **CHG-005** | bootstrap-fase-5-ci         | archived | 2026-06-01    | [SPC-005](specs/SPC-005-ci-cd-pipeline/spec.md)              | [ADR-006](../docs/architecture/adr/ADR-006-estrategia-ci-cd.md)                                                                                                      | [archive/CHG-005-bootstrap-fase-5-ci](changes/archive/CHG-005-bootstrap-fase-5-ci/)                 |
-| **CHG-006** | components-add-checkbox     | archived | 2026-06-01    | modifica [SPC-003](specs/SPC-003-components-package/spec.md) | [ADR-004](../docs/architecture/adr/ADR-004-arquitectura-components.md)                                                                                               | [archive/CHG-006-components-add-checkbox](changes/archive/CHG-006-components-add-checkbox/)         |
-| **CHG-007** | components-unify-ds-prefix  | archived | 2026-06-04    | modifica [SPC-003](specs/SPC-003-components-package/spec.md) | [ADR-007](../docs/architecture/adr/ADR-007-naming-prefijos.md) (nuevo) + supersede parcial de [ADR-004](../docs/architecture/adr/ADR-004-arquitectura-components.md) | [archive/CHG-007-components-unify-ds-prefix](changes/archive/CHG-007-components-unify-ds-prefix/)   |
-
-**Próximo ID disponible**: `CHG-008`.
-
-## Specs
-
-| ID          | Nombre                | Estado | Introducida por                                                 | Path                                                                                       |
-| ----------- | --------------------- | ------ | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **SPC-001** | monorepo-structure    | active | [CHG-001](changes/archive/CHG-001-bootstrap-fase-1-monorepo/)   | [specs/SPC-001-monorepo-structure/spec.md](specs/SPC-001-monorepo-structure/spec.md)       |
-| **SPC-002** | design-tokens-package | active | [CHG-002](changes/archive/CHG-002-bootstrap-fase-2-tokens/)     | [specs/SPC-002-design-tokens-package/spec.md](specs/SPC-002-design-tokens-package/spec.md) |
-| **SPC-003** | components-package    | active | [CHG-003](changes/archive/CHG-003-bootstrap-fase-3-components/) | [specs/SPC-003-components-package/spec.md](specs/SPC-003-components-package/spec.md)       |
-| **SPC-004** | playground-app        | active | [CHG-004](changes/archive/CHG-004-bootstrap-fase-4-playground/) | [specs/SPC-004-playground-app/spec.md](specs/SPC-004-playground-app/spec.md)               |
-| **SPC-005** | ci-cd-pipeline        | active | [CHG-005](changes/archive/CHG-005-bootstrap-fase-5-ci/)         | [specs/SPC-005-ci-cd-pipeline/spec.md](specs/SPC-005-ci-cd-pipeline/spec.md)               |
-
-**Próximo ID disponible**: `SPC-006`.
+---
 
 ## Convención
 
-- **IDs son permanentes**. Si un change se reemplaza o un spec se deprecia, el ID original no se reutiliza; el nuevo recibe el siguiente disponible.
-- **Paths incluyen el ID al inicio para items archivados/inmutables**: `openspec/specs/SPC-NNN-<name>/` y `openspec/changes/archive/CHG-NNN-<name>/`.
-- **Los changes ACTIVOS viven en `openspec/changes/<name>/` sin prefijo** — el CLI de OpenSpec (`openspec status --change <name>`, `openspec validate --change <name>`) exige nombres lowercase kebab-case sin prefijo en mayúsculas. El ID vive en el frontmatter YAML del `proposal.md`. Al archivar, el directorio se renombra a `CHG-NNN-<name>` y se mueve a `archive/`.
-- **Frontmatter YAML al inicio** del `proposal.md` (para changes) y `spec.md` (para specs):
+### Formato de IDs de Changes
+
+`<bloque>-<numero>` donde:
+
+- **`<bloque>`**: 3 letras lowercase (`aaa`, `aab`, `aac`, …).
+- **`<numero>`**: 3 dígitos (`001` a `999`).
+
+Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente (`aaa-999` → `aab-001`). Los bloques pueden agruparse retroactivamente por hitos (ej. `aaa-*` = bootstrap + primera tanda de componentes), pero **no es obligatorio** — el bloque puede ser puramente mecánico de overflow.
+
+### Paths
+
+- **Change activo**: `openspec/changes/<kebab-name>/` (sin prefijo en el path). El ID vive solo en el frontmatter `proposal.md`.
+- **Change archivado**: `openspec/changes/archive/<id>-<kebab-name>/` (path con prefijo de ID + kebab name).
+- **Spec base**: `openspec/specs/<kebab-name>/spec.md`. **Sin ID** ni en path ni en frontmatter.
+
+### Frontmatter de un change
 
 ```yaml
 ---
-id: CHG-NNN # o SPC-NNN
-name: <kebab-case> # nombre sin prefijo de ID (lo que va después del CHG-NNN-)
-type: change # o "spec"
+id: aaa-NNN
+name: <kebab-name>
+type: change
 status: active | proposed | archived | deprecated
 archived: YYYY-MM-DD # solo si status=archived
-introduces-specs: # solo en changes — IDs de specs que introduce/modifica
-  - SPC-NNN (nombre)
-related-adrs: # ADRs que documentan decisiones de este change
+introduces-specs: # solo en changes que crean specs base nuevas
+  - <spec-name>
+modifies-specs: # solo en changes que modifican specs base existentes
+  - <spec-name> (opcional detalle entre paréntesis)
+related-adrs: # ADRs vinculados (existentes y nuevos)
   - ADR-NNN
 ---
 ```
 
-- **Cuando se crea un change nuevo** (`openspec new change <name>`):
-  1. Crear el directorio con el siguiente `CHG-NNN` al inicio: `openspec/changes/CHG-NNN-<name>/`.
-  2. Agregar el frontmatter manualmente en `proposal.md` (OpenSpec scaffold no lo genera).
-  3. Actualizar este archivo `IDS.md` con la nueva fila + actualizar "Próximo ID disponible".
-- **Cuando un change introduce una spec base nueva** al archivar: la spec recibe el siguiente `SPC-NNN`, su directorio se crea como `openspec/specs/SPC-NNN-<name>/`, y se actualiza esta tabla.
+### Frontmatter de una spec
+
+```yaml
+---
+name: <kebab-name>
+type: spec
+status: active | deprecated
+created: YYYY-MM-DD
+---
+```
+
+### Reglas
+
+- Los **IDs de change son permanentes**. Un change reemplazado mantiene su ID; el reemplazo recibe el siguiente disponible.
+- Los **paths NO cambian** mientras el change está activo. Al archivarlo, el directorio se renombra de `<name>` a `<id>-<name>` y se mueve a `archive/`.
+- Las **specs no se reemplazan**: se modifican vía deltas en `openspec/changes/<change>/specs/<spec>/spec.md` (ADDED / MODIFIED / REMOVED / RENAMED Requirements). Al archivar, los deltas se promueven a la spec base.
+- Una spec que pierde relevancia pasa a `status: deprecated` (no se borra).
+
+---
+
+## Changes
+
+| ID          | Nombre                      | Estado   | Fecha archive | Specs introducidas / modificadas                                | ADRs relacionados                                                                                                                                                    | Path                                                                                                |
+| ----------- | --------------------------- | -------- | ------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| **aaa-001** | bootstrap-fase-1-monorepo   | archived | 2026-05-30    | [monorepo-structure](specs/monorepo-structure/spec.md)          | [ADR-001](../docs/architecture/adr/ADR-001-monorepo-pnpm-workspaces.md), [ADR-002](../docs/architecture/adr/ADR-002-conventional-commits-changesets.md)              | [archive/aaa-001-bootstrap-fase-1-monorepo](changes/archive/aaa-001-bootstrap-fase-1-monorepo/)     |
+| **aaa-002** | bootstrap-fase-2-tokens     | archived | 2026-05-31    | [design-tokens-package](specs/design-tokens-package/spec.md)    | [ADR-003](../docs/architecture/adr/ADR-003-arquitectura-design-tokens.md)                                                                                            | [archive/aaa-002-bootstrap-fase-2-tokens](changes/archive/aaa-002-bootstrap-fase-2-tokens/)         |
+| **aaa-003** | bootstrap-fase-3-components | archived | 2026-05-31    | [components-package](specs/components-package/spec.md)          | [ADR-004](../docs/architecture/adr/ADR-004-arquitectura-components.md)                                                                                               | [archive/aaa-003-bootstrap-fase-3-components](changes/archive/aaa-003-bootstrap-fase-3-components/) |
+| **aaa-004** | bootstrap-fase-4-playground | archived | 2026-06-01    | [playground-app](specs/playground-app/spec.md)                  | [ADR-005](../docs/architecture/adr/ADR-005-arquitectura-playground.md)                                                                                               | [archive/aaa-004-bootstrap-fase-4-playground](changes/archive/aaa-004-bootstrap-fase-4-playground/) |
+| **aaa-005** | bootstrap-fase-5-ci         | archived | 2026-06-01    | [ci-cd-pipeline](specs/ci-cd-pipeline/spec.md)                  | [ADR-006](../docs/architecture/adr/ADR-006-estrategia-ci-cd.md)                                                                                                      | [archive/aaa-005-bootstrap-fase-5-ci](changes/archive/aaa-005-bootstrap-fase-5-ci/)                 |
+| **aaa-006** | components-add-checkbox     | archived | 2026-06-01    | modifica [components-package](specs/components-package/spec.md) | [ADR-004](../docs/architecture/adr/ADR-004-arquitectura-components.md)                                                                                               | [archive/aaa-006-components-add-checkbox](changes/archive/aaa-006-components-add-checkbox/)         |
+| **aaa-007** | components-unify-ds-prefix  | archived | 2026-06-04    | modifica [components-package](specs/components-package/spec.md) | [ADR-007](../docs/architecture/adr/ADR-007-naming-prefijos.md) (nuevo) + supersede parcial de [ADR-004](../docs/architecture/adr/ADR-004-arquitectura-components.md) | [archive/aaa-007-components-unify-ds-prefix](changes/archive/aaa-007-components-unify-ds-prefix/)   |
+
+**Próximo ID disponible**: `aaa-008`.
+
+---
 
 ## Cómo actualizar este archivo
 
 Cada vez que:
 
-1. Se crea un change nuevo → agregar fila en sección Changes con `status: active`.
-2. Se archiva un change → cambiar `status` a `archived`, agregar `Fecha archive`, mover path de `changes/` a `changes/archive/`.
-3. Una spec base se crea/promueve → agregar fila en sección Specs.
-4. Una spec se deprecia → `status: deprecated` (no eliminar la fila).
+1. **Se crea un change nuevo** → agregar fila en la tabla con `status: active`, `Fecha archive: —`, `Path: changes/<name>/`. Actualizar "Próximo ID disponible" al siguiente.
+2. **Se archiva un change** → cambiar `status` a `archived`, completar `Fecha archive`, mover path a `changes/archive/<id>-<name>/`.
+3. **Se deprecia una spec** → no aplica acá; vive en `openspec/specs/<name>/` con `status: deprecated`. Se referencia desde el change que la depreció.
 
-Mantener el "Próximo ID disponible" actualizado en cada sección.
+Mantener el "Próximo ID disponible" actualizado siempre.
+
+---
+
+## Histórico de la convención
+
+Hasta `aaa-007` el repo usó IDs `CHG-NNN` para changes y `SPC-NNN` para specs (rango único de 999 changes). El rebrand a `aaa-NNN` + drop de IDs en specs ocurrió en commit directo + [ADR-008](../docs/architecture/adr/ADR-008-convencion-ids-openspec.md) (sin pasar por el flujo OpenSpec porque el cambio es de convención del propio sistema OpenSpec — usar OpenSpec para definirlo sería paradójico).

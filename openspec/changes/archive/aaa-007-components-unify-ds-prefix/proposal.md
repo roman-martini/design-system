@@ -1,11 +1,11 @@
 ---
-id: CHG-007
+id: aaa-007
 name: components-unify-ds-prefix
 type: change
 status: archived
 archived: 2026-06-04
 modifies-specs:
-  - SPC-003 (components-package — unifica prefijo de selector + class)
+  - components-package (unifica prefijo de selector + class)
 related-adrs:
   - ADR-007 (nuevo — naming y prefijos)
   - ADR-004 (supersedes parcial §4 + §5)

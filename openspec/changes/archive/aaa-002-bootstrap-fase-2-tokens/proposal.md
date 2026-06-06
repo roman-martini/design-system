@@ -1,11 +1,11 @@
 ---
-id: CHG-002
+id: aaa-002
 name: bootstrap-fase-2-tokens
 type: change
 status: archived
 archived: 2026-05-31
 introduces-specs:
-  - SPC-002 (design-tokens-package)
+  - design-tokens-package
 related-adrs:
   - ADR-003
 ---

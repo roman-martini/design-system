@@ -1,11 +1,11 @@
 ---
-id: CHG-001
+id: aaa-001
 name: bootstrap-fase-1-monorepo
 type: change
 status: archived
 archived: 2026-05-30
 introduces-specs:
-  - SPC-001 (monorepo-structure)
+  - monorepo-structure
 related-adrs:
   - ADR-001
   - ADR-002

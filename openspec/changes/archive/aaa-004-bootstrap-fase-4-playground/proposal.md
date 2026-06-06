@@ -1,11 +1,11 @@
 ---
-id: CHG-004
+id: aaa-004
 name: bootstrap-fase-4-playground
 type: change
 status: archived
 archived: 2026-06-01
 introduces-specs:
-  - SPC-004 (playground-app)
+  - playground-app
 related-adrs:
   - ADR-005
 ---

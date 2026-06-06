@@ -1,9 +1,7 @@
 ---
-id: SPC-005
 name: ci-cd-pipeline
 type: spec
 status: active
-introduced-by: CHG-005
 created: 2026-06-01
 ---
 

@@ -1,11 +1,11 @@
 ---
-id: CHG-003
+id: aaa-003
 name: bootstrap-fase-3-components
 type: change
 status: archived
 archived: 2026-05-31
 introduces-specs:
-  - SPC-003 (components-package)
+  - components-package
 related-adrs:
   - ADR-004
 ---

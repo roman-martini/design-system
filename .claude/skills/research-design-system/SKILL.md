@@ -158,7 +158,7 @@ Cada opción se mide contra:
 Si la recomendación implica cambio significativo (≥2 packages, refactor de tokens base, rediseño visual), **esbozar** la propuesta OpenSpec en la última sección:
 
 - Nombre tentativo: `tokens-adopt-<slug>` o `components-restyle-<slug>`.
-- Qué specs modifica (SPC-002, SPC-003).
+- Qué specs modifica (ej. design-tokens-package, components-package).
 - Qué ADR sería necesario.
 - Estimación en sesiones (≤2h cada una).
 

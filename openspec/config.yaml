@@ -32,7 +32,7 @@ context: |
     semantic referencia primitives. component referencia semantic o primitives.
     theme SOLO redefine semantic (no agrega). Sin referencias circulares.
 
-  Reglas de dependencia entre packages (DAG sin ciclos, SPC-001):
+  Reglas de dependencia entre packages (DAG sin ciclos, ver spec monorepo-structure):
     - tokens NO depende de nada del monorepo.
     - components depende de tokens como peerDependency (workspace:*).
     - playground depende de tokens y components como dependencies (workspace:*).
@@ -53,7 +53,7 @@ context: |
     - Decisiones one-way door o que afectan ≥2 packages generan ADR en
       formato MADR en docs/architecture/adr/.
     - Cambios significativos arrancan como propuesta OpenSpec en
-      openspec/changes/ con ID CHG-NNN permanente en el frontmatter.
+      openspec/changes/ con ID aaa-NNN permanente en el frontmatter.
     - Cambios triviales o de implementación local van por commit directo,
       sin propuesta.
     - Libs publicables declaran Angular como peerDependencies y deps
@@ -86,7 +86,7 @@ rules:
       Si la propuesta toca ≥2 packages o es one-way door, indicar que
       generará un ADR al cerrarse.
     - >-
-      Frontmatter YAML obligatorio con los campos id (CHG-NNN), name, type
+      Frontmatter YAML obligatorio con los campos id (aaa-NNN), name, type
       "change", status "active", modifies-specs o introduces-specs, y
       related-adrs. Verificar próximo ID disponible en openspec/IDS.md antes
       de asignar.
@@ -97,10 +97,10 @@ rules:
   specs:
     - >-
       ANTES de redactar, leer la spec base correspondiente en
-      openspec/specs/SPC-NNN-<capability>/spec.md para entender qué
-      requirements existen, su numeración y estilo. El delta debe respetar
-      el estilo. Si la capability es nueva, leer al menos otra spec base
-      como referencia de formato.
+      openspec/specs/<capability>/spec.md para entender qué requirements
+      existen, su numeración y estilo. El delta debe respetar el estilo.
+      Si la capability es nueva, leer al menos otra spec base como
+      referencia de formato.
     - >-
       Usar formato MADR-like con RFC 2119. Requirements con SHALL/MUST en
       cláusulas normativas; nunca should/may para requisitos obligatorios.
@@ -168,5 +168,5 @@ rules:
       publicable cambia).
     - >-
       Incluir tarea final de archive que mueve a openspec/changes/archive/
-      CHG-NNN-<name>/, sincroniza la spec base, actualiza openspec/IDS.md,
+      <id>-<name>/, sincroniza la spec base, actualiza openspec/IDS.md,
       y propone commit de archive.

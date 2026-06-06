@@ -1,9 +1,7 @@
 ---
-id: SPC-002
 name: design-tokens-package
 type: spec
 status: active
-introduced-by: CHG-002
 created: 2026-05-31
 ---
 

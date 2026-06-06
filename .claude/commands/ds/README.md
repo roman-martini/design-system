@@ -26,7 +26,7 @@ Cada skill se crea **cuando aparezca la primera necesidad concreta**, no antes (
 | Command planificado | Propósito | Cuándo crearlo |
 |---|---|---|
 | `/ds:audit-tokens` | Auditar consistencia de la jerarquía `primitives → semantic → component → theme`. Detectar tokens huérfanos (definidos pero no referenciados), CSS de componentes con valores hardcoded fuera de `var(--ds-*)`, semantic tokens que no consumen primitives. | Cuando el package `tokens` crezca a >100 tokens o aparezca el primer drift detectado en code review. |
-| `/ds:add-component` | Workflow guiado para agregar componente nuevo siguiendo ADR-004 + ADR-007: estructura `src/lib/<name>/`, naming (class `Ds<Name>`, selector `ds-<name>`), CVA si aplica, tests Vitest, story Storybook, public-api, spec delta de SPC-003, changeset. Equivalente a un `CHG-NNN-components-add-<x>` semi-automatizado. | Cuando haya ≥3 componentes nuevos en cola y los CHGs de "add component" tengan estructura repetitiva clara (probable después de Radio + Modal). |
+| `/ds:add-component` | Workflow guiado para agregar componente nuevo siguiendo ADR-004 + ADR-007: estructura `src/lib/<name>/`, naming (class `Ds<Name>`, selector `ds-<name>`), CVA si aplica, tests Vitest, story Storybook, public-api, spec delta de components-package, changeset. Equivalente a un change `aaa-NNN-components-add-<x>` semi-automatizado. | Cuando haya ≥3 componentes nuevos en cola y los changes de "add component" tengan estructura repetitiva clara (probable después de Radio + Modal). |
 | `/ds:check-a11y` | Auditoría WCAG AA sobre componentes existentes: contraste de tokens (color text/bg), navegación por teclado en stories, ARIA presente y correcta (`aria-checked`, `aria-disabled`, `aria-expanded`, `role`), `prefers-reduced-motion` respetado. | Cuando haya ≥5 componentes (umbral del Nivel 2 "Calidad profesional" de FUTURE-WORK). |
 
 ## Cómo agregar un command nuevo `/ds:*`
@@ -40,4 +40,4 @@ Cada skill se crea **cuando aparezca la primera necesidad concreta**, no antes (
 
 - **No duplicar funcionalidad de skills upstream** (opsx, as-, arch-, design-, web-). Si la tarea es genérica, usar la skill existente.
 - **No crear skills "por si acaso"**. Cada skill nueva requiere caso de uso real explicitado.
-- **No mezclar implementación con research**. Las skills `/ds:*` que hacen cambios significativos al código deben emitir una propuesta OpenSpec (CHG-NNN) en lugar de aplicar directo.
+- **No mezclar implementación con research**. Las skills `/ds:*` que hacen cambios significativos al código deben emitir una propuesta OpenSpec (aaa-NNN) en lugar de aplicar directo.

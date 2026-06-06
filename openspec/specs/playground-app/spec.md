@@ -1,9 +1,7 @@
 ---
-id: SPC-004
 name: playground-app
 type: spec
 status: active
-introduced-by: CHG-004
 created: 2026-06-01
 ---
 

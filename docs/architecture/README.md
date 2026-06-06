@@ -89,9 +89,9 @@ agent-design-sistem/
 │   │   └── decisions-log.md   # Índice cronológico de ADRs
 │   └── reference/                # Material de investigación (no normativo)
 ├── openspec/
-│   ├── IDS.md                 # Tabla maestra CHG/SPC ↔ nombre ↔ path
-│   ├── specs/                 # Contratos testables (SPC-NNN-*)
-│   └── changes/               # Propuestas de cambio (CHG-NNN-*)
+│   ├── IDS.md                 # Tabla maestra de changes (aaa-NNN ↔ nombre ↔ path)
+│   ├── specs/                 # Contratos testables (sin IDs — identificados por nombre)
+│   └── changes/               # Propuestas de cambio (activos sin prefijo, archivados con aaa-NNN-)
 ├── .changeset/                # Cambios pendientes de release
 ├── .husky/                    # pre-commit + commit-msg hooks
 ├── package.json               # Root del monorepo
@@ -121,12 +121,12 @@ flowchart LR
     components -- dep --> playground
 ```
 
-**Contrato testable**: requirement _"Grafo de dependencias internas es un DAG"_ en [SPC-001 monorepo-structure](../../openspec/specs/SPC-001-monorepo-structure/spec.md).
+**Contrato testable**: requirement _"Grafo de dependencias internas es un DAG"_ en [monorepo-structure](../../openspec/specs/monorepo-structure/spec.md).
 
 ## Arquitectura de tokens (`@romanmartinidev/tokens`)
 
 **Decisión formal**: [ADR-003 — Arquitectura de design tokens](adr/ADR-003-arquitectura-design-tokens.md).
-**Contrato testable**: [SPC-002 design-tokens-package](../../openspec/specs/SPC-002-design-tokens-package/spec.md).
+**Contrato testable**: [design-tokens-package](../../openspec/specs/design-tokens-package/spec.md).
 
 ### Jerarquía (primitives → semantic → component → theme)
 
@@ -200,7 +200,7 @@ import '@romanmartinidev/tokens/themes/dark';
 ## Arquitectura de components (`@romanmartinidev/components`)
 
 **Decisión formal**: [ADR-004 — Arquitectura de @romanmartinidev/components](adr/ADR-004-arquitectura-components.md).
-**Contrato testable**: [SPC-003 components-package](../../openspec/specs/SPC-003-components-package/spec.md).
+**Contrato testable**: [components-package](../../openspec/specs/components-package/spec.md).
 
 ### Build con ng-packagr (Angular Package Format)
 
@@ -276,7 +276,7 @@ Archivos `.css` (no SCSS). Consumo exclusivo de tokens via `var(--ds-*)`. Sin va
 ## Arquitectura del playground (`apps/playground`)
 
 **Decisión formal**: [ADR-005 — Arquitectura del playground](adr/ADR-005-arquitectura-playground.md).
-**Contrato testable**: [SPC-004 playground-app](../../openspec/specs/SPC-004-playground-app/spec.md).
+**Contrato testable**: [playground-app](../../openspec/specs/playground-app/spec.md).
 
 ### Rol
 
@@ -344,18 +344,17 @@ Validado en el hook `commit-msg` por commitlint con `@commitlint/config-conventi
 
 ### Specs y changes con OpenSpec
 
-- Cambios significativos (nueva lib, refactor mayor) arrancan como propuesta en `openspec/changes/CHG-NNN-<name>/`.
+- Cambios significativos (nueva lib, refactor mayor) arrancan como propuesta en `openspec/changes/<name>/` (sin prefijo de ID).
 - Estructura del change: `proposal.md` + `design.md` + `tasks.md` + `specs/<capability>/spec.md`.
-- Al cerrar un change, se mueve a `openspec/changes/archive/CHG-NNN-<name>/` y los deltas de spec se promueven a la spec base `openspec/specs/SPC-NNN-<name>/spec.md`.
+- Al cerrar un change, el directorio se renombra a `<id>-<name>` y se mueve a `openspec/changes/archive/`. Los deltas de spec se promueven a la spec base `openspec/specs/<capability>/spec.md`.
 - Validación: `openspec validate --all`.
 
-### IDs persistentes (CHG-NNN, SPC-NNN, ADR-NNN)
+### IDs persistentes (formato `<bloque>-<numero>`, ver [ADR-008](adr/ADR-008-convencion-ids-openspec.md))
 
-- **CHG-NNN** para changes (en `proposal.md` frontmatter + path del directorio).
-- **SPC-NNN** para specs base.
-- **ADR-NNN** para decisiones arquitectónicas.
-- IDs son **permanentes**: si un change/spec se reemplaza, el nuevo recibe el siguiente disponible.
-- Tabla maestra: [openspec/IDS.md](../../openspec/IDS.md).
+- **Changes**: ID `aaa-NNN` (`aaa-001`, `aaa-002`, …). Cuando `aaa-999` se llena, sigue `aab-001`, después `aac-001`, etc. El ID vive en el frontmatter `proposal.md`.
+- **Specs**: **sin IDs**. Se identifican por el nombre de su carpeta (`openspec/specs/<name>/`).
+- **ADRs**: `ADR-NNN` numéricos (rango único). Inmutables una vez aceptados.
+- Tabla maestra de changes: [openspec/IDS.md](../../openspec/IDS.md).
 
 ### Lint + format
 
@@ -374,7 +373,7 @@ Validado en el hook `commit-msg` por commitlint con `@commitlint/config-conventi
 ## Pipeline de releases
 
 **Decisión formal**: [ADR-006 — Estrategia de CI/CD](adr/ADR-006-estrategia-ci-cd.md).
-**Contrato testable**: [SPC-005 ci-cd-pipeline](../../openspec/specs/SPC-005-ci-cd-pipeline/spec.md) (post-archive).
+**Contrato testable**: [ci-cd-pipeline](../../openspec/specs/ci-cd-pipeline/spec.md).
 
 Dos workflows GitHub Actions:
 
@@ -389,36 +388,42 @@ Dos workflows GitHub Actions:
 
 ## Catálogo de ADRs
 
-| ID                                                        | Título                            | Dominio             | Estado   |
-| --------------------------------------------------------- | --------------------------------- | ------------------- | -------- |
-| [ADR-001](adr/ADR-001-monorepo-pnpm-workspaces.md)        | Adoptar pnpm workspaces           | transversal         | Aceptado |
-| [ADR-002](adr/ADR-002-conventional-commits-changesets.md) | Conventional Commits + Changesets | transversal         | Aceptado |
-| [ADR-003](adr/ADR-003-arquitectura-design-tokens.md)      | Arquitectura de design tokens     | frontend/tokens     | Aceptado |
-| [ADR-004](adr/ADR-004-arquitectura-components.md)         | Arquitectura de components        | frontend/components | Aceptado |
-| [ADR-005](adr/ADR-005-arquitectura-playground.md)         | Arquitectura del playground       | frontend/playground | Aceptado |
-| [ADR-006](adr/ADR-006-estrategia-ci-cd.md)                | Estrategia de CI/CD               | transversal/ci      | Aceptado |
+| ID                                                        | Título                                                | Dominio              | Estado   |
+| --------------------------------------------------------- | ----------------------------------------------------- | -------------------- | -------- |
+| [ADR-001](adr/ADR-001-monorepo-pnpm-workspaces.md)        | Adoptar pnpm workspaces                               | transversal          | Aceptado |
+| [ADR-002](adr/ADR-002-conventional-commits-changesets.md) | Conventional Commits + Changesets                     | transversal          | Aceptado |
+| [ADR-003](adr/ADR-003-arquitectura-design-tokens.md)      | Arquitectura de design tokens                         | frontend/tokens      | Aceptado |
+| [ADR-004](adr/ADR-004-arquitectura-components.md)         | Arquitectura de components                            | frontend/components  | Aceptado |
+| [ADR-005](adr/ADR-005-arquitectura-playground.md)         | Arquitectura del playground                           | frontend/playground  | Aceptado |
+| [ADR-006](adr/ADR-006-estrategia-ci-cd.md)                | Estrategia de CI/CD                                   | transversal/ci       | Aceptado |
+| [ADR-007](adr/ADR-007-naming-prefijos.md)                 | Convención de naming y prefijos `Ds`/`ds-`/`--ds-*`   | frontend/components  | Aceptado |
+| [ADR-008](adr/ADR-008-convencion-ids-openspec.md)         | Convención de IDs de OpenSpec (aaa-NNN, specs sin ID) | transversal/openspec | Aceptado |
 
 Ver índice completo: [decisions-log.md](decisions-log.md).
 
 ## Catálogo de Specs
 
-| ID                                                                    | Spec                  | Capability                                         | Path                                            |
-| --------------------------------------------------------------------- | --------------------- | -------------------------------------------------- | ----------------------------------------------- |
-| [SPC-001](../../openspec/specs/SPC-001-monorepo-structure/spec.md)    | monorepo-structure    | Reglas del monorepo (pnpm, workspaces, DAG, hooks) | `openspec/specs/SPC-001-monorepo-structure/`    |
-| [SPC-002](../../openspec/specs/SPC-002-design-tokens-package/spec.md) | design-tokens-package | Contrato del package tokens                        | `openspec/specs/SPC-002-design-tokens-package/` |
-| [SPC-003](../../openspec/specs/SPC-003-components-package/spec.md)    | components-package    | Contrato del package components                    | `openspec/specs/SPC-003-components-package/`    |
-| [SPC-004](../../openspec/specs/SPC-004-playground-app/spec.md)        | playground-app        | Contrato de la app playground                      | `openspec/specs/SPC-004-playground-app/`        |
+Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 
-Ver tabla maestra: [openspec/IDS.md](../../openspec/IDS.md).
+| Spec                                                                        | Capability                                         | Path                                    |
+| --------------------------------------------------------------------------- | -------------------------------------------------- | --------------------------------------- |
+| [monorepo-structure](../../openspec/specs/monorepo-structure/spec.md)       | Reglas del monorepo (pnpm, workspaces, DAG, hooks) | `openspec/specs/monorepo-structure/`    |
+| [design-tokens-package](../../openspec/specs/design-tokens-package/spec.md) | Contrato del package tokens                        | `openspec/specs/design-tokens-package/` |
+| [components-package](../../openspec/specs/components-package/spec.md)       | Contrato del package components                    | `openspec/specs/components-package/`    |
+| [playground-app](../../openspec/specs/playground-app/spec.md)               | Contrato de la app playground                      | `openspec/specs/playground-app/`        |
+| [ci-cd-pipeline](../../openspec/specs/ci-cd-pipeline/spec.md)               | Pipeline de CI/CD y release                        | `openspec/specs/ci-cd-pipeline/`        |
 
 ## Catálogo de Changes
 
-| ID                                                                             | Change                      | Estado   | Fecha      | Specs introducidas | ADRs generados   |
-| ------------------------------------------------------------------------------ | --------------------------- | -------- | ---------- | ------------------ | ---------------- |
-| [CHG-001](../../openspec/changes/archive/CHG-001-bootstrap-fase-1-monorepo/)   | bootstrap-fase-1-monorepo   | archived | 2026-05-30 | SPC-001            | ADR-001, ADR-002 |
-| [CHG-002](../../openspec/changes/archive/CHG-002-bootstrap-fase-2-tokens/)     | bootstrap-fase-2-tokens     | archived | 2026-05-31 | SPC-002            | ADR-003          |
-| [CHG-003](../../openspec/changes/archive/CHG-003-bootstrap-fase-3-components/) | bootstrap-fase-3-components | archived | 2026-05-31 | SPC-003            | ADR-004          |
-| [CHG-004](../../openspec/changes/archive/CHG-004-bootstrap-fase-4-playground/) | bootstrap-fase-4-playground | archived | 2026-06-01 | SPC-004            | ADR-005          |
+| ID                                                                             | Change                      | Estado   | Fecha      | Specs introducidas / modificadas | ADRs generados                    |
+| ------------------------------------------------------------------------------ | --------------------------- | -------- | ---------- | -------------------------------- | --------------------------------- |
+| [aaa-001](../../openspec/changes/archive/aaa-001-bootstrap-fase-1-monorepo/)   | bootstrap-fase-1-monorepo   | archived | 2026-05-30 | monorepo-structure               | ADR-001, ADR-002                  |
+| [aaa-002](../../openspec/changes/archive/aaa-002-bootstrap-fase-2-tokens/)     | bootstrap-fase-2-tokens     | archived | 2026-05-31 | design-tokens-package            | ADR-003                           |
+| [aaa-003](../../openspec/changes/archive/aaa-003-bootstrap-fase-3-components/) | bootstrap-fase-3-components | archived | 2026-05-31 | components-package               | ADR-004                           |
+| [aaa-004](../../openspec/changes/archive/aaa-004-bootstrap-fase-4-playground/) | bootstrap-fase-4-playground | archived | 2026-06-01 | playground-app                   | ADR-005                           |
+| [aaa-005](../../openspec/changes/archive/aaa-005-bootstrap-fase-5-ci/)         | bootstrap-fase-5-ci         | archived | 2026-06-01 | ci-cd-pipeline                   | ADR-006                           |
+| [aaa-006](../../openspec/changes/archive/aaa-006-components-add-checkbox/)     | components-add-checkbox     | archived | 2026-06-01 | modifica components-package      | —                                 |
+| [aaa-007](../../openspec/changes/archive/aaa-007-components-unify-ds-prefix/)  | components-unify-ds-prefix  | archived | 2026-06-04 | modifica components-package      | ADR-007 (supersede ADR-004 §4+§5) |
 
 Ver tabla maestra: [openspec/IDS.md](../../openspec/IDS.md).
 

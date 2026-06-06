@@ -230,8 +230,8 @@ DS tiene más capas declaradas (sticky vs banner vs overlay), Atlassian colapsa 
 
 Posibles fricciones menores (no bloqueantes):
 
-- Si se adopta el naming factor-based (`space.100`) en lugar de T-shirt (`space.md`): **modificaría una convención semantic** documentada en SPC-002 → requeriría delta de SPC-002 y posible ADR si el cambio es one-way door. **No recomendado**: T-shirt es más legible en CSS de componente.
-- Si se adopta `metric.*` typography: amplía SPC-002 sin reemplazar nada. **Cambio aditivo, sin breaking.**
+- Si se adopta el naming factor-based (`space.100`) en lugar de T-shirt (`space.md`): **modificaría una convención semantic** documentada en design-tokens-package → requeriría delta de design-tokens-package y posible ADR si el cambio es one-way door. **No recomendado**: T-shirt es más legible en CSS de componente.
+- Si se adopta `metric.*` typography: amplía design-tokens-package sin reemplazar nada. **Cambio aditivo, sin breaking.**
 
 ---
 
@@ -268,9 +268,9 @@ Las adopciones recomendadas son **micro-changes aditivos**, cada uno con su CHG 
 
 | CHG tentativo                    | Esfuerzo                                                                                                   | Bloquea                                          |
 | -------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| `tokens-add-space-zero`          | 1 sesión (≤2h): sumar `space.0` a `semantic/space.json`, delta SPC-002, changeset patch                    | Nada                                             |
-| `tokens-add-metric-typography`   | 1 sesión: sumar 3 tokens a `semantic/typography.json`, delta SPC-002, changeset minor                      | Cuando se necesite el primer stat-display        |
-| `tokens-add-negative-space`      | 1 sesión: sumar negativos a `semantic/space.json`, delta SPC-002, changeset minor                          | Cuando aparezca el primer componente con overlap |
+| `tokens-add-space-zero`          | 1 sesión (≤2h): sumar `space.0` a `semantic/space.json`, delta design-tokens-package, changeset patch      | Nada                                             |
+| `tokens-add-metric-typography`   | 1 sesión: sumar 3 tokens a `semantic/typography.json`, delta design-tokens-package, changeset minor        | Cuando se necesite el primer stat-display        |
+| `tokens-add-negative-space`      | 1 sesión: sumar negativos a `semantic/space.json`, delta design-tokens-package, changeset minor            | Cuando aparezca el primer componente con overlap |
 | `components-decide-icon-library` | 2 sesiones: ADR-008 (Lucide vs Heroicons vs Feather), agregar primer ícono al primer componente que lo use | Cuando se agregue Modal o Select                 |
 
 **No se proponen changes que rompan ADRs existentes.** El sistema actual queda intacto; las adopciones son incrementales y opcionales.
