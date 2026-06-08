@@ -186,7 +186,7 @@ Grupo `ng-*` de agentes + un skill para **asegurar la calidad de componentes Ang
 
 | Comando                      | Qué hace                                                                                    |
 | ---------------------------- | ------------------------------------------------------------------------------------------- |
-| `/ng`                        | Clasifica la intención y deriva a la pieza correcta                                         |
+| `/ng:ask`                    | Clasifica la intención y deriva a la pieza correcta                                         |
 | `/ng:component <nombre>`     | Genera un componente moderno (standalone, OnPush, signals, control flow nativo, a11y, test) |
 | `/ng:review <archivo\|glob>` | Audita componentes; hallazgos con `archivo:línea` y severidad                               |
 | `/ng:change <review>`        | Convierte un review grande en un único Markdown autocontenido (propuesta + diseño + tareas) |
