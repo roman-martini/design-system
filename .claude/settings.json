@@ -19,7 +19,16 @@
       "WebFetch(domain:github.com)",
       "Bash(pnpm dev *)",
       "PowerShell($conn = Get-NetTCPConnection -LocalPort 4200 -State Listen -ErrorAction SilentlyContinue; if \\($conn\\) { $pids = $conn.OwningProcess | Select-Object -Unique; foreach \\($p in $pids\\) { try { $proc = Get-Process -Id $p -ErrorAction Stop; Stop-Process -Id $p -Force; \"Killed PID $p \\($\\($proc.ProcessName\\)\\)\" } catch { \"PID $p not found\" } } } else { \"Port 4200 already free\" })",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(ls -la packages/components/dist/fesm2022/)",
+      "Bash(grep -c \"DsRadio\" packages/components/dist/fesm2022/*.mjs)",
+      "Bash(rm -rf apps/playground/.angular/cache)",
+      "Bash(ls apps/playground/.angular/)",
+      "Bash(pnpm -F @romanmartinidev/tokens build)",
+      "Bash(pnpm -F @romanmartinidev/tokens test)",
+      "Bash(pnpm -r test)",
+      "Bash(cd \"c:\\\\Users\\\\roman\\\\Projects\\\\romanmartinidev\\\\github-repos\\\\agents\\\\agent-design-sistem\" && pnpm -F @romanmartinidev/tokens test 2>&1 | tail -6 && echo \"---NPM PACK TOKENS---\" && cd packages/tokens && npm pack --dry-run 2>&1 | grep -E \"effect|motion|z-index\" | head -10 && echo \"---GREP COMPONENT Z-INDEX---\" && cd ../.. && grep -rEn \"z-index:.*[0-9]\" packages/components/src/ apps/playground/src/ 2>&1 | head -5)",
+      "Read(//c/Users/roman/Projects/romanmartinidev/github-repos/**)"
     ]
   }
 }

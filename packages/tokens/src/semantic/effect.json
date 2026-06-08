@@ -1,0 +1,9 @@
+{
+  "semantic": {
+    "effect": {
+      "blur": {
+        "overlay": { "value": "8px" }
+      }
+    }
+  }
+}

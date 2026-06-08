@@ -197,6 +197,37 @@ import '@romanmartinidev/tokens/themes/dark';
 
 `sideEffects: ["./dist/*.css", "./dist/themes/*.css"]` permite tree-shaking del JS preservando CSS.
 
+### Jerarquía de z-index
+
+Los tokens `semantic.z-index` (declarados en [`packages/tokens/src/semantic/z-index.json`](../../packages/tokens/src/semantic/z-index.json)) definen 13 niveles que cubren todos los casos de layering visual de una UI moderna. Escala en miles para overlays, estilo Bootstrap, con margen para intercalar capas nuevas sin colisión.
+
+| Token              | Valor    | Uso típico                                              |
+| ------------------ | -------- | ------------------------------------------------------- |
+| `z-index.hide`     | `-1`     | Elemento oculto detrás del flujo normal                 |
+| `z-index.auto`     | `"auto"` | Resetear stacking context al default del browser        |
+| `z-index.base`     | `0`      | Capa base del documento                                 |
+| `z-index.docked`   | `10`     | Elementos anclados al viewport (header, sidebar)        |
+| `z-index.dropdown` | `1000`   | Dropdowns de menús de navegación                        |
+| `z-index.sticky`   | `1020`   | Elementos sticky (table headers, sticky footers)        |
+| `z-index.banner`   | `1030`   | Banners de notificación (cookie consent, announcements) |
+| `z-index.overlay`  | `1040`   | Backdrops/scrims de modales y drawers                   |
+| `z-index.modal`    | `1050`   | Modales y diálogos                                      |
+| `z-index.popover`  | `1060`   | Popovers contextuales (sobre modales si conviven)       |
+| `z-index.skiplink` | `1070`   | Skip-to-content links (a11y, encima de modales)         |
+| `z-index.toast`    | `1080`   | Toast notifications                                     |
+| `z-index.tooltip`  | `1090`   | Tooltips (capa más alta, deben verse siempre)           |
+
+**Convención obligatoria**: NO hardcodear `z-index` en CSS de componentes. Siempre via `var(--ds-semantic-z-index-<level>)`. El [spec `design-tokens-package`](../../openspec/specs/design-tokens-package/spec.md) formaliza este contrato con scenarios testables (test Vitest en `packages/tokens/test/z-index.spec.ts` valida la jerarquía).
+
+### Tokens auxiliares para overlays
+
+Para componentes con backdrop semitransparente (Modal, Drawer, Toast con scrim), el sistema expone:
+
+- `var(--ds-semantic-color-bg-overlay)` — rgba negro 0.5 alpha (scrim).
+- `var(--ds-semantic-effect-blur-overlay)` — 8px (backdrop-filter blur estándar).
+- `var(--ds-semantic-motion-transition-overlay-enter)` — 250ms ease-out (entrada compuesta duration + easing).
+- `var(--ds-semantic-motion-transition-overlay-exit)` — 150ms ease-in (salida compuesta, ~60% más rápida que la entrada por convención UX).
+
 ## Arquitectura de components (`@romanmartinidev/components`)
 
 **Decisión formal**: [ADR-004 — Arquitectura de @romanmartinidev/components](adr/ADR-004-arquitectura-components.md).

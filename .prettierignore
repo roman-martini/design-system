@@ -15,7 +15,7 @@ pnpm-lock.yaml
 .claude/
 
 # Material histórico / de referencia (no normativo)
-contexto_inicial.md
+docs/contexto_inicial.md
 docs/reference/
 
 # Packages que se migran/refactorizan en fases posteriores del bootstrap

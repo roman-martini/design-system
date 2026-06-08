@@ -174,4 +174,4 @@ pnpm -r publish
 
 - Síntesis arquitectónica: `docs/architecture/README.md`
 - Material de investigación: `docs/reference/`
-- Contexto original del proyecto: `contexto_inicial.md`
+- Contexto original del proyecto: `docs/contexto_inicial.md`

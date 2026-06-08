@@ -49,9 +49,11 @@
   ],
   "scripts": {
     "build": "node sd.config.mjs",
-    "watch": "node --watch sd.config.mjs"
+    "watch": "node --watch sd.config.mjs",
+    "test": "vitest run"
   },
   "devDependencies": {
-    "style-dictionary": "^4.3.0"
+    "style-dictionary": "^4.3.0",
+    "vitest": "^4.0.8"
   }
 }
