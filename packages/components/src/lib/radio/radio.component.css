@@ -1,0 +1,73 @@
+:host {
+  display: inline-block;
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-semantic-space-xs);
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--ds-semantic-color-text-primary);
+}
+
+.radio--disabled {
+  cursor: not-allowed;
+  opacity: var(--ds-opacity-50);
+}
+
+input[type='radio'] {
+  appearance: none;
+  flex-shrink: 0;
+  margin: 0;
+  border: 2px solid var(--ds-semantic-color-border-strong);
+  border-radius: 50%;
+  background: var(--ds-semantic-color-bg-surface);
+  cursor: inherit;
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out);
+}
+
+/* Sizes — primitives dimensions */
+input[type='radio'][data-size='sm'] {
+  width: var(--ds-dimension-16);
+  height: var(--ds-dimension-16);
+}
+input[type='radio'][data-size='md'] {
+  width: var(--ds-dimension-20);
+  height: var(--ds-dimension-20);
+}
+input[type='radio'][data-size='lg'] {
+  width: var(--ds-dimension-24);
+  height: var(--ds-dimension-24);
+}
+
+/* Checked — dot interno via radial gradient (sin SVG, sin children) */
+input[type='radio']:checked {
+  background-color: var(--ds-semantic-color-bg-primary);
+  border-color: var(--ds-semantic-color-border-primary);
+  background-image: radial-gradient(circle, white 35%, transparent 40%);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input[type='radio']:focus-visible {
+  box-shadow: var(--ds-semantic-shadow-focus);
+  outline: none;
+}
+
+input[type='radio']:disabled {
+  cursor: not-allowed;
+}
+
+.radio__label {
+  font-size: var(--ds-font-size-md);
+  line-height: var(--ds-font-line-height-tight);
+  user-select: none;
+}
+
+.radio__label:empty {
+  display: none;
+}

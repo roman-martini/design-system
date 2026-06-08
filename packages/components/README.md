@@ -68,14 +68,41 @@ export class MyFormComponent {
 }
 ```
 
+### Ejemplo: RadioGroup con FormControl
+
+```ts
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { DsRadio, DsRadioGroup } from '@romanmartinidev/components';
+
+@Component({
+  standalone: true,
+  imports: [DsRadio, DsRadioGroup, ReactiveFormsModule],
+  template: `
+    <ds-radio-group [formControl]="framework">
+      <ds-radio [value]="'angular'" label="Angular" />
+      <ds-radio [value]="'react'" label="React" />
+      <ds-radio [value]="'vue'" label="Vue" />
+    </ds-radio-group>
+  `,
+})
+export class MyFormComponent {
+  framework = new FormControl<string>('angular', { nonNullable: true });
+}
+```
+
+Keyboard nav (WAI-ARIA APG): `Arrow`/`Arrow Down` siguiente, `Arrow Left`/`Arrow Up` anterior, `Home`/`End` extremos. Radios deshabilitados se saltan.
+
 ## Componentes disponibles
 
-| Componente   | Selector      | Variants / Estado                            | Sizes            | Estado |
-| ------------ | ------------- | -------------------------------------------- | ---------------- | ------ |
-| `DsButton`   | `ds-button`   | `primary`, `secondary`, `ghost`              | `sm`, `md`, `lg` | ✅     |
-| `DsCheckbox` | `ds-checkbox` | `checked`, `indeterminate`, `disabled` + CVA | `sm`, `md`, `lg` | ✅     |
+| Componente     | Selector         | Variants / Estado                                                      | Sizes            | Estado |
+| -------------- | ---------------- | ---------------------------------------------------------------------- | ---------------- | ------ |
+| `DsButton`     | `ds-button`      | `primary`, `secondary`, `ghost`                                        | `sm`, `md`, `lg` | ✅     |
+| `DsCheckbox`   | `ds-checkbox`    | `checked`, `indeterminate`, `disabled` + CVA                           | `sm`, `md`, `lg` | ✅     |
+| `DsRadio`      | `ds-radio`       | `value` (genérico), `disabled`, `label` slot + standalone              | `sm`, `md`, `lg` | ✅     |
+| `DsRadioGroup` | `ds-radio-group` | `value` model two-way, `disabled` + CVA, `name` auto-gen, keyboard nav | —                | ✅     |
 
-Más componentes en changes futuros (Radio, Modal, Input, Card, etc.).
+Más componentes en changes futuros (Modal, Input, Card, etc.).
 
 ## Convenciones
 

@@ -29,4 +29,11 @@ describe('App', () => {
     const checkboxes = fixture.nativeElement.querySelectorAll('ds-checkbox');
     expect(checkboxes.length).toBeGreaterThan(0);
   });
+
+  it('renders at least one ds-radio-group', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const groups = fixture.nativeElement.querySelectorAll('ds-radio-group');
+    expect(groups.length).toBeGreaterThan(0);
+  });
 });

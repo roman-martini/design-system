@@ -1,0 +1,15 @@
+<label class="radio" [class.radio--disabled]="isDisabled()">
+  <input
+    #inputEl
+    type="radio"
+    [name]="nameAttr()"
+    [checked]="isSelected()"
+    [disabled]="isDisabled()"
+    [attr.aria-checked]="isSelected()"
+    [attr.data-size]="size()"
+    (change)="handleChange()"
+  />
+  <span class="radio__label">
+    <ng-content>{{ label() }}</ng-content>
+  </span>
+</label>

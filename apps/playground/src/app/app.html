@@ -3,8 +3,9 @@
     <h1>Playground</h1>
     <p>
       Laboratorio interno de <code>@romanmartinidev/components</code>. Renderiza
-      <code>&lt;ds-button&gt;</code> y <code>&lt;ds-checkbox&gt;</code> consumiendo tokens
-      <code>--ds-*</code> desde <code>@romanmartinidev/tokens</code>.
+      <code>&lt;ds-button&gt;</code>, <code>&lt;ds-checkbox&gt;</code> y
+      <code>&lt;ds-radio-group&gt;</code> consumiendo tokens <code>--ds-*</code> desde
+      <code>@romanmartinidev/tokens</code>.
     </p>
   </header>
 
@@ -62,6 +63,41 @@
         Suscribirse al newsletter (rich content con <code>&lt;ng-content&gt;</code>)
       </ds-checkbox>
       <code>ctrl.value = {{ subscribeCtrl.value }}</code>
+    </div>
+  </section>
+
+  <section class="playground__section">
+    <h2>Radio — group con two-way binding</h2>
+    <div class="playground__row">
+      <ds-radio-group [(value)]="selectedFramework">
+        <ds-radio [value]="'angular'" label="Angular" />
+        <ds-radio [value]="'react'" label="React" />
+        <ds-radio [value]="'vue'" label="Vue" />
+      </ds-radio-group>
+      <code>selected = {{ selectedFramework() }}</code>
+    </div>
+  </section>
+
+  <section class="playground__section">
+    <h2>Radio — con ReactiveForm</h2>
+    <div class="playground__row">
+      <ds-radio-group [formControl]="frameworkCtrl">
+        <ds-radio [value]="'angular'" label="Angular" />
+        <ds-radio [value]="'react'" label="React" />
+        <ds-radio [value]="'vue'" label="Vue" />
+      </ds-radio-group>
+      <code>ctrl.value = {{ frameworkCtrl.value }}</code>
+    </div>
+  </section>
+
+  <section class="playground__section">
+    <h2>Radio — sizes</h2>
+    <div class="playground__row">
+      <ds-radio-group>
+        <ds-radio [value]="'sm'" size="sm" label="Small" />
+        <ds-radio [value]="'md'" size="md" label="Medium" />
+        <ds-radio [value]="'lg'" size="lg" label="Large" />
+      </ds-radio-group>
     </div>
   </section>
 </main>
