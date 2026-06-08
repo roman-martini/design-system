@@ -89,7 +89,7 @@ agent-design-sistem/
 │   │   └── decisions-log.md   # Índice cronológico de ADRs
 │   └── reference/                # Material de investigación (no normativo)
 ├── openspec/
-│   ├── IDS.md                 # Tabla maestra de changes (aaa-NNN ↔ nombre ↔ path)
+│   ├── README.md              # Convención de IDs + próximo ID disponible (operativo, no arquitectónico)
 │   ├── specs/                 # Contratos testables (sin IDs — identificados por nombre)
 │   └── changes/               # Propuestas de cambio (activos sin prefijo, archivados con aaa-NNN-)
 ├── .changeset/                # Cambios pendientes de release
@@ -385,7 +385,7 @@ Validado en el hook `commit-msg` por commitlint con `@commitlint/config-conventi
 - **Changes**: ID `aaa-NNN` (`aaa-001`, `aaa-002`, …). Cuando `aaa-999` se llena, sigue `aab-001`, después `aac-001`, etc. El ID vive en el frontmatter `proposal.md`.
 - **Specs**: **sin IDs**. Se identifican por el nombre de su carpeta (`openspec/specs/<name>/`).
 - **ADRs**: `ADR-NNN` numéricos (rango único). Inmutables una vez aceptados.
-- Tabla maestra de changes: [openspec/IDS.md](../../openspec/IDS.md).
+- Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 
 ### Lint + format
 
@@ -456,7 +456,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-006](../../openspec/changes/archive/aaa-006-components-add-checkbox/)     | components-add-checkbox     | archived | 2026-06-01 | modifica components-package      | —                                 |
 | [aaa-007](../../openspec/changes/archive/aaa-007-components-unify-ds-prefix/)  | components-unify-ds-prefix  | archived | 2026-06-04 | modifica components-package      | ADR-007 (supersede ADR-004 §4+§5) |
 
-Ver tabla maestra: [openspec/IDS.md](../../openspec/IDS.md).
+Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 
 ## Material de referencia (no normativo)
 

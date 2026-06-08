@@ -10,12 +10,13 @@ Los cambios triviales o de implementación local **no** requieren propuesta
 OpenSpec."_
 
 Cuando un ítem OpenSpec se activa, arranca con
-`/opsx:propose <slug>` siguiendo la convención de [IDS.md](IDS.md).
-**Próximo ID disponible**: ver tabla actual en [IDS.md](IDS.md) — al cierre
-del último CHG el "Próximo ID disponible" se incrementa.
+`/opsx:propose <slug>` siguiendo la convención de [README.md](README.md).
+**Próximo ID disponible**: ver [README.md](README.md) — al archivar un
+change el "Próximo ID disponible" se incrementa.
 
-Los ítems ya implementados viven en [IDS.md](IDS.md) (tabla maestra) y
-en [`changes/archive/`](changes/archive/).
+Los ítems ya implementados viven en el catálogo histórico de
+[`docs/architecture/README.md`](../docs/architecture/README.md)
+§ "Catálogo de Changes" y en [`changes/archive/`](changes/archive/).
 
 > **Regla**: cada ítem que se sume acá debe tener **disparador concreto**
 > (cuándo se activa), no ser "wishlist". Anti-patrón documentado en
@@ -25,56 +26,7 @@ en [`changes/archive/`](changes/archive/).
 
 ## OpenSpec — cambios al kit publicable
 
-### `tokens-add-z-index` — Auditar / expandir z-index tokens
-
-**Tipo**: OpenSpec (kit, `@romanmartinidev/tokens`).
-
-**Origen**: FUTURE-WORK Nivel 1 marca z-index como bloqueante para Modal,
-Tooltip y Toast. El archivo `packages/tokens/src/semantic/z-index.json` ya
-existe; hay que auditar completitud antes de bloquear `components-add-modal`.
-
-**Alcance propuesto**:
-
-- Auditar el `z-index.json` actual vs niveles necesarios para Modal,
-  Tooltip, Toast, Popover, Banner.
-- Sumar faltantes manteniendo escala en miles (Bootstrap-style, decisión
-  registrada en `docs/design/research/atlassian-design.md`).
-- Delta design-tokens-package.
-
-**Disparador**: al activar `components-add-modal` o `components-add-tooltip`.
-
-**Estado**: pendiente.
-
----
-
-### `components-add-radio` — Radio + RadioGroup
-
-**Tipo**: OpenSpec (kit, `@romanmartinidev/components`).
-
-**Origen**: FUTURE-WORK Nivel 1. Es el siguiente componente del backlog
-de prioridad alta. Sigue el patrón establecido en aaa-006 (Checkbox CVA).
-
-**Alcance propuesto**:
-
-- `DsRadio` + `DsRadioGroup` con ControlValueAccessor, 3 sizes, label dual.
-- Composición: `DsRadio` usa `inject(DsRadioGroup, { optional: true })`
-  para funcionar standalone o anidado.
-- Delta components-package (sumar 2 requirements).
-- Changeset minor.
-
-**Decisiones pendientes**:
-
-- ¿Tokens dedicados `component/radio.json` o reusar `semantic/*`?
-  (Decidir igual que Checkbox: sin tokens dedicados salvo necesidad real.)
-
-**Disparador**: cuando se quiera completar la "pareja básica de form
-inputs" (checkbox + radio) o cuando aparezca un caso de uso en playground.
-
-**Estado**: pendiente.
-
----
-
-### `components-decide-icon-library` — ADR-008 librería de iconos
+### `components-decide-icon-library` — ADR-009 librería de iconos
 
 **Tipo**: OpenSpec transversal (decisión arquitectónica + primer uso).
 
@@ -84,7 +36,7 @@ y potencialmente mejora Checkbox (que hoy usa SVG inline en CSS).
 
 **Alcance propuesto**:
 
-- ADR-008 con opciones evaluadas: Lucide / Heroicons / Feather / custom SVG.
+- ADR-009 con opciones evaluadas: Lucide / Heroicons / Feather / custom SVG.
 - Recomendación de partida: Lucide (open-source, mantenida activamente,
   tree-shakeable, 1.5px stroke por default — alineado con observación
   de Atlassian: `docs/design/research/atlassian-design.md §1.8`).
@@ -278,6 +230,7 @@ profesional" de FUTURE-WORK).
 - **Sin features hipotéticas**: si un componente solo se quiere "por
   completitud" sin uso real, queda en `FUTURE-WORK.md` (inspiracional),
   no acá.
-- **Items archivados se mueven** a `IDS.md` y `changes/archive/` cuando
-  se cierran. Este archivo solo tiene ítems pendientes.
+- **Items archivados se mueven** al catálogo histórico de
+  `docs/architecture/README.md` y a `changes/archive/` cuando se cierran.
+  Este archivo solo tiene ítems pendientes.
 - **Sin emojis** en items o títulos.

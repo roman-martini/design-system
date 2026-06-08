@@ -62,12 +62,12 @@ context: |
     - docs/architecture/README.md        síntesis arquitectónica + catálogos
     - docs/architecture/decisions-log.md índice de ADRs
     - docs/architecture/adr/             ADRs aceptados inmutables
-    - openspec/IDS.md                    catálogo de changes + próximo ID
+    - openspec/README.md                 convención + próximo ID disponible
     - openspec/BACKLOG.md                items pendientes con disparador
 
 rules:
   proposal:
-    - Antes de redactar leer CLAUDE.md, architecture/README.md, decisions-log.md, IDS.md y BACKLOG.md
+    - Antes de redactar leer CLAUDE.md, architecture/README.md, decisions-log.md, openspec/README.md y BACKLOG.md
     - Declarar cuál de las 3 prioridades del repo respalda la propuesta
     - Incluir sección "Alternativas evaluadas" con al menos 2 opciones descartadas
     - Si toca 2 o más packages o es one-way door, indicar que generará un ADR al cerrarse
@@ -91,4 +91,4 @@ rules:
     - Marcar tareas que afectan config compartida como "afecta-todo-el-repo"
     - Última tarea de implementación siempre es proponer mensaje de commit y esperar OK
     - Incluir tarea de validación final con openspec validate, lint, format, build, tests, storybook, npm pack
-    - Incluir tarea final de archive con sincronización de spec base e IDS.md
+    - Incluir tarea final de archive con sincronización de spec base, openspec/README.md (próximo ID) y catálogo en docs/architecture/README.md

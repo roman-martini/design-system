@@ -34,7 +34,7 @@ Crear (copiando estructura de este repo):
 - `docs/architecture/README.md` — esqueleto vacío (síntesis arquitectónica).
 - `docs/architecture/decisions-log.md` — tabla vacía.
 - `docs/architecture/adr/README.md` — formato MADR documentado.
-- `openspec/IDS.md` — esqueleto del catálogo de IDs.
+- `openspec/README.md` — convención de IDs + próximo ID disponible (operativo).
 
 ### Inicializar OpenSpec
 
@@ -573,7 +573,7 @@ Al replicar esta arquitectura, **mantener estas convenciones** o documentar expl
 - **Standalone + signals**: nunca NgModules en libs nuevas.
 - **CSS plain con tokens via vars**: sin SCSS, sin CSS-in-JS.
 - **Conventional Commits + Changesets**: una sola fuente de versionado.
-- **ADRs + Specs + IDs**: ADR-NNN para decisiones inmutables, SPC-NNN para contratos testables, CHG-NNN para propuestas de cambio. Tabla maestra en `openspec/IDS.md`.
+- **ADRs + Specs + IDs**: ADR-NNN para decisiones arquitectónicas inmutables; specs sin ID (identificadas por nombre de carpeta); changes con ID `<bloque>-NNN` (operativo del tool OpenSpec). Convención + próximo ID en `openspec/README.md`. Catálogo histórico en `docs/architecture/README.md`.
 
 ## Anti-patrones a evitar
 
@@ -599,7 +599,7 @@ Al replicar esta arquitectura, **mantener estas convenciones** o documentar expl
 - [ ] ADRs 001-005 (al menos) creados.
 - [ ] Specs base 001-004 promovidas.
 - [ ] `openspec validate --all` pasa.
-- [ ] `openspec/IDS.md` con la tabla maestra al día.
+- [ ] `openspec/README.md` con la convención de IDs y el "próximo ID disponible" al día.
 - [ ] `docs/architecture/README.md` con la síntesis arquitectónica.
 - [ ] CI básico funcionando (lint + test + build en PR).
 - [ ] Org npm creada + permisos de publicación verificados.
@@ -609,5 +609,5 @@ Al replicar esta arquitectura, **mantener estas convenciones** o documentar expl
 - [README.md](README.md) — Síntesis arquitectónica (qué + por qué).
 - [adr/](adr/) — ADRs detallados con opciones evaluadas.
 - [decisions-log.md](decisions-log.md) — Índice cronológico de decisiones.
-- [openspec/IDS.md](../../openspec/IDS.md) — Catálogo de Changes y Specs.
+- [openspec/README.md](../../openspec/README.md) — Convención operativa de OpenSpec (formato IDs + frontmatter + próximo ID disponible).
 - Repos de inspiración: [Spartan UI](https://github.com/goetzrobin/spartan), [shadcn/ui](https://ui.shadcn.com/), [Radix Primitives](https://www.radix-ui.com/primitives), [Material UI](https://mui.com/).

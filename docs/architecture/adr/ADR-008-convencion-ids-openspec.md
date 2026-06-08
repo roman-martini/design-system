@@ -132,3 +132,9 @@ Se adopta la **Opción C — bloques alfabéticos `<aaa-zzz>-NNN`** con las sigu
 - Próximo change del repo arranca con ID `aaa-008` en el frontmatter del `proposal.md`.
 - Cuando se acerque `aaa-999` (probable que esté lejos), decidir si el bloque `aab` se reserva para un hito particular o queda como overflow puro. La decisión va en un ADR posterior si vale la pena, o en una sección del IDS.md.
 - Si se decide en el futuro agrupar temáticamente bloques desde cero (ej. retroactivamente reorganizar archivado en `aaa-*`=bootstrap, `aab-*`=componentes nivel 1, etc.), eso requiere un nuevo ADR que reemplace o complemente este.
+
+## Nota de scope (2026-06-08)
+
+Este ADR documenta el **evento histórico de migración** `CHG-NNN`/`SPC-NNN` → `aaa-NNN`/specs-sin-ID que ocurrió el 2026-06-06. Ese evento sí fue una decisión arquitectónica del repo: tocó ~30 archivos, renames físicos, frontmatters, docs y refs cruzadas.
+
+La **convención viva y futura** (formato `aaa-NNN`, frontmatter de change/spec, paths, próximo ID disponible) se considera **operativa del tool OpenSpec, no decisión arquitectónica del producto** y vive en [`openspec/README.md`](../../../openspec/README.md). Si en el futuro la convención evoluciona sin un evento de migración masivo del repo, ese cambio NO genera ADR nuevo: solo se actualiza `openspec/README.md`. Esta clarificación se decidió al borrar `openspec/IDS.md` en commit posterior a este ADR.

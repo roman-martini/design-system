@@ -113,8 +113,8 @@ Todo cambio significativo (nueva lib, refactor mayor, cambio de tooling base) ar
 - Cuando `aaa-999` se llena, el siguiente change arranca `aab-001`, después `aac-001`, etc.
 - Los **paths de changes activos NO incluyen el ID** (los directorios siguen con kebab-case). El ID vive solo en el frontmatter. Al archivar, el directorio se renombra a `<id>-<name>` y se mueve a `archive/`.
 - Las **specs NO tienen ID**. Se identifican por su nombre de carpeta (`openspec/specs/<name>/`).
-- Tabla maestra: [`openspec/IDS.md`](openspec/IDS.md) — único lugar para resolver `aaa-NNN` ↔ nombre y obtener próximo ID disponible.
-- Convención del frontmatter detallada en `openspec/IDS.md → Convención`.
+- Convención + próximo ID disponible: [`openspec/README.md`](openspec/README.md) (operativo, no arquitectónico).
+- Catálogo histórico de changes y specs: [`docs/architecture/README.md`](docs/architecture/README.md) §§ "Catálogo de Specs" y "Catálogo de Changes".
 
 ### Versionado
 
@@ -165,7 +165,7 @@ pnpm -r publish
 
 1. **Leer siempre primero** `docs/architecture/README.md`, `docs/architecture/decisions-log.md` y los ADRs aceptados antes de proponer cambios estructurales.
 2. **Detectar y marcar malas prácticas**. Si el código viola las prioridades de arriba, mencionarlo y proponer alternativa fundamentada — no continuar en silencio.
-3. **Cambios significativos siguen el flujo de OpenSpec** — propuesta → review → apply → archive. Ver `openspec/IDS.md` para el catálogo de changes/specs.
+3. **Cambios significativos siguen el flujo de OpenSpec** — propuesta → review → apply → archive. Ver `docs/architecture/README.md` § "Catálogo de Changes" para el inventario histórico y `openspec/README.md` para la convención operativa.
 4. **No modificar ADRs aceptados.** Para cambiar una decisión, crear un nuevo ADR.
 5. **Documentar decisiones nuevas.** Toda decisión arquitectónica significativa actualiza `decisions-log.md` y genera ADR si corresponde.
 6. **No crear archivos `*.md` de planificación o resumen ad-hoc** salvo que se pidan explícitamente. Las decisiones van a ADRs; los cambios significativos van a OpenSpec.
@@ -175,3 +175,29 @@ pnpm -r publish
 - Síntesis arquitectónica: `docs/architecture/README.md`
 - Material de investigación: `docs/reference/`
 - Contexto original del proyecto: `docs/contexto_inicial.md`
+
+## Componentes Angular (familia `ng-`)
+
+Grupo `ng-*` de agentes + un skill para **asegurar la calidad de componentes Angular** sobre este proyecto existente: crearlos bien desde el inicio, auditarlos contra un set de buenas prácticas extraído de angular.dev, producir —cuando el arreglo es grande— un artefacto de cambio autocontenido que cualquier agente pueda implementar, y mantener las buenas prácticas al día contra la documentación oficial.
+
+**Perfil del stack** — el comportamiento se adapta a `.claude/knowledge/ng-stack-profile.md` (versión de Angular, motor de estilos, framework de testing, design system, prefijo de selector). **Completalo antes del primer uso** de `/ng:component` y `/ng:review`: sin él, esos agentes paran y lo piden (fail fast).
+
+**Knowledge vivo** — las buenas prácticas viven en `.claude/knowledge/ng-best-practices.md` (extraídas de angular.dev, con su tabla de URLs fuente y fecha de extracción). `/ng:sync` las mantiene al día.
+
+| Comando                      | Qué hace                                                                                    |
+| ---------------------------- | ------------------------------------------------------------------------------------------- |
+| `/ng`                        | Clasifica la intención y deriva a la pieza correcta                                         |
+| `/ng:component <nombre>`     | Genera un componente moderno (standalone, OnPush, signals, control flow nativo, a11y, test) |
+| `/ng:review <archivo\|glob>` | Audita componentes; hallazgos con `archivo:línea` y severidad                               |
+| `/ng:change <review>`        | Convierte un review grande en un único Markdown autocontenido (propuesta + diseño + tareas) |
+| `/ng:sync`                   | Sincroniza el knowledge con angular.dev y reporta componentes desalineados                  |
+
+**Flujo**: `/ng:component` para crear → `/ng:review` para auditar → si el arreglo es chico, aplicar directo; si es grande, `/ng:change` produce el artefacto autocontenido → periódicamente, `/ng:sync` mantiene el knowledge al día.
+
+**Convenciones críticas**:
+
+- Angular moderno es el estándar (standalone, signals-first, control flow nativo, OnPush/zoneless); legacy es hallazgo.
+- El knowledge `ng-best-practices.md` es la única fuente de verdad; solo `ng-sync` lo modifica.
+- `ng-sync` es la única pieza con acceso web.
+- El artefacto de cambio es un solo Markdown autocontenido, sin dependencias externas.
+- Los agentes leen `ng-stack-profile.md` primero; sin él, paran.
