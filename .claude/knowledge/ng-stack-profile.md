@@ -1,14 +1,17 @@
-# Perfil del stack del proyecto — `ng-*`
+# Perfil del stack del proyecto — `ng-stack-profile`
 
-> Perfil del repo **agent-design-sistem** (monorepo del design system `@romanmartinidev`).
-> Aplica a la lib de componentes en `packages/components/`.
->
-> Los agentes `ng-component` y `ng-review` leen este archivo como **primer paso**. Si algún campo
-> crítico quedara sin resolver, paran y lo piden (fail fast) — no adivinan el stack.
+> **Completar antes del primer uso de `/ng:create` y `/ng:review`.**
+> Los agentes `ng-component` y `ng-review` leen este perfil como **primer paso**. Si falta
+> cualquier campo crítico, **paran y lo piden** (fail fast): no adivinan el stack. Un componente
+> generado o auditado contra un stack adivinado es peor que un agente que pregunta.
 
 ---
 
-## Campos críticos
+> **Estado del perfil:** `COMPLETO`
+> Cambialo a `COMPLETO` recién cuando los 5 campos críticos estén cargados. Mientras diga
+> `PENDIENTE`, `ng-component` y `ng-review` paran y piden completarlo — sin parsear celda por celda.
+
+## Campos críticos (bloquean si faltan)
 
 | Campo | Valor | Por qué importa |
 |-------|-------|-----------------|

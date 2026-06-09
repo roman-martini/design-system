@@ -19,11 +19,12 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-011`**
+**`aaa-012`**
 
 Actualizar al crear un change nuevo y al archivar el último.
 
 > `aaa-010` asignado a `components-drop-component-suffix` (status `proposed`, en `changes/`).
+> `aaa-011` asignado a `components-accessible-disabled` (status `proposed`, en `changes/`).
 
 ### Specs sin IDs
 

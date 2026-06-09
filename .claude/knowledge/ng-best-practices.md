@@ -142,6 +142,7 @@ _Fuente: https://angular.dev/best-practices/a11y_
 - Enforzar reglas de a11y con Angular ESLint (`@angular-eslint/template`).
 
 ## 9. Principios transversales de frontend (agnósticos de Angular)
+_No provienen de angular.dev: son principios generales de frontend (criterio del autor); `ng-sync` no los re-verifica contra la doc oficial._
 
 - Composición sobre herencia; responsabilidad única; separación de incumbencias.
 - Flujo de datos unidireccional; inmutabilidad de inputs (nunca mutar un input).
@@ -149,6 +150,16 @@ _Fuente: https://angular.dev/best-practices/a11y_
 - TypeScript estricto (`strict: true`), cero `any`.
 - Nombres reveladores; DRY sin sobre-abstraer.
 - Testing de comportamiento, no de implementación; queries por rol/label, no por selectores CSS.
+
+---
+
+## Severidades de los hallazgos
+
+Escala única que usa `ng-review` para clasificar cada hallazgo (y que `ng-component` evita producir). Esta sección es la **fuente única**: los agentes la referencian, no la redefinen.
+
+- **Alta** — rompe reactividad o corrección: `effect()` para derivar estado, `@for` sin `track`, mutar un input, `NgModule` en código nuevo, `any` sin justificar, `bypassSecurityTrust*` sin auditar.
+- **Media** — legacy o subóptimo pero funcional: `*ngIf`/`*ngFor`, inyección por constructor, falta de `OnPush`, `NgClass`/`NgStyle`, expresión pesada en template.
+- **Baja** — estilo y organización: naming, orden de miembros, `protected`/`readonly` faltantes, handler nombrado por evento.
 
 ---
 

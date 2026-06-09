@@ -1,0 +1,9 @@
+<button
+  type="button"
+  [attr.data-variant]="variant()"
+  [attr.data-size]="size()"
+  [disabled]="disabled()"
+  (click)="clicked.emit($event)"
+>
+  <ng-content />
+</button>
