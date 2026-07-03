@@ -17,6 +17,7 @@
 | 2026-06-01 | transversal | Estrategia CI/CD: GitHub Actions + 2 workflows (PR validation + release con Changesets que abre PR) + composite action de setup + branch protection documentada                              | [ADR-006](adr/ADR-006-estrategia-ci-cd.md) ✅                |
 | 2026-06-01 | frontend    | Unificación de prefijos del Design System bajo `Ds`/`ds-`/`--ds-*`. Drop del sufijo `Component` en class TS (`DsButton`, `DsCheckbox`). Supersede parcial de ADR-004 §4 y §5.                | [ADR-007](adr/ADR-007-naming-prefijos.md) ✅                 |
 | 2026-06-06 | transversal | Convención de IDs de OpenSpec: changes con `<bloque>-<numero>` (aaa-NNN..zzz-NNN, cap ~17.5M); specs sin IDs (identificadas por nombre de carpeta). Rename retroactivo CHG/SPC → aaa/nombre. | [ADR-008](adr/ADR-008-convencion-ids-openspec.md) ✅         |
+| 2026-06-09 | frontend    | Figma como consumidor de tokens: export DTCG (W3C) vía Tokens Studio, dirección code→Figma one-way, aliases preservados. Aditivo, no reemplaza ADR-003. Implementa el change `aaa-012`.      | [ADR-009](adr/ADR-009-figma-tokens-export.md) 🟡 Propuesto   |
 
 ## Cómo agregar una entrada
 

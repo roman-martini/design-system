@@ -26,7 +26,7 @@ Los ítems ya implementados viven en el catálogo histórico de
 
 ## OpenSpec — cambios al kit publicable
 
-### `components-decide-icon-library` — ADR-009 librería de iconos
+### `components-decide-icon-library` — ADR librería de iconos
 
 **Tipo**: OpenSpec transversal (decisión arquitectónica + primer uso).
 
@@ -36,7 +36,8 @@ y potencialmente mejora Checkbox (que hoy usa SVG inline en CSS).
 
 **Alcance propuesto**:
 
-- ADR-009 con opciones evaluadas: Lucide / Heroicons / Feather / custom SVG.
+- ADR con opciones evaluadas (número al crearse — ADR-009 ya tomado por
+  `tokens-figma-export`): Lucide / Heroicons / Feather / custom SVG.
 - Recomendación de partida: Lucide (open-source, mantenida activamente,
   tree-shakeable, 1.5px stroke por default — alineado con observación
   de Atlassian: `docs/design/research/atlassian-design.md §1.8`).
