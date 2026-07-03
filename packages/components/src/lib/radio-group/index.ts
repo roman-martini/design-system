@@ -1,1 +1,1 @@
-export { DsRadioGroup, type DsRadioRegistration } from './radio-group.component';
+export { DsRadioGroup, type DsRadioRegistration } from './radio-group';

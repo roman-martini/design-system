@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { DsRadio } from '../radio/radio.component';
-import { DsRadioGroup } from './radio-group.component';
+import { DsRadio } from '../radio/radio';
+import { DsRadioGroup } from './radio-group';
 
 describe('DsRadioGroup (standalone)', () => {
   let fixture: ComponentFixture<DsRadioGroup>;

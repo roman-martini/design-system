@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { DsButton } from './button.component';
+import { DsButton } from './button';
 
 describe('DsButton', () => {
   let fixture: ComponentFixture<DsButton>;

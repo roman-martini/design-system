@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { DsRadio } from './radio.component';
+import { DsRadio } from './radio';
 
 describe('DsRadio (standalone, no group)', () => {
   let fixture: ComponentFixture<DsRadio>;

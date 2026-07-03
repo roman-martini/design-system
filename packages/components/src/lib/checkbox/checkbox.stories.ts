@@ -2,7 +2,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
-import { DsCheckbox } from './checkbox.component';
+import { DsCheckbox } from './checkbox';
 
 const meta: Meta<DsCheckbox> = {
   title: 'Components/Checkbox',

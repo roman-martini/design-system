@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { DsCheckbox } from './checkbox.component';
+import { DsCheckbox } from './checkbox';
 
 describe('DsCheckbox', () => {
   let fixture: ComponentFixture<DsCheckbox>;

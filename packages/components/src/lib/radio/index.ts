@@ -1,1 +1,1 @@
-export { DsRadio, type DsRadioSize } from './radio.component';
+export { DsRadio, type DsRadioSize } from './radio';

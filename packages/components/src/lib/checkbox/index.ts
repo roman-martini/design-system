@@ -1,1 +1,1 @@
-export { DsCheckbox, type DsCheckboxSize } from './checkbox.component';
+export { DsCheckbox, type DsCheckboxSize } from './checkbox';

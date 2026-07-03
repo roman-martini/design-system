@@ -34,7 +34,7 @@
 
 Estas convenciones del proyecto **tienen prioridad por consistencia** (cf. `ng-best-practices.md` §3). `ng-component` las sigue al generar; `ng-review` no las marca como hallazgo.
 
-- **Nomenclatura de archivos**: sufijo `.component.` → `<nombre>.component.ts` / `.html` / `.css` / `.spec.ts`, todos con el mismo nombre base. (El style-guide v22 sugiere `user-profile.ts` sin sufijo; **este repo usa `.component`** — respetar la convención del repo.)
+- **Nomenclatura de archivos**: **sin sufijo de rol** → `<nombre>.ts` / `.html` / `.css` / `.spec.ts`, todos con el mismo nombre base (alineado con el style-guide moderno de Angular; migrado en el change `aaa-010`, ADR-010).
 - **Nombre de clase**: prefijo `Ds`, **sin** sufijo `Component` → `export class DsRadio` (no `DsRadioComponent`).
 - **Ubicación**: un directorio por componente bajo `packages/components/src/lib/<nombre>/`, con sus 4 archivos juntos.
 - **Autoría**: `standalone: true` + `ChangeDetectionStrategy.OnPush` + `templateUrl`/`styleUrl` separados; signals-first (`input()`/`input.required()`, `output()`, `model()`, `viewChild()`); `inject()` para DI; miembros `readonly` para lo que Angular setea.

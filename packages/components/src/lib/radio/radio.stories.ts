@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
-import { DsRadio } from './radio.component';
+import { DsRadio } from './radio';
 
 const meta: Meta<DsRadio> = {
   title: 'Components/Radio',

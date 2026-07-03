@@ -16,8 +16,8 @@ export type DsCheckboxSize = 'sm' | 'md' | 'lg';
   selector: 'ds-checkbox',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './checkbox.component.html',
-  styleUrl: './checkbox.component.css',
+  templateUrl: './checkbox.html',
+  styleUrl: './checkbox.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

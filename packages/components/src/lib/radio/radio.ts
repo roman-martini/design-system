@@ -10,7 +10,7 @@ import {
   viewChild,
 } from '@angular/core';
 
-import { DsRadioGroup, type DsRadioRegistration } from '../radio-group/radio-group.component';
+import { DsRadioGroup, type DsRadioRegistration } from '../radio-group/radio-group';
 
 export type DsRadioSize = 'sm' | 'md' | 'lg';
 
@@ -18,8 +18,8 @@ export type DsRadioSize = 'sm' | 'md' | 'lg';
   selector: 'ds-radio',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './radio.component.html',
-  styleUrl: './radio.component.css',
+  templateUrl: './radio.html',
+  styleUrl: './radio.css',
 })
 export class DsRadio implements DsRadioRegistration, OnInit, OnDestroy {
   readonly value = input.required<unknown>();

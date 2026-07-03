@@ -26,7 +26,7 @@ context: |
     - Class TypeScript con prefix `Ds` sin sufijo `Component` (ej. `DsButton`)
     - Types públicos con prefix `Ds<Name><TypeName>` (ej. `DsButtonSize`)
     - CSS custom properties con prefix `--ds-*`
-    - Folder y file kebab-case (`button/`, `button.component.ts`)
+    - Folder y file kebab-case sin sufijo de rol (`button/`, `button.ts`)
 
   Jerarquía de tokens (ADR-003):
     primitives → semantic → component → theme.

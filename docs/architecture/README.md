@@ -248,9 +248,9 @@ packages/components/src/
 ├── public-api.ts          # Barrel — surface pública
 └── lib/
     └── <name>/            # Una carpeta por componente
-        ├── <name>.component.ts
-        ├── <name>.component.css
-        ├── <name>.component.spec.ts
+        ├── <name>.ts
+        ├── <name>.css
+        ├── <name>.spec.ts
         ├── <name>.stories.ts   # Co-ubicada (Storybook desde apps/playground)
         └── index.ts            # Re-export interno
 ```
@@ -263,7 +263,7 @@ packages/components/src/
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<button [disabled]="disabled()" (click)="handleClick($event)"><ng-content /></button>`,
-  styleUrl: './button.component.css',
+  styleUrl: './button.css',
 })
 export class DsButton {
   variant = input<'primary' | 'secondary' | 'ghost'>('primary');
@@ -283,13 +283,13 @@ Decisión formal: [ADR-007 — Convención de naming y prefijos](adr/ADR-007-nam
 
 ### Naming convention
 
-| Pieza    | Convención                          | Ejemplo               |
-| -------- | ----------------------------------- | --------------------- |
-| Carpeta  | kebab-case                          | `button/`             |
-| Archivo  | `<name>.component.ts`               | `button.component.ts` |
-| Class    | `Ds<Name>` (sin sufijo `Component`) | `DsButton`            |
-| Selector | `ds-<name>`                         | `ds-button`           |
-| Types    | `Ds<Name><TypeName>`                | `DsButtonVariant`     |
+| Pieza    | Convención                          | Ejemplo           |
+| -------- | ----------------------------------- | ----------------- |
+| Carpeta  | kebab-case                          | `button/`         |
+| Archivo  | `<name>.ts` (sin sufijo de rol)     | `button.ts`       |
+| Class    | `Ds<Name>` (sin sufijo `Component`) | `DsButton`        |
+| Selector | `ds-<name>`                         | `ds-button`       |
+| Types    | `Ds<Name><TypeName>`                | `DsButtonVariant` |
 
 ### Styles: CSS plain + tokens via vars
 

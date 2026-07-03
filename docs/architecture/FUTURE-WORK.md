@@ -121,16 +121,9 @@ Convención `[data-density="compact"]` con overrides de heights y paddings — s
 
 ## Convenciones pendientes de decidir
 
-### Nomenclatura de archivos de componente: `.component.ts` vs. sin sufijo (baja prioridad)
+### Nomenclatura de archivos de componente — ✅ resuelta
 
-**Estado**: 🟡 Propuesta registrada — change OpenSpec `aaa-010 components-drop-component-suffix` (`status: proposed`, requerimiento creado, sin activar). Continúa la open question de ADR-007.
-
-Los componentes actuales usan el sufijo `.component` en el nombre de archivo: `radio.component.ts` / `.html` / `.css` / `.spec.ts`. El style-guide moderno de Angular (v20+) recomienda **omitir** ese sufijo (`radio.ts`, `radio.html`, …). La **clase** ya está alineada con v22 (`export class DsRadio`, sin sufijo `Component`); el desalineado es **solo el nombre de archivo**.
-
-- **Opción A — mantener `.component.ts`**: consistencia con los 4 componentes existentes; cero churn.
-- **Opción B — migrar a `radio.ts`**: alineación con el style-guide v22; toca los 4 componentes (rename de ~16 archivos + imports + entry points de `ng-package` + stories).
-
-Mientras no se decida, la convención vigente es **`.component.ts`** y está declarada en `.claude/knowledge/ng-stack-profile.md` para que `ng-component` la genere y `ng-review` no la marque como hallazgo. Si se opta por la Opción B, se hace como **change OpenSpec** (rename masivo) + **ADR** (decisión de convención que afecta a todo el package), y se actualiza el `ng-stack-profile.md`.
+**Estado**: ✅ Resuelta por el change `aaa-010 components-drop-component-suffix` (ADR-010): los archivos de componente van **sin sufijo de rol** (`radio.ts` / `.html` / `.css` / `.spec.ts`), alineados con el style-guide moderno de Angular (v20+). La convención vigente está declarada en `.claude/knowledge/ng-stack-profile.md`.
 
 ---
 

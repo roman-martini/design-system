@@ -2,8 +2,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
-import { DsRadio } from '../radio/radio.component';
-import { DsRadioGroup } from './radio-group.component';
+import { DsRadio } from '../radio/radio';
+import { DsRadioGroup } from './radio-group';
 
 const meta: Meta<DsRadioGroup> = {
   title: 'Components/RadioGroup',

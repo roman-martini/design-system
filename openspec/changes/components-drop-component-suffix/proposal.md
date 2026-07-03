@@ -3,6 +3,9 @@ id: aaa-010
 name: components-drop-component-suffix
 type: change
 status: proposed
+modifies-specs:
+  - components-package (file naming `<name>.ts` sin sufijo `.component`)
+  - playground-app (sana referencias a `app.component.*` — drift preexistente, los archivos reales ya son `app.ts`/`app.html`/`app.css`/`app.spec.ts`)
 related-adrs:
   - ADR-004
   - ADR-007
@@ -63,7 +66,8 @@ Ninguna.
 
 ### Modified Capabilities
 
-Ninguna spec. El rename es **organización interna**: la API pública (barrel `public-api.ts`, selectores, class names, type exports) no cambia, y el style-guide del repo trata el file naming como detalle de implementación (no comportamiento observable). Por lo tanto **no hay delta de spec** — la decisión de convención se documenta en un **ADR**, no en `components-package`.
+- **`components-package`**: la spec **formaliza el file naming como contrato** — el Requirement "Naming" declara _"Los archivos SHALL nombrarse `<name>.component.ts`"_ y varios Requirements/Scenarios enumeran `<name>.component.{ts,html,css,spec.ts}` (estructura por componente, Checkbox, RadioGroup, Radio). Renombrar sin delta violaría la spec activa. → Requirements **MODIFIED** actualizando el patrón a `<name>.{ts,html,css,spec.ts}`. La API pública (barrel, selectores, class names, type exports, CSS vars) no cambia.
+- **`playground-app`**: **drift preexistente detectado al activar el change** — la spec quedó desincronizada de la realidad en dos frentes del mismo tema (naming): (1) referencia `app.component.ts` / `app.component.spec.ts`, pero los archivos reales ya son `app.ts` / `app.spec.ts` (naming moderno del `ng new` de Angular 21); (2) referencia identificadores pre-ADR-007 (`ButtonComponent`, `<rmd-button>`, `AppComponent`) que el código real ya no usa (`DsButton`, `<ds-button>`, `App`) — sync que aaa-007 omitió en esta spec. Varios scenarios hoy no pueden pasar. → Requirements **MODIFIED** alineando la spec con la realidad. Cero cambio de código en playground (ya está bien); es puro spec-sync.
 
 ## Impact
 
@@ -83,7 +87,8 @@ Sin nuevas runtime ni devDeps.
 
 ### Spec deltas
 
-Ninguno.
+- `components-package`: Requirements MODIFIED (patrón de file naming `<name>.*` sin `.component` en naming, estructura y scenarios de Checkbox/Radio/RadioGroup).
+- `playground-app`: Requirements MODIFIED (referencias `app.component.*` → `app.*` + identificadores pre-ADR-007 `ButtonComponent`/`rmd-button`/`AppComponent` → `DsButton`/`ds-button`/`App`, alineando la spec con el código real).
 
 ## Alternativas evaluadas
 
@@ -108,6 +113,7 @@ Como B, pero aprovechando para reestructurar la organización de `src/lib`.
 
 ## ADRs y follow-ups
 
-- **Genera un ADR nuevo al cerrarse**: "Convención de file naming sin sufijo `.component`". Resuelve la open question de ADR-007 y evoluciona la fila "Folder y file naming" de su tabla de decisión. Número a asignar al redactarlo (próximo disponible: ADR-009 — el `BACKLOG.md` lo asocia tentativamente a `components-decide-icon-library`, pero los ADRs se numeran al crearse, no se reservan).
-- **Sin `design.md`** previsto: es un refactor mecánico. Si al activar el change aparece ambigüedad real (ej. deep imports externos no contemplados), se evalúa crear uno.
-- **`tasks.md` y `specs/` no se crean en esta instancia**: este artefacto es **solo el requerimiento**, registrado para arrancar más adelante con `/opsx:continue` (o redacción manual de tareas).
+- **Genera un ADR nuevo al cerrarse**: "Convención de file naming sin sufijo `.component`". Resuelve la open question de ADR-007 y evoluciona la fila "Folder y file naming" de su tabla de decisión. Número a asignar al redactarlo (próximo disponible: **ADR-010** — ADR-009 fue tomado por `tokens-figma-export`; los ADRs se numeran al crearse, no se reservan).
+- **Sin `design.md`**: es un refactor mecánico sin ambigüedad técnica — la verificación al activar confirmó que no hay deep imports externos (playground importa solo del barrel y ya usa naming sin sufijo).
+- **`tasks.md` y `specs/` creados al activar el change** (esta instancia), vía `/opsx:continue`.
+- **Relación con `aaa-011`** (`components-accessible-disabled`): ambos tocan los mismos componentes. Este change va **primero** (renames mecánicos); aaa-011 se implementa sobre los archivos ya renombrados. Su `design.md` en working tree no colisiona (no referencia paths `.component`).

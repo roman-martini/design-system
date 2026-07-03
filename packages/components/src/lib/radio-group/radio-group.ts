@@ -26,8 +26,8 @@ let nextUniqueId = 0;
   selector: 'ds-radio-group',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './radio-group.component.html',
-  styleUrl: './radio-group.component.css',
+  templateUrl: './radio-group.html',
+  styleUrl: './radio-group.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

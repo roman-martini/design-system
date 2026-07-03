@@ -7,8 +7,8 @@ export type DsButtonSize = 'sm' | 'md' | 'lg';
   selector: 'ds-button',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './button.component.html',
-  styleUrl: './button.component.css',
+  templateUrl: './button.html',
+  styleUrl: './button.css',
 })
 export class DsButton {
   readonly variant = input<DsButtonVariant>('primary');
