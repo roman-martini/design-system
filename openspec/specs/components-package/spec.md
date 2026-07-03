@@ -51,19 +51,19 @@ El `package.json` SHALL declarar `@angular/core`, `@angular/common` y `@romanmar
 
 ### Requirement: Arquitectura flat por componente
 
-Cada componente SHALL vivir en su propia carpeta bajo `packages/components/src/lib/<name>/`. Cada carpeta SHALL contener al menos: `<name>.component.ts`, `<name>.component.css`, `<name>.component.spec.ts`, `index.ts` (re-export interno).
+Cada componente SHALL vivir en su propia carpeta bajo `packages/components/src/lib/<name>/`. Cada carpeta SHALL contener al menos: `<name>.ts`, `<name>.css`, `<name>.spec.ts`, `index.ts` (re-export interno).
 
 #### Scenario: agregar un componente nuevo
 
 - **GIVEN** la lib con un componente existente (Button)
 - **WHEN** se agrega un componente nuevo `Input`
-- **THEN** SHALL crearse `src/lib/input/{input.component.ts, input.component.css, input.component.spec.ts, index.ts}` siguiendo el mismo patrón
+- **THEN** SHALL crearse `src/lib/input/{input.ts, input.css, input.spec.ts, index.ts}` siguiendo el mismo patrón
 - **AND** `src/public-api.ts` SHALL agregar `export * from './lib/input';`
 
 #### Scenario: estructura interna del componente es predecible
 
 - **WHEN** un dev abre `src/lib/<name>/`
-- **THEN** SHALL encontrar `<name>.component.ts` como entry point del componente, `<name>.component.css` como estilos, `<name>.component.spec.ts` como tests, e `index.ts` como surface interna
+- **THEN** SHALL encontrar `<name>.ts` como entry point del componente, `<name>.css` como estilos, `<name>.spec.ts` como tests, e `index.ts` como surface interna
 
 ### Requirement: Componentes standalone con signal-based API
 
@@ -71,7 +71,7 @@ Los componentes SHALL ser **standalone** (`standalone: true` o decorator standal
 
 #### Scenario: componente declara standalone y usa signal inputs
 
-- **WHEN** se inspecciona `src/lib/button/button.component.ts`
+- **WHEN** se inspecciona `src/lib/button/button.ts`
 - **THEN** la clase SHALL tener `@Component({ ..., standalone: true })` o equivalente Angular 21
 - **AND** sus inputs SHALL declararse con `input<T>(...)`, no `@Input()`
 - **AND** sus outputs SHALL declararse con `output<T>()`, no `@Output()`
@@ -79,7 +79,7 @@ Los componentes SHALL ser **standalone** (`standalone: true` o decorator standal
 #### Scenario: consumidor importa sin NgModule
 
 - **GIVEN** un componente standalone consumidor
-- **WHEN** se importa `ButtonComponent` desde `@romanmartinidev/components`
+- **WHEN** se importa `DsButton` desde `@romanmartinidev/components`
 - **THEN** SHALL incluirse directamente en el array `imports` del componente, sin envolverlo en un NgModule
 
 ### Requirement: Selector prefix fijo
@@ -88,12 +88,12 @@ Todos los componentes SHALL usar el prefix `ds-` en su selector (ej. `ds-button`
 
 #### Scenario: Button tiene selector ds-button
 
-- **WHEN** se inspecciona `button.component.ts`
+- **WHEN** se inspecciona `button.ts`
 - **THEN** el decorator `@Component` SHALL declarar `selector: 'ds-button'`
 
 #### Scenario: Checkbox tiene selector ds-checkbox
 
-- **WHEN** se inspecciona `checkbox.component.ts`
+- **WHEN** se inspecciona `checkbox.ts`
 - **THEN** el decorator `@Component` SHALL declarar `selector: 'ds-checkbox'`
 
 #### Scenario: componente sin prefix ds- es rechazado
@@ -103,20 +103,20 @@ Todos los componentes SHALL usar el prefix `ds-` en su selector (ej. `ds-button`
 
 ### Requirement: Naming convention de class y archivo
 
-Las classes de componentes SHALL llamarse `Ds<Name>` (PascalCase con prefix `Ds`, **sin** sufijo `Component`). Los archivos SHALL nombrarse `<name>.component.ts` (kebab-case con sufijo `.component.ts`). El `<Name>` SHALL coincidir entre carpeta, archivo, class y selector (ej. carpeta `button/`, archivo `button.component.ts`, class `DsButton`, selector `ds-button`).
+Las classes de componentes SHALL llamarse `Ds<Name>` (PascalCase con prefix `Ds`, **sin** sufijo `Component`). Los archivos SHALL nombrarse `<name>.ts` (kebab-case, **sin sufijo de rol** `.component` — alineado con el style-guide moderno de Angular v20+); los archivos acompañantes SHALL seguir el mismo patrón (`<name>.html`, `<name>.css`, `<name>.spec.ts`). El `<Name>` SHALL coincidir entre carpeta, archivo, class y selector (ej. carpeta `button/`, archivo `button.ts`, class `DsButton`, selector `ds-button`).
 
 Types públicos exportados por un componente SHALL también llevar prefix `Ds<Name><TypeName>` (ej. `DsButtonVariant`, `DsButtonSize`, `DsCheckboxSize`).
 
 #### Scenario: Button cumple la convención
 
 - **WHEN** se inspecciona la implementación de Button
-- **THEN** carpeta `src/lib/button/`, archivo `button.component.ts`, class `DsButton`, selector `ds-button` SHALL coincidir
+- **THEN** carpeta `src/lib/button/`, archivo `button.ts`, class `DsButton`, selector `ds-button` SHALL coincidir
 - **AND** los types públicos SHALL ser `DsButtonVariant` y `DsButtonSize`
 
 #### Scenario: Checkbox cumple la convención
 
 - **WHEN** se inspecciona la implementación de Checkbox
-- **THEN** carpeta `src/lib/checkbox/`, archivo `checkbox.component.ts`, class `DsCheckbox`, selector `ds-checkbox` SHALL coincidir
+- **THEN** carpeta `src/lib/checkbox/`, archivo `checkbox.ts`, class `DsCheckbox`, selector `ds-checkbox` SHALL coincidir
 - **AND** el type público SHALL ser `DsCheckboxSize`
 
 #### Scenario: class TypeScript NO lleva sufijo Component
@@ -125,13 +125,19 @@ Types públicos exportados por un componente SHALL también llevar prefix `Ds<Na
 - **THEN** SHALL NO terminar en `Component` (ej. `DsButton` ✓; `DsButtonComponent` ✗)
 - **AND** SHALL empezar con prefix `Ds`
 
+#### Scenario: archivo NO lleva sufijo de rol .component
+
+- **WHEN** se inspecciona `packages/components/src/lib/<name>/`
+- **THEN** SHALL NO existir archivos con el patrón `<name>.component.*`
+- **AND** el entry point SHALL ser `<name>.ts`
+
 ### Requirement: Styles plain CSS consumiendo tokens via CSS variables
 
 Los componentes SHALL usar archivos `.css` (no `.scss`, no `.less`). El styling SHALL consumir tokens vía CSS custom properties con prefix `--ds-*` provistos por `@romanmartinidev/tokens`. NO SHALL declararse valores de color, espaciado, tipografía o radius hardcoded en los CSS de componente.
 
 #### Scenario: Button consume tokens
 
-- **WHEN** se inspecciona `button.component.css`
+- **WHEN** se inspecciona `button.css`
 - **THEN** los valores de color, spacing, border-radius, shadow SHALL referenciarse vía `var(--ds-...)`
 - **AND** SHALL NO existir hex codes (`#xxx`), valores pixel hardcoded (excepto `0`, `1px` para borders), ni rgba/hsla literales
 
@@ -147,7 +153,7 @@ Los componentes SHALL usar `ViewEncapsulation.Emulated` (el default de Angular).
 
 #### Scenario: Button hereda encapsulation default
 
-- **WHEN** se inspecciona el decorator `@Component` de `button.component.ts`
+- **WHEN** se inspecciona el decorator `@Component` de `button.ts`
 - **THEN** SHALL NO declarar `encapsulation: ViewEncapsulation.None` ni `encapsulation: ViewEncapsulation.ShadowDom`
 - **AND** SHALL heredar el comportamiento default Emulated
 
@@ -155,7 +161,7 @@ Los componentes SHALL usar `ViewEncapsulation.Emulated` (el default de Angular).
 
 - **GIVEN** dos componentes consumidores hermanos (`<ds-button>` y otro componente con clase `.button` propia)
 - **WHEN** se renderizan en la misma página
-- **THEN** los estilos de `button.component.css` SHALL aplicar solo al `<ds-button>` (el atributo `_ngcontent-*` de Angular Emulated los aísla)
+- **THEN** los estilos de `button.css` SHALL aplicar solo al `<ds-button>` (el atributo `_ngcontent-*` de Angular Emulated los aísla)
 
 ### Requirement: Surface de exports a través de public-api.ts
 
@@ -194,7 +200,7 @@ El package SHALL incluir tests para Button con Vitest + `@analogjs/vitest-angula
 #### Scenario: corre con pnpm test
 
 - **WHEN** se ejecuta `pnpm -F @romanmartinidev/components test`
-- **THEN** Vitest SHALL ejecutar `button.component.spec.ts` y SHALL retornar exit 0 con todos los tests passing
+- **THEN** Vitest SHALL ejecutar `button.spec.ts` y SHALL retornar exit 0 con todos los tests passing
 
 #### Scenario: test del comportamiento disabled
 
@@ -231,7 +237,7 @@ El package SHALL exponer `DsCheckbox` (selector `ds-checkbox`) cumpliendo las co
 #### Scenario: estructura de archivos sigue ADR-004 + ADR-007
 
 - **WHEN** se inspecciona `packages/components/src/lib/checkbox/`
-- **THEN** existen: `checkbox.component.ts`, `checkbox.component.html`, `checkbox.component.css`, `checkbox.component.spec.ts`, `checkbox.stories.ts`, `index.ts`
+- **THEN** existen: `checkbox.ts`, `checkbox.html`, `checkbox.css`, `checkbox.spec.ts`, `checkbox.stories.ts`, `index.ts`
 - **AND** la class se llama `DsCheckbox` y el selector es `ds-checkbox`
 
 #### Scenario: two-way binding con [(checked)]
@@ -326,7 +332,7 @@ El package SHALL exponer `DsRadioGroup` (selector `ds-radio-group`) que agrupa c
 #### Scenario: estructura de archivos
 
 - **WHEN** se inspecciona `packages/components/src/lib/radio-group/`
-- **THEN** existen `radio-group.component.ts`, `radio-group.component.html`, `radio-group.component.css`, `radio-group.component.spec.ts`, `radio-group.stories.ts`, `index.ts`
+- **THEN** existen `radio-group.ts`, `radio-group.html`, `radio-group.css`, `radio-group.spec.ts`, `radio-group.stories.ts`, `index.ts`
 - **AND** la class se llama `DsRadioGroup` y el selector es `ds-radio-group`
 
 #### Scenario: selección única entre radios hijos
@@ -427,7 +433,7 @@ El package SHALL exponer `DsRadio` (selector `ds-radio`) que representa una opci
 #### Scenario: estructura de archivos
 
 - **WHEN** se inspecciona `packages/components/src/lib/radio/`
-- **THEN** existen `radio.component.ts`, `radio.component.html`, `radio.component.css`, `radio.component.spec.ts`, `radio.stories.ts`, `index.ts`
+- **THEN** existen `radio.ts`, `radio.html`, `radio.css`, `radio.spec.ts`, `radio.stories.ts`, `index.ts`
 - **AND** la class se llama `DsRadio` y el selector es `ds-radio`
 
 #### Scenario: renderiza input type radio

@@ -76,21 +76,21 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. Orden según desig
 
 ## 8. Validación de cierre
 
-- [ ] 8.1 `pnpm openspec validate --changes` pasa para `components-drop-component-suffix`.
-- [ ] 8.2 `pnpm lint` y `pnpm format:check` pasan.
-- [ ] 8.3 `pnpm -r build` y `pnpm -r test` pasan.
-- [ ] 8.4 Diff revisado con renames detectados (`git diff --cached --find-renames --stat`): 16 renames + ediciones de imports/URLs, sin deletes+adds espurios.
-- [ ] 8.5 Proponer mensaje de commit y esperar OK del usuario.
+- [x] 8.1 `pnpm openspec validate --changes` pasa para `components-drop-component-suffix`. ✓ (strict)
+- [x] 8.2 `pnpm lint` y `pnpm format:check` pasan. ✓ (4 archivos formateados con Prettier)
+- [x] 8.3 `pnpm -r build` y `pnpm -r test` pasan. → 3 builds Done, 60/60 tests.
+- [x] 8.4 Diff revisado con renames detectados (`git diff --cached --find-renames --stat`): 16 renames `R` limpios + ediciones de imports/URLs, sin deletes+adds espurios.
+- [x] 8.5 Proponer mensaje de commit y esperar OK del usuario. → aprobado, commit de implementación hecho.
 
 **Criterio**: todo verde; aprobación explícita antes del commit.
 
 ## 9. Archivar el change
 
-- [ ] 9.1 Mover `openspec/changes/components-drop-component-suffix/` → `openspec/changes/archive/aaa-010-components-drop-component-suffix/`.
-- [ ] 9.2 Sincronizar las specs base con los deltas MODIFIED: `components-package` (10 requirements) y `playground-app` (3 requirements).
-- [ ] 9.3 Actualizar frontmatter del proposal: `status: archived` + fecha.
-- [ ] 9.4 Actualizar `openspec/README.md` (nota de aaa-010 archivado) y catálogo de changes en `docs/architecture/README.md` (fila aaa-010 con ADR-010).
-- [ ] 9.5 `pnpm openspec validate --all` pasa.
+- [x] 9.1 Mover `openspec/changes/components-drop-component-suffix/` → `openspec/changes/archive/aaa-010-components-drop-component-suffix/`.
+- [x] 9.2 Sincronizar las specs base con los deltas MODIFIED: `components-package` (10 requirements) y `playground-app` (3 requirements).
+- [x] 9.3 Actualizar frontmatter del proposal: `status: archived` + fecha.
+- [x] 9.4 Actualizar `openspec/README.md` (nota de aaa-010 archivado) y catálogo de changes en `docs/architecture/README.md` (fila aaa-010 con ADR-010).
+- [x] 9.5 `pnpm openspec validate --all` pasa (specs 5/5 y tokens-figma-export ✓; único fallo: aaa-011, preexistente — aún sin deltas).
 - [ ] 9.6 Proponer mensaje del commit del archive y esperar OK del usuario.
 
 **Criterio**: change archivado, specs base sincronizadas, openspec valida, commit aprobado.

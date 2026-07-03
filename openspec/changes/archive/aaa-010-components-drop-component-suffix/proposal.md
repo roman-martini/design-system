@@ -2,13 +2,15 @@
 id: aaa-010
 name: components-drop-component-suffix
 type: change
-status: proposed
+status: archived
+archived: 2026-07-03
 modifies-specs:
   - components-package (file naming `<name>.ts` sin sufijo `.component`)
   - playground-app (sana referencias a `app.component.*` — drift preexistente, los archivos reales ya son `app.ts`/`app.html`/`app.css`/`app.spec.ts`)
 related-adrs:
   - ADR-004
   - ADR-007
+  - ADR-010
 ---
 
 ## Why

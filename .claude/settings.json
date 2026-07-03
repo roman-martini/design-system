@@ -30,7 +30,9 @@
       "Bash(cd \"c:\\\\Users\\\\roman\\\\Projects\\\\romanmartinidev\\\\github-repos\\\\agents\\\\agent-design-sistem\" && pnpm -F @romanmartinidev/tokens test 2>&1 | tail -6 && echo \"---NPM PACK TOKENS---\" && cd packages/tokens && npm pack --dry-run 2>&1 | grep -E \"effect|motion|z-index\" | head -10 && echo \"---GREP COMPONENT Z-INDEX---\" && cd ../.. && grep -rEn \"z-index:.*[0-9]\" packages/components/src/ apps/playground/src/ 2>&1 | head -5)",
       "Read(//c/Users/roman/Projects/romanmartinidev/github-repos/**)",
       "WebFetch",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git commit -m 'docs\\(openspec\\): proponer aaa-012 tokens-figma-export + ADR-009 *)",
+      "Bash(pnpm -F @romanmartinidev/components test)"
     ]
   }
 }

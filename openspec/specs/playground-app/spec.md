@@ -77,18 +77,18 @@ El entry CSS (`src/styles.css` o equivalente) o el `main.ts` SHALL importar `@ro
 
 ### Requirement: Demo del Button en la app
 
-El `AppComponent` SHALL importar `ButtonComponent` y renderizarlo en su template demostrando al menos: una variant `primary`, una `secondary`, una `ghost`, y un estado `disabled`. El template SHALL ser autoexplicativo sobre cómo se consumen los componentes.
+El componente raíz `App` SHALL importar `DsButton` y renderizarlo en su template demostrando al menos: una variant `primary`, una `secondary`, una `ghost`, y un estado `disabled`. El template SHALL ser autoexplicativo sobre cómo se consumen los componentes.
 
-#### Scenario: AppComponent importa ButtonComponent
+#### Scenario: App importa DsButton
 
-- **WHEN** se inspecciona `apps/playground/src/app/app.component.ts`
-- **THEN** SHALL importar `ButtonComponent` desde `@romanmartinidev/components`
+- **WHEN** se inspecciona `apps/playground/src/app/app.ts`
+- **THEN** SHALL importar `DsButton` desde `@romanmartinidev/components`
 - **AND** SHALL incluirlo en el array `imports` del decorator (standalone)
 
 #### Scenario: template renderiza al menos 4 botones demo
 
 - **GIVEN** la app levantada
-- **WHEN** se cuentan los elementos `<rmd-button>` en el DOM renderizado
+- **WHEN** se cuentan los elementos `<ds-button>` en el DOM renderizado
 - **THEN** SHALL haber al menos 4 instancias cubriendo los estados primary, secondary, ghost, disabled
 
 ### Requirement: Single page sin routing
@@ -128,7 +128,7 @@ El playground SHALL NO configurar router en Fase 4. NO SHALL declarar `provideRo
 
 - **WHEN** se inspecciona `packages/components/src/lib/button/`
 - **THEN** SHALL existir el archivo `button.stories.ts`
-- **AND** SHALL exportar `default { component: ButtonComponent, ... }` (CSF 3)
+- **AND** SHALL exportar `default { component: DsButton, ... }` (CSF 3)
 
 #### Scenario: Storybook renderiza las stories del Button
 
@@ -145,18 +145,18 @@ El playground SHALL NO configurar router en Fase 4. NO SHALL declarar `provideRo
 
 ### Requirement: Tests con Vitest alineado con components
 
-`apps/playground/` SHALL usar Vitest con `@analogjs/vitest-angular` + `@analogjs/vite-plugin-angular` + `jsdom`. SHALL incluir al menos un spec del `AppComponent` que verifica creación y renderizado de al menos un `<rmd-button>`. NO SHALL usar Karma/Jasmine.
+`apps/playground/` SHALL usar Vitest con `@analogjs/vitest-angular` + `@analogjs/vite-plugin-angular` + `jsdom`. SHALL incluir al menos un spec del componente raíz `App` que verifica creación y renderizado de al menos un `<ds-button>`. NO SHALL usar Karma/Jasmine.
 
 #### Scenario: corre con pnpm test
 
 - **WHEN** se ejecuta `pnpm -F playground test` (o `pnpm -F playground exec vitest run`)
 - **THEN** Vitest SHALL ejecutar los specs y retornar exit 0 con todos passing
 
-#### Scenario: app.component.spec.ts verifica integración con Button
+#### Scenario: app.spec.ts verifica integración con Button
 
-- **GIVEN** un spec del AppComponent
+- **GIVEN** un spec del componente raíz `App`
 - **WHEN** se monta el componente
-- **THEN** el spec SHALL encontrar al menos un elemento `rmd-button` en el DOM renderizado
+- **THEN** el spec SHALL encontrar al menos un elemento `ds-button` en el DOM renderizado
 
 ### Requirement: Sin SSR
 

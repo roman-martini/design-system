@@ -446,15 +446,18 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 
 ## Catálogo de Changes
 
-| ID                                                                             | Change                      | Estado   | Fecha      | Specs introducidas / modificadas | ADRs generados                    |
-| ------------------------------------------------------------------------------ | --------------------------- | -------- | ---------- | -------------------------------- | --------------------------------- |
-| [aaa-001](../../openspec/changes/archive/aaa-001-bootstrap-fase-1-monorepo/)   | bootstrap-fase-1-monorepo   | archived | 2026-05-30 | monorepo-structure               | ADR-001, ADR-002                  |
-| [aaa-002](../../openspec/changes/archive/aaa-002-bootstrap-fase-2-tokens/)     | bootstrap-fase-2-tokens     | archived | 2026-05-31 | design-tokens-package            | ADR-003                           |
-| [aaa-003](../../openspec/changes/archive/aaa-003-bootstrap-fase-3-components/) | bootstrap-fase-3-components | archived | 2026-05-31 | components-package               | ADR-004                           |
-| [aaa-004](../../openspec/changes/archive/aaa-004-bootstrap-fase-4-playground/) | bootstrap-fase-4-playground | archived | 2026-06-01 | playground-app                   | ADR-005                           |
-| [aaa-005](../../openspec/changes/archive/aaa-005-bootstrap-fase-5-ci/)         | bootstrap-fase-5-ci         | archived | 2026-06-01 | ci-cd-pipeline                   | ADR-006                           |
-| [aaa-006](../../openspec/changes/archive/aaa-006-components-add-checkbox/)     | components-add-checkbox     | archived | 2026-06-01 | modifica components-package      | —                                 |
-| [aaa-007](../../openspec/changes/archive/aaa-007-components-unify-ds-prefix/)  | components-unify-ds-prefix  | archived | 2026-06-04 | modifica components-package      | ADR-007 (supersede ADR-004 §4+§5) |
+| ID                                                                                  | Change                           | Estado   | Fecha      | Specs introducidas / modificadas             | ADRs generados                           |
+| ----------------------------------------------------------------------------------- | -------------------------------- | -------- | ---------- | -------------------------------------------- | ---------------------------------------- |
+| [aaa-001](../../openspec/changes/archive/aaa-001-bootstrap-fase-1-monorepo/)        | bootstrap-fase-1-monorepo        | archived | 2026-05-30 | monorepo-structure                           | ADR-001, ADR-002                         |
+| [aaa-002](../../openspec/changes/archive/aaa-002-bootstrap-fase-2-tokens/)          | bootstrap-fase-2-tokens          | archived | 2026-05-31 | design-tokens-package                        | ADR-003                                  |
+| [aaa-003](../../openspec/changes/archive/aaa-003-bootstrap-fase-3-components/)      | bootstrap-fase-3-components      | archived | 2026-05-31 | components-package                           | ADR-004                                  |
+| [aaa-004](../../openspec/changes/archive/aaa-004-bootstrap-fase-4-playground/)      | bootstrap-fase-4-playground      | archived | 2026-06-01 | playground-app                               | ADR-005                                  |
+| [aaa-005](../../openspec/changes/archive/aaa-005-bootstrap-fase-5-ci/)              | bootstrap-fase-5-ci              | archived | 2026-06-01 | ci-cd-pipeline                               | ADR-006                                  |
+| [aaa-006](../../openspec/changes/archive/aaa-006-components-add-checkbox/)          | components-add-checkbox          | archived | 2026-06-01 | modifica components-package                  | —                                        |
+| [aaa-007](../../openspec/changes/archive/aaa-007-components-unify-ds-prefix/)       | components-unify-ds-prefix       | archived | 2026-06-04 | modifica components-package                  | ADR-007 (supersede ADR-004 §4+§5)        |
+| [aaa-008](../../openspec/changes/archive/aaa-008-components-add-radio/)             | components-add-radio             | archived | 2026-06-08 | modifica components-package                  | —                                        |
+| [aaa-009](../../openspec/changes/archive/aaa-009-tokens-add-z-index/)               | tokens-add-z-index               | archived | 2026-06-08 | modifica design-tokens-package               | —                                        |
+| [aaa-010](../../openspec/changes/archive/aaa-010-components-drop-component-suffix/) | components-drop-component-suffix | archived | 2026-07-03 | modifica components-package + playground-app | ADR-010 (evoluciona ADR-007 file naming) |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 
