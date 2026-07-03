@@ -458,6 +458,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-008](../../openspec/changes/archive/aaa-008-components-add-radio/)             | components-add-radio             | archived | 2026-06-08 | modifica components-package                  | —                                        |
 | [aaa-009](../../openspec/changes/archive/aaa-009-tokens-add-z-index/)               | tokens-add-z-index               | archived | 2026-06-08 | modifica design-tokens-package               | —                                        |
 | [aaa-010](../../openspec/changes/archive/aaa-010-components-drop-component-suffix/) | components-drop-component-suffix | archived | 2026-07-03 | modifica components-package + playground-app | ADR-010 (evoluciona ADR-007 file naming) |
+| [aaa-011](../../openspec/changes/archive/aaa-011-components-accessible-disabled/)   | components-accessible-disabled   | archived | 2026-07-03 | modifica components-package                  | ADR-011 (disabled accesible)             |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

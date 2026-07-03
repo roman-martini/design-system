@@ -60,17 +60,17 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. El scope de códig
 - [x] 7.3 `pnpm -r build` pasa.
 - [x] 7.4 `pnpm -F @romanmartinidev/components test` y `pnpm -F playground test` verdes.
 - [x] 7.5 Revisión manual a11y: con teclado, el botón disabled recibe foco y el SR (o el árbol de accesibilidad en devtools) anuncia "no disponible" + el motivo. (Opcional para el merge; documentar resultado.)
-- [ ] 7.6 Proponer mensaje de commit y esperar OK del usuario.
+- [x] 7.6 Proponer mensaje de commit y esperar OK del usuario.
 
 **Criterio**: automáticos verdes; aprobación explícita antes del commit.
 
 ## 8. ADR + archive
 
-- [ ] 8.1 Crear **ADR-011** "Estrategia de estado disabled accesible" (formato MADR): principio diferenciado (acción → `aria-disabled` + guarda + motivo focuseable; form control → `disabled` nativo), opciones evaluadas (uniforme vs diferenciado; reason visible vs solo-SR; CDK vs manual). Estado `Aceptado` al cierre.
-- [ ] 8.2 Agregar fila en `docs/architecture/decisions-log.md`.
-- [ ] 8.3 Changeset **minor** de `@romanmartinidev/components` (nuevo input `disabledReason` — feature aditiva; el input `disabled` se mantiene).
-- [ ] 8.4 Mover `openspec/changes/components-accessible-disabled/` → `archive/aaa-011-components-accessible-disabled/`; sincronizar spec base `components-package` con el Requirement ADDED; frontmatter `archived`.
-- [ ] 8.5 Actualizar `openspec/README.md` (nota aaa-011 archivado) + catálogo de changes en `docs/architecture/README.md`.
-- [ ] 8.6 `pnpm openspec validate --all` pasa; proponer commit del archive y esperar OK.
+- [x] 8.1 Crear **ADR-011** "Estrategia de estado disabled accesible" (formato MADR): principio diferenciado (acción → `aria-disabled` + guarda + motivo focuseable; form control → `disabled` nativo), opciones evaluadas (uniforme vs diferenciado; reason visible vs solo-SR; CDK vs manual). Estado `Aceptado` al cierre.
+- [x] 8.2 Agregar fila en `docs/architecture/decisions-log.md`.
+- [x] 8.3 Changeset **minor** de `@romanmartinidev/components` (nuevo input `disabledReason` — feature aditiva; el input `disabled` se mantiene).
+- [x] 8.4 Mover `openspec/changes/components-accessible-disabled/` → `archive/aaa-011-components-accessible-disabled/`; sincronizar spec base `components-package` con el Requirement ADDED; frontmatter `archived`.
+- [x] 8.5 Actualizar `openspec/README.md` (nota aaa-011 archivado) + catálogo de changes en `docs/architecture/README.md`.
+- [x] 8.6 `pnpm openspec validate --all` pasa; proponer commit del archive y esperar OK.
 
 **Criterio**: change archivado, ADR-011 aceptado, spec base sincronizada, openspec valida.

@@ -2,11 +2,13 @@
 id: aaa-011
 name: components-accessible-disabled
 type: change
-status: proposed
+status: archived
+archived: 2026-07-03
 modifies-specs:
   - components-package
 related-adrs:
   - ADR-004
+  - ADR-011
 ---
 
 ## Why
