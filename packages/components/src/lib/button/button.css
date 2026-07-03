@@ -24,9 +24,16 @@ button:focus-visible {
   outline: none;
 }
 
-button:disabled {
+button[aria-disabled='true'] {
   opacity: var(--ds-opacity-50);
   cursor: not-allowed;
+}
+
+.ds-button__reason {
+  display: block;
+  margin-top: var(--ds-semantic-space-2xs);
+  color: var(--ds-semantic-color-text-secondary);
+  font-size: var(--ds-font-size-sm);
 }
 
 /* variant: primary (default) */
@@ -34,10 +41,10 @@ button[data-variant='primary'] {
   background-color: var(--ds-semantic-color-bg-primary);
   color: var(--ds-semantic-color-text-inverse);
 }
-button[data-variant='primary']:hover:not(:disabled) {
+button[data-variant='primary']:hover:not([aria-disabled='true']) {
   background-color: var(--ds-semantic-color-bg-primary-hover);
 }
-button[data-variant='primary']:active:not(:disabled) {
+button[data-variant='primary']:active:not([aria-disabled='true']) {
   background-color: var(--ds-semantic-color-bg-primary-active);
 }
 
@@ -47,10 +54,10 @@ button[data-variant='secondary'] {
   color: var(--ds-semantic-color-text-primary);
   border-color: var(--ds-semantic-color-border-default);
 }
-button[data-variant='secondary']:hover:not(:disabled) {
+button[data-variant='secondary']:hover:not([aria-disabled='true']) {
   background-color: var(--ds-semantic-color-bg-secondary-hover);
 }
-button[data-variant='secondary']:active:not(:disabled) {
+button[data-variant='secondary']:active:not([aria-disabled='true']) {
   background-color: var(--ds-semantic-color-bg-secondary-active);
 }
 
@@ -59,7 +66,7 @@ button[data-variant='ghost'] {
   background-color: transparent;
   color: var(--ds-semantic-color-text-primary);
 }
-button[data-variant='ghost']:hover:not(:disabled) {
+button[data-variant='ghost']:hover:not([aria-disabled='true']) {
   background-color: var(--ds-semantic-color-bg-secondary-hover);
 }
 

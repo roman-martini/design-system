@@ -2,8 +2,12 @@
   type="button"
   [attr.data-variant]="variant()"
   [attr.data-size]="size()"
-  [disabled]="disabled()"
-  (click)="clicked.emit($event)"
+  [attr.aria-disabled]="disabled() ? 'true' : null"
+  [attr.aria-describedby]="describedBy()"
+  (click)="onClick($event)"
 >
   <ng-content />
 </button>
+@if (disabled() && disabledReason()) {
+<span [id]="reasonId" class="ds-button__reason">{{ disabledReason() }}</span>
+}

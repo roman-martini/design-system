@@ -20,11 +20,15 @@ const meta: Meta<DsButton> = {
     disabled: {
       control: { type: 'boolean' },
     },
+    disabledReason: {
+      control: { type: 'text' },
+    },
   },
   args: {
     variant: 'primary',
     size: 'md',
     disabled: false,
+    disabledReason: '',
   },
 };
 
@@ -84,5 +88,16 @@ export const Disabled: Story = {
         <ds-button variant="ghost" [size]="size" [disabled]="disabled">Ghost disabled</ds-button>
       </div>
     `,
+  }),
+};
+
+export const DisabledWithReason: Story = {
+  args: {
+    disabled: true,
+    disabledReason: 'Completá los campos requeridos para continuar',
+  },
+  render: (args) => ({
+    props: args,
+    template: `<ds-button [variant]="variant" [size]="size" [disabled]="disabled" [disabledReason]="disabledReason">Enviar</ds-button>`,
   }),
 };
