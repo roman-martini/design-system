@@ -43,6 +43,21 @@
   </section>
 
   <section class="playground__section">
+    <h2>Iconografía (Lucide — ADR-012)</h2>
+    <div class="playground__row playground__row--icons">
+      <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+      <svg lucideChevronDown size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+      <span class="playground__icon-accent">
+        <svg lucideChevronDown size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+        hereda color del contexto (currentColor)
+      </span>
+      <button type="button" class="playground__icon-button" aria-label="Cerrar">
+        <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="playground__section">
     <h2>Checkbox — estados</h2>
     <div class="playground__row">
       <ds-checkbox [(checked)]="checkboxState" label="Toggle controlled" />

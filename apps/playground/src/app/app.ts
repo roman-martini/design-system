@@ -1,11 +1,20 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { LucideChevronDown, LucideX } from '@lucide/angular';
 import { DsButton, DsCheckbox, DsRadio, DsRadioGroup } from '@romanmartinidev/components';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [DsButton, DsCheckbox, DsRadio, DsRadioGroup, ReactiveFormsModule],
+  imports: [
+    DsButton,
+    DsCheckbox,
+    DsRadio,
+    DsRadioGroup,
+    LucideChevronDown,
+    LucideX,
+    ReactiveFormsModule,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

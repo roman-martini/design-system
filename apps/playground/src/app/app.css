@@ -43,3 +43,36 @@ code {
   padding: 0 var(--ds-semantic-space-2xs);
   border-radius: var(--ds-semantic-radius-sm);
 }
+
+.playground__row--icons {
+  color: var(--ds-semantic-color-icon-default);
+}
+
+.playground__icon-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-semantic-space-2xs);
+  color: var(--ds-semantic-color-icon-primary);
+  font-size: var(--ds-font-size-sm);
+}
+
+.playground__icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-semantic-space-2xs);
+  border: 1px solid var(--ds-semantic-color-border-default);
+  border-radius: var(--ds-semantic-radius-sm);
+  background: var(--ds-semantic-color-bg-surface);
+  color: var(--ds-semantic-color-icon-default);
+  cursor: pointer;
+}
+
+.playground__icon-button:hover {
+  background: var(--ds-semantic-color-bg-secondary-hover);
+}
+
+.playground__icon-button:focus-visible {
+  box-shadow: var(--ds-semantic-shadow-focus);
+  outline: none;
+}

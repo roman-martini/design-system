@@ -19,13 +19,14 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-013`**
+**`aaa-014`**
 
 Actualizar al crear un change nuevo y al archivar el último.
 
 > `aaa-010` `components-drop-component-suffix` — **archivado 2026-07-03** (generó ADR-010).
 > `aaa-011` `components-accessible-disabled` — **archivado 2026-07-03** (generó ADR-011).
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`, en `changes/`; genera ADR-009).
+> `aaa-013` asignado a `components-decide-icon-library` (status `proposed`, en `changes/`; genera ADR-012).
 
 ### Specs sin IDs
 

@@ -49,7 +49,10 @@ y potencialmente mejora Checkbox (que hoy usa SVG inline en CSS).
 **Disparador**: al activar `components-add-modal` o
 `components-add-select`.
 
-**Estado**: pendiente.
+**Estado**: propuesta activa — `aaa-013`
+([changes/components-decide-icon-library/](changes/components-decide-icon-library/)).
+Decisión del kickoff: **Lucide** (`@lucide/angular`); custom
+`@romanmartinidev/icons` queda como evolución futura en ADR-012.
 
 ---
 
