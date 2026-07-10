@@ -35,7 +35,16 @@
       "Bash(pnpm -F @romanmartinidev/components test)",
       "Bash(git commit -m 'feat\\(playground\\): adoptar Lucide como iconografia del DS \\(aaa-013\\) *)",
       "Bash(sed -i 's/^status: proposed/status: archived\\\\narchived: 2026-07-03/' openspec/changes/archive/aaa-013-components-decide-icon-library/proposal.md)",
-      "Bash(pnpm format:check)"
+      "Bash(pnpm format:check)",
+      "Bash(git commit -m 'chore\\(openspec\\): archive aaa-013 components-decide-icon-library *)",
+      "Bash(node -e ' *)",
+      "Bash(sed -i 's|\"overlay-bg\":     { \"value\": \"rgba\\(0, 0, 0, 0.5\\)\" },|\"overlay-bg\":     { \"value\": \"{semantic.color.bg.overlay}\" },|' packages/tokens/src/component/modal.json)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(npx vitest *)",
+      "Bash(sed -i \"s|host.closeOnEscape = false;|host.closeOnEscape.set\\(false\\);|; s|host.closeOnOverlay = false;|host.closeOnOverlay.set\\(false\\);|; s|host.closeLabel = 'Cerrar diálogo';|host.closeLabel.set\\('Cerrar diálogo'\\);|; s|host.heading = 'Confirmar acción';|host.heading.set\\('Confirmar acción'\\);|; s|host.size = size;|host.size.set\\(size\\);|\" packages/components/src/lib/modal/modal.spec.ts)",
+      "Bash(pnpm -F playground build)",
+      "Bash(pnpm -F playground test)",
+      "Bash(pnpm -F playground build-storybook)"
     ]
   }
 }

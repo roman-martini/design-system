@@ -1,0 +1,232 @@
+import { Component, signal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+
+import { DsModal } from './modal';
+
+@Component({
+  standalone: true,
+  imports: [DsModal],
+  template: `
+    <ds-modal
+      [(open)]="open"
+      [size]="size()"
+      [heading]="heading()"
+      [closeLabel]="closeLabel()"
+      [closeOnEscape]="closeOnEscape()"
+      [closeOnOverlay]="closeOnOverlay()"
+    >
+      <p class="body-content">Contenido del modal</p>
+      <div ds-modal-footer>
+        <button type="button" class="footer-action">Aceptar</button>
+      </div>
+    </ds-modal>
+  `,
+})
+class Host {
+  readonly open = signal(false);
+  readonly size = signal<'sm' | 'md' | 'lg' | 'xl'>('md');
+  readonly heading = signal('');
+  readonly closeLabel = signal('Cerrar');
+  readonly closeOnEscape = signal(true);
+  readonly closeOnOverlay = signal(true);
+}
+
+describe('DsModal', () => {
+  let fixture: ComponentFixture<Host>;
+  let host: Host;
+
+  const dialog = (): HTMLDialogElement =>
+    fixture.nativeElement.querySelector('dialog') as HTMLDialogElement;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({ imports: [Host] }).compileComponents();
+    fixture = TestBed.createComponent(Host);
+    host = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    // Cerrar lo que haya quedado abierto para que el scroll lock compartido
+    // (contador de módulo) no contamine el siguiente test.
+    host.open.set(false);
+    fixture.detectChanges();
+    fixture.destroy();
+  });
+
+  it('opens and closes via the two-way model', () => {
+    expect(dialog().open).toBe(false);
+
+    host.open.set(true);
+    fixture.detectChanges();
+    expect(dialog().open).toBe(true);
+
+    host.open.set(false);
+    fixture.detectChanges();
+    expect(dialog().open).toBe(false);
+  });
+
+  it('closes on ESC (cancel event) and syncs the model', () => {
+    host.open.set(true);
+    fixture.detectChanges();
+
+    dialog().dispatchEvent(new Event('cancel', { cancelable: true }));
+    fixture.detectChanges();
+
+    expect(host.open()).toBe(false);
+    expect(dialog().open).toBe(false);
+  });
+
+  it('stays open on ESC when closeOnEscape=false', () => {
+    host.closeOnEscape.set(false);
+    host.open.set(true);
+    fixture.detectChanges();
+
+    const cancelEvent = new Event('cancel', { cancelable: true });
+    dialog().dispatchEvent(cancelEvent);
+    fixture.detectChanges();
+
+    expect(cancelEvent.defaultPrevented).toBe(true);
+    expect(host.open()).toBe(true);
+    expect(dialog().open).toBe(true);
+  });
+
+  it('closes on backdrop click and syncs the model', () => {
+    host.open.set(true);
+    fixture.detectChanges();
+
+    // Un click en el backdrop llega con target === <dialog>
+    dialog().dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    fixture.detectChanges();
+
+    expect(host.open()).toBe(false);
+  });
+
+  it('does not close on backdrop click when closeOnOverlay=false', () => {
+    host.closeOnOverlay.set(false);
+    host.open.set(true);
+    fixture.detectChanges();
+
+    dialog().dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    fixture.detectChanges();
+
+    expect(host.open()).toBe(true);
+  });
+
+  it('does not close when clicking inside the content', () => {
+    host.open.set(true);
+    fixture.detectChanges();
+
+    const content = fixture.nativeElement.querySelector('.body-content') as HTMLElement;
+    content.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    fixture.detectChanges();
+
+    expect(host.open()).toBe(true);
+  });
+
+  it('renders the close button per ADR-012 and closes on click', () => {
+    host.closeLabel.set('Cerrar diálogo');
+    host.open.set(true);
+    fixture.detectChanges();
+
+    const closeBtn = fixture.nativeElement.querySelector('.ds-modal__close') as HTMLButtonElement;
+    expect(closeBtn).toBeTruthy();
+    expect(closeBtn.getAttribute('aria-label')).toBe('Cerrar diálogo');
+
+    const icon = closeBtn.querySelector('svg');
+    expect(icon).toBeTruthy();
+    expect(icon?.getAttribute('aria-hidden')).toBe('true');
+
+    closeBtn.click();
+    fixture.detectChanges();
+    expect(host.open()).toBe(false);
+  });
+
+  it('links the heading via aria-labelledby', () => {
+    host.heading.set('Confirmar acción');
+    host.open.set(true);
+    fixture.detectChanges();
+
+    const h2 = fixture.nativeElement.querySelector('.ds-modal__heading') as HTMLHeadingElement;
+    expect(h2).toBeTruthy();
+    expect(h2.textContent?.trim()).toBe('Confirmar acción');
+    expect(h2.id).toBeTruthy();
+    expect(dialog().getAttribute('aria-labelledby')).toBe(h2.id);
+  });
+
+  it('omits aria-labelledby and heading element without a heading', () => {
+    host.open.set(true);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.ds-modal__heading')).toBeNull();
+    expect(dialog().getAttribute('aria-labelledby')).toBeNull();
+  });
+
+  it('applies the size via data attribute for token-driven widths', () => {
+    for (const size of ['sm', 'md', 'lg', 'xl'] as const) {
+      host.size.set(size);
+      fixture.detectChanges();
+      expect(dialog().getAttribute('data-size')).toBe(size);
+    }
+  });
+
+  it('projects body and footer content', () => {
+    host.open.set(true);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.ds-modal__body .body-content')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.ds-modal__footer .footer-action')).toBeTruthy();
+  });
+
+  it('locks body scroll while open and restores it on close', () => {
+    document.body.style.overflow = 'scroll';
+
+    host.open.set(true);
+    fixture.detectChanges();
+    expect(document.body.style.overflow).toBe('hidden');
+
+    host.open.set(false);
+    fixture.detectChanges();
+    expect(document.body.style.overflow).toBe('scroll');
+
+    document.body.style.overflow = '';
+  });
+
+  it('restores body scroll when destroyed while open', () => {
+    document.body.style.overflow = 'auto';
+
+    host.open.set(true);
+    fixture.detectChanges();
+    expect(document.body.style.overflow).toBe('hidden');
+
+    fixture.destroy();
+    expect(document.body.style.overflow).toBe('auto');
+
+    document.body.style.overflow = '';
+  });
+
+  it('with two open modals, scroll unlocks only when the last one closes', async () => {
+    document.body.style.overflow = '';
+
+    host.open.set(true);
+    fixture.detectChanges();
+
+    const secondFixture = TestBed.createComponent(Host);
+    secondFixture.detectChanges();
+    secondFixture.componentInstance.open.set(true);
+    secondFixture.detectChanges();
+
+    expect(document.body.style.overflow).toBe('hidden');
+
+    host.open.set(false);
+    fixture.detectChanges();
+    // El primero cerró, pero el segundo sigue abierto → el lock se mantiene
+    expect(document.body.style.overflow).toBe('hidden');
+
+    secondFixture.componentInstance.open.set(false);
+    secondFixture.detectChanges();
+    expect(document.body.style.overflow).toBe('');
+
+    secondFixture.destroy();
+  });
+});

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { LucideChevronDown, LucideX } from '@lucide/angular';
-import { DsButton, DsCheckbox, DsRadio, DsRadioGroup } from '@romanmartinidev/components';
+import { DsButton, DsCheckbox, DsModal, DsRadio, DsRadioGroup } from '@romanmartinidev/components';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,7 @@ import { DsButton, DsCheckbox, DsRadio, DsRadioGroup } from '@romanmartinidev/co
   imports: [
     DsButton,
     DsCheckbox,
+    DsModal,
     DsRadio,
     DsRadioGroup,
     LucideChevronDown,
@@ -26,6 +27,8 @@ export class App {
 
   protected readonly selectedFramework = signal<string>('angular');
   protected readonly frameworkCtrl = new FormControl<string>('react', { nonNullable: true });
+
+  protected readonly modalOpen = signal(false);
 
   protected handleClick(label: string): void {
     console.log(`[playground] clicked: ${label}`);

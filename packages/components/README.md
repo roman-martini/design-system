@@ -5,12 +5,14 @@ Componentes Angular del sistema de diseño **romanmartinidev**. Standalone + sig
 ## Instalación
 
 ```bash
-pnpm add @romanmartinidev/components @romanmartinidev/tokens
+pnpm add @romanmartinidev/components @romanmartinidev/tokens @lucide/angular
 # + peer deps Angular si tu proyecto aún no las tiene:
 pnpm add @angular/core @angular/common
 ```
 
 `@romanmartinidev/tokens` es **peer dependency** — debe instalarse explícitamente. Esto evita que múltiples consumidores instalen versiones distintas de los tokens en el mismo árbol.
+
+`@lucide/angular` es **peer dependency** desde que `DsModal` consume iconos Lucide ([ADR-012](../../docs/architecture/adr/ADR-012-iconografia-lucide.md)): la versión la controla el consumidor, evitando copias duplicadas si tu app también usa Lucide directamente.
 
 ## Uso
 

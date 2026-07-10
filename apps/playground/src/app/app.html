@@ -43,6 +43,20 @@
   </section>
 
   <section class="playground__section">
+    <h2>Modal</h2>
+    <div class="playground__row">
+      <ds-button variant="primary" (clicked)="modalOpen.set(true)">Abrir modal</ds-button>
+    </div>
+    <ds-modal [(open)]="modalOpen" heading="Confirmar acción" size="sm">
+      <p>El primer overlay del DS: dialog nativo, top layer, foco atrapado por la plataforma.</p>
+      <div ds-modal-footer>
+        <ds-button variant="ghost" (clicked)="modalOpen.set(false)">Cancelar</ds-button>
+        <ds-button variant="primary" (clicked)="modalOpen.set(false)">Confirmar</ds-button>
+      </div>
+    </ds-modal>
+  </section>
+
+  <section class="playground__section">
     <h2>Iconografía (Lucide — ADR-012)</h2>
     <div class="playground__row playground__row--icons">
       <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>

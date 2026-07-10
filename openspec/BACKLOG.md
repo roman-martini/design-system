@@ -46,7 +46,10 @@ Los ítems ya implementados viven en el catálogo histórico de
 Lucide vía `@lucide/angular`; Modal consume `LucideX` y declara la
 peerDependency según la convención del ADR).
 
-**Estado**: pendiente, **desbloqueado** — próximo candidato del kit.
+**Estado**: propuesta activa — `aaa-014`
+([changes/components-add-modal/](changes/components-add-modal/)).
+Diseño: `<dialog>` nativo (top layer); stack manager innecesario
+por plataforma; genera ADR-013 al cerrar.
 
 ---
 

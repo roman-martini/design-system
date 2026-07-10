@@ -1,0 +1,127 @@
+dialog {
+  width: min(var(--ds-component-modal-size-md), calc(100vw - 2 * var(--ds-semantic-space-lg)));
+  padding: 0;
+  border: 1px solid var(--ds-component-modal-border);
+  border-radius: var(--ds-component-modal-radius);
+  background: var(--ds-component-modal-bg);
+  box-shadow: var(--ds-component-modal-shadow);
+  color: var(--ds-semantic-color-text-primary);
+
+  /* Estado cerrado + transición de salida (aplica al pasar a cerrado) */
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-exit),
+    transform var(--ds-semantic-motion-transition-overlay-exit),
+    display var(--ds-semantic-motion-transition-overlay-exit) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-exit) allow-discrete;
+}
+
+dialog[data-size='sm'] {
+  width: min(var(--ds-component-modal-size-sm), calc(100vw - 2 * var(--ds-semantic-space-lg)));
+}
+dialog[data-size='lg'] {
+  width: min(var(--ds-component-modal-size-lg), calc(100vw - 2 * var(--ds-semantic-space-lg)));
+}
+dialog[data-size='xl'] {
+  width: min(var(--ds-component-modal-size-xl), calc(100vw - 2 * var(--ds-semantic-space-lg)));
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-enter),
+    transform var(--ds-semantic-motion-transition-overlay-enter),
+    display var(--ds-semantic-motion-transition-overlay-enter) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-enter) allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+dialog::backdrop {
+  background: var(--ds-component-modal-overlay-bg);
+  backdrop-filter: blur(var(--ds-semantic-effect-blur-overlay));
+  opacity: 0;
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-exit),
+    display var(--ds-semantic-motion-transition-overlay-exit) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-exit) allow-discrete;
+}
+
+dialog[open]::backdrop {
+  opacity: 1;
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-enter),
+    display var(--ds-semantic-motion-transition-overlay-enter) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-enter) allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.ds-modal__container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-semantic-space-md);
+  padding: var(--ds-component-modal-padding);
+}
+
+.ds-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ds-semantic-space-md);
+}
+
+.ds-modal__heading {
+  margin: 0;
+  font-size: var(--ds-component-modal-title-font-size);
+  font-weight: var(--ds-component-modal-title-font-weight);
+  line-height: var(--ds-font-line-height-tight);
+}
+
+.ds-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding: var(--ds-semantic-space-2xs);
+  border: none;
+  border-radius: var(--ds-semantic-radius-sm);
+  background: transparent;
+  color: var(--ds-semantic-color-icon-default);
+  cursor: pointer;
+}
+
+.ds-modal__close:hover {
+  background: var(--ds-semantic-color-bg-secondary-hover);
+}
+
+.ds-modal__close:focus-visible {
+  box-shadow: var(--ds-semantic-shadow-focus);
+  outline: none;
+}
+
+.ds-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ds-semantic-space-sm);
+}
+
+.ds-modal__footer:empty {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog,
+  dialog[open],
+  dialog::backdrop,
+  dialog[open]::backdrop {
+    transition: none;
+  }
+}

@@ -12,7 +12,7 @@
       "bg":             { "value": "{semantic.color.bg.base}" },
       "border":         { "value": "{semantic.color.border.default}" },
       "shadow":         { "value": "{semantic.shadow.modal}" },
-      "overlay-bg":     { "value": "rgba(0, 0, 0, 0.5)" },
+      "overlay-bg":     { "value": "{semantic.color.bg.overlay}" },
       "z-index":        { "value": "{semantic.z-index.modal}" },
       "title-font-size":{ "value": "{semantic.font.size.heading-5}" },
       "title-font-weight":{ "value": "{semantic.font.weight.heading}" }

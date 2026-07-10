@@ -19,7 +19,7 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-014`**
+**`aaa-015`**
 
 Actualizar al crear un change nuevo y al archivar el último.
 
@@ -27,6 +27,7 @@ Actualizar al crear un change nuevo y al archivar el último.
 > `aaa-011` `components-accessible-disabled` — **archivado 2026-07-03** (generó ADR-011).
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`, en `changes/`; genera ADR-009).
 > `aaa-013` `components-decide-icon-library` — **archivado 2026-07-03** (generó ADR-012).
+> `aaa-014` asignado a `components-add-modal` (status `proposed`, en `changes/`; genera ADR-013).
 
 ### Specs sin IDs
 

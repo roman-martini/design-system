@@ -53,10 +53,12 @@
     "@angular/common": "^21.0.0",
     "@angular/core": "^21.0.0",
     "@angular/forms": "^21.0.0",
+    "@lucide/angular": "^1.23.0",
     "@romanmartinidev/tokens": "workspace:*"
   },
   "devDependencies": {
     "@analogjs/vite-plugin-angular": "^2.5.2",
+    "@lucide/angular": "^1.23.0",
     "@analogjs/vitest-angular": "^2.5.2",
     "@angular/build": "^21",
     "@angular/common": "^21",
