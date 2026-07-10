@@ -21,6 +21,7 @@
 | 2026-07-03 | frontend    | File naming de componentes sin sufijo de rol (`button.ts`, no `button.component.ts`), alineado con style-guide Angular v20+. Resuelve open question de ADR-007. Change `aaa-010`.                                                                             | [ADR-010](adr/ADR-010-file-naming-sin-sufijo-component.md) ✅ |
 | 2026-07-03 | frontend    | Estado disabled accesible: patrón diferenciado — botón de acción usa `aria-disabled` + guarda + `disabledReason` (focuseable, anunciado); form controls ratifican `disabled` nativo. Change `aaa-011`.                                                        | [ADR-011](adr/ADR-011-estado-disabled-accesible.md) ✅        |
 | 2026-07-03 | frontend    | Iconografía del DS: Lucide vía `@lucide/angular` (import por icono tree-shakeable, 16px/1.5 stroke, currentColor, a11y). Peer al primer consumo publicado. Custom `@romanmartinidev/icons` queda como evolución con criterio de activación. Change `aaa-013`. | [ADR-012](adr/ADR-012-iconografia-lucide.md) ✅               |
+| 2026-07-10 | frontend    | Overlays modales sobre `<dialog>` nativo con `showModal()`: top layer, focus trap, inert y ESC por plataforma; animación CSS con tokens de overlay; scroll lock con contador; sin stack manager. Patrón para Drawer y futuros. Change `aaa-014`.              | [ADR-013](adr/ADR-013-overlays-dialog-nativo.md) ✅           |
 
 ## Cómo agregar una entrada
 

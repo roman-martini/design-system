@@ -89,7 +89,7 @@ Los tokens SHALL organizarse en cuatro niveles jerárquicos en `packages/tokens/
 Las **reglas de referencia** SHALL ser:
 
 - `semantic` puede referenciar `primitives` (no al revés).
-- `component` puede referenciar `semantic` o `primitives` (no `theme`).
+- `component` puede referenciar `semantic` o `primitives` (no `theme`). Cuando un valor ya existe como token semantic, el token component SHALL **referenciarlo** en vez de duplicar el valor crudo.
 - `theme` solo redefine tokens existentes en `semantic` (no introduce tokens nuevos).
 - Ningún nivel SHALL referenciar a sí mismo en forma circular.
 
@@ -108,6 +108,13 @@ Las **reglas de referencia** SHALL ser:
 
 - **WHEN** alguien agrega `theme/dark.json` con un token nuevo `semantic.color.brand-special` que no existe en `semantic/`
 - **THEN** SHALL ser rechazado por revisión (el theme solo redefine, no crea)
+
+#### Scenario: component no duplica valores que ya existen en semantic
+
+- **GIVEN** `semantic.color.bg.overlay` definido en `semantic/color.json`
+- **WHEN** se inspecciona `component/modal.json` → `modal.overlay-bg`
+- **THEN** su value SHALL ser la referencia `{semantic.color.bg.overlay}`, no el valor crudo duplicado
+- **AND** el CSS SHALL emitir `--ds-component-modal-overlay-bg: var(--ds-semantic-color-bg-overlay)`
 
 ### Requirement: Modelo de theming via CSS variables y atributos HTML
 

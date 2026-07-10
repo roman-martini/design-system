@@ -26,33 +26,6 @@ Los ítems ya implementados viven en el catálogo histórico de
 
 ## OpenSpec — cambios al kit publicable
 
-### `components-add-modal` — Modal / Dialog
-
-**Tipo**: OpenSpec (kit).
-
-**Origen**: FUTURE-WORK Nivel 1. Caso de uso real para apps Angular.
-
-**Alcance propuesto**:
-
-- `DsModal` con `[(open)]`, focus trap, body scroll lock, cierre por
-  ESC/overlay/X, fade+scale animation.
-- 4 sizes (sm/md/lg/xl).
-- Stack manager para múltiples modales abiertos.
-- Delta components-package.
-
-**Bloqueado por**: nada — sus dos bloqueos se levantaron:
-`tokens-add-z-index` (archivado, `aaa-009`) y
-`components-decide-icon-library` (archivado, `aaa-013` / ADR-012:
-Lucide vía `@lucide/angular`; Modal consume `LucideX` y declara la
-peerDependency según la convención del ADR).
-
-**Estado**: propuesta activa — `aaa-014`
-([changes/components-add-modal/](changes/components-add-modal/)).
-Diseño: `<dialog>` nativo (top layer); stack manager innecesario
-por plataforma; genera ADR-013 al cerrar.
-
----
-
 ### Inspiración del research Atlassian — tokens aditivos opcionales
 
 **Tipo**: OpenSpec (kit, micro-changes).
@@ -134,7 +107,9 @@ el primer drift detectado en code review.
 **Disparador**: cuando haya ≥3 CHGs de "add component" archivados con
 estructura repetitiva clara (probable después de Radio + Modal).
 
-**Estado**: pendiente.
+**Estado**: pendiente, **disparador ACTIVADO** (2026-07-10) — 3 CHGs
+"add component" archivados: Checkbox (`aaa-006`), Radio (`aaa-008`),
+Modal (`aaa-014`).
 
 ---
 
@@ -153,6 +128,9 @@ estructura repetitiva clara (probable después de Radio + Modal).
 
 **Disparador**: cuando haya ≥5 componentes (umbral Nivel 2 "Calidad
 profesional" de FUTURE-WORK).
+
+> **Disparador ACTIVADO** (2026-07-10) — 5 componentes en el kit:
+> Button, Checkbox, Radio, RadioGroup, Modal (`aaa-014`).
 
 **Estado**: pendiente.
 

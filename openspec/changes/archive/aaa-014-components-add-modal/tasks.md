@@ -64,17 +64,17 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. Diseño: `<dialog>
 - [x] 7.3 `pnpm -r build` y `pnpm -r test` pasan.
 - [x] 7.4 `npm pack --dry-run` en components: el tarball incluye el modal compilado, sin `*.stories.ts`/`*.spec.ts`, y `dist/package.json` declara la peer de Lucide.
 - [x] 7.5 Changesets: **minor** de `@romanmartinidev/components` (DsModal + peer Lucide) y **patch** de `@romanmartinidev/tokens` (fix referencia overlay-bg).
-- [ ] 7.6 Proponer mensaje de commit y esperar OK del usuario.
+- [x] 7.6 Proponer mensaje de commit y esperar OK del usuario.
 
 **Criterio**: automáticos verdes; changesets correctos; aprobación explícita antes del commit.
 
 ## 8. ADR + archive
 
-- [ ] 8.1 Crear **ADR-013** "Overlays modales sobre `<dialog>` nativo (top layer)": opciones dialog nativo / CDK / manual; consecuencia sobre la jerarquía z-index (top layer la ignora; el token queda para overlays no-top-layer); patrón para Drawer y overlays futuros. Estado `Aceptado`.
-- [ ] 8.2 Fila en `docs/architecture/decisions-log.md`.
-- [ ] 8.3 Mover a `archive/aaa-014-components-add-modal/`; frontmatter `archived`; sincronizar specs base (`components-package` Requirement ADDED; `design-tokens-package` Requirement MODIFIED).
-- [ ] 8.4 Registros: `openspec/README.md` (próximo ID), catálogo en `docs/architecture/README.md`, BACKLOG (Modal sale; **anotar disparadores activados**: `/ds:add-component` con 3 changes add-component archivados y `/ds:check-a11y` con 5 componentes).
-- [ ] 8.5 `pnpm openspec validate --all` pasa.
+- [x] 8.1 Crear **ADR-013** "Overlays modales sobre `<dialog>` nativo (top layer)": opciones dialog nativo / CDK / manual; consecuencia sobre la jerarquía z-index (top layer la ignora; el token queda para overlays no-top-layer); patrón para Drawer y overlays futuros. Estado `Aceptado`.
+- [x] 8.2 Fila en `docs/architecture/decisions-log.md`.
+- [x] 8.3 Mover a `archive/aaa-014-components-add-modal/`; frontmatter `archived`; sincronizar specs base (`components-package` Requirement ADDED; `design-tokens-package` Requirement MODIFIED).
+- [x] 8.4 Registros: `openspec/README.md` (próximo ID), catálogo en `docs/architecture/README.md`, BACKLOG (Modal sale; **anotar disparadores activados**: `/ds:add-component` con 3 changes add-component archivados y `/ds:check-a11y` con 5 componentes).
+- [x] 8.5 `pnpm openspec validate --all` pasa.
 - [ ] 8.6 Proponer commit del archive y esperar OK.
 
 **Criterio**: change archivado, ADR-013 aceptado, specs base sincronizadas, disparadores del backlog anotados.

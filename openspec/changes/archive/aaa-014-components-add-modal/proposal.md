@@ -2,7 +2,8 @@
 id: aaa-014
 name: components-add-modal
 type: change
-status: proposed
+status: archived
+archived: 2026-07-10
 modifies-specs:
   - components-package (nuevo componente DsModal + peerDependency @lucide/angular)
   - design-tokens-package (fix jerarquía: component.modal.overlay-bg referencia semantic)
@@ -11,6 +12,7 @@ related-adrs:
   - ADR-010
   - ADR-011
   - ADR-012
+  - ADR-013
 ---
 
 ## Why
