@@ -32,7 +32,10 @@
       "WebFetch",
       "WebSearch",
       "Bash(git commit -m 'docs\\(openspec\\): proponer aaa-012 tokens-figma-export + ADR-009 *)",
-      "Bash(pnpm -F @romanmartinidev/components test)"
+      "Bash(pnpm -F @romanmartinidev/components test)",
+      "Bash(git commit -m 'feat\\(playground\\): adoptar Lucide como iconografia del DS \\(aaa-013\\) *)",
+      "Bash(sed -i 's/^status: proposed/status: archived\\\\narchived: 2026-07-03/' openspec/changes/archive/aaa-013-components-decide-icon-library/proposal.md)",
+      "Bash(pnpm format:check)"
     ]
   }
 }

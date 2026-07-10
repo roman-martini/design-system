@@ -32,16 +32,16 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario. Scope de código: 
 - [x] 4.2 `pnpm lint` y `pnpm format:check` pasan.
 - [x] 4.3 `pnpm -r build` y `pnpm -r test` pasan.
 - [x] 4.4 `packages/components/package.json` y `packages/tokens/package.json` sin diffs (verificación del scope).
-- [ ] 4.5 Proponer mensaje de commit y esperar OK del usuario.
+- [x] 4.5 Proponer mensaje de commit y esperar OK del usuario.
 
 **Criterio**: automáticos verdes; scope respetado; aprobación explícita antes del commit.
 
 ## 5. Archivar el change
 
-- [ ] 5.1 Mover a `openspec/changes/archive/aaa-013-components-decide-icon-library/`; frontmatter `status: archived` + fecha.
-- [ ] 5.2 Sincronizar spec base `components-package` con el Requirement ADDED (convención de iconografía).
-- [ ] 5.3 Actualizar `openspec/README.md`, catálogo de changes en `docs/architecture/README.md`, y `BACKLOG.md` (item icon-library sale; desbloquea `components-add-modal`).
-- [ ] 5.4 `pnpm openspec validate --all` pasa.
+- [x] 5.1 Mover a `openspec/changes/archive/aaa-013-components-decide-icon-library/`; frontmatter `status: archived` + fecha.
+- [x] 5.2 Sincronizar spec base `components-package` con el Requirement ADDED (convención de iconografía).
+- [x] 5.3 Actualizar `openspec/README.md`, catálogo de changes en `docs/architecture/README.md`, y `BACKLOG.md` (item icon-library sale; desbloquea `components-add-modal`).
+- [x] 5.4 `pnpm openspec validate --all` pasa.
 - [ ] 5.5 Proponer commit del archive y esperar OK.
 
 **Criterio**: change archivado, spec base sincronizada, Modal desbloqueado en el backlog.

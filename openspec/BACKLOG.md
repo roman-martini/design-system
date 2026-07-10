@@ -26,36 +26,6 @@ Los ítems ya implementados viven en el catálogo histórico de
 
 ## OpenSpec — cambios al kit publicable
 
-### `components-decide-icon-library` — ADR librería de iconos
-
-**Tipo**: OpenSpec transversal (decisión arquitectónica + primer uso).
-
-**Origen**: research/atlassian-design.md identifica iconografía como gap
-explícito del DS actual. Bloquea Modal (X de cierre), Select (chevron),
-y potencialmente mejora Checkbox (que hoy usa SVG inline en CSS).
-
-**Alcance propuesto**:
-
-- ADR con opciones evaluadas (número al crearse — ADR-009 ya tomado por
-  `tokens-figma-export`): Lucide / Heroicons / Feather / custom SVG.
-- Recomendación de partida: Lucide (open-source, mantenida activamente,
-  tree-shakeable, 1.5px stroke por default — alineado con observación
-  de Atlassian: `docs/design/research/atlassian-design.md §1.8`).
-- Decidir distribución: inline SVG en componente vs package separado
-  `@romanmartinidev/icons`.
-- Aplicar al primer componente que la necesite (probablemente Modal).
-- Delta components-package.
-
-**Disparador**: al activar `components-add-modal` o
-`components-add-select`.
-
-**Estado**: propuesta activa — `aaa-013`
-([changes/components-decide-icon-library/](changes/components-decide-icon-library/)).
-Decisión del kickoff: **Lucide** (`@lucide/angular`); custom
-`@romanmartinidev/icons` queda como evolución futura en ADR-012.
-
----
-
 ### `components-add-modal` — Modal / Dialog
 
 **Tipo**: OpenSpec (kit).
@@ -70,12 +40,13 @@ Decisión del kickoff: **Lucide** (`@lucide/angular`); custom
 - Stack manager para múltiples modales abiertos.
 - Delta components-package.
 
-**Bloqueado por**:
+**Bloqueado por**: nada — sus dos bloqueos se levantaron:
+`tokens-add-z-index` (archivado, `aaa-009`) y
+`components-decide-icon-library` (archivado, `aaa-013` / ADR-012:
+Lucide vía `@lucide/angular`; Modal consume `LucideX` y declara la
+peerDependency según la convención del ADR).
 
-- `tokens-add-z-index` (auditoría completa).
-- `components-decide-icon-library` (ADR-008 para X de cierre).
-
-**Estado**: pendiente, bloqueado por los dos anteriores.
+**Estado**: pendiente, **desbloqueado** — próximo candidato del kit.
 
 ---
 

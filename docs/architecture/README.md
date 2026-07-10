@@ -459,6 +459,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-009](../../openspec/changes/archive/aaa-009-tokens-add-z-index/)               | tokens-add-z-index               | archived | 2026-06-08 | modifica design-tokens-package               | —                                        |
 | [aaa-010](../../openspec/changes/archive/aaa-010-components-drop-component-suffix/) | components-drop-component-suffix | archived | 2026-07-03 | modifica components-package + playground-app | ADR-010 (evoluciona ADR-007 file naming) |
 | [aaa-011](../../openspec/changes/archive/aaa-011-components-accessible-disabled/)   | components-accessible-disabled   | archived | 2026-07-03 | modifica components-package                  | ADR-011 (disabled accesible)             |
+| [aaa-013](../../openspec/changes/archive/aaa-013-components-decide-icon-library/)   | components-decide-icon-library   | archived | 2026-07-03 | modifica components-package                  | ADR-012 (iconografía Lucide)             |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

@@ -2,7 +2,8 @@
 id: aaa-013
 name: components-decide-icon-library
 type: change
-status: proposed
+status: archived
+archived: 2026-07-03
 modifies-specs:
   - components-package (dependencia de iconos + convención de uso)
 related-adrs:
