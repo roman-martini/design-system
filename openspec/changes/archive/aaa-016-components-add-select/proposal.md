@@ -2,12 +2,14 @@
 id: aaa-016
 name: components-add-select
 type: change
-status: proposed
+status: archived
+archived: 2026-07-11
 modifies-specs:
   - components-package (ADDED: DsSelect + DsOption)
 related-adrs:
   - ADR-011
   - ADR-012
+  - ADR-014
   - ADR-013
 ---
 

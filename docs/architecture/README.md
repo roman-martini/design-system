@@ -462,6 +462,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-013](../../openspec/changes/archive/aaa-013-components-decide-icon-library/)   | components-decide-icon-library   | archived | 2026-07-03 | modifica components-package                         | ADR-012 (iconografía Lucide)             |
 | [aaa-014](../../openspec/changes/archive/aaa-014-components-add-modal/)             | components-add-modal             | archived | 2026-07-10 | modifica components-package + design-tokens-package | ADR-013 (overlays sobre dialog nativo)   |
 | [aaa-015](../../openspec/changes/archive/aaa-015-tokens-fix-contrast-aa/)           | tokens-fix-contrast-aa           | archived | 2026-07-11 | modifica design-tokens-package                      | — (ejecuta D-007/D-008)                  |
+| [aaa-016](../../openspec/changes/archive/aaa-016-components-add-select/)            | components-add-select            | archived | 2026-07-11 | modifica components-package                         | ADR-014 (overlays anclados Popover API)  |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

@@ -63,11 +63,11 @@ Cada tarea es ≤2 h con criterio binario. Diseño: Popover API + anchor positio
 
 ## 8. ADR + archive
 
-- [ ] 8.1 Crear **ADR-014** "Overlays anclados no modales sobre Popover API": opciones evaluadas (Popover API / floating-ui / DOM local), rama de posicionamiento aplicada (anchor positioning o fallback JS, según 1.2), extensión de la tabla ADR-011 al caso "form control operado por botón", alcance del patrón (Tooltip, dropdown-menu, popover futuros). Estado `Aceptado`.
-- [ ] 8.2 Fila en `docs/architecture/decisions-log.md`.
-- [ ] 8.3 Mover a `archive/aaa-016-components-add-select/`; frontmatter `archived`; sincronizar spec base `components-package` (2 Requirements ADDED).
-- [ ] 8.4 Registros: `openspec/README.md` (próximo ID → `aaa-017`), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Select sale de Now; **promover `components-add-tabs` de la tanda D-009 y desbloquear `components-add-tooltip`** — su bloqueo era esta decisión de posicionamiento), HU-003 → Hecha con CAs tildados.
-- [ ] 8.5 `pnpm openspec validate --all` pasa.
+- [x] 8.1 Crear **ADR-014** "Overlays anclados no modales sobre Popover API": opciones evaluadas (Popover API / floating-ui / DOM local), rama de posicionamiento aplicada (fallback JS, según 1.2), extensión de la tabla ADR-011 al caso "form control operado por botón", alcance del patrón (Tooltip, dropdown-menu, popover futuros). Estado `Aceptado`.
+- [x] 8.2 Fila en `docs/architecture/decisions-log.md`.
+- [x] 8.3 Mover a `archive/aaa-016-components-add-select/`; frontmatter `archived`; sincronizar spec base `components-package` (2 Requirements ADDED; la referencia a design.md se convirtió en referencia a ADR-014).
+- [x] 8.4 Registros: `openspec/README.md`, catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Select sale de Now; `components-add-tabs` promovido a Now; `components-add-tooltip` desbloqueado por ADR-014), HU-003 → Hecha con CAs tildados, EP-002 actualizado (7 componentes).
+- [x] 8.5 `pnpm openspec validate --all` pasa.
 - [ ] 8.6 Proponer commit del archive y esperar OK.
 
 **Criterio**: change archivado, ADR-014 aceptado, specs sincronizadas, tanda D-009 avanzada en el backlog.
