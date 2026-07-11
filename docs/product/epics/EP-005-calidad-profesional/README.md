@@ -20,7 +20,7 @@ Sin HUs con archivo aún — los tres items viven en [docs/backlog/BACKLOG.md](.
 | `/ds:check-a11y` — auditoría WCAG           | ≥5 componentes                        | **Hecho** (2026-07-11) — skill + [primera auditoría](../../../design/a11y/2026-07-11-audit.md) |
 | `/ds:audit-tokens` — consistencia de tokens | >100 tokens o primer drift detectado  | Pendiente (posible activación por el hardcode detectado en la auditoría)                       |
 
-Los items derivados de la auditoría (`tokens-fix-contrast-aa`, `components-fix-a11y-minor`) viven en el [BACKLOG](../../../backlog/BACKLOG.md) § Now. Si el PO prioriza esta épica, cada item se refina como HU (actor: mantenedor).
+Los items derivados de la auditoría ya se encauzaron: `components-fix-a11y-minor` cerrado por commit directo (2026-07-11) y `tokens-fix-contrast-aa` como [HU-004](../EP-001-fundamentos-tokens/HU-004-contraste-aa-tokens.md) (EP-001, change [aaa-015](../../../../openspec/changes/archive/aaa-015-tokens-fix-contrast-aa/) archivado 2026-07-11, aprobado por [D-008](../../decisiones.md)).
 
 ## Decisiones aplicables
 

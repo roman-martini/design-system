@@ -29,16 +29,16 @@ Cada tarea es ≤2 h con criterio binario. Valores objetivo y ratios pre-verific
 - [x] 4.1 `pnpm -r build` y `pnpm -r test` pasan (components consume los valores nuevos sin cambio de código).
 - [x] 4.2 `pnpm lint` y `pnpm openspec validate tokens-fix-contrast-aa --strict` pasan.
 - [x] 4.3 Changeset **patch** de `@romanmartinidev/tokens` describiendo el cambio visual y los ratios.
-- [ ] 4.4 Proponer mensaje de commit (implementación) y esperar OK del usuario.
+- [x] 4.4 Proponer mensaje de commit (implementación) y esperar OK del usuario — commit `cd220fa`.
 
 **Criterio**: automáticos verdes; changeset presente; aprobación explícita antes del commit.
 
 ## 5. Archive
 
-- [ ] 5.1 El reporte de auditoría **no se edita** (snapshot histórico); la resolución queda registrada en este change.
-- [ ] 5.2 Mover a `archive/aaa-015-tokens-fix-contrast-aa/`; frontmatter `status: archived` + fecha; sincronizar spec base `design-tokens-package` con el delta (scenario MODIFIED + requirement ADDED).
-- [ ] 5.3 Registros: `openspec/README.md` (próximo ID → `aaa-016`), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (el item sale de Now).
-- [ ] 5.4 `pnpm openspec validate --all` pasa.
+- [x] 5.1 El reporte de auditoría **no se edita** (snapshot histórico); la resolución queda registrada en este change.
+- [x] 5.2 Mover a `archive/aaa-015-tokens-fix-contrast-aa/`; frontmatter `status: archived` + fecha; sincronizar spec base `design-tokens-package` con el delta (scenario MODIFIED + requirement ADDED).
+- [x] 5.3 Registros: `openspec/README.md` (próximo ID → `aaa-016`), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (el item sale de Now).
+- [x] 5.4 `pnpm openspec validate --all` pasa.
 - [ ] 5.5 Proponer commit del archive y esperar OK.
 
 **Criterio**: change archivado, spec base sincronizada, registros al día.

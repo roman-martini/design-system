@@ -28,7 +28,7 @@ Actualizar al crear un change nuevo y al archivar el último.
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`, en `changes/`; genera ADR-009).
 > `aaa-013` `components-decide-icon-library` — **archivado 2026-07-03** (generó ADR-012).
 > `aaa-014` `components-add-modal` — **archivado 2026-07-10** (generó ADR-013).
-> `aaa-015` asignado a `tokens-fix-contrast-aa` (status `proposed`, en `changes/`; sin ADR — ejecuta D-007).
+> `aaa-015` `tokens-fix-contrast-aa` — **archivado 2026-07-11** (sin ADR — ejecuta D-007).
 
 ### Specs sin IDs
 

@@ -25,19 +25,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-### `tokens-fix-contrast-aa` — Fix de contraste AA en tokens semantic
-
-**Tipo**: OpenSpec (tokens; cambio visual del DS). **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/README.md) / [EP-005](../product/epics/EP-005-calidad-profesional/README.md).
-
-**Origen**: [auditoría a11y 2026-07-11](../design/a11y/2026-07-11-audit.md) — 3 hallazgos altos, 2 causas en tokens.
-
-**Alcance propuesto**: `semantic.color.bg.primary` default → `blue-600` (5.17:1 con texto blanco, hoy 3.68:1) y brand-a → `green-700` (5.02:1, hoy 3.30:1), reencadenando hover/active; `semantic.color.border.strong` → `neutral-500` (4.74:1, hoy 2.52:1). Ratios candidatos ya verificados con `check-a11y/scripts/contrast.mjs`. Afecta la apariencia de Button, Checkbox y Radio en el theme default.
-
-**Decisiones pendientes**: aprobación del PO del cambio visual (el primario default se oscurece un paso).
-
-**Disparador**: fallas AA verificadas en la auditoría — **ACTIVADO** (2026-07-11).
-
-**Estado**: pendiente.
+(vacío — el próximo item entra cuando su disparador se active)
 
 ---
 
@@ -85,7 +73,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: el package `tokens` supera 100 tokens, o aparece el primer drift en un code review.
 
-**Estado**: pendiente. Nota (2026-07-11): la auditoría a11y detectó el primer hardcode (`white` en checkmark/dot de Checkbox y Radio) — el disparador podría considerarse activado; confirmar con el PO al cerrar `components-fix-a11y-minor`.
+**Estado**: pendiente. Nota (2026-07-11): la auditoría a11y detectó el primer hardcode (`white` en checkmark/dot de Checkbox y Radio) — el disparador podría considerarse activado (`components-fix-a11y-minor` ya cerrado por commit directo); confirmar con el PO.
 
 ---
 

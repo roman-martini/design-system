@@ -20,12 +20,16 @@ Design tokens en jerarquía `primitives → semantic → component → theme` (A
 
 ## Historias de usuario
 
-Sin HUs activas. Candidatas (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § tokens, entran con disparador según D-005): breakpoints responsive (cuando haya primer componente responsive), motion adicional (delays/easings extra), density tokens, `space.0`/negative-space/metric-typography (research Atlassian).
+| HU                                      | Título                                    | Actor          | Estado                               |
+| --------------------------------------- | ----------------------------------------- | -------------- | ------------------------------------ |
+| [HU-004](HU-004-contraste-aa-tokens.md) | Tokens interactivos con contraste WCAG AA | Dev consumidor | Hecha (aaa-015 archivado 2026-07-11) |
+
+Candidatas (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § tokens, entran con disparador según D-005): breakpoints responsive (cuando haya primer componente responsive), motion adicional (delays/easings extra), density tokens, `space.0`/negative-space/metric-typography (research Atlassian).
 
 ## Decisiones aplicables
 
-[D-001, D-002, D-005, D-006](../../decisiones.md) · Técnica: [ADR-003](../../../architecture/adr/ADR-003-arquitectura-design-tokens.md).
+[D-001, D-002, D-005, D-006, D-008](../../decisiones.md) · Técnica: [ADR-003](../../../architecture/adr/ADR-003-arquitectura-design-tokens.md).
 
 ## Orden sugerido
 
-Reactivo: el próximo token entra cuando un componente o consumidor real lo pida (D-005).
+HU-004 hecha ([aaa-015](../../../../openspec/changes/archive/aaa-015-tokens-fix-contrast-aa/) archivado, aprobado por D-008). Reactivo: el próximo token entra cuando un componente o consumidor real lo pida (D-005).

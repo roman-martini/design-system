@@ -2,7 +2,8 @@
 id: aaa-015
 name: tokens-fix-contrast-aa
 type: change
-status: proposed
+status: archived
+archived: 2026-07-11
 modifies-specs:
   - design-tokens-package (scenario de resolución actualizado + requirement de contraste AA nuevo)
 ---
