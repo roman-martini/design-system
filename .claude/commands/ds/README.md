@@ -18,6 +18,10 @@ Diferencia con el patrón `opsx:*`: los commands de opsx duplican el contenido d
 | Command | Skill | Estado | Propósito |
 |---|---|---|---|
 | `/ds:research-design-system` | `research-design-system` | Activa | Investigar el sistema visual de un sitio externo (Polymer, Stripe, Linear, Vercel…) y producir un reporte de adopción razonado en `docs/design/research/<slug>.md`. |
+| `/ds:handoff` | `session-handoff` (modo `save`) | Activa | Sintetizar el estado de la sesión (repo verificable + decisiones conversacionales) en `.claude/session-handoff.md` (gitignored) antes de un `/clear`. |
+| `/ds:resume` | `session-handoff` (modo `resume`) | Activa | Leer el handoff después del `/clear`, verificar que el repo no avanzó por fuera y retomar por el "EMPEZÁ POR". |
+| `/ds:check-a11y` | `check-a11y` | Activa | Auditar los componentes contra WCAG AA y los ADRs de a11y (011/012/013): ARIA, teclado, foco, reduced-motion y contraste calculado con script determinístico (`scripts/contrast.mjs`). Reporte en `docs/design/a11y/<fecha>-audit.md`. Materializa D-007. |
+| `/ds:add-component` | `add-component` | Activa | Workflow guiado para sumar un componente al kit: relevamiento → clasificación contra ADR-004/007/010/011/012/013 → change OpenSpec (proposal + spec delta + tasks patrón aaa-014) → implementación con OK del usuario. |
 
 ## Backlog
 
@@ -26,8 +30,6 @@ Cada skill se crea **cuando aparezca la primera necesidad concreta**, no antes (
 | Command planificado | Propósito | Cuándo crearlo |
 |---|---|---|
 | `/ds:audit-tokens` | Auditar consistencia de la jerarquía `primitives → semantic → component → theme`. Detectar tokens huérfanos (definidos pero no referenciados), CSS de componentes con valores hardcoded fuera de `var(--ds-*)`, semantic tokens que no consumen primitives. | Cuando el package `tokens` crezca a >100 tokens o aparezca el primer drift detectado en code review. |
-| `/ds:add-component` | Workflow guiado para agregar componente nuevo siguiendo ADR-004 + ADR-007: estructura `src/lib/<name>/`, naming (class `Ds<Name>`, selector `ds-<name>`), CVA si aplica, tests Vitest, story Storybook, public-api, spec delta de components-package, changeset. Equivalente a un change `aaa-NNN-components-add-<x>` semi-automatizado. | Cuando haya ≥3 componentes nuevos en cola y los changes de "add component" tengan estructura repetitiva clara (probable después de Radio + Modal). |
-| `/ds:check-a11y` | Auditoría WCAG AA sobre componentes existentes: contraste de tokens (color text/bg), navegación por teclado en stories, ARIA presente y correcta (`aria-checked`, `aria-disabled`, `aria-expanded`, `role`), `prefers-reduced-motion` respetado. | Cuando haya ≥5 componentes (umbral del Nivel 2 "Calidad profesional" de FUTURE-WORK). |
 
 ## Cómo agregar un command nuevo `/ds:*`
 
