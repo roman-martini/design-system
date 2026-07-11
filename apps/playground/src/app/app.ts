@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LucideChevronDown, LucideX } from '@lucide/angular';
 import {
   DsButton,
   DsCheckbox,
+  DsInput,
   DsModal,
   DsOption,
   DsRadio,
@@ -17,6 +18,7 @@ import {
   imports: [
     DsButton,
     DsCheckbox,
+    DsInput,
     DsModal,
     DsOption,
     DsRadio,
@@ -42,6 +44,11 @@ export class App {
 
   protected readonly selectedCountry = signal<string | null>(null);
   protected readonly countryCtrl = new FormControl<string>('ar', { nonNullable: true });
+
+  protected readonly emailCtrl = new FormControl<string>('', {
+    nonNullable: true,
+    validators: [Validators.required, Validators.email],
+  });
 
   protected handleClick(label: string): void {
     console.log(`[playground] clicked: ${label}`);

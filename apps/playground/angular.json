@@ -52,6 +52,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "prebundle": {
+              "exclude": ["@romanmartinidev/components", "@romanmartinidev/tokens"]
+            }
+          },
           "configurations": {
             "production": {
               "buildTarget": "playground:build:production"

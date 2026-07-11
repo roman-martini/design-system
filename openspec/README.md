@@ -19,7 +19,7 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-017`**
+**`aaa-018`**
 
 Actualizar al crear un change nuevo y al archivar el último.
 
@@ -30,6 +30,7 @@ Actualizar al crear un change nuevo y al archivar el último.
 > `aaa-014` `components-add-modal` — **archivado 2026-07-10** (generó ADR-013).
 > `aaa-015` `tokens-fix-contrast-aa` — **archivado 2026-07-11** (sin ADR — ejecuta D-007).
 > `aaa-016` `components-add-select` — **archivado 2026-07-11** (generó ADR-014).
+> `aaa-017` asignado a `components-add-input` (status `proposed`, en `changes/`; sin ADR previsto).
 
 ### Specs sin IDs
 

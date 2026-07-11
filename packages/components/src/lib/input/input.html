@@ -1,0 +1,30 @@
+@if (label()) {
+<label class="ds-input__label" [for]="inputId">{{ label() }}</label>
+}
+<div
+  class="ds-input__control"
+  [attr.data-size]="size()"
+  [class.ds-input__control--invalid]="isInvalid()"
+  [class.ds-input__control--disabled]="disabled()"
+>
+  <ng-content select="[ds-input-prefix]" />
+  <input
+    [id]="inputId"
+    [type]="type()"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-labelledby]="ariaLabelledby()"
+    [attr.aria-invalid]="isInvalid() ? 'true' : null"
+    [attr.aria-describedby]="describedBy()"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  <ng-content select="[ds-input-suffix]" />
+</div>
+<!-- Live region siempre presente: anuncia la aparición del error sin interrumpir. -->
+<p class="ds-input__error" [id]="errorId" aria-live="polite">@if (showError()) { {{ error() }} }</p>
+@if (hint() && !showError()) {
+<p class="ds-input__hint" [id]="hintId">{{ hint() }}</p>
+}

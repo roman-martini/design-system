@@ -77,6 +77,21 @@
   </section>
 
   <section class="playground__section">
+    <h2>Input</h2>
+    <div class="playground__row">
+      <ds-input
+        [formControl]="emailCtrl"
+        type="email"
+        label="Email"
+        hint="Tocá afuera con un valor inválido para ver el error automático"
+        error="Ingresá un email válido"
+        placeholder="vos@ejemplo.com"
+      />
+      <span>ctrl: {{ emailCtrl.value || '—' }} · invalid: {{ emailCtrl.invalid }}</span>
+    </div>
+  </section>
+
+  <section class="playground__section">
     <h2>Iconografía (Lucide — ADR-012)</h2>
     <div class="playground__row playground__row--icons">
       <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
