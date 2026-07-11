@@ -25,11 +25,51 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-(vacío — el próximo item entra cuando su disparador se active)
+### `components-add-select` — Select/Combobox
+
+**Tipo**: OpenSpec (kit). **Producto**: [HU-003](../product/epics/EP-002-kit-componentes/HU-003-select-formularios.md) / EP-002.
+
+**Alcance propuesto**: `ds-select` con CVA, keyboard nav completa, chevron `LucideChevronDown` (ADR-012), a11y patrón combobox (HU-003 ya Refinada con CAs). El change decide el mecanismo de posicionamiento (`@floating-ui/dom` vs Popover API + anchor positioning — evaluar plataforma primero, criterio ADR-013); la decisión la reutiliza Tooltip.
+
+**Disparador**: tanda 1 de expansión del kit aprobada — **ACTIVADO** ([D-009](../product/decisiones.md), 2026-07-11).
+
+**Estado**: pendiente.
+
+---
+
+### `components-add-input` — Input/TextField
+
+**Tipo**: OpenSpec (kit). **Producto**: [HU-005](../product/epics/EP-002-kit-componentes/HU-005-input-textfield.md) / EP-002.
+
+**Alcance propuesto**: `ds-input` con CVA, label/hint/error asociados, estados (invalid, disabled accesible ADR-011), sizes por tokens, prefijo/sufijo con iconos ADR-012. Refinar la HU (CAs binarios) antes del propose.
+
+**Disparador**: tanda 1 de expansión del kit aprobada — **ACTIVADO** ([D-009](../product/decisiones.md), 2026-07-11).
+
+**Estado**: pendiente.
 
 ---
 
 ## Next — esperando disparador o decisión del PO
+
+### Tanda 1 del kit — componentes restantes (D-009)
+
+**Tipo**: OpenSpec (kit, un change por componente). **Producto**: HUs de [EP-002](../product/epics/EP-002-kit-componentes/README.md).
+
+**Origen**: [D-009](../product/decisiones.md) — expansión aprobada hacia "una app real se construye 100% con el DS".
+
+En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming al archivar):
+
+- `components-add-tabs` — [HU-006](../product/epics/EP-002-kit-componentes/HU-006-tabs-navegacion.md).
+- `components-add-tooltip` — [HU-007](../product/epics/EP-002-kit-componentes/HU-007-tooltip.md). **Bloqueado por**: decisión de posicionamiento del change de Select.
+- `components-add-toast` — [HU-008](../product/epics/EP-002-kit-componentes/HU-008-toast-notificaciones.md).
+- `components-add-spinner` — [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md).
+- `components-add-skeleton` — [HU-010](../product/epics/EP-002-kit-componentes/HU-010-skeleton.md).
+
+**Disparador** (cada uno): cierre del item anterior de la tanda.
+
+**Estado**: pendiente.
+
+---
 
 ### `tokens-figma-export` — Export DTCG para Figma (EN PAUSA)
 
@@ -39,25 +79,13 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ---
 
-### `components-add-select` — Select/Combobox
-
-**Tipo**: OpenSpec (kit). **Producto**: [HU-003](../product/epics/EP-002-kit-componentes/HU-003-select-formularios.md) / EP-002.
-
-**Alcance propuesto**: `ds-select` con CVA, keyboard nav completa, chevron `LucideChevronDown` (ADR-012), a11y patrón combobox. El refinamiento decide el mecanismo de posicionamiento (`@floating-ui/dom` vs Popover API + anchor positioning — evaluar plataforma primero, criterio ADR-013).
-
-**Disparador**: el PO prioriza formularios reales en el playground/prototipos. Sin bloqueos técnicos (iconos y patrón overlay resueltos).
-
-**Estado**: pendiente.
-
----
-
 ### Primer release publicado en npm
 
 **Tipo**: commit directo + pipeline (no requiere change; el pipeline existe desde `aaa-005`). **Producto**: [HU-002](../product/epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) / EP-003.
 
 **Alcance propuesto**: estrenar el release pipeline consumiendo los changesets acumulados (minors de components, patches de tokens); verificar tarballs (`workspace:*` → semver real) e instalación desde npm en un proyecto limpio.
 
-**Disparador**: decisión del PO de publicar.
+**Disparador**: decisión del PO de publicar (reafirmado "sigue esperando" el 2026-07-11 al aprobar [D-009](../product/decisiones.md); es prerequisito para consumir las libs desde otros repos).
 
 **Estado**: pendiente.
 

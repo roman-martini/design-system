@@ -21,9 +21,9 @@ Empaquetado (APF/exports/tree-shaking), versionado (Changesets), pipeline de rel
 
 ## Historias de usuario
 
-| HU                                     | Título                          | Actor          | Estado       |
-| -------------------------------------- | ------------------------------- | -------------- | ------------ |
-| [HU-002](HU-002-primer-release-npm.md) | Primer release publicado en npm | Dev consumidor | Identificada |
+| HU                                     | Título                          | Actor          | Estado                            |
+| -------------------------------------- | ------------------------------- | -------------- | --------------------------------- |
+| [HU-002](HU-002-primer-release-npm.md) | Primer release publicado en npm | Dev consumidor | Refinada (espera decisión del PO) |
 
 ## Decisiones aplicables
 
@@ -31,7 +31,7 @@ Empaquetado (APF/exports/tree-shaking), versionado (Changesets), pipeline de rel
 
 ## Preguntas abiertas
 
-1. ¿Cuándo estrenar el pipeline? Hay changesets acumulados (minors de components, patch de tokens). Bloquea HU-002; la responde el PO.
+1. ¿Cuándo estrenar el pipeline? Hay changesets acumulados (minors de components, patches de tokens). Bloquea HU-002; la responde el PO — reafirmó "sigue esperando" el 2026-07-11 al aprobar [D-009](../../decisiones.md). Nota: es **prerequisito** para el objetivo de D-009 de consumir las libs desde otros productos.
 
 ## Orden sugerido
 

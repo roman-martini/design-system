@@ -22,16 +22,22 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 
 ## Historias de usuario
 
-| HU                                     | Título                                  | Actor          | Estado       |
-| -------------------------------------- | --------------------------------------- | -------------- | ------------ |
-| [HU-003](HU-003-select-formularios.md) | Select/Combobox para formularios reales | Dev consumidor | Identificada |
+| HU                                       | Título                                     | Actor          | Estado                                                               |
+| ---------------------------------------- | ------------------------------------------ | -------------- | -------------------------------------------------------------------- |
+| [HU-003](HU-003-select-formularios.md)   | Select/Combobox para formularios reales    | Dev consumidor | Refinada (activada por D-009)                                        |
+| [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Identificada (tanda 1)                                               |
+| [HU-006](HU-006-tabs-navegacion.md)      | Tabs para navegación de contenido          | Dev consumidor | Identificada (tanda 1)                                               |
+| [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Identificada (tanda 1; espera decisión de posicionamiento de HU-003) |
+| [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Identificada (tanda 1)                                               |
+| [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Identificada (tanda 1)                                               |
+| [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Identificada (tanda 1)                                               |
 
-Candidatas (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, por prioridad de uso real): Tabs, Tooltip, Toast, Spinner, Skeleton, Input/TextField. Entran con disparador (D-005).
+Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Candidatas restantes (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, requieren disparador propio según D-005): Progress, Accordion, Breadcrumbs, Pagination, Menu/Dropdown, DatePicker (wrapping).
 
 ## Decisiones aplicables
 
-[D-001, D-002, D-005, D-007](../../decisiones.md) · Técnicas: [ADR-004](../../../architecture/adr/ADR-004-arquitectura-components.md), [ADR-007](../../../architecture/adr/ADR-007-naming-prefijos.md), [ADR-010](../../../architecture/adr/ADR-010-file-naming-sin-sufijo-component.md)–[ADR-013](../../../architecture/adr/ADR-013-overlays-dialog-nativo.md).
+[D-001, D-002, D-005, D-007, D-009](../../decisiones.md) · Técnicas: [ADR-004](../../../architecture/adr/ADR-004-arquitectura-components.md), [ADR-007](../../../architecture/adr/ADR-007-naming-prefijos.md), [ADR-010](../../../architecture/adr/ADR-010-file-naming-sin-sufijo-component.md)–[ADR-013](../../../architecture/adr/ADR-013-overlays-dialog-nativo.md).
 
 ## Orden sugerido
 
-HU-003 (Select) es la próxima natural: desbloqueada por iconos (ADR-012) y con el patrón de overlay disponible (ADR-013). Su refinamiento decide la dependencia de posicionamiento (`@floating-ui/dom` u otra).
+Tanda 1 (D-009): **HU-003 Select → HU-005 Input** primero (formularios, el gap más grande), después **HU-006 Tabs**, **HU-007 Tooltip** (reutiliza la decisión de posicionamiento que tome el change de Select), y el trío de feedback **HU-008 Toast → HU-009 Spinner → HU-010 Skeleton**. Cada HU se refina (CAs binarios) justo antes de crear su change.

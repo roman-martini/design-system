@@ -17,6 +17,7 @@ Design tokens en jerarquía `primitives → semantic → component → theme` (A
 | Package `@romanmartinidev/tokens` completo (primitives, semantic, component, themes dark/brand-a/brand-b) | [aaa-002](../../../../openspec/changes/archive/aaa-002-bootstrap-fase-2-tokens/) | `import '@romanmartinidev/tokens/css'` y toda la paleta tokenizada con dark mode opt-in |
 | Jerarquía z-index formalizada + motion de overlays + effect.blur                                          | [aaa-009](../../../../openspec/changes/archive/aaa-009-tokens-add-z-index/)      | Capas y animaciones de overlay consistentes sin hardcodear                              |
 | Regla anti-duplicación component→semantic                                                                 | [aaa-014](../../../../openspec/changes/archive/aaa-014-components-add-modal/)    | Jerarquía de referencia auditada como contrato                                          |
+| Contraste WCAG AA en tokens interactivos (primario + border.strong) + requirement anti-regresión en spec  | [aaa-015](../../../../openspec/changes/archive/aaa-015-tokens-fix-contrast-aa/)  | Button/Checkbox/Radio accesibles out-of-the-box en los 4 themes, verificado por script  |
 
 ## Historias de usuario
 
@@ -28,7 +29,7 @@ Candidatas (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § tokens, en
 
 ## Decisiones aplicables
 
-[D-001, D-002, D-005, D-006, D-008](../../decisiones.md) · Técnica: [ADR-003](../../../architecture/adr/ADR-003-arquitectura-design-tokens.md).
+[D-001, D-002, D-005, D-006, D-007, D-008](../../decisiones.md) · Técnica: [ADR-003](../../../architecture/adr/ADR-003-arquitectura-design-tokens.md).
 
 ## Orden sugerido
 

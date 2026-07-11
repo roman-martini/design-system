@@ -52,26 +52,41 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 
 ## Índice de épicas
 
-| ID                                                    | Épica                         | Actor principal | HUs | Estado                                  |
-| ----------------------------------------------------- | ----------------------------- | --------------- | --- | --------------------------------------- |
-| [EP-001](epics/EP-001-fundamentos-tokens/README.md)   | Fundamentos: tokens y theming | Dev consumidor  | —   | En desarrollo (base entregada)          |
-| [EP-002](epics/EP-002-kit-componentes/README.md)      | Kit de componentes Angular    | Dev consumidor  | 003 | En desarrollo (5 componentes)           |
-| [EP-003](epics/EP-003-consumo-distribucion/README.md) | Consumo y distribución        | Dev consumidor  | 002 | En desarrollo (npm-ready, sin publicar) |
-| [EP-004](epics/EP-004-puente-codigo-diseno/README.md) | Puente código ↔ diseño        | Diseñador       | 001 | En refinamiento (aaa-012 propuesto)     |
-| [EP-005](epics/EP-005-calidad-profesional/README.md)  | Calidad profesional           | Mantenedor      | —   | Identificada (disparadores activados)   |
+| ID                                                    | Épica                         | Actor principal | HUs          | Estado                                                |
+| ----------------------------------------------------- | ----------------------------- | --------------- | ------------ | ----------------------------------------------------- |
+| [EP-001](epics/EP-001-fundamentos-tokens/README.md)   | Fundamentos: tokens y theming | Dev consumidor  | 004          | En desarrollo (base entregada)                        |
+| [EP-002](epics/EP-002-kit-componentes/README.md)      | Kit de componentes Angular    | Dev consumidor  | 003, 005–010 | En desarrollo (5 componentes; tanda 1 aprobada D-009) |
+| [EP-003](epics/EP-003-consumo-distribucion/README.md) | Consumo y distribución        | Dev consumidor  | 002          | En desarrollo (npm-ready, sin publicar)               |
+| [EP-004](epics/EP-004-puente-codigo-diseno/README.md) | Puente código ↔ diseño        | Diseñador       | 001          | En refinamiento (aaa-012 propuesto)                   |
+| [EP-005](epics/EP-005-calidad-profesional/README.md)  | Calidad profesional           | Mantenedor      | —            | En desarrollo (primera tanda 2026-07-11)              |
 
-Próximos IDs libres: **EP-006**, **HU-004**, **D-008**.
+Próximos IDs libres: **EP-006**, **HU-011**, **D-010**.
 
-## Roadmap (foto actual)
+## Roadmap
 
-El orden operativo lo marca [docs/backlog/BACKLOG.md](../backlog/BACKLOG.md); acá va la lectura de producto:
+Sin fechas: el avance lo marcan los **disparadores** (D-005) y el orden operativo vive en [docs/backlog/BACKLOG.md](../backlog/BACKLOG.md). El rumbo se expresa como **hitos de producto**, cada uno con su condición de salida binaria:
+
+| Hito                                         | Qué lo compone                                                                                        | Condición de salida                                               | Estado                                                   |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------- |
+| **H1 — Kit mínimo viable para una app real** | Tanda 1 ([D-009](decisiones.md)): HU-003 + HU-005…HU-010 (EP-002)                                     | Una app real se construye 100% con componentes del DS             | En curso — Select e Input activadas (BACKLOG § Now)      |
+| **H2 — Libs consumibles desde otros repos**  | Primer release npm: [HU-002](epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) (EP-003) | Un proyecto externo instala desde npm y arranca con el quickstart | Refinada; espera decisión del PO (reafirmado 2026-07-11) |
+| **H3 — Puente con diseño**                   | Figma export: [HU-001](epics/EP-004-puente-codigo-diseno/HU-001-tokens-en-figma.md) (EP-004)          | Variables de Figma sincronizadas desde el código (one-way, D-006) | aaa-012 propuesto, 4/4 artefactos; en pausa por el PO    |
+
+Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualquier momento. El horizonte más largo (multi-framework, patterns/recipes) vive en [FUTURE-WORK § niveles de madurez](../backlog/FUTURE-WORK.md#estado-actual-respecto-a-los-niveles-de-madurez); no es compromiso.
+
+### Foto táctica
 
 ```
-EP-004: HU-001 (Figma export)     → aaa-012 ya propuesto, 4/4 artefactos; en pausa por decisión del PO
-EP-002: HU-003 (Select)           → desbloqueado (iconos ADR-012 + dialog ADR-013 listos)
-EP-005: skills /ds:*              → disparadores ACTIVADOS (3 CHGs add-component, 5 componentes)
-EP-003: HU-002 (primer release)   → cuando el PO decida estrenar el pipeline de aaa-005
+EP-002: tanda 1 del kit (D-009)   → HU-003 Select + HU-005 Input ACTIVADAS (BACKLOG § Now);
+                                    HU-006 Tabs, HU-007 Tooltip, HU-008 Toast, HU-009 Spinner,
+                                    HU-010 Skeleton en cola (se promueven al cerrar la anterior)
+EP-003: HU-002 (primer release)   → Refinada; el PO reafirmó esperar (2026-07-11) — prerequisito
+                                    para consumir las libs desde otros repos
+EP-004: HU-001 (Figma export)     → aaa-012 propuesto, 4/4 artefactos; en pausa por decisión del PO
+EP-005: /ds:audit-tokens          → posible activación (primer hardcode detectado en la auditoría)
 ```
+
+Última entrega: HU-004 (contraste AA) Hecha — aaa-015 archivado el 2026-07-11.
 
 ## Convenciones
 
@@ -107,7 +122,7 @@ Para épicas: Identificada → En refinamiento → Refinada (todas sus HUs refin
 
 ## Flujo de trabajo
 
-1. **Idea nueva** → si es grande, crear carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como `README.md`; si es chica, crear la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada). Las HUs candidatas sin refinar pueden listarse en el README de la épica sin archivo propio.
+1. **Idea nueva** → si es grande, crear carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como `README.md`; si es chica, crear la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada). Las HUs candidatas sin refinar pueden listarse en el README de la épica sin archivo propio. Las ideas crudas sin disparador van a [FUTURE-WORK](../backlog/FUTURE-WORK.md) (la cantera), no generan artefactos acá.
 2. **Refinamiento** → cada ambigüedad se resuelve con el product owner y se registra como **D-XXX en [decisiones.md](decisiones.md)** — las HUs referencian decisiones, no las repiten.
 3. **Ejecución** → una HU Refinada se implementa vía **change OpenSpec** (`aaa-NNN`, flujo del repo). Las decisiones técnicas que surjan van como ADR a `docs/architecture/adr/`.
 4. **Cierre** → CAs tildados al archivar el change, estado Hecha. La épica se cierra cuando todas sus HUs están Hechas (o queda abierta como flujo continuo).
