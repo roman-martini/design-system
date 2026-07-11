@@ -29,7 +29,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-005](../product/epics/EP-002-kit-componentes/HU-005-input-textfield.md) / EP-002.
 
-**Alcance propuesto**: `ds-input` con CVA, label/hint/error asociados, estados (invalid, disabled accesible ADR-011), sizes por tokens, prefijo/sufijo con iconos ADR-012. Refinar la HU (CAs binarios) antes del propose.
+**Alcance propuesto**: `ds-input` field completo (label/hint/error integrados), CVA, tipos `text|email|password|tel|url|search`, invalid automático desde NgControl + mensaje manual, disabled nativo (ADR-011), slots pasivos prefix/suffix (ADR-012), sizes por tokens. **HU-005 ya Refinada** (2026-07-11) con 8 CAs binarios — lista para propose.
 
 **Disparador**: tanda 1 de expansión del kit aprobada — **ACTIVADO** ([D-009](../product/decisiones.md), 2026-07-11).
 

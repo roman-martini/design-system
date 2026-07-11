@@ -26,7 +26,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | HU                                       | Título                                     | Actor          | Estado                                                                      |
 | ---------------------------------------- | ------------------------------------------ | -------------- | --------------------------------------------------------------------------- |
 | [HU-003](HU-003-select-formularios.md)   | Select/Combobox para formularios reales    | Dev consumidor | Hecha (aaa-016 archivado 2026-07-11; generó ADR-014)                        |
-| [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Identificada (tanda 1)                                                      |
+| [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Refinada (2026-07-11; lista para su change)                                 |
 | [HU-006](HU-006-tabs-navegacion.md)      | Tabs para navegación de contenido          | Dev consumidor | Identificada (tanda 1)                                                      |
 | [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Identificada (tanda 1; desbloqueada — posicionamiento resuelto por ADR-014) |
 | [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Identificada (tanda 1)                                                      |
