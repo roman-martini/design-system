@@ -25,18 +25,6 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-### `components-add-input` — Input/TextField
-
-**Tipo**: OpenSpec (kit). **Producto**: [HU-005](../product/epics/EP-002-kit-componentes/HU-005-input-textfield.md) / EP-002.
-
-**Alcance propuesto**: `ds-input` field completo (label/hint/error integrados), CVA, tipos `text|email|password|tel|url|search`, invalid automático desde NgControl + mensaje manual, disabled nativo (ADR-011), slots pasivos prefix/suffix (ADR-012), sizes por tokens. **HU-005 ya Refinada** (2026-07-11) con 8 CAs binarios.
-
-**Disparador**: tanda 1 de expansión del kit aprobada — **ACTIVADO** ([D-009](../product/decisiones.md), 2026-07-11).
-
-**Estado**: **propuesta activa** — [`aaa-017`](../../openspec/changes/components-add-input/), 4/4 artefactos, listo para apply.
-
----
-
 ### `components-add-tabs` — Tabs de navegación
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-006](../product/epics/EP-002-kit-componentes/HU-006-tabs-navegacion.md) / EP-002.
@@ -44,6 +32,18 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 **Alcance propuesto**: según HU-006; patrón ARIA tabs, tokens `component.tabs.*` ya existentes en el package.
 
 **Disparador**: cierre del item anterior de la tanda (Select, `aaa-016`) — **ACTIVADO** (2026-07-11, grooming del archive).
+
+**Estado**: pendiente.
+
+---
+
+### `components-add-tooltip` — Tooltip de ayuda contextual
+
+**Tipo**: OpenSpec (kit). **Producto**: [HU-007](../product/epics/EP-002-kit-componentes/HU-007-tooltip.md) / EP-002.
+
+**Alcance propuesto**: según HU-007 (refinar CAs antes del propose); reutiliza las reglas 1–6 de [ADR-014](../architecture/adr/ADR-014-overlays-anclados-popover-api.md) (Popover API + fallback JS) sin re-decidir.
+
+**Disparador**: cierre del item anterior de la tanda (Input, `aaa-017`) — **ACTIVADO** (2026-07-11, grooming del archive).
 
 **Estado**: pendiente.
 
@@ -59,7 +59,6 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming al archivar):
 
-- `components-add-tooltip` — [HU-007](../product/epics/EP-002-kit-componentes/HU-007-tooltip.md). **Desbloqueado** (2026-07-11): el patrón de posicionamiento quedó resuelto por [ADR-014](../architecture/adr/ADR-014-overlays-anclados-popover-api.md) (Popover API + fallback JS, reglas 1–6 reutilizables).
 - `components-add-toast` — [HU-008](../product/epics/EP-002-kit-componentes/HU-008-toast-notificaciones.md).
 - `components-add-spinner` — [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md).
 - `components-add-skeleton` — [HU-010](../product/epics/EP-002-kit-componentes/HU-010-skeleton.md).
@@ -67,6 +66,20 @@ En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming 
 **Disparador** (cada uno): cierre del item anterior de la tanda.
 
 **Estado**: pendiente.
+
+---
+
+### `tokens-fix-status-borders` — Contraste AA de border.success/warning/info
+
+**Tipo**: OpenSpec (tokens, micro-change). **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/README.md).
+
+**Origen**: detectado en el gate de contraste de [`aaa-017`](../../openspec/changes/archive/aaa-017-components-add-input/) al arreglar `border.danger`: `border.success/warning/info` arrastran el mismo patrón (`*-400` en light / `*-800` en dark) que falla 3:1. Sin consumidores hoy.
+
+**Alcance propuesto**: mismo fix que `border.danger` (semantic → `*-500`, override dark → `*-400`), verificado por script.
+
+**Disparador**: el primer componente que consuma alguno de esos tokens (Alert es el candidato natural), o la próxima corrida de `/ds:check-a11y` que los alcance.
+
+**Estado**: pendiente, sin disparador activo.
 
 ---
 

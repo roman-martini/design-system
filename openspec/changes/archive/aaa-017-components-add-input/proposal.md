@@ -2,7 +2,8 @@
 id: aaa-017
 name: components-add-input
 type: change
-status: proposed
+status: archived
+archived: 2026-07-11
 modifies-specs:
   - components-package (ADDED: DsInput)
   - design-tokens-package (sin delta de spec; fix de valor en component.input)

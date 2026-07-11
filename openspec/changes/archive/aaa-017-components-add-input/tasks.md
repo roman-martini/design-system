@@ -47,16 +47,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: NgControl auto-registrado si
 - [x] 6.3 Auditoría **`/ng:review`** sobre `src/lib/input/` — **gate aprobado**: 0 altas, 0 medias, 2 bajas (naming de handlers por evento — patrón compartido por los 4 componentes del kit; decisión diferida al PO: formalizarlo como convención en `ng-stack-profile.md` o housekeeping que renombra en todo el kit). Excepciones de design.md verificadas una a una por el reviewer.
 - [x] 6.4 `npm pack --dry-run`: tarball sin `*.spec.ts`/`*.stories.ts`, con input compilado.
 - [x] 6.5 Changesets: **minor** de components (DsInput) y **patch** de tokens (fix placeholder).
-- [ ] 6.6 Proponer mensaje de commit (implementación) y esperar OK del usuario.
+- [x] 6.6 Proponer mensaje de commit (implementación) y esperar OK del usuario.
 
 **Criterio**: automáticos verdes; gate de review resuelto; changesets correctos; aprobación explícita antes del commit.
 
 ## 7. Archive
 
-- [ ] 7.1 Sin ADR nuevo previsto: aplica ADRs existentes (011 rama form control, 012, 014 §5-analogía del reenvío). Si la implementación destapa una decisión one-way door, se crea en ese momento.
-- [ ] 7.2 Mover a `archive/aaa-017-components-add-input/`; frontmatter `archived`; sincronizar spec base `components-package` (1 Requirement ADDED, referencia a design.md convertida a texto autocontenido).
-- [ ] 7.3 Registros: `openspec/README.md` (próximo ID → `aaa-018`), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Input sale de Now; **promover el siguiente de la tanda D-009** — tooltip, ya desbloqueado), HU-005 → Hecha con CAs tildados, EP-002 actualizado.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.1 Sin ADR nuevo previsto: aplica ADRs existentes (011 rama form control, 012, 014 §5-analogía del reenvío). Si la implementación destapa una decisión one-way door, se crea en ese momento.
+- [x] 7.2 Mover a `archive/aaa-017-components-add-input/`; frontmatter `archived`; sincronizar spec base `components-package` (1 Requirement ADDED, referencia a design.md convertida a texto autocontenido).
+- [x] 7.3 Registros: `openspec/README.md` (próximo ID → `aaa-018`), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Input sale de Now; **promover el siguiente de la tanda D-009** — tooltip, ya desbloqueado), HU-005 → Hecha con CAs tildados, EP-002 actualizado.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
 - [ ] 7.5 Proponer commit del archive y esperar OK.
 
 **Criterio**: change archivado, spec base sincronizada, tanda D-009 avanzada.

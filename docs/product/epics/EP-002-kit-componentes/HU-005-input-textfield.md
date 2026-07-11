@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](README.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-11, ambigüedades resueltas con el PO)
+**Estado**: Hecha — change [aaa-017 components-add-input](../../../../openspec/changes/archive/aaa-017-components-add-input/) archivado (2026-07-11)
 **Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
 
 ---
@@ -22,14 +22,14 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec components-package (delta del change components-add-input). -->
 
-- [ ] **CA-005.1** — Dado un `ds-input` ligado a Reactive Forms o `[(ngModel)]` (CVA), cuando el usuario tipea, entonces el control del form refleja el valor en cada input; y cuando el form setea el valor programáticamente, el input lo muestra.
-- [ ] **CA-005.2** — Dado `<ds-input label="Email" hint="Nunca lo compartimos">`, entonces el label se asocia por `<label [for]>` al input nativo y el hint por `aria-describedby`; sin `label` provisto, el componente acepta `aria-label` del consumidor (reenviado al input nativo, patrón ADR-014 §5-análogo al de Select).
-- [ ] **CA-005.3** — Dado el input `type`, entonces acepta exactamente `text | email | password | tel | url | search` (type `DsInputType`, default `text`) y lo refleja en el `<input>` nativo.
-- [ ] **CA-005.4** — Dado un FormControl invalid y touched, entonces el input muestra el estado de error (borde `border-error`, `aria-invalid="true"`) sin código extra del consumidor; el input `[invalid]` fuerza el estado manualmente; y el input `error` (string) se renderiza visible y asociado por `aria-describedby` (reemplaza al hint mientras está presente).
-- [ ] **CA-005.5** — Dado un input deshabilitado vía forms API (`setDisabledState`) o `[disabled]`, entonces usa el **`disabled` nativo** del `<input>` (rama form control de [ADR-011](../../../architecture/adr/ADR-011-estado-disabled-accesible.md) — acá el control operable sí es un input nativo, a diferencia de Select).
-- [ ] **CA-005.6** — Dado el CSS del componente, entonces todo valor visual sale de `var(--ds-*)` (tokens `component.input.*`), los sizes `sm | md | lg` escalan por tokens, y los pares de contraste calculados por script pasan AA en los 4 themes (nota: `input.text-placeholder` hoy referencia `text.tertiary`, que falla AA — ajustar a `text.secondary` como se hizo en Select).
-- [ ] **CA-005.7** — Dado contenido proyectado en `[ds-input-prefix]`/`[ds-input-suffix]`, entonces se renderiza dentro del field (antes/después del input), es decorativo (`aria-hidden`, no focuseable) y los iconos siguen ADR-012 (16/1.5/currentColor).
-- [ ] **CA-005.8** — Dado el input enfocado por teclado, entonces el field muestra el ring de foco tokenizado (`--ds-semantic-shadow-focus` o `border-focus`) sin `outline: none` desnudo.
+- [x] **CA-005.1** — Dado un `ds-input` ligado a Reactive Forms o `[(ngModel)]` (CVA), cuando el usuario tipea, entonces el control del form refleja el valor en cada input; y cuando el form setea el valor programáticamente, el input lo muestra.
+- [x] **CA-005.2** — Dado `<ds-input label="Email" hint="Nunca lo compartimos">`, entonces el label se asocia por `<label [for]>` al input nativo y el hint por `aria-describedby`; sin `label` provisto, el componente acepta `aria-label` del consumidor (reenviado al input nativo, patrón ADR-014 §5-análogo al de Select).
+- [x] **CA-005.3** — Dado el input `type`, entonces acepta exactamente `text | email | password | tel | url | search` (type `DsInputType`, default `text`) y lo refleja en el `<input>` nativo.
+- [x] **CA-005.4** — Dado un FormControl invalid y touched, entonces el input muestra el estado de error (borde `border-error`, `aria-invalid="true"`) sin código extra del consumidor; el input `[invalid]` fuerza el estado manualmente; y el input `error` (string) se renderiza visible y asociado por `aria-describedby` (reemplaza al hint mientras está presente).
+- [x] **CA-005.5** — Dado un input deshabilitado vía forms API (`setDisabledState`) o `[disabled]`, entonces usa el **`disabled` nativo** del `<input>` (rama form control de [ADR-011](../../../architecture/adr/ADR-011-estado-disabled-accesible.md) — acá el control operable sí es un input nativo, a diferencia de Select).
+- [x] **CA-005.6** — Dado el CSS del componente, entonces todo valor visual sale de `var(--ds-*)` (tokens `component.input.*`), los sizes `sm | md | lg` escalan por tokens, y los pares de contraste calculados por script pasan AA en los 4 themes (nota: `input.text-placeholder` hoy referencia `text.tertiary`, que falla AA — ajustar a `text.secondary` como se hizo en Select).
+- [x] **CA-005.7** — Dado contenido proyectado en `[ds-input-prefix]`/`[ds-input-suffix]`, entonces se renderiza dentro del field (antes/después del input), es decorativo (`aria-hidden`, no focuseable) y los iconos siguen ADR-012 (16/1.5/currentColor).
+- [x] **CA-005.8** — Dado el input enfocado por teclado, entonces el field muestra el ring de foco tokenizado (`--ds-semantic-shadow-focus` o `border-focus`) sin `outline: none` desnudo.
 
 ## Dependencias
 

@@ -1,6 +1,6 @@
 # EP-002 — Kit de componentes Angular
 
-**Estado**: En desarrollo (7 componentes entregados; tanda 1 en curso)
+**Estado**: En desarrollo (8 componentes entregados; tanda 1 en curso)
 
 ## Contexto
 
@@ -20,13 +20,14 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | Iconografía Lucide (convención tree-shakeable 16/1.5)                 | [aaa-013](../../../../openspec/changes/archive/aaa-013-components-decide-icon-library/)                                                                                       | Iconos type-safe sin mantener un set propio             |
 | `DsModal` (dialog nativo: focus trap/top layer por plataforma)        | [aaa-014](../../../../openspec/changes/archive/aaa-014-components-add-modal/)                                                                                                 | Primer overlay completo con a11y de plataforma          |
 | `DsSelect` + `DsOption` (combobox APG sobre Popover API, CVA)         | [aaa-016](../../../../openspec/changes/archive/aaa-016-components-add-select/)                                                                                                | Selección de opciones accesible sin dependencias nuevas |
+| `DsInput` (field completo: label/hint/error, invalid automático)      | [aaa-017](../../../../openspec/changes/archive/aaa-017-components-add-input/)                                                                                                 | Entrada de texto accesible con validación integrada     |
 
 ## Historias de usuario
 
 | HU                                       | Título                                     | Actor          | Estado                                                                      |
 | ---------------------------------------- | ------------------------------------------ | -------------- | --------------------------------------------------------------------------- |
 | [HU-003](HU-003-select-formularios.md)   | Select/Combobox para formularios reales    | Dev consumidor | Hecha (aaa-016 archivado 2026-07-11; generó ADR-014)                        |
-| [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Refinada (2026-07-11; lista para su change)                                 |
+| [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Hecha (aaa-017 archivado 2026-07-11)                                        |
 | [HU-006](HU-006-tabs-navegacion.md)      | Tabs para navegación de contenido          | Dev consumidor | Identificada (tanda 1)                                                      |
 | [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Identificada (tanda 1; desbloqueada — posicionamiento resuelto por ADR-014) |
 | [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Identificada (tanda 1)                                                      |
