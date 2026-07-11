@@ -44,7 +44,16 @@
       "Bash(sed -i \"s|host.closeOnEscape = false;|host.closeOnEscape.set\\(false\\);|; s|host.closeOnOverlay = false;|host.closeOnOverlay.set\\(false\\);|; s|host.closeLabel = 'Cerrar diálogo';|host.closeLabel.set\\('Cerrar diálogo'\\);|; s|host.heading = 'Confirmar acción';|host.heading.set\\('Confirmar acción'\\);|; s|host.size = size;|host.size.set\\(size\\);|\" packages/components/src/lib/modal/modal.spec.ts)",
       "Bash(pnpm -F playground build)",
       "Bash(pnpm -F playground test)",
-      "Bash(pnpm -F playground build-storybook)"
+      "Bash(pnpm -F playground build-storybook)",
+      "Bash(git commit -m 'feat\\(components\\): agregar DsModal sobre dialog nativo \\(aaa-014\\) *)",
+      "Bash(sed -i 's/^status: proposed/status: archived\\\\narchived: 2026-07-10/; s/^  - ADR-012$/  - ADR-012\\\\n  - ADR-013/' openspec/changes/archive/aaa-014-components-add-modal/proposal.md)",
+      "Bash(grep -cE \"ms$\")",
+      "Bash(git commit -m 'chore\\(openspec\\): archive aaa-014 components-add-modal *)",
+      "Bash(sed -i 's|`docs/architecture/FUTURE-WORK.md`    | `docs/backlog/FUTURE-WORK.md`         |' CLAUDE.md)",
+      "Bash(sed -i 's|\\\\[`docs/architecture/FUTURE-WORK.md`\\\\]\\(../architecture/FUTURE-WORK.md\\)|[`docs/backlog/FUTURE-WORK.md`]\\(../backlog/FUTURE-WORK.md\\)|' docs/reference/README.md)",
+      "Bash(sed -i 's|\\\\[FUTURE-WORK\\\\]\\(../architecture/FUTURE-WORK.md\\)|[FUTURE-WORK]\\(FUTURE-WORK.md\\)|' docs/backlog/BACKLOG.md)",
+      "Bash(sed -i 's|`docs/architecture/FUTURE-WORK.md`       |[`docs/backlog/FUTURE-WORK.md`]\\(../backlog/FUTURE-WORK.md\\) |' docs/product/README.md)",
+      "Bash(sed -i 's|\\\\[FUTURE-WORK\\\\]\\(../../../architecture/FUTURE-WORK.md\\)|[FUTURE-WORK]\\(../../../backlog/FUTURE-WORK.md\\)|' docs/product/epics/EP-001-fundamentos-tokens/README.md docs/product/epics/EP-002-kit-componentes/README.md docs/product/epics/EP-002-kit-componentes/HU-003-select-formularios.md docs/product/epics/EP-005-calidad-profesional/README.md)"
     ]
   }
 }

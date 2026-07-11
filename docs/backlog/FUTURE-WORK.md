@@ -1,20 +1,22 @@
-# FUTURE-WORK — Backlog del Design System
+# FUTURE-WORK — Cantera del Design System
 
 Rescate del roadmap del repo de investigación previo, **realineado** al naming y estructura actuales (`ds-` selectores, `--ds-*` CSS vars, monorepo pnpm + Angular 21 zoneless).
 
-> Este documento es **inspirativo, no normativo**. Cada componente / feature concreta se propone como **change OpenSpec** (`aaa-NNN`) cuando llegue su turno, con su propio `proposal.md` + `design.md` + `tasks.md` + spec deltas. No tomar este backlog como contrato.
+> Este documento es **inspirativo, no normativo** — la cantera detrás del [backlog operativo](BACKLOG.md): un item de acá se promueve al backlog cuando gana un **disparador concreto**, y de ahí a **change OpenSpec** (`aaa-NNN`) cuando se activa. No tomar este documento como contrato.
 
 ---
 
 ## Estado actual respecto a los niveles de madurez
 
-| Nivel | Tema                                                    | Estado         | Coverage                                                                                |
-| ----- | ------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------- |
-| 1     | Cerrar deuda — componentes base + tokens                | 🟡 En curso    | 1/11 componentes (Button), tokens base completos                                        |
-| 2     | Calidad profesional — tests, a11y CI, stylelint, bundle | 🔴 Sin empezar | 0%                                                                                      |
-| 3     | Distribución y consumo — monorepo, publish, versionado  | ✅ Completo    | Monorepo (aaa-001) + ng-packagr (aaa-003) + Changesets (aaa-001) + CI/release (aaa-005) |
-| 4     | Escalado real — multi-framework, mobile, Figma sync     | 🔴 Sin empezar | 0% — diferido a "cuando aparezca necesidad real"                                        |
-| 5     | Patterns / Templates / Recipes                          | 🔴 Sin empezar | 0% — útil cuando haya ≥10 componentes                                                   |
+_Actualizado 2026-07-11._
+
+| Nivel | Tema                                                    | Estado         | Coverage                                                                                               |
+| ----- | ------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------ |
+| 1     | Cerrar deuda — componentes base + tokens                | 🟡 En curso    | 5/11 componentes (Button, Checkbox, Radio, RadioGroup, Modal); tokens base + z-index/overlay completos |
+| 2     | Calidad profesional — tests, a11y CI, stylelint, bundle | 🟡 Arrancable  | Tests por componente ✅; skills `/ds:*` con disparadores activados (ver [BACKLOG § Now](BACKLOG.md))   |
+| 3     | Distribución y consumo — monorepo, publish, versionado  | ✅ Completo    | Monorepo (aaa-001) + ng-packagr (aaa-003) + Changesets (aaa-001) + CI/release (aaa-005)                |
+| 4     | Escalado real — multi-framework, mobile, Figma sync     | 🟡 En curso    | Export Figma DTCG propuesto (aaa-012, en pausa); resto diferido a necesidad real                       |
+| 5     | Patterns / Templates / Recipes                          | 🔴 Sin empezar | 0% — útil cuando haya ≥10 componentes                                                                  |
 
 ---
 
@@ -58,33 +60,9 @@ Cada uno = un change OpenSpec (`components-add-<name>` o similar) con su propio 
 
 ## Tokens faltantes
 
-### Z-index (alta prioridad — bloquea Modal / Tooltip / Toast)
+### ~~Z-index~~ — ✅ entregado
 
-Sumar `packages/tokens/src/semantic/z-index.json`:
-
-```json
-{
-  "semantic": {
-    "z-index": {
-      "hide": { "value": "-1" },
-      "auto": { "value": "auto" },
-      "base": { "value": "0" },
-      "docked": { "value": "10" },
-      "dropdown": { "value": "1000" },
-      "sticky": { "value": "1020" },
-      "banner": { "value": "1030" },
-      "overlay": { "value": "1040" },
-      "modal": { "value": "1050" },
-      "popover": { "value": "1060" },
-      "skiplink": { "value": "1070" },
-      "toast": { "value": "1080" },
-      "tooltip": { "value": "1090" }
-    }
-  }
-}
-```
-
-> Verificar si ya existe `z-index.json` en el repo actual (la lista del package tokens lo menciona, pero no validamos su contenido).
+Formalizado en `aaa-009` (13 niveles + motion de overlays + effect.blur, con contrato en spec y tests). Nota post-`aaa-014`/[ADR-013](../architecture/adr/ADR-013-overlays-dialog-nativo.md): los overlays sobre `<dialog>` nativo usan el top layer e **ignoran** esta jerarquía — sigue vigente para capas no-top-layer (dropdown, sticky, banner, toast no modal).
 
 ### Breakpoints (media prioridad — necesarios para componentes responsive)
 
@@ -133,12 +111,12 @@ Convención `[data-density="compact"]` con overrides de heights y paddings — s
 
 **Objetivo**: que el DS sea utilizable para una app real, no solo demo.
 
-1. **Z-index tokens** (bloquea Modal/Tooltip/Toast).
-2. **Checkbox** + **Radio + RadioGroup**.
-3. **Modal / Dialog** (requisito de apps reales).
+1. ~~**Z-index tokens**~~ ✅ aaa-009.
+2. ~~**Checkbox** + **Radio + RadioGroup**~~ ✅ aaa-006 + aaa-008.
+3. ~~**Modal / Dialog**~~ ✅ aaa-014 (sobre `<dialog>` nativo, ADR-013).
 4. **Tabs**.
-5. **Select / Combobox** (el más complejo — hacer después de Tabs).
-6. **Tests unitarios** de los componentes existentes + nuevos (Vitest ya configurado).
+5. **Select / Combobox** (candidato inmediato — [HU-003](../product/epics/EP-002-kit-componentes/HU-003-select-formularios.md), en BACKLOG § Next).
+6. ~~**Tests unitarios** de los componentes existentes~~ ✅ cada componente entra con sus tests (79 al día de hoy).
 
 ### Nivel 2 — Calidad profesional
 
@@ -200,7 +178,7 @@ Cada pattern como **story compuesta**, no como componente nuevo del package.
 - **No usar `!important` ni override por especificidad**. Si un token no alcanza, sumar uno nuevo en lugar de hackear CSS.
 - **No commitear archivos generados** (Compodoc `documentation.json`, builds, etc.). Deben estar en `.gitignore`.
 
-Ver también [PLAYBOOK.md § Anti-patrones a evitar](PLAYBOOK.md#anti-patrones-a-evitar) para anti-patrones de la **infraestructura** del repo.
+Ver también [PLAYBOOK.md § Anti-patrones a evitar](../architecture/PLAYBOOK.md#anti-patrones-a-evitar) para anti-patrones de la **infraestructura** del repo.
 
 ---
 
@@ -229,4 +207,4 @@ Ver también [PLAYBOOK.md § Anti-patrones a evitar](PLAYBOOK.md#anti-patrones-a
 
 ---
 
-> Actualizado: 2026-06-08. Si modificás este doc, mantener alineación con [README.md](README.md) (síntesis arquitectónica) y [PLAYBOOK.md](PLAYBOOK.md) (instructable de replicación).
+> Actualizado: 2026-06-08. Si modificás este doc, mantener alineación con [architecture/README.md](../architecture/README.md) (síntesis arquitectónica) y [PLAYBOOK.md](../architecture/PLAYBOOK.md) (instructable de replicación).

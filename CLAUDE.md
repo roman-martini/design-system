@@ -24,7 +24,9 @@ agent-design-sistem/
 │   │   ├── README.md            # Visión general
 │   │   ├── decisions-log.md     # Índice tabular de decisiones
 │   │   └── adr/                 # ADRs en formato MADR
-│   └── reference/                  # Material de referencia (no normativo, otros repos)
+│   ├── product/                 # Producto: épicas, HUs, decisiones D-XXX
+│   ├── backlog/                 # BACKLOG.md (Now/Next/Later) + FUTURE-WORK.md (cantera)
+│   └── reference/               # Material de referencia (no normativo, otros repos)
 ├── openspec/                    # Specs y propuestas de cambio significativo
 │   ├── config.yaml
 │   ├── specs/
@@ -71,7 +73,9 @@ Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si te
 | ¿Cómo trabajo como dev en este repo?                        | `CONTRIBUTING.md`                     | Flujo de PR, commits, changesets                                          |
 | ¿Cómo arranco como dev nuevo?                               | `README.md` (root)                    | Quickstart                                                                |
 | ¿Cómo debe trabajar Claude acá?                             | `CLAUDE.md` (este archivo)            | Contrato Claude ↔ repo                                                    |
-| Componentes futuros + tokens faltantes (backlog del DS)     | `docs/architecture/FUTURE-WORK.md`    | Backlog inspiracional (no normativo)                                      |
+| ¿Qué valor, para qué actor, por qué ahora? (producto)       | `docs/product/`                       | Épicas + HUs + decisiones de producto (D-XXX)                             |
+| ¿Qué está en cola y cuándo se activa? (backlog operativo)   | `docs/backlog/BACKLOG.md`             | Cola Now/Next/Later con disparadores                                      |
+| Componentes futuros + tokens faltantes (cantera del DS)     | `docs/backlog/FUTURE-WORK.md`         | Backlog inspiracional (no normativo)                                      |
 | Material de investigación de referencia (no normativo)      | `docs/reference/`                     | Histórico/inspiración                                                     |
 
 ### Reglas para no mezclar

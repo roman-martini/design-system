@@ -25,4 +25,4 @@ Este directorio sirve como **base de conocimiento histórica e inspiracional**:
 
 - [`docs/architecture/README.md`](../architecture/README.md) — síntesis arquitectónica del repo actual (fuente de verdad).
 - [`docs/architecture/PLAYBOOK.md`](../architecture/PLAYBOOK.md) — cómo replicar esta arquitectura en otro repo.
-- [`docs/architecture/FUTURE-WORK.md`](../architecture/FUTURE-WORK.md) — backlog del DS (componentes y tokens futuros).
+- [`docs/backlog/FUTURE-WORK.md`](../backlog/FUTURE-WORK.md) — backlog del DS (componentes y tokens futuros).

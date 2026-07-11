@@ -63,11 +63,12 @@ context: |
     - docs/architecture/decisions-log.md índice de ADRs
     - docs/architecture/adr/             ADRs aceptados inmutables
     - openspec/README.md                 convención + próximo ID disponible
-    - openspec/BACKLOG.md                items pendientes con disparador
+    - docs/backlog/BACKLOG.md            cola operativa Now/Next/Later con disparadores
+    - docs/product/                      épicas, HUs y decisiones de producto (D-XXX)
 
 rules:
   proposal:
-    - Antes de redactar leer CLAUDE.md, architecture/README.md, decisions-log.md, openspec/README.md y BACKLOG.md
+    - Antes de redactar leer CLAUDE.md, architecture/README.md, decisions-log.md, openspec/README.md y docs/backlog/BACKLOG.md
     - Declarar cuál de las 3 prioridades del repo respalda la propuesta
     - Incluir sección "Alternativas evaluadas" con al menos 2 opciones descartadas
     - Si toca 2 o más packages o es one-way door, indicar que generará un ADR al cerrarse
