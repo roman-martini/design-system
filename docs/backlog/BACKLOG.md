@@ -41,20 +41,6 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ---
 
-### `components-fix-a11y-minor` — Fixes menores de la auditoría a11y
-
-**Tipo**: commit directo (componentes, sin cambio de API). **Producto**: [EP-005](../product/epics/EP-005-calidad-profesional/README.md).
-
-**Origen**: [auditoría a11y 2026-07-11](../design/a11y/2026-07-11-audit.md) § "Próximos pasos" punto 2.
-
-**Alcance propuesto**: dot del Radio vía `var()` en vez de `white` hardcodeado; bloques `prefers-reduced-motion` en Button/Checkbox/Radio; stories del RadioGroup con `aria-label` + test del passthrough. Quedan afuera (requieren decisión, punto 3 del reporte): `aria-checked` redundante (implica delta de spec), checkmark del Checkbox (técnica a elegir), nav de teclado del RadioGroup.
-
-**Disparador**: hallazgos media/baja de la auditoría — **ACTIVADO** (2026-07-11).
-
-**Estado**: pendiente.
-
----
-
 ## Next — esperando disparador o decisión del PO
 
 ### `tokens-figma-export` — Export DTCG para Figma (EN PAUSA)

@@ -82,3 +82,9 @@ button[data-size='lg'] {
   padding: var(--ds-semantic-space-md) var(--ds-semantic-space-lg);
   font-size: var(--ds-font-size-lg);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+}

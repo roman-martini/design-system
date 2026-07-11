@@ -26,7 +26,7 @@ export const Default: Story = {
   render: (args) => ({
     props: { ...args, selected: 'angular' },
     template: `
-      <ds-radio-group [(value)]="selected" [disabled]="disabled">
+      <ds-radio-group [(value)]="selected" [disabled]="disabled" aria-label="Framework preferido">
         <ds-radio [value]="'angular'" label="Angular" />
         <ds-radio [value]="'react'" label="React" />
         <ds-radio [value]="'vue'" label="Vue" />
@@ -36,6 +36,9 @@ export const Default: Story = {
   }),
 };
 
+// Todo radiogroup necesita nombre accesible: el consumidor lo provee con
+// aria-label o aria-labelledby sobre <ds-radio-group> (pasa directo al host).
+
 export const WithFormControl: Story = {
   decorators: [moduleMetadata({ imports: [DsRadioGroup, DsRadio, ReactiveFormsModule] })],
   parameters: { controls: { exclude: ['disabled'] } },
@@ -44,7 +47,7 @@ export const WithFormControl: Story = {
     return {
       props: { ctrl },
       template: `
-        <ds-radio-group [formControl]="ctrl">
+        <ds-radio-group [formControl]="ctrl" aria-label="Framework preferido">
           <ds-radio [value]="'angular'" label="Angular" />
           <ds-radio [value]="'react'" label="React" />
           <ds-radio [value]="'vue'" label="Vue" />
@@ -60,7 +63,7 @@ export const Disabled: Story = {
   render: (args) => ({
     props: { ...args, selected: 'react' },
     template: `
-      <ds-radio-group [(value)]="selected" [disabled]="disabled">
+      <ds-radio-group [(value)]="selected" [disabled]="disabled" aria-label="Framework preferido">
         <ds-radio [value]="'angular'" label="Angular" />
         <ds-radio [value]="'react'" label="React" />
         <ds-radio [value]="'vue'" label="Vue" />
@@ -73,7 +76,7 @@ export const WithDisabledItem: Story = {
   render: () => ({
     props: { selected: 'angular' },
     template: `
-      <ds-radio-group [(value)]="selected">
+      <ds-radio-group [(value)]="selected" aria-label="Framework preferido">
         <ds-radio [value]="'angular'" label="Angular" />
         <ds-radio [value]="'react'" [disabled]="true" label="React (deprecated)" />
         <ds-radio [value]="'vue'" label="Vue" />
@@ -89,7 +92,7 @@ export const KeyboardNavDemo: Story = {
       <p style="margin-bottom:1rem; font-family: var(--ds-font-family-sans);">
         Focus el primer radio y probá Arrow Right/Left, Home, End. La selección sigue al foco.
       </p>
-      <ds-radio-group [(value)]="selected">
+      <ds-radio-group [(value)]="selected" aria-label="Demo de navegación por teclado">
         <ds-radio [value]="'a'" label="A" />
         <ds-radio [value]="'b'" label="B" />
         <ds-radio [value]="'c'" label="C" />

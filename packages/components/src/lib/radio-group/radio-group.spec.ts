@@ -78,7 +78,7 @@ describe('DsRadioGroup (standalone)', () => {
   standalone: true,
   imports: [DsRadioGroup, DsRadio],
   template: `
-    <ds-radio-group [(value)]="selected" name="test-host">
+    <ds-radio-group [(value)]="selected" name="test-host" aria-label="Test group">
       <ds-radio [value]="'a'" label="A" />
       <ds-radio [value]="'b'" label="B" />
       <ds-radio [value]="'c'" label="C" />
@@ -110,6 +110,12 @@ describe('DsRadioGroup + DsRadio integration', () => {
   it('renders 3 radios with name="test-host"', () => {
     expect(radios.length).toBe(3);
     radios.forEach((r) => expect(r.name).toBe('test-host'));
+  });
+
+  it('aria-label del consumidor queda en el host junto al role', () => {
+    const group = fixture.nativeElement.querySelector('ds-radio-group') as HTMLElement;
+    expect(group.getAttribute('role')).toBe('radiogroup');
+    expect(group.getAttribute('aria-label')).toBe('Test group');
   });
 
   it('the radio matching the initial value is checked', () => {

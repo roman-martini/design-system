@@ -48,7 +48,7 @@ input[type='radio'][data-size='lg'] {
 input[type='radio']:checked {
   background-color: var(--ds-semantic-color-bg-primary);
   border-color: var(--ds-semantic-color-border-primary);
-  background-image: radial-gradient(circle, white 35%, transparent 40%);
+  background-image: radial-gradient(circle, var(--ds-color-white) 35%, transparent 40%);
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -70,4 +70,10 @@ input[type='radio']:disabled {
 
 .radio__label:empty {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  input[type='radio'] {
+    transition: none;
+  }
 }
