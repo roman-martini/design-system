@@ -53,7 +53,10 @@
       "Bash(sed -i 's|\\\\[`docs/architecture/FUTURE-WORK.md`\\\\]\\(../architecture/FUTURE-WORK.md\\)|[`docs/backlog/FUTURE-WORK.md`]\\(../backlog/FUTURE-WORK.md\\)|' docs/reference/README.md)",
       "Bash(sed -i 's|\\\\[FUTURE-WORK\\\\]\\(../architecture/FUTURE-WORK.md\\)|[FUTURE-WORK]\\(FUTURE-WORK.md\\)|' docs/backlog/BACKLOG.md)",
       "Bash(sed -i 's|`docs/architecture/FUTURE-WORK.md`       |[`docs/backlog/FUTURE-WORK.md`]\\(../backlog/FUTURE-WORK.md\\) |' docs/product/README.md)",
-      "Bash(sed -i 's|\\\\[FUTURE-WORK\\\\]\\(../../../architecture/FUTURE-WORK.md\\)|[FUTURE-WORK]\\(../../../backlog/FUTURE-WORK.md\\)|' docs/product/epics/EP-001-fundamentos-tokens/README.md docs/product/epics/EP-002-kit-componentes/README.md docs/product/epics/EP-002-kit-componentes/HU-003-select-formularios.md docs/product/epics/EP-005-calidad-profesional/README.md)"
+      "Bash(sed -i 's|\\\\[FUTURE-WORK\\\\]\\(../../../architecture/FUTURE-WORK.md\\)|[FUTURE-WORK]\\(../../../backlog/FUTURE-WORK.md\\)|' docs/product/epics/EP-001-fundamentos-tokens/README.md docs/product/epics/EP-002-kit-componentes/README.md docs/product/epics/EP-002-kit-componentes/HU-003-select-formularios.md docs/product/epics/EP-005-calidad-profesional/README.md)",
+      "Edit(/.claude/skills/session-handoff/**)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ]
   }
 }

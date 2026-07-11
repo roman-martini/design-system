@@ -67,3 +67,6 @@ documentation/
 NOTAS.md
 notas.md
 TODO.md
+
+# Handoff de sesión (estado efímero de /ds:handoff, no documentación)
+.claude/session-handoff.md
