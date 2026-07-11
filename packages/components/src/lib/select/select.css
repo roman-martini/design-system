@@ -1,0 +1,129 @@
+:host {
+  display: inline-block;
+}
+
+.ds-select__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-semantic-space-2xs);
+  width: 100%;
+  border: var(--ds-component-select-trigger-border-width) solid
+    var(--ds-component-select-trigger-border);
+  border-radius: var(--ds-component-select-trigger-radius);
+  background: var(--ds-component-select-trigger-bg);
+  color: var(--ds-component-select-trigger-text);
+  font-family: inherit;
+  line-height: var(--ds-font-line-height-tight);
+  text-align: start;
+  cursor: pointer;
+  transition:
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out);
+}
+
+.ds-select__trigger[data-size='sm'] {
+  height: var(--ds-component-select-trigger-height-sm);
+  padding: 0 var(--ds-component-select-trigger-padding-x-sm);
+  font-size: var(--ds-component-select-trigger-font-size-sm);
+}
+.ds-select__trigger[data-size='md'] {
+  height: var(--ds-component-select-trigger-height-md);
+  padding: 0 var(--ds-component-select-trigger-padding-x-md);
+  font-size: var(--ds-component-select-trigger-font-size-md);
+}
+.ds-select__trigger[data-size='lg'] {
+  height: var(--ds-component-select-trigger-height-lg);
+  padding: 0 var(--ds-component-select-trigger-padding-x-lg);
+  font-size: var(--ds-component-select-trigger-font-size-lg);
+}
+
+.ds-select__trigger:hover:not([aria-disabled='true']) {
+  border-color: var(--ds-component-select-trigger-border-hover);
+}
+
+.ds-select__trigger:focus-visible {
+  box-shadow: var(--ds-semantic-shadow-focus);
+  outline: none;
+}
+
+.ds-select__trigger--open {
+  border-color: var(--ds-component-select-trigger-border-open);
+}
+
+.ds-select__trigger--placeholder .ds-select__value {
+  color: var(--ds-component-select-trigger-text-placeholder);
+}
+
+.ds-select__trigger[aria-disabled='true'] {
+  background: var(--ds-component-select-trigger-bg-disabled);
+  color: var(--ds-component-select-trigger-text-disabled);
+  cursor: not-allowed;
+}
+
+.ds-select__value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-select__chevron {
+  flex-shrink: 0;
+  color: var(--ds-component-select-trigger-icon);
+  transition: transform var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out);
+}
+
+.ds-select__trigger--open .ds-select__chevron {
+  transform: rotate(180deg);
+}
+
+/* Listbox — vive en el top layer via Popover API; la posición la setea el
+   fallback JS (design.md §2). Sin z-index: el top layer no lo necesita. */
+.ds-select__listbox {
+  margin: 0;
+  padding: var(--ds-component-select-listbox-padding);
+  border: var(--ds-component-select-trigger-border-width) solid
+    var(--ds-component-select-listbox-border);
+  border-radius: var(--ds-component-select-listbox-radius);
+  background: var(--ds-component-select-listbox-bg);
+  box-shadow: var(--ds-component-select-listbox-shadow);
+  max-height: var(--ds-component-select-listbox-max-height);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-component-select-listbox-gap);
+
+  /* Estado cerrado + transición de salida */
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--ds-semantic-space-2xs)));
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-exit),
+    transform var(--ds-semantic-motion-transition-overlay-exit),
+    display var(--ds-semantic-motion-transition-overlay-exit) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-exit) allow-discrete;
+}
+
+.ds-select__listbox:popover-open {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-enter),
+    transform var(--ds-semantic-motion-transition-overlay-enter),
+    display var(--ds-semantic-motion-transition-overlay-enter) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-enter) allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ds-semantic-space-2xs)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-select__trigger,
+  .ds-select__chevron,
+  .ds-select__listbox,
+  .ds-select__listbox:popover-open {
+    transition: none;
+  }
+}

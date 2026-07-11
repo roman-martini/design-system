@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  align-items: center;
+  min-height: var(--ds-component-select-option-height);
+  padding: 0 var(--ds-component-select-option-padding-x);
+  border-radius: var(--ds-component-select-option-radius);
+  color: var(--ds-component-select-option-text);
+  font-size: var(--ds-component-select-option-font-size);
+  line-height: var(--ds-font-line-height-tight);
+  cursor: pointer;
+  user-select: none;
+}
+
+:host(:hover:not(.ds-option--disabled)),
+:host(.ds-option--active) {
+  background: var(--ds-component-select-option-bg-hover);
+}
+
+:host(.ds-option--selected) {
+  background: var(--ds-component-select-option-bg-selected);
+}
+
+:host(.ds-option--disabled) {
+  color: var(--ds-component-select-option-text-disabled);
+  cursor: not-allowed;
+}

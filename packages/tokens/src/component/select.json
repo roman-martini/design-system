@@ -1,0 +1,53 @@
+{
+  "component": {
+    "select": {
+      "trigger": {
+        "height": {
+          "sm": { "value": "{dimension.32}" },
+          "md": { "value": "{dimension.40}" },
+          "lg": { "value": "{dimension.48}" }
+        },
+        "padding-x": {
+          "sm": { "value": "{dimension.10}" },
+          "md": { "value": "{dimension.12}" },
+          "lg": { "value": "{dimension.14}" }
+        },
+        "font-size": {
+          "sm": { "value": "{font.size.sm}" },
+          "md": { "value": "{font.size.md}" },
+          "lg": { "value": "{font.size.lg}" }
+        },
+        "radius":           { "value": "{semantic.radius.md}" },
+        "border-width":     { "value": "{dimension.1}" },
+        "bg":               { "value": "{semantic.color.bg.surface}" },
+        "bg-disabled":      { "value": "{semantic.color.bg.disabled}" },
+        "text":             { "value": "{semantic.color.text.primary}" },
+        "text-placeholder": { "value": "{semantic.color.text.secondary}" },
+        "text-disabled":    { "value": "{semantic.color.text.disabled}" },
+        "border":           { "value": "{semantic.color.border.strong}" },
+        "border-hover":     { "value": "{semantic.color.border.strong}" },
+        "border-open":      { "value": "{semantic.color.border.primary}" },
+        "icon":             { "value": "{semantic.color.icon.default}" }
+      },
+      "listbox": {
+        "bg":         { "value": "{semantic.color.bg.elevated}" },
+        "border":     { "value": "{semantic.color.border.default}" },
+        "radius":     { "value": "{semantic.radius.md}" },
+        "shadow":     { "value": "{semantic.shadow.dropdown}" },
+        "padding":    { "value": "{semantic.space.2xs}" },
+        "max-height": { "value": "320px" },
+        "gap":        { "value": "{dimension.4}" }
+      },
+      "option": {
+        "height":      { "value": "{dimension.36}" },
+        "padding-x":   { "value": "{dimension.12}" },
+        "font-size":   { "value": "{font.size.md}" },
+        "radius":      { "value": "{semantic.radius.sm}" },
+        "text":        { "value": "{semantic.color.text.primary}" },
+        "text-disabled": { "value": "{semantic.color.text.disabled}" },
+        "bg-hover":    { "value": "{semantic.color.bg.secondary-hover}" },
+        "bg-selected": { "value": "{semantic.color.bg.primary-subtle}" }
+      }
+    }
+  }
+}

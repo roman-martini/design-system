@@ -1,0 +1,38 @@
+<button
+  #trigger
+  type="button"
+  class="ds-select__trigger"
+  role="combobox"
+  aria-haspopup="listbox"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-labelledby]="ariaLabelledby()"
+  [attr.data-size]="size()"
+  [attr.aria-expanded]="open()"
+  [attr.aria-controls]="listboxId"
+  [attr.aria-activedescendant]="activeDescendant()"
+  [attr.aria-disabled]="disabled() ? 'true' : null"
+  [class.ds-select__trigger--placeholder]="!hasSelection()"
+  [class.ds-select__trigger--open]="open()"
+  (pointerdown)="onTriggerPointerdown()"
+  (click)="onTriggerClick()"
+  (keydown)="onTriggerKeydown($event)"
+>
+  <span class="ds-select__value">{{ triggerLabel() }}</span>
+  <svg
+    lucideChevronDown
+    size="16"
+    strokeWidth="1.5"
+    aria-hidden="true"
+    class="ds-select__chevron"
+  ></svg>
+</button>
+<div
+  #listbox
+  class="ds-select__listbox"
+  role="listbox"
+  [id]="listboxId"
+  popover="auto"
+  (toggle)="onPopoverToggle($event)"
+>
+  <ng-content />
+</div>

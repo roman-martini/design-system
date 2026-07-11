@@ -48,7 +48,13 @@ Mismo patrón de registración padre-hijo que RadioGroup/Radio (interfaz mínima
 
 Patrón APG combobox recomendado: el foco DOM nunca entra al listado; el trigger mantiene el foco y expone la opción activa por id. Simplifica la interacción con el popover (no hay focus trap que gestionar — no es modal) y la restauración de foco al cerrar es trivial.
 
-### 6. jsdom
+### 6. Nombre accesible: reenvío al trigger (hallazgo alta del gate `/ng:review`)
+
+El `role="combobox"` vive en el `<button>` interno, así que un `aria-label`/`aria-labelledby` puesto en `<ds-select>` quedaría inerte (a diferencia de RadioGroup, cuyo role vive en el host). Se resuelve con inputs con alias (`aria-label` → `ariaLabel`) que consumen el atributo del host y lo re-exponen en el trigger — mismo patrón que Material. Detectado por la auditoría `/ng:review` del gate 7.3; el test del spec valida el reenvío, no el atributo del host.
+
+**Excepciones declaradas del review** (justificadas, no fixes): (a) `DsOption.labelText()` lee `textContent` del contenido proyectado — lectura no mutante, sin alternativa idiomática para contenido rico, mismo mecanismo que MatOption; (b) `DsOption` vive en `src/lib/select/` y no en un directorio propio — a diferencia de `DsRadio` (usable standalone, con output propio), una option no existe sin su select: son una unidad publicada junta, y el spec delta contractualiza esa estructura.
+
+### 7. jsdom
 
 Popover API sin soporte esperado en jsdom → polyfill mínimo de `showPopover`/`hidePopover` + atributo en `test-setup.ts` (precedente del polyfill de `<dialog>`, ADR-013 §6). Se testea el cableado propio (ARIA, teclado, CVA, modelo), no el top layer.
 

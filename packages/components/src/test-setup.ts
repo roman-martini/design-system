@@ -18,3 +18,27 @@ if (typeof HTMLDialogElement !== 'undefined' && !HTMLDialogElement.prototype.sho
     this.dispatchEvent(new Event('close'));
   };
 }
+
+// jsdom (27.x) tampoco implementa la Popover API. Polyfill mínimo del contrato
+// que DsSelect necesita: showPopover/hidePopover + evento `toggle` con
+// newState. El top layer y el light-dismiss son de la plataforma (no
+// testeables acá) — se testea el cableado propio (ADR-013 §6, mismo criterio).
+if (typeof HTMLElement !== 'undefined' && !('showPopover' in HTMLElement.prototype)) {
+  const dispatchToggle = (el: HTMLElement, oldState: string, newState: string): void => {
+    const event = new Event('toggle');
+    Object.assign(event, { oldState, newState });
+    el.dispatchEvent(event);
+  };
+  Object.assign(HTMLElement.prototype, {
+    showPopover(this: HTMLElement): void {
+      if (this.hasAttribute('data-popover-open')) return;
+      this.setAttribute('data-popover-open', '');
+      dispatchToggle(this, 'closed', 'open');
+    },
+    hidePopover(this: HTMLElement): void {
+      if (!this.hasAttribute('data-popover-open')) return;
+      this.removeAttribute('data-popover-open');
+      dispatchToggle(this, 'open', 'closed');
+    },
+  });
+}
