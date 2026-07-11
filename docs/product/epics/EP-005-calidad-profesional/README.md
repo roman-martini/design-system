@@ -1,6 +1,6 @@
 # EP-005 — Calidad profesional
 
-**Estado**: Identificada (disparadores activados el 2026-07-10)
+**Estado**: En desarrollo (primera tanda entregada el 2026-07-11)
 
 ## Contexto
 
@@ -14,13 +14,13 @@ Tooling de calidad sobre el kit existente: auditoría WCAG de componentes, detec
 
 Sin HUs con archivo aún — los tres items viven en [docs/backlog/BACKLOG.md](../../../backlog/BACKLOG.md) con sus disparadores:
 
-| Item (BACKLOG)                              | Disparador                            | Estado                                                    |
-| ------------------------------------------- | ------------------------------------- | --------------------------------------------------------- |
-| `/ds:add-component` — workflow guiado       | ≥3 changes "add component" archivados | **ACTIVADO** (Checkbox, Radio, Modal)                     |
-| `/ds:check-a11y` — auditoría WCAG           | ≥5 componentes                        | **ACTIVADO** (Button, Checkbox, Radio, RadioGroup, Modal) |
-| `/ds:audit-tokens` — consistencia de tokens | >100 tokens o primer drift detectado  | Pendiente                                                 |
+| Item (BACKLOG)                              | Disparador                            | Estado                                                                                         |
+| ------------------------------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `/ds:add-component` — workflow guiado       | ≥3 changes "add component" archivados | **Hecho** (2026-07-11) — skill + command creados                                               |
+| `/ds:check-a11y` — auditoría WCAG           | ≥5 componentes                        | **Hecho** (2026-07-11) — skill + [primera auditoría](../../../design/a11y/2026-07-11-audit.md) |
+| `/ds:audit-tokens` — consistencia de tokens | >100 tokens o primer drift detectado  | Pendiente (posible activación por el hardcode detectado en la auditoría)                       |
 
-Si el PO prioriza esta épica, cada item se refina como HU (actor: mantenedor).
+Los items derivados de la auditoría (`tokens-fix-contrast-aa`, `components-fix-a11y-minor`) viven en el [BACKLOG](../../../backlog/BACKLOG.md) § Now. Si el PO prioriza esta épica, cada item se refina como HU (actor: mantenedor).
 
 ## Decisiones aplicables
 

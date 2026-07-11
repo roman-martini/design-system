@@ -25,31 +25,33 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-### `/ds:check-a11y` — Auditoría WCAG sobre componentes existentes
+### `tokens-fix-contrast-aa` — Fix de contraste AA en tokens semantic
 
-**Tipo**: commit directo (tooling). **Producto**: [EP-005](../product/epics/EP-005-calidad-profesional/README.md).
+**Tipo**: OpenSpec (tokens; cambio visual del DS). **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/README.md) / [EP-005](../product/epics/EP-005-calidad-profesional/README.md).
 
-**Origen**: documentada en `.claude/commands/ds/README.md`.
+**Origen**: [auditoría a11y 2026-07-11](../design/a11y/2026-07-11-audit.md) — 3 hallazgos altos, 2 causas en tokens.
 
-**Alcance propuesto**: skill que audita contraste de tokens (WCAG AA), navegación por teclado en stories, ARIA presente y correcta (`aria-checked`, `aria-disabled`, `aria-expanded`, `role`), `prefers-reduced-motion` respetado.
+**Alcance propuesto**: `semantic.color.bg.primary` default → `blue-600` (5.17:1 con texto blanco, hoy 3.68:1) y brand-a → `green-700` (5.02:1, hoy 3.30:1), reencadenando hover/active; `semantic.color.border.strong` → `neutral-500` (4.74:1, hoy 2.52:1). Ratios candidatos ya verificados con `check-a11y/scripts/contrast.mjs`. Afecta la apariencia de Button, Checkbox y Radio en el theme default.
 
-**Disparador**: ≥5 componentes — **ACTIVADO** (2026-07-10): Button, Checkbox, Radio, RadioGroup, Modal.
+**Decisiones pendientes**: aprobación del PO del cambio visual (el primario default se oscurece un paso).
 
-**Estado**: pendiente, listo para arrancar. Orden sugerido: **primero de EP-005** (materializa D-007 auditando los 5 componentes existentes).
+**Disparador**: fallas AA verificadas en la auditoría — **ACTIVADO** (2026-07-11).
+
+**Estado**: pendiente.
 
 ---
 
-### `/ds:add-component` — Workflow guiado para agregar componente
+### `components-fix-a11y-minor` — Fixes menores de la auditoría a11y
 
-**Tipo**: commit directo (tooling). **Producto**: [EP-005](../product/epics/EP-005-calidad-profesional/README.md).
+**Tipo**: commit directo (componentes, sin cambio de API). **Producto**: [EP-005](../product/epics/EP-005-calidad-profesional/README.md).
 
-**Origen**: documentada en `.claude/commands/ds/README.md`.
+**Origen**: [auditoría a11y 2026-07-11](../design/a11y/2026-07-11-audit.md) § "Próximos pasos" punto 2.
 
-**Alcance propuesto**: skill que guía "sumar componente nuevo" según ADR-004/007/010: estructura flat, naming `Ds<Name>`, CVA si aplica, tests, story, public-api, spec delta, changeset.
+**Alcance propuesto**: dot del Radio vía `var()` en vez de `white` hardcodeado; bloques `prefers-reduced-motion` en Button/Checkbox/Radio; stories del RadioGroup con `aria-label` + test del passthrough. Quedan afuera (requieren decisión, punto 3 del reporte): `aria-checked` redundante (implica delta de spec), checkmark del Checkbox (técnica a elegir), nav de teclado del RadioGroup.
 
-**Disparador**: ≥3 CHGs "add component" archivados — **ACTIVADO** (2026-07-10): Checkbox (`aaa-006`), Radio (`aaa-008`), Modal (`aaa-014`).
+**Disparador**: hallazgos media/baja de la auditoría — **ACTIVADO** (2026-07-11).
 
-**Estado**: pendiente, listo para arrancar.
+**Estado**: pendiente.
 
 ---
 
@@ -97,7 +99,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: el package `tokens` supera 100 tokens, o aparece el primer drift en un code review.
 
-**Estado**: pendiente, sin disparador activo.
+**Estado**: pendiente. Nota (2026-07-11): la auditoría a11y detectó el primer hardcode (`white` en checkmark/dot de Checkbox y Radio) — el disparador podría considerarse activado; confirmar con el PO al cerrar `components-fix-a11y-minor`.
 
 ---
 
