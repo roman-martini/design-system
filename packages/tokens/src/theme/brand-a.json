@@ -2,9 +2,9 @@
   "semantic": {
     "color": {
       "bg": {
-        "primary":        { "value": "{color.green.600}" },
-        "primary-hover":  { "value": "{color.green.700}" },
-        "primary-active": { "value": "{color.green.800}" },
+        "primary":        { "value": "{color.green.700}" },
+        "primary-hover":  { "value": "{color.green.800}" },
+        "primary-active": { "value": "{color.green.900}" },
         "primary-subtle": { "value": "{color.green.50}" }
       },
       "border": {
