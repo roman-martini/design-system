@@ -22,6 +22,7 @@ Diferencia con el patrón `opsx:*`: los commands de opsx duplican el contenido d
 | `/ds:resume` | `session-handoff` (modo `resume`) | Activa | Leer el handoff después del `/clear`, verificar que el repo no avanzó por fuera y retomar por el "EMPEZÁ POR". |
 | `/ds:check-a11y` | `check-a11y` | Activa | Auditar los componentes contra WCAG AA y los ADRs de a11y (011/012/013): ARIA, teclado, foco, reduced-motion y contraste calculado con script determinístico (`scripts/contrast.mjs`). Reporte en `docs/design/a11y/<fecha>-audit.md`. Materializa D-007. |
 | `/ds:add-component` | `add-component` | Activa | Workflow guiado para sumar un componente al kit: relevamiento → clasificación contra ADR-004/007/010/011/012/013 → change OpenSpec (proposal + spec delta + tasks patrón aaa-014) → implementación con OK del usuario. |
+| `/ds:auto` | `backlog-auto` | Activa | Ejecutar en automático los items **Now** de `docs/backlog/BACKLOG.md` (OpenSpec o commit directo según tipo), sin decidir nada que sea del PO. Args: `commit=ask\|auto\|none`, `decisiones=defer\|inline`. |
 
 ## Backlog
 

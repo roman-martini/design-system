@@ -56,7 +56,8 @@
       "Bash(sed -i 's|\\\\[FUTURE-WORK\\\\]\\(../../../architecture/FUTURE-WORK.md\\)|[FUTURE-WORK]\\(../../../backlog/FUTURE-WORK.md\\)|' docs/product/epics/EP-001-fundamentos-tokens/README.md docs/product/epics/EP-002-kit-componentes/README.md docs/product/epics/EP-002-kit-componentes/HU-003-select-formularios.md docs/product/epics/EP-005-calidad-profesional/README.md)",
       "Edit(/.claude/skills/session-handoff/**)",
       "Skill(update-config)",
-      "Skill(update-config:*)"
+      "Skill(update-config:*)",
+      "Edit(/.claude/skills/backlog-auto/**)"
     ]
   }
 }
