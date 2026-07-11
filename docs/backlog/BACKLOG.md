@@ -33,7 +33,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: tanda 1 de expansión del kit aprobada — **ACTIVADO** ([D-009](../product/decisiones.md), 2026-07-11).
 
-**Estado**: pendiente.
+**Estado**: **propuesta activa** — [`aaa-016`](../../openspec/changes/components-add-select/), 4/4 artefactos, listo para apply. Genera ADR-014 (overlays anclados) al archivar.
 
 ---
 
