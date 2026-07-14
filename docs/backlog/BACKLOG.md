@@ -29,7 +29,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-006](../product/epics/EP-002-kit-componentes/HU-006-tabs-navegacion.md) / EP-002.
 
-**Alcance propuesto**: según HU-006; patrón ARIA tabs, tokens `component.tabs.*` ya existentes en el package.
+**Alcance propuesto**: `ds-tabs`/`ds-tab` con las 3 variantes (underline/pills/contained — tokens ya existentes), activación automática, paneles en DOM con `hidden`, `[(value)]` por id, roving tabindex. **HU-006 ya Refinada** (2026-07-12) con 8 CAs binarios.
 
 **Disparador**: cierre del item anterior de la tanda (Select, `aaa-016`) — **ACTIVADO** (2026-07-11, grooming del archive).
 
