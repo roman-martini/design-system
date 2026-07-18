@@ -14,12 +14,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/romanmartinidev/design-system.git",
+    "url": "https://github.com/roman-martini/design-system.git",
     "directory": "packages/tokens"
   },
-  "homepage": "https://github.com/romanmartinidev/design-system/tree/main/packages/tokens#readme",
+  "homepage": "https://github.com/roman-martini/design-system/tree/main/packages/tokens#readme",
   "bugs": {
-    "url": "https://github.com/romanmartinidev/design-system/issues"
+    "url": "https://github.com/roman-martini/design-system/issues"
   },
   "engines": {
     "node": ">=22.12.0",
