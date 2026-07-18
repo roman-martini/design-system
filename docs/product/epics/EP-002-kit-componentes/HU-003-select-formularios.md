@@ -1,6 +1,6 @@
 # HU-003 — Select/Combobox para formularios reales (dev consumidor)
 
-**Épica**: [EP-002 — Kit de componentes Angular](README.md)
+**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
 **Estado**: Hecha — change [aaa-016 components-add-select](../../../../openspec/changes/archive/aaa-016-components-add-select/) archivado (2026-07-11); generó [ADR-014](../../../architecture/adr/ADR-014-overlays-anclados-popover-api.md)
 **Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)

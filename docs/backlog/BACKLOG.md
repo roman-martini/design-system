@@ -41,7 +41,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ### Tanda 1 del kit — componentes restantes (D-009)
 
-**Tipo**: OpenSpec (kit, un change por componente). **Producto**: HUs de [EP-002](../product/epics/EP-002-kit-componentes/README.md).
+**Tipo**: OpenSpec (kit, un change por componente). **Producto**: HUs de [EP-002](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md).
 
 **Origen**: [D-009](../product/decisiones.md) — expansión aprobada hacia "una app real se construye 100% con el DS".
 
@@ -58,7 +58,7 @@ En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming 
 
 ### `tokens-fix-status-borders` — Contraste AA de border.success/warning/info
 
-**Tipo**: OpenSpec (tokens, micro-change). **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/README.md).
+**Tipo**: OpenSpec (tokens, micro-change). **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md).
 
 **Origen**: detectado en el gate de contraste de [`aaa-017`](../../openspec/changes/archive/aaa-017-components-add-input/) al arreglar `border.danger`: `border.success/warning/info` arrastran el mismo patrón (`*-400` en light / `*-800` en dark) que falla 3:1. Sin consumidores hoy.
 
@@ -92,7 +92,7 @@ En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming 
 
 ### `/ds:audit-tokens` — Skill para auditar consistencia de tokens
 
-**Tipo**: commit directo (tooling). **Producto**: [EP-005](../product/epics/EP-005-calidad-profesional/README.md).
+**Tipo**: commit directo (tooling). **Producto**: [EP-005](../product/epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md).
 
 **Origen**: documentada en `.claude/commands/ds/README.md`.
 
@@ -108,7 +108,7 @@ En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming 
 
 ### Tokens aditivos del research Atlassian
 
-**Tipo**: OpenSpec (kit, micro-changes). **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/README.md).
+**Tipo**: OpenSpec (kit, micro-changes). **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md).
 
 **Origen**: `docs/design/research/atlassian-design.md §4` — "inspiración selectiva", cada uno un CHG separado:
 

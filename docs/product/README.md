@@ -31,7 +31,7 @@ docs/product/
 ├── templates/         ← plantillas para crear épicas y HUs nuevas
 └── epics/
     └── EP-XXX-nombre-corto/    ← una carpeta por épica, autocontenida
-        ├── README.md          ← el documento de la épica
+        ├── EP-XXX-nombre-corto.md  ← el documento de la épica (homónimo a la carpeta)
         └── HU-XXX-*.md         ← las HUs de esa épica, al lado
 ```
 
@@ -52,13 +52,13 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 
 ## Índice de épicas
 
-| ID                                                    | Épica                         | Actor principal | HUs          | Estado                                                |
-| ----------------------------------------------------- | ----------------------------- | --------------- | ------------ | ----------------------------------------------------- |
-| [EP-001](epics/EP-001-fundamentos-tokens/README.md)   | Fundamentos: tokens y theming | Dev consumidor  | 004          | En desarrollo (base entregada)                        |
-| [EP-002](epics/EP-002-kit-componentes/README.md)      | Kit de componentes Angular    | Dev consumidor  | 003, 005–010 | En desarrollo (5 componentes; tanda 1 aprobada D-009) |
-| [EP-003](epics/EP-003-consumo-distribucion/README.md) | Consumo y distribución        | Dev consumidor  | 002          | En desarrollo (npm-ready, sin publicar)               |
-| [EP-004](epics/EP-004-puente-codigo-diseno/README.md) | Puente código ↔ diseño        | Diseñador       | 001          | En refinamiento (aaa-012 propuesto)                   |
-| [EP-005](epics/EP-005-calidad-profesional/README.md)  | Calidad profesional           | Mantenedor      | —            | En desarrollo (primera tanda 2026-07-11)              |
+| ID                                                                         | Épica                         | Actor principal | HUs          | Estado                                                |
+| -------------------------------------------------------------------------- | ----------------------------- | --------------- | ------------ | ----------------------------------------------------- |
+| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor  | 004          | En desarrollo (base entregada)                        |
+| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor  | 003, 005–010 | En desarrollo (5 componentes; tanda 1 aprobada D-009) |
+| [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor  | 002          | En desarrollo (npm-ready, sin publicar)               |
+| [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador       | 001          | En refinamiento (aaa-012 propuesto)                   |
+| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor      | —            | En desarrollo (primera tanda 2026-07-11)              |
 
 Próximos IDs libres: **EP-006**, **HU-011**, **D-010**.
 
@@ -101,7 +101,7 @@ El relleno a 3 dígitos es cosmético: si algún día se supera 999, se usa un c
 
 ### Nombres de archivo y carpeta
 
-- Épica: carpeta `epics/EP-XXX-nombre-corto/` con el documento en `README.md` (se renderiza automáticamente al navegar la carpeta en GitHub/GitLab).
+- Épica: carpeta `epics/EP-XXX-nombre-corto/` con el documento homónimo `EP-XXX-nombre-corto.md` (identificable por nombre en tabs del editor y búsquedas, a diferencia de un `README.md` genérico).
 - HU: `EP-XXX-nombre-corto/HU-XXX-nombre-corto.md`.
 - El nombre corto no cambia aunque el título evolucione (los enlaces no se rompen). Si una HU se muda de épica (raro), se mueve el archivo y se actualizan los enlaces; el ID no cambia.
 - Si una épica se divide, las nuevas épicas registran el origen en su sección "Contexto".
@@ -122,7 +122,7 @@ Para épicas: Identificada → En refinamiento → Refinada (todas sus HUs refin
 
 ## Flujo de trabajo
 
-1. **Idea nueva** → si es grande, crear carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como `README.md`; si es chica, crear la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada). Las HUs candidatas sin refinar pueden listarse en el README de la épica sin archivo propio. Las ideas crudas sin disparador van a [FUTURE-WORK](../backlog/FUTURE-WORK.md) (la cantera), no generan artefactos acá.
+1. **Idea nueva** → si es grande, crear carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como documento homónimo `EP-XXX-nombre-corto.md`; si es chica, crear la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada). Las HUs candidatas sin refinar pueden listarse en el documento de la épica sin archivo propio. Las ideas crudas sin disparador van a [FUTURE-WORK](../backlog/FUTURE-WORK.md) (la cantera), no generan artefactos acá.
 2. **Refinamiento** → cada ambigüedad se resuelve con el product owner y se registra como **D-XXX en [decisiones.md](decisiones.md)** — las HUs referencian decisiones, no las repiten.
 3. **Ejecución** → una HU Refinada se implementa vía **change OpenSpec** (`aaa-NNN`, flujo del repo). Las decisiones técnicas que surjan van como ADR a `docs/architecture/adr/`.
 4. **Cierre** → CAs tildados al archivar el change, estado Hecha. La épica se cierra cuando todas sus HUs están Hechas (o queda abierta como flujo continuo).

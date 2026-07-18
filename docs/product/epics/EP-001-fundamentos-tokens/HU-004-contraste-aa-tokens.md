@@ -1,6 +1,6 @@
 # HU-004 — Tokens interactivos con contraste WCAG AA (dev consumidor)
 
-**Épica**: [EP-001 — Fundamentos: tokens y theming](README.md)
+**Épica**: [EP-001 — Fundamentos: tokens y theming](EP-001-fundamentos-tokens.md)
 **Actor**: Dev consumidor
 **Estado**: Hecha — change [aaa-015 tokens-fix-contrast-aa](../../../../openspec/changes/archive/aaa-015-tokens-fix-contrast-aa/) archivado (2026-07-11)
 **Decisiones que aplica**: [D-007, D-008](../../decisiones.md)

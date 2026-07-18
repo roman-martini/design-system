@@ -1,6 +1,6 @@
 # HU-001 — Tokens del DS disponibles como Variables de Figma (diseñador)
 
-**Épica**: [EP-004 — Puente código ↔ diseño](README.md)
+**Épica**: [EP-004 — Puente código ↔ diseño](EP-004-puente-codigo-diseno.md)
 **Actor**: Diseñador
 **Estado**: Refinada — change [aaa-012 tokens-figma-export](../../../../openspec/changes/tokens-figma-export/) propuesto (4/4 artefactos), **en pausa por decisión del PO**
 **Decisiones que aplica**: [D-006](../../decisiones.md)

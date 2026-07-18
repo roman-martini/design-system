@@ -1,10 +1,10 @@
 # HU-XXX — Título corto (actor)
 
 <!-- Copiar a docs/product/epics/EP-XXX-nombre-corto/HU-XXX-nombre-corto.md
-     (la misma carpeta que el README.md de su épica) y completar.
+     (la misma carpeta que el documento EP-XXX-nombre-corto.md de su épica) y completar.
      Agregar la fila correspondiente a la tabla de la épica. -->
 
-**Épica**: [EP-XXX — Nombre](README.md)
+**Épica**: [EP-XXX — Nombre](EP-XXX-nombre-corto.md)
 **Actor**: Dev consumidor | Diseñador | Mantenedor
 **Estado**: Identificada | Bloqueada (motivo) | Refinada | En desarrollo | Hecha
 **Decisiones que aplica**: [D-XXX, D-YYY](../../decisiones.md)

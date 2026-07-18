@@ -1,6 +1,6 @@
 # HU-008 — Toast/Notification para feedback asíncrono (dev consumidor)
 
-**Épica**: [EP-002 — Kit de componentes Angular](README.md)
+**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
 **Estado**: Refinada (2026-07-18, ambigüedades resueltas con el PO)
 **Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)

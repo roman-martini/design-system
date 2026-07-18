@@ -1,6 +1,7 @@
 # EP-XXX — Título de la épica
 
-<!-- Copiar a docs/product/epics/EP-XXX-nombre-corto/README.md y completar.
+<!-- Copiar a docs/product/epics/EP-XXX-nombre-corto/EP-XXX-nombre-corto.md
+     (documento homónimo a la carpeta) y completar.
      Las HUs de la épica viven en esa misma carpeta.
      Agregar la fila correspondiente al índice de docs/product/README.md. -->
 

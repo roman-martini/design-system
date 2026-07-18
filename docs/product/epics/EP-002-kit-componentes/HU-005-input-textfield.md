@@ -1,6 +1,6 @@
 # HU-005 — Input/TextField para formularios reales (dev consumidor)
 
-**Épica**: [EP-002 — Kit de componentes Angular](README.md)
+**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
 **Estado**: Hecha — change [aaa-017 components-add-input](../../../../openspec/changes/archive/aaa-017-components-add-input/) archivado (2026-07-11)
 **Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)

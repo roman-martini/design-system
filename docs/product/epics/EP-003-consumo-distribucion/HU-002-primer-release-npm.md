@@ -1,6 +1,6 @@
 # HU-002 — Primer release publicado en npm (dev consumidor)
 
-**Épica**: [EP-003 — Consumo y distribución](README.md)
+**Épica**: [EP-003 — Consumo y distribución](EP-003-consumo-distribucion.md)
 **Actor**: Dev consumidor
 **Estado**: Refinada — se activa cuando el PO decida estrenar el pipeline
 **Decisiones que aplica**: [D-003, D-004](../../decisiones.md)
