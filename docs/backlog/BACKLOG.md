@@ -1,4 +1,4 @@
-# Backlog operativo — agent-design-sistem
+# Backlog operativo — design-system
 
 Cola **accionable** de trabajo pendiente (componentes, tokens, refactors, tooling), organizada por horizonte **Now / Next / Later**. Responde "¿qué se puede arrancar ya y qué está esperando qué?".
 

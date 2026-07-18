@@ -21,7 +21,7 @@ Cada tarea con criterio binario. Decisiones en ADR-015; el change deja el repo l
 
 ## 3. Ejecución del release (pipeline aaa-005 — pasos del PO + asistidos)
 
-- [ ] 3.1 **PO**: crear el repo GitHub `romanmartinidev/agent-design-sistem` (público — coincide con los campos `repository` de los package.json).
+- [ ] 3.1 **PO**: crear el repo GitHub `romanmartinidev/design-system` (público — coincide con los campos `repository` de los package.json).
 - [ ] 3.2 **PO**: crear un token npm (Automation) con permiso de publish sobre el scope `@romanmartinidev` y cargarlo como secret **`NPM_TOKEN`** del repo.
 - [ ] 3.3 Configurar remote y push de `main` (asistido, con OK del PO): `git remote add origin <url>` + `git push -u origin main`. El workflow `release.yml` corre y **abre el PR "chore(repo): version packages"** (tokens+components → 0.2.0).
 - [ ] 3.4 **PO**: revisar y mergear el PR de versionado → el workflow publica ambos packages en npm (`access: public`).

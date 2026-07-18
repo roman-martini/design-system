@@ -1,4 +1,4 @@
-# agent-design-sistem
+# design-system
 
 Monorepo `pnpm` con librerías de **arquitectura frontend** publicables bajo el scope `@romanmartinidev` y una app de prueba (`apps/playground`) para validarlas en condiciones reales.
 
@@ -13,7 +13,7 @@ Toda decisión arquitectónica o de proceso debe poder justificarse contra estas
 ## Estructura del repo
 
 ```
-agent-design-sistem/
+design-system/
 ├── packages/                    # Librerías publicables
 │   ├── tokens/                  # @romanmartinidev/tokens — design tokens (Style Dictionary)
 │   └── components/              # @romanmartinidev/components — componentes Angular (ng-packagr)

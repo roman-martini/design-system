@@ -9,7 +9,7 @@ created: 2026-05-30
 
 ## Purpose
 
-Define los requisitos estructurales del monorepo `agent-design-sistem`: elección y uso de package manager, declaración de workspaces, fijación de versiones de runtime, hooks de calidad (commits, lint, format), estrategia de versionado/publicación, y reglas de dependencia entre packages internos. Esta capability captura el contrato que debe cumplir el repo para que las librerías publicables (`packages/*`) y la app de prueba (`apps/playground`) coexistan de forma escalable y mantenible.
+Define los requisitos estructurales del monorepo `design-system`: elección y uso de package manager, declaración de workspaces, fijación de versiones de runtime, hooks de calidad (commits, lint, format), estrategia de versionado/publicación, y reglas de dependencia entre packages internos. Esta capability captura el contrato que debe cumplir el repo para que las librerías publicables (`packages/*`) y la app de prueba (`apps/playground`) coexistan de forma escalable y mantenible.
 
 ## Requirements
 

@@ -1,7 +1,7 @@
 schema: spec-driven
 
 context: |
-  agent-design-sistem — monorepo pnpm con librerías de arquitectura frontend
+  design-system — monorepo pnpm con librerías de arquitectura frontend
   bajo el scope npm `@romanmartinidev`.
 
   Packages publicables:

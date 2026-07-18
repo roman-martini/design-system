@@ -1,6 +1,6 @@
 # Contributing
 
-Gracias por considerar contribuir a `agent-design-sistem`. Este documento describe el flujo de trabajo del repo: convenciones de commits, versionado, gobernanza de cambios y calidad.
+Gracias por considerar contribuir a `design-system`. Este documento describe el flujo de trabajo del repo: convenciones de commits, versionado, gobernanza de cambios y calidad.
 
 ## Prioridades del repo
 

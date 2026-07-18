@@ -53,7 +53,7 @@ Sobrescribir el archivo con esta plantilla (adaptar contenido, no estructura):
 ```markdown
 # Handoff de sesión — <YYYY-MM-DD>
 
-Retomamos el repo agent-design-sistem (design system @romanmartinidev).
+Retomamos el repo design-system (design system @romanmartinidev).
 
 ## CONTEXTO RÁPIDO — leé primero, en este orden
 1. docs/backlog/BACKLOG.md   → cola operativa Now/Next/Later

@@ -14,12 +14,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/romanmartinidev/agent-design-sistem.git",
+    "url": "https://github.com/romanmartinidev/design-system.git",
     "directory": "packages/tokens"
   },
-  "homepage": "https://github.com/romanmartinidev/agent-design-sistem/tree/main/packages/tokens#readme",
+  "homepage": "https://github.com/romanmartinidev/design-system/tree/main/packages/tokens#readme",
   "bugs": {
-    "url": "https://github.com/romanmartinidev/agent-design-sistem/issues"
+    "url": "https://github.com/romanmartinidev/design-system/issues"
   },
   "engines": {
     "node": ">=22.12.0",

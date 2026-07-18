@@ -1,4 +1,4 @@
-# agent-design-sistem
+# design-system
 
 Monorepo `pnpm` con librerías de **arquitectura frontend** publicables bajo el scope [`@romanmartinidev`](https://www.npmjs.com/org/romanmartinidev) y una app de prueba (`apps/playground`) para validarlas en condiciones reales.
 
@@ -15,7 +15,7 @@ Monorepo `pnpm` con librerías de **arquitectura frontend** publicables bajo el 
 ## Estructura
 
 ```
-agent-design-sistem/
+design-system/
 ├── packages/
 │   ├── tokens/        @romanmartinidev/tokens
 │   └── components/    @romanmartinidev/components  (a crear en Fase 3)
@@ -39,8 +39,8 @@ Requisitos:
 
 ```bash
 # Clonar
-git clone https://github.com/romanmartinidev/agent-design-sistem.git
-cd agent-design-sistem
+git clone https://github.com/romanmartinidev/design-system.git
+cd design-system
 
 # Versión de Node correcta
 nvm use

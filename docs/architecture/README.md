@@ -1,4 +1,4 @@
-# Arquitectura — agent-design-sistem
+# Arquitectura — design-system
 
 **Fuente única de verdad agregada** de la arquitectura del repo. Sintetiza todas las decisiones tomadas en los ADRs y los contratos definidos en specs. Para detalle de cada decisión con opciones evaluadas, ir a los ADRs linkeados.
 
@@ -26,7 +26,7 @@
 
 ## Visión general
 
-`agent-design-sistem` es un **monorepo `pnpm`** que aloja librerías de **arquitectura frontend** publicables a npm bajo el scope `@romanmartinidev`, junto con una aplicación de prueba (`apps/playground`) que actúa como laboratorio de validación y plataforma de prototipado.
+`design-system` es un **monorepo `pnpm`** que aloja librerías de **arquitectura frontend** publicables a npm bajo el scope `@romanmartinidev`, junto con una aplicación de prueba (`apps/playground`) que actúa como laboratorio de validación y plataforma de prototipado.
 
 ```mermaid
 flowchart TB
@@ -75,7 +75,7 @@ Las decisiones del repo se evalúan contra estos principios, en estricto orden d
 ## Estructura del monorepo
 
 ```
-agent-design-sistem/
+design-system/
 ├── packages/                  # Librerías publicables (npm)
 │   ├── tokens/                # @romanmartinidev/tokens
 │   └── components/            # @romanmartinidev/components
