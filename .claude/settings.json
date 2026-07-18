@@ -57,7 +57,8 @@
       "Edit(/.claude/skills/session-handoff/**)",
       "Skill(update-config)",
       "Skill(update-config:*)",
-      "Edit(/.claude/skills/backlog-auto/**)"
+      "Edit(/.claude/skills/backlog-auto/**)",
+      "PowerShell(git add openspec/changes/components-add-tabs openspec/README.md docs/backlog/BACKLOG.md packages/tokens/src/component/tabs.json packages/components/src/lib/tabs packages/components/src/public-api.ts packages/components/package.json apps/playground/src/app .changeset/add-tabs.md .changeset/tabs-tokens-align.md)"
     ]
   }
 }

@@ -48,6 +48,10 @@ Al mostrar, la directiva **agrega** el id del panel al `aria-describedby` existe
 
 `dsTooltipPlacement` (`top | bottom | left | right`, default `top`): centrado sobre el eje correspondiente, offset por token, flip al opuesto si no hay espacio en viewport. Reposición en scroll/resize mientras esté visible (mismo esquema que Select).
 
+### 7. `aria-describedby` imperativo (excepción del gate `/ng:review`, con aviso al PO)
+
+El review marcó como media el manejo del `aria-describedby` con `get/set/removeAttribute` en vez de un attribute binding reactivo. Se mantiene imperativo como **excepción justificada**: un host binding del atributo **pisaría** el valor estático del consumidor (los bindings ganan sobre atributos) y congelaría cualquier escritor externo dinámico — exactamente lo que la composición de §5 debe soportar. La lectura viva del DOM en show/hide es la única forma de agregar/quitar _solo el id propio_ sin adueñarse del atributo (mismo enfoque que el `AriaDescriber` de Material). El comportamiento está contractualizado en el spec y cubierto por test (incluido el caso con valor preexistente).
+
 ## Risks / Trade-offs
 
 - [Timers + listeners de document] → todos con cleanup en hide/`OnDestroy` (el spec lo testea); fake timers en jsdom.

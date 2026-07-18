@@ -1,0 +1,16 @@
+{
+  "component": {
+    "tooltip": {
+      "bg":        { "value": "{semantic.color.text.primary}" },
+      "text":      { "value": "{semantic.color.bg.surface}" },
+      "delay":     { "value": "{motion.duration.slower}" },
+      "padding-x": { "value": "{dimension.8}" },
+      "padding-y": { "value": "{dimension.4}" },
+      "radius":    { "value": "{semantic.radius.sm}" },
+      "font-size": { "value": "{font.size.xs}" },
+      "max-width": { "value": "240px" },
+      "shadow":    { "value": "{semantic.shadow.dropdown}" },
+      "offset":    { "value": "{dimension.4}" }
+    }
+  }
+}

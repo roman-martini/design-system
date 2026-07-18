@@ -1,0 +1,40 @@
+:host {
+  margin: 0;
+  border: none;
+  padding: var(--ds-component-tooltip-padding-y) var(--ds-component-tooltip-padding-x);
+  border-radius: var(--ds-component-tooltip-radius);
+  background: var(--ds-component-tooltip-bg);
+  color: var(--ds-component-tooltip-text);
+  font-family: inherit;
+  font-size: var(--ds-component-tooltip-font-size);
+  line-height: var(--ds-font-line-height-tight);
+  max-width: var(--ds-component-tooltip-max-width);
+  width: max-content;
+  box-shadow: var(--ds-component-tooltip-shadow);
+
+  /* Estado cerrado + transición de salida (top layer via popover) */
+  opacity: 0;
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-exit),
+    display var(--ds-semantic-motion-transition-overlay-exit) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-exit) allow-discrete;
+}
+
+:host(:popover-open) {
+  opacity: 1;
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-enter),
+    display var(--ds-semantic-motion-transition-overlay-enter) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-enter) allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host,
+  :host(:popover-open) {
+    transition: none;
+  }
+}

@@ -8,4 +8,5 @@ export * from './lib/modal';
 export * from './lib/radio';
 export * from './lib/radio-group';
 export * from './lib/select';
+export * from './lib/tooltip';
 export * from './lib/tabs';

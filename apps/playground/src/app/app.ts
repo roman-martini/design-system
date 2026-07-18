@@ -12,6 +12,7 @@ import {
   DsSelect,
   DsTab,
   DsTabs,
+  DsTooltip,
 } from '@romanmartinidev/components';
 
 @Component({
@@ -28,6 +29,7 @@ import {
     DsSelect,
     DsTab,
     DsTabs,
+    DsTooltip,
     LucideChevronDown,
     LucideX,
     ReactiveFormsModule,
