@@ -29,7 +29,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-007](../product/epics/EP-002-kit-componentes/HU-007-tooltip.md) / EP-002.
 
-**Alcance propuesto**: según HU-007 (refinar CAs antes del propose); reutiliza las reglas 1–6 de [ADR-014](../architecture/adr/ADR-014-overlays-anclados-popover-api.md) (Popover API + fallback JS) sin re-decidir.
+**Alcance propuesto**: directiva `dsTooltip` (primera directiva del kit) con estilo inverso theme-aware, delay 500ms tokenizado, WCAG 1.4.13 completo, `aria-describedby`; reutiliza las reglas 1–6 de [ADR-014](../architecture/adr/ADR-014-overlays-anclados-popover-api.md) sin re-decidir. **HU-007 ya Refinada** (2026-07-18) con 8 CAs binarios.
 
 **Disparador**: cierre del item anterior de la tanda (Input, `aaa-017`) — **ACTIVADO** (2026-07-11, grooming del archive).
 

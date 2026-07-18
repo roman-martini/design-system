@@ -25,15 +25,15 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 
 ## Historias de usuario
 
-| HU                                       | Título                                     | Actor          | Estado                                                                      |
-| ---------------------------------------- | ------------------------------------------ | -------------- | --------------------------------------------------------------------------- |
-| [HU-003](HU-003-select-formularios.md)   | Select/Combobox para formularios reales    | Dev consumidor | Hecha (aaa-016 archivado 2026-07-11; generó ADR-014)                        |
-| [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Hecha (aaa-017 archivado 2026-07-11)                                        |
-| [HU-006](HU-006-tabs-navegacion.md)      | Tabs para navegación de contenido          | Dev consumidor | Hecha (aaa-018 archivado 2026-07-14)                                        |
-| [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Identificada (tanda 1; desbloqueada — posicionamiento resuelto por ADR-014) |
-| [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Identificada (tanda 1)                                                      |
-| [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Identificada (tanda 1)                                                      |
-| [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Identificada (tanda 1)                                                      |
+| HU                                       | Título                                     | Actor          | Estado                                               |
+| ---------------------------------------- | ------------------------------------------ | -------------- | ---------------------------------------------------- |
+| [HU-003](HU-003-select-formularios.md)   | Select/Combobox para formularios reales    | Dev consumidor | Hecha (aaa-016 archivado 2026-07-11; generó ADR-014) |
+| [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Hecha (aaa-017 archivado 2026-07-11)                 |
+| [HU-006](HU-006-tabs-navegacion.md)      | Tabs para navegación de contenido          | Dev consumidor | Hecha (aaa-018 archivado 2026-07-14)                 |
+| [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Refinada (2026-07-18; lista para su change)          |
+| [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Identificada (tanda 1)                               |
+| [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Identificada (tanda 1)                               |
+| [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Identificada (tanda 1)                               |
 
 Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Candidatas restantes (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, requieren disparador propio según D-005): Progress, Accordion, Breadcrumbs, Pagination, Menu/Dropdown, DatePicker (wrapping).
 
