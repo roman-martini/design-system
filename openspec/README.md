@@ -31,7 +31,7 @@ Actualizar al crear un change nuevo y al archivar el último.
 > `aaa-015` `tokens-fix-contrast-aa` — **archivado 2026-07-11** (sin ADR — ejecuta D-007).
 > `aaa-016` `components-add-select` — **archivado 2026-07-11** (generó ADR-014).
 > `aaa-017` `components-add-input` — **archivado 2026-07-11** (sin ADR — aplica 011/012/014).
-> `aaa-018` asignado a `components-add-tabs` (status `proposed`, en `changes/`; sin ADR previsto).
+> `aaa-018` `components-add-tabs` — **archivado 2026-07-14** (sin ADR — aplica 011 y patrones del kit).
 
 ### Specs sin IDs
 

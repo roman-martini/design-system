@@ -1,6 +1,6 @@
 # EP-002 — Kit de componentes Angular
 
-**Estado**: En desarrollo (8 componentes entregados; tanda 1 en curso)
+**Estado**: En desarrollo (9 componentes entregados; tanda 1 en curso)
 
 ## Contexto
 
@@ -12,15 +12,16 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 
 ## Valor entregado
 
-| Entrega                                                               | Change                                                                                                                                                                        | Qué obtuvo el dev consumidor                            |
-| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| `DsButton` (variants, sizes, disabled accesible con `disabledReason`) | [aaa-003](../../../../openspec/changes/archive/aaa-003-bootstrap-fase-3-components/), [aaa-011](../../../../openspec/changes/archive/aaa-011-components-accessible-disabled/) | Botón accesible que explica por qué está deshabilitado  |
-| `DsCheckbox` (CVA, indeterminate, a11y)                               | [aaa-006](../../../../openspec/changes/archive/aaa-006-components-add-checkbox/)                                                                                              | Checkbox integrado a Angular Forms                      |
-| `DsRadio` + `DsRadioGroup` (CVA, keyboard nav completa)               | [aaa-008](../../../../openspec/changes/archive/aaa-008-components-add-radio/)                                                                                                 | Selección única accesible, standalone o agrupada        |
-| Iconografía Lucide (convención tree-shakeable 16/1.5)                 | [aaa-013](../../../../openspec/changes/archive/aaa-013-components-decide-icon-library/)                                                                                       | Iconos type-safe sin mantener un set propio             |
-| `DsModal` (dialog nativo: focus trap/top layer por plataforma)        | [aaa-014](../../../../openspec/changes/archive/aaa-014-components-add-modal/)                                                                                                 | Primer overlay completo con a11y de plataforma          |
-| `DsSelect` + `DsOption` (combobox APG sobre Popover API, CVA)         | [aaa-016](../../../../openspec/changes/archive/aaa-016-components-add-select/)                                                                                                | Selección de opciones accesible sin dependencias nuevas |
-| `DsInput` (field completo: label/hint/error, invalid automático)      | [aaa-017](../../../../openspec/changes/archive/aaa-017-components-add-input/)                                                                                                 | Entrada de texto accesible con validación integrada     |
+| Entrega                                                               | Change                                                                                                                                                                        | Qué obtuvo el dev consumidor                             |
+| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `DsButton` (variants, sizes, disabled accesible con `disabledReason`) | [aaa-003](../../../../openspec/changes/archive/aaa-003-bootstrap-fase-3-components/), [aaa-011](../../../../openspec/changes/archive/aaa-011-components-accessible-disabled/) | Botón accesible que explica por qué está deshabilitado   |
+| `DsCheckbox` (CVA, indeterminate, a11y)                               | [aaa-006](../../../../openspec/changes/archive/aaa-006-components-add-checkbox/)                                                                                              | Checkbox integrado a Angular Forms                       |
+| `DsRadio` + `DsRadioGroup` (CVA, keyboard nav completa)               | [aaa-008](../../../../openspec/changes/archive/aaa-008-components-add-radio/)                                                                                                 | Selección única accesible, standalone o agrupada         |
+| Iconografía Lucide (convención tree-shakeable 16/1.5)                 | [aaa-013](../../../../openspec/changes/archive/aaa-013-components-decide-icon-library/)                                                                                       | Iconos type-safe sin mantener un set propio              |
+| `DsModal` (dialog nativo: focus trap/top layer por plataforma)        | [aaa-014](../../../../openspec/changes/archive/aaa-014-components-add-modal/)                                                                                                 | Primer overlay completo con a11y de plataforma           |
+| `DsSelect` + `DsOption` (combobox APG sobre Popover API, CVA)         | [aaa-016](../../../../openspec/changes/archive/aaa-016-components-add-select/)                                                                                                | Selección de opciones accesible sin dependencias nuevas  |
+| `DsInput` (field completo: label/hint/error, invalid automático)      | [aaa-017](../../../../openspec/changes/archive/aaa-017-components-add-input/)                                                                                                 | Entrada de texto accesible con validación integrada      |
+| `DsTabs` + `DsTab` (ARIA tabs, roving tabindex, 3 variantes)          | [aaa-018](../../../../openspec/changes/archive/aaa-018-components-add-tabs/)                                                                                                  | Navegación de contenido accesible sin construirla a mano |
 
 ## Historias de usuario
 
@@ -28,7 +29,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | ---------------------------------------- | ------------------------------------------ | -------------- | --------------------------------------------------------------------------- |
 | [HU-003](HU-003-select-formularios.md)   | Select/Combobox para formularios reales    | Dev consumidor | Hecha (aaa-016 archivado 2026-07-11; generó ADR-014)                        |
 | [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Hecha (aaa-017 archivado 2026-07-11)                                        |
-| [HU-006](HU-006-tabs-navegacion.md)      | Tabs para navegación de contenido          | Dev consumidor | Refinada (2026-07-12; lista para su change)                                 |
+| [HU-006](HU-006-tabs-navegacion.md)      | Tabs para navegación de contenido          | Dev consumidor | Hecha (aaa-018 archivado 2026-07-14)                                        |
 | [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Identificada (tanda 1; desbloqueada — posicionamiento resuelto por ADR-014) |
 | [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Identificada (tanda 1)                                                      |
 | [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Identificada (tanda 1)                                                      |

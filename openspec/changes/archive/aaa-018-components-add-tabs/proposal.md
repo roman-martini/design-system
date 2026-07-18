@@ -2,7 +2,8 @@
 id: aaa-018
 name: components-add-tabs
 type: change
-status: proposed
+status: archived
+archived: 2026-07-14
 modifies-specs:
   - components-package (ADDED: DsTabs + DsTab)
   - design-tokens-package (sin delta de spec; alineación de valores en component.tabs)

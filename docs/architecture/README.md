@@ -464,6 +464,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-015](../../openspec/changes/archive/aaa-015-tokens-fix-contrast-aa/)           | tokens-fix-contrast-aa           | archived | 2026-07-11 | modifica design-tokens-package                      | — (ejecuta D-007/D-008)                  |
 | [aaa-016](../../openspec/changes/archive/aaa-016-components-add-select/)            | components-add-select            | archived | 2026-07-11 | modifica components-package                         | ADR-014 (overlays anclados Popover API)  |
 | [aaa-017](../../openspec/changes/archive/aaa-017-components-add-input/)             | components-add-input             | archived | 2026-07-11 | modifica components-package + design-tokens-package | — (aplica ADR-011/012/014)               |
+| [aaa-018](../../openspec/changes/archive/aaa-018-components-add-tabs/)              | components-add-tabs              | archived | 2026-07-14 | modifica components-package + design-tokens-package | — (aplica ADR-011 y patrones del kit)    |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

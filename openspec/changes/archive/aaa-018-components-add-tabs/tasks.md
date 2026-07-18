@@ -48,16 +48,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: contenedor renderiza los bot
 - [x] 6.3 Auditoría **`/ng:review`** sobre `src/lib/tabs/` — 0 altas; 1 baja corregida (`activeValue` → private); 1 media resuelta como **excepción justificada con aviso al PO** (design.md §7: `tabindex="0"` incondicional en el tabpanel — la detección de focusables proyectados es frágil; APG lo recomienda para paneles sin focusables; se revisa si `/ds:check-a11y` lo pesa con evidencia de AT real). Excepciones de diseño verificadas una a una por el reviewer.
 - [x] 6.4 `npm pack --dry-run`: tarball sin `*.spec.ts`/`*.stories.ts`, con tabs compilado.
 - [x] 6.5 Changesets: **minor** de components (DsTabs + DsTab) y **patch** de tokens (alineación).
-- [ ] 6.6 Proponer mensaje de commit (implementación) y esperar OK del usuario.
+- [x] 6.6 Proponer mensaje de commit (implementación) y esperar OK del usuario.
 
 **Criterio**: automáticos verdes; gate resuelto; changesets correctos; aprobación explícita antes del commit.
 
 ## 7. Archive
 
-- [ ] 7.1 Sin ADR nuevo previsto (aplica ADR-011 y patrones del kit). Si la implementación destapa una decisión one-way door, se crea en ese momento.
-- [ ] 7.2 Mover a `archive/aaa-018-components-add-tabs/`; frontmatter `archived`; sincronizar spec base `components-package` (2 Requirements ADDED, referencias a design.md convertidas a texto autocontenido).
-- [ ] 7.3 Registros: `openspec/README.md` (próximo ID → `aaa-019`), catálogo, grooming del BACKLOG (Tabs sale de Now; **promover `components-add-toast`** — siguiente de la tanda; Tooltip ya está en Now), HU-006 → Hecha con CAs tildados, EP-002 actualizado (9 componentes).
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.1 Sin ADR nuevo previsto (aplica ADR-011 y patrones del kit). Si la implementación destapa una decisión one-way door, se crea en ese momento.
+- [x] 7.2 Mover a `archive/aaa-018-components-add-tabs/`; frontmatter `archived`; sincronizar spec base `components-package` (2 Requirements ADDED, referencias a design.md convertidas a texto autocontenido).
+- [x] 7.3 Registros: `openspec/README.md` (próximo ID → `aaa-019`), catálogo, grooming del BACKLOG (Tabs sale de Now; **promover `components-add-toast`** — siguiente de la tanda; Tooltip ya está en Now), HU-006 → Hecha con CAs tildados, EP-002 actualizado (9 componentes).
+- [x] 7.4 `pnpm openspec validate --all` pasa.
 - [ ] 7.5 Proponer commit del archive y esperar OK.
 
 **Criterio**: change archivado, spec base sincronizada, tanda D-009 avanzada.

@@ -25,18 +25,6 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-### `components-add-tabs` — Tabs de navegación
-
-**Tipo**: OpenSpec (kit). **Producto**: [HU-006](../product/epics/EP-002-kit-componentes/HU-006-tabs-navegacion.md) / EP-002.
-
-**Alcance propuesto**: `ds-tabs`/`ds-tab` con las 3 variantes (underline/pills/contained — tokens ya existentes), activación automática, paneles en DOM con `hidden`, `[(value)]` por id, roving tabindex. **HU-006 ya Refinada** (2026-07-12) con 8 CAs binarios.
-
-**Disparador**: cierre del item anterior de la tanda (Select, `aaa-016`) — **ACTIVADO** (2026-07-11, grooming del archive).
-
-**Estado**: **propuesta activa** — [`aaa-018`](../../openspec/changes/components-add-tabs/), 4/4 artefactos, listo para apply.
-
----
-
 ### `components-add-tooltip` — Tooltip de ayuda contextual
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-007](../product/epics/EP-002-kit-componentes/HU-007-tooltip.md) / EP-002.
@@ -44,6 +32,18 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 **Alcance propuesto**: según HU-007 (refinar CAs antes del propose); reutiliza las reglas 1–6 de [ADR-014](../architecture/adr/ADR-014-overlays-anclados-popover-api.md) (Popover API + fallback JS) sin re-decidir.
 
 **Disparador**: cierre del item anterior de la tanda (Input, `aaa-017`) — **ACTIVADO** (2026-07-11, grooming del archive).
+
+**Estado**: pendiente.
+
+---
+
+### `components-add-toast` — Toast/Notification
+
+**Tipo**: OpenSpec (kit). **Producto**: [HU-008](../product/epics/EP-002-kit-componentes/HU-008-toast-notificaciones.md) / EP-002.
+
+**Alcance propuesto**: según HU-008 (refinar CAs antes del propose). Nota: consumirá `border/bg/text` de status — evaluar si activa `tokens-fix-status-borders` (Next) en el mismo change.
+
+**Disparador**: cierre del item anterior de la tanda (Tabs, `aaa-018`) — **ACTIVADO** (2026-07-14, grooming del archive).
 
 **Estado**: pendiente.
 
@@ -59,7 +59,6 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming al archivar):
 
-- `components-add-toast` — [HU-008](../product/epics/EP-002-kit-componentes/HU-008-toast-notificaciones.md).
 - `components-add-spinner` — [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md).
 - `components-add-skeleton` — [HU-010](../product/epics/EP-002-kit-componentes/HU-010-skeleton.md).
 

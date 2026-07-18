@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](README.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-12, ambigüedades resueltas con el PO)
+**Estado**: Hecha — change [aaa-018 components-add-tabs](../../../../openspec/changes/archive/aaa-018-components-add-tabs/) archivado (2026-07-14)
 **Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
 
 ---
@@ -22,14 +22,14 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec components-package (delta del change components-add-tabs). -->
 
-- [ ] **CA-006.1** — Dado un `<ds-tabs [(value)]="active">` con tabs de values `'a'`/`'b'`/`'c'`, cuando el usuario clickea el tab `'b'`, entonces el model pasa a `'b'` y su panel se muestra; cuando el consumidor setea `'c'` programáticamente, el tab `'c'` queda activo. Sin `value` inicial, el primer tab habilitado arranca activo.
-- [ ] **CA-006.2** — Dado el foco en un tab, cuando se presiona `←`/`→`, entonces el foco **y la selección** se mueven al tab habilitado anterior/siguiente (con wrap en los extremos, salteando disabled); `Home`/`End` van al primero/último habilitado. El tablist es un solo tab-stop (roving tabindex: solo el tab activo tiene `tabindex="0"`).
-- [ ] **CA-006.3** — Dado el componente renderizado, entonces implementa el patrón tabs de ARIA APG: contenedor `role="tablist"` (con el `aria-label` del consumidor reenviado si el rol no vive en el host), cada tab `role="tab"` con `aria-selected` y `aria-controls` hacia su panel, cada panel `role="tabpanel"` con `aria-labelledby` hacia su tab y `tabindex="0"`.
-- [ ] **CA-006.4** — Dado un panel inactivo, entonces permanece en el DOM con `hidden` (un form a medio completar dentro de un tab no pierde estado al cambiar y volver).
-- [ ] **CA-006.5** — Dado el input `variant` (`underline | pills | contained`, default `underline`), entonces cada variante consume exclusivamente sus tokens `component.tabs.*` y los pares de contraste de los estados activo/hover/default pasan AA calculados por script en los 4 themes. Los tokens `tabs.size.*.height` con px crudos se alinean a `{dimension.*}` en el change (consistencia con input/select).
-- [ ] **CA-006.6** — Dado un `<ds-tab [disabled]="true">`, entonces no es activable por click ni teclado (la navegación lo saltea), expone `aria-disabled="true"` y permanece perceptible (rama botón de ADR-011 — el tab es un control de acción).
-- [ ] **CA-006.7** — Dado el CSS del componente, entonces todo valor visual sale de `var(--ds-*)`, los sizes `sm | md | lg` escalan por tokens, y toda transición (underline, colores) tiene su bloque `prefers-reduced-motion`.
-- [ ] **CA-006.8** — Dado un tab enfocado por teclado, entonces muestra el indicador de foco tokenizado (`--ds-semantic-shadow-focus`) sin `outline: none` desnudo.
+- [x] **CA-006.1** — Dado un `<ds-tabs [(value)]="active">` con tabs de values `'a'`/`'b'`/`'c'`, cuando el usuario clickea el tab `'b'`, entonces el model pasa a `'b'` y su panel se muestra; cuando el consumidor setea `'c'` programáticamente, el tab `'c'` queda activo. Sin `value` inicial, el primer tab habilitado arranca activo.
+- [x] **CA-006.2** — Dado el foco en un tab, cuando se presiona `←`/`→`, entonces el foco **y la selección** se mueven al tab habilitado anterior/siguiente (con wrap en los extremos, salteando disabled); `Home`/`End` van al primero/último habilitado. El tablist es un solo tab-stop (roving tabindex: solo el tab activo tiene `tabindex="0"`).
+- [x] **CA-006.3** — Dado el componente renderizado, entonces implementa el patrón tabs de ARIA APG: contenedor `role="tablist"` (con el `aria-label` del consumidor reenviado si el rol no vive en el host), cada tab `role="tab"` con `aria-selected` y `aria-controls` hacia su panel, cada panel `role="tabpanel"` con `aria-labelledby` hacia su tab y `tabindex="0"`.
+- [x] **CA-006.4** — Dado un panel inactivo, entonces permanece en el DOM con `hidden` (un form a medio completar dentro de un tab no pierde estado al cambiar y volver).
+- [x] **CA-006.5** — Dado el input `variant` (`underline | pills | contained`, default `underline`), entonces cada variante consume exclusivamente sus tokens `component.tabs.*` y los pares de contraste de los estados activo/hover/default pasan AA calculados por script en los 4 themes. Los tokens `tabs.size.*.height` con px crudos se alinean a `{dimension.*}` en el change (consistencia con input/select).
+- [x] **CA-006.6** — Dado un `<ds-tab [disabled]="true">`, entonces no es activable por click ni teclado (la navegación lo saltea), expone `aria-disabled="true"` y permanece perceptible (rama botón de ADR-011 — el tab es un control de acción).
+- [x] **CA-006.7** — Dado el CSS del componente, entonces todo valor visual sale de `var(--ds-*)`, los sizes `sm | md | lg` escalan por tokens, y toda transición (underline, colores) tiene su bloque `prefers-reduced-motion`.
+- [x] **CA-006.8** — Dado un tab enfocado por teclado, entonces muestra el indicador de foco tokenizado (`--ds-semantic-shadow-focus`) sin `outline: none` desnudo.
 
 ## Dependencias
 
