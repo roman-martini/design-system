@@ -32,8 +32,10 @@ jobs:
       - name: Create release PR or publish
         uses: changesets/action@v1
         with:
-          version: pnpm version
-          publish: pnpm release
+          # OJO: `pnpm version` es un builtin de pnpm que pisa al script
+          # homónimo — invocar changesets directo, sin ambigüedad.
+          version: pnpm changeset version
+          publish: pnpm changeset publish
           commit: 'chore(repo): version packages'
           title: 'chore(repo): version packages'
           setupGitUser: true
