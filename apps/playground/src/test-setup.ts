@@ -1,6 +1,7 @@
 import '@analogjs/vitest-angular/setup-zone';
 
-import { getTestBed } from '@angular/core/testing';
-import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
+import { setupTestBed } from '@analogjs/vitest-angular/setup-testbed';
 
-getTestBed().initTestEnvironment(BrowserTestingModule, platformBrowserTesting());
+// Mismo criterio que packages/components/src/test-setup.ts: setupTestBed()
+// tolera workers compartidos (init único + cleanup hooks por archivo).
+setupTestBed({ zoneless: false });

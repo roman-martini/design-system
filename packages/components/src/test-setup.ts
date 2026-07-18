@@ -1,16 +1,14 @@
 import '@analogjs/vitest-angular/setup-zone';
 
-import { getTestBed } from '@angular/core/testing';
-import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
+import { setupTestBed } from '@analogjs/vitest-angular/setup-testbed';
 
-// Idempotente: en runners de CI con pocos cores, varios archivos de test
-// comparten worker y el setup corre más de una vez ("Cannot set base
-// providers because it has already been called").
-try {
-  getTestBed().initTestEnvironment(BrowserTestingModule, platformBrowserTesting());
-} catch {
-  // Ya inicializado por otro archivo de test en el mismo worker.
-}
+// Cuando Vitest comparte el contexto entre archivos (runners con pocos
+// cores), @angular/core/testing queda cacheado y sus hooks de limpieza
+// por-test solo se registran para el primer archivo; además el init manual
+// corre dos veces sobre el mismo TestBed. setupTestBed() cubre ambos casos:
+// inicializa el entorno una sola vez (guard en globalThis) y registra los
+// cleanup hooks en cada archivo. zoneless: false porque este setup usa zone.
+setupTestBed({ zoneless: false });
 
 // jsdom (27.x) todavía no implementa los métodos de HTMLDialogElement.
 // Polyfill mínimo del contrato que DsModal necesita: showModal/close + evento
