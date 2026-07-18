@@ -33,7 +33,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: cierre del item anterior de la tanda (Tabs, `aaa-018`) — **ACTIVADO** (2026-07-14, grooming del archive).
 
-**Estado**: pendiente.
+**Estado**: **propuesta activa** — [`aaa-021`](../../openspec/changes/components-add-toast/) (2026-07-18), 6/6 artefactos. Absorbió `tokens-fix-status-borders` (eliminado de Next).
 
 ---
 
@@ -53,20 +53,6 @@ En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming 
 **Disparador** (cada uno): cierre del item anterior de la tanda.
 
 **Estado**: pendiente.
-
----
-
-### `tokens-fix-status-borders` — Contraste AA de border.success/warning/info
-
-**Tipo**: OpenSpec (tokens, micro-change). **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md).
-
-**Origen**: detectado en el gate de contraste de [`aaa-017`](../../openspec/changes/archive/aaa-017-components-add-input/) al arreglar `border.danger`: `border.success/warning/info` arrastran el mismo patrón (`*-400` en light / `*-800` en dark) que falla 3:1. Sin consumidores hoy.
-
-**Alcance propuesto**: mismo fix que `border.danger` (semantic → `*-500`, override dark → `*-400`), verificado por script.
-
-**Disparador**: el primer componente que consuma alguno de esos tokens (Alert es el candidato natural), o la próxima corrida de `/ds:check-a11y` que los alcance.
-
-**Estado**: pendiente, sin disparador activo.
 
 ---
 

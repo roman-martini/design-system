@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-18, ambigüedades resueltas con el PO)
+**Estado**: En desarrollo — propuesta activa [`aaa-021 components-add-toast`](../../../../openspec/changes/components-add-toast/) (2026-07-18)
 **Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
 
 ---
