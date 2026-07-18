@@ -29,7 +29,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-008](../product/epics/EP-002-kit-componentes/HU-008-toast-notificaciones.md) / EP-002.
 
-**Alcance propuesto**: según HU-008 (refinar CAs antes del propose). Nota: consumirá `border/bg/text` de status — evaluar si activa `tokens-fix-status-borders` (Next) en el mismo change.
+**Alcance propuesto**: `DsToastService` (primera service del kit) + stack en top layer (popover manual, ADR-014 tercer consumidor), posición global por provider (default bottom-right), danger persistente + auto-dismiss pausable, acción única opcional. **HU-008 ya Refinada** (2026-07-18) con 8 CAs binarios. **Absorbe `tokens-fix-status-borders`** (CA-008.7 lo activa — sacar de Next al proponer).
 
 **Disparador**: cierre del item anterior de la tanda (Tabs, `aaa-018`) — **ACTIVADO** (2026-07-14, grooming del archive).
 

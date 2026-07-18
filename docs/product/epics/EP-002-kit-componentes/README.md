@@ -32,7 +32,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Hecha (aaa-017 archivado 2026-07-11)                 |
 | [HU-006](HU-006-tabs-navegacion.md)      | Tabs para navegación de contenido          | Dev consumidor | Hecha (aaa-018 archivado 2026-07-14)                 |
 | [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Hecha (aaa-019 archivado 2026-07-18)                 |
-| [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Identificada (tanda 1)                               |
+| [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Refinada (2026-07-18; lista para su change)          |
 | [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Identificada (tanda 1)                               |
 | [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Identificada (tanda 1)                               |
 
