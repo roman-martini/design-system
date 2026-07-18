@@ -97,19 +97,20 @@ Keyboard nav (WAI-ARIA APG): `Arrow`/`Arrow Down` siguiente, `Arrow Left`/`Arrow
 
 ## Componentes disponibles
 
-| Componente     | Selector         | Variants / Estado                                                      | Sizes            |
-| -------------- | ---------------- | ---------------------------------------------------------------------- | ---------------- |
-| `DsButton`     | `ds-button`      | `primary`, `secondary`, `ghost` + `disabledReason` accesible           | `sm`, `md`, `lg` |
-| `DsCheckbox`   | `ds-checkbox`    | `checked`, `indeterminate`, `disabled` + CVA                           | `sm`, `md`, `lg` |
-| `DsRadio`      | `ds-radio`       | `value` (genérico), `disabled`, `label` slot + standalone              | `sm`, `md`, `lg` |
-| `DsRadioGroup` | `ds-radio-group` | `value` model two-way, `disabled` + CVA, `name` auto-gen, keyboard nav | —                |
-| `DsModal`      | `ds-modal`       | `open` two-way, `heading`, `closeOnEscape`/`closeOnOverlay`, top layer | `sm`, `md`, `lg` |
-| `DsSelect`     | `ds-select`      | `DsOption` proyectadas, CVA, keyboard nav APG, Popover API (ADR-014)   | —                |
-| `DsInput`      | `ds-input`       | `type` whitelist, `label`/`hint`/`error`, prefix/suffix, CVA           | —                |
-| `DsTabs`       | `ds-tabs`        | `DsTab` proyectados, `value` two-way, roving tabindex, ARIA APG        | —                |
-| `DsTooltip`    | `[dsTooltip]`    | Directiva; delay configurable, hoverable/dismissable (WCAG 1.4.13)     | —                |
+| Componente       | Selector         | Variants / Estado                                                                    | Sizes            |
+| ---------------- | ---------------- | ------------------------------------------------------------------------------------ | ---------------- |
+| `DsButton`       | `ds-button`      | `primary`, `secondary`, `ghost` + `disabledReason` accesible                         | `sm`, `md`, `lg` |
+| `DsCheckbox`     | `ds-checkbox`    | `checked`, `indeterminate`, `disabled` + CVA                                         | `sm`, `md`, `lg` |
+| `DsRadio`        | `ds-radio`       | `value` (genérico), `disabled`, `label` slot + standalone                            | `sm`, `md`, `lg` |
+| `DsRadioGroup`   | `ds-radio-group` | `value` model two-way, `disabled` + CVA, `name` auto-gen, keyboard nav               | —                |
+| `DsModal`        | `ds-modal`       | `open` two-way, `heading`, `closeOnEscape`/`closeOnOverlay`, top layer               | `sm`, `md`, `lg` |
+| `DsSelect`       | `ds-select`      | `DsOption` proyectadas, CVA, keyboard nav APG, Popover API (ADR-014)                 | —                |
+| `DsInput`        | `ds-input`       | `type` whitelist, `label`/`hint`/`error`, prefix/suffix, CVA                         | —                |
+| `DsTabs`         | `ds-tabs`        | `DsTab` proyectados, `value` two-way, roving tabindex, ARIA APG                      | —                |
+| `DsTooltip`      | `[dsTooltip]`    | Directiva; delay configurable, hoverable/dismissable (WCAG 1.4.13)                   | —                |
+| `DsToastService` | (service)        | `show`/atajos por variante + `provideDsToasts`; danger persistente, timers pausables | —                |
 
-Más componentes en changes futuros (Toast, Spinner, Skeleton, etc. — ver backlog).
+Más componentes en changes futuros (Spinner, Skeleton, etc. — ver backlog).
 
 ## Convenciones
 

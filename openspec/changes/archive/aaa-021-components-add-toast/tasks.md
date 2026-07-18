@@ -55,10 +55,10 @@ Cada tarea es ≤2 h con criterio binario. Diseño: service + provider públicos
 
 ## 7. Archive
 
-- [ ] 7.1 Sin ADR nuevo previsto; si la service como entry point destapa una decisión de patrón (providers del kit), evaluarla como ADR antes de archivar.
-- [ ] 7.2 Mover a `archive/aaa-021-components-add-toast/`; frontmatter `archived`; sincronizar specs base (components ADDED + tokens MODIFIED, texto autocontenido).
-- [ ] 7.3 Registros: `openspec/README.md` (próximo ID → `aaa-022`), catálogo, grooming del BACKLOG (Toast sale de Now; `tokens-fix-status-borders` ya eliminado al proponer; promover Spinner a Now), HU-008 → Hecha con CAs tildados, EP-002 actualizado.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.1 Sin ADR nuevo: el patrón service + `provide*` + DOM interno no destapó decisión one-way door (es recombinación de ADR-007/012/014 y del patrón de panel interno de aaa-019); si un próximo servicio del kit lo repite, ahí se evalúa formalizarlo.
+- [x] 7.2 Mover a `archive/aaa-021-components-add-toast/`; frontmatter `archived`; sincronizar specs base (components ADDED + tokens MODIFIED, texto autocontenido).
+- [x] 7.3 Registros: `openspec/README.md` (próximo ID ya en `aaa-022`), catálogo, grooming del BACKLOG (Toast sale de Now; `tokens-fix-status-borders` ya eliminado al proponer; Spinner promovido a Now), HU-008 → Hecha con CAs tildados, EP-002 actualizado.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
 - [ ] 7.5 Proponer commit del archive y esperar OK.
 
 **Criterio**: change archivado, specs base sincronizadas, registros al día.

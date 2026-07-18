@@ -2,7 +2,8 @@
 id: aaa-021
 name: components-add-toast
 type: change
-status: proposed
+status: archived
+archived: 2026-07-18
 modifies-specs:
   - components-package (ADDED: DsToastService + provideDsToasts)
   - design-tokens-package (MODIFIED: contraste AA extendido a borders de status — ejecuta tokens-fix-status-borders)

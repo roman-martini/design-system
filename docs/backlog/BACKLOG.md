@@ -25,15 +25,15 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-### `components-add-toast` — Toast/Notification
+### `components-add-spinner` — Spinner
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-008](../product/epics/EP-002-kit-componentes/HU-008-toast-notificaciones.md) / EP-002.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md) / EP-002.
 
-**Alcance propuesto**: `DsToastService` (primera service del kit) + stack en top layer (popover manual, ADR-014 tercer consumidor), posición global por provider (default bottom-right), danger persistente + auto-dismiss pausable, acción única opcional. **HU-008 ya Refinada** (2026-07-18) con 8 CAs binarios. **Absorbe `tokens-fix-status-borders`** (CA-008.7 lo activa — sacar de Next al proponer).
+**Alcance propuesto**: indicador de carga del kit (pendiente de refinamiento de HU con el PO antes de proponer, como toda la tanda D-009).
 
-**Disparador**: cierre del item anterior de la tanda (Tabs, `aaa-018`) — **ACTIVADO** (2026-07-14, grooming del archive).
+**Disparador**: cierre del item anterior de la tanda (Toast, `aaa-021`) — **ACTIVADO** (2026-07-18, grooming del archive).
 
-**Estado**: **propuesta activa** — [`aaa-021`](../../openspec/changes/components-add-toast/) (2026-07-18), 6/6 artefactos. Absorbió `tokens-fix-status-borders` (eliminado de Next).
+**Estado**: pendiente (refinar HU-009 primero).
 
 ---
 
@@ -47,7 +47,6 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming al archivar):
 
-- `components-add-spinner` — [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md).
 - `components-add-skeleton` — [HU-010](../product/epics/EP-002-kit-componentes/HU-010-skeleton.md).
 
 **Disparador** (cada uno): cierre del item anterior de la tanda.

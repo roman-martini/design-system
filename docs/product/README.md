@@ -77,16 +77,16 @@ Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualq
 ### Foto táctica
 
 ```
-EP-002: tanda 1 del kit (D-009)   → HU-003 Select, HU-005 Input, HU-006 Tabs, HU-007 Tooltip Hechas;
-                                    HU-008 Toast ACTIVADA (BACKLOG § Now); HU-009 Spinner,
-                                    HU-010 Skeleton en cola (se promueven al cerrar la anterior)
+EP-002: tanda 1 del kit (D-009)   → HU-003 Select, HU-005 Input, HU-006 Tabs, HU-007 Tooltip,
+                                    HU-008 Toast Hechas; HU-009 Spinner ACTIVADA (BACKLOG § Now);
+                                    HU-010 Skeleton en cola (se promueve al cerrar la anterior)
 EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.2.0 publicados en npm
                                     (D-010, lockstep ADR-015, aaa-020)
 EP-004: HU-001 (Figma export)     → aaa-012 propuesto, 4/4 artefactos; en pausa por decisión del PO
 EP-005: /ds:audit-tokens          → posible activación (primer hardcode detectado en la auditoría)
 ```
 
-Última entrega: HU-002 (primer release npm) Hecha — aaa-020 archivado el 2026-07-18.
+Última entrega: HU-008 (Toast) Hecha — aaa-021 archivado el 2026-07-18.
 
 ## Convenciones
 

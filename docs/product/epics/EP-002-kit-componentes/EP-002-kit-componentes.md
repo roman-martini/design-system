@@ -1,6 +1,6 @@
 # EP-002 — Kit de componentes Angular
 
-**Estado**: En desarrollo (9 componentes + 1 directiva entregados; tanda 1 en curso)
+**Estado**: En desarrollo (9 componentes + 1 directiva + 1 service entregados; tanda 1 en curso)
 
 ## Contexto
 
@@ -32,8 +32,8 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-005](HU-005-input-textfield.md)      | Input/TextField para formularios reales    | Dev consumidor | Hecha (aaa-017 archivado 2026-07-11)                 |
 | [HU-006](HU-006-tabs-navegacion.md)      | Tabs para navegación de contenido          | Dev consumidor | Hecha (aaa-018 archivado 2026-07-14)                 |
 | [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Hecha (aaa-019 archivado 2026-07-18)                 |
-| [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Refinada (2026-07-18; lista para su change)          |
-| [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Identificada (tanda 1)                               |
+| [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Hecha (2026-07-18, aaa-021)                          |
+| [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Identificada (tanda 1; siguiente — BACKLOG § Now)    |
 | [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Identificada (tanda 1)                               |
 
 Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Candidatas restantes (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, requieren disparador propio según D-005): Progress, Accordion, Breadcrumbs, Pagination, Menu/Dropdown, DatePicker (wrapping).
