@@ -5,7 +5,7 @@ Cada tarea con criterio binario. Decisiones en ADR-015; el change deja el repo l
 ## 1. Lockstep en el repo
 
 - [x] 1.1 `.changeset/config.json`: `"fixed": [[tokens, components]]` **+ flag experimental `onlyUpdatePeerDependentsWhenOutOfRange: true`** (sin el flag, todo bump del peer fuerza major al dependent).
-- [x] 1.2 `packages/components/package.json`: peer `@romanmartinidev/tokens` → **rango plano `>=0.1.0 <1.0.0`**. Nota de la matriz de dry-runs: `workspace:^` y `workspace:*` descartados (el chequeo de peers de Changesets no parsea el protocol; el caret 0.x deja los minors legítimamente fuera de rango).
+- [x] 1.2 `packages/components/package.json`: peer `@romanmartinidev/tokens` → **rango plano `>=0.1.0 <1.0.0`**. Nota de la matriz de dry-runs: `workspace:^` y `workspace:*` descartados (el chequeo de peers de Changesets no parsea el protocol; el caret 0.x deja los minors legítimamente fuera de rango). **Ajuste post-CI**: tokens también en devDependencies con workspace:\* (link local — el peer con rango plano hacía que pnpm buscara el package no publicado en el registry, 404) + lockfile actualizado (el primer run de CI falló por frozen-lockfile desactualizado).
 - [x] 1.3 **Dry-run verificado** (matriz A–D + combinación final en ramas descartables): la combinación produce **tokens 0.2.0 y components 0.2.0** con el rango del peer intacto; las alternativas producen 1.0.0.
 - [x] 1.4 ADR-015 aceptado (con la evidencia de la matriz) + fila en `decisions-log.md`; D-010 registrada en `docs/product/decisiones.md` (aprobación del release + política lockstep).
 
