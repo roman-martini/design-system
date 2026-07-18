@@ -3,7 +3,14 @@ import '@analogjs/vitest-angular/setup-zone';
 import { getTestBed } from '@angular/core/testing';
 import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
 
-getTestBed().initTestEnvironment(BrowserTestingModule, platformBrowserTesting());
+// Idempotente: en runners de CI con pocos cores, varios archivos de test
+// comparten worker y el setup corre más de una vez ("Cannot set base
+// providers because it has already been called").
+try {
+  getTestBed().initTestEnvironment(BrowserTestingModule, platformBrowserTesting());
+} catch {
+  // Ya inicializado por otro archivo de test en el mismo worker.
+}
 
 // jsdom (27.x) todavía no implementa los métodos de HTMLDialogElement.
 // Polyfill mínimo del contrato que DsModal necesita: showModal/close + evento
