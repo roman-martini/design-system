@@ -1,6 +1,6 @@
 # EP-003 — Consumo y distribución
 
-**Estado**: En desarrollo (npm-ready; primer release pendiente de decisión del PO)
+**Estado**: Primer release publicado (2026-07-18) — `tokens@0.2.0` y `components@0.2.0` en npm; próximos releases son operación normal del pipeline
 
 ## Contexto
 
@@ -18,12 +18,13 @@ Empaquetado (APF/exports/tree-shaking), versionado (Changesets), pipeline de rel
 | Tokens npm-ready (exports granulares, tree-shaking, tarball limpio) | [aaa-002](../../../../openspec/changes/archive/aaa-002-bootstrap-fase-2-tokens/)     | Importa solo lo que usa        |
 | Components npm-ready (APF, peerDependencies, barrel único)          | [aaa-003](../../../../openspec/changes/archive/aaa-003-bootstrap-fase-3-components/) | Instalación estándar Angular   |
 | CI/CD: PR validation + release pipeline con Changesets              | [aaa-005](../../../../openspec/changes/archive/aaa-005-bootstrap-fase-5-ci/)         | Releases reproducibles         |
+| Primer release npm: 0.2.0 en lockstep, peer con rango plano         | [aaa-020](../../../../openspec/changes/archive/aaa-020-repo-release-lockstep/)       | Instala las libs desde npm     |
 
 ## Historias de usuario
 
-| HU                                     | Título                          | Actor          | Estado                            |
-| -------------------------------------- | ------------------------------- | -------------- | --------------------------------- |
-| [HU-002](HU-002-primer-release-npm.md) | Primer release publicado en npm | Dev consumidor | Refinada (espera decisión del PO) |
+| HU                                     | Título                          | Actor          | Estado             |
+| -------------------------------------- | ------------------------------- | -------------- | ------------------ |
+| [HU-002](HU-002-primer-release-npm.md) | Primer release publicado en npm | Dev consumidor | Hecha (2026-07-18) |
 
 ## Decisiones aplicables
 
@@ -31,8 +32,8 @@ Empaquetado (APF/exports/tree-shaking), versionado (Changesets), pipeline de rel
 
 ## Preguntas abiertas
 
-1. ¿Cuándo estrenar el pipeline? Hay changesets acumulados (minors de components, patches de tokens). Bloquea HU-002; la responde el PO — reafirmó "sigue esperando" el 2026-07-11 al aprobar [D-009](../../decisiones.md). Nota: es **prerequisito** para el objetivo de D-009 de consumir las libs desde otros productos.
+1. ~~¿Cuándo estrenar el pipeline?~~ Resuelta por [D-010](../../decisiones.md) (2026-07-18): el PO aprobó publicar antes de Toast; el estreno agregó la política de versionado lockstep ([ADR-015](../../../architecture/adr/ADR-015-versionado-lockstep.md)) vía [aaa-020](../../../../openspec/changes/archive/aaa-020-repo-release-lockstep/).
 
 ## Orden sugerido
 
-HU-002 cuando el PO lo decida — el pipeline (aaa-005) está listo y sin estrenar.
+Sin HUs pendientes. Los próximos releases salen solos del pipeline (changesets → PR de versionado → merge → publish); la próxima HU de esta épica nacerá de una necesidad real de consumo (ej. docs de migración, canal de feedback de consumidores).

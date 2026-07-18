@@ -2,7 +2,7 @@
 
 **Épica**: [EP-003 — Consumo y distribución](EP-003-consumo-distribucion.md)
 **Actor**: Dev consumidor
-**Estado**: En desarrollo — activada por [D-010](../../decisiones.md) (2026-07-18); change [aaa-020 repo-release-lockstep](../../../../openspec/changes/repo-release-lockstep/) prepara el repo (lockstep ADR-015), quedan los pasos GitHub/npm del PO
+**Estado**: Hecha (2026-07-18) — `tokens@0.2.0` y `components@0.2.0` publicados en npm por el pipeline (aaa-005) tras el merge del PR de versionado; preparación del repo en [aaa-020 repo-release-lockstep](../../../../openspec/changes/archive/aaa-020-repo-release-lockstep/) (lockstep [ADR-015](../../../architecture/adr/ADR-015-versionado-lockstep.md))
 **Decisiones que aplica**: [D-003, D-004](../../decisiones.md)
 
 ---
@@ -13,10 +13,10 @@
 
 ## Criterios de aceptación
 
-- [ ] **CA-002.1** — Dado los changesets acumulados, cuando corre el pipeline de release (aaa-005), entonces `@romanmartinidev/tokens` y `@romanmartinidev/components` quedan publicados en npm con `access: public` y versiones `0.x` acordes a los changesets.
-- [ ] **CA-002.2** — Dado el tarball publicado de `components`, entonces la dependencia a `tokens` figura como rango semver real (nada de `workspace:*`).
-- [ ] **CA-002.3** — Dado un proyecto Angular limpio fuera del monorepo, cuando se instala desde npm y se sigue el quickstart de los READMEs, entonces un `ds-button` con tokens aplicados renderiza sin pasos no documentados.
-- [ ] **CA-002.4** — Dado el release publicado, entonces el repo queda consistente: changesets consumidos, versiones commiteadas y tag/changelog generados por el pipeline.
+- [x] **CA-002.1** — Dado los changesets acumulados, cuando corre el pipeline de release (aaa-005), entonces `@romanmartinidev/tokens` y `@romanmartinidev/components` quedan publicados en npm con `access: public` y versiones `0.x` acordes a los changesets. ✔ 0.2.0/0.2.0 (lockstep ADR-015), 2026-07-18.
+- [x] **CA-002.2** — Dado el tarball publicado de `components`, entonces la dependencia a `tokens` figura como rango semver real (nada de `workspace:*`). ✔ `npm view` muestra `>=0.1.0 <1.0.0`, sin `dependencies` filtradas.
+- [x] **CA-002.3** — Dado un proyecto Angular limpio fuera del monorepo, cuando se instala desde npm y se sigue el quickstart de los READMEs, entonces un `ds-button` con tokens aplicados renderiza sin pasos no documentados. ✔ `ng new` + quickstart → build de producción verde con `--ds-*` y dark theme en el bundle.
+- [x] **CA-002.4** — Dado el release publicado, entonces el repo queda consistente: changesets consumidos, versiones commiteadas y tag/changelog generados por el pipeline. ✔ PR #1 mergeado: `.changeset/` sin pendientes, CHANGELOGs y versiones en main.
 
 ## Dependencias
 

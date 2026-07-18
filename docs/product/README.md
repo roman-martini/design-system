@@ -60,33 +60,33 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 | [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador       | 001          | En refinamiento (aaa-012 propuesto)                   |
 | [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor      | —            | En desarrollo (primera tanda 2026-07-11)              |
 
-Próximos IDs libres: **EP-006**, **HU-011**, **D-010**.
+Próximos IDs libres: **EP-006**, **HU-011**, **D-011**.
 
 ## Roadmap
 
 Sin fechas: el avance lo marcan los **disparadores** (D-005) y el orden operativo vive en [docs/backlog/BACKLOG.md](../backlog/BACKLOG.md). El rumbo se expresa como **hitos de producto**, cada uno con su condición de salida binaria:
 
-| Hito                                         | Qué lo compone                                                                                        | Condición de salida                                               | Estado                                                   |
-| -------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------- |
-| **H1 — Kit mínimo viable para una app real** | Tanda 1 ([D-009](decisiones.md)): HU-003 + HU-005…HU-010 (EP-002)                                     | Una app real se construye 100% con componentes del DS             | En curso — Select e Input activadas (BACKLOG § Now)      |
-| **H2 — Libs consumibles desde otros repos**  | Primer release npm: [HU-002](epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) (EP-003) | Un proyecto externo instala desde npm y arranca con el quickstart | Refinada; espera decisión del PO (reafirmado 2026-07-11) |
-| **H3 — Puente con diseño**                   | Figma export: [HU-001](epics/EP-004-puente-codigo-diseno/HU-001-tokens-en-figma.md) (EP-004)          | Variables de Figma sincronizadas desde el código (one-way, D-006) | aaa-012 propuesto, 4/4 artefactos; en pausa por el PO    |
+| Hito                                         | Qué lo compone                                                                                        | Condición de salida                                               | Estado                                                                                               |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **H1 — Kit mínimo viable para una app real** | Tanda 1 ([D-009](decisiones.md)): HU-003 + HU-005…HU-010 (EP-002)                                     | Una app real se construye 100% con componentes del DS             | En curso — Toast activada (BACKLOG § Now)                                                            |
+| **H2 — Libs consumibles desde otros repos**  | Primer release npm: [HU-002](epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) (EP-003) | Un proyecto externo instala desde npm y arranca con el quickstart | **Cumplido** (2026-07-18) — 0.2.0/0.2.0 en npm, consumo verificado ([D-010](decisiones.md), aaa-020) |
+| **H3 — Puente con diseño**                   | Figma export: [HU-001](epics/EP-004-puente-codigo-diseno/HU-001-tokens-en-figma.md) (EP-004)          | Variables de Figma sincronizadas desde el código (one-way, D-006) | aaa-012 propuesto, 4/4 artefactos; en pausa por el PO                                                |
 
 Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualquier momento. El horizonte más largo (multi-framework, patterns/recipes) vive en [FUTURE-WORK § niveles de madurez](../backlog/FUTURE-WORK.md#estado-actual-respecto-a-los-niveles-de-madurez); no es compromiso.
 
 ### Foto táctica
 
 ```
-EP-002: tanda 1 del kit (D-009)   → HU-003 Select + HU-005 Input ACTIVADAS (BACKLOG § Now);
-                                    HU-006 Tabs, HU-007 Tooltip, HU-008 Toast, HU-009 Spinner,
+EP-002: tanda 1 del kit (D-009)   → HU-003 Select, HU-005 Input, HU-006 Tabs, HU-007 Tooltip Hechas;
+                                    HU-008 Toast ACTIVADA (BACKLOG § Now); HU-009 Spinner,
                                     HU-010 Skeleton en cola (se promueven al cerrar la anterior)
-EP-003: HU-002 (primer release)   → Refinada; el PO reafirmó esperar (2026-07-11) — prerequisito
-                                    para consumir las libs desde otros repos
+EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.2.0 publicados en npm
+                                    (D-010, lockstep ADR-015, aaa-020)
 EP-004: HU-001 (Figma export)     → aaa-012 propuesto, 4/4 artefactos; en pausa por decisión del PO
 EP-005: /ds:audit-tokens          → posible activación (primer hardcode detectado en la auditoría)
 ```
 
-Última entrega: HU-004 (contraste AA) Hecha — aaa-015 archivado el 2026-07-11.
+Última entrega: HU-002 (primer release npm) Hecha — aaa-020 archivado el 2026-07-18.
 
 ## Convenciones
 

@@ -33,7 +33,7 @@ Actualizar al crear un change nuevo y al archivar el último.
 > `aaa-017` `components-add-input` — **archivado 2026-07-11** (sin ADR — aplica 011/012/014).
 > `aaa-018` `components-add-tabs` — **archivado 2026-07-14** (sin ADR — aplica 011 y patrones del kit).
 > `aaa-019` `components-add-tooltip` — **archivado 2026-07-18** (sin ADR — primer reuso de ADR-014).
-> `aaa-020` asignado a `repo-release-lockstep` (status `proposed`, en `changes/`; genera ADR-015).
+> `aaa-020` `repo-release-lockstep` — **archivado 2026-07-18** (generó ADR-015; primer release npm: 0.2.0/0.2.0).
 
 ### Specs sin IDs
 

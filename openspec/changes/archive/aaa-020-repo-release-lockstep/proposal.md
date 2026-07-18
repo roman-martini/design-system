@@ -2,9 +2,10 @@
 id: aaa-020
 name: repo-release-lockstep
 type: change
-status: proposed
+status: archived
+archived: 2026-07-18
 modifies-specs:
-  - components-package (MODIFIED: peerDependency a tokens con workspace:^ y reescritura a rango)
+  - components-package (MODIFIED: peerDependency a tokens con rango plano >=0.1.0 <1.0.0, lockstep ADR-015)
 related-adrs:
   - ADR-015
 ---

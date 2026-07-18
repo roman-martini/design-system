@@ -78,18 +78,6 @@ En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming 
 
 ---
 
-### Primer release publicado en npm
-
-**Tipo**: OpenSpec (el pre-flight destapó cambios de spec) + pipeline de `aaa-005`. **Producto**: [HU-002](../product/epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) / EP-003.
-
-**Alcance**: versionado lockstep del par (ADR-015) + estrenar el pipeline publicando **tokens y components 0.2.0**; verificación de tarball (rango del peer, no pin) e instalación en proyecto limpio.
-
-**Disparador**: decisión del PO de publicar — **ACTIVADO** ([D-010](../product/decisiones.md), 2026-07-18).
-
-**Estado**: **propuesta activa** — [`aaa-020`](../../openspec/changes/repo-release-lockstep/), repo listo; faltan los pasos GitHub/npm del PO (tasks.md §3 del change).
-
----
-
 ### `/ds:audit-tokens` — Skill para auditar consistencia de tokens
 
 **Tipo**: commit directo (tooling). **Producto**: [EP-005](../product/epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md).

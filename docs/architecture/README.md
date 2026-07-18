@@ -466,6 +466,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-017](../../openspec/changes/archive/aaa-017-components-add-input/)             | components-add-input             | archived | 2026-07-11 | modifica components-package + design-tokens-package | — (aplica ADR-011/012/014)               |
 | [aaa-018](../../openspec/changes/archive/aaa-018-components-add-tabs/)              | components-add-tabs              | archived | 2026-07-14 | modifica components-package + design-tokens-package | — (aplica ADR-011 y patrones del kit)    |
 | [aaa-019](../../openspec/changes/archive/aaa-019-components-add-tooltip/)           | components-add-tooltip           | archived | 2026-07-18 | modifica components-package + design-tokens-package | — (primer reuso de ADR-014)              |
+| [aaa-020](../../openspec/changes/archive/aaa-020-repo-release-lockstep/)            | repo-release-lockstep            | archived | 2026-07-18 | modifica components-package                         | ADR-015 (versionado lockstep)            |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

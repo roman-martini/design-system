@@ -15,18 +15,18 @@ Cada tarea con criterio binario. Decisiones en ADR-015; el change deja el repo l
 
 - [x] 2.1 `pnpm openspec validate repo-release-lockstep --strict`, `pnpm lint`, `pnpm format:check`, `pnpm -r build`, `pnpm -r test` pasan (el cambio no toca runtime — la suite confirma).
 - [x] 2.2 Registros: `openspec/README.md` (ID `aaa-020` consumido; Toast pasa a `aaa-021`), BACKLOG (item release → Now/en ejecución con este change), HU-002 activada (D-010).
-- [ ] 2.3 Proponer mensaje de commit y esperar OK del usuario. **Sin changeset propio**: este change no altera el contenido publicable (config de tooling + metadata de peer que el publish reescribe).
+- [x] 2.3 Proponer mensaje de commit y esperar OK del usuario. **Sin changeset propio**: este change no altera el contenido publicable (config de tooling + metadata de peer que el publish reescribe).
 
 **Criterio**: automáticos verdes; commit aprobado.
 
 ## 3. Ejecución del release (pipeline aaa-005 — pasos del PO + asistidos)
 
 - [x] 3.1 **PO**: crear el repo GitHub `roman-martini/design-system` (público — coincide con los campos `repository` de los package.json).
-- [ ] 3.2 **PO**: crear un token npm (Automation) con permiso de publish sobre el scope `@romanmartinidev` y cargarlo como secret **`NPM_TOKEN`** del repo.
-- [ ] 3.3 Configurar remote y push de `main` (asistido, con OK del PO): `git remote add origin <url>` + `git push -u origin main`. El workflow `release.yml` corre y **abre el PR "chore(repo): version packages"** (tokens+components → 0.2.0).
-- [ ] 3.4 **PO**: revisar y mergear el PR de versionado → el workflow publica ambos packages en npm (`access: public`).
-- [ ] 3.5 Verificación post-publicación (CA-002.2): `npm view @romanmartinidev/components@0.2.0 peerDependencies` muestra `@romanmartinidev/tokens: ^0.2.0` (rango, no pin ni workspace).
-- [ ] 3.6 Verificación de consumo (CA-002.3): proyecto Angular limpio fuera del monorepo + quickstart de los READMEs → `ds-button` con tokens renderiza sin pasos no documentados. Registrar cualquier gap del quickstart como fix directo.
-- [ ] 3.7 Cierre: HU-002 → Hecha con CAs tildados; archive de este change (`archive/aaa-020-repo-release-lockstep/`), sincronizar spec base, registros y grooming; proponer commit del archive y esperar OK.
+- [x] 3.2 **PO**: crear un token npm (Automation) con permiso de publish sobre el scope `@romanmartinidev` y cargarlo como secret **`NPM_TOKEN`** del repo. Nota: el primer intento falló porque el secret se guardó con otro nombre — el lookup `${{ secrets.NPM_TOKEN }}` es literal.
+- [x] 3.3 Configurar remote y push de `main` (asistido, con OK del PO). El workflow corrió y abrió el PR "chore(repo): version packages" (tokens+components → 0.2.0). En el camino se arreglaron 5 fallos de CI (lockfile, 404 del peer no publicado, builtin `pnpm version`, permiso de PRs de Actions, TestBed en workers compartidos → `setupTestBed()`).
+- [x] 3.4 **PO**: PR de versionado mergeado (PR #1) → el workflow publicó ambos packages en npm (`access: public`), 2026-07-18.
+- [x] 3.5 Verificación post-publicación (CA-002.2): `npm view @romanmartinidev/components@0.2.0 peerDependencies` muestra `@romanmartinidev/tokens: >=0.1.0 <1.0.0` — el rango plano de ADR-015 (esta task decía `^0.2.0` por redacción previa a la decisión final), sin pin ni workspace.
+- [x] 3.6 Verificación de consumo (CA-002.3): app Angular 21 limpia (`ng new` fuera del monorepo) + quickstart de los READMEs → install sin conflictos de peers, `ds-button` + tokens compilan y el bundle final lleva las 1000+ vars `--ds-*` y el override dark. Sin pasos no documentados. Gap registrado y arreglado como fix directo: tabla de componentes del README de components desactualizada (4 de 9+1).
+- [x] 3.7 Cierre: HU-002 → Hecha con CAs tildados; archive de este change (`archive/aaa-020-repo-release-lockstep/`), sincronizar spec base, registros y grooming; proponer commit del archive y esperar OK.
 
 **Criterio**: packages en npm en 0.2.0, rango `^0.2.0` verificado, consumo real validado, repo consistente (CA-002.4).
