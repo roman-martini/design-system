@@ -2,7 +2,8 @@
 id: aaa-019
 name: components-add-tooltip
 type: change
-status: proposed
+status: archived
+archived: 2026-07-18
 modifies-specs:
   - components-package (ADDED: DsTooltip)
   - design-tokens-package (sin delta de spec; component.tooltip nuevo referenciando semantic/primitives)

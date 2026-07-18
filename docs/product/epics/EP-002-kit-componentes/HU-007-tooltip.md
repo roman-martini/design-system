@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](README.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-18, ambigüedades resueltas con el PO)
+**Estado**: Hecha — change [aaa-019 components-add-tooltip](../../../../openspec/changes/archive/aaa-019-components-add-tooltip/) archivado (2026-07-18)
 **Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
 
 ---
@@ -22,14 +22,14 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec components-package (delta del change components-add-tooltip). -->
 
-- [ ] **CA-007.1** — Dado cualquier elemento con `dsTooltip="texto"`, entonces al interactuar muestra el tooltip con ese texto; con string vacío, la directiva no crea tooltip ni atributos ARIA.
-- [ ] **CA-007.2** — Dado el elemento anfitrión, cuando recibe hover, entonces el tooltip abre tras el delay (default del token, configurable con `dsTooltipDelay`); cuando recibe **foco por teclado**, abre inmediato (nunca solo-hover); al salir el mouse o perder el foco, cierra inmediato.
-- [ ] **CA-007.3** — Dado el tooltip visible, entonces cumple WCAG 1.4.13: `Escape` lo cierra sin mover el foco (dismissable), mover el mouse sobre el propio tooltip no lo cierra (hoverable), y no desaparece por tiempo (persistent).
-- [ ] **CA-007.4** — Dado el tooltip visible, entonces su contenido tiene `role="tooltip"` e id único, y el anfitrión lo referencia por `aria-describedby`; al cerrarse, la referencia se limpia.
-- [ ] **CA-007.5** — Dado el input de placement (`top | bottom | left | right`, default `top`), entonces el tooltip se posiciona relativo al anfitrión en top layer (Popover API), con flip automático si no hay espacio (fallback ADR-014) y sin quedar recortado por contenedores con overflow.
-- [ ] **CA-007.6** — Dado el CSS de la directiva, entonces todo valor sale de tokens `component.tooltip.*` nuevos (bg/text invertidos vía semantic, padding, radius, font-size, max-width, shadow, delay) y el contraste pasa AA por script en los 4 themes.
-- [ ] **CA-007.7** — Dada la transición de aparición, entonces usa los tokens de motion de overlay con su bloque `prefers-reduced-motion` (el delay de apertura no cuenta como motion y se mantiene).
-- [ ] **CA-007.8** — Dada la primera **directiva** del kit, entonces sigue las convenciones: class `DsTooltip`, selector `[dsTooltip]` (ADR-007), archivos sin sufijo de rol en `src/lib/tooltip/` (ADR-010), exportada desde `public-api.ts`.
+- [x] **CA-007.1** — Dado cualquier elemento con `dsTooltip="texto"`, entonces al interactuar muestra el tooltip con ese texto; con string vacío, la directiva no crea tooltip ni atributos ARIA.
+- [x] **CA-007.2** — Dado el elemento anfitrión, cuando recibe hover, entonces el tooltip abre tras el delay (default del token, configurable con `dsTooltipDelay`); cuando recibe **foco por teclado**, abre inmediato (nunca solo-hover); al salir el mouse o perder el foco, cierra inmediato.
+- [x] **CA-007.3** — Dado el tooltip visible, entonces cumple WCAG 1.4.13: `Escape` lo cierra sin mover el foco (dismissable), mover el mouse sobre el propio tooltip no lo cierra (hoverable), y no desaparece por tiempo (persistent).
+- [x] **CA-007.4** — Dado el tooltip visible, entonces su contenido tiene `role="tooltip"` e id único, y el anfitrión lo referencia por `aria-describedby`; al cerrarse, la referencia se limpia.
+- [x] **CA-007.5** — Dado el input de placement (`top | bottom | left | right`, default `top`), entonces el tooltip se posiciona relativo al anfitrión en top layer (Popover API), con flip automático si no hay espacio (fallback ADR-014) y sin quedar recortado por contenedores con overflow.
+- [x] **CA-007.6** — Dado el CSS de la directiva, entonces todo valor sale de tokens `component.tooltip.*` nuevos (bg/text invertidos vía semantic, padding, radius, font-size, max-width, shadow, delay) y el contraste pasa AA por script en los 4 themes.
+- [x] **CA-007.7** — Dada la transición de aparición, entonces usa los tokens de motion de overlay con su bloque `prefers-reduced-motion` (el delay de apertura no cuenta como motion y se mantiene).
+- [x] **CA-007.8** — Dada la primera **directiva** del kit, entonces sigue las convenciones: class `DsTooltip`, selector `[dsTooltip]` (ADR-007), archivos sin sufijo de rol en `src/lib/tooltip/` (ADR-010), exportada desde `public-api.ts`.
 
 ## Dependencias
 

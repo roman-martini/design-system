@@ -47,16 +47,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: directiva pública + panel i
 - [x] 6.3 Auditoría **`/ng:review`** sobre `src/lib/tooltip/` — 0 altas; 1 baja corregida (cálculo de posición extraído a función pura `computeTooltipPosition`); 1 media resuelta como **excepción justificada con aviso al PO** (design.md §7: `aria-describedby` imperativo — un host binding pisaría el valor del consumidor; mismo enfoque que el AriaDescriber de Material). Re-verificado: build + 123/123 + lint + format verdes.
 - [x] 6.4 `npm pack --dry-run`: tarball sin `*.spec.ts`/`*.stories.ts`.
 - [x] 6.5 Changesets: **minor** de components (DsTooltip) y **minor** de tokens (`component.tooltip.*` nuevo).
-- [ ] 6.6 Proponer mensaje de commit (implementación) y esperar OK del usuario.
+- [x] 6.6 Proponer mensaje de commit (implementación) y esperar OK del usuario.
 
 **Criterio**: automáticos verdes; gate resuelto; changesets correctos; aprobación explícita antes del commit.
 
 ## 7. Archive
 
-- [ ] 7.1 Sin ADR nuevo previsto; si el reuso destapa un gap de ADR-014, anotarlo como acción de seguimiento del ADR (no editarlo).
-- [ ] 7.2 Mover a `archive/aaa-019-components-add-tooltip/`; frontmatter `archived`; sincronizar spec base (1 Requirement ADDED, referencias a design.md convertidas a texto autocontenido).
-- [ ] 7.3 Registros: `openspec/README.md` (próximo ID → `aaa-020`), catálogo, grooming del BACKLOG (Tooltip sale de Now; Toast ya está en Now — sin promociones nuevas), HU-007 → Hecha con CAs tildados, EP-002 actualizado.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.1 Sin ADR nuevo previsto; si el reuso destapa un gap de ADR-014, anotarlo como acción de seguimiento del ADR (no editarlo).
+- [x] 7.2 Mover a `archive/aaa-019-components-add-tooltip/`; frontmatter `archived`; sincronizar spec base (1 Requirement ADDED, referencias a design.md convertidas a texto autocontenido).
+- [x] 7.3 Registros: `openspec/README.md` (próximo ID → `aaa-020`), catálogo, grooming del BACKLOG (Tooltip sale de Now; Toast ya está en Now — sin promociones nuevas), HU-007 → Hecha con CAs tildados, EP-002 actualizado.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
 - [ ] 7.5 Proponer commit del archive y esperar OK.
 
 **Criterio**: change archivado, spec base sincronizada, registros al día.

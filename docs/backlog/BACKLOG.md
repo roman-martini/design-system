@@ -25,18 +25,6 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-### `components-add-tooltip` — Tooltip de ayuda contextual
-
-**Tipo**: OpenSpec (kit). **Producto**: [HU-007](../product/epics/EP-002-kit-componentes/HU-007-tooltip.md) / EP-002.
-
-**Alcance propuesto**: directiva `dsTooltip` (primera directiva del kit) con estilo inverso theme-aware, delay 500ms tokenizado, WCAG 1.4.13 completo, `aria-describedby`; reutiliza las reglas 1–6 de [ADR-014](../architecture/adr/ADR-014-overlays-anclados-popover-api.md) sin re-decidir. **HU-007 ya Refinada** (2026-07-18) con 8 CAs binarios.
-
-**Disparador**: cierre del item anterior de la tanda (Input, `aaa-017`) — **ACTIVADO** (2026-07-11, grooming del archive).
-
-**Estado**: **propuesta activa** — [`aaa-019`](../../openspec/changes/components-add-tooltip/), 4/4 artefactos, listo para apply.
-
----
-
 ### `components-add-toast` — Toast/Notification
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-008](../product/epics/EP-002-kit-componentes/HU-008-toast-notificaciones.md) / EP-002.
