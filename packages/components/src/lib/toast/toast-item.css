@@ -1,0 +1,113 @@
+:host {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-semantic-space-sm);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--ds-component-toast-padding-y) var(--ds-component-toast-padding-x);
+  background: var(--ds-component-toast-bg);
+  color: var(--ds-component-toast-text);
+  border-left: var(--ds-component-toast-border-width) solid transparent;
+  border-radius: var(--ds-component-toast-radius);
+  box-shadow: var(--ds-component-toast-shadow);
+  font-size: var(--ds-font-size-sm);
+  line-height: var(--ds-font-line-height-normal);
+
+  /* Entrada de un toast nuevo al stack */
+  opacity: 1;
+  transition: opacity var(--ds-semantic-motion-transition-overlay-enter);
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+:host([data-variant='success']) {
+  border-left-color: var(--ds-semantic-color-border-success);
+}
+
+:host([data-variant='warning']) {
+  border-left-color: var(--ds-semantic-color-border-warning);
+}
+
+:host([data-variant='info']) {
+  border-left-color: var(--ds-semantic-color-border-info);
+}
+
+:host([data-variant='danger']) {
+  border-left-color: var(--ds-semantic-color-border-danger);
+}
+
+.ds-toast__icon {
+  flex-shrink: 0;
+  margin-top: var(--ds-dimension-2);
+}
+
+:host([data-variant='success']) .ds-toast__icon {
+  color: var(--ds-semantic-color-icon-success);
+}
+
+:host([data-variant='warning']) .ds-toast__icon {
+  color: var(--ds-semantic-color-icon-warning);
+}
+
+:host([data-variant='info']) .ds-toast__icon {
+  color: var(--ds-semantic-color-icon-info);
+}
+
+:host([data-variant='danger']) .ds-toast__icon {
+  color: var(--ds-semantic-color-icon-danger);
+}
+
+.ds-toast__message {
+  flex: 1;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.ds-toast__action {
+  flex-shrink: 0;
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-weight: var(--ds-font-weight-medium);
+  color: var(--ds-semantic-color-text-link);
+  cursor: pointer;
+  border-radius: var(--ds-semantic-radius-xs);
+}
+
+.ds-toast__action:hover {
+  color: var(--ds-semantic-color-text-link-hover);
+  text-decoration: underline;
+}
+
+.ds-toast__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  padding: var(--ds-dimension-2);
+  margin: 0;
+  color: var(--ds-semantic-color-icon-muted);
+  cursor: pointer;
+  border-radius: var(--ds-semantic-radius-sm);
+}
+
+.ds-toast__close:hover {
+  color: var(--ds-semantic-color-icon-default);
+}
+
+.ds-toast__action:focus-visible,
+.ds-toast__close:focus-visible {
+  outline: none;
+  box-shadow: var(--ds-semantic-shadow-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    transition: none;
+  }
+}

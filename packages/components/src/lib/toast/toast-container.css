@@ -1,0 +1,63 @@
+:host {
+  /* Reset de los UA styles de [popover] — el contenedor es solo layout. */
+  margin: 0;
+  border: none;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+
+  position: fixed;
+  width: var(--ds-component-toast-width);
+  max-width: calc(100vw - 2 * var(--ds-component-toast-offset));
+  gap: var(--ds-component-toast-gap);
+
+  /* Estado cerrado + transición de salida (top layer via popover) */
+  opacity: 0;
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-exit),
+    display var(--ds-semantic-motion-transition-overlay-exit) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-exit) allow-discrete;
+}
+
+:host(:popover-open) {
+  /* display solo en abierto: no pisar el display:none del UA para popover cerrado */
+  display: flex;
+  opacity: 1;
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-enter),
+    display var(--ds-semantic-motion-transition-overlay-enter) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-enter) allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+/* inset: top right bottom left. En bottom-* el column-reverse deja el toast
+   más nuevo pegado al borde (convención dominante de stacks de toasts). */
+:host([data-position='top-left']) {
+  inset: var(--ds-component-toast-offset) auto auto var(--ds-component-toast-offset);
+  flex-direction: column;
+}
+
+:host([data-position='top-right']) {
+  inset: var(--ds-component-toast-offset) var(--ds-component-toast-offset) auto auto;
+  flex-direction: column;
+}
+
+:host([data-position='bottom-left']) {
+  inset: auto auto var(--ds-component-toast-offset) var(--ds-component-toast-offset);
+  flex-direction: column-reverse;
+}
+
+:host([data-position='bottom-right']) {
+  inset: auto var(--ds-component-toast-offset) var(--ds-component-toast-offset) auto;
+  flex-direction: column-reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host,
+  :host(:popover-open) {
+    transition: none;
+  }
+}

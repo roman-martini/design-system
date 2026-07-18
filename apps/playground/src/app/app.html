@@ -49,6 +49,14 @@
     </div>
     <ds-modal [(open)]="modalOpen" heading="Confirmar acción" size="sm">
       <p>El primer overlay del DS: dialog nativo, top layer, foco atrapado por la plataforma.</p>
+      <p>
+        <ds-button
+          variant="secondary"
+          (clicked)="toasts.info('Visible por encima del modal (top layer)')"
+        >
+          Toast sobre el modal
+        </ds-button>
+      </p>
       <div ds-modal-footer>
         <ds-button variant="ghost" (clicked)="modalOpen.set(false)">Cancelar</ds-button>
         <ds-button variant="primary" (clicked)="modalOpen.set(false)">Confirmar</ds-button>
@@ -122,6 +130,29 @@
         <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
       </button>
     </div>
+  </section>
+
+  <section class="playground__section">
+    <h2>Toast</h2>
+    <div class="playground__row">
+      <ds-button variant="secondary" (clicked)="toasts.success('Cambios guardados')"
+        >success</ds-button
+      >
+      <ds-button variant="secondary" (clicked)="toasts.info('Sincronizando en segundo plano')"
+        >info</ds-button
+      >
+      <ds-button variant="secondary" (clicked)="toasts.warning('La sesión expira en 5 minutos')">
+        warning
+      </ds-button>
+      <ds-button variant="secondary" (clicked)="toasts.danger('No se pudo guardar: sin conexión')">
+        danger (persistente)
+      </ds-button>
+      <ds-button variant="secondary" (clicked)="undoableToast()">Con acción</ds-button>
+    </div>
+    <p class="playground__hint">
+      Hover o foco pausan el auto-cierre (WCAG 2.2.1). Para verificar el top layer: abrí el modal y
+      disparás un toast desde adentro.
+    </p>
   </section>
 
   <section class="playground__section">

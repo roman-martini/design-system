@@ -1,0 +1,22 @@
+@let variant = entry().variant; @switch (variant) { @case ('success') {
+<svg lucideCircleCheck class="ds-toast__icon" size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+} @case ('info') {
+<svg lucideInfo class="ds-toast__icon" size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+} @case ('warning') {
+<svg
+  lucideTriangleAlert
+  class="ds-toast__icon"
+  size="16"
+  strokeWidth="1.5"
+  aria-hidden="true"
+></svg>
+} @case ('danger') {
+<svg lucideCircleAlert class="ds-toast__icon" size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+} @default never; }
+<p class="ds-toast__message">{{ entry().message }}</p>
+@if (entry().action; as action) {
+<button type="button" class="ds-toast__action" (click)="runAction()">{{ action.label }}</button>
+}
+<button type="button" class="ds-toast__close" [attr.aria-label]="dismissLabel" (click)="dismiss()">
+  <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+</button>

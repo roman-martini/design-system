@@ -1,3 +1,6 @@
+# Generados por el bot de changesets en cada release (no pasan por hooks)
+CHANGELOG.md
+
 # Dependencies y build outputs
 node_modules/
 dist/

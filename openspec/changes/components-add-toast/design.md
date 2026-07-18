@@ -70,9 +70,9 @@ Los colores de variante NO son tokens `component.toast.*` nuevos: el borde usa `
 
 Primer consumo real de `border.success/warning/info` → se activa el item del BACKLOG dentro de este change:
 
-- `semantic/color.json`: `border.success` `green.400→500`, `border.warning` `yellow.400→500`, `border.info` `teal.400→500`.
-- `theme/dark.json`: los tres de `*-800` → `*-400`.
-- Idéntico al fix de `border.danger` (aaa-017). Gate: script de contraste, par `border.<status>` / `bg.surface` ≥ 3:1 **y** `border.<status>` / `bg.elevated` (el bg real del toast) en los 4 themes.
+- `semantic/color.json`: `border.success` `green.400→600` (3.3:1), `border.warning` `yellow.400→700` (4.92:1), `border.info` `teal.400→600` (3.74:1). **Nota**: el alcance del BACKLOG suponía `*-500` "igual que danger", pero el cálculo lo refutó — `green/yellow/teal.500` quedan en 1.9-2.5:1 sobre blanco (el rojo es intrínsecamente más oscuro); se toma el primer step de cada hue que cruza 3:1, mismo criterio de fondo que aaa-017.
+- `theme/dark.json`: los tres de `*-800` → `*-400` (8-12:1 medidos).
+- Gate: script de contraste, par `border.<status>` / `bg.surface` ≥ 3:1 **y** `border.<status>` / `bg.elevated` (el bg real del toast) en los 4 themes.
 - Riesgo de regresión visual: hoy **ningún componente publicado** consume esos tres tokens (verificado en aaa-017) — el cambio es seguro.
 
 ## 8. Testabilidad (jsdom)

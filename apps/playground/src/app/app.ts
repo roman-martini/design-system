@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LucideChevronDown, LucideX } from '@lucide/angular';
 import {
@@ -12,6 +12,7 @@ import {
   DsSelect,
   DsTab,
   DsTabs,
+  DsToastService,
   DsTooltip,
 } from '@romanmartinidev/components';
 
@@ -58,7 +59,15 @@ export class App {
 
   protected readonly activeTab = signal<string | null>(null);
 
+  protected readonly toasts = inject(DsToastService);
+
   protected handleClick(label: string): void {
     console.log(`[playground] clicked: ${label}`);
+  }
+
+  protected undoableToast(): void {
+    this.toasts.info('Elemento archivado', {
+      action: { label: 'Deshacer', callback: () => this.toasts.success('Restaurado') },
+    });
   }
 }

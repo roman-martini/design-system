@@ -44,6 +44,12 @@ code {
   border-radius: var(--ds-semantic-radius-sm);
 }
 
+.playground__hint {
+  margin: var(--ds-semantic-space-sm) 0 0;
+  color: var(--ds-semantic-color-text-secondary);
+  font-size: var(--ds-font-size-sm);
+}
+
 .playground__row--icons {
   color: var(--ds-semantic-color-icon-default);
 }
