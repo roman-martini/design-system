@@ -1,3 +1,6 @@
+# Scratch personal del PO — nunca se commitea (se coló 2 veces vía stash de lint-staged)
+docs/backlog/TASK.md
+
 # Dependencies
 node_modules/
 .pnpm-store/
