@@ -80,13 +80,13 @@ En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming 
 
 ### Primer release publicado en npm
 
-**Tipo**: commit directo + pipeline (no requiere change; el pipeline existe desde `aaa-005`). **Producto**: [HU-002](../product/epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) / EP-003.
+**Tipo**: OpenSpec (el pre-flight destapó cambios de spec) + pipeline de `aaa-005`. **Producto**: [HU-002](../product/epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) / EP-003.
 
-**Alcance propuesto**: estrenar el release pipeline consumiendo los changesets acumulados (minors de components, patches de tokens); verificar tarballs (`workspace:*` → semver real) e instalación desde npm en un proyecto limpio.
+**Alcance**: versionado lockstep del par (ADR-015) + estrenar el pipeline publicando **tokens y components 0.2.0**; verificación de tarball (rango del peer, no pin) e instalación en proyecto limpio.
 
-**Disparador**: decisión del PO de publicar (reafirmado "sigue esperando" el 2026-07-11 al aprobar [D-009](../product/decisiones.md); es prerequisito para consumir las libs desde otros repos).
+**Disparador**: decisión del PO de publicar — **ACTIVADO** ([D-010](../product/decisiones.md), 2026-07-18).
 
-**Estado**: pendiente.
+**Estado**: **propuesta activa** — [`aaa-020`](../../openspec/changes/repo-release-lockstep/), repo listo; faltan los pasos GitHub/npm del PO (tasks.md §3 del change).
 
 ---
 

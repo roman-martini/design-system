@@ -2,7 +2,7 @@
 
 **Épica**: [EP-003 — Consumo y distribución](EP-003-consumo-distribucion.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada — se activa cuando el PO decida estrenar el pipeline
+**Estado**: En desarrollo — activada por [D-010](../../decisiones.md) (2026-07-18); change [aaa-020 repo-release-lockstep](../../../../openspec/changes/repo-release-lockstep/) prepara el repo (lockstep ADR-015), quedan los pasos GitHub/npm del PO
 **Decisiones que aplica**: [D-003, D-004](../../decisiones.md)
 
 ---

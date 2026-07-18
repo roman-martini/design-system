@@ -23,6 +23,7 @@
 | 2026-07-03 | frontend    | Iconografía del DS: Lucide vía `@lucide/angular` (import por icono tree-shakeable, 16px/1.5 stroke, currentColor, a11y). Peer al primer consumo publicado. Custom `@romanmartinidev/icons` queda como evolución con criterio de activación. Change `aaa-013`.                 | [ADR-012](adr/ADR-012-iconografia-lucide.md) ✅               |
 | 2026-07-10 | frontend    | Overlays modales sobre `<dialog>` nativo con `showModal()`: top layer, focus trap, inert y ESC por plataforma; animación CSS con tokens de overlay; scroll lock con contador; sin stack manager. Patrón para Drawer y futuros. Change `aaa-014`.                              | [ADR-013](adr/ADR-013-overlays-dialog-nativo.md) ✅           |
 | 2026-07-11 | frontend    | Overlays anclados no modales sobre Popover API (top layer + light-dismiss por plataforma); posicionamiento fallback JS propio con migración a CSS anchor positioning cuando Safari 18 salga del target; extiende ADR-011 al form control operado por botón. Change `aaa-016`. | [ADR-014](adr/ADR-014-overlays-anclados-popover-api.md) ✅    |
+| 2026-07-18 | transversal | Versionado lockstep de tokens+components (`fixed` de Changesets, versión única del par); peer de tokens como rango plano `>=0.1.0 <1.0.0` pre-1.0 + flag `onlyUpdatePeerDependentsWhenOutOfRange` — elimina la cascada peer→major verificada por dry-run. Change `aaa-020`.   | [ADR-015](adr/ADR-015-versionado-lockstep.md) ✅              |
 
 ## Cómo agregar una entrada
 
