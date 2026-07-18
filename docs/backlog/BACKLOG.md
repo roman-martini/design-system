@@ -33,7 +33,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: cierre del item anterior de la tanda (Input, `aaa-017`) — **ACTIVADO** (2026-07-11, grooming del archive).
 
-**Estado**: pendiente.
+**Estado**: **propuesta activa** — [`aaa-019`](../../openspec/changes/components-add-tooltip/), 4/4 artefactos, listo para apply.
 
 ---
 
