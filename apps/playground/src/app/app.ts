@@ -10,6 +10,8 @@ import {
   DsRadio,
   DsRadioGroup,
   DsSelect,
+  DsTab,
+  DsTabs,
 } from '@romanmartinidev/components';
 
 @Component({
@@ -24,6 +26,8 @@ import {
     DsRadio,
     DsRadioGroup,
     DsSelect,
+    DsTab,
+    DsTabs,
     LucideChevronDown,
     LucideX,
     ReactiveFormsModule,
@@ -49,6 +53,8 @@ export class App {
     nonNullable: true,
     validators: [Validators.required, Validators.email],
   });
+
+  protected readonly activeTab = signal<string | null>(null);
 
   protected handleClick(label: string): void {
     console.log(`[playground] clicked: ${label}`);

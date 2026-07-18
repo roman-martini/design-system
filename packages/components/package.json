@@ -45,8 +45,8 @@
     }
   },
   "scripts": {
-    "build": "ng-packagr -p ng-package.json",
-    "watch": "ng-packagr -p ng-package.json --watch",
+    "build": "ng-packagr -p ng-package.json -c tsconfig.lib.json",
+    "watch": "ng-packagr -p ng-package.json -c tsconfig.lib.json --watch",
     "test": "vitest"
   },
   "peerDependencies": {

@@ -3,15 +3,15 @@
     "tabs": {
       "size": {
         "sm": {
-          "height": { "value": "32px" },
+          "height": { "value": "{dimension.32}" },
           "font-size": { "value": "{font.size.sm}" }
         },
         "md": {
-          "height": { "value": "40px" },
+          "height": { "value": "{dimension.40}" },
           "font-size": { "value": "{font.size.md}" }
         },
         "lg": {
-          "height": { "value": "48px" },
+          "height": { "value": "{dimension.48}" },
           "font-size": { "value": "{font.size.lg}" }
         }
       },
@@ -27,13 +27,14 @@
         "underline-default": { "value": "transparent" },
         "underline-hover": { "value": "{semantic.color.bg.primary}" },
         "underline-active": { "value": "{semantic.color.text.primary}" },
-        "underline-width": { "value": "2px" }
+        "underline-width": { "value": "{dimension.2}" }
       },
       "pills": {
         "bg-default": { "value": "{semantic.color.bg.base}" },
         "bg-hover": { "value": "{semantic.color.bg.primary-subtle}" },
         "bg-active": { "value": "{semantic.color.bg.primary}" },
         "text-default": { "value": "{semantic.color.text.secondary}" },
+        "text-hover": { "value": "{semantic.color.text.primary}" },
         "text-active": { "value": "{semantic.color.text.inverse}" }
       },
       "contained": {
@@ -41,6 +42,7 @@
         "bg-hover": { "value": "{semantic.color.bg.primary-subtle}" },
         "bg-active": { "value": "{semantic.color.bg.primary}" },
         "text-default": { "value": "{semantic.color.text.secondary}" },
+        "text-hover": { "value": "{semantic.color.text.primary}" },
         "text-active": { "value": "{semantic.color.text.inverse}" }
       }
     }

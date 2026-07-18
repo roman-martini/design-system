@@ -1,0 +1,27 @@
+<div
+  class="ds-tabs__list"
+  role="tablist"
+  [attr.data-variant]="variant()"
+  [attr.data-size]="size()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-labelledby]="ariaLabelledby()"
+  (keydown)="onKeydown($event)"
+>
+  @for (tab of tabs(); track tab.tabId()) {
+  <button
+    #tabButton
+    type="button"
+    class="ds-tabs__tab"
+    role="tab"
+    [id]="tab.tabId()"
+    [attr.aria-selected]="isActiveValue(tab.valueProp())"
+    [attr.aria-controls]="tab.panelId()"
+    [attr.aria-disabled]="tab.isDisabled() ? 'true' : null"
+    [tabindex]="isActiveValue(tab.valueProp()) ? 0 : -1"
+    (click)="select(tab)"
+  >
+    {{ tab.labelText() }}
+  </button>
+  }
+</div>
+<ng-content />

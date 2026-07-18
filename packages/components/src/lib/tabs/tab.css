@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  padding-top: var(--ds-semantic-space-md);
+}
+
+/* El display del :host pisa al atributo hidden nativo: restaurarlo. */
+:host([hidden]) {
+  display: none;
+}
+
+:host(:focus-visible) {
+  box-shadow: var(--ds-semantic-shadow-focus);
+  outline: none;
+  border-radius: var(--ds-semantic-radius-sm);
+}
