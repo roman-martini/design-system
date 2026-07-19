@@ -1,0 +1,25 @@
+<app-showcase-case title="Estados" [snippet]="statesSnippet">
+  <div class="playground__row">
+    <ds-checkbox [(checked)]="checkboxState" label="Toggle controlled" />
+    <ds-checkbox [checked]="true" label="Checked default" />
+    <ds-checkbox [indeterminate]="indeterminateState()" label="Indeterminate" />
+    <ds-checkbox [disabled]="true" label="Disabled" />
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Sizes" [snippet]="sizesSnippet">
+  <div class="playground__row">
+    <ds-checkbox size="sm" label="Small" />
+    <ds-checkbox size="md" label="Medium" />
+    <ds-checkbox size="lg" label="Large" />
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Con ReactiveForm" [snippet]="formSnippet">
+  <div class="playground__row">
+    <ds-checkbox [formControl]="subscribeCtrl">
+      Suscribirse al newsletter (rich content con <code>&lt;ng-content&gt;</code>)
+    </ds-checkbox>
+    <code>ctrl.value = {{ subscribeCtrl.value }}</code>
+  </div>
+</app-showcase-case>

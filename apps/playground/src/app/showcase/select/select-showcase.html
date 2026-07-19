@@ -1,0 +1,25 @@
+<app-showcase-case title="Two-way binding" [snippet]="twoWaySnippet">
+  <div class="playground__row">
+    <ds-select [(value)]="selectedCountry" placeholder="Elegí un país" aria-label="País">
+      <ds-option [value]="'ar'" label="Argentina" />
+      <ds-option [value]="'br'" label="Brasil" />
+      <ds-option [value]="'cl'" label="Chile" />
+      <ds-option [value]="'uy'" [disabled]="true" label="Uruguay (sin stock)" />
+    </ds-select>
+    <span>seleccionado: {{ selectedCountry() ?? '—' }}</span>
+  </div>
+  <p class="playground__hint">
+    Listado en top layer vía Popover API (ADR-014): no lo recorta ningún overflow. ESC cierra sin
+    cambiar la selección; click afuera es light-dismiss.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Con ReactiveForm" [snippet]="formSnippet">
+  <div class="playground__row">
+    <ds-select [formControl]="countryCtrl" size="sm" aria-label="País (form control)">
+      <ds-option [value]="'ar'" label="Argentina" />
+      <ds-option [value]="'br'" label="Brasil" />
+    </ds-select>
+    <span>ctrl.value: {{ countryCtrl.value }}</span>
+  </div>
+</app-showcase-case>

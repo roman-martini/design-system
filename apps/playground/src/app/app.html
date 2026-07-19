@@ -1,236 +1,30 @@
-<main class="playground">
-  <header class="playground__header">
-    <h1>Playground</h1>
+<div class="shell">
+  <header class="shell__header">
+    <h1>Showcase</h1>
     <p>
-      Laboratorio interno de <code>@romanmartinidev/components</code>. Renderiza
-      <code>&lt;ds-button&gt;</code>, <code>&lt;ds-checkbox&gt;</code> y
-      <code>&lt;ds-radio-group&gt;</code> consumiendo tokens <code>--ds-*</code> desde
-      <code>@romanmartinidev/tokens</code>.
+      Casos de uso de <code>@romanmartinidev/components</code>, consumiendo tokens
+      <code>--ds-*</code> de <code>@romanmartinidev/tokens</code>.
     </p>
   </header>
 
-  <section class="playground__section">
-    <h2>Variants</h2>
-    <div class="playground__row">
-      <ds-button variant="primary" (clicked)="handleClick('primary')">Primary</ds-button>
-      <ds-button variant="secondary" (clicked)="handleClick('secondary')">Secondary</ds-button>
-      <ds-button variant="ghost" (clicked)="handleClick('ghost')">Ghost</ds-button>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Sizes</h2>
-    <div class="playground__row">
-      <ds-button size="sm" (clicked)="handleClick('sm')">Small</ds-button>
-      <ds-button size="md" (clicked)="handleClick('md')">Medium</ds-button>
-      <ds-button size="lg" (clicked)="handleClick('lg')">Large</ds-button>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Disabled</h2>
-    <div class="playground__row">
-      <ds-button [disabled]="true" (clicked)="handleClick('should-not-fire')">
-        Primary disabled
-      </ds-button>
-      <ds-button variant="secondary" [disabled]="true">Secondary disabled</ds-button>
-    </div>
-    <div class="playground__row">
-      <ds-button [disabled]="true" disabledReason="Completá los campos requeridos para continuar">
-        Enviar
-      </ds-button>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Modal</h2>
-    <div class="playground__row">
-      <ds-button variant="primary" (clicked)="modalOpen.set(true)">Abrir modal</ds-button>
-    </div>
-    <ds-modal [(open)]="modalOpen" heading="Confirmar acción" size="sm">
-      <p>El primer overlay del DS: dialog nativo, top layer, foco atrapado por la plataforma.</p>
-      <p>
-        <ds-button
-          variant="secondary"
-          (clicked)="toasts.info('Visible por encima del modal (top layer)')"
+  <nav class="shell__nav" aria-label="Componentes">
+    <ul class="shell__list">
+      @for (entry of entries; track entry.slug) {
+      <li>
+        <a
+          class="shell__link"
+          [routerLink]="['/', entry.slug]"
+          routerLinkActive="shell__link--active"
+          ariaCurrentWhenActive="page"
         >
-          Toast sobre el modal
-        </ds-button>
-      </p>
-      <div ds-modal-footer>
-        <ds-button variant="ghost" (clicked)="modalOpen.set(false)">Cancelar</ds-button>
-        <ds-button variant="primary" (clicked)="modalOpen.set(false)">Confirmar</ds-button>
-      </div>
-    </ds-modal>
-  </section>
+          {{ entry.label }}
+        </a>
+      </li>
+      }
+    </ul>
+  </nav>
 
-  <section class="playground__section">
-    <h2>Select</h2>
-    <div class="playground__row">
-      <ds-select [(value)]="selectedCountry" placeholder="Elegí un país" aria-label="País">
-        <ds-option [value]="'ar'" label="Argentina" />
-        <ds-option [value]="'br'" label="Brasil" />
-        <ds-option [value]="'cl'" label="Chile" />
-        <ds-option [value]="'uy'" [disabled]="true" label="Uruguay (sin stock)" />
-      </ds-select>
-      <span>seleccionado: {{ selectedCountry() ?? '—' }}</span>
-    </div>
-    <div class="playground__row">
-      <ds-select [formControl]="countryCtrl" size="sm" aria-label="País (form control)">
-        <ds-option [value]="'ar'" label="Argentina" />
-        <ds-option [value]="'br'" label="Brasil" />
-      </ds-select>
-      <span>ctrl.value: {{ countryCtrl.value }}</span>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Input</h2>
-    <div class="playground__row">
-      <ds-input
-        [formControl]="emailCtrl"
-        type="email"
-        label="Email"
-        hint="Tocá afuera con un valor inválido para ver el error automático"
-        error="Ingresá un email válido"
-        placeholder="vos@ejemplo.com"
-      />
-      <span>ctrl: {{ emailCtrl.value || '—' }} · invalid: {{ emailCtrl.invalid }}</span>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Tabs</h2>
-    <ds-tabs [(value)]="activeTab" aria-label="Demo de tabs">
-      <ds-tab value="form" label="Formulario">
-        <ds-input
-          [formControl]="emailCtrl"
-          type="email"
-          label="Email (el estado se conserva al cambiar de tab)"
-          placeholder="vos@ejemplo.com"
-        />
-      </ds-tab>
-      <ds-tab value="info" label="Info">Los paneles inactivos quedan con hidden.</ds-tab>
-      <ds-tab value="off" label="Deshabilitado" [disabled]="true">No accesible.</ds-tab>
-    </ds-tabs>
-  </section>
-
-  <section class="playground__section">
-    <h2>Tooltip</h2>
-    <div class="playground__row">
-      <ds-button variant="secondary" dsTooltip="Abre con hover (delay 500ms) o foco (inmediato)">
-        Hover o Tab
-      </ds-button>
-      <button
-        type="button"
-        aria-label="Cerrar"
-        dsTooltip="El tooltip describe; el aria-label nombra"
-        class="playground__icon-button"
-      >
-        <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
-      </button>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Toast</h2>
-    <div class="playground__row">
-      <ds-button variant="secondary" (clicked)="toasts.success('Cambios guardados')"
-        >success</ds-button
-      >
-      <ds-button variant="secondary" (clicked)="toasts.info('Sincronizando en segundo plano')"
-        >info</ds-button
-      >
-      <ds-button variant="secondary" (clicked)="toasts.warning('La sesión expira en 5 minutos')">
-        warning
-      </ds-button>
-      <ds-button variant="secondary" (clicked)="toasts.danger('No se pudo guardar: sin conexión')">
-        danger (persistente)
-      </ds-button>
-      <ds-button variant="secondary" (clicked)="undoableToast()">Con acción</ds-button>
-    </div>
-    <p class="playground__hint">
-      Hover o foco pausan el auto-cierre (WCAG 2.2.1). Para verificar el top layer: abrí el modal y
-      disparás un toast desde adentro.
-    </p>
-  </section>
-
-  <section class="playground__section">
-    <h2>Iconografía (Lucide — ADR-012)</h2>
-    <div class="playground__row playground__row--icons">
-      <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
-      <svg lucideChevronDown size="16" strokeWidth="1.5" aria-hidden="true"></svg>
-      <span class="playground__icon-accent">
-        <svg lucideChevronDown size="16" strokeWidth="1.5" aria-hidden="true"></svg>
-        hereda color del contexto (currentColor)
-      </span>
-      <button type="button" class="playground__icon-button" aria-label="Cerrar">
-        <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
-      </button>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Checkbox — estados</h2>
-    <div class="playground__row">
-      <ds-checkbox [(checked)]="checkboxState" label="Toggle controlled" />
-      <ds-checkbox [checked]="true" label="Checked default" />
-      <ds-checkbox [indeterminate]="indeterminateState()" label="Indeterminate" />
-      <ds-checkbox [disabled]="true" label="Disabled" />
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Checkbox — sizes</h2>
-    <div class="playground__row">
-      <ds-checkbox size="sm" label="Small" />
-      <ds-checkbox size="md" label="Medium" />
-      <ds-checkbox size="lg" label="Large" />
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Checkbox — con ReactiveForm</h2>
-    <div class="playground__row">
-      <ds-checkbox [formControl]="subscribeCtrl">
-        Suscribirse al newsletter (rich content con <code>&lt;ng-content&gt;</code>)
-      </ds-checkbox>
-      <code>ctrl.value = {{ subscribeCtrl.value }}</code>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Radio — group con two-way binding</h2>
-    <div class="playground__row">
-      <ds-radio-group [(value)]="selectedFramework">
-        <ds-radio [value]="'angular'" label="Angular" />
-        <ds-radio [value]="'react'" label="React" />
-        <ds-radio [value]="'vue'" label="Vue" />
-      </ds-radio-group>
-      <code>selected = {{ selectedFramework() }}</code>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Radio — con ReactiveForm</h2>
-    <div class="playground__row">
-      <ds-radio-group [formControl]="frameworkCtrl">
-        <ds-radio [value]="'angular'" label="Angular" />
-        <ds-radio [value]="'react'" label="React" />
-        <ds-radio [value]="'vue'" label="Vue" />
-      </ds-radio-group>
-      <code>ctrl.value = {{ frameworkCtrl.value }}</code>
-    </div>
-  </section>
-
-  <section class="playground__section">
-    <h2>Radio — sizes</h2>
-    <div class="playground__row">
-      <ds-radio-group>
-        <ds-radio [value]="'sm'" size="sm" label="Small" />
-        <ds-radio [value]="'md'" size="md" label="Medium" />
-        <ds-radio [value]="'lg'" size="lg" label="Large" />
-      </ds-radio-group>
-    </div>
-  </section>
-</main>
+  <main #main class="shell__content" tabindex="-1">
+    <router-outlet />
+  </main>
+</div>

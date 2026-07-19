@@ -1,73 +1,39 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LucideChevronDown, LucideX } from '@lucide/angular';
-import {
-  DsButton,
-  DsCheckbox,
-  DsInput,
-  DsModal,
-  DsOption,
-  DsRadio,
-  DsRadioGroup,
-  DsSelect,
-  DsTab,
-  DsTabs,
-  DsToastService,
-  DsTooltip,
-} from '@romanmartinidev/components';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
+
+import { SHOWCASE_ENTRIES } from './showcase/registry';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    DsButton,
-    DsCheckbox,
-    DsInput,
-    DsModal,
-    DsOption,
-    DsRadio,
-    DsRadioGroup,
-    DsSelect,
-    DsTab,
-    DsTabs,
-    DsTooltip,
-    LucideChevronDown,
-    LucideX,
-    ReactiveFormsModule,
-  ],
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  protected readonly checkboxState = signal(false);
-  protected readonly indeterminateState = signal(true);
-  protected readonly subscribeCtrl = new FormControl<boolean>(false, { nonNullable: true });
+  protected readonly entries = SHOWCASE_ENTRIES;
 
-  protected readonly selectedFramework = signal<string>('angular');
-  protected readonly frameworkCtrl = new FormControl<string>('react', { nonNullable: true });
+  private readonly main = viewChild.required<ElementRef<HTMLElement>>('main');
+  private initialNavigation = true;
 
-  protected readonly modalOpen = signal(false);
-
-  protected readonly selectedCountry = signal<string | null>(null);
-  protected readonly countryCtrl = new FormControl<string>('ar', { nonNullable: true });
-
-  protected readonly emailCtrl = new FormControl<string>('', {
-    nonNullable: true,
-    validators: [Validators.required, Validators.email],
-  });
-
-  protected readonly activeTab = signal<string | null>(null);
-
-  protected readonly toasts = inject(DsToastService);
-
-  protected handleClick(label: string): void {
-    console.log(`[playground] clicked: ${label}`);
-  }
-
-  protected undoableToast(): void {
-    this.toasts.info('Elemento archivado', {
-      action: { label: 'Deshacer', callback: () => this.toasts.success('Restaurado') },
-    });
+  constructor() {
+    // A11y: al navegar, el foco se mueve al contenido principal para que
+    // teclado y lectores de pantalla no queden varados en el sidebar.
+    // La carga inicial se saltea (no robar el foco al abrir la app).
+    inject(Router)
+      .events.pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed(),
+      )
+      .subscribe(() => {
+        if (this.initialNavigation) {
+          this.initialNavigation = false;
+          return;
+        }
+        this.main().nativeElement.focus();
+      });
   }
 }

@@ -1,0 +1,26 @@
+<app-showcase-case title="Variantes" [snippet]="variantsSnippet">
+  <div class="playground__row">
+    <ds-button variant="secondary" (clicked)="toasts.success('Cambios guardados')">
+      success
+    </ds-button>
+    <ds-button variant="secondary" (clicked)="toasts.info('Sincronizando en segundo plano')">
+      info
+    </ds-button>
+    <ds-button variant="secondary" (clicked)="toasts.warning('La sesión expira en 5 minutos')">
+      warning
+    </ds-button>
+    <ds-button variant="secondary" (clicked)="toasts.danger('No se pudo guardar: sin conexión')">
+      danger (persistente)
+    </ds-button>
+  </div>
+  <p class="playground__hint">
+    Hover o foco pausan el auto-cierre (WCAG 2.2.1). Para ver el top layer: en la vista Modal, abrí
+    el modal y disparás un toast desde adentro.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Con acción" [snippet]="actionSnippet">
+  <div class="playground__row">
+    <ds-button variant="secondary" (clicked)="undoableToast()">Archivar con Deshacer</ds-button>
+  </div>
+</app-showcase-case>

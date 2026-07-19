@@ -1,0 +1,10 @@
+<section class="case">
+  <header class="case__header">
+    <h2 class="case__title">{{ title() }}</h2>
+    <ds-button variant="ghost" size="sm" (clicked)="copySnippet()">Copiar código</ds-button>
+  </header>
+  <div class="case__demo">
+    <ng-content />
+  </div>
+  <pre class="case__code"><code>{{ snippet() }}</code></pre>
+</section>

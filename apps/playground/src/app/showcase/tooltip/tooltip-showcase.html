@@ -1,0 +1,19 @@
+<app-showcase-case title="Hover, foco y WCAG 1.4.13" [snippet]="basicSnippet">
+  <div class="playground__row">
+    <ds-button variant="secondary" dsTooltip="Abre con hover (delay 500ms) o foco (inmediato)">
+      Hover o Tab
+    </ds-button>
+    <button
+      type="button"
+      aria-label="Cerrar"
+      dsTooltip="El tooltip describe; el aria-label nombra"
+      class="playground__icon-button"
+    >
+      <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+    </button>
+  </div>
+  <p class="playground__hint">
+    Dismissable (ESC sin mover el foco), hoverable (entrar al panel lo mantiene) y persistent (no se
+    cierra solo) — WCAG 1.4.13. En top layer vía Popover API (ADR-014).
+  </p>
+</app-showcase-case>

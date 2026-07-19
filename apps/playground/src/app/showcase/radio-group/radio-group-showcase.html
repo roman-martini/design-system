@@ -1,0 +1,25 @@
+<app-showcase-case title="Two-way binding" [snippet]="twoWaySnippet">
+  <div class="playground__row">
+    <ds-radio-group [(value)]="selectedFramework">
+      <ds-radio [value]="'angular'" label="Angular" />
+      <ds-radio [value]="'react'" label="React" />
+      <ds-radio [value]="'vue'" label="Vue" />
+    </ds-radio-group>
+    <code>selected = {{ selectedFramework() }}</code>
+  </div>
+  <p class="playground__hint">
+    Keyboard nav (WAI-ARIA APG): flechas para moverse, Home/End para los extremos; los radios
+    deshabilitados se saltan.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Con ReactiveForm" [snippet]="formSnippet">
+  <div class="playground__row">
+    <ds-radio-group [formControl]="frameworkCtrl">
+      <ds-radio [value]="'angular'" label="Angular" />
+      <ds-radio [value]="'react'" label="React" />
+      <ds-radio [value]="'vue'" label="Vue" />
+    </ds-radio-group>
+    <code>ctrl.value = {{ frameworkCtrl.value }}</code>
+  </div>
+</app-showcase-case>

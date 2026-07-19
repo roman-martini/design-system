@@ -1,0 +1,29 @@
+<app-showcase-case title="Variants" [snippet]="variantsSnippet">
+  <div class="playground__row">
+    <ds-button variant="primary" (clicked)="logDemoClick('primary')">Primary</ds-button>
+    <ds-button variant="secondary" (clicked)="logDemoClick('secondary')">Secondary</ds-button>
+    <ds-button variant="ghost" (clicked)="logDemoClick('ghost')">Ghost</ds-button>
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Sizes" [snippet]="sizesSnippet">
+  <div class="playground__row">
+    <ds-button size="sm" (clicked)="logDemoClick('sm')">Small</ds-button>
+    <ds-button size="md" (clicked)="logDemoClick('md')">Medium</ds-button>
+    <ds-button size="lg" (clicked)="logDemoClick('lg')">Large</ds-button>
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Disabled accesible (ADR-011)" [snippet]="disabledSnippet">
+  <div class="playground__row">
+    <ds-button [disabled]="true" (clicked)="logDemoClick('should-not-fire')">
+      Primary disabled
+    </ds-button>
+    <ds-button variant="secondary" [disabled]="true">Secondary disabled</ds-button>
+  </div>
+  <div class="playground__row">
+    <ds-button [disabled]="true" disabledReason="Completá los campos requeridos para continuar">
+      Enviar
+    </ds-button>
+  </div>
+</app-showcase-case>

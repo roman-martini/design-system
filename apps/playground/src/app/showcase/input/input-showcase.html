@@ -1,0 +1,17 @@
+<app-showcase-case title="Con ReactiveForm y error automático (ADR-011)" [snippet]="formSnippet">
+  <div class="playground__row">
+    <ds-input
+      [formControl]="emailCtrl"
+      type="email"
+      label="Email"
+      hint="Tocá afuera con un valor inválido para ver el error automático"
+      error="Ingresá un email válido"
+      placeholder="vos@ejemplo.com"
+    />
+    <span>ctrl: {{ emailCtrl.value || '—' }} · invalid: {{ emailCtrl.invalid }}</span>
+  </div>
+  <p class="playground__hint">
+    El error se activa solo con invalid + touched: mientras el control está pristine no molesta. El
+    mensaje reemplaza al hint y se asocia por aria-describedby.
+  </p>
+</app-showcase-case>

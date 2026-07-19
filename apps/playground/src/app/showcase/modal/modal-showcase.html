@@ -1,0 +1,24 @@
+<app-showcase-case title="Modal sobre dialog nativo (ADR-013)" [snippet]="basicSnippet">
+  <div class="playground__row">
+    <ds-button variant="primary" (clicked)="modalOpen.set(true)">Abrir modal</ds-button>
+  </div>
+  <p class="playground__hint">
+    Top layer, focus trap, fondo inerte y restauración de foco los provee la plataforma. ESC y click
+    en el backdrop cierran (configurable).
+  </p>
+  <ds-modal [(open)]="modalOpen" heading="Confirmar acción" size="sm">
+    <p>El primer overlay del DS: dialog nativo, top layer, foco atrapado por la plataforma.</p>
+    <p>
+      <ds-button
+        variant="secondary"
+        (clicked)="toasts.info('Visible por encima del modal (top layer)')"
+      >
+        Toast sobre el modal
+      </ds-button>
+    </p>
+    <div ds-modal-footer>
+      <ds-button variant="ghost" (clicked)="modalOpen.set(false)">Cancelar</ds-button>
+      <ds-button variant="primary" (clicked)="modalOpen.set(false)">Confirmar</ds-button>
+    </div>
+  </ds-modal>
+</app-showcase-case>

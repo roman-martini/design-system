@@ -1,0 +1,18 @@
+<app-showcase-case title="Tabs con estado conservado (ARIA APG)" [snippet]="tabsSnippet">
+  <ds-tabs [(value)]="activeTab" aria-label="Demo de tabs">
+    <ds-tab value="form" label="Formulario">
+      <ds-input
+        [formControl]="emailCtrl"
+        type="email"
+        label="Email (el estado se conserva al cambiar de tab)"
+        placeholder="vos@ejemplo.com"
+      />
+    </ds-tab>
+    <ds-tab value="info" label="Info">Los paneles inactivos quedan con hidden.</ds-tab>
+    <ds-tab value="off" label="Deshabilitado" [disabled]="true">No accesible.</ds-tab>
+  </ds-tabs>
+  <p class="playground__hint">
+    Roving tabindex: flechas mueven foco y selección (con wrap, salteando disabled); Home/End van a
+    los extremos. Los paneles inactivos conservan su DOM (hidden, no destruidos).
+  </p>
+</app-showcase-case>
