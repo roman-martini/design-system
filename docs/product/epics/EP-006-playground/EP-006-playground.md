@@ -1,6 +1,6 @@
 # EP-006 — Playground
 
-**Estado**: En refinamiento (creada 2026-07-18; HU-011 refinada)
+**Estado**: En desarrollo (HU-011 Hecha 2026-07-19; próximas HUs con disparador propio)
 
 ## Contexto / historia original
 
@@ -16,9 +16,9 @@ Queda afuera: Storybook (laboratorio interno por stories, por componente aislado
 
 ## Historias de usuario
 
-| HU                                       | Título                                            | Actor          | Estado                |
-| ---------------------------------------- | ------------------------------------------------- | -------------- | --------------------- |
-| [HU-011](HU-011-showcase-componentes.md) | Showcase navegable de casos de uso por componente | Dev consumidor | Refinada (2026-07-18) |
+| HU                                       | Título                                            | Actor          | Estado                      |
+| ---------------------------------------- | ------------------------------------------------- | -------------- | --------------------------- |
+| [HU-011](HU-011-showcase-componentes.md) | Showcase navegable de casos de uso por componente | Dev consumidor | Hecha (2026-07-19, aaa-022) |
 
 ## Decisiones aplicables
 

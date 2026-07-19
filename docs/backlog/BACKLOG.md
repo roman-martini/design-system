@@ -25,18 +25,6 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-### `playground-showcase` — Showcase navegable del playground
-
-**Tipo**: OpenSpec (playground). **Producto**: [HU-011](../product/epics/EP-006-playground/HU-011-showcase-componentes.md) / EP-006.
-
-**Alcance propuesto**: reemplazar la página única del playground por un showcase con sidebar + Angular Router (ruta lazy por componente), vistas de casos de uso con snippet copiable, migración completa de los 11 entregables. HU-011 ya Refinada (2026-07-18) con 8 CAs binarios.
-
-**Disparador**: pedido directo del PO (TASK.md) — **ACTIVADO** (2026-07-18).
-
-**Estado**: pendiente (proponer change).
-
----
-
 ### `components-add-spinner` — Spinner
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md) / EP-002.

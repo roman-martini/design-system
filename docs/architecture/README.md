@@ -468,6 +468,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-019](../../openspec/changes/archive/aaa-019-components-add-tooltip/)           | components-add-tooltip           | archived | 2026-07-18 | modifica components-package + design-tokens-package | — (primer reuso de ADR-014)              |
 | [aaa-020](../../openspec/changes/archive/aaa-020-repo-release-lockstep/)            | repo-release-lockstep            | archived | 2026-07-18 | modifica components-package                         | ADR-015 (versionado lockstep)            |
 | [aaa-021](../../openspec/changes/archive/aaa-021-components-add-toast/)             | components-add-toast             | archived | 2026-07-18 | modifica components-package + design-tokens-package | — (primera service del kit)              |
+| [aaa-022](../../openspec/changes/archive/aaa-022-playground-showcase/)              | playground-showcase              | archived | 2026-07-19 | modifica playground-app                             | — (showcase con router, EP-006)          |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

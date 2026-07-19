@@ -9,7 +9,7 @@ created: 2026-06-01
 
 ## Purpose
 
-Define los requisitos del workspace `apps/playground/` como laboratorio interno del monorepo: identidad y privacidad (no publicable), modo zoneless de Angular 21, consumo de las libs internas (`@romanmartinidev/tokens` y `@romanmartinidev/components`) vía `workspace:*`, orden de import de tokens CSS, demo del Button en la app, ausencia de routing y SSR en esta fase, setup de Storybook 10 con stories co-ubicadas en `packages/components/`, tests con Vitest alineado al stack de components, y build exitoso end-to-end.
+Define los requisitos del workspace `apps/playground/` como laboratorio y vitrina interna del monorepo: identidad y privacidad (no publicable), modo zoneless de Angular 21, consumo de las libs internas (`@romanmartinidev/tokens` y `@romanmartinidev/components`) vía `workspace:*`, orden de import de tokens CSS, showcase navegable con una ruta lazy por componente (casos de uso con snippet copiable), ausencia de SSR, setup de Storybook 10 con stories co-ubicadas en `packages/components/`, tests con Vitest alineado al stack de components, y build exitoso end-to-end.
 
 ## Requirements
 
@@ -75,35 +75,55 @@ El entry CSS (`src/styles.css` o equivalente) o el `main.ts` SHALL importar `@ro
 - **WHEN** se inspecciona el `<html>` en el browser
 - **THEN** `getComputedStyle(document.documentElement).getPropertyValue('--ds-semantic-color-bg-primary')` SHALL retornar un valor no vacío
 
-### Requirement: Demo del Button en la app
+### Requirement: Showcase navegable por componente
 
-El componente raíz `App` SHALL importar `DsButton` y renderizarlo en su template demostrando al menos: una variant `primary`, una `secondary`, una `ghost`, y un estado `disabled`. El template SHALL ser autoexplicativo sobre cómo se consumen los componentes.
+El playground SHALL ser un **showcase**: un shell con sidebar de navegación y una vista por entregable del kit, sobre Angular Router con **una ruta lazy por componente** (`/<slug>`). Un registro único tipado (componente → slug → label → import lazy) SHALL alimentar rutas y sidebar (sin divergencia posible). La ruta vacía y las rutas desconocidas SHALL redirigir a un destino válido. Cada vista SHALL mostrar los casos de uso del componente **renderizados y funcionales** (como mínimo los que existían en la página única) y cada caso SHALL exponer su **snippet de código con botón de copiar**. El shell y las vistas SHALL consumir tokens `--ds-*` (sin valores hardcoded) y componentes del DS donde aplique. La página monolítica anterior SHALL NO existir. El modo zoneless SHALL mantenerse.
 
-#### Scenario: App importa DsButton
+#### Scenario: sidebar navega sin recarga (CA-011.1)
 
-- **WHEN** se inspecciona `apps/playground/src/app/app.ts`
-- **THEN** SHALL importar `DsButton` desde `@romanmartinidev/components`
-- **AND** SHALL incluirlo en el array `imports` del decorator (standalone)
+- **GIVEN** el playground abierto
+- **THEN** un sidebar SHALL listar los 11 entregables del kit
+- **WHEN** se selecciona uno
+- **THEN** SHALL navegarse a su vista vía router (sin recarga completa)
 
-#### Scenario: template renderiza al menos 4 botones demo
+#### Scenario: deep link y ruta desconocida (CA-011.2)
 
-- **GIVEN** la app levantada
-- **WHEN** se cuentan los elementos `<ds-button>` en el DOM renderizado
-- **THEN** SHALL haber al menos 4 instancias cubriendo los estados primary, secondary, ghost, disabled
+- **WHEN** se abre directamente `/<slug>` de un componente (ej. `/select`)
+- **THEN** SHALL renderizarse la vista de ese componente (ruta lazy)
+- **WHEN** se abre una ruta desconocida
+- **THEN** SHALL redirigirse a un destino válido (sin pantalla rota)
 
-### Requirement: Single page sin routing
+#### Scenario: casos de uso por vista (CA-011.3, CA-011.5)
 
-El playground SHALL NO configurar router en Fase 4. NO SHALL declarar `provideRouter()` ni `<router-outlet>`. El template raíz SHALL renderizar directamente el contenido demo.
+- **WHEN** se recorre cada una de las vistas del showcase
+- **THEN** cada entregable del kit SHALL tener su vista con sus casos de uso renderizados y funcionales (mínimo: los de la página única previa)
+- **AND** el template monolítico anterior SHALL NO existir en el código
 
-#### Scenario: sin provideRouter
+#### Scenario: snippet copiable (CA-011.4)
 
-- **WHEN** se inspecciona `app.config.ts`
-- **THEN** el array `providers` SHALL NO contener `provideRouter(...)`
+- **GIVEN** un caso de uso en una vista
+- **THEN** SHALL mostrar su snippet de código
+- **WHEN** el usuario activa el botón de copiar
+- **THEN** el snippet SHALL quedar en el clipboard (con feedback al usuario)
 
-#### Scenario: sin router-outlet
+#### Scenario: el showcase consume el DS (CA-011.6)
 
-- **WHEN** se inspecciona el template de `AppComponent`
-- **THEN** SHALL NO contener `<router-outlet>`
+- **WHEN** se inspecciona el CSS del shell, del sidebar y del componente de caso de uso
+- **THEN** los valores visuales SHALL referenciarse vía `var(--ds-*)`
+- **AND** las piezas interactivas SHALL usar componentes del kit donde aplique (ej. botón de copiar, feedback por toast)
+
+#### Scenario: a11y de la navegación (CA-011.7)
+
+- **WHEN** se inspecciona el sidebar
+- **THEN** SHALL ser un `<nav>` con nombre accesible
+- **AND** SHALL ser operable por teclado con foco visible
+- **AND** el item de la vista activa SHALL exponer `aria-current="page"`
+
+#### Scenario: tests de navegación (CA-011.8)
+
+- **WHEN** se ejecuta `pnpm -F playground test`
+- **THEN** la suite SHALL cubrir el render de vistas según la ruta y la redirección de rutas desconocidas
+- **AND** SHALL retornar exit 0
 
 ### Requirement: Setup de Storybook 10 en .storybook/
 

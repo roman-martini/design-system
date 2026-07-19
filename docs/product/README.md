@@ -59,7 +59,7 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 | [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor  | 002          | En desarrollo (npm-ready, sin publicar)               |
 | [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador       | 001          | En refinamiento (aaa-012 propuesto)                   |
 | [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor      | —            | En desarrollo (primera tanda 2026-07-11)              |
-| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor  | 011          | En refinamiento (HU-011 refinada 2026-07-18)          |
+| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor  | 011          | En desarrollo (HU-011 Hecha 2026-07-19)               |
 
 Próximos IDs libres: **EP-007**, **HU-012**, **D-011**.
 
@@ -85,11 +85,11 @@ EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.
                                     (D-010, lockstep ADR-015, aaa-020)
 EP-004: HU-001 (Figma export)     → aaa-012 propuesto, 4/4 artefactos; en pausa por decisión del PO
 EP-005: /ds:audit-tokens          → posible activación (primer hardcode detectado en la auditoría)
-EP-006: HU-011 (showcase)         → Refinada (2026-07-18); pedido directo del PO — sidebar +
-                                    ruta por componente + demos con snippet, reemplaza la página única
+EP-006: HU-011 (showcase)         → Hecha (2026-07-19): sidebar + ruta lazy por componente + demos
+                                    con snippet copiable; la página única del playground ya no existe
 ```
 
-Última entrega: HU-008 (Toast) Hecha — aaa-021 archivado el 2026-07-18.
+Última entrega: HU-011 (Showcase) Hecha — aaa-022 archivado el 2026-07-19.
 
 ## Convenciones
 

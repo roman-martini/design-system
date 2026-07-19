@@ -19,7 +19,7 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-022`**
+**`aaa-023`**
 
 Actualizar al crear un change nuevo y al archivar el último.
 
@@ -35,6 +35,7 @@ Actualizar al crear un change nuevo y al archivar el último.
 > `aaa-019` `components-add-tooltip` — **archivado 2026-07-18** (sin ADR — primer reuso de ADR-014).
 > `aaa-020` `repo-release-lockstep` — **archivado 2026-07-18** (generó ADR-015; primer release npm: 0.2.0/0.2.0).
 > `aaa-021` `components-add-toast` — **archivado 2026-07-18** (sin ADR — primera service del kit; absorbió `tokens-fix-status-borders`).
+> `aaa-022` `playground-showcase` — **archivado 2026-07-19** (sin ADR — showcase navegable del playground, HU-011 / EP-006).
 
 ### Specs sin IDs
 

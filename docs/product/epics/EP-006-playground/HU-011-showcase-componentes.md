@@ -2,7 +2,7 @@
 
 **Épica**: [EP-006 — Playground](EP-006-playground.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-18, decisiones tomadas con el PO)
+**Estado**: Hecha (2026-07-19) — [`aaa-022 playground-showcase`](../../../../openspec/changes/archive/aaa-022-playground-showcase/) archivado; 9 tests de navegación, review sin altas (foco post-navegación incluido)
 **Decisiones que aplica**: [D-005](../../decisiones.md)
 
 ---
@@ -23,14 +23,14 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec playground-app (delta del change). -->
 
-- [ ] **CA-011.1 (sidebar)** — Dado el playground abierto, entonces un sidebar lista todos los entregables del kit; seleccionar uno navega a su vista sin recarga completa.
-- [ ] **CA-011.2 (deep link)** — Dado que cada componente tiene ruta propia (`/<slug>`, lazy), cuando se abre esa URL directamente, entonces se renderiza su vista; una ruta desconocida redirige a un destino válido (sin pantalla rota).
-- [ ] **CA-011.3 (casos de uso)** — Dada la vista de un componente, entonces muestra sus casos de uso renderizados y funcionales — como mínimo los que hoy existen en la página única.
-- [ ] **CA-011.4 (snippet copiable)** — Dado un caso de uso, entonces muestra su snippet de código y un botón de copiar que deja el snippet en el clipboard.
-- [ ] **CA-011.5 (migración completa)** — Dado el cierre del change, entonces los 11 entregables tienen su vista en el showcase y la página monolítica anterior no existe más.
-- [ ] **CA-011.6 (el showcase consume el DS)** — Dado el shell del showcase (sidebar, layout, vistas), entonces sus estilos salen de tokens `--ds-*` (sin hardcodes) y usa componentes del DS donde aplique — el showcase es en sí mismo un caso de consumo.
-- [ ] **CA-011.7 (a11y de navegación)** — Dado el sidebar, entonces es navegable por teclado con foco visible, la vista activa se marca (`aria-current`), y la navegación es un landmark (`<nav>` con nombre accesible).
-- [ ] **CA-011.8 (tests)** — Dada la suite del playground, entonces cubre la navegación (render de la vista según la ruta, redirección de ruta desconocida) y queda verde.
+- [x] **CA-011.1 (sidebar)** — Dado el playground abierto, entonces un sidebar lista todos los entregables del kit; seleccionar uno navega a su vista sin recarga completa.
+- [x] **CA-011.2 (deep link)** — Dado que cada componente tiene ruta propia (`/<slug>`, lazy), cuando se abre esa URL directamente, entonces se renderiza su vista; una ruta desconocida redirige a un destino válido (sin pantalla rota).
+- [x] **CA-011.3 (casos de uso)** — Dada la vista de un componente, entonces muestra sus casos de uso renderizados y funcionales — como mínimo los que hoy existen en la página única.
+- [x] **CA-011.4 (snippet copiable)** — Dado un caso de uso, entonces muestra su snippet de código y un botón de copiar que deja el snippet en el clipboard.
+- [x] **CA-011.5 (migración completa)** — Dado el cierre del change, entonces los 11 entregables tienen su vista en el showcase y la página monolítica anterior no existe más.
+- [x] **CA-011.6 (el showcase consume el DS)** — Dado el shell del showcase (sidebar, layout, vistas), entonces sus estilos salen de tokens `--ds-*` (sin hardcodes) y usa componentes del DS donde aplique — el showcase es en sí mismo un caso de consumo.
+- [x] **CA-011.7 (a11y de navegación)** — Dado el sidebar, entonces es navegable por teclado con foco visible, la vista activa se marca (`aria-current`), y la navegación es un landmark (`<nav>` con nombre accesible).
+- [x] **CA-011.8 (tests)** — Dada la suite del playground, entonces cubre la navegación (render de la vista según la ruta, redirección de ruta desconocida) y queda verde.
 
 ## Dependencias
 
