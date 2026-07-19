@@ -19,23 +19,16 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-023`**
+**`aaa-024`**
 
-Actualizar al crear un change nuevo y al archivar el último.
+Actualizar al crear un change nuevo.
 
-> `aaa-010` `components-drop-component-suffix` — **archivado 2026-07-03** (generó ADR-010).
-> `aaa-011` `components-accessible-disabled` — **archivado 2026-07-03** (generó ADR-011).
-> `aaa-012` asignado a `tokens-figma-export` (status `proposed`, en `changes/`; genera ADR-009).
-> `aaa-013` `components-decide-icon-library` — **archivado 2026-07-03** (generó ADR-012).
-> `aaa-014` `components-add-modal` — **archivado 2026-07-10** (generó ADR-013).
-> `aaa-015` `tokens-fix-contrast-aa` — **archivado 2026-07-11** (sin ADR — ejecuta D-007).
-> `aaa-016` `components-add-select` — **archivado 2026-07-11** (generó ADR-014).
-> `aaa-017` `components-add-input` — **archivado 2026-07-11** (sin ADR — aplica 011/012/014).
-> `aaa-018` `components-add-tabs` — **archivado 2026-07-14** (sin ADR — aplica 011 y patrones del kit).
-> `aaa-019` `components-add-tooltip` — **archivado 2026-07-18** (sin ADR — primer reuso de ADR-014).
-> `aaa-020` `repo-release-lockstep` — **archivado 2026-07-18** (generó ADR-015; primer release npm: 0.2.0/0.2.0).
-> `aaa-021` `components-add-toast` — **archivado 2026-07-18** (sin ADR — primera service del kit; absorbió `tokens-fix-status-borders`).
-> `aaa-022` `playground-showcase` — **archivado 2026-07-19** (sin ADR — showcase navegable del playground, HU-011 / EP-006).
+### IDs en vuelo
+
+IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/README.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
+
+> `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
+> `aaa-023` asignado a `components-add-spinner` (status `proposed`; HU-009 / D-009, sin ADR previsto).
 
 ### Specs sin IDs
 
@@ -97,10 +90,10 @@ created: YYYY-MM-DD
 
 ## Workflow
 
-1. **Crear change**: `pnpm openspec new change <kebab-name>` o equivalente. Asignar ID en frontmatter (próximo disponible arriba). Actualizar este README.
+1. **Crear change**: `pnpm openspec new change <kebab-name>` o equivalente. Asignar ID en frontmatter (próximo disponible arriba). Actualizar en este README el próximo ID y la lista de IDs en vuelo.
 2. **Generar artifacts** (proposal, design opcional, specs delta, tasks). Validar con `pnpm openspec validate --changes`.
 3. **Apply**: implementar tasks marcando checkboxes. Última task siempre es "proponer mensaje de commit y esperar OK del usuario".
-4. **Archivar**: mover dir a `archive/<id>-<name>/`, sincronizar spec base con deltas, actualizar el "próximo ID disponible" en este README, agregar fila al catálogo histórico en `docs/architecture/README.md`.
+4. **Archivar**: mover dir a `archive/<id>-<name>/`, sincronizar spec base con deltas, borrar la línea del change de "IDs en vuelo" en este README, agregar fila al catálogo histórico en `docs/architecture/README.md`.
 
 ---
 

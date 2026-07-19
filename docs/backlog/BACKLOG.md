@@ -29,11 +29,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md) / EP-002.
 
-**Alcance propuesto**: indicador de carga del kit (pendiente de refinamiento de HU con el PO antes de proponer, como toda la tanda D-009).
+**Alcance propuesto**: indicador de carga del kit según HU-009 refinada (sizes xs/sm/md/lg por tokens, `currentColor`, `role="status"` con label opt-out, pulso de opacidad en reduced-motion).
 
 **Disparador**: cierre del item anterior de la tanda (Toast, `aaa-021`) — **ACTIVADO** (2026-07-18, grooming del archive).
 
-**Estado**: pendiente (refinar HU-009 primero).
+**Estado**: HU-009 **Refinada** (2026-07-19) — listo para `/opsx:propose components-add-spinner`.
 
 ---
 
@@ -74,6 +74,22 @@ En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming 
 **Disparador**: el package `tokens` supera 100 tokens, o aparece el primer drift en un code review.
 
 **Estado**: pendiente. Nota (2026-07-11): la auditoría a11y detectó el primer hardcode (`white` en checkmark/dot de Checkbox y Radio) — el disparador podría considerarse activado (`components-fix-a11y-minor` ya cerrado por commit directo); confirmar con el PO.
+
+---
+
+### `components-button-loading` — Estado loading de ds-button
+
+**Tipo**: OpenSpec (kit). **Producto**: [EP-002](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md) (sin HU propia todavía).
+
+**Origen**: refinamiento de [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md) (decisión 1, PO 2026-07-19) — el spinner entra solo; el `loading` de `ds-button` se separó a item propio.
+
+**Alcance propuesto**: input `loading` en `DsButton` (spinner embebido + deshabilitado accesible + aria coherente con ADR-011).
+
+**Bloqueado por**: cierre de `components-add-spinner`.
+
+**Disparador**: primer caso de uso real (playground o consumidor) que necesite bloquear un botón durante una operación async.
+
+**Estado**: pendiente (Next).
 
 ---
 
