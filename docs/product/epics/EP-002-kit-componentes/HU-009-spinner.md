@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-19) — lista para change OpenSpec (`components-add-spinner`)
+**Estado**: Hecha (2026-07-19) — [`aaa-023 components-add-spinner`](../../../../openspec/changes/archive/aaa-023-components-add-spinner/) archivado; 10 tests, review sin altas ni medias, sin pares de contraste nuevos (currentColor). Verificación manual pendiente del PO: pulso reduced-motion y geometría del arco en playground
 **Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
 
 ---
@@ -24,12 +24,12 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec components-package (delta del change components-add-spinner). -->
 
-- [ ] **CA-009.1** — Dado `<ds-spinner />` (standalone, OnPush), cuando se renderiza con `size` `xs | sm | md | lg` (default `md`), entonces diámetro y grosor de trazo salen de tokens `component.spinner.*` para cada size.
-- [ ] **CA-009.2** — Dado un spinner dentro de un contexto con `color` definido (ej. un botón primary), entonces el indicador hereda `currentColor` y el track usa el mismo color con opacidad tokenizada; el componente no expone API de color.
-- [ ] **CA-009.3** — Dado un spinner con `label` default, entonces se expone como `role="status"` con el texto "Cargando" visually-hidden (anuncio cortés, sin robar foco); dado `label` custom, se anuncia ese texto; dado `label=""`, el spinner es decorativo (`aria-hidden="true"`, sin role).
-- [ ] **CA-009.4** — Dada la animación de rotación, entonces su duración/easing salen de tokens y bajo `prefers-reduced-motion` la rotación se reemplaza por un pulso de opacidad (~2s) sin movimiento espacial.
-- [ ] **CA-009.5** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.spinner.*` nuevos + primitives/semantic existentes); al usar `currentColor` no introduce pares de contraste propios (el contraste lo gobierna el contexto que lo contiene).
-- [ ] **CA-009.6** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-spinner` con los 4 sizes, el caso embebido en un botón (composición, sin tocar `DsButton`) y el comportamiento reduced-motion documentado.
+- [x] **CA-009.1** — Dado `<ds-spinner />` (standalone, OnPush), cuando se renderiza con `size` `xs | sm | md | lg` (default `md`), entonces diámetro y grosor de trazo salen de tokens `component.spinner.*` para cada size.
+- [x] **CA-009.2** — Dado un spinner dentro de un contexto con `color` definido (ej. un botón primary), entonces el indicador hereda `currentColor` y el track usa el mismo color con opacidad tokenizada; el componente no expone API de color.
+- [x] **CA-009.3** — Dado un spinner con `label` default, entonces se expone como `role="status"` con el texto "Cargando" visually-hidden (anuncio cortés, sin robar foco); dado `label` custom, se anuncia ese texto; dado `label=""`, el spinner es decorativo (`aria-hidden="true"`, sin role).
+- [x] **CA-009.4** — Dada la animación de rotación, entonces su duración/easing salen de tokens y bajo `prefers-reduced-motion` la rotación se reemplaza por un pulso de opacidad (~2s) sin movimiento espacial.
+- [x] **CA-009.5** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.spinner.*` nuevos + primitives/semantic existentes); al usar `currentColor` no introduce pares de contraste propios (el contraste lo gobierna el contexto que lo contiene).
+- [x] **CA-009.6** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-spinner` con los 4 sizes, el caso embebido en un botón (composición, sin tocar `DsButton`) y el comportamiento reduced-motion documentado.
 
 ## Dependencias
 

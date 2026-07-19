@@ -46,16 +46,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API mínima (design.md §1),
 - [x] 6.3 Auditoría **`/ng:review`** sobre `src/lib/spinner/` — 0 altas, 0 medias, 1 baja: los asserts de CA-009.4/5 leen la fuente CSS (readFileSync) en vez de comportamiento DOM — **excepción aceptada**, documentada en design.md §Risks (jsdom no computa keyframes/media queries); sin cambios de código. Queries por `querySelector` = convención establecida del repo (sin @testing-library), no hallazgo.
 - [x] 6.4 `npm pack --dry-run`: tarball sin `*.spec.ts`/`*.stories.ts` (7 archivos, solo dist + README).
 - [x] 6.5 Changeset único `.changeset/add-spinner.md` con **minor** de components (DsSpinner) y **minor** de tokens (`component.spinner.*`). Lockstep (ADR-015).
-- [ ] 6.6 Proponer mensaje de commit (implementación) y esperar OK del usuario.
+- [x] 6.6 Mensaje de commit propuesto y aprobado por el PO — commits `6bbadc9` (propose) y `5ca0f04` (feat).
 
 **Criterio**: automáticos verdes; gates resueltos; changeset correcto; aprobación explícita antes del commit.
 
 ## 7. Archive
 
-- [ ] 7.1 Evaluar ADR: el patrón "reduced-motion por reemplazo de animación" (design §4) solo se formaliza si Skeleton lo repite — dejar la nota; sin ADR previsto.
-- [ ] 7.2 Mover a `archive/aaa-023-components-add-spinner/`; frontmatter `archived`; sincronizar spec base `components-package` (ADDED autocontenido).
-- [ ] 7.3 Registros: `openspec/README.md` (próximo ID → `aaa-024`), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Spinner sale de Now; promover `components-add-skeleton` a Now; reevaluar disparador de `components-button-loading`), HU-009 → Hecha con CAs tildados, EP-002 actualizado.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Proponer commit del archive y esperar OK.
+- [x] 7.1 Sin ADR nuevo: el patrón "reduced-motion por reemplazo de animación" (design §4) solo se formaliza si Skeleton lo repite — nota dejada en el catálogo y en el item de Skeleton del BACKLOG.
+- [x] 7.2 Movido a `archive/aaa-023-components-add-spinner/`; frontmatter `archived: 2026-07-19`; spec base `components-package` sincronizada (ADDED autocontenido).
+- [x] 7.3 Registros: `openspec/README.md` (línea de IDs en vuelo eliminada; próximo ID ya en `aaa-024`), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Spinner sale de Now; `components-add-skeleton` promovido a Now; `components-button-loading` desbloqueado, sigue en Next por disparador), HU-009 → Hecha con CAs tildados, EP-002 actualizado.
+- [x] 7.4 `pnpm openspec validate --all` pasa (6/6; format:check verde tras prettier sobre el catálogo). En el camino se repuso la fila faltante de `DsToastService` en "Valor entregado" de EP-002 (omisión del archive de aaa-021).
+- [x] 7.5 Commit del archive — el OK del PO al proponer los commits cubrió explícitamente el flujo completo ("después sigue el archive").
 
 **Criterio**: change archivado, spec base sincronizada, registros al día.

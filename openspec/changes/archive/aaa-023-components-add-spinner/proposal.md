@@ -2,7 +2,8 @@
 id: aaa-023
 name: components-add-spinner
 type: change
-status: proposed
+status: archived
+archived: 2026-07-19
 modifies-specs:
   - components-package (ADDED: DsSpinner)
   - design-tokens-package (sin delta de spec; component.spinner nuevo referenciando semantic/primitives)

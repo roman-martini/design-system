@@ -25,35 +25,21 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-### `components-add-spinner` — Spinner
+### `components-add-skeleton` — Skeleton
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md) / EP-002.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-010](../product/epics/EP-002-kit-componentes/HU-010-skeleton.md) / EP-002. Último componente de la tanda 1 ([D-009](../product/decisiones.md)).
 
-**Alcance propuesto**: indicador de carga del kit según HU-009 refinada (sizes xs/sm/md/lg por tokens, `currentColor`, `role="status"` con label opt-out, pulso de opacidad en reduced-motion).
+**Alcance propuesto**: bloque pulsante de carga (pendiente de refinamiento de HU con el PO antes de proponer, como toda la tanda D-009).
 
-**Disparador**: cierre del item anterior de la tanda (Toast, `aaa-021`) — **ACTIVADO** (2026-07-18, grooming del archive).
+**Nota arquitectónica**: si repite el patrón "reduced-motion por reemplazo de animación" del Spinner (aaa-023, design §4), evaluar formalizarlo como ADR/convención transversal.
 
-**Estado**: HU-009 **Refinada** (2026-07-19) — listo para `/opsx:propose components-add-spinner`.
+**Disparador**: cierre del item anterior de la tanda (Spinner, `aaa-023`) — **ACTIVADO** (2026-07-19, grooming del archive).
+
+**Estado**: pendiente (refinar HU-010 primero).
 
 ---
 
 ## Next — esperando disparador o decisión del PO
-
-### Tanda 1 del kit — componentes restantes (D-009)
-
-**Tipo**: OpenSpec (kit, un change por componente). **Producto**: HUs de [EP-002](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md).
-
-**Origen**: [D-009](../product/decisiones.md) — expansión aprobada hacia "una app real se construye 100% con el DS".
-
-En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming al archivar):
-
-- `components-add-skeleton` — [HU-010](../product/epics/EP-002-kit-componentes/HU-010-skeleton.md).
-
-**Disparador** (cada uno): cierre del item anterior de la tanda.
-
-**Estado**: pendiente.
-
----
 
 ### `tokens-figma-export` — Export DTCG para Figma (EN PAUSA)
 
@@ -85,9 +71,7 @@ En orden sugerido; cada uno se promueve a Now al cerrarse el anterior (grooming 
 
 **Alcance propuesto**: input `loading` en `DsButton` (spinner embebido + deshabilitado accesible + aria coherente con ADR-011).
 
-**Bloqueado por**: cierre de `components-add-spinner`.
-
-**Disparador**: primer caso de uso real (playground o consumidor) que necesite bloquear un botón durante una operación async.
+**Disparador**: primer caso de uso real (playground o consumidor) que necesite bloquear un botón durante una operación async. Desbloqueado desde el cierre de `components-add-spinner` (`aaa-023`, 2026-07-19); el disparador aún no se activó.
 
 **Estado**: pendiente (Next).
 
