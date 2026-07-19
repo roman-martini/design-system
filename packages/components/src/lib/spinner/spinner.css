@@ -1,0 +1,90 @@
+:host {
+  display: inline-block;
+  width: var(--ds-component-spinner-size-md);
+  height: var(--ds-component-spinner-size-md);
+}
+
+:host([data-size='xs']) {
+  width: var(--ds-component-spinner-size-xs);
+  height: var(--ds-component-spinner-size-xs);
+}
+
+:host([data-size='sm']) {
+  width: var(--ds-component-spinner-size-sm);
+  height: var(--ds-component-spinner-size-sm);
+}
+
+:host([data-size='lg']) {
+  width: var(--ds-component-spinner-size-lg);
+  height: var(--ds-component-spinner-size-lg);
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: ds-spinner-rotate var(--ds-component-spinner-duration-spin)
+    var(--ds-motion-easing-linear) infinite;
+}
+
+circle {
+  stroke: currentColor;
+  stroke-width: var(--ds-component-spinner-stroke-md);
+  vector-effect: non-scaling-stroke;
+}
+
+:host([data-size='xs']) circle {
+  stroke-width: var(--ds-component-spinner-stroke-xs);
+}
+
+:host([data-size='sm']) circle {
+  stroke-width: var(--ds-component-spinner-stroke-sm);
+}
+
+:host([data-size='lg']) circle {
+  stroke-width: var(--ds-component-spinner-stroke-lg);
+}
+
+.ds-spinner__track {
+  opacity: var(--ds-component-spinner-track-opacity);
+}
+
+.ds-spinner__label {
+  position: absolute;
+  width: var(--ds-dimension-1);
+  height: var(--ds-dimension-1);
+  margin: calc(-1 * var(--ds-dimension-1));
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes ds-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Reduced motion por reemplazo (design §4): sin rotación, el arco pulsa opacidad. */
+@media (prefers-reduced-motion: reduce) {
+  svg {
+    animation: none;
+  }
+
+  .ds-spinner__arc {
+    animation: ds-spinner-pulse var(--ds-component-spinner-duration-pulse)
+      var(--ds-motion-easing-ease-in-out) infinite;
+  }
+}
+
+@keyframes ds-spinner-pulse {
+  0%,
+  100% {
+    opacity: var(--ds-opacity-100);
+  }
+  50% {
+    opacity: var(--ds-opacity-40);
+  }
+}

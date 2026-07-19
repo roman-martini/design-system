@@ -1,0 +1,17 @@
+{
+  "component": {
+    "spinner": {
+      "size-xs":       { "value": "{dimension.16}" },
+      "size-sm":       { "value": "{dimension.20}" },
+      "size-md":       { "value": "{dimension.32}" },
+      "size-lg":       { "value": "{dimension.48}" },
+      "stroke-xs":     { "value": "{dimension.2}" },
+      "stroke-sm":     { "value": "{dimension.2}" },
+      "stroke-md":     { "value": "{dimension.3}" },
+      "stroke-lg":     { "value": "{dimension.4}" },
+      "track-opacity": { "value": "{opacity.25}" },
+      "duration-spin":  { "value": "800ms" },
+      "duration-pulse": { "value": "2000ms" }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<app-showcase-case title="Sizes" [snippet]="sizesSnippet">
+  <div class="playground__row">
+    <ds-spinner size="xs" />
+    <ds-spinner size="sm" />
+    <ds-spinner size="md" />
+    <ds-spinner size="lg" />
+  </div>
+  <p class="playground__hint">
+    Diámetro y trazo salen de tokens <code>component.spinner.*</code>; el color es
+    <code>currentColor</code> (heredado del contexto, sin API propia). Con
+    <em>prefers-reduced-motion</em> la rotación se reemplaza por un pulso de opacidad — probalo
+    emulándolo en DevTools (Rendering → prefers-reduced-motion).
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Dentro de un botón (composición)" [snippet]="buttonSnippet">
+  <div class="playground__row">
+    <ds-button variant="primary" [disabled]="true">
+      <ds-spinner size="xs" label="" />
+      Guardando…
+    </ds-button>
+  </div>
+  <p class="playground__hint">
+    <code>ds-button</code> no se modifica: el spinner <code>xs</code> se proyecta como contenido y
+    hereda el color del botón. Con <code>label=""</code> es decorativo (<code>aria-hidden</code>) —
+    el texto del botón ya comunica la carga.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Label accesible y herencia de color" [snippet]="labelSnippet">
+  <div class="playground__row">
+    <ds-spinner label="Guardando borrador" />
+    <p class="playground__success-context">
+      <ds-spinner size="sm" label="" />
+      Sincronizando…
+    </p>
+  </div>
+  <p class="playground__hint">
+    El label se anuncia vía <code>role="status"</code> (visually-hidden, default "Cargando"). En el
+    segundo caso el spinner hereda el verde del contexto por <code>currentColor</code>.
+  </p>
+</app-showcase-case>

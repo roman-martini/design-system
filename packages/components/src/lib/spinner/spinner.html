@@ -1,0 +1,17 @@
+<!-- pathLength normaliza el perímetro a 100: el dasharray del arco (75/100) es
+     independiente del size aun con vector-effect non-scaling-stroke. -->
+<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+  <circle class="ds-spinner__track" cx="12" cy="12" r="10" pathLength="100" />
+  <circle
+    class="ds-spinner__arc"
+    cx="12"
+    cy="12"
+    r="10"
+    pathLength="100"
+    stroke-dasharray="75 25"
+    stroke-linecap="round"
+  />
+</svg>
+@if (announced()) {
+<span class="ds-spinner__label">{{ label() }}</span>
+}
