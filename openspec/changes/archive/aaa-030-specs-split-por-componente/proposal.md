@@ -2,7 +2,8 @@
 id: aaa-030
 name: specs-split-por-componente
 type: change
-status: proposed
+status: archived
+archived: 2026-07-20
 modifies-specs:
   - components-package (remueve los requirements por-componente; conserva los transversales)
 introduces-specs:

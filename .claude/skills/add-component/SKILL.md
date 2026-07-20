@@ -30,8 +30,9 @@ Guiá el alta de un componente nuevo en `@romanmartinidev/components` reproducie
 5. [ADR-011](../../../docs/architecture/adr/ADR-011-estado-disabled-accesible.md) — patrón disabled por tipo (acción vs form control).
 6. [ADR-012](../../../docs/architecture/adr/ADR-012-iconografia-lucide.md) — iconos Lucide: import por icono, `size="16"` + `strokeWidth="1.5"`, `currentColor`, reglas a11y, peer al primer consumo.
 7. [ADR-013](../../../docs/architecture/adr/ADR-013-overlays-dialog-nativo.md) — si el componente es overlay modal: `<dialog>` nativo, reglas 1–6.
-8. `openspec/specs/components-package/spec.md` — requirements vigentes que el delta debe respetar.
-9. Un change archivado de referencia (`openspec/changes/archive/aaa-014-components-add-modal/`) — estructura de proposal/design/tasks a replicar.
+8. [ADR-018](../../../docs/architecture/adr/ADR-018-specs-por-componente.md) — organización de specs: transversal (`components-package`) vs una por componente (`component-<name>`); dónde va el delta.
+9. `openspec/specs/components-package/spec.md` — requirements **transversales** vigentes que el delta debe respetar; si el componente ya existe, además su `openspec/specs/component-<name>/spec.md`.
+10. Un change archivado de referencia (`openspec/changes/archive/aaa-014-components-add-modal/`) — estructura de proposal/design/tasks a replicar.
 
 ---
 
@@ -67,9 +68,9 @@ Si el componente no encaja en ninguna fila o requiere una decisión one-way door
 
 Crear `openspec/changes/components-add-<name>/` con el próximo ID de `openspec/README.md`:
 
-- **`proposal.md`** — frontmatter (`id`, `name`, `type: change`, `status: proposed`, `modifies-specs: components-package` y `design-tokens-package` si toca tokens), porqué/qué/impacto. Referenciar la HU de producto si existe.
+- **`proposal.md`** — frontmatter (`id`, `name`, `type: change`, `status: proposed`, `introduces-specs: component-<name>` para un componente nuevo — o `modifies-specs: component-<name>` si ya existe —, `modifies-specs: components-package` solo si cambia algo transversal, `design-tokens-package` si toca tokens), porqué/qué/impacto. Referenciar la HU de producto si existe. (Convención: [ADR-018](../../../docs/architecture/adr/ADR-018-specs-por-componente.md).)
 - **`design.md`** — solo si hay decisiones no triviales del paso 2 (posicionamiento, patrón nuevo, trade-offs). Si todo es aplicación mecánica de ADRs, omitirlo y decirlo en el proposal.
-- **`specs/components-package/spec.md`** — delta `ADDED Requirements` con scenarios Given/When/Then **testables** que cubran: API pública, estados, a11y (ARIA, teclado, foco, reduced motion), tokens consumidos.
+- **`specs/component-<name>/spec.md`** — delta `ADDED Requirements` (componente nuevo) o `MODIFIED` (existente) con scenarios Given/When/Then **testables** que cubran: API pública, estados, a11y (ARIA, teclado, foco, reduced motion), tokens consumidos. Un requirement transversal nuevo va en `specs/components-package/spec.md`.
 - **`tasks.md`** — replicar la estructura de 8 fases de `aaa-014`, cada task ≤2h con criterio binario:
   1. **Pre-flight**: suite verde (`pnpm -r build && pnpm -r test`); soporte jsdom de las APIs usadas; tokens confirmados en `dist/tokens.css`.
   2. **Tokens**: `component/<name>.json` + build + test de tokens.

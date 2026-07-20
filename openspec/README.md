@@ -28,11 +28,20 @@ Actualizar al crear un change nuevo.
 IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/README.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
 
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
-> `aaa-030` asignado a `specs-split-por-componente` (status `proposed`; genera ADR-018).
 
 ### Specs sin IDs
 
 Las specs se identifican únicamente por su nombre de carpeta (`openspec/specs/<name>/`). No tienen `id` en frontmatter ni prefijo en el path. Cualquier change refiere a la spec por su nombre (`introduces-specs: - components-package`).
+
+### Dónde va el delta de un change de componente (ADR-018)
+
+Desde `aaa-030`, las specs del kit se organizan como una capability **transversal** (`components-package`: identidad, peer deps, build, naming, disabled accesible, iconografía) más una **por componente** (`component-<name>`). Un change:
+
+- de un componente **nuevo** → `introduces-specs: component-<name>` con delta `ADDED`;
+- de un componente **existente** → `modifies-specs: component-<name>` con delta `MODIFIED`;
+- que cambia algo **transversal** (peer dep, build, una convención cross-cutting) → `modifies-specs: components-package`.
+
+Regla de partición (ADR-018): un requirement es transversal si gobierna el package o ≥2 componentes; es per-componente si gobierna exactamente uno.
 
 ---
 
