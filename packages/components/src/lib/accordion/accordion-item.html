@@ -27,6 +27,7 @@
   role="region"
   [id]="panelId"
   [attr.aria-labelledby]="headerId"
+  [attr.data-expanded]="expanded() ? '' : null"
 >
   <div class="ds-accordion-item__panel-inner">
     <div class="ds-accordion-item__panel-content">

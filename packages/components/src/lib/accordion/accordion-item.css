@@ -48,6 +48,11 @@
   flex: 1;
 }
 
+/* Estado SIEMPRE en el elemento propio (aria-expanded del button propio,
+   data-expanded del panel propio, `>` hacia el inner) — nunca en selectores
+   descendentes desde :host: con encapsulación emulada, un accordion anidado
+   comparte el _ngcontent del padre y esos selectores pisarían el estado de
+   los items anidados (los dejaban visualmente expandidos). */
 .ds-accordion-item__chevron {
   flex-shrink: 0;
   width: var(--ds-component-accordion-header-chevron-size);
@@ -56,7 +61,7 @@
     var(--ds-component-accordion-motion-easing);
 }
 
-:host(.ds-accordion-item--expanded) .ds-accordion-item__chevron {
+.ds-accordion-item__header[aria-expanded='true'] .ds-accordion-item__chevron {
   transform: rotate(180deg);
 }
 
@@ -69,7 +74,7 @@
     var(--ds-component-accordion-motion-easing);
 }
 
-:host(.ds-accordion-item--expanded) .ds-accordion-item__panel {
+.ds-accordion-item__panel[data-expanded] {
   grid-template-rows: 1fr;
 }
 
@@ -82,7 +87,7 @@
   transition: visibility 0s var(--ds-component-accordion-motion-duration);
 }
 
-:host(.ds-accordion-item--expanded) .ds-accordion-item__panel-inner {
+.ds-accordion-item__panel[data-expanded] > .ds-accordion-item__panel-inner {
   visibility: visible;
   transition: none;
 }

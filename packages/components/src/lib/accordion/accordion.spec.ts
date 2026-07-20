@@ -216,9 +216,17 @@ describe('DsAccordion + DsAccordionItem', () => {
     expect(outerHeaders.length).toBe(2);
     expect(innerHeaders.length).toBe(2);
 
-    // Exclusividad scoped: expandir en el anidado no colapsa al padre
+    // El estado visual vive en el elemento propio: con el padre expandido, los
+    // paneles de los hijos colapsados NO llevan data-expanded (el CSS de
+    // estado no debe cruzar instancias anidadas — bug detectado en la
+    // verificación visual del PO, 2026-07-20)
     nestedHost.outerA.set(true);
     nested.detectChanges();
+    const panelOf = (header: HTMLElement): HTMLElement =>
+      nested.nativeElement.querySelector(`#${header.getAttribute('aria-controls')}`)!;
+    expect(panelOf(outerHeaders[0]).hasAttribute('data-expanded')).toBe(true);
+    expect(panelOf(innerHeaders[0]).hasAttribute('data-expanded')).toBe(false);
+    expect(panelOf(innerHeaders[1]).hasAttribute('data-expanded')).toBe(false);
     innerHeaders[0].click();
     nested.detectChanges();
     innerHeaders[1].click();
@@ -247,6 +255,9 @@ describe('DsAccordion + DsAccordionItem', () => {
     expect(itemCss).toContain('grid-template-rows: 1fr');
     expect(itemCss).toContain('visibility: hidden');
     expect(itemCss).toContain('@media (prefers-reduced-motion: reduce)');
+    // El estado nunca se selecciona por descendencia desde :host (con
+    // encapsulación emulada pisaría los items de un accordion anidado)
+    expect(itemCss).not.toMatch(/:host\([^)]*expanded/);
   });
 
   // Scenario: exportado desde public-api.ts

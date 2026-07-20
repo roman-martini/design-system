@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-20) — [`aaa-026 components-add-accordion`](../../../../openspec/changes/archive/aaa-026-components-add-accordion/) archivado; 11 tests, review con 1 hallazgo bajo aplicado (templateUrl), sin pares de contraste nuevos (gate verificado igual), sin ADR (grid `0fr→1fr` se promueve con el 2º colapsable, D-005). Verificación manual pendiente del PO: animación de altura (incluido colapso del padre con hijo expandido) y reduced-motion en playground `/accordion`
+**Estado**: Hecha (2026-07-20) — [`aaa-026 components-add-accordion`](../../../../openspec/changes/archive/aaa-026-components-add-accordion/) archivado; 11 tests, review con 1 hallazgo bajo aplicado (templateUrl), sin pares de contraste nuevos (gate verificado igual), sin ADR (grid `0fr→1fr` se promueve con el 2º colapsable, D-005). Verificación manual del PO (2026-07-20): **detectó bug de anidados** — los selectores de estado por descendencia desde `:host` pisaban los paneles de los items anidados con encapsulación emulada (quedaban visualmente expandidos); corregido por commit directo moviendo el estado al elemento propio (`aria-expanded`/`data-expanded`) + test del contrato. Re-verificación de animación de altura y reduced-motion pendiente
 **Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
 
 ---

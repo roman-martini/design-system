@@ -24,9 +24,6 @@ let nextAccordionItemId = 0;
   templateUrl: './accordion-item.html',
   styleUrl: './accordion-item.css',
   imports: [LucideChevronDown],
-  host: {
-    '[class.ds-accordion-item--expanded]': 'expanded()',
-  },
 })
 export class DsAccordionItem implements DsAccordionItemRegistration, OnInit, OnDestroy {
   readonly expanded = model<boolean>(false);
