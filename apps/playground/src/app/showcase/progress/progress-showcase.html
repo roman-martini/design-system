@@ -1,0 +1,44 @@
+<app-showcase-case title="Progress determinada interactiva" [snippet]="showValueSnippet">
+  <ds-progress [value]="demoValue()" [showValue]="true" label="Progreso de demo" />
+  <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem">
+    <ds-button size="sm" variant="secondary" (clicked)="step(-20)">-20</ds-button>
+    <ds-button size="sm" variant="secondary" (clicked)="step(20)">+20</ds-button>
+  </div>
+  <p class="playground__hint">
+    <code>role="progressbar"</code> con <code>aria-valuenow/min/max</code>; el valor se clampa a
+    <code>[0, max]</code> y la transición del fill es tokenizada. <code>showValue</code> muestra el
+    porcentaje redondeado.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Sizes" [snippet]="basicSnippet">
+  <div style="display: flex; flex-direction: column; gap: 1rem">
+    <ds-progress [value]="30" size="sm" label="Progreso sm" />
+    <ds-progress [value]="50" size="md" label="Progreso md" />
+    <ds-progress [value]="70" size="lg" label="Progreso lg" />
+  </div>
+  <p class="playground__hint">Tres alturas tokenizadas: sm, md (default) y lg.</p>
+</app-showcase-case>
+
+<app-showcase-case title="Tonos semánticos" [snippet]="tonesSnippet">
+  <div style="display: flex; flex-direction: column; gap: 1rem">
+    <ds-progress [value]="60" tone="primary" label="En curso" />
+    <ds-progress [value]="100" tone="success" label="Completado" />
+    <ds-progress [value]="35" tone="danger" label="Con errores" />
+  </div>
+  <p class="playground__hint">
+    Los fills referencian la familia <code>text.*</code> semántica — el par fill/track pasa 3:1
+    (WCAG 1.4.11, UI no-texto) en light y dark.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Indeterminada — y cuándo usar spinner" [snippet]="indeterminateSnippet">
+  <ds-progress label="Procesando importación" />
+  <p class="playground__hint">
+    Sin <code>value</code>: <code>progressbar</code> sin <code>aria-valuenow</code> y animación
+    continua (bajo <code>prefers-reduced-motion</code> se reemplaza por pulso de opacidad).
+    <strong>Guía</strong>: usá <code>ds-spinner</code> para esperas cortas o inline (botones,
+    cards); <code>ds-progress</code> indeterminada para procesos largos con contexto de página; y la
+    determinada siempre que haya medida real.
+  </p>
+</app-showcase-case>

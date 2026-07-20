@@ -1,0 +1,31 @@
+{
+  "component": {
+    "progress": {
+      "track": {
+        "bg": { "value": "{semantic.color.bg.secondary-active}" },
+        "radius": { "value": "{semantic.radius.full}" }
+      },
+      "fill": {
+        "primary": { "value": "{semantic.color.text.link}" },
+        "success": { "value": "{semantic.color.text.success}" },
+        "danger": { "value": "{semantic.color.text.danger}" }
+      },
+      "size": {
+        "sm-height": { "value": "{dimension.4}" },
+        "md-height": { "value": "{dimension.8}" },
+        "lg-height": { "value": "{dimension.12}" }
+      },
+      "value-text": {
+        "font-size": { "value": "{semantic.font.size.body-sm}" },
+        "color": { "value": "{semantic.color.text.secondary}" },
+        "gap": { "value": "{semantic.space.sm}" }
+      },
+      "motion": {
+        "duration": { "value": "{motion.duration.slow}" },
+        "easing": { "value": "{motion.easing.ease-in-out}" },
+        "indeterminate-duration": { "value": "1500ms" },
+        "pulse-opacity": { "value": "{opacity.50}" }
+      }
+    }
+  }
+}

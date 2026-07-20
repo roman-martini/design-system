@@ -1,0 +1,91 @@
+:host {
+  display: block;
+}
+
+.ds-progress__wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-component-progress-value-text-gap);
+}
+
+.ds-progress__track {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  border-radius: var(--ds-component-progress-track-radius);
+  background: var(--ds-component-progress-track-bg);
+}
+
+:host([data-size='sm']) .ds-progress__track {
+  height: var(--ds-component-progress-size-sm-height);
+}
+:host([data-size='md']) .ds-progress__track {
+  height: var(--ds-component-progress-size-md-height);
+}
+:host([data-size='lg']) .ds-progress__track {
+  height: var(--ds-component-progress-size-lg-height);
+}
+
+.ds-progress__fill {
+  height: 100%;
+  border-radius: var(--ds-component-progress-track-radius);
+  background: var(--ds-component-progress-fill-primary);
+  transition: width var(--ds-component-progress-motion-duration)
+    var(--ds-component-progress-motion-easing);
+}
+
+:host([data-tone='success']) .ds-progress__fill {
+  background: var(--ds-component-progress-fill-success);
+}
+:host([data-tone='danger']) .ds-progress__fill {
+  background: var(--ds-component-progress-fill-danger);
+}
+
+/* Indeterminada: fill parcial que recorre el track en loop. */
+.ds-progress__fill--indeterminate {
+  width: 40%;
+  animation: ds-progress-slide var(--ds-component-progress-motion-indeterminate-duration)
+    var(--ds-component-progress-motion-easing) infinite;
+}
+
+@keyframes ds-progress-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+.ds-progress__value {
+  flex-shrink: 0;
+  font-size: var(--ds-component-progress-value-text-font-size);
+  color: var(--ds-component-progress-value-text-color);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Reduced-motion por reemplazo (patrón aaa-023): la indeterminada apaga el
+   desplazamiento y comunica actividad con pulso de opacidad; la determinada
+   pasa a cambio instantáneo. */
+@media (prefers-reduced-motion: reduce) {
+  .ds-progress__fill {
+    transition: none;
+  }
+
+  .ds-progress__fill--indeterminate {
+    width: 100%;
+    animation: ds-progress-pulse var(--ds-component-progress-motion-indeterminate-duration)
+      ease-in-out infinite;
+    transform: none;
+  }
+
+  @keyframes ds-progress-pulse {
+    0%,
+    100% {
+      opacity: var(--ds-opacity-100);
+    }
+    50% {
+      opacity: var(--ds-component-progress-motion-pulse-opacity);
+    }
+  }
+}

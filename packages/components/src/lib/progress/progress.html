@@ -1,0 +1,19 @@
+<div class="ds-progress__wrapper">
+  <div
+    class="ds-progress__track"
+    role="progressbar"
+    aria-valuemin="0"
+    [attr.aria-valuemax]="max()"
+    [attr.aria-valuenow]="indeterminate() ? null : clampedValue()"
+    [attr.aria-label]="label() || null"
+  >
+    <div
+      class="ds-progress__fill"
+      [class.ds-progress__fill--indeterminate]="indeterminate()"
+      [style.width.%]="indeterminate() ? null : percent()"
+    ></div>
+  </div>
+  @if (showValue() && !indeterminate()) {
+  <span class="ds-progress__value">{{ roundedPercent() }}%</span>
+  }
+</div>
