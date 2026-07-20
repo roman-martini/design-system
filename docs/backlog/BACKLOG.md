@@ -25,19 +25,19 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 4: Toast, Spinner, Skeleton y Menu) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 5: Toast, Spinner, Skeleton, Menu y Accordion) y el release NO es candidato automático.
 
-### `components-add-accordion` — Accordion de contenido colapsable
+### `components-add-breadcrumbs` — Breadcrumbs de ubicación
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-013](../product/epics/EP-002-kit-componentes/HU-013-accordion.md) / EP-002.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-014](../product/epics/EP-002-kit-componentes/HU-014-breadcrumbs.md) / EP-002.
 
-**Origen**: segunda pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales" — promovida al cerrar `components-add-menu` (`aaa-025`, 2026-07-19). Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); las siguientes (Breadcrumbs, Pagination, Progress) se promueven acá al cerrar la anterior.
+**Origen**: tercera pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales" — promovida al cerrar `components-add-accordion` (`aaa-026`, 2026-07-20). Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); las siguientes (Pagination, Progress) se promueven acá al cerrar la anterior.
 
-**Alcance refinado** (HU-013, PO 2026-07-19): expansión configurable default single, base APG heading+button+region (`<details>/<summary>` evaluado y descartado), accordions anidados en v1, disabled por ADR-011, animación con reduced-motion, tokens `component.accordion.*`.
+**Alcance propuesto**: `<nav aria-label>` + `aria-current="page"` en el item actual, separador tokenizado (ADR-012 o carácter), API agnóstica del router (content projection) vs integrada, truncamiento en jerarquías largas, tokens `component.breadcrumbs.*`. Refinar la HU (CAs binarios) antes de crear el change.
 
 **Disparador**: activado — tanda 2 aprobada (D-011), pieza anterior cerrada.
 
-**Estado**: HU Refinada — lista para propose (`aaa-026`).
+**Estado**: pendiente de refinamiento (Now).
 
 ---
 

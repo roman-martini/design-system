@@ -2,7 +2,8 @@
 id: aaa-026
 name: components-add-accordion
 type: change
-status: proposed
+status: archived
+archived: 2026-07-20
 modifies-specs:
   - components-package (ADDED: DsAccordion, DsAccordionItem)
   - design-tokens-package (sin delta de spec; component.accordion nuevo referenciando semantic/primitives)

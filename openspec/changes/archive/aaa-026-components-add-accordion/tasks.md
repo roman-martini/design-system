@@ -48,16 +48,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API contenedor+item con head
 - [x] 6.3 Auditoría **`/ng:review`** sobre `src/lib/accordion/` — 0 altas, 0 medias, 1 baja; **aplicada**: template inline del contenedor extraído a `accordion.html` con `templateUrl` (consistencia con radio-group/tabs). Excepciones de consistencia del repo documentadas por el review (naming de handlers por evento, clases con prefijo `ds-` estilo DsMenu) — sin cambios. Build + tests re-verificados (186/186).
 - [x] 6.4 `npm pack --dry-run`: tarball limpio (7 archivos, solo dist + README, sin `*.spec.ts`/`*.stories.ts`).
 - [x] 6.5 Changeset único `.changeset/add-accordion.md` con **minor** de components (familia DsAccordion) y **minor** de tokens (`component.accordion.*`). Lockstep (ADR-015). **Sin publicar** (veto del PO 2026-07-19 vigente).
-- [ ] 6.6 Proponer mensaje de commit (split docs/feat como la tanda anterior) y **esperar OK del PO**.
+- [x] 6.6 Commits aprobados por el PO: docs `3a55dfe` (propose) y feat `9847921` (implementación completa).
 
 **Criterio**: automáticos verdes; gates resueltos; changeset correcto; aprobación explícita antes del commit.
 
 ## 7. ADR + archive
 
-- [ ] 7.1 Evaluar con el PO la promoción a ADR del patrón de colapsable animado (grid `0fr→1fr` + reduced-motion) si quedó reutilizable para futuros Disclosure/Tree (proposal §Impact); registrar en `decisions-log.md` si se crea.
-- [ ] 7.2 Mover a `archive/aaa-026-components-add-accordion/`; frontmatter `archived` + spec base `components-package` sincronizada (ADDED autocontenido).
-- [ ] 7.3 Registros: `openspec/README.md` (línea de IDs en vuelo eliminada), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Accordion sale de Now; `components-add-breadcrumbs` — HU-014 — promovido a Now), HU-013 → Hecha con CAs tildados, EP-002 actualizado.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Commit del archive propuesto y aprobado por el PO.
+- [x] 7.1 Evaluado con el PO (2026-07-20): **sin ADR por ahora** — primer colapsable del kit; el patrón (grid `0fr→1fr` + reduced-motion) se promueve a ADR cuando un segundo componente lo repita (D-005). Documentado en design.md archivado y en el catálogo.
+- [x] 7.2 Movido a `archive/aaa-026-components-add-accordion/`; frontmatter `archived: 2026-07-20` + spec base `components-package` sincronizada (ADDED autocontenido).
+- [x] 7.3 Registros: `openspec/README.md` (línea de IDs en vuelo eliminada), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Accordion sale de Now; `components-add-breadcrumbs` — HU-014 — promovido a Now; changesets 4→5), HU-013 → Hecha con CAs tildados, EP-002 actualizado (2/5).
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive propuesto y aprobado por el PO (2026-07-20).
 
 **Criterio**: change archivado, spec base sincronizada, ADR resuelto, registros al día.

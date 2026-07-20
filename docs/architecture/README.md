@@ -472,6 +472,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-023](../../openspec/changes/archive/aaa-023-components-add-spinner/)           | components-add-spinner           | archived | 2026-07-19 | modifica components-package + design-tokens-package | — (reduced-motion por reemplazo; ADR si Skeleton lo repite)                  |
 | [aaa-024](../../openspec/changes/archive/aaa-024-components-add-skeleton/)          | components-add-skeleton          | archived | 2026-07-19 | modifica components-package + design-tokens-package | — (reduced-motion apaga: no repite el patrón, sin ADR; cierra tanda 1 D-009) |
 | [aaa-025](../../openspec/changes/archive/aaa-025-components-add-menu/)              | components-add-menu              | archived | 2026-07-19 | modifica components-package + design-tokens-package | ADR-016 (placements por overlay; submenús v1 por D-011, contraste D-012)     |
+| [aaa-026](../../openspec/changes/archive/aaa-026-components-add-accordion/)         | components-add-accordion         | archived | 2026-07-20 | modifica components-package + design-tokens-package | — (anidados v1 por D-011; grid 0fr→1fr sin ADR hasta 2º colapsable, D-005)   |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

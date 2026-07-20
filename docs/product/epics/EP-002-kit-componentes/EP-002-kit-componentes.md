@@ -1,6 +1,6 @@
 # EP-002 — Kit de componentes Angular
 
-**Estado**: Tanda 2 en curso (1/5: Menu Hecha, aaa-025) — tanda 1 completa (aaa-024); 12 entregas de componentes + 2 directivas + 1 service
+**Estado**: Tanda 2 en curso (2/5: Menu y Accordion Hechas, aaa-025/aaa-026) — tanda 1 completa (aaa-024); 13 entregas de componentes + 2 directivas + 1 service
 
 ## Contexto
 
@@ -27,6 +27,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | `DsSpinner` (currentColor, label opt-out, reduced-motion por pulso)      | [aaa-023](../../../../openspec/changes/archive/aaa-023-components-add-spinner/)                                                                                               | Espera indeterminada accesible, inline o standalone      |
 | `DsSkeleton` (shapes con defaults tokenizados, overrides CSS libres)     | [aaa-024](../../../../openspec/changes/archive/aaa-024-components-add-skeleton/)                                                                                              | Placeholders estables sin layout shift                   |
 | Familia `DsMenu` (menu button APG, submenús anidados, danger, typeahead) | [aaa-025](../../../../openspec/changes/archive/aaa-025-components-add-menu/)                                                                                                  | Acciones contextuales accesibles con teclado completo    |
+| Familia `DsAccordion` (accordion APG, single/multi, anidados)            | [aaa-026](../../../../openspec/changes/archive/aaa-026-components-add-accordion/)                                                                                             | Contenido colapsable accesible para settings/FAQs        |
 
 ## Historias de usuario
 
@@ -40,7 +41,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Hecha (2026-07-19, aaa-023)                          |
 | [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Hecha (2026-07-19, aaa-024 — cierra la tanda 1)      |
 | [HU-012](HU-012-menu-dropdown.md)        | Menu/Dropdown de acciones                  | Dev consumidor | Hecha (2026-07-19, aaa-025 — genera ADR-016)         |
-| [HU-013](HU-013-accordion.md)            | Accordion de contenido colapsable          | Dev consumidor | Identificada (tanda 2, D-011)                        |
+| [HU-013](HU-013-accordion.md)            | Accordion de contenido colapsable          | Dev consumidor | Hecha (2026-07-20, aaa-026)                          |
 | [HU-014](HU-014-breadcrumbs.md)          | Breadcrumbs de ubicación                   | Dev consumidor | Identificada (tanda 2, D-011)                        |
 | [HU-015](HU-015-pagination.md)           | Pagination de listados                     | Dev consumidor | Identificada (tanda 2, D-011)                        |
 | [HU-016](HU-016-progress.md)             | Progress de avance medible                 | Dev consumidor | Identificada (tanda 2, D-011)                        |

@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-19) — tanda 2, [D-011](../../decisiones.md)
+**Estado**: Hecha (2026-07-20) — [`aaa-026 components-add-accordion`](../../../../openspec/changes/archive/aaa-026-components-add-accordion/) archivado; 11 tests, review con 1 hallazgo bajo aplicado (templateUrl), sin pares de contraste nuevos (gate verificado igual), sin ADR (grid `0fr→1fr` se promueve con el 2º colapsable, D-005). Verificación manual pendiente del PO: animación de altura (incluido colapso del padre con hijo expandido) y reduced-motion en playground `/accordion`
 **Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
 
 ---
@@ -22,15 +22,15 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec components-package (delta del change components-add-accordion). -->
 
-- [ ] **CA-013.1 (estructura accesible)** — Dado un `ds-accordion` con secciones proyectadas, entonces cada header es un heading de nivel configurable (`headingLevel`, default 3) que contiene un `<button>` con `aria-expanded` y `aria-controls` apuntando al panel, y cada panel expone `role="region"` + `aria-labelledby` referenciando su header.
-- [ ] **CA-013.2 (toggle)** — Dado un header habilitado, cuando se activa por click, Enter o Space, entonces su panel alterna entre expandido y colapsado y `aria-expanded` refleja el estado.
-- [ ] **CA-013.3 (single vs multi)** — Dado un accordion sin `multiple` (default), cuando se expande una sección con otra abierta, entonces la abierta se colapsa (exclusividad scoped a la instancia); dado `multiple`, entonces cada sección alterna de forma independiente.
-- [ ] **CA-013.4 (teclado entre headers)** — Dado el foco en un header, entonces ↑/↓ mueven el foco entre los headers **de la misma instancia** (con wrap) y Home/End saltan al primero/último; los headers de un accordion anidado no participan de la navegación del padre.
-- [ ] **CA-013.5 (disabled accesible)** — Dada una sección disabled, entonces su header es focusable, expone `aria-disabled="true"` y no expande ni colapsa al activarse (ADR-011).
-- [ ] **CA-013.6 (anidados)** — Dado un accordion dentro del panel de otro, entonces su exclusividad single/multi y su navegación por teclado operan de forma independiente del padre, y su `headingLevel` permite mantener la jerarquía de headings coherente.
-- [ ] **CA-013.7 (animación)** — Dada la expansión o colapso de un panel, entonces la transición de altura está animada con tokens de motion y se desactiva bajo `prefers-reduced-motion`; la animación no se rompe cuando un panel anidado cambia de tamaño dentro de un panel del padre.
-- [ ] **CA-013.8 (tokens)** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.accordion.*` nuevos + primitives/semantic existentes), sin valores hardcoded.
-- [ ] **CA-013.9 (showcase)** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-accordion` con: single (default), multi, sección disabled, accordion anidado y la referencia de teclado.
+- [x] **CA-013.1 (estructura accesible)** — Dado un `ds-accordion` con secciones proyectadas, entonces cada header es un heading de nivel configurable (`headingLevel`, default 3) que contiene un `<button>` con `aria-expanded` y `aria-controls` apuntando al panel, y cada panel expone `role="region"` + `aria-labelledby` referenciando su header.
+- [x] **CA-013.2 (toggle)** — Dado un header habilitado, cuando se activa por click, Enter o Space, entonces su panel alterna entre expandido y colapsado y `aria-expanded` refleja el estado.
+- [x] **CA-013.3 (single vs multi)** — Dado un accordion sin `multiple` (default), cuando se expande una sección con otra abierta, entonces la abierta se colapsa (exclusividad scoped a la instancia); dado `multiple`, entonces cada sección alterna de forma independiente.
+- [x] **CA-013.4 (teclado entre headers)** — Dado el foco en un header, entonces ↑/↓ mueven el foco entre los headers **de la misma instancia** (con wrap) y Home/End saltan al primero/último; los headers de un accordion anidado no participan de la navegación del padre.
+- [x] **CA-013.5 (disabled accesible)** — Dada una sección disabled, entonces su header es focusable, expone `aria-disabled="true"` y no expande ni colapsa al activarse (ADR-011).
+- [x] **CA-013.6 (anidados)** — Dado un accordion dentro del panel de otro, entonces su exclusividad single/multi y su navegación por teclado operan de forma independiente del padre, y su `headingLevel` permite mantener la jerarquía de headings coherente.
+- [x] **CA-013.7 (animación)** — Dada la expansión o colapso de un panel, entonces la transición de altura está animada con tokens de motion y se desactiva bajo `prefers-reduced-motion`; la animación no se rompe cuando un panel anidado cambia de tamaño dentro de un panel del padre.
+- [x] **CA-013.8 (tokens)** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.accordion.*` nuevos + primitives/semantic existentes), sin valores hardcoded.
+- [x] **CA-013.9 (showcase)** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-accordion` con: single (default), multi, sección disabled, accordion anidado y la referencia de teclado.
 
 ## Dependencias
 
