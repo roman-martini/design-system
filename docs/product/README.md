@@ -67,11 +67,11 @@ Próximos IDs libres: **EP-007**, **HU-017**, **D-013**.
 
 Sin fechas: el avance lo marcan los **disparadores** (D-005) y el orden operativo vive en [docs/backlog/BACKLOG.md](../backlog/BACKLOG.md). El rumbo se expresa como **hitos de producto**, cada uno con su condición de salida binaria:
 
-| Hito                                         | Qué lo compone                                                                                        | Condición de salida                                               | Estado                                                                                               |
-| -------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **H1 — Kit mínimo viable para una app real** | Tanda 1 ([D-009](decisiones.md)) completa + tanda 2 ([D-011](decisiones.md)): HU-012…HU-016 (EP-002)  | Una app real se construye 100% con componentes del DS             | En curso — tanda 1 completa (2026-07-19); tanda 2 activada (Menu en BACKLOG § Now)                   |
-| **H2 — Libs consumibles desde otros repos**  | Primer release npm: [HU-002](epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) (EP-003) | Un proyecto externo instala desde npm y arranca con el quickstart | **Cumplido** (2026-07-18) — 0.2.0/0.2.0 en npm, consumo verificado ([D-010](decisiones.md), aaa-020) |
-| **H3 — Puente con diseño**                   | Figma export: [HU-001](epics/EP-004-puente-codigo-diseno/HU-001-tokens-en-figma.md) (EP-004)          | Variables de Figma sincronizadas desde el código (one-way, D-006) | aaa-012 propuesto, 4/4 artefactos; en pausa por el PO                                                |
+| Hito                                         | Qué lo compone                                                                                        | Condición de salida                                               | Estado                                                                                                                                             |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **H1 — Kit mínimo viable para una app real** | Tanda 1 ([D-009](decisiones.md)) completa + tanda 2 ([D-011](decisiones.md)): HU-012…HU-016 (EP-002)  | Una app real se construye 100% con componentes del DS             | Tandas 1 y 2 completas (2026-07-20); condición de salida pendiente: construir una app real 100% con el DS (decisión del PO sobre cómo verificarla) |
+| **H2 — Libs consumibles desde otros repos**  | Primer release npm: [HU-002](epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) (EP-003) | Un proyecto externo instala desde npm y arranca con el quickstart | **Cumplido** (2026-07-18) — 0.2.0/0.2.0 en npm, consumo verificado ([D-010](decisiones.md), aaa-020)                                               |
+| **H3 — Puente con diseño**                   | Figma export: [HU-001](epics/EP-004-puente-codigo-diseno/HU-001-tokens-en-figma.md) (EP-004)          | Variables de Figma sincronizadas desde el código (one-way, D-006) | aaa-012 propuesto, 4/4 artefactos; en pausa por el PO                                                                                              |
 
 Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualquier momento. El horizonte más largo (multi-framework, patterns/recipes) vive en [FUTURE-WORK § niveles de madurez](../backlog/FUTURE-WORK.md#estado-actual-respecto-a-los-niveles-de-madurez); no es compromiso.
 
@@ -80,9 +80,9 @@ Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualq
 ```
 EP-002: tanda 1 (D-009) COMPLETA  → HU-003 + HU-005…HU-010 Hechas (11 componentes + 1 directiva
                                     + 1 service, 2026-07-19)
-EP-002: tanda 2 (D-011)           → HU-012…HU-015 Hechas (aaa-025…028; Breadcrumbs genera
-                                    ADR-017); HU-016 Progress ACTIVADA (BACKLOG § Now) — última
-                                    pieza: cerrarla completa la tanda 2
+EP-002: tanda 2 (D-011)           → COMPLETA (2026-07-20): HU-012…HU-016 Hechas (aaa-025…029;
+                                    Breadcrumbs genera ADR-017). Sin HUs en cola — tanda 3 solo
+                                    con nueva D-XXX del PO
 EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.2.0 publicados en npm
                                     (D-010, lockstep ADR-015, aaa-020)
 EP-004: HU-001 (Figma export)     → aaa-012 propuesto, 4/4 artefactos; en pausa por decisión del PO
@@ -91,7 +91,7 @@ EP-006: HU-011 (showcase)         → Hecha (2026-07-19): sidebar + ruta lazy po
                                     con snippet copiable; la página única del playground ya no existe
 ```
 
-Última entrega: HU-015 (Pagination) Hecha — aaa-028 archivado el 2026-07-20, tanda 2 en 4/5.
+Última entrega: HU-016 (Progress) Hecha — aaa-029 archivado el 2026-07-20, **tanda 2 completa (5/5)**; el kit suma 16 componentes + 3 directivas + 1 service.
 
 ## Convenciones
 

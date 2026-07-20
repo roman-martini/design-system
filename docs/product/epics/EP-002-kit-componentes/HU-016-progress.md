@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-20) — tanda 2, [D-011](../../decisiones.md)
+**Estado**: Hecha (2026-07-20) — [`aaa-029 components-add-progress`](../../../../openspec/changes/archive/aaa-029-components-add-progress/) archivado; 9 tests, review con 1 media + 1 baja aplicadas (opacity tokenizada, binding muerto), gate UI 3:1 12/12 (fix local: fills vía `text.*`), sin ADR. **Completa la tanda 2 (D-011)**. Verificación manual pendiente del PO: animación indeterminada + pulso reduced-motion, transición determinada y tonos en light/dark en playground `/progress`
 **Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
 
 ---
@@ -24,15 +24,15 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec components-package (delta del change components-add-progress). -->
 
-- [ ] **CA-016.1 (determinada accesible)** — Dado un `ds-progress` con `value` (y `max`, default 100), entonces expone `role="progressbar"` con `aria-valuenow`/`aria-valuemin`/`aria-valuemax` correctos, el fill es proporcional a `value/max` y `value` se clampa a `[0, max]`.
-- [ ] **CA-016.2 (indeterminada)** — Dado un `ds-progress` sin `value`, entonces expone `role="progressbar"` sin `aria-valuenow` y anima el fill de forma continua; la guía de uso (spinner vs progress) queda documentada en el showcase.
-- [ ] **CA-016.3 (label accesible)** — Dado el default, entonces el componente tiene nombre accesible ("Progreso", configurable); dado el opt-out explícito, entonces no expone label propio (el contexto visible lo provee).
-- [ ] **CA-016.4 (porcentaje visible)** — Dado `showValue` en una barra determinada, entonces se muestra el porcentaje redondeado como texto tokenizado; en indeterminada no se muestra valor.
-- [ ] **CA-016.5 (sizes)** — Dado `size` sm/md/lg (default md), entonces la altura de la barra sale de tokens por size.
-- [ ] **CA-016.6 (tonos)** — Dado `tone` primary/success/danger (default primary), entonces el fill usa el color semántico tokenizado y cada par fill/track pasa el gate como UI no-texto (3:1, WCAG 1.4.11).
-- [ ] **CA-016.7 (reduced-motion)** — Dada la variante indeterminada bajo `prefers-reduced-motion`, entonces la animación de desplazamiento se reemplaza por un pulso de opacidad (sin movimiento, actividad comunicada).
-- [ ] **CA-016.8 (tokens)** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.progress.*` nuevos + primitives/semantic existentes), sin hardcodes.
-- [ ] **CA-016.9 (showcase)** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-progress` con: determinada interactiva, `showValue`, sizes, tonos, indeterminada y la guía "cuándo spinner, cuándo progress".
+- [x] **CA-016.1 (determinada accesible)** — Dado un `ds-progress` con `value` (y `max`, default 100), entonces expone `role="progressbar"` con `aria-valuenow`/`aria-valuemin`/`aria-valuemax` correctos, el fill es proporcional a `value/max` y `value` se clampa a `[0, max]`.
+- [x] **CA-016.2 (indeterminada)** — Dado un `ds-progress` sin `value`, entonces expone `role="progressbar"` sin `aria-valuenow` y anima el fill de forma continua; la guía de uso (spinner vs progress) queda documentada en el showcase.
+- [x] **CA-016.3 (label accesible)** — Dado el default, entonces el componente tiene nombre accesible ("Progreso", configurable); dado el opt-out explícito, entonces no expone label propio (el contexto visible lo provee).
+- [x] **CA-016.4 (porcentaje visible)** — Dado `showValue` en una barra determinada, entonces se muestra el porcentaje redondeado como texto tokenizado; en indeterminada no se muestra valor.
+- [x] **CA-016.5 (sizes)** — Dado `size` sm/md/lg (default md), entonces la altura de la barra sale de tokens por size.
+- [x] **CA-016.6 (tonos)** — Dado `tone` primary/success/danger (default primary), entonces el fill usa el color semántico tokenizado y cada par fill/track pasa el gate como UI no-texto (3:1, WCAG 1.4.11).
+- [x] **CA-016.7 (reduced-motion)** — Dada la variante indeterminada bajo `prefers-reduced-motion`, entonces la animación de desplazamiento se reemplaza por un pulso de opacidad (sin movimiento, actividad comunicada).
+- [x] **CA-016.8 (tokens)** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.progress.*` nuevos + primitives/semantic existentes), sin hardcodes.
+- [x] **CA-016.9 (showcase)** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-progress` con: determinada interactiva, `showValue`, sizes, tonos, indeterminada y la guía "cuándo spinner, cuándo progress".
 
 ## Dependencias
 

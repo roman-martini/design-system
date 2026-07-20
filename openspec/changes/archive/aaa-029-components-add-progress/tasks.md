@@ -47,16 +47,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API con `value: null` = inde
 - [x] 6.3 Auditoría **`/ng:review`** — 0 altas, 1 media, 1 baja; **ambas aplicadas**: `opacity: var(--ds-opacity-100)` en el keyframe del pulso (consistencia con spinner) y binding de clase muerto del track eliminado. Excepciones deliberadas del design documentadas por el review — sin cambios. Re-verificado: build + 228/228 + lint + format.
 - [x] 6.4 `npm pack --dry-run`: tarball limpio.
 - [x] 6.5 Changeset único `.changeset/add-progress.md` con **minor** de components y **minor** de tokens. Lockstep (ADR-015). **Sin publicar** (veto vigente).
-- [ ] 6.6 Proponer mensaje de commit (split docs/feat) y **esperar OK del PO**.
+- [x] 6.6 Commits aprobados por el PO: docs `1b5fa8a` (propose) y feat `2cd87d4` (implementación completa).
 
 **Criterio**: automáticos verdes; gates resueltos; aprobación explícita antes del commit.
 
 ## 7. Archive — cierre de la tanda 2
 
-- [ ] 7.1 Confirmar que no surgió nada one-way door; si surgió, ADR antes de archivar.
-- [ ] 7.2 Mover a `archive/aaa-029-components-add-progress/`; frontmatter `archived` + spec base sincronizada.
-- [ ] 7.3 Registros: `openspec/README.md`, catálogo, HU-016 → Hecha con CAs tildados, EP-002 actualizado (**tanda 2 completa 5/5**), foto táctica y hito H1 en `docs/product/README.md` (condición de salida: app real 100% con el DS — decisión del PO sobre cómo verificarla), grooming del BACKLOG (Progress sale de Now; **evaluar con el PO qué entra**: no hay más piezas de tanda en cola).
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Commit del archive propuesto y aprobado por el PO.
+- [x] 7.1 Confirmado: nada one-way door (los fixes de tokens fueron locales al componente). Sin ADR.
+- [x] 7.2 Movido a `archive/aaa-029-components-add-progress/`; frontmatter `archived: 2026-07-20` + spec base sincronizada (ADDED autocontenido).
+- [x] 7.3 Registros: `openspec/README.md`, catálogo, HU-016 → Hecha con CAs tildados, EP-002 actualizado (**tanda 2 completa 5/5**), foto táctica y hito H1 en `docs/product/README.md` (condición de salida: app real 100% con el DS — decisión del PO sobre cómo verificarla), grooming del BACKLOG (Progress sale de Now; **evaluar con el PO qué entra**: no hay más piezas de tanda en cola).
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive propuesto y aprobado por el PO (2026-07-20). Tanda 2 completa.
 
 **Criterio**: change archivado; tanda 2 registrada como completa; próximo paso del backlog decidido o anotado como decisión pendiente del PO.

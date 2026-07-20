@@ -25,19 +25,9 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 7: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs y Pagination) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 8: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination y Progress) y el release NO es candidato automático.
 
-### `components-add-progress` — Progress de avance medible
-
-**Tipo**: OpenSpec (kit). **Producto**: [HU-016](../product/epics/EP-002-kit-componentes/HU-016-progress.md) / EP-002.
-
-**Origen**: quinta y última pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19) — promovida al cerrar `components-add-pagination` (`aaa-028`, 2026-07-20). **Cerrarla completa la tanda 2** y deja H1 a la espera de su condición de salida (app real 100% con el DS).
-
-**Alcance refinado** (HU-016, PO 2026-07-20): determinada + indeterminada con guía de uso vs spinner, `showValue` opt-in, sizes sm/md/lg, tonos primary/success/danger (pares fill/track al gate como UI 3:1), label con opt-out (patrón HU-009), reduced-motion por pulso (patrón aaa-023), tokens `component.progress.*`.
-
-**Disparador**: activado — tanda 2 aprobada (D-011), pieza anterior cerrada.
-
-**Estado**: HU Refinada — lista para propose (`aaa-029`).
+**§ Now está vacío** (2026-07-20): la **tanda 2 quedó completa** con `aaa-029` — no hay más piezas de componente en cola. La próxima entrada la decide el PO; candidatos naturales: retomar `tokens-figma-export` (Next, en pausa), activar `/ds:audit-tokens` (Next, disparador dudoso), los ítems de mantenimiento de `TASK.md`, o definir una tanda 3 con nueva D-XXX. El hito H1 espera su condición de salida (una app real 100% con el DS).
 
 ---
 

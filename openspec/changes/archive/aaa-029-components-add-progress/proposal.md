@@ -2,7 +2,8 @@
 id: aaa-029
 name: components-add-progress
 type: change
-status: proposed
+status: archived
+archived: 2026-07-20
 modifies-specs:
   - components-package (ADDED: DsProgress)
   - design-tokens-package (sin delta de spec; component.progress nuevo referenciando semantic/primitives)

@@ -475,6 +475,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-026](../../openspec/changes/archive/aaa-026-components-add-accordion/)         | components-add-accordion         | archived | 2026-07-20 | modifica components-package + design-tokens-package | — (anidados v1 por D-011; grid 0fr→1fr sin ADR hasta 2º colapsable, D-005)   |
 | [aaa-027](../../openspec/changes/archive/aaa-027-components-add-breadcrumbs/)       | components-add-breadcrumbs       | archived | 2026-07-20 | modifica components-package + design-tokens-package | ADR-017 (secondary entry points; primer entry point `router` peer opcional)  |
 | [aaa-028](../../openspec/changes/archive/aaa-028-components-add-pagination/)        | components-add-pagination        | archived | 2026-07-20 | modifica components-package + design-tokens-package | — (ventana pageWindow como función pura; reutiliza ADR-011/012, sin ADR)     |
+| [aaa-029](../../openspec/changes/archive/aaa-029-components-add-progress/)          | components-add-progress          | archived | 2026-07-20 | modifica components-package + design-tokens-package | — (fills vía text.\*; primer gate UI 3:1; completa la tanda 2 D-011)         |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 
