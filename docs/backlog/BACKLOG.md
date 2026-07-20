@@ -37,7 +37,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: activado — tanda 2 aprobada (D-011).
 
-**Estado**: HU Refinada (2026-07-19) — listo para `/opsx:propose components-add-menu` (Now).
+**Estado**: **propuesta activa** — [`aaa-025`](../../openspec/changes/components-add-menu/), 4/4 artefactos, listo para apply (Now).
 
 ---
 

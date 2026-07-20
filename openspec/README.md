@@ -19,7 +19,7 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-025`**
+**`aaa-026`**
 
 Actualizar al crear un change nuevo.
 
@@ -28,6 +28,7 @@ Actualizar al crear un change nuevo.
 IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/README.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
 
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
+> `aaa-025` asignado a `components-add-menu` (status `proposed`; ADR candidato al cierre — extensión de posicionamiento de ADR-014).
 
 ### Specs sin IDs
 
