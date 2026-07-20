@@ -16,7 +16,7 @@ Cómo se organizan y gestionan épicas, historias de usuario (HU) y decisiones d
 
 ## Origen del producto
 
-Conservado para trazabilidad — el pedido original ([docs/contexto_inicial.md](../contexto_inicial.md), 2026-05-29):
+Conservado para trazabilidad — el pedido original ([docs/reference/contexto_inicial.md](../reference/contexto_inicial.md), 2026-05-29):
 
 > Este proyecto lo voy a utilizar para desarrollar librerías. Las librerías solo van a tener alcance de arquitecturas frontend. […] `packages/tokens`: es un sistema de diseño […] `packages/components`: debe ser una librería de componentes Angular, estos componentes utilizarán la librería `packages/tokens`. […] Una app para probar los componentes […] también se va a usar para crear prototipos de casos de uso reales.
 

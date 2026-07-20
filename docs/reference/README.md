@@ -12,6 +12,7 @@ Este directorio sirve como **base de conocimiento histórica e inspiracional**:
 
 | Archivo / carpeta | Tema |
 |-------------------|------|
+| [`contexto_inicial.md`](contexto_inicial.md) | Pedido original del PO (2026-05-29) que dio origen al repo. Histórico, referenciado por D-001 y `docs/product/README.md`. |
 | [`taxonomias_arq_software.md`](taxonomias_arq_software.md) | Taxonomía general de arquitecturas de software (sistema, aplicación, frontend, backend, datos, infra, seguridad). Mapa de referencia. |
 | [`arquitectura_frontend/`](arquitectura_frontend/) | Material específico sobre arquitectura frontend: estilos CSS architecture, design systems, comparativa industria. |
 
