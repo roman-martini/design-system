@@ -45,15 +45,15 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API mínima con host binding
 - [x] 6.3 Auditoría **`/ng:review`** sobre `src/lib/skeleton/` — **0 hallazgos** (0/0/0). Excepciones declaradas y aceptadas, todas documentadas en design.md: `template: ''` inline (host único decorativo, §2), asserts de CSS por readFileSync (límite jsdom, precedente aaa-023), `100%`/`1em` raw no tokenizables (§3). Tokens sin referencias huérfanas.
 - [x] 6.4 `npm pack --dry-run`: tarball sin `*.spec.ts`/`*.stories.ts` (7 archivos, solo dist + README).
 - [x] 6.5 Changeset único `.changeset/add-skeleton.md` con **minor** de components (DsSkeleton) y **minor** de tokens (`component.skeleton.*`). Lockstep (ADR-015).
-- [ ] 6.6 Proponer mensaje de commit (implementación) y esperar OK del usuario.
+- [x] 6.6 Mensaje de commit propuesto y aprobado por el PO — commits `859f59b` (propose) y `b57c886` (feat). Nota: el primer intento quedó combinado por staging externo (IDE) y se rehízo con `reset --soft` para respetar el split aprobado.
 
 **Criterio**: automáticos verdes; gates resueltos; changeset correcto; aprobación explícita antes del commit.
 
 ## 7. Archive
 
-- [ ] 7.1 Confirmar sin ADR: reduced-motion apaga (no reemplaza) — 1 caso de cada patrón, sin convención que formalizar (design §4).
-- [ ] 7.2 Mover a `archive/aaa-024-components-add-skeleton/`; frontmatter `archived`; sincronizar spec base `components-package` (ADDED autocontenido).
-- [ ] 7.3 Registros: `openspec/README.md` (IDs en vuelo + próximo ID → `aaa-025`), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (**cierra la tanda 1 de D-009** — el disparador "Tanda 1 completa" de EP-002/D-009 se reevalúa con el PO), HU-010 → Hecha con CAs tildados, EP-002 actualizado.
+- [x] 7.1 Confirmado sin ADR: reduced-motion apaga (no reemplaza) — 1 caso de cada patrón, sin convención que formalizar (design §4).
+- [x] 7.2 Movido a `archive/aaa-024-components-add-skeleton/`; frontmatter `archived: 2026-07-19`; spec base `components-package` sincronizada (ADDED autocontenido).
+- [x] 7.3 Registros: `openspec/README.md` (línea de IDs en vuelo eliminada; próximo ID ya en `aaa-025`), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (**tanda 1 de D-009 completa** — Now queda vacío con la decisión post-tanda pendiente del PO), HU-010 → Hecha con CAs tildados, EP-002 actualizado.
 - [ ] 7.4 `pnpm openspec validate --all` pasa.
 - [ ] 7.5 Proponer commit del archive y esperar OK.
 

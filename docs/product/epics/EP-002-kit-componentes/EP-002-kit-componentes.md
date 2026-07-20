@@ -1,6 +1,6 @@
 # EP-002 — Kit de componentes Angular
 
-**Estado**: En desarrollo (9 componentes + 1 directiva + 1 service entregados; tanda 1 en curso)
+**Estado**: Tanda 1 completa (2026-07-19, aaa-024) — 11 componentes + 1 directiva + 1 service entregados; próxima expansión requiere nueva decisión de producto (D-005)
 
 ## Contexto
 
@@ -25,6 +25,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | `DsTooltip` (directiva, WCAG 1.4.13, estilo inverso theme-aware)      | [aaa-019](../../../../openspec/changes/archive/aaa-019-components-add-tooltip/)                                                                                               | Ayuda contextual accesible en cualquier elemento         |
 | `DsToastService` (service + provider, top layer, timers pausables)    | [aaa-021](../../../../openspec/changes/archive/aaa-021-components-add-toast/)                                                                                                 | Feedback asíncrono accesible con API programática        |
 | `DsSpinner` (currentColor, label opt-out, reduced-motion por pulso)   | [aaa-023](../../../../openspec/changes/archive/aaa-023-components-add-spinner/)                                                                                               | Espera indeterminada accesible, inline o standalone      |
+| `DsSkeleton` (shapes con defaults tokenizados, overrides CSS libres)  | [aaa-024](../../../../openspec/changes/archive/aaa-024-components-add-skeleton/)                                                                                              | Placeholders estables sin layout shift                   |
 
 ## Historias de usuario
 
@@ -36,7 +37,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Hecha (aaa-019 archivado 2026-07-18)                 |
 | [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Hecha (2026-07-18, aaa-021)                          |
 | [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Hecha (2026-07-19, aaa-023)                          |
-| [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Refinada (2026-07-19; siguiente — BACKLOG § Now)     |
+| [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Hecha (2026-07-19, aaa-024 — cierra la tanda 1)      |
 
 Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Candidatas restantes (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, requieren disparador propio según D-005): Progress, Accordion, Breadcrumbs, Pagination, Menu/Dropdown, DatePicker (wrapping).
 

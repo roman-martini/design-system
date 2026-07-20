@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-19) — lista para change OpenSpec (`components-add-skeleton`)
+**Estado**: Hecha (2026-07-19) — [`aaa-024 components-add-skeleton`](../../../../openspec/changes/archive/aaa-024-components-add-skeleton/) archivado; 8 tests, review sin hallazgos, sin pares de contraste (decorativo). Cierra la tanda 1 (D-009). Verificación manual pendiente del PO: pulso y apagado reduced-motion en playground
 **Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
 
 ---
@@ -23,12 +23,12 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec components-package (delta del change components-add-skeleton). -->
 
-- [ ] **CA-010.1** — Dado `<ds-skeleton />` (standalone, OnPush), cuando se renderiza con `shape` `text | rect | circle` (default `text`), entonces cada shape aplica sus defaults tokenizados de dimensiones y radius (`text`: ancho completo × altura de línea, radius chico; `rect`: bloque de altura tokenizada, radius chico; `circle`: diámetro tokenizado, radius total).
-- [ ] **CA-010.2** — Dados los inputs `width`/`height`/`radius` con cualquier valor CSS válido (px, %, rem), entonces overridean los defaults del shape.
-- [ ] **CA-010.3** — Dado cualquier skeleton, entonces es decorativo: `aria-hidden="true"`, sin role y sin texto en el árbol de accesibilidad; el showcase documenta el patrón del contenedor que anuncia la carga.
-- [ ] **CA-010.4** — Dada la animación, entonces es un pulso de opacidad con color de fondo, duración y rango de opacidad tokenizados, y bajo `prefers-reduced-motion` se apaga (bloque estático).
-- [ ] **CA-010.5** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.skeleton.*` nuevos + primitives/semantic); al ser un elemento decorativo no textual, no introduce pares de contraste al gate.
-- [ ] **CA-010.6** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-skeleton` con los 3 shapes, un párrafo multilínea por composición, una card compuesta como demo (sin componente nuevo) y la nota de reduced-motion.
+- [x] **CA-010.1** — Dado `<ds-skeleton />` (standalone, OnPush), cuando se renderiza con `shape` `text | rect | circle` (default `text`), entonces cada shape aplica sus defaults tokenizados de dimensiones y radius (`text`: ancho completo × altura de línea, radius chico; `rect`: bloque de altura tokenizada, radius chico; `circle`: diámetro tokenizado, radius total).
+- [x] **CA-010.2** — Dados los inputs `width`/`height`/`radius` con cualquier valor CSS válido (px, %, rem), entonces overridean los defaults del shape.
+- [x] **CA-010.3** — Dado cualquier skeleton, entonces es decorativo: `aria-hidden="true"`, sin role y sin texto en el árbol de accesibilidad; el showcase documenta el patrón del contenedor que anuncia la carga.
+- [x] **CA-010.4** — Dada la animación, entonces es un pulso de opacidad con color de fondo, duración y rango de opacidad tokenizados, y bajo `prefers-reduced-motion` se apaga (bloque estático).
+- [x] **CA-010.5** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.skeleton.*` nuevos + primitives/semantic); al ser un elemento decorativo no textual, no introduce pares de contraste al gate.
+- [x] **CA-010.6** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-skeleton` con los 3 shapes, un párrafo multilínea por composición, una card compuesta como demo (sin componente nuevo) y la nota de reduced-motion.
 
 ## Dependencias
 

@@ -2,7 +2,8 @@
 id: aaa-024
 name: components-add-skeleton
 type: change
-status: proposed
+status: archived
+archived: 2026-07-19
 modifies-specs:
   - components-package (ADDED: DsSkeleton)
   - design-tokens-package (sin delta de spec; component.skeleton nuevo referenciando semantic/primitives)

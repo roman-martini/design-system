@@ -25,17 +25,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-### `components-add-skeleton` — Skeleton
-
-**Tipo**: OpenSpec (kit). **Producto**: [HU-010](../product/epics/EP-002-kit-componentes/HU-010-skeleton.md) / EP-002. Último componente de la tanda 1 ([D-009](../product/decisiones.md)).
-
-**Alcance propuesto**: bloque de carga según HU-010 refinada (shapes text/rect/circle con defaults tokenizados, width/height/radius CSS libres, pulso de opacidad, decorativo siempre).
-
-**Nota arquitectónica**: resuelta en el refinamiento — bajo reduced-motion el skeleton queda **estático** (apaga, no reemplaza), así que el patrón "reemplazo" de aaa-023 no se repite y no amerita ADR.
-
-**Disparador**: cierre del item anterior de la tanda (Spinner, `aaa-023`) — **ACTIVADO** (2026-07-19, grooming del archive).
-
-**Estado**: HU-010 **Refinada** (2026-07-19) — listo para `/opsx:propose components-add-skeleton`.
+(vacío — la **tanda 1 de D-009 está completa** con `aaa-024` Skeleton, 2026-07-19. Qué sigue es decisión del PO; candidatos naturales: release del acumulado Toast+Spinner+Skeleton (2 changesets pendientes), retomar `tokens-figma-export` (aaa-012, en pausa), o definir una tanda 2 desde [FUTURE-WORK](FUTURE-WORK.md).)
 
 ---
 
