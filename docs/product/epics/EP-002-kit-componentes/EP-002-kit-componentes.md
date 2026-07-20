@@ -1,6 +1,6 @@
 # EP-002 — Kit de componentes Angular
 
-**Estado**: Tanda 2 en curso (3/5: Menu, Accordion y Breadcrumbs Hechas, aaa-025/026/027) — tanda 1 completa (aaa-024); 14 entregas de componentes + 3 directivas + 1 service
+**Estado**: Tanda 2 en curso (4/5: Menu, Accordion, Breadcrumbs y Pagination Hechas, aaa-025…028) — tanda 1 completa (aaa-024); 15 entregas de componentes + 3 directivas + 1 service
 
 ## Contexto
 
@@ -29,6 +29,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | Familia `DsMenu` (menu button APG, submenús anidados, danger, typeahead) | [aaa-025](../../../../openspec/changes/archive/aaa-025-components-add-menu/)                                                                                                  | Acciones contextuales accesibles con teclado completo    |
 | Familia `DsAccordion` (accordion APG, single/multi, anidados)            | [aaa-026](../../../../openspec/changes/archive/aaa-026-components-add-accordion/)                                                                                             | Contenido colapsable accesible para settings/FAQs        |
 | Familia `DsBreadcrumbs` (breadcrumb APG, truncado, auto-rutas)           | [aaa-027](../../../../openspec/changes/archive/aaa-027-components-add-breadcrumbs/)                                                                                           | Ubicación jerárquica; primer secondary entry point       |
+| `DsPagination` (ventana con elipsis, compacta, extremos ADR-011)         | [aaa-028](../../../../openspec/changes/archive/aaa-028-components-add-pagination/)                                                                                            | Navegación de listados largos accesible                  |
 
 ## Historias de usuario
 
@@ -44,7 +45,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-012](HU-012-menu-dropdown.md)        | Menu/Dropdown de acciones                  | Dev consumidor | Hecha (2026-07-19, aaa-025 — genera ADR-016)         |
 | [HU-013](HU-013-accordion.md)            | Accordion de contenido colapsable          | Dev consumidor | Hecha (2026-07-20, aaa-026)                          |
 | [HU-014](HU-014-breadcrumbs.md)          | Breadcrumbs de ubicación                   | Dev consumidor | Hecha (2026-07-20, aaa-027 — genera ADR-017)         |
-| [HU-015](HU-015-pagination.md)           | Pagination de listados                     | Dev consumidor | Refinada (2026-07-20, tanda 2, D-011)                |
+| [HU-015](HU-015-pagination.md)           | Pagination de listados                     | Dev consumidor | Hecha (2026-07-20, aaa-028)                          |
 | [HU-016](HU-016-progress.md)             | Progress de avance medible                 | Dev consumidor | Identificada (tanda 2, D-011)                        |
 
 Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Las HU-012…HU-016 forman la **tanda 2** aprobada por [D-011](../../decisiones.md) con criterio "navegación y estructura de apps reales". Candidatas restantes (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, requieren disparador propio según D-005): Stepper, Slider, DatePicker (wrapping).

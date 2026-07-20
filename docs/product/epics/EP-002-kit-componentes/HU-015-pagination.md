@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-20) — tanda 2, [D-011](../../decisiones.md)
+**Estado**: Hecha (2026-07-20) — [`aaa-028 components-add-pagination`](../../../../openspec/changes/archive/aaa-028-components-add-pagination/) archivado; 18 tests (7 de pageWindow + 11 de componente), review con 2 hallazgos bajos aplicados (@empty + selección por rol en tests), gate AA limpio, sin ADR (reutiliza ADR-011/012). Verificación manual pendiente del PO: ventana al navegar (sin saltos de layout), hover/current en light y dark, y la compacta en playground `/pagination`
 **Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
 
 ---
@@ -23,14 +23,14 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec components-package (delta del change components-add-pagination). -->
 
-- [ ] **CA-015.1 (estructura accesible)** — Dado un `ds-pagination`, entonces el landmark es `<nav>` con nombre accesible configurable (default "paginación") y las páginas son botones con nombre accesible ("Página N"); la página actual expone `aria-current="page"`.
-- [ ] **CA-015.2 (modelo)** — Dado `[(page)]` (1-based) y `totalPages`, entonces la página actual se refleja en el render y todo cambio emitido por el componente está dentro de `[1, totalPages]`; un cambio programático del model actualiza el render.
-- [ ] **CA-015.3 (navegación)** — Dado un click en un número de página, prev (‹), next (›), first («) o last (»), entonces el model se actualiza a la página correspondiente; en la primera página first/prev quedan disabled accesibles (ADR-011: focusables, `aria-disabled="true"`, sin acción), ídem next/last en la última.
-- [ ] **CA-015.4 (ventana con elipsis)** — Dado `totalPages` grande, entonces siempre se muestran la primera, la última y las `siblingCount` vecinas de la actual (default 1), con "…" decorativo (no focusable, `aria-hidden`) en los huecos; dado un total que entra completo en la ventana, entonces no hay elipsis.
-- [ ] **CA-015.5 (variante compacta)** — Dado `variant="compact"`, entonces se renderizan solo first/prev/next/last y un contador "X de Y" (accesible como texto), sin botones de número; el modelo y los disabled de extremos se comportan igual que en la variante por números.
-- [ ] **CA-015.6 (labels configurables)** — Dado el default, entonces los nombres accesibles de nav/first/prev/next/last y el formato "Página N" están en español; dado inputs de labels, entonces el consumidor puede reemplazarlos (i18n).
-- [ ] **CA-015.7 (tokens)** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.pagination.*` nuevos + primitives/semantic existentes) y los pares de contraste (número default/hover, actual, disabled) pasan el gate AA por script.
-- [ ] **CA-015.8 (showcase)** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-pagination` con: básico, listado largo con elipsis y `siblingCount`, variante compacta, estado en extremos (disabled accesible) y nota de accesibilidad.
+- [x] **CA-015.1 (estructura accesible)** — Dado un `ds-pagination`, entonces el landmark es `<nav>` con nombre accesible configurable (default "paginación") y las páginas son botones con nombre accesible ("Página N"); la página actual expone `aria-current="page"`.
+- [x] **CA-015.2 (modelo)** — Dado `[(page)]` (1-based) y `totalPages`, entonces la página actual se refleja en el render y todo cambio emitido por el componente está dentro de `[1, totalPages]`; un cambio programático del model actualiza el render.
+- [x] **CA-015.3 (navegación)** — Dado un click en un número de página, prev (‹), next (›), first («) o last (»), entonces el model se actualiza a la página correspondiente; en la primera página first/prev quedan disabled accesibles (ADR-011: focusables, `aria-disabled="true"`, sin acción), ídem next/last en la última.
+- [x] **CA-015.4 (ventana con elipsis)** — Dado `totalPages` grande, entonces siempre se muestran la primera, la última y las `siblingCount` vecinas de la actual (default 1), con "…" decorativo (no focusable, `aria-hidden`) en los huecos; dado un total que entra completo en la ventana, entonces no hay elipsis.
+- [x] **CA-015.5 (variante compacta)** — Dado `variant="compact"`, entonces se renderizan solo first/prev/next/last y un contador "X de Y" (accesible como texto), sin botones de número; el modelo y los disabled de extremos se comportan igual que en la variante por números.
+- [x] **CA-015.6 (labels configurables)** — Dado el default, entonces los nombres accesibles de nav/first/prev/next/last y el formato "Página N" están en español; dado inputs de labels, entonces el consumidor puede reemplazarlos (i18n).
+- [x] **CA-015.7 (tokens)** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.pagination.*` nuevos + primitives/semantic existentes) y los pares de contraste (número default/hover, actual, disabled) pasan el gate AA por script.
+- [x] **CA-015.8 (showcase)** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-pagination` con: básico, listado largo con elipsis y `siblingCount`, variante compacta, estado en extremos (disabled accesible) y nota de accesibilidad.
 
 ## Dependencias
 

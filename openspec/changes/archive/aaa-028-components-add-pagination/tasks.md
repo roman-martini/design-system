@@ -46,17 +46,17 @@ Cada tarea es ≤2 h con criterio binario. Diseño: componente único sin proyec
 - [x] 6.2 `pnpm -r build` y `pnpm -r test` pasan.
 - [x] 6.3 Auditoría **`/ng:review`** — 0 altas, 0 medias, 2 bajas; **ambas aplicadas**: `@empty` en el @for (caso `totalPages ≤ 0` + test) y helpers del spec por rol/label. Excepciones de consistencia documentadas (onX, ADR-011, track compuesto, pageWindow co-ubicada) — sin cambios. Fix colateral de aaa-027: import de `DsBreadcrumbsSeparator` en su story (roto tras la extracción a archivo propio, detectado por build-storybook). Suite final 219/219.
 - [x] 6.4 `npm pack --dry-run`: tarball limpio (sin `*.spec.ts`/`*.stories.ts`).
-- [ ] 6.5 Changeset único `.changeset/add-pagination.md` con **minor** de components y **minor** de tokens. Lockstep (ADR-015). **Sin publicar** (veto del PO vigente).
-- [ ] 6.6 Proponer mensaje de commit (split docs/feat) y **esperar OK del PO**.
+- [x] 6.5 Changeset único `.changeset/add-pagination.md` con **minor** de components y **minor** de tokens. Lockstep (ADR-015). **Sin publicar** (veto del PO vigente).
+- [x] 6.6 Commits aprobados por el PO: docs `0772913` (propose) y feat `04cd231` (implementación completa).
 
 **Criterio**: automáticos verdes; gates resueltos; changeset correcto; aprobación explícita antes del commit.
 
 ## 7. Archive
 
-- [ ] 7.1 Confirmar que no surgió nada one-way door (sin ADR previsto); si surgió, escribirlo antes de archivar.
-- [ ] 7.2 Mover a `archive/aaa-028-components-add-pagination/`; frontmatter `archived` + spec base `components-package` sincronizada.
-- [ ] 7.3 Registros: `openspec/README.md`, catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Pagination sale de Now; `components-add-progress` — HU-016 — promovido a Now, cierra la tanda 2), HU-015 → Hecha con CAs tildados, EP-002 actualizado (4/5).
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Commit del archive propuesto y aprobado por el PO.
+- [x] 7.1 Confirmado: nada one-way door — solo patrones ya decididos (ADR-011/012, computed puro). Sin ADR.
+- [x] 7.2 Movido a `archive/aaa-028-components-add-pagination/`; frontmatter `archived: 2026-07-20` + spec base `components-package` sincronizada (ADDED autocontenido).
+- [x] 7.3 Registros: `openspec/README.md`, catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Pagination sale de Now; `components-add-progress` — HU-016 — promovido a Now, cierra la tanda 2), HU-015 → Hecha con CAs tildados, EP-002 actualizado (4/5).
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive propuesto y aprobado por el PO (2026-07-20).
 
 **Criterio**: change archivado, spec base sincronizada, registros al día.

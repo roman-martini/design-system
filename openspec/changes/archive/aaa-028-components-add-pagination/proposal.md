@@ -2,7 +2,8 @@
 id: aaa-028
 name: components-add-pagination
 type: change
-status: proposed
+status: archived
+archived: 2026-07-20
 modifies-specs:
   - components-package (ADDED: DsPagination)
   - design-tokens-package (sin delta de spec; component.pagination nuevo referenciando semantic/primitives)

@@ -25,19 +25,19 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 6: Toast, Spinner, Skeleton, Menu, Accordion y Breadcrumbs) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 7: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs y Pagination) y el release NO es candidato automático.
 
-### `components-add-pagination` — Pagination de listados
+### `components-add-progress` — Progress de avance medible
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-015](../product/epics/EP-002-kit-componentes/HU-015-pagination.md) / EP-002.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-016](../product/epics/EP-002-kit-componentes/HU-016-progress.md) / EP-002.
 
-**Origen**: cuarta pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales" — promovida al cerrar `components-add-breadcrumbs` (`aaa-027`, 2026-07-20). Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); la última (Progress) se promueve acá al cerrar esta.
+**Origen**: quinta y última pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19) — promovida al cerrar `components-add-pagination` (`aaa-028`, 2026-07-20). **Cerrarla completa la tanda 2** y deja H1 a la espera de su condición de salida (app real 100% con el DS).
 
-**Alcance refinado** (HU-015, PO 2026-07-20): modelo `page`+`totalPages` two-way, ventana `siblingCount` con "…" estático, variante compacta en v1, first/last en v1, disabled de extremos por ADR-011, labels configurables (default español), tokens `component.pagination.*`.
+**Alcance propuesto**: barra determinada (`value`/`max`, `role="progressbar"` + `aria-valuenow/min/max`) e indeterminada (delimitar contra `ds-spinner`), label accesible con opt-out (patrón HU-009), animación indeterminada bajo `prefers-reduced-motion`, sizes, tokens `component.progress.*`. Refinar la HU (CAs binarios) antes de crear el change.
 
 **Disparador**: activado — tanda 2 aprobada (D-011), pieza anterior cerrada.
 
-**Estado**: HU Refinada — lista para propose (`aaa-028`).
+**Estado**: pendiente de refinamiento (Now).
 
 ---
 
