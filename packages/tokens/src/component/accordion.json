@@ -1,0 +1,32 @@
+{
+  "component": {
+    "accordion": {
+      "header": {
+        "min-height": { "value": "{dimension.48}" },
+        "padding-x": { "value": "{semantic.space.md}" },
+        "padding-y": { "value": "{semantic.space.sm}" },
+        "font-size": { "value": "{semantic.font.size.body-md}" },
+        "font-weight": { "value": "{font.weight.medium}" },
+        "text": { "value": "{semantic.color.text.primary}" },
+        "text-disabled": { "value": "{semantic.color.text.disabled}" },
+        "bg-hover": { "value": "{semantic.color.bg.secondary-hover}" },
+        "gap": { "value": "{semantic.space.sm}" },
+        "chevron-size": { "value": "{dimension.16}" }
+      },
+      "panel": {
+        "padding-x": { "value": "{semantic.space.md}" },
+        "padding-y": { "value": "{semantic.space.sm}" },
+        "text": { "value": "{semantic.color.text.secondary}" }
+      },
+      "border": {
+        "color": { "value": "{semantic.color.border.default}" },
+        "width": { "value": "{dimension.1}" },
+        "radius": { "value": "{semantic.radius.md}" }
+      },
+      "motion": {
+        "duration": { "value": "{motion.duration.normal}" },
+        "easing": { "value": "{motion.easing.ease-in-out}" }
+      }
+    }
+  }
+}

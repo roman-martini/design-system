@@ -1,0 +1,36 @@
+<div class="ds-accordion-item__heading" role="heading" [attr.aria-level]="accordion.headingLevel()">
+  <button
+    #headerButton
+    type="button"
+    class="ds-accordion-item__header"
+    [id]="headerId"
+    [attr.aria-expanded]="expanded()"
+    [attr.aria-controls]="panelId"
+    [attr.aria-disabled]="disabled() ? 'true' : null"
+    (click)="onToggle()"
+    (keydown)="onHeaderKeydown($event)"
+  >
+    <span class="ds-accordion-item__header-content">
+      <ng-content select="[dsAccordionHeader]" />
+    </span>
+    <svg
+      lucideChevronDown
+      size="16"
+      strokeWidth="1.5"
+      aria-hidden="true"
+      class="ds-accordion-item__chevron"
+    ></svg>
+  </button>
+</div>
+<div
+  class="ds-accordion-item__panel"
+  role="region"
+  [id]="panelId"
+  [attr.aria-labelledby]="headerId"
+>
+  <div class="ds-accordion-item__panel-inner">
+    <div class="ds-accordion-item__panel-content">
+      <ng-content />
+    </div>
+  </div>
+</div>

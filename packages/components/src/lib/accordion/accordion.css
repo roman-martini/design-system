@@ -1,0 +1,8 @@
+:host {
+  display: block;
+  border: var(--ds-component-accordion-border-width) solid
+    var(--ds-component-accordion-border-color);
+  border-radius: var(--ds-component-accordion-border-radius);
+  /* Recorta el bg de hover de los items extremos contra el radius. */
+  overflow: hidden;
+}

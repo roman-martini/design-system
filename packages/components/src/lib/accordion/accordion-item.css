@@ -1,0 +1,104 @@
+:host {
+  display: block;
+}
+
+:host(:not(:first-child)) {
+  border-top: var(--ds-component-accordion-border-width) solid
+    var(--ds-component-accordion-border-color);
+}
+
+.ds-accordion-item__heading {
+  margin: 0;
+}
+
+.ds-accordion-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-component-accordion-header-gap);
+  width: 100%;
+  min-height: var(--ds-component-accordion-header-min-height);
+  padding: var(--ds-component-accordion-header-padding-y)
+    var(--ds-component-accordion-header-padding-x);
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--ds-component-accordion-header-font-size);
+  font-weight: var(--ds-component-accordion-header-font-weight);
+  color: var(--ds-component-accordion-header-text);
+  text-align: start;
+  cursor: pointer;
+}
+
+.ds-accordion-item__header:hover:not([aria-disabled='true']) {
+  background: var(--ds-component-accordion-header-bg-hover);
+}
+
+.ds-accordion-item__header:focus-visible {
+  outline: none;
+  box-shadow: var(--ds-semantic-shadow-focus);
+}
+
+.ds-accordion-item__header[aria-disabled='true'] {
+  color: var(--ds-component-accordion-header-text-disabled);
+  cursor: not-allowed;
+}
+
+.ds-accordion-item__header-content {
+  flex: 1;
+}
+
+.ds-accordion-item__chevron {
+  flex-shrink: 0;
+  width: var(--ds-component-accordion-header-chevron-size);
+  height: var(--ds-component-accordion-header-chevron-size);
+  transition: transform var(--ds-component-accordion-motion-duration)
+    var(--ds-component-accordion-motion-easing);
+}
+
+:host(.ds-accordion-item--expanded) .ds-accordion-item__chevron {
+  transform: rotate(180deg);
+}
+
+/* Animación de altura: grid 0fr→1fr anima height auto sin JS y tolera
+   contenido dinámico — incluido un accordion anidado (design §4). */
+.ds-accordion-item__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--ds-component-accordion-motion-duration)
+    var(--ds-component-accordion-motion-easing);
+}
+
+:host(.ds-accordion-item--expanded) .ds-accordion-item__panel {
+  grid-template-rows: 1fr;
+}
+
+/* Colapsado: invisible también para AT y tab order. La visibility espera el
+   fin del colapso (delay = duration) para no cortar la animación de salida. */
+.ds-accordion-item__panel-inner {
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: visibility 0s var(--ds-component-accordion-motion-duration);
+}
+
+:host(.ds-accordion-item--expanded) .ds-accordion-item__panel-inner {
+  visibility: visible;
+  transition: none;
+}
+
+/* El padding vive en un nivel interior: sobre el wrapper recortado sumaría
+   altura visible con el track en 0fr. */
+.ds-accordion-item__panel-content {
+  padding: var(--ds-component-accordion-panel-padding-y)
+    var(--ds-component-accordion-panel-padding-x);
+  color: var(--ds-component-accordion-panel-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-accordion-item__panel,
+  .ds-accordion-item__panel-inner,
+  .ds-accordion-item__chevron {
+    transition: none;
+  }
+}

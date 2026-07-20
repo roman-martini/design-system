@@ -1,0 +1,85 @@
+<app-showcase-case title="Accordion single (default, ARIA APG)" [snippet]="singleSnippet">
+  <ds-accordion>
+    <ds-accordion-item [(expanded)]="firstOpen">
+      <span dsAccordionHeader>¿Qué es el design system?</span>
+      <p>
+        Librerías de arquitectura frontend publicables: tokens con theming y componentes Angular
+        accesibles construidos sobre ellos.
+      </p>
+    </ds-accordion-item>
+    <ds-accordion-item>
+      <span dsAccordionHeader>¿Cómo se instala?</span>
+      <p>
+        <code>npm install &#64;romanmartinidev/tokens &#64;romanmartinidev/components</code> y se
+        importa el CSS de tokens en los estilos globales.
+      </p>
+    </ds-accordion-item>
+    <ds-accordion-item>
+      <span dsAccordionHeader>¿Se puede themear?</span>
+      <p>Sí: los themes redefinen tokens semánticos sin tocar los componentes.</p>
+    </ds-accordion-item>
+  </ds-accordion>
+  <p class="playground__hint">
+    Single: abrir una sección colapsa la anterior. Teclado: ↑/↓ mueven el foco entre headers (con
+    wrap, sin saltear disabled), Home/End van a los extremos, Enter/Space alternan la sección.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Multi expand" [snippet]="multipleSnippet">
+  <ds-accordion [multiple]="true">
+    <ds-accordion-item>
+      <span dsAccordionHeader>Requisitos</span>
+      <p>Angular 21+, tokens como peerDependency.</p>
+    </ds-accordion-item>
+    <ds-accordion-item>
+      <span dsAccordionHeader>Compatibilidad</span>
+      <p>Zoneless y signals-first; los componentes son standalone.</p>
+    </ds-accordion-item>
+  </ds-accordion>
+  <p class="playground__hint">Con <code>multiple</code>, cada sección alterna independiente.</p>
+</app-showcase-case>
+
+<app-showcase-case title="Sección disabled accesible (ADR-011)" [snippet]="disabledSnippet">
+  <ds-accordion>
+    <ds-accordion-item>
+      <span dsAccordionHeader>Sección disponible</span>
+      <p>Contenido normal.</p>
+    </ds-accordion-item>
+    <ds-accordion-item [disabled]="true">
+      <span dsAccordionHeader>Sección no disponible</span>
+      <p>Este contenido no puede expandirse.</p>
+    </ds-accordion-item>
+  </ds-accordion>
+  <p class="playground__hint">
+    El header disabled sigue siendo focusable y expone <code>aria-disabled</code> (descubribilidad
+    por teclado y screen reader); la activación está bloqueada.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Accordion anidado" [snippet]="nestedSnippet">
+  <ds-accordion>
+    <ds-accordion-item>
+      <span dsAccordionHeader>Configuración avanzada</span>
+      <ds-accordion [headingLevel]="4">
+        <ds-accordion-item>
+          <span dsAccordionHeader>Tokens</span>
+          <p>Jerarquía primitives → semantic → component → theme.</p>
+        </ds-accordion-item>
+        <ds-accordion-item>
+          <span dsAccordionHeader>Themes</span>
+          <p>Un theme solo redefine tokens semánticos.</p>
+        </ds-accordion-item>
+      </ds-accordion>
+    </ds-accordion-item>
+    <ds-accordion-item>
+      <span dsAccordionHeader>Otra sección del padre</span>
+      <p>La exclusividad y el teclado del anidado no interfieren con el padre.</p>
+    </ds-accordion-item>
+  </ds-accordion>
+  <p class="playground__hint">
+    Cada instancia coordina solo sus secciones: expandir en el anidado no colapsa al padre, la
+    navegación por flechas no cruza instancias y el <code>headingLevel</code> mantiene la jerarquía
+    de headings. Verificar acá la animación de altura (incluido colapsar el padre con el hijo
+    expandido) y <code>prefers-reduced-motion</code>.
+  </p>
+</app-showcase-case>
