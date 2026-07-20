@@ -38,7 +38,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Hecha (2026-07-18, aaa-021)                          |
 | [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Hecha (2026-07-19, aaa-023)                          |
 | [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Hecha (2026-07-19, aaa-024 — cierra la tanda 1)      |
-| [HU-012](HU-012-menu-dropdown.md)        | Menu/Dropdown de acciones                  | Dev consumidor | Identificada (tanda 2, D-011)                        |
+| [HU-012](HU-012-menu-dropdown.md)        | Menu/Dropdown de acciones                  | Dev consumidor | Refinada (2026-07-19; incluye submenús)              |
 | [HU-013](HU-013-accordion.md)            | Accordion de contenido colapsable          | Dev consumidor | Identificada (tanda 2, D-011)                        |
 | [HU-014](HU-014-breadcrumbs.md)          | Breadcrumbs de ubicación                   | Dev consumidor | Identificada (tanda 2, D-011)                        |
 | [HU-015](HU-015-pagination.md)           | Pagination de listados                     | Dev consumidor | Identificada (tanda 2, D-011)                        |

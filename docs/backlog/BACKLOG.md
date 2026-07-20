@@ -33,11 +33,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Origen**: primera pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales". Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); las siguientes (Accordion, Breadcrumbs, Pagination, Progress) se promueven acá al cerrar la anterior.
 
-**Alcance propuesto**: menu button APG sobre Popover API (ADR-014), keyboard nav completa, items con icono/separador/disabled accesible, tokens `component.menu.*`. Refinar la HU (CAs binarios) antes de crear el change.
+**Alcance propuesto**: menu button APG sobre Popover API (ADR-014), keyboard nav completa con typeahead, items con icono/separador/danger/disabled accesible, **submenús anidados** (decisión de posicionamiento lateral en el design del change), tokens `component.menu.*`.
 
 **Disparador**: activado — tanda 2 aprobada (D-011).
 
-**Estado**: pendiente de refinamiento (Now).
+**Estado**: HU Refinada (2026-07-19) — listo para `/opsx:propose components-add-menu` (Now).
 
 ---
 
