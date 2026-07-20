@@ -33,11 +33,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Origen**: quinta y última pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19) — promovida al cerrar `components-add-pagination` (`aaa-028`, 2026-07-20). **Cerrarla completa la tanda 2** y deja H1 a la espera de su condición de salida (app real 100% con el DS).
 
-**Alcance propuesto**: barra determinada (`value`/`max`, `role="progressbar"` + `aria-valuenow/min/max`) e indeterminada (delimitar contra `ds-spinner`), label accesible con opt-out (patrón HU-009), animación indeterminada bajo `prefers-reduced-motion`, sizes, tokens `component.progress.*`. Refinar la HU (CAs binarios) antes de crear el change.
+**Alcance refinado** (HU-016, PO 2026-07-20): determinada + indeterminada con guía de uso vs spinner, `showValue` opt-in, sizes sm/md/lg, tonos primary/success/danger (pares fill/track al gate como UI 3:1), label con opt-out (patrón HU-009), reduced-motion por pulso (patrón aaa-023), tokens `component.progress.*`.
 
 **Disparador**: activado — tanda 2 aprobada (D-011), pieza anterior cerrada.
 
-**Estado**: pendiente de refinamiento (Now).
+**Estado**: HU Refinada — lista para propose (`aaa-029`).
 
 ---
 
