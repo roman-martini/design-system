@@ -1,0 +1,70 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-component-breadcrumbs-item-gap);
+}
+
+/* Colapsado por truncamiento: fuera del render, del tab order y de AT. */
+:host(.ds-breadcrumb-item--hidden) {
+  display: none;
+}
+
+.ds-breadcrumb-item__separator {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ds-component-breadcrumbs-separator-color);
+}
+
+.ds-breadcrumb-item__chevron {
+  width: var(--ds-component-breadcrumbs-separator-size);
+  height: var(--ds-component-breadcrumbs-separator-size);
+}
+
+/* Estilos del link proyectado por el consumidor: único punto donde se estila
+   contenido proyectado (el <a> no hereda color por el UA stylesheet). Scoped
+   al host — no cruza instancias porque los items no se anidan. */
+:host ::ng-deep .ds-breadcrumb-item__content a {
+  color: var(--ds-component-breadcrumbs-link-text);
+  text-decoration: none;
+}
+
+:host ::ng-deep .ds-breadcrumb-item__content a:hover {
+  color: var(--ds-component-breadcrumbs-link-text-hover);
+  text-decoration: underline;
+}
+
+:host ::ng-deep .ds-breadcrumb-item__content a:focus-visible {
+  outline: none;
+  box-shadow: var(--ds-semantic-shadow-focus);
+  border-radius: var(--ds-component-breadcrumbs-ellipsis-radius);
+}
+
+/* Estado en el elemento propio (lección aaa-026): sin selectores de estado
+   por descendencia desde :host. */
+.ds-breadcrumb-item__content--current {
+  color: var(--ds-component-breadcrumbs-current-text);
+  font-weight: var(--ds-component-breadcrumbs-current-font-weight);
+}
+
+.ds-breadcrumb-item__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--ds-component-breadcrumbs-ellipsis-padding-x);
+  border: none;
+  border-radius: var(--ds-component-breadcrumbs-ellipsis-radius);
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--ds-component-breadcrumbs-ellipsis-text);
+  cursor: pointer;
+}
+
+.ds-breadcrumb-item__ellipsis:hover {
+  color: var(--ds-component-breadcrumbs-ellipsis-text-hover);
+  background: var(--ds-component-breadcrumbs-ellipsis-bg-hover);
+}
+
+.ds-breadcrumb-item__ellipsis:focus-visible {
+  outline: none;
+  box-shadow: var(--ds-semantic-shadow-focus);
+}

@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+.ds-breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ds-component-breadcrumbs-item-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--ds-component-breadcrumbs-item-font-size);
+}

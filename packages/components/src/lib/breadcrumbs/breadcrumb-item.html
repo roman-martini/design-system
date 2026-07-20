@@ -1,0 +1,26 @@
+<ng-template #separator>
+  <span class="ds-breadcrumb-item__separator" aria-hidden="true">
+    @if (breadcrumbs.separatorTemplate(); as customSeparator) {
+    <ng-container [ngTemplateOutlet]="customSeparator" />
+    } @else {
+    <svg lucideChevronRight size="16" strokeWidth="1.5" class="ds-breadcrumb-item__chevron"></svg>
+    }
+  </span>
+</ng-template>
+
+@if (!isFirst()) {
+<ng-container [ngTemplateOutlet]="separator" />
+} @if (showsEllipsisBefore()) {
+<button
+  type="button"
+  class="ds-breadcrumb-item__ellipsis"
+  [attr.aria-label]="ellipsisLabel()"
+  (click)="onEllipsisClick()"
+>
+  …
+</button>
+<ng-container [ngTemplateOutlet]="separator" />
+}
+<span class="ds-breadcrumb-item__content" [class.ds-breadcrumb-item__content--current]="isLast()">
+  <ng-content />
+</span>

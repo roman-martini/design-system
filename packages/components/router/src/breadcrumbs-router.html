@@ -1,0 +1,13 @@
+<ds-breadcrumbs [aria-label]="ariaLabel()" [maxItems]="maxItems()">
+  @if (separator()?.template; as customSeparator) {
+  <ng-template dsBreadcrumbsSeparator>
+    <ng-container [ngTemplateOutlet]="customSeparator" />
+  </ng-template>
+  } @for (crumb of crumbs(); track crumb.url) {
+  <ds-breadcrumb-item>
+    @if (!$last) {
+    <a [routerLink]="crumb.url">{{ crumb.label }}</a>
+    } @else { {{ crumb.label }} }
+  </ds-breadcrumb-item>
+  }
+</ds-breadcrumbs>

@@ -1,0 +1,54 @@
+<app-showcase-case title="Breadcrumbs básico (APG)" [snippet]="basicSnippet">
+  <ds-breadcrumbs>
+    <ds-breadcrumb-item><a href="#/button">Inicio</a></ds-breadcrumb-item>
+    <ds-breadcrumb-item><a href="#/tabs">Docs</a></ds-breadcrumb-item>
+    <ds-breadcrumb-item>Página actual</ds-breadcrumb-item>
+  </ds-breadcrumbs>
+  <p class="playground__hint">
+    Landmark <code>nav</code> + lista; el último item lleva <code>aria-current="page"</code>
+    automáticamente y no necesita link. Los links los declara el consumidor (href o routerLink) — el
+    core no depende del router.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Separador por template" [snippet]="separatorSnippet">
+  <ds-breadcrumbs>
+    <ng-template dsBreadcrumbsSeparator><span>/</span></ng-template>
+    <ds-breadcrumb-item><a href="#/button">Inicio</a></ds-breadcrumb-item>
+    <ds-breadcrumb-item><a href="#/tabs">Sección</a></ds-breadcrumb-item>
+    <ds-breadcrumb-item>Separador custom</ds-breadcrumb-item>
+  </ds-breadcrumbs>
+  <p class="playground__hint">
+    Sin template, el separador es el chevron (decorativo, <code>aria-hidden</code>); con
+    <code>ng-template dsBreadcrumbsSeparator</code> se proyecta cualquier markup — nunca focusable
+    ni anunciado.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Truncamiento opt-in (maxItems)" [snippet]="truncatedSnippet">
+  <ds-breadcrumbs [maxItems]="3">
+    <ds-breadcrumb-item><a href="#/button">Inicio</a></ds-breadcrumb-item>
+    <ds-breadcrumb-item><a href="#/tabs">Nivel 1</a></ds-breadcrumb-item>
+    <ds-breadcrumb-item><a href="#/tabs">Nivel 2</a></ds-breadcrumb-item>
+    <ds-breadcrumb-item><a href="#/tabs">Nivel 3</a></ds-breadcrumb-item>
+    <ds-breadcrumb-item>Página actual</ds-breadcrumb-item>
+  </ds-breadcrumbs>
+  <p class="playground__hint">
+    Con <code>maxItems</code> superado: primero + botón "…" + últimos. Activar "…" revela los
+    ocultos en la misma línea y deja el foco en el primer link revelado. Sin overlay.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case
+  title="Auto-generación desde las rutas (entry point router)"
+  [snippet]="routerSnippet"
+>
+  <ds-breadcrumbs-router aria-label="Ubicación actual" />
+  <p class="playground__hint">
+    <code>DsBreadcrumbsRouter</code> vive en
+    <code>&#64;romanmartinidev/components/router</code> (secondary entry point,
+    <code>&#64;angular/router</code> como peer opcional) y arma el rastro desde
+    <code>data.breadcrumb</code> de las rutas activas — acá muestra la ruta real de esta página del
+    showcase. Acepta string o resolver <code>(route) =&gt; string</code>.
+  </p>
+</app-showcase-case>

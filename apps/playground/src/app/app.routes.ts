@@ -11,6 +11,8 @@ export const routes: Routes = [
     path: entry.slug,
     loadComponent: entry.loadComponent,
     title: `${entry.label} — Showcase`,
+    // Rastro para el demo de auto-generación de ds-breadcrumbs-router (aaa-027)
+    data: { breadcrumb: entry.label },
   })),
   { path: '', pathMatch: 'full' as const, redirectTo: HOME },
   { path: '**', redirectTo: HOME },

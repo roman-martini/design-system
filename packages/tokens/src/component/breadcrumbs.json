@@ -1,0 +1,29 @@
+{
+  "component": {
+    "breadcrumbs": {
+      "item": {
+        "gap": { "value": "{semantic.space.sm}" },
+        "font-size": { "value": "{semantic.font.size.body-sm}" }
+      },
+      "link": {
+        "text": { "value": "{semantic.color.text.link}" },
+        "text-hover": { "value": "{semantic.color.text.link-hover}" }
+      },
+      "current": {
+        "text": { "value": "{semantic.color.text.primary}" },
+        "font-weight": { "value": "{font.weight.medium}" }
+      },
+      "separator": {
+        "color": { "value": "{semantic.color.icon.muted}" },
+        "size": { "value": "{dimension.16}" }
+      },
+      "ellipsis": {
+        "text": { "value": "{semantic.color.text.secondary}" },
+        "text-hover": { "value": "{semantic.color.text.primary}" },
+        "bg-hover": { "value": "{semantic.color.bg.secondary-hover}" },
+        "radius": { "value": "{semantic.radius.sm}" },
+        "padding-x": { "value": "{semantic.space.xs}" }
+      }
+    }
+  }
+}
