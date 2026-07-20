@@ -8,6 +8,7 @@ export * from './lib/modal';
 export * from './lib/radio';
 export * from './lib/radio-group';
 export * from './lib/select';
+export * from './lib/skeleton';
 export * from './lib/spinner';
 export * from './lib/toast';
 export * from './lib/tooltip';

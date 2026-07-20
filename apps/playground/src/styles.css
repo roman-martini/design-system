@@ -52,6 +52,22 @@ code {
   font-size: var(--ds-font-size-sm);
 }
 
+.playground__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-semantic-space-2xs);
+}
+
+.playground__skeleton-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-semantic-space-md);
+}
+
+.playground__skeleton-card-body {
+  flex: 1;
+}
+
 .playground__success-context {
   display: inline-flex;
   align-items: center;

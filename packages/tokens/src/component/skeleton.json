@@ -1,0 +1,14 @@
+{
+  "component": {
+    "skeleton": {
+      "bg":            { "value": "{semantic.color.bg.disabled}" },
+      "radius":        { "value": "{semantic.radius.sm}" },
+      "circle-radius": { "value": "{semantic.radius.full}" },
+      "text-height":   { "value": "1em" },
+      "rect-height":   { "value": "{dimension.64}" },
+      "circle-size":   { "value": "{dimension.40}" },
+      "duration-pulse": { "value": "2000ms" },
+      "pulse-opacity": { "value": "{opacity.60}" }
+    }
+  }
+}

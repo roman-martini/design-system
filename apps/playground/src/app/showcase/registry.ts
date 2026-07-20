@@ -68,6 +68,11 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     loadComponent: () => import('./toast/toast-showcase').then((m) => m.ToastShowcase),
   },
   {
+    slug: 'skeleton',
+    label: 'Skeleton',
+    loadComponent: () => import('./skeleton/skeleton-showcase').then((m) => m.SkeletonShowcase),
+  },
+  {
     slug: 'spinner',
     label: 'Spinner',
     loadComponent: () => import('./spinner/spinner-showcase').then((m) => m.SpinnerShowcase),

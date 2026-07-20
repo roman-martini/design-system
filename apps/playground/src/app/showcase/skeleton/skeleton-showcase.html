@@ -1,0 +1,50 @@
+<app-showcase-case title="Shapes y overrides" [snippet]="shapesSnippet">
+  <div class="playground__stack">
+    <ds-skeleton shape="text" />
+    <ds-skeleton shape="rect" />
+    <ds-skeleton shape="circle" />
+    <ds-skeleton shape="rect" width="12rem" height="6rem" radius="16px" />
+  </div>
+  <p class="playground__hint">
+    Defaults tokenizados por shape (<code>component.skeleton.*</code>, fondo
+    <code>bg.disabled</code> theme-aware); <code>width</code>/<code>height</code>/<code
+      >radius</code
+    >
+    aceptan cualquier valor CSS. Con <em>prefers-reduced-motion</em> el pulso se apaga (bloque
+    estático) — probalo emulándolo en DevTools.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Párrafo por composición" [snippet]="paragraphSnippet">
+  <div class="playground__stack">
+    <ds-skeleton />
+    <ds-skeleton />
+    <ds-skeleton width="60%" />
+  </div>
+  <p class="playground__hint">
+    Sin input <code>lines</code>: un párrafo se compone repitiendo <code>ds-skeleton</code> (la
+    última línea más corta). Los compuestos prearmados quedan como recipes, no como componentes.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Card compuesta y anuncio por contenedor" [snippet]="cardSnippet">
+  <div
+    class="playground__skeleton-card"
+    role="status"
+    aria-label="Cargando perfil"
+    aria-busy="true"
+  >
+    <ds-skeleton shape="circle" />
+    <div class="playground__stack playground__skeleton-card-body">
+      <ds-skeleton width="40%" />
+      <ds-skeleton />
+      <ds-skeleton width="80%" />
+    </div>
+  </div>
+  <p class="playground__hint">
+    Cada bloque es decorativo (<code>aria-hidden</code>); quien anuncia la carga es el
+    <strong>contenedor</strong> del consumidor (<code>role="status"</code> +
+    <code>aria-label</code>/<code>aria-busy</code>). Así el lector de pantalla escucha un solo
+    anuncio, no uno por bloque.
+  </p>
+</app-showcase-case>

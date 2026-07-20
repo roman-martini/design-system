@@ -1,0 +1,41 @@
+:host {
+  display: block;
+  background: var(--ds-component-skeleton-bg);
+  border-radius: var(--ds-component-skeleton-radius);
+  animation: ds-skeleton-pulse var(--ds-component-skeleton-duration-pulse)
+    var(--ds-motion-easing-ease-in-out) infinite;
+}
+
+:host([data-shape='text']) {
+  width: 100%;
+  height: var(--ds-component-skeleton-text-height);
+}
+
+:host([data-shape='rect']) {
+  width: 100%;
+  height: var(--ds-component-skeleton-rect-height);
+}
+
+:host([data-shape='circle']) {
+  width: var(--ds-component-skeleton-circle-size);
+  height: var(--ds-component-skeleton-circle-size);
+  border-radius: var(--ds-component-skeleton-circle-radius);
+}
+
+@keyframes ds-skeleton-pulse {
+  0%,
+  100% {
+    opacity: var(--ds-opacity-100);
+  }
+  50% {
+    opacity: var(--ds-component-skeleton-pulse-opacity);
+  }
+}
+
+/* Reduced motion apaga (no reemplaza): el placeholder ya comunica estructura
+   sin moverse (design §4 — a diferencia del spinner, aaa-023). */
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    animation: none;
+  }
+}
