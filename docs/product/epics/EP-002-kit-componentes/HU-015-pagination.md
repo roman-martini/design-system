@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-20) — [`aaa-028 components-add-pagination`](../../../../openspec/changes/archive/aaa-028-components-add-pagination/) archivado; 18 tests (7 de pageWindow + 11 de componente), review con 2 hallazgos bajos aplicados (@empty + selección por rol en tests), gate AA limpio, sin ADR (reutiliza ADR-011/012). Verificación manual pendiente del PO: ventana al navegar (sin saltos de layout), hover/current en light y dark, y la compacta en playground `/pagination`
+**Estado**: Hecha (2026-07-20) — [`aaa-028 components-add-pagination`](../../../../openspec/changes/archive/aaa-028-components-add-pagination/) archivado; 18 tests (7 de pageWindow + 11 de componente), review con 2 hallazgos bajos aplicados (@empty + selección por rol en tests), gate AA limpio, sin ADR (reutiliza ADR-011/012). Verificación manual del PO en playground OK (2026-07-20): ventana al navegar sin saltos de layout, hover/current en light y dark, y la compacta en `/pagination`
 **Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
 
 ---

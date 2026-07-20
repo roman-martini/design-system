@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-20) — [`aaa-029 components-add-progress`](../../../../openspec/changes/archive/aaa-029-components-add-progress/) archivado; 9 tests, review con 1 media + 1 baja aplicadas (opacity tokenizada, binding muerto), gate UI 3:1 12/12 (fix local: fills vía `text.*`), sin ADR. **Completa la tanda 2 (D-011)**. Verificación manual pendiente del PO: animación indeterminada + pulso reduced-motion, transición determinada y tonos en light/dark en playground `/progress`
+**Estado**: Hecha (2026-07-20) — [`aaa-029 components-add-progress`](../../../../openspec/changes/archive/aaa-029-components-add-progress/) archivado; 9 tests, review con 1 media + 1 baja aplicadas (opacity tokenizada, binding muerto), gate UI 3:1 12/12 (fix local: fills vía `text.*`), sin ADR. **Completa la tanda 2 (D-011)**. Verificación manual del PO en playground OK (2026-07-20): animación indeterminada + pulso reduced-motion, transición determinada y tonos en light/dark en `/progress`
 **Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
 
 ---
