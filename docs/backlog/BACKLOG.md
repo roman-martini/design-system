@@ -33,11 +33,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Origen**: cuarta pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales" — promovida al cerrar `components-add-breadcrumbs` (`aaa-027`, 2026-07-20). Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); la última (Progress) se promueve acá al cerrar esta.
 
-**Alcance propuesto**: modelo de API (página actual + total vs pageSize/totalItems), elipsis para rangos largos, `<nav aria-label>` + `aria-current="page"`, labels accesibles configurables (anterior/siguiente), variante compacta a evaluar, tokens `component.pagination.*`. Refinar la HU (CAs binarios) antes de crear el change.
+**Alcance refinado** (HU-015, PO 2026-07-20): modelo `page`+`totalPages` two-way, ventana `siblingCount` con "…" estático, variante compacta en v1, first/last en v1, disabled de extremos por ADR-011, labels configurables (default español), tokens `component.pagination.*`.
 
 **Disparador**: activado — tanda 2 aprobada (D-011), pieza anterior cerrada.
 
-**Estado**: pendiente de refinamiento (Now).
+**Estado**: HU Refinada — lista para propose (`aaa-028`).
 
 ---
 
