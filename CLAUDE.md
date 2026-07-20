@@ -25,7 +25,7 @@ design-system/
 │   │   ├── decisions-log.md     # Índice tabular de decisiones
 │   │   └── adr/                 # ADRs en formato MADR
 │   ├── product/                 # Producto: épicas, HUs, decisiones D-XXX
-│   ├── backlog/                 # BACKLOG.md (Now/Next/Later) + FUTURE-WORK.md (cantera)
+│   ├── backlog/                 # BACKLOG.md (Now/Next/Later + Cantera)
 │   └── reference/               # Material de referencia (no normativo, otros repos)
 ├── openspec/                    # Specs y propuestas de cambio significativo
 │   ├── config.yaml
@@ -75,7 +75,7 @@ Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si te
 | ¿Cómo debe trabajar Claude acá?                             | `CLAUDE.md` (este archivo)            | Contrato Claude ↔ repo                                                    |
 | ¿Qué valor, para qué actor, por qué ahora? (producto)       | `docs/product/`                       | Épicas + HUs + decisiones de producto (D-XXX)                             |
 | ¿Qué está en cola y cuándo se activa? (backlog operativo)   | `docs/backlog/BACKLOG.md`             | Cola Now/Next/Later con disparadores                                      |
-| Componentes futuros + tokens faltantes (cantera del DS)     | `docs/backlog/FUTURE-WORK.md`         | Backlog inspiracional (no normativo)                                      |
+| Componentes futuros + tokens faltantes (cantera del DS)     | `docs/backlog/BACKLOG.md` § Cantera   | Ideas sin disparador (inspiracional, no compromiso)                       |
 | Material de investigación de referencia (no normativo)      | `docs/reference/`                     | Histórico/inspiración                                                     |
 
 ### Reglas para no mezclar

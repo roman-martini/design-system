@@ -4,7 +4,7 @@
 
 ## Contexto
 
-Nivel 2 del roadmap de madurez de [FUTURE-WORK](../../../backlog/FUTURE-WORK.md): pasar de "componentes que funcionan y se testean" a "calidad verificada automáticamente" — a11y auditada, consistencia de tokens vigilada, y el flujo de crear componentes asistido. El beneficiario directo es el mantenedor; el indirecto, todo consumidor.
+Nivel 2 del [roadmap de madurez](../../../reference/roadmap-madurez-ds.md) (referencia): pasar de "componentes que funcionan y se testean" a "calidad verificada automáticamente" — a11y auditada, consistencia de tokens vigilada, y el flujo de crear componentes asistido. El beneficiario directo es el mantenedor; el indirecto, todo consumidor.
 
 ## Alcance
 

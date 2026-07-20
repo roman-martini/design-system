@@ -41,14 +41,14 @@ Principio: **todo lo que pertenece a una épica vive en su carpeta**. Lo que cru
 
 Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuente de verdad existente:
 
-| Artefacto                                                  | Responde                                          | Relación con producto                                         |
-| ---------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------- |
-| `docs/product/` (HUs, épicas, D-XXX)                       | ¿Qué valor, para qué actor, por qué ahora?        | Una HU Refinada se **ejecuta** vía uno o más changes OpenSpec |
-| `openspec/changes/` (`aaa-NNN`)                            | ¿Cómo se ejecuta un cambio significativo?         | El change referencia la HU que materializa (si existe)        |
-| `openspec/specs/`                                          | ¿Qué debe hacer el sistema? (contratos testables) | Los CAs de una HU se vuelven scenarios de spec al implementar |
-| `docs/architecture/adr/`                                   | ¿Por qué esta decisión técnica?                   | Las D-XXX son de **producto/negocio**; lo técnico va a ADR    |
-| [`docs/backlog/`](../backlog/BACKLOG.md)                   | Cola operativa con disparadores (Now/Next/Later)  | El roadmap de producto se materializa como items del backlog  |
-| [`docs/backlog/FUTURE-WORK.md`](../backlog/FUTURE-WORK.md) | Inspiración no normativa                          | Cantera de HUs candidatas                                     |
+| Artefacto                                                                           | Responde                                          | Relación con producto                                         |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------- |
+| `docs/product/` (HUs, épicas, D-XXX)                                                | ¿Qué valor, para qué actor, por qué ahora?        | Una HU Refinada se **ejecuta** vía uno o más changes OpenSpec |
+| `openspec/changes/` (`aaa-NNN`)                                                     | ¿Cómo se ejecuta un cambio significativo?         | El change referencia la HU que materializa (si existe)        |
+| `openspec/specs/`                                                                   | ¿Qué debe hacer el sistema? (contratos testables) | Los CAs de una HU se vuelven scenarios de spec al implementar |
+| `docs/architecture/adr/`                                                            | ¿Por qué esta decisión técnica?                   | Las D-XXX son de **producto/negocio**; lo técnico va a ADR    |
+| [`docs/backlog/`](../backlog/BACKLOG.md)                                            | Cola operativa con disparadores (Now/Next/Later)  | El roadmap de producto se materializa como items del backlog  |
+| [`docs/backlog/BACKLOG.md` § Cantera](../backlog/BACKLOG.md#cantera-sin-disparador) | Inspiración no normativa                          | Cantera de HUs candidatas (ideas sin disparador)              |
 
 ## Índice de épicas
 
@@ -73,7 +73,7 @@ Sin fechas: el avance lo marcan los **disparadores** (D-005) y el orden operativ
 | **H2 — Libs consumibles desde otros repos**  | Primer release npm: [HU-002](epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) (EP-003) | Un proyecto externo instala desde npm y arranca con el quickstart | **Cumplido** (2026-07-18) — 0.2.0/0.2.0 en npm, consumo verificado ([D-010](decisiones.md), aaa-020)                                               |
 | **H3 — Puente con diseño**                   | Figma export: [HU-001](epics/EP-004-puente-codigo-diseno/HU-001-tokens-en-figma.md) (EP-004)          | Variables de Figma sincronizadas desde el código (one-way, D-006) | aaa-012 propuesto, 4/4 artefactos; en pausa por el PO                                                                                              |
 
-Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualquier momento. El horizonte más largo (multi-framework, patterns/recipes) vive en [FUTURE-WORK § niveles de madurez](../backlog/FUTURE-WORK.md#estado-actual-respecto-a-los-niveles-de-madurez); no es compromiso.
+Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualquier momento. El horizonte más largo (multi-framework, patterns/recipes) vive en la [Cantera del BACKLOG](../backlog/BACKLOG.md#cantera-sin-disparador) (marco conceptual: [roadmap de madurez](../reference/roadmap-madurez-ds.md)); no es compromiso.
 
 ### Foto táctica
 
@@ -127,7 +127,7 @@ Para épicas: Identificada → En refinamiento → Refinada (todas sus HUs refin
 
 ## Flujo de trabajo
 
-1. **Idea nueva** → si es grande, crear carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como documento homónimo `EP-XXX-nombre-corto.md`; si es chica, crear la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada). Las HUs candidatas sin refinar pueden listarse en el documento de la épica sin archivo propio. Las ideas crudas sin disparador van a [FUTURE-WORK](../backlog/FUTURE-WORK.md) (la cantera), no generan artefactos acá.
+1. **Idea nueva** → si es grande, crear carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como documento homónimo `EP-XXX-nombre-corto.md`; si es chica, crear la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada). Las HUs candidatas sin refinar pueden listarse en el documento de la épica sin archivo propio. Las ideas crudas sin disparador van a la [Cantera del BACKLOG](../backlog/BACKLOG.md#cantera-sin-disparador), no generan artefactos acá.
 2. **Refinamiento** → cada ambigüedad se resuelve con el product owner y se registra como **D-XXX en [decisiones.md](decisiones.md)** — las HUs referencian decisiones, no las repiten.
 3. **Ejecución** → una HU Refinada se implementa vía **change OpenSpec** (`aaa-NNN`, flujo del repo). Las decisiones técnicas que surjan van como ADR a `docs/architecture/adr/`.
 4. **Cierre** → CAs tildados al archivar el change, estado Hecha. La épica se cierra cuando todas sus HUs están Hechas (o queda abierta como flujo continuo).
@@ -139,4 +139,4 @@ Para épicas: Identificada → En refinamiento → Refinada (todas sus HUs refin
 - **Los CAs son binarios**: se puede responder sí/no sin interpretación. Formato Dado/Cuando/Entonces.
 - **Las decisiones viven en un solo lugar** (decisiones.md); épicas y HUs enlazan por ID. Nada de copiar la decisión en tres archivos.
 - **Fuera de alcance explícito** en cada HU: lo que no está escrito ahí se discute, no se asume.
-- **Sin HUs hipotéticas**: una HU entra cuando hay disparador o necesidad real (misma regla que el BACKLOG). FUTURE-WORK es la cantera, no el contrato.
+- **Sin HUs hipotéticas**: una HU entra cuando hay disparador o necesidad real (misma regla que el BACKLOG). La Cantera del BACKLOG es inspiración, no contrato.

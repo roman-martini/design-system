@@ -13,6 +13,7 @@ Este directorio sirve como **base de conocimiento histórica e inspiracional**:
 | Archivo / carpeta | Tema |
 |-------------------|------|
 | [`contexto_inicial.md`](contexto_inicial.md) | Pedido original del PO (2026-05-29) que dio origen al repo. Histórico, referenciado por D-001 y `docs/product/README.md`. |
+| [`roadmap-madurez-ds.md`](roadmap-madurez-ds.md) | Marco conceptual de madurez de un DS (5 niveles, métricas, anti-patrones), del repo de investigación previo. Ex columna vertebral de `FUTURE-WORK.md`. |
 | [`taxonomias_arq_software.md`](taxonomias_arq_software.md) | Taxonomía general de arquitecturas de software (sistema, aplicación, frontend, backend, datos, infra, seguridad). Mapa de referencia. |
 | [`arquitectura_frontend/`](arquitectura_frontend/) | Material específico sobre arquitectura frontend: estilos CSS architecture, design systems, comparativa industria. |
 
@@ -26,4 +27,4 @@ Este directorio sirve como **base de conocimiento histórica e inspiracional**:
 
 - [`docs/architecture/README.md`](../architecture/README.md) — síntesis arquitectónica del repo actual (fuente de verdad).
 - [`docs/architecture/PLAYBOOK.md`](../architecture/PLAYBOOK.md) — cómo replicar esta arquitectura en otro repo.
-- [`docs/backlog/FUTURE-WORK.md`](../backlog/FUTURE-WORK.md) — backlog del DS (componentes y tokens futuros).
+- [`docs/backlog/BACKLOG.md`](../backlog/BACKLOG.md) — cola operativa del DS (horizontes + Cantera de ideas sin disparador).

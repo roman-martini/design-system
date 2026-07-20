@@ -1,23 +1,25 @@
 # Backlog operativo — design-system
 
-Cola **accionable** de trabajo pendiente (componentes, tokens, refactors, tooling), organizada por horizonte **Now / Next / Later**. Responde "¿qué se puede arrancar ya y qué está esperando qué?".
+Cola **accionable** de trabajo pendiente (componentes, tokens, refactors, tooling), organizada por horizonte **Now / Next / Later**, más una **[Cantera](#cantera-sin-disparador)** de ideas sin disparador. Responde "¿qué se puede arrancar ya y qué está esperando qué?".
+
+Este archivo **no define la dirección del producto**: la dirección ("qué sigue y por qué") vive en [docs/product/README.md § Roadmap](../product/README.md#roadmap) (hitos con condición de salida + tandas aprobadas por D-XXX). Acá solo se ordena la cola de lo ya decidido o lo que espera un disparador.
 
 No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLAUDE.md)):
 
 | Fuente                                       | Rol                                                                                                        |
 | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Este archivo**                             | Cola operativa: items concretos con disparador y horizonte                                                 |
-| [docs/product/](../product/README.md)        | El porqué: épicas, HUs y decisiones de producto — cada item de acá enlaza su HU/EP si existe               |
+| **Este archivo**                             | Cola operativa: items con disparador y horizonte + Cantera (ideas sin disparador, no compromiso)           |
+| [docs/product/](../product/README.md)        | El porqué y la dirección: épicas, HUs, decisiones de producto (D-XXX) y roadmap de hitos                   |
 | [openspec/changes/](../../openspec/changes/) | Ejecución: cuando un item se activa, se convierte en change `aaa-NNN` (o commit directo) y **sale de acá** |
-| [FUTURE-WORK](FUTURE-WORK.md)                | Cantera inspiracional sin compromiso — lo que ni siquiera tiene disparador definido                        |
 
 ## Cómo se gestiona
 
-1. **Entrada**: un item entra solo con **disparador concreto** (cuándo se activa). Sin disparador → va a FUTURE-WORK, no acá. Se usa la [plantilla](#plantilla-para-nuevos-items) y se enlaza la HU/épica de producto si existe.
+1. **Entrada**: un item entra a un horizonte solo con **disparador concreto** (cuándo se activa). Sin disparador → va a la [Cantera](#cantera-sin-disparador), no a los horizontes. Se usa la [plantilla](#plantilla-para-nuevos-items) y se enlaza la HU/épica de producto si existe.
 2. **Horizontes**:
    - **Now** — disparador **activado** o decisión tomada: se puede arrancar en la próxima sesión.
    - **Next** — disparador definido pero no activado, o esperando una decisión puntual del PO.
    - **Later** — disparador definido pero lejano; sin urgencia ni fecha.
+   - **Cantera** — sin disparador definido: inspiración, no compromiso (D-005). Un ítem sube a un horizonte cuando gana disparador.
 3. **Activación**: item OpenSpec → `/opsx:propose <slug>` (convención e ID en [openspec/README.md](../../openspec/README.md)); item de tooling/docs → commit directo. Al activarse, el item cambia a estado `propuesta activa` con link al change, y **se elimina de acá cuando el change se archiva** (el histórico vive en el [catálogo de changes](../architecture/README.md#catálogo-de-changes)).
 4. **Grooming**: al **archivar cada change** se revisita este archivo — se reevalúan disparadores (¿alguno se activó?), se promueven items entre horizontes y se eliminan los cerrados. Es el mismo momento en que se actualizan catálogo y `openspec/README.md`, así el backlog nunca deriva.
 
@@ -27,7 +29,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 > **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 8: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination y Progress) y el release NO es candidato automático.
 
-**§ Now está vacío** (2026-07-20): la **tanda 2 quedó completa** con `aaa-029` — no hay más piezas de componente en cola. La próxima entrada la decide el PO; candidatos naturales: retomar `tokens-figma-export` (Next, en pausa), activar `/ds:audit-tokens` (Next, disparador dudoso), los ítems de mantenimiento de `TASK.md`, o definir una tanda 3 con nueva D-XXX. El hito H1 espera su condición de salida (una app real 100% con el DS).
+**§ Now está vacío** (2026-07-20): la **tanda 2 quedó completa** con `aaa-029`. La próxima entrada la decide el PO desde la dirección de producto ([Roadmap de hitos](../product/README.md#roadmap) + nueva D-XXX si corresponde); este archivo no propone candidatos.
 
 ---
 
@@ -87,6 +89,44 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ---
 
+## Cantera (sin disparador)
+
+> Ideas deseables **sin disparador definido** — inspiración, no compromiso (D-005). Absorbe lo vigente del ex `FUTURE-WORK.md` (fusionado el 2026-07-20); el marco conceptual que lo acompañaba (niveles de madurez, métricas, anti-patrones) vive en [docs/reference/roadmap-madurez-ds.md](../reference/roadmap-madurez-ds.md). Un ítem sube a un horizonte cuando gana disparador concreto; al hacerlo se le da formato de plantilla.
+
+### Componentes
+
+| Componente     | Notas                                                                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Stepper**    | Pasos discretos de un flujo; descartado del alcance de Progress ([HU-016](../product/epics/EP-002-kit-componentes/HU-016-progress.md)) |
+| **Slider**     | Range input                                                                                                                            |
+| **DatePicker** | **Wrapping** de librería existente (`flatpickr`, `vanilla-calendar`) — no construir desde cero (anti-patrón documentado)               |
+
+### Tokens
+
+- **Breakpoints** (`semantic/breakpoint.json`, mobile-first: sm 640 / md 768 / lg 1024 / xl 1280 / 2xl 1536) — los necesita el primer componente responsive.
+- **Motion adicional**: `delay` (0–300 ms) y easings extra (`bounce`, `back-in`, `back-out`).
+- **Density tokens** (`[data-density="compact"]`) — solo si aparece la necesidad, no por completitud.
+
+### Calidad profesional (nivel 2)
+
+- **A11y en CI**: `@storybook/test-runner` + `axe-playwright` — violaciones WCAG AA fallan el build.
+- **Docs de tokens en Storybook**: stories MDX para Colors, Spacing, Typography, Shadow, Motion.
+- **Visual regression**: Chromatic (free tier) o Playwright snapshots.
+- **Stylelint para forzar tokens**: valores hardcodeados fallan el lint (complementa a `/ds:audit-tokens`, en Next).
+- **Bundle size budget**: `size-limit` en CI por PR.
+
+### Distribución y consumo (nivel 3)
+
+- **Tokens TypeScript estructurados** (objeto vs constantes planas) — change futuro `tokens-rich-types`.
+- **Guía de migración/consumo** — cuando llegue la política 1.0 (D-004).
+
+### Horizonte largo (niveles 4–5, solo con necesidad real)
+
+- Multi-framework vía Web Components (Lit), tokens multi-platform (iOS/Android), sync bidireccional Figma, theme builder, modos extra (high contrast AAA, density, RTL) — sobre-ingeniería mientras haya un solo consumidor Angular.
+- **Patterns / recipes** (login, settings panel, data table, dashboard, empty/error states, onboarding) como stories compuestas, no componentes del package.
+
+---
+
 ## Plantilla para nuevos items
 
 ```markdown
@@ -94,7 +134,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit/transversal) | commit directo (housekeeping/tooling). **Producto**: [HU-XXX o EP-XXX](../product/...) (si existe).
 
-**Origen**: <por qué surge, link a ADR/research/FUTURE-WORK si aplica>
+**Origen**: <por qué surge, link a ADR/research/Cantera si aplica>
 
 **Alcance propuesto**:
 
@@ -117,8 +157,9 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Reglas para mantener este archivo
 
-- **Disparador obligatorio**: sin disparador concreto → "wishlist" → FUTURE-WORK, no acá.
-- **Sin features hipotéticas** (D-005): nada entra "por completitud".
+- **Disparador obligatorio en los horizontes**: sin disparador concreto → [Cantera](#cantera-sin-disparador), no Now/Next/Later.
+- **Sin features hipotéticas** (D-005): nada entra a un horizonte "por completitud"; la Cantera es inspiración explícitamente no comprometida.
+- **La dirección no vive acá**: qué sigue lo deciden los hitos y D-XXX de [docs/product/](../product/README.md#roadmap); este archivo no propone candidatos ni prioriza por su cuenta.
 - **Los items cerrados se eliminan**: el histórico vive en el [catálogo de changes](../architecture/README.md#catálogo-de-changes) y en `openspec/changes/archive/`. Este archivo solo tiene pendientes.
 - **Grooming al archivar cada change** (ver "Cómo se gestiona" §4): disparadores reevaluados, horizontes promovidos, cerrados eliminados.
 - **Un item = una entrada**: si crece a múltiples entregas independientes, se parte (como los tokens Atlassian).

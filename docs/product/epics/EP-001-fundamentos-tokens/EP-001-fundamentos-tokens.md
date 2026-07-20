@@ -25,7 +25,7 @@ Design tokens en jerarquía `primitives → semantic → component → theme` (A
 | --------------------------------------- | ----------------------------------------- | -------------- | ------------------------------------ |
 | [HU-004](HU-004-contraste-aa-tokens.md) | Tokens interactivos con contraste WCAG AA | Dev consumidor | Hecha (aaa-015 archivado 2026-07-11) |
 
-Candidatas (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § tokens, entran con disparador según D-005): breakpoints responsive (cuando haya primer componente responsive), motion adicional (delays/easings extra), density tokens, `space.0`/negative-space/metric-typography (research Atlassian).
+Candidatas ([BACKLOG § Cantera](../../../backlog/BACKLOG.md#cantera-sin-disparador) § tokens, entran con disparador según D-005): breakpoints responsive (cuando haya primer componente responsive), motion adicional (delays/easings extra), density tokens, `space.0`/negative-space/metric-typography (research Atlassian).
 
 ## Decisiones aplicables
 

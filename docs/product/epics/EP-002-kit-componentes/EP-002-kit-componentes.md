@@ -49,7 +49,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-015](HU-015-pagination.md)           | Pagination de listados                     | Dev consumidor | Hecha (2026-07-20, aaa-028)                          |
 | [HU-016](HU-016-progress.md)             | Progress de avance medible                 | Dev consumidor | Hecha (2026-07-20, aaa-029 — cierra la tanda 2)      |
 
-Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Las HU-012…HU-016 forman la **tanda 2** aprobada por [D-011](../../decisiones.md) con criterio "navegación y estructura de apps reales". Candidatas restantes (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, requieren disparador propio según D-005): Stepper, Slider, DatePicker (wrapping).
+Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Las HU-012…HU-016 forman la **tanda 2** aprobada por [D-011](../../decisiones.md) con criterio "navegación y estructura de apps reales". Candidatas restantes ([BACKLOG § Cantera](../../../backlog/BACKLOG.md#cantera-sin-disparador) § componentes, requieren disparador propio según D-005): Stepper, Slider, DatePicker (wrapping).
 
 ## Decisiones aplicables
 
