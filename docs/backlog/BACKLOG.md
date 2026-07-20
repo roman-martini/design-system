@@ -25,7 +25,19 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-(vacío — la **tanda 1 de D-009 está completa** con `aaa-024` Skeleton, 2026-07-19. Qué sigue es decisión del PO; candidatos naturales: retomar `tokens-figma-export` (aaa-012, en pausa) o definir una tanda 2 desde [FUTURE-WORK](FUTURE-WORK.md). **Publicar a npm está vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 2: Spinner y Skeleton) y el release NO es candidato automático.)
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 3: Toast, Spinner y Skeleton) y el release NO es candidato automático.
+
+### `components-add-menu` — Menu/Dropdown de acciones
+
+**Tipo**: OpenSpec (kit). **Producto**: [HU-012](../product/epics/EP-002-kit-componentes/HU-012-menu-dropdown.md) / EP-002.
+
+**Origen**: primera pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales". Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); las siguientes (Accordion, Breadcrumbs, Pagination, Progress) se promueven acá al cerrar la anterior.
+
+**Alcance propuesto**: menu button APG sobre Popover API (ADR-014), keyboard nav completa, items con icono/separador/disabled accesible, tokens `component.menu.*`. Refinar la HU (CAs binarios) antes de crear el change.
+
+**Disparador**: activado — tanda 2 aprobada (D-011).
+
+**Estado**: pendiente de refinamiento (Now).
 
 ---
 

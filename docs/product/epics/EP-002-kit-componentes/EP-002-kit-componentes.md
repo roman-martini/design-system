@@ -1,6 +1,6 @@
 # EP-002 — Kit de componentes Angular
 
-**Estado**: Tanda 1 completa (2026-07-19, aaa-024) — 11 componentes + 1 directiva + 1 service entregados; próxima expansión requiere nueva decisión de producto (D-005)
+**Estado**: Tanda 2 aprobada (2026-07-19, [D-011](../../decisiones.md)) — tanda 1 completa (aaa-024): 11 componentes + 1 directiva + 1 service entregados
 
 ## Contexto
 
@@ -38,8 +38,13 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Hecha (2026-07-18, aaa-021)                          |
 | [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Hecha (2026-07-19, aaa-023)                          |
 | [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Hecha (2026-07-19, aaa-024 — cierra la tanda 1)      |
+| [HU-012](HU-012-menu-dropdown.md)        | Menu/Dropdown de acciones                  | Dev consumidor | Identificada (tanda 2, D-011)                        |
+| [HU-013](HU-013-accordion.md)            | Accordion de contenido colapsable          | Dev consumidor | Identificada (tanda 2, D-011)                        |
+| [HU-014](HU-014-breadcrumbs.md)          | Breadcrumbs de ubicación                   | Dev consumidor | Identificada (tanda 2, D-011)                        |
+| [HU-015](HU-015-pagination.md)           | Pagination de listados                     | Dev consumidor | Identificada (tanda 2, D-011)                        |
+| [HU-016](HU-016-progress.md)             | Progress de avance medible                 | Dev consumidor | Identificada (tanda 2, D-011)                        |
 
-Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Candidatas restantes (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, requieren disparador propio según D-005): Progress, Accordion, Breadcrumbs, Pagination, Menu/Dropdown, DatePicker (wrapping).
+Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Las HU-012…HU-016 forman la **tanda 2** aprobada por [D-011](../../decisiones.md) con criterio "navegación y estructura de apps reales". Candidatas restantes (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, requieren disparador propio según D-005): Stepper, Slider, DatePicker (wrapping).
 
 ## Decisiones aplicables
 
@@ -47,4 +52,6 @@ Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../
 
 ## Orden sugerido
 
-Tanda 1 (D-009): **HU-003 Select → HU-005 Input** primero (formularios, el gap más grande), después **HU-006 Tabs**, **HU-007 Tooltip** (reutiliza la decisión de posicionamiento que tome el change de Select), y el trío de feedback **HU-008 Toast → HU-009 Spinner → HU-010 Skeleton**. Cada HU se refina (CAs binarios) justo antes de crear su change.
+Tanda 1 (D-009, completa): **HU-003 Select → HU-005 Input** primero (formularios, el gap más grande), después **HU-006 Tabs**, **HU-007 Tooltip** (reutiliza la decisión de posicionamiento que tome el change de Select), y el trío de feedback **HU-008 Toast → HU-009 Spinner → HU-010 Skeleton**. Cada HU se refina (CAs binarios) justo antes de crear su change.
+
+Tanda 2 (D-011): **HU-012 Menu/Dropdown** primero (el gap más grande del criterio de navegación; reutiliza Popover API de ADR-014), después **HU-013 Accordion**, y el par de navegación de listados **HU-014 Breadcrumbs → HU-015 Pagination**. **HU-016 Progress** es independiente del criterio (feedback) y puede intercalarse en cualquier punto. Misma regla: cada HU se refina justo antes de crear su change.
