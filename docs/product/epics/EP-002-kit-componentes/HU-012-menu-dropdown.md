@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-19) — [`aaa-025 components-add-menu`](../../../../openspec/changes/archive/aaa-025-components-add-menu/) archivado; 19 tests, review con 2 hallazgos aplicados (Tab + visibilidad), pares danger AA vía [D-012](../../decisiones.md), genera [ADR-016](../../../architecture/adr/ADR-016-posicionamiento-placements-por-overlay.md). Verificación manual pendiente del PO: árbol de submenús (lateral, flip, hover intent), light-dismiss y reduced-motion en playground
+**Estado**: Hecha (2026-07-19) — [`aaa-025 components-add-menu`](../../../../openspec/changes/archive/aaa-025-components-add-menu/) archivado; 19 tests, review con 2 hallazgos aplicados (Tab + visibilidad), pares danger AA vía [D-012](../../decisiones.md), genera [ADR-016](../../../architecture/adr/ADR-016-posicionamiento-placements-por-overlay.md). Verificación manual del PO en playground OK (2026-07-19): árbol de submenús (lateral, flip, hover intent), light-dismiss y reduced-motion
 **Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
 
 ---

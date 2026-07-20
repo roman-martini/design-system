@@ -25,7 +25,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 3: Toast, Spinner y Skeleton) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 4: Toast, Spinner, Skeleton y Menu) y el release NO es candidato automático.
 
 ### `components-add-accordion` — Accordion de contenido colapsable
 
@@ -33,11 +33,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Origen**: segunda pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales" — promovida al cerrar `components-add-menu` (`aaa-025`, 2026-07-19). Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); las siguientes (Breadcrumbs, Pagination, Progress) se promueven acá al cerrar la anterior.
 
-**Alcance propuesto**: single vs multi expand, patrón APG accordion, evaluación de `<details>/<summary>` nativo (criterio ADR-013), animación con reduced-motion, tokens `component.accordion.*`. Refinar la HU (CAs binarios) antes de crear el change.
+**Alcance refinado** (HU-013, PO 2026-07-19): expansión configurable default single, base APG heading+button+region (`<details>/<summary>` evaluado y descartado), accordions anidados en v1, disabled por ADR-011, animación con reduced-motion, tokens `component.accordion.*`.
 
 **Disparador**: activado — tanda 2 aprobada (D-011), pieza anterior cerrada.
 
-**Estado**: pendiente de refinamiento (Now).
+**Estado**: HU Refinada — lista para propose (`aaa-026`).
 
 ---
 
