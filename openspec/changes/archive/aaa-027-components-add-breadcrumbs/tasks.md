@@ -56,16 +56,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API con links proyectados (d
 - [x] 7.3 Auditoría **`/ng:review`** sobre `src/lib/breadcrumbs/` + `router/` — 0 altas, 1 media, 1 baja; **ambas aplicadas**: `track $index` → `track crumb.url` (colección dinámica; evita arrastrar estado entre crumbs al navegar) y `DsBreadcrumbsSeparator` extraída a `breadcrumbs-separator.ts` (un concepto por archivo). Excepciones de consistencia del repo documentadas por el review (handlers onX, focus imperativo, ::ng-deep único documentado) — sin cambios. Re-verificado: build + 201/201 + lint + format.
 - [x] 7.4 `npm pack --dry-run`: tarball íntegro (11 archivos) con FESM + types del entry principal y de `router/`, sin `*.spec.ts`/`*.stories.ts`.
 - [x] 7.5 Changeset único `.changeset/add-breadcrumbs.md` con **minor** de components (familia + entry point + peer opcional) y **minor** de tokens. Lockstep (ADR-015). **Sin publicar** (veto del PO vigente).
-- [ ] 7.6 Proponer mensaje de commit (split docs/feat) y **esperar OK del PO**.
+- [x] 7.6 Commits aprobados por el PO: docs `368a1c7` (propose) y feat `454eda0` (implementación completa).
 
 **Criterio**: automáticos verdes; gates resueltos; changeset correcto; aprobación explícita antes del commit.
 
 ## 8. ADR + archive
 
-- [ ] 8.1 Escribir el **ADR de secondary entry points** (confirmado en proposal §Impact): criterio de creación, estructura ng-packagr, peers opcionales, relación con ADR-004 §surface; fila en `decisions-log.md`.
-- [ ] 8.2 Mover a `archive/aaa-027-components-add-breadcrumbs/`; frontmatter `archived` + spec base `components-package` sincronizada.
-- [ ] 8.3 Registros: `openspec/README.md`, catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Breadcrumbs sale de Now; `components-add-pagination` — HU-015 — promovido a Now), HU-014 → Hecha con CAs tildados, EP-002 actualizado (3/5).
-- [ ] 8.4 `pnpm openspec validate --all` pasa.
-- [ ] 8.5 Commit del archive propuesto y aprobado por el PO.
+- [x] 8.1 Escrito **[ADR-017](../../../docs/architecture/adr/ADR-017-secondary-entry-points.md)** (confirmado en proposal §Impact): criterio de creación, estructura ng-packagr, peers opcionales, relación con ADR-004 §surface; fila en `decisions-log.md`.
+- [x] 8.2 Movido a `archive/aaa-027-components-add-breadcrumbs/`; frontmatter `archived: 2026-07-20` + ADR-017 en related-adrs + spec base `components-package` sincronizada (ADDED autocontenido).
+- [x] 8.3 Registros: `openspec/README.md`, catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Breadcrumbs sale de Now; `components-add-pagination` — HU-015 — promovido a Now), HU-014 → Hecha con CAs tildados, EP-002 actualizado (3/5).
+- [x] 8.4 `pnpm openspec validate --all` pasa.
+- [x] 8.5 Commit del archive propuesto y aprobado por el PO (2026-07-20).
 
 **Criterio**: change archivado, ADR escrito, spec base sincronizada, registros al día.

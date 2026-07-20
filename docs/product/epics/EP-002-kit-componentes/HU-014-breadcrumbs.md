@@ -2,7 +2,7 @@
 
 **Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
 **Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-20) — tanda 2, [D-011](../../decisiones.md)
+**Estado**: Hecha (2026-07-20) — [`aaa-027 components-add-breadcrumbs`](../../../../openspec/changes/archive/aaa-027-components-add-breadcrumbs/) archivado; 15 tests (11 core + 4 router), review con 1 media + 1 baja aplicadas (track por url, directiva a archivo propio), gate AA con fix local (`ellipsis.text-hover`), genera [ADR-017](../../../architecture/adr/ADR-017-secondary-entry-points.md) (secondary entry points). Verificación manual pendiente del PO: wrap responsive, truncamiento/expansión con foco y auto-rutas navegando el playground `/breadcrumbs`
 **Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
 
 ---
@@ -22,13 +22,13 @@
 
 <!-- Al implementar, estos CAs se vuelven scenarios del spec components-package (delta del change components-add-breadcrumbs). -->
 
-- [ ] **CA-014.1 (estructura accesible)** — Dado un `ds-breadcrumbs` con items proyectados, entonces el landmark es `<nav>` con nombre accesible configurable (default "breadcrumb") y los items se renderizan como lista ordenada (`<ol>`/`<li>`, patrón APG).
-- [ ] **CA-014.2 (links agnósticos y item actual)** — Dado un item con un link proyectado (`<a href>` o `routerLink`), entonces el link navega según lo declare el consumidor; dado el último item, entonces expone `aria-current="page"` automáticamente y se renderiza como ubicación actual (no requiere link).
-- [ ] **CA-014.3 (separador)** — Dado el default, entonces el separador es el chevron Lucide decorativo (`aria-hidden`, tokenizado); dado un template de separador proyectado, entonces se renderiza ese markup entre items; en ambos casos el separador no es focusable ni se anuncia.
-- [ ] **CA-014.4 (truncamiento opt-in)** — Dado `maxItems` y una jerarquía que lo supera, entonces se muestran el primero y los últimos con un botón "…" (con nombre accesible que indica cuántos niveles oculta) en lugar de los intermedios; cuando se activa, entonces los ocultos se revelan inline, el botón desaparece y el foco queda en el primer item revelado; sin `maxItems`, entonces nunca hay colapso.
-- [ ] **CA-014.5 (tokens)** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.breadcrumbs.*` nuevos + primitives/semantic existentes) y los pares de contraste que consuma (link, item actual, separador sobre superficie) pasan el gate AA por script.
-- [ ] **CA-014.6 (auto-generación desde rutas)** — Dado el entry point `@romanmartinidev/components/router` y rutas con `data.breadcrumb` (string o `(route) => string`), entonces la pieza arma los items desde el árbol de rutas activo omitiendo las rutas sin la data, y el item de la ruta activa queda como actual; dado un consumidor que NO importa ese entry point, entonces no necesita `@angular/router` instalado (peer opcional).
-- [ ] **CA-014.7 (showcase)** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-breadcrumbs` con: básico con links, separador custom por template, truncamiento con "…", auto-generación desde las rutas reales del playground y nota de accesibilidad.
+- [x] **CA-014.1 (estructura accesible)** — Dado un `ds-breadcrumbs` con items proyectados, entonces el landmark es `<nav>` con nombre accesible configurable (default "breadcrumb") y los items se renderizan como lista ordenada (`<ol>`/`<li>`, patrón APG).
+- [x] **CA-014.2 (links agnósticos y item actual)** — Dado un item con un link proyectado (`<a href>` o `routerLink`), entonces el link navega según lo declare el consumidor; dado el último item, entonces expone `aria-current="page"` automáticamente y se renderiza como ubicación actual (no requiere link).
+- [x] **CA-014.3 (separador)** — Dado el default, entonces el separador es el chevron Lucide decorativo (`aria-hidden`, tokenizado); dado un template de separador proyectado, entonces se renderiza ese markup entre items; en ambos casos el separador no es focusable ni se anuncia.
+- [x] **CA-014.4 (truncamiento opt-in)** — Dado `maxItems` y una jerarquía que lo supera, entonces se muestran el primero y los últimos con un botón "…" (con nombre accesible que indica cuántos niveles oculta) en lugar de los intermedios; cuando se activa, entonces los ocultos se revelan inline, el botón desaparece y el foco queda en el primer item revelado; sin `maxItems`, entonces nunca hay colapso.
+- [x] **CA-014.5 (tokens)** — Dado el CSS del componente, entonces todo valor sale de tokens (`component.breadcrumbs.*` nuevos + primitives/semantic existentes) y los pares de contraste que consuma (link, item actual, separador sobre superficie) pasan el gate AA por script.
+- [x] **CA-014.6 (auto-generación desde rutas)** — Dado el entry point `@romanmartinidev/components/router` y rutas con `data.breadcrumb` (string o `(route) => string`), entonces la pieza arma los items desde el árbol de rutas activo omitiendo las rutas sin la data, y el item de la ruta activa queda como actual; dado un consumidor que NO importa ese entry point, entonces no necesita `@angular/router` instalado (peer opcional).
+- [x] **CA-014.7 (showcase)** — Dado el playground, entonces el showcase (EP-006) incluye la página de `ds-breadcrumbs` con: básico con links, separador custom por template, truncamiento con "…", auto-generación desde las rutas reales del playground y nota de accesibilidad.
 
 ## Dependencias
 

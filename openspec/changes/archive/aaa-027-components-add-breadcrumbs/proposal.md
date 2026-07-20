@@ -2,12 +2,14 @@
 id: aaa-027
 name: components-add-breadcrumbs
 type: change
-status: proposed
+status: archived
+archived: 2026-07-20
 modifies-specs:
   - components-package (ADDED: DsBreadcrumbs, DsBreadcrumbItem + entry point router)
   - design-tokens-package (sin delta de spec; component.breadcrumbs nuevo referenciando semantic/primitives)
 related-adrs:
   - ADR-004
+  - ADR-017
   - ADR-007
   - ADR-012
 ---

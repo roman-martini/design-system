@@ -1,6 +1,6 @@
 # EP-002 — Kit de componentes Angular
 
-**Estado**: Tanda 2 en curso (2/5: Menu y Accordion Hechas, aaa-025/aaa-026) — tanda 1 completa (aaa-024); 13 entregas de componentes + 2 directivas + 1 service
+**Estado**: Tanda 2 en curso (3/5: Menu, Accordion y Breadcrumbs Hechas, aaa-025/026/027) — tanda 1 completa (aaa-024); 14 entregas de componentes + 3 directivas + 1 service
 
 ## Contexto
 
@@ -28,6 +28,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | `DsSkeleton` (shapes con defaults tokenizados, overrides CSS libres)     | [aaa-024](../../../../openspec/changes/archive/aaa-024-components-add-skeleton/)                                                                                              | Placeholders estables sin layout shift                   |
 | Familia `DsMenu` (menu button APG, submenús anidados, danger, typeahead) | [aaa-025](../../../../openspec/changes/archive/aaa-025-components-add-menu/)                                                                                                  | Acciones contextuales accesibles con teclado completo    |
 | Familia `DsAccordion` (accordion APG, single/multi, anidados)            | [aaa-026](../../../../openspec/changes/archive/aaa-026-components-add-accordion/)                                                                                             | Contenido colapsable accesible para settings/FAQs        |
+| Familia `DsBreadcrumbs` (breadcrumb APG, truncado, auto-rutas)           | [aaa-027](../../../../openspec/changes/archive/aaa-027-components-add-breadcrumbs/)                                                                                           | Ubicación jerárquica; primer secondary entry point       |
 
 ## Historias de usuario
 
@@ -42,7 +43,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Hecha (2026-07-19, aaa-024 — cierra la tanda 1)      |
 | [HU-012](HU-012-menu-dropdown.md)        | Menu/Dropdown de acciones                  | Dev consumidor | Hecha (2026-07-19, aaa-025 — genera ADR-016)         |
 | [HU-013](HU-013-accordion.md)            | Accordion de contenido colapsable          | Dev consumidor | Hecha (2026-07-20, aaa-026)                          |
-| [HU-014](HU-014-breadcrumbs.md)          | Breadcrumbs de ubicación                   | Dev consumidor | Refinada (2026-07-20, tanda 2, D-011)                |
+| [HU-014](HU-014-breadcrumbs.md)          | Breadcrumbs de ubicación                   | Dev consumidor | Hecha (2026-07-20, aaa-027 — genera ADR-017)         |
 | [HU-015](HU-015-pagination.md)           | Pagination de listados                     | Dev consumidor | Identificada (tanda 2, D-011)                        |
 | [HU-016](HU-016-progress.md)             | Progress de avance medible                 | Dev consumidor | Identificada (tanda 2, D-011)                        |
 

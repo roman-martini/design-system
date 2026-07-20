@@ -25,19 +25,19 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 5: Toast, Spinner, Skeleton, Menu y Accordion) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 6: Toast, Spinner, Skeleton, Menu, Accordion y Breadcrumbs) y el release NO es candidato automático.
 
-### `components-add-breadcrumbs` — Breadcrumbs de ubicación
+### `components-add-pagination` — Pagination de listados
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-014](../product/epics/EP-002-kit-componentes/HU-014-breadcrumbs.md) / EP-002.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-015](../product/epics/EP-002-kit-componentes/HU-015-pagination.md) / EP-002.
 
-**Origen**: tercera pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales" — promovida al cerrar `components-add-accordion` (`aaa-026`, 2026-07-20). Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); las siguientes (Pagination, Progress) se promueven acá al cerrar la anterior.
+**Origen**: cuarta pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales" — promovida al cerrar `components-add-breadcrumbs` (`aaa-027`, 2026-07-20). Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); la última (Progress) se promueve acá al cerrar esta.
 
-**Alcance refinado** (HU-014, PO 2026-07-20): core agnóstico con links proyectados, separador por template (default chevron ADR-012), truncamiento opt-in con "…" inline (`maxItems`), auto-generación desde rutas como **secondary entry point** `components/router` con peer opcional (genera ADR al cerrar), tokens `component.breadcrumbs.*`.
+**Alcance propuesto**: modelo de API (página actual + total vs pageSize/totalItems), elipsis para rangos largos, `<nav aria-label>` + `aria-current="page"`, labels accesibles configurables (anterior/siguiente), variante compacta a evaluar, tokens `component.pagination.*`. Refinar la HU (CAs binarios) antes de crear el change.
 
 **Disparador**: activado — tanda 2 aprobada (D-011), pieza anterior cerrada.
 
-**Estado**: HU Refinada — lista para propose (`aaa-027`).
+**Estado**: pendiente de refinamiento (Now).
 
 ---
 
