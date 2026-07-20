@@ -25,7 +25,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-(vacío — la **tanda 1 de D-009 está completa** con `aaa-024` Skeleton, 2026-07-19. Qué sigue es decisión del PO; candidatos naturales: release del acumulado Toast+Spinner+Skeleton (2 changesets pendientes), retomar `tokens-figma-export` (aaa-012, en pausa), o definir una tanda 2 desde [FUTURE-WORK](FUTURE-WORK.md).)
+(vacío — la **tanda 1 de D-009 está completa** con `aaa-024` Skeleton, 2026-07-19. Qué sigue es decisión del PO; candidatos naturales: retomar `tokens-figma-export` (aaa-012, en pausa) o definir una tanda 2 desde [FUTURE-WORK](FUTURE-WORK.md). **Publicar a npm está vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 2: Spinner y Skeleton) y el release NO es candidato automático.)
 
 ---
 
