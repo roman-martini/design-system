@@ -1,0 +1,30 @@
+{
+  "component": {
+    "pagination": {
+      "item": {
+        "min-width": { "value": "{dimension.32}" },
+        "height": { "value": "{dimension.32}" },
+        "radius": { "value": "{semantic.radius.md}" },
+        "font-size": { "value": "{semantic.font.size.body-sm}" },
+        "gap": { "value": "{semantic.space.2xs}" },
+        "text": { "value": "{semantic.color.text.secondary}" },
+        "text-hover": { "value": "{semantic.color.text.primary}" },
+        "bg-hover": { "value": "{semantic.color.bg.secondary-hover}" }
+      },
+      "current": {
+        "bg": { "value": "{semantic.color.bg.primary}" },
+        "text": { "value": "{semantic.color.text.inverse}" },
+        "font-weight": { "value": "{font.weight.medium}" }
+      },
+      "disabled": {
+        "text": { "value": "{semantic.color.text.disabled}" }
+      },
+      "counter": {
+        "text": { "value": "{semantic.color.text.secondary}" }
+      },
+      "chevron": {
+        "size": { "value": "{dimension.16}" }
+      }
+    }
+  }
+}

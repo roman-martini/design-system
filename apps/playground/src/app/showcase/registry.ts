@@ -74,6 +74,12 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     loadComponent: () => import('./accordion/accordion-showcase').then((m) => m.AccordionShowcase),
   },
   {
+    slug: 'pagination',
+    label: 'Pagination',
+    loadComponent: () =>
+      import('./pagination/pagination-showcase').then((m) => m.PaginationShowcase),
+  },
+  {
     slug: 'tooltip',
     label: 'Tooltip',
     loadComponent: () => import('./tooltip/tooltip-showcase').then((m) => m.TooltipShowcase),

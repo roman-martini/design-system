@@ -1,0 +1,98 @@
+<nav class="ds-pagination" [attr.aria-label]="ariaLabel()">
+  <ul class="ds-pagination__list" role="list">
+    <li>
+      <button
+        type="button"
+        class="ds-pagination__control"
+        [attr.aria-label]="firstLabel()"
+        [attr.aria-disabled]="isFirstPage() ? 'true' : null"
+        (click)="onFirst()"
+      >
+        <svg
+          lucideChevronsLeft
+          size="16"
+          strokeWidth="1.5"
+          aria-hidden="true"
+          class="ds-pagination__chevron"
+        ></svg>
+      </button>
+    </li>
+    <li>
+      <button
+        type="button"
+        class="ds-pagination__control"
+        [attr.aria-label]="prevLabel()"
+        [attr.aria-disabled]="isFirstPage() ? 'true' : null"
+        (click)="onPrev()"
+      >
+        <svg
+          lucideChevronLeft
+          size="16"
+          strokeWidth="1.5"
+          aria-hidden="true"
+          class="ds-pagination__chevron"
+        ></svg>
+      </button>
+    </li>
+    @if (variant() === 'numbered') { @for (item of window(); track item === 'ellipsis' ? 'e' +
+    $index : item) {
+    <li>
+      @if (item === 'ellipsis') {
+      <span class="ds-pagination__ellipsis" aria-hidden="true">…</span>
+      } @else {
+      <button
+        type="button"
+        class="ds-pagination__page"
+        [attr.aria-label]="pageLabel() + ' ' + item"
+        [attr.aria-current]="item === effectivePage() ? 'page' : null"
+        (click)="goTo(item)"
+      >
+        {{ item }}
+      </button>
+      }
+    </li>
+    } @empty {
+    <!-- totalPages <= 0: sin páginas que renderizar (caso degenerado intencional) -->
+    } } @else {
+    <li>
+      <span class="ds-pagination__counter">
+        {{ effectivePage() }} {{ ofLabel() }} {{ totalPages() }}
+      </span>
+    </li>
+    }
+    <li>
+      <button
+        type="button"
+        class="ds-pagination__control"
+        [attr.aria-label]="nextLabel()"
+        [attr.aria-disabled]="isLastPage() ? 'true' : null"
+        (click)="onNext()"
+      >
+        <svg
+          lucideChevronRight
+          size="16"
+          strokeWidth="1.5"
+          aria-hidden="true"
+          class="ds-pagination__chevron"
+        ></svg>
+      </button>
+    </li>
+    <li>
+      <button
+        type="button"
+        class="ds-pagination__control"
+        [attr.aria-label]="lastLabel()"
+        [attr.aria-disabled]="isLastPage() ? 'true' : null"
+        (click)="onLast()"
+      >
+        <svg
+          lucideChevronsRight
+          size="16"
+          strokeWidth="1.5"
+          aria-hidden="true"
+          class="ds-pagination__chevron"
+        ></svg>
+      </button>
+    </li>
+  </ul>
+</nav>

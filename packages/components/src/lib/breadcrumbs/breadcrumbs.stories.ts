@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
 import { DsBreadcrumbItem } from './breadcrumb-item';
-import { DsBreadcrumbs, DsBreadcrumbsSeparator } from './breadcrumbs';
+import { DsBreadcrumbs } from './breadcrumbs';
+import { DsBreadcrumbsSeparator } from './breadcrumbs-separator';
 
 const meta: Meta<DsBreadcrumbs> = {
   title: 'Components/Breadcrumbs',

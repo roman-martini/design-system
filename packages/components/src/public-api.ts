@@ -8,6 +8,7 @@ export * from './lib/checkbox';
 export * from './lib/input';
 export * from './lib/menu';
 export * from './lib/modal';
+export * from './lib/pagination';
 export * from './lib/radio';
 export * from './lib/radio-group';
 export * from './lib/select';

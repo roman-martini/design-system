@@ -1,0 +1,73 @@
+:host {
+  display: block;
+}
+
+.ds-pagination__list {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-component-pagination-item-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-pagination__page,
+.ds-pagination__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--ds-component-pagination-item-min-width);
+  height: var(--ds-component-pagination-item-height);
+  padding: 0;
+  border: none;
+  border-radius: var(--ds-component-pagination-item-radius);
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--ds-component-pagination-item-font-size);
+  color: var(--ds-component-pagination-item-text);
+  cursor: pointer;
+}
+
+/* Estado en el elemento propio (lección aaa-026): aria-current/aria-disabled
+   del propio botón alimentan el CSS, sin clases por descendencia desde :host. */
+.ds-pagination__page:hover:not([aria-current='page']),
+.ds-pagination__control:hover:not([aria-disabled='true']) {
+  color: var(--ds-component-pagination-item-text-hover);
+  background: var(--ds-component-pagination-item-bg-hover);
+}
+
+.ds-pagination__page:focus-visible,
+.ds-pagination__control:focus-visible {
+  outline: none;
+  box-shadow: var(--ds-semantic-shadow-focus);
+}
+
+.ds-pagination__page[aria-current='page'] {
+  background: var(--ds-component-pagination-current-bg);
+  color: var(--ds-component-pagination-current-text);
+  font-weight: var(--ds-component-pagination-current-font-weight);
+}
+
+.ds-pagination__control[aria-disabled='true'] {
+  color: var(--ds-component-pagination-disabled-text);
+  cursor: not-allowed;
+}
+
+.ds-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--ds-component-pagination-item-min-width);
+  color: var(--ds-component-pagination-item-text);
+}
+
+.ds-pagination__counter {
+  padding: 0 var(--ds-component-pagination-item-gap);
+  font-size: var(--ds-component-pagination-item-font-size);
+  color: var(--ds-component-pagination-counter-text);
+}
+
+.ds-pagination__chevron {
+  width: var(--ds-component-pagination-chevron-size);
+  height: var(--ds-component-pagination-chevron-size);
+}

@@ -1,0 +1,34 @@
+<app-showcase-case title="Pagination básico" [snippet]="basicSnippet">
+  <ds-pagination [(page)]="basicPage" [totalPages]="5" />
+  <p class="playground__hint">
+    Modelo <code>[(page)]</code> two-way (1-based) + <code>totalPages</code>: el componente solo
+    navega, los datos son del consumidor. Landmark <code>nav</code>, botones "Página N" y
+    <code>aria-current="page"</code> en la actual. Página actual: {{ basicPage() }}.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Listado largo con elipsis" [snippet]="longSnippet">
+  <ds-pagination [(page)]="longPage" [totalPages]="50" [siblingCount]="1" />
+  <p class="playground__hint">
+    Siempre visibles la primera y la última; <code>siblingCount</code> controla las vecinas de la
+    actual. El "…" es decorativo (<code>aria-hidden</code>, no focusable). Navegá con ‹ › y mirá la
+    ventana desplazarse sin saltos.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Variante compacta" [snippet]="compactSnippet">
+  <ds-pagination [(page)]="compactPage" [totalPages]="20" variant="compact" />
+  <p class="playground__hint">
+    Sin números: first/prev/next/last + contador. Acá los saltos al extremo (« ») son la única vía
+    rápida. Mismo modelo y mismos disabled que la variante por números.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Extremos con disabled accesible (ADR-011)" [snippet]="edgeSnippet">
+  <ds-pagination [(page)]="edgePage" [totalPages]="12" />
+  <p class="playground__hint">
+    En la página 1, « y ‹ quedan focusables con <code>aria-disabled="true"</code> y guarda (sin
+    acción) — descubribles por teclado y screen reader, sin desaparecer del tab order. Los labels de
+    todos los controles son configurables por inputs (i18n).
+  </p>
+</app-showcase-case>
