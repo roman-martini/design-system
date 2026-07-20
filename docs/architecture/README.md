@@ -231,7 +231,7 @@ Para componentes con backdrop semitransparente (Modal, Drawer, Toast con scrim),
 ## Arquitectura de components (`@romanmartinidev/components`)
 
 **Decisión formal**: [ADR-004 — Arquitectura de @romanmartinidev/components](adr/ADR-004-arquitectura-components.md).
-**Contrato testable**: [components-package](../../openspec/specs/components-package/spec.md).
+**Contrato testable transversal**: [components-package](../../openspec/specs/components-package/spec.md); el comportamiento de cada componente vive en su [`component-<name>`](#specs-por-componente-component-name) (ADR-018).
 
 ### Build con ng-packagr (Angular Package Format)
 
