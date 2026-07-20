@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-component-menu-item-gap);
+  height: var(--ds-component-menu-item-height);
+  padding: 0 var(--ds-component-menu-item-padding-x);
+  border-radius: var(--ds-component-menu-item-radius);
+  font-size: var(--ds-component-menu-item-font-size);
+  color: var(--ds-component-menu-item-text);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  outline: none;
+}
+
+/* Roving focus (APG menu): el foco real es el estado activo — mismo
+   tratamiento visual que el hover. */
+:host(:hover:not(.ds-menu-item--disabled)),
+:host(:focus:not(.ds-menu-item--disabled)) {
+  background: var(--ds-component-menu-item-bg-hover);
+}
+
+:host(:focus-visible) {
+  box-shadow: var(--ds-semantic-shadow-focus);
+}
+
+:host(.ds-menu-item--danger) {
+  color: var(--ds-component-menu-danger-text);
+}
+
+:host(.ds-menu-item--danger:hover:not(.ds-menu-item--disabled)),
+:host(.ds-menu-item--danger:focus:not(.ds-menu-item--disabled)) {
+  background: var(--ds-component-menu-danger-bg-hover);
+}
+
+:host(.ds-menu-item--disabled) {
+  color: var(--ds-component-menu-item-text-disabled);
+  cursor: not-allowed;
+}
+
+.ds-menu-item__chevron {
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}

@@ -1,0 +1,51 @@
+/* El host no participa del layout: solo contiene el panel popover (cerrado =
+   display none nativo). Permite declarar submenús dentro de otro ds-menu sin
+   afectar el flujo de items. */
+:host {
+  display: contents;
+}
+
+/* Panel — vive en el top layer via Popover API; la posición la setea el
+   fallback JS extendido (design §4). Sin z-index: el top layer no lo necesita. */
+.ds-menu__panel {
+  margin: 0;
+  padding: var(--ds-component-menu-panel-padding);
+  border: var(--ds-dimension-1) solid var(--ds-component-menu-panel-border);
+  border-radius: var(--ds-component-menu-panel-radius);
+  background: var(--ds-component-menu-panel-bg);
+  box-shadow: var(--ds-component-menu-panel-shadow);
+  min-width: var(--ds-component-menu-panel-min-width);
+  display: flex;
+  flex-direction: column;
+
+  /* Estado cerrado + transición de salida */
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--ds-semantic-space-2xs)));
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-exit),
+    transform var(--ds-semantic-motion-transition-overlay-exit),
+    display var(--ds-semantic-motion-transition-overlay-exit) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-exit) allow-discrete;
+}
+
+.ds-menu__panel:popover-open {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--ds-semantic-motion-transition-overlay-enter),
+    transform var(--ds-semantic-motion-transition-overlay-enter),
+    display var(--ds-semantic-motion-transition-overlay-enter) allow-discrete,
+    overlay var(--ds-semantic-motion-transition-overlay-enter) allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ds-semantic-space-2xs)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-menu__panel,
+  .ds-menu__panel:popover-open {
+    transition: none;
+  }
+}

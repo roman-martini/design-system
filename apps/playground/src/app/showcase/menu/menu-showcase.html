@@ -1,0 +1,69 @@
+<app-showcase-case title="Menú de acciones" [snippet]="basicSnippet">
+  <div class="playground__row">
+    <ds-button variant="secondary" [dsMenuTriggerFor]="acciones">Acciones</ds-button>
+    <ds-menu #acciones>
+      <ds-menu-item (selected)="onAction('Editar')">
+        <svg lucidePencil size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+        Editar
+      </ds-menu-item>
+      <ds-menu-item (selected)="onAction('Duplicar')">
+        <svg lucideCopy size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+        Duplicar
+      </ds-menu-item>
+    </ds-menu>
+    @if (lastAction) {
+    <span class="playground__hint">Última acción: {{ lastAction }}</span>
+    }
+  </div>
+  <p class="playground__hint">
+    La directiva <code>[dsMenuTriggerFor]</code> convierte cualquier botón en un trigger de menú
+    (patrón APG <em>menu button</em> sobre Popover API — el panel vive en el top layer y no puede
+    quedar recortado por <code>overflow</code>). Los iconos se proyectan con la convención de
+    ADR-012 y son decorativos.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Grupos, disabled y acción destructiva" [snippet]="groupsSnippet">
+  <div class="playground__row">
+    <ds-button variant="secondary" [dsMenuTriggerFor]="gestion">Gestionar</ds-button>
+    <ds-menu #gestion>
+      <ds-menu-item (selected)="onAction('Editar')">Editar</ds-menu-item>
+      <ds-menu-item [disabled]="true">Archivar</ds-menu-item>
+      <ds-menu-separator />
+      <ds-menu-item [danger]="true" (selected)="onAction('Eliminar')">
+        <svg lucideTrash2 size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+        Eliminar
+      </ds-menu-item>
+    </ds-menu>
+  </div>
+  <p class="playground__hint">
+    El item disabled es focusable y expone <code>aria-disabled</code> (descubrible por teclado y
+    lector, sin ejecutar — ADR-011). El item <code>danger</code> usa el rojo semántico con contraste
+    AA verificado (D-012). El separador agrupa con <code>role="separator"</code>.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Submenú anidado" [snippet]="submenuSnippet">
+  <div class="playground__row">
+    <ds-button variant="secondary" [dsMenuTriggerFor]="archivo">Archivo</ds-button>
+    <ds-menu #archivo>
+      <ds-menu-item (selected)="onAction('Renombrar')">Renombrar</ds-menu-item>
+      <ds-menu-item [submenu]="exportar">
+        <svg lucideDownload size="16" strokeWidth="1.5" aria-hidden="true"></svg>
+        Exportar
+      </ds-menu-item>
+      <ds-menu #exportar>
+        <ds-menu-item (selected)="onAction('Exportar PDF')">Como PDF</ds-menu-item>
+        <ds-menu-item (selected)="onAction('Exportar CSV')">Como CSV</ds-menu-item>
+      </ds-menu>
+    </ds-menu>
+  </div>
+  <p class="playground__hint">
+    El submenú se declara como otro <code>ds-menu</code> dentro del padre y se cablea con
+    <code>[submenu]</code>: abre por hover (con intención), <kbd>→</kbd> o <kbd>Enter</kbd>; se
+    posiciona lateral con flip si no hay espacio. Referencia de teclado: <kbd>↑</kbd>/<kbd>↓</kbd>
+    navegan con wrap, <kbd>Home</kbd>/<kbd>End</kbd> a los extremos, tipear una letra salta al item
+    (typeahead), <kbd>←</kbd>/<kbd>Esc</kbd> cierran el nivel, activar una hoja cierra todo el árbol
+    devolviendo el foco al trigger.
+  </p>
+</app-showcase-case>

@@ -1,0 +1,42 @@
+{
+  "component": {
+    "menu": {
+      "panel": {
+        "bg":        { "value": "{semantic.color.bg.elevated}" },
+        "border":    { "value": "{semantic.color.border.default}" },
+        "radius":    { "value": "{semantic.radius.md}" },
+        "shadow":    { "value": "{semantic.shadow.dropdown}" },
+        "padding":   { "value": "{semantic.space.2xs}" },
+        "min-width": {
+          "value": "180px",
+          "comment": "Raw documentado: la escala de dimension termina en 128. Mismo criterio que select.listbox.max-height (320px, aaa-016)."
+        }
+      },
+      "item": {
+        "height":        { "value": "{dimension.36}" },
+        "padding-x":     { "value": "{dimension.12}" },
+        "font-size":     { "value": "{font.size.md}" },
+        "radius":        { "value": "{semantic.radius.sm}" },
+        "gap":           { "value": "{dimension.8}" },
+        "text":          { "value": "{semantic.color.text.primary}" },
+        "text-disabled": { "value": "{semantic.color.text.disabled}" },
+        "bg-hover":      { "value": "{semantic.color.bg.secondary-hover}" }
+      },
+      "danger": {
+        "text":     { "value": "{semantic.color.text.danger}" },
+        "bg-hover": { "value": "{semantic.color.bg.danger-subtle}" }
+      },
+      "separator": {
+        "color":    { "value": "{semantic.color.border.default}" },
+        "margin-y": { "value": "{semantic.space.2xs}" }
+      },
+      "submenu": {
+        "offset": { "value": "{dimension.4}" },
+        "delay": {
+          "value": "150ms",
+          "comment": "Hover intent de apertura de submenú. Raw documentado: no existe primitive de delay en la escala de motion (mismo criterio que spinner.duration-*, aaa-023)."
+        }
+      }
+    }
+  }
+}

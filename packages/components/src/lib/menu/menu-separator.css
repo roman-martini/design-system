@@ -1,0 +1,6 @@
+:host {
+  display: block;
+  height: 0;
+  border-top: var(--ds-dimension-1) solid var(--ds-component-menu-separator-color);
+  margin: var(--ds-component-menu-separator-margin-y) 0;
+}

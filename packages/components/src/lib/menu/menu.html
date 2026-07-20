@@ -1,0 +1,11 @@
+<div
+  #panel
+  class="ds-menu__panel"
+  role="menu"
+  [id]="panelId"
+  popover="auto"
+  (toggle)="onPopoverToggle($event)"
+  (keydown)="onPanelKeydown($event)"
+>
+  <ng-content />
+</div>

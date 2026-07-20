@@ -62,7 +62,7 @@ El fallback de ADR-014 posiciona "debajo del trigger, mismo ancho, flip vertical
 
 - **Danger**: `danger` input booleano → texto/icono en `{semantic.color.text.danger}` sobre el panel elevado, hover con `{semantic.color.bg.danger-subtle}`. **Pares de contraste nuevos al gate**: danger/bg-elevated y danger/danger-subtle — se verifican por script en el change (si alguno falla, el ajuste es de token semántico y se trata como D-008: decisión del PO, no silenciosa).
 - **Disabled**: rama "botón de acción" de ADR-011 — focusable, `aria-disabled="true"`, guarda en la activación (no ejecuta, no cierra). El typeahead y la navegación **no** saltean disabled (descubribilidad), la activación sí está bloqueada.
-- **Iconos**: input opcional de icono Lucide (ADR-012 §1: import por icono, 16/1.5, `currentColor`, `aria-hidden` — decorativo siempre; el canal accesible es el texto del item).
+- **Iconos por proyección** (ajuste de implementación sobre la HU, misma sustancia): ADR-012 §1 fija import por icono + directiva svg y prohíbe registries por nombre — un input dinámico de icono no puede renderizarse con esa convención. El consumidor proyecta `<svg lucideX size="16" strokeWidth="1.5" aria-hidden="true">` dentro del item (decorativo siempre; el canal accesible es el texto). El chevron del item con submenú sí es import estático del componente (`LucideChevronRight`, mismo caso que el chevron de DsSelect).
 
 ### 6. Tokens `component.menu.*`
 

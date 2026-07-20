@@ -9,7 +9,7 @@
         "inverse":   { "value": "{color.white}" },
         "link":      { "value": "{color.blue.600}" },
         "link-hover":{ "value": "{color.blue.700}" },
-        "danger":    { "value": "{color.red.600}" },
+        "danger":    { "value": "{color.red.700}" },
         "success":   { "value": "{color.green.700}" },
         "warning":   { "value": "{color.yellow.700}" },
         "info":      { "value": "{color.teal.700}" }

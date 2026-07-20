@@ -32,8 +32,8 @@ El package SHALL exponer la familia `DsMenuTrigger` (directiva `[dsMenuTriggerFo
 
 #### Scenario: contenido de items — icono, danger y separador (CA-012.4)
 
-- **GIVEN** un item con input de icono Lucide
-- **THEN** el icono SHALL renderizarse decorativo (`aria-hidden="true"`) con la convención ADR-012 (16/1.5, `currentColor`)
+- **GIVEN** un item con un icono Lucide proyectado según la convención ADR-012 (import por icono, 16/1.5, `currentColor`)
+- **THEN** el icono SHALL renderizarse decorativo (`aria-hidden="true"`) alineado con gap tokenizado, sin API de icono en el item
 - **GIVEN** un item con `danger`
 - **THEN** SHALL usar los tokens `component.menu.danger-*` (rojo semántico)
 - **GIVEN** un `ds-menu-separator`

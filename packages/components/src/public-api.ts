@@ -4,6 +4,7 @@
 export * from './lib/button';
 export * from './lib/checkbox';
 export * from './lib/input';
+export * from './lib/menu';
 export * from './lib/modal';
 export * from './lib/radio';
 export * from './lib/radio-group';
