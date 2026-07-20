@@ -80,7 +80,8 @@ Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualq
 ```
 EP-002: tanda 1 (D-009) COMPLETA  → HU-003 + HU-005…HU-010 Hechas (11 componentes + 1 directiva
                                     + 1 service, 2026-07-19)
-EP-002: tanda 2 (D-011)           → HU-012 Menu ACTIVADA (BACKLOG § Now); en cola: HU-013 Accordion,
+EP-002: tanda 2 (D-011)           → HU-012 Menu Hecha (aaa-025, genera ADR-016 y D-012);
+                                    HU-013 Accordion ACTIVADA (BACKLOG § Now); en cola:
                                     HU-014 Breadcrumbs, HU-015 Pagination, HU-016 Progress
 EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.2.0 publicados en npm
                                     (D-010, lockstep ADR-015, aaa-020)
@@ -90,7 +91,7 @@ EP-006: HU-011 (showcase)         → Hecha (2026-07-19): sidebar + ruta lazy po
                                     con snippet copiable; la página única del playground ya no existe
 ```
 
-Última entrega: HU-010 (Skeleton) Hecha — aaa-024 archivado el 2026-07-19, cierra la tanda 1.
+Última entrega: HU-012 (Menu/Dropdown) Hecha — aaa-025 archivado el 2026-07-19, abre la tanda 2.
 
 ## Convenciones
 

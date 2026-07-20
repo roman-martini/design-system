@@ -471,6 +471,7 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 | [aaa-022](../../openspec/changes/archive/aaa-022-playground-showcase/)              | playground-showcase              | archived | 2026-07-19 | modifica playground-app                             | — (showcase con router, EP-006)                                              |
 | [aaa-023](../../openspec/changes/archive/aaa-023-components-add-spinner/)           | components-add-spinner           | archived | 2026-07-19 | modifica components-package + design-tokens-package | — (reduced-motion por reemplazo; ADR si Skeleton lo repite)                  |
 | [aaa-024](../../openspec/changes/archive/aaa-024-components-add-skeleton/)          | components-add-skeleton          | archived | 2026-07-19 | modifica components-package + design-tokens-package | — (reduced-motion apaga: no repite el patrón, sin ADR; cierra tanda 1 D-009) |
+| [aaa-025](../../openspec/changes/archive/aaa-025-components-add-menu/)              | components-add-menu              | archived | 2026-07-19 | modifica components-package + design-tokens-package | ADR-016 (placements por overlay; submenús v1 por D-011, contraste D-012)     |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

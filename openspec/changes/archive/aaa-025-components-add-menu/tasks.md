@@ -54,10 +54,10 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API por directiva + panel (d
 
 ## 7. ADR + archive
 
-- [ ] 7.1 Evaluar la promoción a ADR de la extensión del posicionamiento (design §4: placements por tipo de overlay). Si corresponde (esperado: sí — modifica el alcance del patrón ADR-014), escribir el ADR + actualizar `decisions-log.md`.
-- [ ] 7.2 Mover a `archive/aaa-025-components-add-menu/`; frontmatter `archived`; sincronizar spec base `components-package` con el delta.
-- [ ] 7.3 Registros: `openspec/README.md` (ID en vuelo fuera, próximo ID), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Menu sale de Now; siguiente de la tanda 2 — Accordion — se promueve a Now), HU-012 → Hecha con CAs tildados, EP-002 actualizado.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Proponer commit del archive y **esperar OK del PO**.
+- [x] 7.1 Promoción confirmada por el PO: **[ADR-016](../../../docs/architecture/adr/ADR-016-posicionamiento-placements-por-overlay.md)** (posicionamiento propio con placements por tipo de overlay; umbral de floating-ui y migración a anchor positioning reafirmados) + fila en `decisions-log.md`.
+- [x] 7.2 Movido a `archive/aaa-025-components-add-menu/`; frontmatter `archived: 2026-07-19` + ADR-016 en related-adrs; spec base `components-package` sincronizada (ADDED autocontenido).
+- [x] 7.3 Registros: `openspec/README.md` (línea de IDs en vuelo eliminada), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Menu sale de Now; `components-add-accordion` — HU-013 — promovido a Now), HU-012 → Hecha con CAs tildados, EP-002 actualizado.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive propuesto y aprobado por el PO.
 
 **Criterio**: change archivado, spec base sincronizada, ADR resuelto, registros al día.

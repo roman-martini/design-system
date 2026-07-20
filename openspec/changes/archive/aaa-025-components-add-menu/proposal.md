@@ -2,7 +2,8 @@
 id: aaa-025
 name: components-add-menu
 type: change
-status: proposed
+status: archived
+archived: 2026-07-19
 modifies-specs:
   - components-package (ADDED: DsMenu, DsMenuItem, DsMenuSeparator, DsMenuTrigger)
   - design-tokens-package (sin delta de spec; component.menu nuevo referenciando semantic/primitives)
@@ -11,6 +12,7 @@ related-adrs:
   - ADR-011
   - ADR-012
   - ADR-014
+  - ADR-016
 ---
 
 # Proposal — components-add-menu
