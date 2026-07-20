@@ -36,7 +36,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-007](HU-007-tooltip.md)              | Tooltip de ayuda contextual                | Dev consumidor | Hecha (aaa-019 archivado 2026-07-18)                 |
 | [HU-008](HU-008-toast-notificaciones.md) | Toast/Notification para feedback asíncrono | Dev consumidor | Hecha (2026-07-18, aaa-021)                          |
 | [HU-009](HU-009-spinner.md)              | Spinner de carga                           | Dev consumidor | Hecha (2026-07-19, aaa-023)                          |
-| [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Identificada (tanda 1; siguiente — BACKLOG § Now)    |
+| [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Refinada (2026-07-19; siguiente — BACKLOG § Now)     |
 
 Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Candidatas restantes (cantera [FUTURE-WORK](../../../backlog/FUTURE-WORK.md) § componentes, requieren disparador propio según D-005): Progress, Accordion, Breadcrumbs, Pagination, Menu/Dropdown, DatePicker (wrapping).
 

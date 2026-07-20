@@ -29,13 +29,13 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit). **Producto**: [HU-010](../product/epics/EP-002-kit-componentes/HU-010-skeleton.md) / EP-002. Último componente de la tanda 1 ([D-009](../product/decisiones.md)).
 
-**Alcance propuesto**: bloque pulsante de carga (pendiente de refinamiento de HU con el PO antes de proponer, como toda la tanda D-009).
+**Alcance propuesto**: bloque de carga según HU-010 refinada (shapes text/rect/circle con defaults tokenizados, width/height/radius CSS libres, pulso de opacidad, decorativo siempre).
 
-**Nota arquitectónica**: si repite el patrón "reduced-motion por reemplazo de animación" del Spinner (aaa-023, design §4), evaluar formalizarlo como ADR/convención transversal.
+**Nota arquitectónica**: resuelta en el refinamiento — bajo reduced-motion el skeleton queda **estático** (apaga, no reemplaza), así que el patrón "reemplazo" de aaa-023 no se repite y no amerita ADR.
 
 **Disparador**: cierre del item anterior de la tanda (Spinner, `aaa-023`) — **ACTIVADO** (2026-07-19, grooming del archive).
 
-**Estado**: pendiente (refinar HU-010 primero).
+**Estado**: HU-010 **Refinada** (2026-07-19) — listo para `/opsx:propose components-add-skeleton`.
 
 ---
 
