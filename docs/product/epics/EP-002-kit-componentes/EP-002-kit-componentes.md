@@ -42,7 +42,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-010](HU-010-skeleton.md)             | Skeleton de contenido en carga             | Dev consumidor | Hecha (2026-07-19, aaa-024 — cierra la tanda 1)      |
 | [HU-012](HU-012-menu-dropdown.md)        | Menu/Dropdown de acciones                  | Dev consumidor | Hecha (2026-07-19, aaa-025 — genera ADR-016)         |
 | [HU-013](HU-013-accordion.md)            | Accordion de contenido colapsable          | Dev consumidor | Hecha (2026-07-20, aaa-026)                          |
-| [HU-014](HU-014-breadcrumbs.md)          | Breadcrumbs de ubicación                   | Dev consumidor | Identificada (tanda 2, D-011)                        |
+| [HU-014](HU-014-breadcrumbs.md)          | Breadcrumbs de ubicación                   | Dev consumidor | Refinada (2026-07-20, tanda 2, D-011)                |
 | [HU-015](HU-015-pagination.md)           | Pagination de listados                     | Dev consumidor | Identificada (tanda 2, D-011)                        |
 | [HU-016](HU-016-progress.md)             | Progress de avance medible                 | Dev consumidor | Identificada (tanda 2, D-011)                        |
 

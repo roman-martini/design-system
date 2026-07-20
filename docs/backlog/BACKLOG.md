@@ -33,11 +33,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Origen**: tercera pieza de la **tanda 2** ([D-011](../product/decisiones.md), 2026-07-19), criterio "navegación y estructura de apps reales" — promovida al cerrar `components-add-accordion` (`aaa-026`, 2026-07-20). Orden de la tanda en [EP-002 § Orden sugerido](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md#orden-sugerido); las siguientes (Pagination, Progress) se promueven acá al cerrar la anterior.
 
-**Alcance propuesto**: `<nav aria-label>` + `aria-current="page"` en el item actual, separador tokenizado (ADR-012 o carácter), API agnóstica del router (content projection) vs integrada, truncamiento en jerarquías largas, tokens `component.breadcrumbs.*`. Refinar la HU (CAs binarios) antes de crear el change.
+**Alcance refinado** (HU-014, PO 2026-07-20): core agnóstico con links proyectados, separador por template (default chevron ADR-012), truncamiento opt-in con "…" inline (`maxItems`), auto-generación desde rutas como **secondary entry point** `components/router` con peer opcional (genera ADR al cerrar), tokens `component.breadcrumbs.*`.
 
 **Disparador**: activado — tanda 2 aprobada (D-011), pieza anterior cerrada.
 
-**Estado**: pendiente de refinamiento (Now).
+**Estado**: HU Refinada — lista para propose (`aaa-027`).
 
 ---
 
