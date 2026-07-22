@@ -1,0 +1,6 @@
+:host {
+  display: block;
+  margin: 0;
+  color: var(--ds-component-card-subtitle-color);
+  font-size: var(--ds-component-card-subtitle-font-size);
+}

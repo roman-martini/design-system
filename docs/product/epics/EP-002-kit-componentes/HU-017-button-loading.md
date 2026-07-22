@@ -1,11 +1,12 @@
-# HU-017 — Estado loading de ds-button (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-22) — change [`aaa-031`](../../../../openspec/changes/archive/aaa-031-components-button-loading/) archivado. 9 tests de comportamiento, `/ng:review` sin altas ni medias (1 baja corregida), y refinamiento visual del botón base ([D-013](../../decisiones.md)). Verificación visual del PO en playground OK (2026-07-22). **Ejecución adelantada al disparador orgánico por decisión del PO** — el caso de uso real no llegó a activarse (ver proposal §Why).
-**Decisiones que aplica**: [D-005, D-007, D-013](../../decisiones.md) · Técnica: [ADR-011](../../../architecture/adr/ADR-011-estado-disabled-accesible.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-22, aaa-031 components-button-loading; genera D-013)
+decisiones: [D-005, D-007, D-013]
+adrs: [ADR-011]
+---
+
+# HU-017 — Estado loading de ds-button (dev consumidor)
 
 **COMO** dev que dispara una operación asíncrona desde un botón (submit, guardar, confirmar)
 **QUIERO** un input `loading` en `DsButton` que muestre progreso y bloquee la reactivación
@@ -54,6 +55,7 @@ Refinamiento de [HU-009 — Spinner](HU-009-spinner.md), decisión 1 (PO, 2026-0
 
 ## Notas
 
+- **Cierre (2026-07-22)** — change [`aaa-031`](../../../../openspec/changes/archive/aaa-031-components-button-loading/) archivado. 9 tests de comportamiento, `/ng:review` sin altas ni medias (1 baja corregida), y refinamiento visual del botón base ([D-013](../../decisiones.md)). Verificación visual del PO en playground OK (2026-07-22). **Ejecución adelantada al disparador orgánico por decisión del PO** — el caso de uso real no llegó a activarse (ver proposal §Why).
 - Change OpenSpec tentativo: `components-button-loading`. Feature aditiva (`loading` + `loadingText` opcional; `disabled`/`disabledReason` se mantienen) → changeset **minor**.
 - Referencias de implementación: caso embebido de [HU-009](HU-009-spinner.md) (spinner `xs` + `currentColor` + `label=""`); guarda de click del patrón de [ADR-011](../../../architecture/adr/ADR-011-estado-disabled-accesible.md).
 - **Sin ADR nuevo**: `loading` hoy solo lo adopta `ds-button`. Por la misma lógica de ADR-011 ("sin primitiva compartida hasta el segundo consumidor"), un patrón transversal de loading se extraería —y se decidiría por ADR— recién si un segundo componente de acción lo adopta.

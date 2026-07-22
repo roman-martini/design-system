@@ -1,11 +1,11 @@
-# HU-001 — Tokens del DS disponibles como Variables de Figma (diseñador)
-
-**Épica**: [EP-004 — Puente código ↔ diseño](EP-004-puente-codigo-diseno.md)
-**Actor**: Diseñador
-**Estado**: Refinada — change [aaa-012 tokens-figma-export](../../../../openspec/changes/tokens-figma-export/) propuesto (4/4 artefactos), **en pausa por decisión del PO**
-**Decisiones que aplica**: [D-006](../../decisiones.md)
-
 ---
+epica: EP-004
+actor: Diseñador
+estado: Refinada (change aaa-012 tokens-figma-export propuesto, 4/4 artefactos; en pausa por decisión del PO)
+decisiones: [D-006]
+---
+
+# HU-001 — Tokens del DS disponibles como Variables de Figma (diseñador)
 
 **COMO** diseñador que trabaja el visual del DS en Figma
 **QUIERO** que los tokens del repo (colores, espaciados, tipografía, temas) estén disponibles como Variables de Figma sincronizadas desde el código

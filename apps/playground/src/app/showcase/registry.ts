@@ -22,6 +22,11 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     loadComponent: () => import('./button/button-showcase').then((m) => m.ButtonShowcase),
   },
   {
+    slug: 'card',
+    label: 'Card',
+    loadComponent: () => import('./card/card-showcase').then((m) => m.CardShowcase),
+  },
+  {
     slug: 'checkbox',
     label: 'Checkbox',
     loadComponent: () => import('./checkbox/checkbox-showcase').then((m) => m.CheckboxShowcase),

@@ -1,11 +1,12 @@
-# HU-019 — Card contenedor (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Refinada (2026-07-22) — narrativa + CAs binarios + decisiones cerradas. Ejecución: change `components-add-card` ([BACKLOG § Now](../../../backlog/BACKLOG.md), primera entrega de la tanda 3).
-**Decisiones que aplica**: [D-002, D-005, D-007, D-014](../../decisiones.md) · Técnica: [ADR-004](../../../architecture/adr/ADR-004-arquitectura-components.md), [ADR-007](../../../architecture/adr/ADR-007-naming-prefijos.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Refinada (2026-07-22; ejecución vía change components-add-card — BACKLOG Now, primera entrega de la tanda 3)
+decisiones: [D-002, D-005, D-007, D-014]
+adrs: [ADR-004, ADR-007]
+---
+
+# HU-019 — Card contenedor (dev consumidor)
 
 **COMO** dev que arma vistas (forms, settings, perfiles, pricing)
 **QUIERO** un `ds-card` contenedor consistente con sub-partes opcionales

@@ -1,11 +1,12 @@
-# HU-023 — Switch/Toggle (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Identificada — tanda 3 ([D-014](../../decisiones.md), 2026-07-22). CAs binarios al refinar, justo antes de su change.
-**Decisiones que aplica**: [D-005, D-007](../../decisiones.md) · Técnica: [ADR-004](../../../architecture/adr/ADR-004-arquitectura-components.md), [ADR-011](../../../architecture/adr/ADR-011-estado-disabled-accesible.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Identificada (tanda 3, D-014 2026-07-22; CAs binarios al refinar, justo antes de su change)
+decisiones: [D-005, D-007]
+adrs: [ADR-004, ADR-011]
+---
+
+# HU-023 — Switch/Toggle (dev consumidor)
 
 **COMO** dev que ofrece opciones on/off de efecto inmediato (settings, cookies, preferencias)
 **QUIERO** un `ds-switch` integrado a Angular Forms

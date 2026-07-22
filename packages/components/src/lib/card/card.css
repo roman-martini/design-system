@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-component-card-gap);
+  padding: var(--ds-component-card-padding-md);
+  background-color: var(--ds-component-card-bg);
+  border: var(--ds-component-card-border-width) solid var(--ds-component-card-border);
+  border-radius: var(--ds-component-card-radius);
+  box-shadow: var(--ds-component-card-shadow);
+}
+
+:host([data-padding='compact']) {
+  padding: var(--ds-component-card-padding-sm);
+}
+
+/* variant: elevated — superficie elevada, sin borde visible y sombra mayor */
+:host([data-variant='elevated']) {
+  background-color: var(--ds-component-card-bg-elevated);
+  border-color: transparent;
+  box-shadow: var(--ds-component-card-shadow-elevated);
+}
+
+/* variant: flat — borde sin sombra */
+:host([data-variant='flat']) {
+  box-shadow: none;
+}

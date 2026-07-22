@@ -1,11 +1,11 @@
-# HU-016 — Progress de avance medible (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-20) — [`aaa-029 components-add-progress`](../../../../openspec/changes/archive/aaa-029-components-add-progress/) archivado; 9 tests, review con 1 media + 1 baja aplicadas (opacity tokenizada, binding muerto), gate UI 3:1 12/12 (fix local: fills vía `text.*`), sin ADR. **Completa la tanda 2 (D-011)**. Verificación manual del PO en playground OK (2026-07-20): animación indeterminada + pulso reduced-motion, transición determinada y tonos en light/dark en `/progress`
-**Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-20, aaa-029 components-add-progress; completa la tanda 2 D-011)
+decisiones: [D-005, D-007, D-011]
+---
+
+# HU-016 — Progress de avance medible (dev consumidor)
 
 **COMO** dev que muestra operaciones con avance medible (upload, importación, wizard)
 **QUIERO** un `ds-progress` accesible
@@ -46,6 +46,7 @@
 
 ## Notas
 
+- **Cierre (2026-07-20)** — [`aaa-029 components-add-progress`](../../../../openspec/changes/archive/aaa-029-components-add-progress/) archivado; 9 tests, review con 1 media + 1 baja aplicadas (opacity tokenizada, binding muerto), gate UI 3:1 12/12 (fix local: fills vía `text.*`), sin ADR. Completa la tanda 2 (D-011). Verificación manual del PO en playground OK (2026-07-20): animación indeterminada + pulso reduced-motion, transición determinada y tonos en light/dark en `/progress`.
 - Change OpenSpec: `components-add-progress` (próximo ID en [openspec/README.md](../../../../openspec/README.md)).
 - Referencias de implementación: label con opt-out y reduced-motion por pulso de `spinner/` (aaa-023); sizes tokenizados de `tabs/`; niveles "ui" del gate de contraste (`check-a11y`, WCAG 1.4.11).
 - Completa el trío de feedback (Spinner/Skeleton/Progress) y **cierra la tanda 2** (D-011).

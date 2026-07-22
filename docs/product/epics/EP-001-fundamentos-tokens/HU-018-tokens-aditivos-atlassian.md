@@ -1,11 +1,12 @@
-# HU-018 — Tokens aditivos del research Atlassian (dev consumidor)
-
-**Épica**: [EP-001 — Fundamentos: tokens y theming](EP-001-fundamentos-tokens.md)
-**Actor**: Dev consumidor
-**Estado**: Identificada — ninguno de los tres tokens tiene disparador activo ([BACKLOG § Later](../../../backlog/BACKLOG.md)). Cada CA es independiente y se activa por separado: el token se refina y se implementa **como su propio change** cuando aparece su caso de uso real (D-005).
-**Decisiones que aplica**: [D-002, D-005](../../decisiones.md) · Técnica: [ADR-003](../../../architecture/adr/ADR-003-arquitectura-design-tokens.md)
-
 ---
+epica: EP-001
+actor: Dev consumidor
+estado: Identificada (BACKLOG Later, sin disparador activo; cada CA se activa por separado como su propio change cuando aparece su caso de uso real, D-005)
+decisiones: [D-002, D-005]
+adrs: [ADR-003]
+---
+
+# HU-018 — Tokens aditivos del research Atlassian (dev consumidor)
 
 **COMO** dev que construye UI con tokens semánticos
 **QUIERO** tres aditivos que hoy faltan en la capa `semantic` (`space.0`, tipografía `metric.*`, `space.negative.*`)

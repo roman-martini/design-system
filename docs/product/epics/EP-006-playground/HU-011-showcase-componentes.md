@@ -1,11 +1,11 @@
-# HU-011 — Showcase navegable de casos de uso por componente (dev consumidor)
-
-**Épica**: [EP-006 — Playground](EP-006-playground.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-19) — [`aaa-022 playground-showcase`](../../../../openspec/changes/archive/aaa-022-playground-showcase/) archivado; 9 tests de navegación, review sin altas (foco post-navegación incluido)
-**Decisiones que aplica**: [D-005](../../decisiones.md)
-
 ---
+epica: EP-006
+actor: Dev consumidor
+estado: Hecha (2026-07-19, aaa-022 playground-showcase)
+decisiones: [D-005]
+---
+
+# HU-011 — Showcase navegable de casos de uso por componente (dev consumidor)
 
 **COMO** dev que evalúa cómo usar un componente del DS
 **QUIERO** navegar por un sidebar a la vista de ese componente y ver sus casos de uso funcionando, con el código de cada uno
@@ -45,5 +45,6 @@
 
 ## Notas
 
+- **Cierre (2026-07-19)** — [`aaa-022 playground-showcase`](../../../../openspec/changes/archive/aaa-022-playground-showcase/) archivado; 9 tests de navegación, review sin altas (foco post-navegación incluido).
 - Los changes futuros de componentes (Spinner en adelante) agregan su vista al showcase como parte de su definición de done (actualizar el workflow `/ds:add-component` al cerrar este change).
 - Referencia de estructura: las demos actuales de `app.html` se reparten en una vista por componente; los snippets pueden mantenerse como strings colocados junto a cada demo (sin tooling de extracción automática en esta iteración).

@@ -1,11 +1,11 @@
-# HU-013 — Accordion de contenido colapsable (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-20) — [`aaa-026 components-add-accordion`](../../../../openspec/changes/archive/aaa-026-components-add-accordion/) archivado; 11 tests, review con 1 hallazgo bajo aplicado (templateUrl), sin pares de contraste nuevos (gate verificado igual), sin ADR (grid `0fr→1fr` se promueve con el 2º colapsable, D-005). Verificación manual del PO en playground OK (2026-07-20): detectó bug de anidados (selectores de estado por descendencia desde `:host` pisaban los paneles anidados con encapsulación emulada) — corregido por commit directo `e0448ce` (estado en el elemento propio: `aria-expanded`/`data-expanded` + test del contrato) y re-verificado OK junto con la animación de altura y reduced-motion
-**Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-20, aaa-026 components-add-accordion)
+decisiones: [D-005, D-007, D-011]
+---
+
+# HU-013 — Accordion de contenido colapsable (dev consumidor)
 
 **COMO** dev que organiza contenido extenso en una página
 **QUIERO** un `ds-accordion` accesible con secciones colapsables
@@ -44,5 +44,6 @@
 
 ## Notas
 
+- **Cierre (2026-07-20)** — [`aaa-026 components-add-accordion`](../../../../openspec/changes/archive/aaa-026-components-add-accordion/) archivado; 11 tests, review con 1 hallazgo bajo aplicado (templateUrl), sin pares de contraste nuevos (gate verificado igual), sin ADR (grid `0fr→1fr` se promueve con el 2º colapsable, D-005). Verificación manual del PO en playground OK (2026-07-20): detectó bug de anidados (selectores de estado por descendencia desde `:host` pisaban los paneles anidados con encapsulación emulada) — corregido por commit directo `e0448ce` (estado en el elemento propio: `aria-expanded`/`data-expanded` + test del contrato) y re-verificado OK junto con la animación de altura y reduced-motion.
 - Change OpenSpec: `components-add-accordion` (próximo ID en [openspec/README.md](../../../../openspec/README.md)).
 - Referencias de implementación: registro padre-hijo scoped de `select/` (aaa-016) y `menu/` (aaa-025); patrón de animación con reduced-motion de los overlays (ADR-014 regla 4, adaptado a altura).

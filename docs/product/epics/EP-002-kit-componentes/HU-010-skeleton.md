@@ -1,11 +1,11 @@
-# HU-010 — Skeleton de contenido en carga (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-19) — [`aaa-024 components-add-skeleton`](../../../../openspec/changes/archive/aaa-024-components-add-skeleton/) archivado; 8 tests, review sin hallazgos, sin pares de contraste (decorativo). Cierra la tanda 1 (D-009). Verificación manual del PO en playground OK (2026-07-19): pulso y apagado reduced-motion
-**Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-19, aaa-024 components-add-skeleton; cierra la tanda 1 D-009)
+decisiones: [D-005, D-007, D-009]
+---
+
+# HU-010 — Skeleton de contenido en carga (dev consumidor)
 
 **COMO** dev que renderiza vistas con datos remotos
 **QUIERO** un `ds-skeleton` para placeholders de carga
@@ -41,5 +41,6 @@
 
 ## Notas
 
+- **Cierre (2026-07-19)** — [`aaa-024 components-add-skeleton`](../../../../openspec/changes/archive/aaa-024-components-add-skeleton/) archivado; 8 tests, review sin hallazgos, sin pares de contraste (decorativo). Cierra la tanda 1 (D-009). Verificación manual del PO en playground OK (2026-07-19): pulso y apagado reduced-motion.
 - Change OpenSpec: `components-add-skeleton` (próximo ID en [openspec/README.md](../../../../openspec/README.md)).
 - Referencias de implementación: `@keyframes` de pulso de `spinner.css` (aaa-023, mismo lenguaje visual); defaults por `data-shape` estilo `:host([data-*])` del kit.

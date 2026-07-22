@@ -1,11 +1,12 @@
-# HU-024 — Textarea (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Identificada — tanda 3 ([D-014](../../decisiones.md), 2026-07-22). CAs binarios al refinar, justo antes de su change.
-**Decisiones que aplica**: [D-005, D-007](../../decisiones.md) · Técnica: [ADR-004](../../../architecture/adr/ADR-004-arquitectura-components.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Identificada (tanda 3, D-014 2026-07-22; CAs binarios al refinar, justo antes de su change)
+decisiones: [D-005, D-007]
+adrs: [ADR-004]
+---
+
+# HU-024 — Textarea (dev consumidor)
 
 **COMO** dev que arma formularios con texto largo (notas, comentarios, descripciones)
 **QUIERO** una entrada multilínea accesible con label/hint/error

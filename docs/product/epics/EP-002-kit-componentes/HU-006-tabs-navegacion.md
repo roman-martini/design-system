@@ -1,11 +1,11 @@
-# HU-006 — Tabs para navegación de contenido (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha — change [aaa-018 components-add-tabs](../../../../openspec/changes/archive/aaa-018-components-add-tabs/) archivado (2026-07-14)
-**Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-14, aaa-018 components-add-tabs)
+decisiones: [D-005, D-007, D-009]
+---
+
+# HU-006 — Tabs para navegación de contenido (dev consumidor)
 
 **COMO** dev que organiza vistas con secciones alternativas
 **QUIERO** `ds-tabs`/`ds-tab` accesibles con navegación por teclado

@@ -1,0 +1,67 @@
+<app-showcase-case title="Variantes" [snippet]="variantsSnippet">
+  <div class="playground__row">
+    <ds-card variant="outline" style="width: 15rem">
+      <h3 dsCardTitle>Outline</h3>
+      <p dsCardDescription>Borde + sombra sutil (default, referencia).</p>
+    </ds-card>
+    <ds-card variant="elevated" style="width: 15rem">
+      <h3 dsCardTitle>Elevated</h3>
+      <p dsCardDescription>Superficie elevada, sombra mayor.</p>
+    </ds-card>
+    <ds-card variant="flat" style="width: 15rem">
+      <h3 dsCardTitle>Flat</h3>
+      <p dsCardDescription>Borde sin sombra.</p>
+    </ds-card>
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Padding" [snippet]="paddingSnippet">
+  <div class="playground__row">
+    <ds-card padding="comfortable" style="width: 15rem">
+      <h3 dsCardTitle>Comfortable</h3>
+      <p dsCardDescription>Padding default.</p>
+    </ds-card>
+    <ds-card padding="compact" style="width: 15rem">
+      <h3 dsCardTitle>Compact</h3>
+      <p dsCardDescription>Padding denso para vistas con mucha data.</p>
+    </ds-card>
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Cookie Settings (vista de la referencia)" [snippet]="structureSnippet">
+  <p class="playground__note">
+    Estructura completa header/content/footer reproduciendo la referencia moder-minimal. Los toggles
+    serán <code>ds-switch</code> cuando llegue HU-023; mientras, checkboxes.
+  </p>
+  <ds-card style="max-width: 26rem">
+    <ds-card-header>
+      <h2 dsCardTitle>Cookie Settings</h2>
+      <p dsCardDescription>Manage your cookie settings here.</p>
+    </ds-card-header>
+    <ds-card-content style="display: flex; flex-direction: column; gap: 1rem">
+      <div
+        style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem"
+      >
+        <div>
+          <strong>Strictly Necessary</strong>
+          <p dsCardDescription>These cookies are essential in order to use the website.</p>
+        </div>
+        <ds-checkbox [checked]="true" />
+      </div>
+      <div
+        style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem"
+      >
+        <div>
+          <strong>Functional Cookies</strong>
+          <p dsCardDescription>
+            These cookies allow the website to provide personalized functionality.
+          </p>
+        </div>
+        <ds-checkbox />
+      </div>
+    </ds-card-content>
+    <ds-card-footer>
+      <ds-button variant="secondary" style="flex: 1">Save preferences</ds-button>
+    </ds-card-footer>
+  </ds-card>
+</app-showcase-case>

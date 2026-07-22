@@ -1,11 +1,11 @@
-# HU-002 — Primer release publicado en npm (dev consumidor)
-
-**Épica**: [EP-003 — Consumo y distribución](EP-003-consumo-distribucion.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-18) — `tokens@0.2.0` y `components@0.2.0` publicados en npm por el pipeline (aaa-005) tras el merge del PR de versionado; preparación del repo en [aaa-020 repo-release-lockstep](../../../../openspec/changes/archive/aaa-020-repo-release-lockstep/) (lockstep [ADR-015](../../../architecture/adr/ADR-015-versionado-lockstep.md))
-**Decisiones que aplica**: [D-003, D-004](../../decisiones.md)
-
 ---
+epica: EP-003
+actor: Dev consumidor
+estado: Hecha (2026-07-18, aaa-020 repo-release-lockstep; 0.2.0 en npm, lockstep ADR-015)
+decisiones: [D-003, D-004]
+---
+
+# HU-002 — Primer release publicado en npm (dev consumidor)
 
 **COMO** dev de una app Angular (empezando por los proyectos del propio PO)
 **QUIERO** instalar `@romanmartinidev/tokens` y `@romanmartinidev/components` desde npm
@@ -29,4 +29,5 @@
 
 ## Notas
 
+- **Cierre (2026-07-18)** — `tokens@0.2.0` y `components@0.2.0` publicados en npm por el pipeline (aaa-005) tras el merge del PR de versionado; preparación del repo en [aaa-020 repo-release-lockstep](../../../../openspec/changes/archive/aaa-020-repo-release-lockstep/) (lockstep [ADR-015](../../../architecture/adr/ADR-015-versionado-lockstep.md)).
 - El pipeline (GitHub Actions + Changesets que abre PR de versionado) existe desde [aaa-005](../../../../openspec/changes/archive/aaa-005-bootstrap-fase-5-ci/) y nunca se estrenó.

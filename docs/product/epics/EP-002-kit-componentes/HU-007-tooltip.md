@@ -1,11 +1,11 @@
-# HU-007 — Tooltip de ayuda contextual (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha — change [aaa-019 components-add-tooltip](../../../../openspec/changes/archive/aaa-019-components-add-tooltip/) archivado (2026-07-18)
-**Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-18, aaa-019 components-add-tooltip)
+decisiones: [D-005, D-007, D-009]
+---
+
+# HU-007 — Tooltip de ayuda contextual (dev consumidor)
 
 **COMO** dev que necesita aclarar controles compactos (iconos, botones, abreviaturas)
 **QUIERO** una directiva `dsTooltip` accesible

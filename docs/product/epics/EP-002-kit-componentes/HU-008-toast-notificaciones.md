@@ -1,11 +1,11 @@
-# HU-008 — Toast/Notification para feedback asíncrono (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-18) — [`aaa-021 components-add-toast`](../../../../openspec/changes/archive/aaa-021-components-add-toast/) archivado; 15 tests, review sin altas, gate de contraste PASS en 4 themes
-**Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-18, aaa-021 components-add-toast)
+decisiones: [D-005, D-007, D-009]
+---
+
+# HU-008 — Toast/Notification para feedback asíncrono (dev consumidor)
 
 **COMO** dev que confirma resultados de acciones (guardado, error de red, deshacer)
 **QUIERO** un sistema de toasts (`DsToastService` + componente) accesible
@@ -43,5 +43,6 @@
 
 ## Notas
 
+- **Cierre (2026-07-18)** — [`aaa-021 components-add-toast`](../../../../openspec/changes/archive/aaa-021-components-add-toast/) archivado; 15 tests, review sin altas, gate de contraste PASS en 4 themes.
 - Change OpenSpec: `components-add-toast` (próximo ID en [openspec/README.md](../../../../openspec/README.md)).
 - Referencias de implementación: panel interno + popover manual de `tooltip.ts` (ADR-014), timers con pausa de `tooltip.ts`, variantes por tokens de `tabs.css`.

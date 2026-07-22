@@ -1,11 +1,12 @@
-# HU-020 — Variantes outline y destructive de Button (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Identificada — tanda 3 ([D-014](../../decisiones.md), 2026-07-22). CAs binarios al refinar, justo antes de su change.
-**Decisiones que aplica**: [D-005, D-007, D-012](../../decisiones.md) · Técnica: [ADR-011](../../../architecture/adr/ADR-011-estado-disabled-accesible.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Identificada (tanda 3, D-014 2026-07-22; CAs binarios al refinar, justo antes de su change)
+decisiones: [D-005, D-007, D-012]
+adrs: [ADR-011]
+---
+
+# HU-020 — Variantes outline y destructive de Button (dev consumidor)
 
 **COMO** dev que arma acciones en la UI
 **QUIERO** las variantes `outline` y `destructive` en `DsButton`

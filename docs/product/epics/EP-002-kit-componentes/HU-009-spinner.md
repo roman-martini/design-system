@@ -1,11 +1,11 @@
-# HU-009 — Spinner de carga (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-19) — [`aaa-023 components-add-spinner`](../../../../openspec/changes/archive/aaa-023-components-add-spinner/) archivado; 10 tests, review sin altas ni medias, sin pares de contraste nuevos (currentColor). Verificación manual del PO en playground OK (2026-07-19): geometría del arco en los 4 sizes y pulso reduced-motion
-**Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-19, aaa-023 components-add-spinner)
+decisiones: [D-005, D-007, D-009]
+---
+
+# HU-009 — Spinner de carga (dev consumidor)
 
 **COMO** dev que dispara operaciones asíncronas
 **QUIERO** un `ds-spinner` accesible
@@ -43,5 +43,6 @@
 
 ## Notas
 
+- **Cierre (2026-07-19)** — [`aaa-023 components-add-spinner`](../../../../openspec/changes/archive/aaa-023-components-add-spinner/) archivado; 10 tests, review sin altas ni medias, sin pares de contraste nuevos (currentColor). Verificación manual del PO en playground OK (2026-07-19): geometría del arco en los 4 sizes y pulso reduced-motion.
 - Change OpenSpec: `components-add-spinner` (próximo ID en [openspec/README.md](../../../../openspec/README.md)).
 - Referencias de implementación: variantes por tokens de `tabs.css`; bloque `prefers-reduced-motion` de `toast.css` (aaa-021); patrón visually-hidden del kit.

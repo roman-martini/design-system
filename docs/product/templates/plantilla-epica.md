@@ -17,9 +17,9 @@ actor: Dev consumidor | Diseñador | Mantenedor
 
 # EP-XXX — Título de la épica
 
-## Contexto / historia original
+## Contexto
 
-> Texto original del pedido, sin editar, para trazabilidad.
+> Resumir el requerimiento en una o dos líneas: qué problema resuelve y para qué actores.
 
 ## Alcance
 

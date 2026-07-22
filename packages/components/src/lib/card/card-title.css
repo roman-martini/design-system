@@ -1,0 +1,7 @@
+:host {
+  display: block;
+  margin: 0;
+  color: var(--ds-component-card-title-color);
+  font-size: var(--ds-component-card-title-font-size);
+  font-weight: var(--ds-component-card-title-font-weight);
+}

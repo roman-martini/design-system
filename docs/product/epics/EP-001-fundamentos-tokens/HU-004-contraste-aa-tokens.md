@@ -1,11 +1,11 @@
-# HU-004 — Tokens interactivos con contraste WCAG AA (dev consumidor)
-
-**Épica**: [EP-001 — Fundamentos: tokens y theming](EP-001-fundamentos-tokens.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha — change [aaa-015 tokens-fix-contrast-aa](../../../../openspec/changes/archive/aaa-015-tokens-fix-contrast-aa/) archivado (2026-07-11)
-**Decisiones que aplica**: [D-007, D-008](../../decisiones.md)
-
 ---
+epica: EP-001
+actor: Dev consumidor
+estado: Hecha (2026-07-11, aaa-015 tokens-fix-contrast-aa)
+decisiones: [D-007, D-008]
+---
+
+# HU-004 — Tokens interactivos con contraste WCAG AA (dev consumidor)
 
 **COMO** dev que construye UI con el DS
 **QUIERO** que los tokens interactivos (primario, bordes de form controls) cumplan WCAG AA en todos los themes

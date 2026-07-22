@@ -1,11 +1,11 @@
-# HU-014 — Breadcrumbs de ubicación (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-20) — [`aaa-027 components-add-breadcrumbs`](../../../../openspec/changes/archive/aaa-027-components-add-breadcrumbs/) archivado; 15 tests (11 core + 4 router), review con 1 media + 1 baja aplicadas (track por url, directiva a archivo propio), gate AA con fix local (`ellipsis.text-hover`), genera [ADR-017](../../../architecture/adr/ADR-017-secondary-entry-points.md) (secondary entry points). Verificación manual del PO en playground OK (2026-07-20): wrap responsive, truncamiento/expansión con foco y auto-rutas navegando `/breadcrumbs`
-**Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-20, aaa-027 components-add-breadcrumbs; genera ADR-017)
+decisiones: [D-005, D-007, D-011]
+---
+
+# HU-014 — Breadcrumbs de ubicación (dev consumidor)
 
 **COMO** dev que construye jerarquías de páginas
 **QUIERO** un `ds-breadcrumbs` accesible
@@ -43,5 +43,6 @@
 
 ## Notas
 
+- **Cierre (2026-07-20)** — [`aaa-027 components-add-breadcrumbs`](../../../../openspec/changes/archive/aaa-027-components-add-breadcrumbs/) archivado; 15 tests (11 core + 4 router), review con 1 media + 1 baja aplicadas (track por url, directiva a archivo propio), gate AA con fix local (`ellipsis.text-hover`), genera [ADR-017](../../../architecture/adr/ADR-017-secondary-entry-points.md) (secondary entry points). Verificación manual del PO en playground OK (2026-07-20): wrap responsive, truncamiento/expansión con foco y auto-rutas navegando `/breadcrumbs`.
 - Change OpenSpec: `components-add-breadcrumbs` (próximo ID en [openspec/README.md](../../../../openspec/README.md)).
 - Referencias de implementación: registro padre-hijo scoped (`accordion/`, aaa-026); chevron estático de `select/` (ADR-012); el playground ya usa router con rutas por componente (aaa-022) — banco de prueba real para CA-014.6.

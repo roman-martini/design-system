@@ -1,11 +1,11 @@
-# HU-005 — Input/TextField para formularios reales (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha — change [aaa-017 components-add-input](../../../../openspec/changes/archive/aaa-017-components-add-input/) archivado (2026-07-11)
-**Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-11, aaa-017 components-add-input)
+decisiones: [D-005, D-007, D-009]
+---
+
+# HU-005 — Input/TextField para formularios reales (dev consumidor)
 
 **COMO** dev que arma formularios con el DS
 **QUIERO** un `ds-input` de texto accesible integrado a Angular Forms

@@ -1,11 +1,11 @@
-# HU-012 — Menu/Dropdown de acciones (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha (2026-07-19) — [`aaa-025 components-add-menu`](../../../../openspec/changes/archive/aaa-025-components-add-menu/) archivado; 19 tests, review con 2 hallazgos aplicados (Tab + visibilidad), pares danger AA vía [D-012](../../decisiones.md), genera [ADR-016](../../../architecture/adr/ADR-016-posicionamiento-placements-por-overlay.md). Verificación manual del PO en playground OK (2026-07-19): árbol de submenús (lateral, flip, hover intent), light-dismiss y reduced-motion
-**Decisiones que aplica**: [D-005, D-007, D-011](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-19, aaa-025 components-add-menu; genera ADR-016 y D-012)
+decisiones: [D-005, D-007, D-011, D-012]
+---
+
+# HU-012 — Menu/Dropdown de acciones (dev consumidor)
 
 **COMO** dev que construye interfaces con acciones contextuales
 **QUIERO** un `ds-menu` accesible disparado desde un botón
@@ -46,5 +46,6 @@
 
 ## Notas
 
+- **Cierre (2026-07-19)** — [`aaa-025 components-add-menu`](../../../../openspec/changes/archive/aaa-025-components-add-menu/) archivado; 19 tests, review con 2 hallazgos aplicados (Tab + visibilidad), pares danger AA vía [D-012](../../decisiones.md), genera [ADR-016](../../../architecture/adr/ADR-016-posicionamiento-placements-por-overlay.md). Verificación manual del PO en playground OK (2026-07-19): árbol de submenús (lateral, flip, hover intent), light-dismiss y reduced-motion.
 - Change OpenSpec: `components-add-menu` (próximo ID en [openspec/README.md](../../../../openspec/README.md)).
 - Referencias de implementación: registro padre-hijo y Popover API de `select/` (aaa-016); directiva de `tooltip/` (aaa-019) como precedente de trigger por directiva; popovers anidados de la plataforma para el árbol de submenús.

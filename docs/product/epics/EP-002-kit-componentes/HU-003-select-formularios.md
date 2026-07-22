@@ -1,11 +1,11 @@
-# HU-003 — Select/Combobox para formularios reales (dev consumidor)
-
-**Épica**: [EP-002 — Kit de componentes Angular](EP-002-kit-componentes.md)
-**Actor**: Dev consumidor
-**Estado**: Hecha — change [aaa-016 components-add-select](../../../../openspec/changes/archive/aaa-016-components-add-select/) archivado (2026-07-11); generó [ADR-014](../../../architecture/adr/ADR-014-overlays-anclados-popover-api.md)
-**Decisiones que aplica**: [D-005, D-007, D-009](../../decisiones.md)
-
 ---
+epica: EP-002
+actor: Dev consumidor
+estado: Hecha (2026-07-11, aaa-016 components-add-select; genera ADR-014)
+decisiones: [D-005, D-007, D-009]
+---
+
+# HU-003 — Select/Combobox para formularios reales (dev consumidor)
 
 **COMO** dev que arma formularios con el DS
 **QUIERO** un `ds-select` accesible integrado a Angular Forms
