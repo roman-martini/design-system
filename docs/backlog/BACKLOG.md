@@ -31,11 +31,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ### `components-add-badge` — Badge de estado (tanda 3)
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-021](../product/epics/EP-002-kit-componentes/HU-021-badge.md) / EP-002 — origen, alcance y decisiones abiertas viven en la HU.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-021](../product/epics/EP-002-kit-componentes/HU-021-badge.md) / EP-002 — origen, alcance y decisiones viven en la HU.
 
-**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-button-variants` (`aaa-033`, 2026-07-22). Reutiliza el naming `danger` y los pares de contraste ya verificados de HU-020.
+**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-button-variants` (`aaa-033`, 2026-07-22).
 
-**Estado**: pendiente — refinar HU-021 → `/opsx:propose`.
+**Estado**: **propuesta activa** — [`aaa-034`](../../openspec/changes/components-add-badge/) (`proposed`, 4/4 artefactos, HU-021 Refinada). Primera implementación de [ADR-019](../architecture/adr/ADR-019-modelo-variantes-tono-apariencia.md) (dos ejes) / [D-017](../product/decisiones.md). Apply en curso (modo "ejecuta todo"). Sale de acá al archivar.
 
 ---
 

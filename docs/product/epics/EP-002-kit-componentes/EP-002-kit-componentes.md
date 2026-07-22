@@ -55,7 +55,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-017](HU-017-button-loading.md)             | Estado loading de ds-button                | Dev consumidor | Hecha (2026-07-22, aaa-031 — genera D-013, refinamiento visual del botón) |
 | [HU-019](HU-019-card.md)                       | Card contenedor                            | Dev consumidor | Hecha (2026-07-22, aaa-032 — abre la tanda 3)                             |
 | [HU-020](HU-020-button-outline-destructive.md) | Variantes outline y danger de Button       | Dev consumidor | Hecha (2026-07-22, aaa-033 — genera D-016)                                |
-| [HU-021](HU-021-badge.md)                      | Badge de estado                            | Dev consumidor | Identificada (tanda 3, D-014)                                             |
+| [HU-021](HU-021-badge.md)                      | Badge de estado                            | Dev consumidor | Refinada (2026-07-22; propuesta `aaa-034` activa, estrena ADR-019)        |
 | [HU-022](HU-022-avatar.md)                     | Avatar y grupo de avatares                 | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 | [HU-023](HU-023-switch.md)                     | Switch/Toggle                              | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 | [HU-024](HU-024-textarea.md)                   | Textarea                                   | Dev consumidor | Identificada (tanda 3, D-014)                                             |

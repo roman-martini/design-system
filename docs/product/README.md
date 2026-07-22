@@ -61,7 +61,7 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 | [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor      | —                              | En desarrollo (primera tanda 2026-07-11)                    |
 | [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor  | 011                            | En desarrollo (HU-011 Hecha 2026-07-19)                     |
 
-Próximos IDs libres: **EP-007**, **HU-026**, **D-017**.
+Próximos IDs libres: **EP-007**, **HU-026**, **D-018**.
 
 ## Roadmap
 
