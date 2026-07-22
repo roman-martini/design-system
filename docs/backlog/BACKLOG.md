@@ -35,7 +35,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-card` (`aaa-032`, 2026-07-22).
 
-**Estado**: pendiente — refinar HU-020 → `/opsx:propose`.
+**Estado**: **propuesta activa** — [`aaa-033`](../../openspec/changes/components-button-variants/) (`proposed`, 4/4 artefactos, HU-020 Refinada, genera D-016). Apply en curso (modo "ejecuta todo" del loop). Sale de acá al archivar.
 
 ---
 
