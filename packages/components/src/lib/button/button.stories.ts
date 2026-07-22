@@ -23,12 +23,20 @@ const meta: Meta<DsButton> = {
     disabledReason: {
       control: { type: 'text' },
     },
+    loading: {
+      control: { type: 'boolean' },
+    },
+    loadingText: {
+      control: { type: 'text' },
+    },
   },
   args: {
     variant: 'primary',
     size: 'md',
     disabled: false,
     disabledReason: '',
+    loading: false,
+    loadingText: '',
   },
 };
 
@@ -99,5 +107,38 @@ export const DisabledWithReason: Story = {
   render: (args) => ({
     props: args,
     template: `<ds-button [variant]="variant" [size]="size" [disabled]="disabled" [disabledReason]="disabledReason">Enviar</ds-button>`,
+  }),
+};
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+  },
+  render: (args) => ({
+    props: args,
+    template: `<ds-button [variant]="variant" [size]="size" [loading]="loading">Guardar</ds-button>`,
+  }),
+};
+
+export const LoadingText: Story = {
+  args: {
+    loading: true,
+    loadingText: 'Guardando…',
+  },
+  render: (args) => ({
+    props: args,
+    template: `<ds-button [variant]="variant" [size]="size" [loading]="loading" [loadingText]="loadingText">Guardar</ds-button>`,
+  }),
+};
+
+export const LoadingWhileDisabled: Story = {
+  args: {
+    loading: true,
+    disabled: true,
+    disabledReason: 'Completá los campos requeridos',
+  },
+  render: (args) => ({
+    props: args,
+    template: `<ds-button [variant]="variant" [size]="size" [loading]="loading" [disabled]="disabled" [disabledReason]="disabledReason">Guardar</ds-button>`,
   }),
 };

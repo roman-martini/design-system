@@ -40,6 +40,13 @@ code {
   font-size: var(--ds-font-size-sm);
 }
 
+/* Nota introductoria de un caso (va arriba de las filas de demo) */
+.playground__note {
+  margin: 0 0 var(--ds-semantic-space-md);
+  color: var(--ds-semantic-color-text-secondary);
+  font-size: var(--ds-font-size-sm);
+}
+
 .playground__row--icons {
   color: var(--ds-semantic-color-icon-default);
 }

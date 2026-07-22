@@ -54,14 +54,14 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 
 | ID                                                                         | Épica                         | Actor principal | HUs                   | Estado                                                   |
 | -------------------------------------------------------------------------- | ----------------------------- | --------------- | --------------------- | -------------------------------------------------------- |
-| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor  | 004                   | En desarrollo (base entregada)                           |
-| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor  | 003, 005–010, 012–016 | En desarrollo (tanda 1 completa; tanda 2 aprobada D-011) |
+| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor  | 004, 018              | En desarrollo (base entregada)                           |
+| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor  | 003, 005–010, 012–017 | En desarrollo (tanda 1 completa; tanda 2 aprobada D-011) |
 | [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor  | 002                   | En desarrollo (npm-ready, sin publicar)                  |
 | [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador       | 001                   | En refinamiento (aaa-012 propuesto)                      |
 | [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor      | —                     | En desarrollo (primera tanda 2026-07-11)                 |
 | [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor  | 011                   | En desarrollo (HU-011 Hecha 2026-07-19)                  |
 
-Próximos IDs libres: **EP-007**, **HU-017**, **D-013**.
+Próximos IDs libres: **EP-007**, **HU-019**, **D-014**.
 
 ## Roadmap
 

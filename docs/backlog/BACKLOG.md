@@ -27,9 +27,9 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 8: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination y Progress) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 9: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress y Button loading) y el release NO es candidato automático.
 
-**§ Now está vacío** (2026-07-20): la **tanda 2 quedó completa** con `aaa-029`. La próxima entrada la decide el PO desde la dirección de producto ([Roadmap de hitos](../product/README.md#roadmap) + nueva D-XXX si corresponde); este archivo no propone candidatos.
+**§ Now está vacío** (2026-07-22): `components-button-loading` ([`aaa-031`](../../openspec/changes/archive/aaa-031-components-button-loading/)) se archivó — HU-017 Hecha, changeset acumulado. La próxima entrada la decide el PO desde la dirección de producto ([Roadmap de hitos](../product/README.md#roadmap) + nueva D-XXX si corresponde); este archivo no propone candidatos.
 
 ---
 
@@ -57,31 +57,13 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ---
 
-### `components-button-loading` — Estado loading de ds-button
-
-**Tipo**: OpenSpec (kit). **Producto**: [EP-002](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md) (sin HU propia todavía).
-
-**Origen**: refinamiento de [HU-009](../product/epics/EP-002-kit-componentes/HU-009-spinner.md) (decisión 1, PO 2026-07-19) — el spinner entra solo; el `loading` de `ds-button` se separó a item propio.
-
-**Alcance propuesto**: input `loading` en `DsButton` (spinner embebido + deshabilitado accesible + aria coherente con ADR-011).
-
-**Disparador**: primer caso de uso real (playground o consumidor) que necesite bloquear un botón durante una operación async. Desbloqueado desde el cierre de `components-add-spinner` (`aaa-023`, 2026-07-19); el disparador aún no se activó.
-
-**Estado**: pendiente (Next).
-
----
-
 ## Later — sin urgencia
 
 ### Tokens aditivos del research Atlassian
 
-**Tipo**: OpenSpec (kit, micro-changes). **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md).
+**Tipo**: OpenSpec (kit, micro-changes). **Producto**: [HU-018](../product/epics/EP-001-fundamentos-tokens/HU-018-tokens-aditivos-atlassian.md) / EP-001 — origen, alcance por token y fuera-de-alcance viven en la HU.
 
-**Origen**: `docs/design/research/atlassian-design.md §4` — "inspiración selectiva", cada uno un CHG separado:
-
-- `tokens-add-space-zero` — `space.0` semántico (trivial, ~1h).
-- `tokens-add-metric-typography` — `metric.small/medium/large` para números prominentes (KPIs).
-- `tokens-add-negative-space` — `space.negative.*` para overlapping (avatares apilados, badges).
+**Micro-changes** (cada uno su change y su disparador; detalle en HU-018): `tokens-add-space-zero`, `tokens-add-metric-typography`, `tokens-add-negative-space`.
 
 **Disparador** (cada uno): primer caso de uso real en playground o componente.
 
@@ -161,6 +143,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 - **Sin features hipotéticas** (D-005): nada entra a un horizonte "por completitud"; la Cantera es inspiración explícitamente no comprometida.
 - **La dirección no vive acá**: qué sigue lo deciden los hitos y D-XXX de [docs/product/](../product/README.md#roadmap); este archivo no propone candidatos ni prioriza por su cuenta.
 - **Los items cerrados se eliminan**: el histórico vive en el [catálogo de changes](../architecture/README.md#catálogo-de-changes) y en `openspec/changes/archive/`. Este archivo solo tiene pendientes.
+- **Cuando un item gana HU, se deduplica** (no se elimina — el item sigue vivo hasta que su change se archive): la HU pasa a ser la fuente de "qué/por qué" (origen, alcance, decisiones, fuera-de-alcance) y el item conserva **solo lo operativo** (tipo, link a la HU, disparador, horizonte, estado). No se repite en el backlog lo que la HU ya dice (modelo de referencia: `tokens-figma-export`).
 - **Grooming al archivar cada change** (ver "Cómo se gestiona" §4): disparadores reevaluados, horizontes promovidos, cerrados eliminados.
 - **Un item = una entrada**: si crece a múltiples entregas independientes, se parte (como los tokens Atlassian).
 - **Sin emojis** en items o títulos.

@@ -27,3 +27,35 @@
     </ds-button>
   </div>
 </app-showcase-case>
+
+<app-showcase-case title="Loading (estado async)" [snippet]="loadingSnippet">
+  <p class="playground__note">
+    Cliqueá "Guardar": el spinner reemplaza el label conservando el ancho (cero layout shift). La
+    segunda fila muestra el modo <code>loadingText</code>.
+  </p>
+  <div class="playground__row">
+    <ds-button [loading]="saving()" (clicked)="simulateSave()">Guardar</ds-button>
+    <ds-button variant="secondary" [loading]="saving()" (clicked)="simulateSave()">
+      Guardar cambios
+    </ds-button>
+  </div>
+  <div class="playground__row">
+    <ds-button [loading]="true" loadingText="Guardando…">Guardar</ds-button>
+    <ds-button variant="secondary" [loading]="true" loadingText="Procesando…">Procesar</ds-button>
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="loading tiene precedencia sobre disabled" [snippet]="precedenceSnippet">
+  <p class="playground__note">
+    El mismo botón <code>disabled</code> muestra su motivo (arriba); al agregarle
+    <code>loading</code>, <code>aria-busy</code> manda y el motivo se oculta (abajo).
+  </p>
+  <div class="playground__row">
+    <ds-button [disabled]="true" disabledReason="Completá los campos requeridos">Guardar</ds-button>
+  </div>
+  <div class="playground__row">
+    <ds-button [loading]="true" [disabled]="true" disabledReason="Completá los campos requeridos">
+      Guardar
+    </ds-button>
+  </div>
+</app-showcase-case>

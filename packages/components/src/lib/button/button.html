@@ -2,12 +2,22 @@
   type="button"
   [attr.data-variant]="variant()"
   [attr.data-size]="size()"
-  [attr.aria-disabled]="disabled() ? 'true' : null"
+  [attr.data-loading]="loadingMode()"
+  [attr.aria-disabled]="ariaDisabled()"
+  [attr.aria-busy]="ariaBusy()"
   [attr.aria-describedby]="describedBy()"
   (click)="onClick($event)"
 >
-  <ng-content />
+  <span class="ds-button__content"><ng-content /></span>
+  @if (loading()) {
+  <span class="ds-button__loading">
+    <ds-spinner size="xs" label="" />
+    @if (loadingText(); as text) {
+    <span class="ds-button__loading-text">{{ text }}</span>
+    }
+  </span>
+  }
 </button>
-@if (disabled() && disabledReason()) {
+@if (showReason()) {
 <span [id]="reasonId" class="ds-button__reason">{{ disabledReason() }}</span>
 }

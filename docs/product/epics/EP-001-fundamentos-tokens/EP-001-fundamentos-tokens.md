@@ -21,11 +21,12 @@ Design tokens en jerarquía `primitives → semantic → component → theme` (A
 
 ## Historias de usuario
 
-| HU                                      | Título                                    | Actor          | Estado                               |
-| --------------------------------------- | ----------------------------------------- | -------------- | ------------------------------------ |
-| [HU-004](HU-004-contraste-aa-tokens.md) | Tokens interactivos con contraste WCAG AA | Dev consumidor | Hecha (aaa-015 archivado 2026-07-11) |
+| HU                                            | Título                                    | Actor          | Estado                                                            |
+| --------------------------------------------- | ----------------------------------------- | -------------- | ----------------------------------------------------------------- |
+| [HU-004](HU-004-contraste-aa-tokens.md)       | Tokens interactivos con contraste WCAG AA | Dev consumidor | Hecha (aaa-015 archivado 2026-07-11)                              |
+| [HU-018](HU-018-tokens-aditivos-atlassian.md) | Tokens aditivos del research Atlassian    | Dev consumidor | Identificada (Later; sin disparador activo — un change por token) |
 
-Candidatas ([BACKLOG § Cantera](../../../backlog/BACKLOG.md#cantera-sin-disparador) § tokens, entran con disparador según D-005): breakpoints responsive (cuando haya primer componente responsive), motion adicional (delays/easings extra), density tokens, `space.0`/negative-space/metric-typography (research Atlassian).
+Candidatas ([BACKLOG § Cantera](../../../backlog/BACKLOG.md#cantera-sin-disparador) § tokens, entran con disparador según D-005): breakpoints responsive (cuando haya primer componente responsive), motion adicional (delays/easings extra), density tokens. Los aditivos del research Atlassian (`space.0`, `metric.*`, `space.negative.*`) ya están formalizados en [HU-018](HU-018-tokens-aditivos-atlassian.md), cada uno esperando su disparador.
 
 ## Decisiones aplicables
 

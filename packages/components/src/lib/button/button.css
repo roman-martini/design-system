@@ -6,10 +6,10 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--ds-semantic-space-2xs);
+  gap: var(--ds-semantic-space-sm);
   padding: var(--ds-semantic-space-sm) var(--ds-semantic-space-md);
   border: 1px solid transparent;
-  border-radius: var(--ds-semantic-radius-md);
+  border-radius: var(--ds-semantic-radius-lg);
   font-family: inherit;
   font-weight: var(--ds-font-weight-medium);
   line-height: var(--ds-font-line-height-tight);
@@ -36,15 +36,54 @@ button[aria-disabled='true'] {
   font-size: var(--ds-font-size-sm);
 }
 
+/* content wrapper: conserva el layout flex del contenido proyectado (íconos + texto) */
+.ds-button__content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-semantic-space-sm);
+}
+
+/* estado loading */
+button[data-loading] {
+  position: relative;
+  /* comunica "ocupado, no clickeable" — sin hover/active interactivo (ver reglas de variante) */
+  cursor: progress;
+}
+
+/* modo default (sin loadingText): el contenido se vuelve invisible conservando su ancho
+   (opacity, no visibility — así el texto sigue siendo el nombre accesible) y el spinner
+   se superpone centrado. Cero layout shift. */
+button[data-loading='replace'] .ds-button__content {
+  opacity: 0;
+}
+button[data-loading='replace'] .ds-button__loading {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* modo loadingText: el contenido sale del flujo y el botón se dimensiona al spinner + texto */
+button[data-loading='text'] .ds-button__content {
+  display: none;
+}
+button[data-loading='text'] .ds-button__loading {
+  display: inline-flex;
+  align-items: center;
+  /* separación cómoda spinner↔texto (referencia visual del PO): 8px */
+  gap: var(--ds-semantic-space-sm);
+}
+
 /* variant: primary (default) */
 button[data-variant='primary'] {
   background-color: var(--ds-semantic-color-bg-primary);
   color: var(--ds-semantic-color-text-inverse);
 }
-button[data-variant='primary']:hover:not([aria-disabled='true']) {
+button[data-variant='primary']:hover:not([aria-disabled='true']):not([data-loading]) {
   background-color: var(--ds-semantic-color-bg-primary-hover);
 }
-button[data-variant='primary']:active:not([aria-disabled='true']) {
+button[data-variant='primary']:active:not([aria-disabled='true']):not([data-loading]) {
   background-color: var(--ds-semantic-color-bg-primary-active);
 }
 
@@ -54,10 +93,10 @@ button[data-variant='secondary'] {
   color: var(--ds-semantic-color-text-primary);
   border-color: var(--ds-semantic-color-border-default);
 }
-button[data-variant='secondary']:hover:not([aria-disabled='true']) {
+button[data-variant='secondary']:hover:not([aria-disabled='true']):not([data-loading]) {
   background-color: var(--ds-semantic-color-bg-secondary-hover);
 }
-button[data-variant='secondary']:active:not([aria-disabled='true']) {
+button[data-variant='secondary']:active:not([aria-disabled='true']):not([data-loading]) {
   background-color: var(--ds-semantic-color-bg-secondary-active);
 }
 
@@ -66,7 +105,7 @@ button[data-variant='ghost'] {
   background-color: transparent;
   color: var(--ds-semantic-color-text-primary);
 }
-button[data-variant='ghost']:hover:not([aria-disabled='true']) {
+button[data-variant='ghost']:hover:not([aria-disabled='true']):not([data-loading]) {
   background-color: var(--ds-semantic-color-bg-secondary-hover);
 }
 
