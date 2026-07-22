@@ -11,7 +11,15 @@ const meta: Meta<DsButton> = {
   argTypes: {
     variant: {
       control: { type: 'inline-radio' },
-      options: ['primary', 'secondary', 'ghost'],
+      options: [
+        'primary',
+        'secondary',
+        'ghost',
+        'outline',
+        'danger',
+        'danger-outline',
+        'danger-ghost',
+      ],
     },
     size: {
       control: { type: 'inline-radio' },
@@ -58,10 +66,33 @@ export const Variants: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div style="display:flex; gap:1rem; align-items:center;">
+      <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
         <ds-button variant="primary" [size]="size" [disabled]="disabled">Primary</ds-button>
         <ds-button variant="secondary" [size]="size" [disabled]="disabled">Secondary</ds-button>
+        <ds-button variant="outline" [size]="size" [disabled]="disabled">Outline</ds-button>
         <ds-button variant="ghost" [size]="size" [disabled]="disabled">Ghost</ds-button>
+        <ds-button variant="danger" [size]="size" [disabled]="disabled">Delete</ds-button>
+        <ds-button variant="danger-outline" [size]="size" [disabled]="disabled">Delete</ds-button>
+        <ds-button variant="danger-ghost" [size]="size" [disabled]="disabled">Delete</ds-button>
+      </div>
+    `,
+  }),
+};
+
+export const DangerStates: Story = {
+  // Story de estados fijos (disabled/loading en danger): no consume args a propósito.
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+        <ds-button variant="danger">Delete</ds-button>
+        <ds-button variant="danger" [disabled]="true" disabledReason="Seleccioná al menos un item">
+          Delete
+        </ds-button>
+        <ds-button variant="danger" [loading]="true">Delete</ds-button>
+        <ds-button variant="danger-outline" [loading]="true" loadingText="Eliminando…">Delete</ds-button>
       </div>
     `,
   }),

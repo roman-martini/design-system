@@ -2,7 +2,14 @@ import { ChangeDetectionStrategy, Component, computed, input, output } from '@an
 
 import { DsSpinner } from '../spinner';
 
-export type DsButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type DsButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'ghost'
+  | 'outline'
+  | 'danger'
+  | 'danger-outline'
+  | 'danger-ghost';
 export type DsButtonSize = 'sm' | 'md' | 'lg';
 
 let nextReasonId = 0;

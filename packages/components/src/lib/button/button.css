@@ -109,6 +109,56 @@ button[data-variant='ghost']:hover:not([aria-disabled='true']):not([data-loading
   background-color: var(--ds-semantic-color-bg-secondary-hover);
 }
 
+/* variant: outline — como ghost pero con borde (referencia moder-minimal) */
+button[data-variant='outline'] {
+  background-color: var(--ds-component-button-outline-bg);
+  color: var(--ds-component-button-outline-text);
+  border-color: var(--ds-component-button-outline-border);
+}
+button[data-variant='outline']:hover:not([aria-disabled='true']):not([data-loading]) {
+  background-color: var(--ds-component-button-outline-bg-hover);
+}
+button[data-variant='outline']:active:not([aria-disabled='true']):not([data-loading]) {
+  background-color: var(--ds-component-button-outline-bg-active);
+}
+
+/* variant: danger — sólida (D-016: cadena semantic AA en la fuente) */
+button[data-variant='danger'] {
+  background-color: var(--ds-component-button-danger-bg);
+  color: var(--ds-component-button-danger-text);
+}
+button[data-variant='danger']:hover:not([aria-disabled='true']):not([data-loading]) {
+  background-color: var(--ds-component-button-danger-bg-hover);
+}
+button[data-variant='danger']:active:not([aria-disabled='true']):not([data-loading]) {
+  background-color: var(--ds-component-button-danger-bg-active);
+}
+
+/* variant: danger-outline — borde y texto danger, hover subtle (pares D-012) */
+button[data-variant='danger-outline'] {
+  background-color: var(--ds-component-button-danger-outline-bg);
+  color: var(--ds-component-button-danger-outline-text);
+  border-color: var(--ds-component-button-danger-outline-border);
+}
+button[data-variant='danger-outline']:hover:not([aria-disabled='true']):not([data-loading]) {
+  background-color: var(--ds-component-button-danger-outline-bg-hover);
+}
+button[data-variant='danger-outline']:active:not([aria-disabled='true']):not([data-loading]) {
+  background-color: var(--ds-component-button-danger-outline-bg-active);
+}
+
+/* variant: danger-ghost — solo texto danger, hover subtle */
+button[data-variant='danger-ghost'] {
+  background-color: transparent;
+  color: var(--ds-component-button-danger-ghost-text);
+}
+button[data-variant='danger-ghost']:hover:not([aria-disabled='true']):not([data-loading]) {
+  background-color: var(--ds-component-button-danger-ghost-bg-hover);
+}
+button[data-variant='danger-ghost']:active:not([aria-disabled='true']):not([data-loading]) {
+  background-color: var(--ds-component-button-danger-ghost-bg-active);
+}
+
 /* size */
 button[data-size='sm'] {
   padding: var(--ds-semantic-space-2xs) var(--ds-semantic-space-sm);

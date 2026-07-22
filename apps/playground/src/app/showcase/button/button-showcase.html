@@ -2,7 +2,31 @@
   <div class="playground__row">
     <ds-button variant="primary" (clicked)="logDemoClick('primary')">Primary</ds-button>
     <ds-button variant="secondary" (clicked)="logDemoClick('secondary')">Secondary</ds-button>
+    <ds-button variant="outline" (clicked)="logDemoClick('outline')">Outline</ds-button>
     <ds-button variant="ghost" (clicked)="logDemoClick('ghost')">Ghost</ds-button>
+    <ds-button variant="danger" (clicked)="logDemoClick('danger')">Delete</ds-button>
+  </div>
+  <div class="playground__row">
+    <ds-button variant="danger-outline" (clicked)="logDemoClick('danger-outline')">
+      Delete
+    </ds-button>
+    <ds-button variant="danger-ghost" (clicked)="logDemoClick('danger-ghost')">Delete</ds-button>
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Danger + disabled/loading (CA-020.5)" [snippet]="dangerStatesSnippet">
+  <p class="playground__note">
+    El disabled accesible (ADR-011) y el estado <code>loading</code> funcionan idéntico en las
+    variantes danger.
+  </p>
+  <div class="playground__row">
+    <ds-button variant="danger" [disabled]="true" disabledReason="Seleccioná al menos un item">
+      Delete
+    </ds-button>
+    <ds-button variant="danger" [loading]="true">Delete</ds-button>
+    <ds-button variant="danger-outline" [loading]="true" loadingText="Eliminando…">
+      Delete
+    </ds-button>
   </div>
 </app-showcase-case>
 

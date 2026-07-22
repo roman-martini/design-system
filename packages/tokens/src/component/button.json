@@ -49,6 +49,27 @@
         "text":      { "value": "{semantic.color.text.primary}" },
         "border":    { "value": "transparent" }
       },
+      "outline": {
+        "bg":        { "value": "transparent" },
+        "bg-hover":  { "value": "{semantic.color.bg.secondary-hover}" },
+        "bg-active": { "value": "{semantic.color.bg.secondary-active}" },
+        "text":      { "value": "{semantic.color.text.primary}" },
+        "border":    { "value": "{semantic.color.border.default}" }
+      },
+      "danger-outline": {
+        "bg":        { "value": "transparent" },
+        "bg-hover":  { "value": "{semantic.color.bg.danger-subtle}" },
+        "bg-active": { "value": "{semantic.color.bg.danger-subtle}" },
+        "text":      { "value": "{semantic.color.text.danger}" },
+        "border":    { "value": "{semantic.color.border.danger}" }
+      },
+      "danger-ghost": {
+        "bg":        { "value": "transparent" },
+        "bg-hover":  { "value": "{semantic.color.bg.danger-subtle}" },
+        "bg-active": { "value": "{semantic.color.bg.danger-subtle}" },
+        "text":      { "value": "{semantic.color.text.danger}" },
+        "border":    { "value": "transparent" }
+      },
       "link": {
         "bg":           { "value": "transparent" },
         "bg-hover":     { "value": "transparent" },

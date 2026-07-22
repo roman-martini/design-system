@@ -15,7 +15,18 @@ export class ButtonShowcase {
   protected readonly saving = signal(false);
   protected readonly variantsSnippet = `<ds-button variant="primary" (clicked)="save()">Primary</ds-button>
 <ds-button variant="secondary" (clicked)="cancel()">Secondary</ds-button>
-<ds-button variant="ghost" (clicked)="dismiss()">Ghost</ds-button>`;
+<ds-button variant="outline" (clicked)="filter()">Outline</ds-button>
+<ds-button variant="ghost" (clicked)="dismiss()">Ghost</ds-button>
+<ds-button variant="danger" (clicked)="remove()">Delete</ds-button>
+<ds-button variant="danger-outline" (clicked)="remove()">Delete</ds-button>
+<ds-button variant="danger-ghost" (clicked)="remove()">Delete</ds-button>`;
+
+  protected readonly dangerStatesSnippet = `<!-- disabled accesible (ADR-011) y loading (HU-017) funcionan igual en danger -->
+<ds-button variant="danger" [disabled]="true" disabledReason="Seleccioná al menos un item">
+  Delete
+</ds-button>
+<ds-button variant="danger" [loading]="deleting()">Delete</ds-button>
+<ds-button variant="danger-outline" [loading]="true" loadingText="Eliminando…">Delete</ds-button>`;
 
   protected readonly sizesSnippet = `<ds-button size="sm">Small</ds-button>
 <ds-button size="md">Medium</ds-button>

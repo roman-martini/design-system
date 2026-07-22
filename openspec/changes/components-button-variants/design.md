@@ -42,16 +42,16 @@ export type DsButtonVariant =
 | ------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------- |
 | `button.danger.*`         | existente | `bg.danger`/`danger-hover`/`danger-active` + `text.inverse` (se estrena)                                              |
 | `button.outline.*`        | nuevo     | bg `transparent`, border `border.default`, text `text.primary`, hover/active `bg.secondary-hover/active` (como ghost) |
-| `button.danger-outline.*` | nuevo     | bg `transparent`, border y text `text.danger`, hover/active `bg.danger-subtle`                                        |
+| `button.danger-outline.*` | nuevo     | bg `transparent`, border `border.danger` (semantic existente), text `text.danger`, hover/active `bg.danger-subtle`    |
 | `button.danger-ghost.*`   | nuevo     | bg y border `transparent`, text `text.danger`, hover/active `bg.danger-subtle`                                        |
 
-- `danger-outline` usa `text.danger` también para el borde: es el mismo tono que el texto (patrón shadcn) y el par ya está verificado (D-012). Sin token semantic `border.danger` nuevo — se agrega solo si un segundo componente lo pide.
+- `danger-outline` usa `border.danger` (semantic **existente** del bootstrap, red.500 = 3.76:1 sobre surface ≥3:1 ✓ para 1.4.11): el semantic ya provee el token dedicado, mejor que reutilizar `text.danger` para un rol de borde. (Ajuste sobre la versión propuesta del design, detectado en el apply.)
 
 ### 3. D-016 en `semantic/color.json` (default only)
 
 - `bg.danger` `{color.red.500}` → `{color.red.600}`; `danger-hover` → `{color.red.700}`; `danger-active` → `{color.red.800}`. `danger-subtle` no cambia.
-- `theme/dark.json` no se toca (600/500/400: base ya AA, hover aclara — correcto en dark).
-- Ratios (calculados, los fija el gate): blanco/red.600 = 4.83 ✓, blanco/red.700 = 6.2 ✓, blanco/red.800 > 7 ✓.
+- `theme/dark.json` corre su cadena un paso **aclarando** (600/500/400 → 500/400/300): el gate reveló que `text.inverse` de dark no es blanco y la base `red.600` daba 3.71:1 ✗; con `red.500` queda 4.76:1 ✓ (hover 6.48, active más alto). Corrección sobre la premisa del proposal, detectada por el gate.
+- Ratios del gate (4 themes): base 4.83/4.83/4.83/4.76 ✓ · hover 6.47/…/6.48 ✓ · active 8.31/…/6.48 ✓ · borde danger-outline 3.76 (ui ≥3) ✓ · regresiones: ninguna.
 
 ### 4. CSS: mismos patrones `[data-variant]` del archivo actual
 

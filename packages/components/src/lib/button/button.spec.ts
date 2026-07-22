@@ -1,7 +1,16 @@
+import { existsSync, readFileSync } from 'node:fs';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { DsButton } from './button';
+
+// Scenarios de variantes (aaa-033) asertan tokens sobre el CSS fuente (criterio aaa-023):
+// jsdom no computa colores; los ratios reales los verifica el gate de contraste por script.
+const cssPath = ['src/lib/button/button.css', 'packages/components/src/lib/button/button.css'].find(
+  (p) => existsSync(p),
+);
+const buttonCss = cssPath ? readFileSync(cssPath, 'utf-8') : '';
 
 describe('DsButton', () => {
   let fixture: ComponentFixture<DsButton>;
@@ -96,6 +105,54 @@ describe('DsButton', () => {
     expect(buttonEl.getAttribute('aria-describedby')).toBeNull();
   });
 
+  describe('variants (aaa-033)', () => {
+    it('reflects each new variant on data-variant (CA-020.1–020.3)', () => {
+      for (const variant of ['outline', 'danger', 'danger-outline', 'danger-ghost'] as const) {
+        fixture.componentRef.setInput('variant', variant);
+        fixture.detectChanges();
+        expect(buttonEl.getAttribute('data-variant')).toBe(variant);
+      }
+    });
+
+    it('styles outline from component tokens (CA-020.1)', () => {
+      expect(buttonCss).toContain('--ds-component-button-outline-border');
+      expect(buttonCss).toContain('--ds-component-button-outline-text');
+      expect(buttonCss).toContain('--ds-component-button-outline-bg-hover');
+    });
+
+    it('styles danger solid from the bootstrap block (CA-020.2)', () => {
+      expect(buttonCss).toContain('--ds-component-button-danger-bg');
+      expect(buttonCss).toContain('--ds-component-button-danger-bg-hover');
+      expect(buttonCss).toContain('--ds-component-button-danger-text');
+    });
+
+    it('styles danger-outline and danger-ghost with subtle hover (CA-020.3)', () => {
+      expect(buttonCss).toContain('--ds-component-button-danger-outline-border');
+      expect(buttonCss).toContain('--ds-component-button-danger-outline-bg-hover');
+      expect(buttonCss).toContain('--ds-component-button-danger-ghost-text');
+      expect(buttonCss).toContain('--ds-component-button-danger-ghost-bg-hover');
+    });
+
+    it('keeps the disabled guard working on a danger variant (CA-020.5)', () => {
+      fixture.componentRef.setInput('variant', 'danger');
+      fixture.componentRef.setInput('disabled', true);
+      fixture.detectChanges();
+
+      const spy = vi.fn();
+      component.clicked.subscribe(spy);
+      buttonEl.click();
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(buttonEl.getAttribute('aria-disabled')).toBe('true');
+      expect(buttonEl.hasAttribute('disabled')).toBe(false);
+    });
+
+    it('uses no hex codes in the variants CSS source (CA-020.1–020.3)', () => {
+      expect(buttonCss.length).toBeGreaterThan(0);
+      expect(buttonCss).not.toMatch(/#[0-9a-fA-F]{3,8}\b/);
+    });
+  });
+
   describe('loading', () => {
     it('does NOT emit clicked when loading (guard, not native disabled)', () => {
       fixture.componentRef.setInput('loading', true);
@@ -179,6 +236,20 @@ describe('DsButton', () => {
       expect(buttonEl.getAttribute('aria-disabled')).toBeNull();
       expect(buttonEl.getAttribute('aria-describedby')).toBeNull();
       expect(fixture.nativeElement.querySelector('.ds-button__reason')).toBeNull();
+    });
+
+    it('keeps the loading guard working on a danger variant (CA-020.5)', () => {
+      fixture.componentRef.setInput('variant', 'danger');
+      fixture.componentRef.setInput('loading', true);
+      fixture.detectChanges();
+
+      const spy = vi.fn();
+      component.clicked.subscribe(spy);
+      buttonEl.click();
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(buttonEl.getAttribute('aria-busy')).toBe('true');
+      expect(buttonEl.getAttribute('data-variant')).toBe('danger');
     });
 
     it('restores disabled and its reason when loading turns false', () => {

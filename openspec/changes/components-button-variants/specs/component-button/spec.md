@@ -32,7 +32,7 @@
 
 - **WHEN** se inspecciona `semantic/color.json` post-build
 - **THEN** `bg.danger`/`danger-hover`/`danger-active` SHALL referenciar `red.600/700/800`
-- **AND** el override dark SHALL permanecer sin cambios
+- **AND** la cadena dark SHALL referenciar `red.500/400/300` (aclara un paso, manteniendo AA con su `text.inverse`)
 - **AND** el gate de contraste SHALL pasar sin regresión en pares existentes
 
 #### Scenario: compatibilidad con disabled y loading (CA-020.5)
