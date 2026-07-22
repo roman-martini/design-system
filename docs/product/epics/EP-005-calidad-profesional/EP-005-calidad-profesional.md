@@ -1,6 +1,9 @@
-# EP-005 — Calidad profesional
+---
+estado: En desarrollo (primera tanda entregada 2026-07-11)
+actor: Mantenedor
+---
 
-**Estado**: En desarrollo (primera tanda entregada el 2026-07-11)
+# EP-005 — Calidad profesional
 
 ## Contexto
 

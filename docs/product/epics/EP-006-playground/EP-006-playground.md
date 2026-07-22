@@ -1,6 +1,9 @@
-# EP-006 — Playground
+---
+estado: En desarrollo (HU-011 Hecha 2026-07-19; próximas HUs con disparador propio)
+actor: Dev consumidor
+---
 
-**Estado**: En desarrollo (HU-011 Hecha 2026-07-19; próximas HUs con disparador propio)
+# EP-006 — Playground
 
 ## Contexto / historia original
 

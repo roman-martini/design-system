@@ -1,6 +1,9 @@
-# EP-001 — Fundamentos: tokens y theming
+---
+estado: En desarrollo (base entregada; backlog abierto por disparador)
+actor: Dev consumidor
+---
 
-**Estado**: En desarrollo (base entregada; backlog abierto por disparador)
+# EP-001 — Fundamentos: tokens y theming
 
 ## Contexto
 

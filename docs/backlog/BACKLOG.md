@@ -29,11 +29,29 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 > **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 9: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress y Button loading) y el release NO es candidato automático.
 
-**§ Now está vacío** (2026-07-22): `components-button-loading` ([`aaa-031`](../../openspec/changes/archive/aaa-031-components-button-loading/)) se archivó — HU-017 Hecha, changeset acumulado. La próxima entrada la decide el PO desde la dirección de producto ([Roadmap de hitos](../product/README.md#roadmap) + nueva D-XXX si corresponde); este archivo no propone candidatos.
+### `components-add-card` — Card contenedor (tanda 3)
+
+**Tipo**: OpenSpec (kit). **Producto**: [HU-019](../product/epics/EP-002-kit-componentes/HU-019-card.md) / EP-002 — origen, alcance y decisiones abiertas viven en la HU.
+
+**Disparador**: activado por [D-014](../product/decisiones.md) (2026-07-22) — primera entrega de la tanda 3 (foundational: las demás vistas de la referencia se muestran dentro de la card).
+
+**Estado**: **propuesta activa** — [`aaa-032`](../../openspec/changes/components-add-card/) (`proposed`, 4/4 artefactos, HU-019 Refinada). Apply tras review del PO. Sale de acá al archivar el change.
 
 ---
 
 ## Next — esperando disparador o decisión del PO
+
+### Tanda 3 — cola restante (D-014)
+
+**Tipo**: OpenSpec (kit, un change por componente). **Producto**: HUs de [EP-002](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md) (origen y alcance en cada HU).
+
+**Cola en orden** (cada item se promueve a Now al archivarse el anterior, en el grooming): `components-button-variants` ([HU-020](../product/epics/EP-002-kit-componentes/HU-020-button-outline-destructive.md)) → `components-add-badge` ([HU-021](../product/epics/EP-002-kit-componentes/HU-021-badge.md)) → `components-add-switch` ([HU-023](../product/epics/EP-002-kit-componentes/HU-023-switch.md)) → `components-add-textarea` ([HU-024](../product/epics/EP-002-kit-componentes/HU-024-textarea.md)) → `components-add-avatar` ([HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md), activa `space.negative` de HU-018) → `components-add-slider` ([HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md)).
+
+**Disparador** (cada uno): su turno en la cola — el change anterior de la tanda se archiva.
+
+**Estado**: pendiente (Next).
+
+---
 
 ### `tokens-figma-export` — Export DTCG para Figma (EN PAUSA)
 
@@ -65,7 +83,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Micro-changes** (cada uno su change y su disparador; detalle en HU-018): `tokens-add-space-zero`, `tokens-add-metric-typography`, `tokens-add-negative-space`.
 
-**Disparador** (cada uno): primer caso de uso real en playground o componente.
+**Disparador** (cada uno): primer caso de uso real en playground o componente. Nota (2026-07-22): `tokens-add-negative-space` tiene disparador a la vista — el grupo de `DsAvatar` ([HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md), tanda 3) lo consumirá; se activa cuando ese change arranque.
 
 **Estado**: pendiente, sin disparador activo.
 

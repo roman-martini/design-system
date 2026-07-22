@@ -1,6 +1,9 @@
-# EP-003 — Consumo y distribución
+---
+estado: En desarrollo (primer release 0.2.0 en npm 2026-07-18; próximos releases son operación normal del pipeline)
+actor: Dev consumidor
+---
 
-**Estado**: Primer release publicado (2026-07-18) — `tokens@0.2.0` y `components@0.2.0` en npm; próximos releases son operación normal del pipeline
+# EP-003 — Consumo y distribución
 
 ## Contexto
 

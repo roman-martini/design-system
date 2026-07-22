@@ -1,6 +1,9 @@
-# EP-004 — Puente código ↔ diseño
+---
+estado: En refinamiento (HU-001 con change propuesto, en pausa por decisión del PO)
+actor: Diseñador
+---
 
-**Estado**: En refinamiento (HU-001 con change propuesto, en pausa por decisión del PO)
+# EP-004 — Puente código ↔ diseño
 
 ## Contexto
 

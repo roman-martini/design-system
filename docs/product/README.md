@@ -52,16 +52,16 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 
 ## Índice de épicas
 
-| ID                                                                         | Épica                         | Actor principal | HUs                   | Estado                                                   |
-| -------------------------------------------------------------------------- | ----------------------------- | --------------- | --------------------- | -------------------------------------------------------- |
-| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor  | 004, 018              | En desarrollo (base entregada)                           |
-| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor  | 003, 005–010, 012–017 | En desarrollo (tanda 1 completa; tanda 2 aprobada D-011) |
-| [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor  | 002                   | En desarrollo (npm-ready, sin publicar)                  |
-| [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador       | 001                   | En refinamiento (aaa-012 propuesto)                      |
-| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor      | —                     | En desarrollo (primera tanda 2026-07-11)                 |
-| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor  | 011                   | En desarrollo (HU-011 Hecha 2026-07-19)                  |
+| ID                                                                         | Épica                         | Actor principal | HUs                            | Estado                                                      |
+| -------------------------------------------------------------------------- | ----------------------------- | --------------- | ------------------------------ | ----------------------------------------------------------- |
+| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor  | 004, 018                       | En desarrollo (base entregada)                              |
+| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor  | 003, 005–010, 012–017, 019–025 | En desarrollo (tandas 1-2 completas; tanda 3 D-014 en cola) |
+| [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor  | 002                            | En desarrollo (npm-ready, sin publicar)                     |
+| [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador       | 001                            | En refinamiento (aaa-012 propuesto)                         |
+| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor      | —                              | En desarrollo (primera tanda 2026-07-11)                    |
+| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor  | 011                            | En desarrollo (HU-011 Hecha 2026-07-19)                     |
 
-Próximos IDs libres: **EP-007**, **HU-019**, **D-014**.
+Próximos IDs libres: **EP-007**, **HU-026**, **D-015**.
 
 ## Roadmap
 
@@ -81,8 +81,11 @@ Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualq
 EP-002: tanda 1 (D-009) COMPLETA  → HU-003 + HU-005…HU-010 Hechas (11 componentes + 1 directiva
                                     + 1 service, 2026-07-19)
 EP-002: tanda 2 (D-011)           → COMPLETA (2026-07-20): HU-012…HU-016 Hechas (aaa-025…029;
-                                    Breadcrumbs genera ADR-017). Sin HUs en cola — tanda 3 solo
-                                    con nueva D-XXX del PO
+                                    Breadcrumbs genera ADR-017). + HU-017 Button loading Hecha
+                                    (aaa-031, 2026-07-22; genera D-013)
+EP-002: tanda 3 (D-014)           → EN COLA (2026-07-22): HU-019…HU-025 (Card, Button variants,
+                                    Badge, Avatar, Switch, Textarea, Slider — referencia
+                                    moder-minimal); arranca components-add-card
 EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.2.0 publicados en npm
                                     (D-010, lockstep ADR-015, aaa-020)
 EP-004: HU-001 (Figma export)     → aaa-012 propuesto, 4/4 artefactos; en pausa por decisión del PO
@@ -91,7 +94,7 @@ EP-006: HU-011 (showcase)         → Hecha (2026-07-19): sidebar + ruta lazy po
                                     con snippet copiable; la página única del playground ya no existe
 ```
 
-Última entrega: HU-016 (Progress) Hecha — aaa-029 archivado el 2026-07-20, **tanda 2 completa (5/5)**; el kit suma 16 componentes + 3 directivas + 1 service.
+Última entrega: HU-017 (Button loading) Hecha — aaa-031 archivado el 2026-07-22 (genera D-013, refinamiento visual del botón); el kit mantiene 16 componentes + 3 directivas + 1 service. **Tanda 3 (D-014) en cola** con 7 HUs.
 
 ## Convenciones
 
@@ -110,6 +113,14 @@ El relleno a 3 dígitos es cosmético: si algún día se supera 999, se usa un c
 - HU: `EP-XXX-nombre-corto/HU-XXX-nombre-corto.md`.
 - El nombre corto no cambia aunque el título evolucione (los enlaces no se rompen). Si una HU se muda de épica (raro), se mueve el archivo y se actualizan los enlaces; el ID no cambia.
 - Si una épica se divide, las nuevas épicas registran el origen en su sección "Contexto".
+
+### Metadata en frontmatter (épicas y HUs)
+
+- La metadata vive en el **frontmatter YAML** del archivo, con **IDs pelados** (sin links — desacopla de rutas que cambian):
+  - Épicas: `estado`, `actor` (si son varios, separados con `·`).
+  - HUs: `epica`, `actor`, `estado`, `decisiones` (D-XXX de producto) y `adrs` (ADRs técnicos directamente aplicables; la clave se omite si no hay).
+- `estado` lleva el valor del ciclo (ver § Estados) y admite un **paréntesis corto** con el detalle: fecha, change que la materializó, artefactos generados — ej. `Hecha (2026-07-11, aaa-016; genera ADR-014)`. El detalle largo va al cuerpo, no al frontmatter.
+- En el **cuerpo**, las referencias siguen siendo links markdown relativos (estilo del repo).
 
 ### Estados
 

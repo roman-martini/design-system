@@ -1,15 +1,23 @@
-# HU-XXX — Título corto (actor)
+---
+epica: EP-XXX
+actor: Dev consumidor | Diseñador | Mantenedor
+estado: 'Identificada | Bloqueada (motivo) | Refinada (YYYY-MM-DD) | En desarrollo (change <nombre>) | Hecha (YYYY-MM-DD, aaa-NNN; genera ADR-XXX/D-XXX si aplica)'
+decisiones: [D-XXX, D-YYY]
+adrs: [ADR-XXX]
+---
 
 <!-- Copiar a docs/product/epics/EP-XXX-nombre-corto/HU-XXX-nombre-corto.md
      (la misma carpeta que el documento EP-XXX-nombre-corto.md de su épica) y completar.
-     Agregar la fila correspondiente a la tabla de la épica. -->
+     Agregar la fila correspondiente a la tabla de la épica.
 
-**Épica**: [EP-XXX — Nombre](EP-XXX-nombre-corto.md)
-**Actor**: Dev consumidor | Diseñador | Mantenedor
-**Estado**: Identificada | Bloqueada (motivo) | Refinada | En desarrollo | Hecha
-**Decisiones que aplica**: [D-XXX, D-YYY](../../decisiones.md)
+     Metadata (ver docs/product/README.md § Metadata en frontmatter):
+     - Toda la metadata vive en el frontmatter de arriba, con IDs pelados (sin links).
+     - `estado` admite un paréntesis corto con fecha/change/artefactos generados.
+     - `decisiones` = D-XXX de producto que gobiernan la HU; `adrs` = ADRs técnicos
+       directamente aplicables (omitir la clave si no hay).
+     - En el cuerpo, las referencias siguen siendo links markdown (estilo del repo). -->
 
----
+# HU-XXX — Título corto (actor)
 
 **COMO** actor en cierta condición
 **QUIERO** capacidad concreta
