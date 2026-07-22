@@ -27,15 +27,15 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 10: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress, Button loading y Card) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 11: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress, Button loading, Card y Button variants) y el release NO es candidato automático.
 
-### `components-button-variants` — Variantes outline y destructive de Button (tanda 3)
+### `components-add-badge` — Badge de estado (tanda 3)
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-020](../product/epics/EP-002-kit-componentes/HU-020-button-outline-destructive.md) / EP-002 — origen, alcance y decisiones abiertas viven en la HU.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-021](../product/epics/EP-002-kit-componentes/HU-021-badge.md) / EP-002 — origen, alcance y decisiones abiertas viven en la HU.
 
-**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-card` (`aaa-032`, 2026-07-22).
+**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-button-variants` (`aaa-033`, 2026-07-22). Reutiliza el naming `danger` y los pares de contraste ya verificados de HU-020.
 
-**Estado**: **propuesta activa** — [`aaa-033`](../../openspec/changes/components-button-variants/) (`proposed`, 4/4 artefactos, HU-020 Refinada, genera D-016). Apply en curso (modo "ejecuta todo" del loop). Sale de acá al archivar.
+**Estado**: pendiente — refinar HU-021 → `/opsx:propose`.
 
 ---
 
@@ -45,7 +45,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit, un change por componente). **Producto**: HUs de [EP-002](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md) (origen y alcance en cada HU).
 
-**Cola en orden** (cada item se promueve a Now al archivarse el anterior, en el grooming; `components-button-variants` ya promovido, 2026-07-22): `components-add-badge` ([HU-021](../product/epics/EP-002-kit-componentes/HU-021-badge.md)) → `components-add-switch` ([HU-023](../product/epics/EP-002-kit-componentes/HU-023-switch.md)) → `components-add-textarea` ([HU-024](../product/epics/EP-002-kit-componentes/HU-024-textarea.md)) → `components-add-avatar` ([HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md), activa `space.negative` de HU-018) → `components-add-slider` ([HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md)).
+**Cola en orden** (cada item se promueve a Now al archivarse el anterior, en el grooming; `components-add-badge` ya promovido a Now, 2026-07-22): `components-add-switch` ([HU-023](../product/epics/EP-002-kit-componentes/HU-023-switch.md)) → `components-add-textarea` ([HU-024](../product/epics/EP-002-kit-componentes/HU-024-textarea.md)) → `components-add-avatar` ([HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md), activa `space.negative` de HU-018) → `components-add-slider` ([HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md)).
 
 **Disparador** (cada uno): su turno en la cola — el change anterior de la tanda se archiva.
 

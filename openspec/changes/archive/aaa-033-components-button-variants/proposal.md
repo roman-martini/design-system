@@ -2,7 +2,8 @@
 id: aaa-033
 name: components-button-variants
 type: change
-status: proposed
+status: archived
+archived: 2026-07-22
 modifies-specs:
   - component-button (ADDED: variantes outline y danger)
   - design-tokens-package (sin delta de spec; D-016 sube la cadena danger del default y se agregan bloques button.outline/danger-outline/danger-ghost)

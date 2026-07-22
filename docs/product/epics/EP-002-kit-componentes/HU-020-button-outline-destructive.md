@@ -1,7 +1,7 @@
 ---
 epica: EP-002
 actor: Dev consumidor
-estado: Refinada (2026-07-22; ejecución vía change components-button-variants — BACKLOG Now, segunda entrega de la tanda 3)
+estado: Hecha (2026-07-22, aaa-033 components-button-variants archivado — segunda entrega de la tanda 3; genera D-016, gate de contraste 9 pares × 4 themes verde, /ng:review 0 altas/medias, verificación visual del PO OK)
 decisiones: [D-007, D-012, D-014, D-015, D-016]
 adrs: [ADR-011]
 ---
@@ -27,12 +27,12 @@ Tanda 3 ([D-014](../../decisiones.md)), referencia [`moder-minimal`](../../../re
 <!-- Binarios: al implementar se vuelven scenarios del spec component-button
      (delta MODIFIED del change components-button-variants). -->
 
-- [ ] **CA-020.1 (outline)** — Dado `variant="outline"`, entonces el botón renderiza fondo transparente, borde `border.default` y texto primario, con hover/active tokenizados (mismos fondos de interacción que ghost); todo por `var(--ds-*)`.
-- [ ] **CA-020.2 (danger sólida)** — Dado `variant="danger"`, entonces usa el bloque `component.button.danger.*` del bootstrap (bg/hover/active/texto inverso) y el par texto/fondo cumple AA ≥4.5:1 en los 4 themes (gate por script).
-- [ ] **CA-020.3 (danger-outline y danger-ghost)** — Dado `variant="danger-outline"` (borde y texto danger, fondo transparente) o `variant="danger-ghost"` (solo texto danger), entonces el hover usa `danger-subtle` y los pares de texto cumplen AA (pares D-012).
-- [ ] **CA-020.4 (cadena semantic D-016)** — Dado el theme default, entonces `bg.danger`/`danger-hover`/`danger-active` referencian `red.600/700/800` y la cadena dark aclara un paso (`red.500/400/300`); el gate de contraste post-build pasa sin regresión en ningún par existente.
-- [ ] **CA-020.5 (compatibilidad)** — Dadas las 4 variantes nuevas, entonces coexisten con primary/secondary/ghost sin cambios de API previa, y el disabled accesible (ADR-011) y el estado `loading` (HU-017) funcionan en todas.
-- [ ] **CA-020.6 (showcase)** — Dado el playground, entonces el showcase de `DsButton` muestra las 7 variantes, incluyendo los estados hover/disabled/loading de danger.
+- [x] **CA-020.1 (outline)** — Dado `variant="outline"`, entonces el botón renderiza fondo transparente, borde `border.default` y texto primario, con hover/active tokenizados (mismos fondos de interacción que ghost); todo por `var(--ds-*)`.
+- [x] **CA-020.2 (danger sólida)** — Dado `variant="danger"`, entonces usa el bloque `component.button.danger.*` del bootstrap (bg/hover/active/texto inverso) y el par texto/fondo cumple AA ≥4.5:1 en los 4 themes (gate por script).
+- [x] **CA-020.3 (danger-outline y danger-ghost)** — Dado `variant="danger-outline"` (borde y texto danger, fondo transparente) o `variant="danger-ghost"` (solo texto danger), entonces el hover usa `danger-subtle` y los pares de texto cumplen AA (pares D-012).
+- [x] **CA-020.4 (cadena semantic D-016)** — Dado el theme default, entonces `bg.danger`/`danger-hover`/`danger-active` referencian `red.600/700/800` y la cadena dark aclara un paso (`red.500/400/300`); el gate de contraste post-build pasa sin regresión en ningún par existente.
+- [x] **CA-020.5 (compatibilidad)** — Dadas las 4 variantes nuevas, entonces coexisten con primary/secondary/ghost sin cambios de API previa, y el disabled accesible (ADR-011) y el estado `loading` (HU-017) funcionan en todas.
+- [x] **CA-020.6 (showcase)** — Dado el playground, entonces el showcase de `DsButton` muestra las 7 variantes, incluyendo los estados hover/disabled/loading de danger.
 
 ## Dependencias
 

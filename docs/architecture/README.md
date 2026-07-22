@@ -448,25 +448,25 @@ Las specs ya no usan IDs — se identifican por el nombre de su carpeta.
 
 Una capability por componente del kit (ADR-018, aaa-030): cada una con el contrato de comportamiento de su componente. Un change de componente futuro escribe su delta contra la spec de acá; `components-package` solo se toca para lo transversal.
 
-| Spec                                                                        | Componente(s)              |
-| --------------------------------------------------------------------------- | -------------------------- |
-| [component-button](../../openspec/specs/component-button/spec.md)           | `DsButton` (tests)         |
-| [component-card](../../openspec/specs/component-card/spec.md)               | Familia `DsCard`           |
-| [component-checkbox](../../openspec/specs/component-checkbox/spec.md)       | `DsCheckbox`               |
-| [component-radio](../../openspec/specs/component-radio/spec.md)             | `DsRadioGroup` + `DsRadio` |
-| [component-select](../../openspec/specs/component-select/spec.md)           | `DsSelect` + `DsOption`    |
-| [component-input](../../openspec/specs/component-input/spec.md)             | `DsInput`                  |
-| [component-modal](../../openspec/specs/component-modal/spec.md)             | `DsModal`                  |
-| [component-tabs](../../openspec/specs/component-tabs/spec.md)               | `DsTabs` + `DsTab`         |
-| [component-tooltip](../../openspec/specs/component-tooltip/spec.md)         | `DsTooltip` (directiva)    |
-| [component-toast](../../openspec/specs/component-toast/spec.md)             | `DsToastService`           |
-| [component-spinner](../../openspec/specs/component-spinner/spec.md)         | `DsSpinner`                |
-| [component-skeleton](../../openspec/specs/component-skeleton/spec.md)       | `DsSkeleton`               |
-| [component-menu](../../openspec/specs/component-menu/spec.md)               | `DsMenu` (familia)         |
-| [component-accordion](../../openspec/specs/component-accordion/spec.md)     | `DsAccordion`              |
-| [component-breadcrumbs](../../openspec/specs/component-breadcrumbs/spec.md) | `DsBreadcrumbs`            |
-| [component-pagination](../../openspec/specs/component-pagination/spec.md)   | `DsPagination`             |
-| [component-progress](../../openspec/specs/component-progress/spec.md)       | `DsProgress`               |
+| Spec                                                                        | Componente(s)                          |
+| --------------------------------------------------------------------------- | -------------------------------------- |
+| [component-button](../../openspec/specs/component-button/spec.md)           | `DsButton` (loading, variantes, tests) |
+| [component-card](../../openspec/specs/component-card/spec.md)               | Familia `DsCard`                       |
+| [component-checkbox](../../openspec/specs/component-checkbox/spec.md)       | `DsCheckbox`                           |
+| [component-radio](../../openspec/specs/component-radio/spec.md)             | `DsRadioGroup` + `DsRadio`             |
+| [component-select](../../openspec/specs/component-select/spec.md)           | `DsSelect` + `DsOption`                |
+| [component-input](../../openspec/specs/component-input/spec.md)             | `DsInput`                              |
+| [component-modal](../../openspec/specs/component-modal/spec.md)             | `DsModal`                              |
+| [component-tabs](../../openspec/specs/component-tabs/spec.md)               | `DsTabs` + `DsTab`                     |
+| [component-tooltip](../../openspec/specs/component-tooltip/spec.md)         | `DsTooltip` (directiva)                |
+| [component-toast](../../openspec/specs/component-toast/spec.md)             | `DsToastService`                       |
+| [component-spinner](../../openspec/specs/component-spinner/spec.md)         | `DsSpinner`                            |
+| [component-skeleton](../../openspec/specs/component-skeleton/spec.md)       | `DsSkeleton`                           |
+| [component-menu](../../openspec/specs/component-menu/spec.md)               | `DsMenu` (familia)                     |
+| [component-accordion](../../openspec/specs/component-accordion/spec.md)     | `DsAccordion`                          |
+| [component-breadcrumbs](../../openspec/specs/component-breadcrumbs/spec.md) | `DsBreadcrumbs`                        |
+| [component-pagination](../../openspec/specs/component-pagination/spec.md)   | `DsPagination`                         |
+| [component-progress](../../openspec/specs/component-progress/spec.md)       | `DsProgress`                           |
 
 ## Catálogo de Changes
 
@@ -503,6 +503,7 @@ Una capability por componente del kit (ADR-018, aaa-030): cada una con el contra
 | [aaa-030](../../openspec/changes/archive/aaa-030-specs-split-por-componente/)       | specs-split-por-componente       | archived | 2026-07-20 | modifica components-package (−19 reqs) + introduce 16 `component-<name>`     | ADR-018 (specs por componente; regla de partición transversal vs específico)   |
 | [aaa-031](../../openspec/changes/archive/aaa-031-components-button-loading/)        | components-button-loading        | archived | 2026-07-22 | modifica component-button (ADDED estado loading)                             | — (D-013 refinamiento visual del botón; sin ADR: `loading` solo en `DsButton`) |
 | [aaa-032](../../openspec/changes/archive/aaa-032-components-add-card/)              | components-add-card              | archived | 2026-07-22 | introduce component-card (familia DsCard; tokens del bootstrap + 3 aditivos) | — (D-014 tanda 3, primera entrega; selector híbrido local a la familia)        |
+| [aaa-033](../../openspec/changes/archive/aaa-033-components-button-variants/)       | components-button-variants       | archived | 2026-07-22 | modifica component-button (ADDED variantes) + tokens danger (D-016)          | — (D-014 tanda 3; D-016 corrige la cadena danger AA en la fuente)              |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

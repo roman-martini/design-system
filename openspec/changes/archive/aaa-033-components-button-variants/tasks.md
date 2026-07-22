@@ -52,10 +52,10 @@ Cada tarea es ≤2 h con criterio binario. Diseño: union plano (design §1), bl
 
 ## 7. Archive
 
-- [ ] 7.1 Sin ADR nuevo (tokens reversibles + variantes aditivas; D-016 registra la decisión).
-- [ ] 7.2 Mover a `archive/aaa-033-components-button-variants/`; `status: archived` + fecha; delta ADDED promovido a la spec base `component-button`.
-- [ ] 7.3 Registros: `openspec/README.md`, catálogo en `docs/architecture/README.md`, grooming del BACKLOG (item sale; `components-add-badge` promovido a Now), HU-020 → Hecha con CAs tildados, EP-002 al día.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Commit del archive.
+- [x] 7.1 Sin ADR nuevo (tokens reversibles + variantes aditivas; D-016 registra la decisión).
+- [x] 7.2 Mover a `archive/aaa-033-components-button-variants/`; `status: archived` + fecha; delta ADDED promovido a la spec base `component-button`.
+- [x] 7.3 Registros: `openspec/README.md`, catálogo en `docs/architecture/README.md`, grooming del BACKLOG (item sale; `components-add-badge` promovido a Now), HU-020 → Hecha con CAs tildados, EP-002 al día.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive.
 
 **Criterio**: change archivado, spec base sincronizada, registros al día.
