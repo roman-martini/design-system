@@ -14,12 +14,12 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Cómo se gestiona
 
-1. **Entrada**: un item entra a un horizonte solo con **disparador concreto** (cuándo se activa). Sin disparador → va a la [Cantera](#cantera-sin-disparador), no a los horizontes. Se usa la [plantilla](#plantilla-para-nuevos-items) y se enlaza la HU/épica de producto si existe.
+1. **Entrada**: un item entra a un horizonte con **disparador concreto** (cuándo se activa) **o por decisión directa del PO** (D-015). Sin ninguno de los dos → va a la [Cantera](#cantera-sin-disparador), no a los horizontes. Se usa la [plantilla](#plantilla-para-nuevos-items) y se enlaza la HU/épica de producto si existe.
 2. **Horizontes**:
    - **Now** — disparador **activado** o decisión tomada: se puede arrancar en la próxima sesión.
    - **Next** — disparador definido pero no activado, o esperando una decisión puntual del PO.
    - **Later** — disparador definido pero lejano; sin urgencia ni fecha.
-   - **Cantera** — sin disparador definido: inspiración, no compromiso (D-005). Un ítem sube a un horizonte cuando gana disparador.
+   - **Cantera** — sin disparador definido: inspiración, no compromiso (D-015). Un ítem sube a un horizonte cuando gana disparador o cuando el PO decide promoverlo.
 3. **Activación**: item OpenSpec → `/opsx:propose <slug>` (convención e ID en [openspec/README.md](../../openspec/README.md)); item de tooling/docs → commit directo. Al activarse, el item cambia a estado `propuesta activa` con link al change, y **se elimina de acá cuando el change se archiva** (el histórico vive en el [catálogo de changes](../architecture/README.md#catálogo-de-changes)).
 4. **Grooming**: al **archivar cada change** se revisita este archivo — se reevalúan disparadores (¿alguno se activó?), se promueven items entre horizontes y se eliminan los cerrados. Es el mismo momento en que se actualizan catálogo y `openspec/README.md`, así el backlog nunca deriva.
 
@@ -27,15 +27,15 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 9: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress y Button loading) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 10: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress, Button loading y Card) y el release NO es candidato automático.
 
-### `components-add-card` — Card contenedor (tanda 3)
+### `components-button-variants` — Variantes outline y destructive de Button (tanda 3)
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-019](../product/epics/EP-002-kit-componentes/HU-019-card.md) / EP-002 — origen, alcance y decisiones abiertas viven en la HU.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-020](../product/epics/EP-002-kit-componentes/HU-020-button-outline-destructive.md) / EP-002 — origen, alcance y decisiones abiertas viven en la HU.
 
-**Disparador**: activado por [D-014](../product/decisiones.md) (2026-07-22) — primera entrega de la tanda 3 (foundational: las demás vistas de la referencia se muestran dentro de la card).
+**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-card` (`aaa-032`, 2026-07-22).
 
-**Estado**: **propuesta activa** — [`aaa-032`](../../openspec/changes/components-add-card/) (`proposed`, 4/4 artefactos, HU-019 Refinada). Apply tras review del PO. Sale de acá al archivar el change.
+**Estado**: pendiente — refinar HU-020 → `/opsx:propose`.
 
 ---
 
@@ -45,7 +45,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit, un change por componente). **Producto**: HUs de [EP-002](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md) (origen y alcance en cada HU).
 
-**Cola en orden** (cada item se promueve a Now al archivarse el anterior, en el grooming): `components-button-variants` ([HU-020](../product/epics/EP-002-kit-componentes/HU-020-button-outline-destructive.md)) → `components-add-badge` ([HU-021](../product/epics/EP-002-kit-componentes/HU-021-badge.md)) → `components-add-switch` ([HU-023](../product/epics/EP-002-kit-componentes/HU-023-switch.md)) → `components-add-textarea` ([HU-024](../product/epics/EP-002-kit-componentes/HU-024-textarea.md)) → `components-add-avatar` ([HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md), activa `space.negative` de HU-018) → `components-add-slider` ([HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md)).
+**Cola en orden** (cada item se promueve a Now al archivarse el anterior, en el grooming; `components-button-variants` ya promovido, 2026-07-22): `components-add-badge` ([HU-021](../product/epics/EP-002-kit-componentes/HU-021-badge.md)) → `components-add-switch` ([HU-023](../product/epics/EP-002-kit-componentes/HU-023-switch.md)) → `components-add-textarea` ([HU-024](../product/epics/EP-002-kit-componentes/HU-024-textarea.md)) → `components-add-avatar` ([HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md), activa `space.negative` de HU-018) → `components-add-slider` ([HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md)).
 
 **Disparador** (cada uno): su turno en la cola — el change anterior de la tanda se archiva.
 
@@ -91,7 +91,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Cantera (sin disparador)
 
-> Ideas deseables **sin disparador definido** — inspiración, no compromiso (D-005). Absorbe lo vigente del ex `FUTURE-WORK.md` (fusionado el 2026-07-20); el marco conceptual que lo acompañaba (niveles de madurez, métricas, anti-patrones) vive en [docs/reference/roadmap-madurez-ds.md](../reference/roadmap-madurez-ds.md). Un ítem sube a un horizonte cuando gana disparador concreto; al hacerlo se le da formato de plantilla.
+> Ideas deseables **sin disparador definido** — inspiración, no compromiso (D-015). Absorbe lo vigente del ex `FUTURE-WORK.md` (fusionado el 2026-07-20); el marco conceptual que lo acompañaba (niveles de madurez, métricas, anti-patrones) vive en [docs/reference/roadmap-madurez-ds.md](../reference/roadmap-madurez-ds.md). Un ítem sube a un horizonte cuando gana disparador concreto o cuando el PO decide promoverlo; al hacerlo se le da formato de plantilla.
 
 ### Componentes
 
@@ -157,8 +157,8 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Reglas para mantener este archivo
 
-- **Disparador obligatorio en los horizontes**: sin disparador concreto → [Cantera](#cantera-sin-disparador), no Now/Next/Later.
-- **Sin features hipotéticas** (D-005): nada entra a un horizonte "por completitud"; la Cantera es inspiración explícitamente no comprometida.
+- **Respaldo obligatorio en los horizontes** (D-015): disparador concreto **o** decisión explícita del PO; sin ninguno de los dos → [Cantera](#cantera-sin-disparador), no Now/Next/Later.
+- **Nada entra en silencio** (D-015): completar el kit es un objetivo válido, pero cada entrada la aprueba el PO — por disparador o por buena idea fundamentada; la Cantera guarda lo aún no aprobado.
 - **La dirección no vive acá**: qué sigue lo deciden los hitos y D-XXX de [docs/product/](../product/README.md#roadmap); este archivo no propone candidatos ni prioriza por su cuenta.
 - **Los items cerrados se eliminan**: el histórico vive en el [catálogo de changes](../architecture/README.md#catálogo-de-changes) y en `openspec/changes/archive/`. Este archivo solo tiene pendientes.
 - **Cuando un item gana HU, se deduplica** (no se elimina — el item sigue vivo hasta que su change se archive): la HU pasa a ser la fuente de "qué/por qué" (origen, alcance, decisiones, fuera-de-alcance) y el item conserva **solo lo operativo** (tipo, link a la HU, disparador, horizonte, estado). No se repite en el backlog lo que la HU ya dice (modelo de referencia: `tokens-figma-export`).

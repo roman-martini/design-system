@@ -2,7 +2,8 @@
 id: aaa-032
 name: components-add-card
 type: change
-status: proposed
+status: archived
+archived: 2026-07-22
 introduces-specs:
   - component-card
 modifies-specs:

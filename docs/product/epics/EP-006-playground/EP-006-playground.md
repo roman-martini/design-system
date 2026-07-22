@@ -25,7 +25,7 @@ Queda afuera: Storybook (laboratorio interno por stories, por componente aislado
 
 ## Decisiones aplicables
 
-[D-005](../../decisiones.md) (sin features hipotéticas — cada evolución del playground entra con caso de uso real).
+[D-015](../../decisiones.md) (cada evolución del playground entra con caso de uso real o por decisión del PO).
 
 ## Preguntas abiertas
 

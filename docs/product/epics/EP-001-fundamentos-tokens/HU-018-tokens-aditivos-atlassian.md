@@ -1,8 +1,8 @@
 ---
 epica: EP-001
 actor: Dev consumidor
-estado: Identificada (BACKLOG Later, sin disparador activo; cada CA se activa por separado como su propio change cuando aparece su caso de uso real, D-005)
-decisiones: [D-002, D-005]
+estado: Identificada (BACKLOG Later, sin disparador activo; cada CA se activa por separado como su propio change cuando aparece su caso de uso real o el PO lo aprueba, D-015)
+decisiones: [D-002, D-015]
 adrs: [ADR-003]
 ---
 
@@ -38,7 +38,7 @@ Esta HU agrupa tres entregas independientes; cada una es su propio change y se d
 
 ## Dependencias
 
-- Ninguna bloqueante. El único gate de cada CA es su **disparador** (caso de uso real); sin él, el token no entra (D-005).
+- Ninguna bloqueante. El gate de cada CA es su **disparador** (caso de uso real) o la decisión del PO de activarlo (D-015).
 
 ## Fuera de alcance
 
@@ -50,5 +50,5 @@ Esta HU agrupa tres entregas independientes; cada una es su propio change y se d
 ## Notas
 
 - Los tres son aditivos: **ninguno rompe ADRs existentes** ni la API `var(--ds-*)` (research §2). Cada change lleva su delta de `design-tokens-package`.
-- Esta HU puede **cerrarse parcialmente**: cada CA se tilda cuando su change se archiva; la HU queda Hecha cuando los tres se activaron y cerraron. Si algún token nunca gana disparador, su CA puede quedar como no-aplica al cierre (D-005: no se implementa por completitud).
+- Esta HU puede **cerrarse parcialmente**: cada CA se tilda cuando su change se archiva; la HU queda Hecha cuando los tres se activaron y cerraron. Si algún token nunca gana disparador ni decisión del PO, su CA puede quedar como no-aplica al cierre (D-015).
 - Estimación del research (§ tabla de changes): cada uno ~1 sesión (`space.0` ≤2h).

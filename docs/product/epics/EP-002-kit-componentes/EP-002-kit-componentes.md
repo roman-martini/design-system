@@ -1,5 +1,5 @@
 ---
-estado: En desarrollo (tandas 1-2 completas 2026-07-20 + Button loading aaa-031; tanda 3 D-014 en cola, HU-019…HU-025)
+estado: En desarrollo (tandas 1-2 completas + Button loading aaa-031; tanda 3 D-014 en curso 1/7 — Card entregada aaa-032, sigue Button variants)
 actor: Dev consumidor
 ---
 
@@ -34,6 +34,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | Familia `DsBreadcrumbs` (breadcrumb APG, truncado, auto-rutas)                          | [aaa-027](../../../../openspec/changes/archive/aaa-027-components-add-breadcrumbs/)                                                                                                                                                                               | Ubicación jerárquica; primer secondary entry point                                     |
 | `DsPagination` (ventana con elipsis, compacta, extremos ADR-011)                        | [aaa-028](../../../../openspec/changes/archive/aaa-028-components-add-pagination/)                                                                                                                                                                                | Navegación de listados largos accesible                                                |
 | `DsProgress` (determinada/indeterminada, tonos, reduced-motion por pulso)               | [aaa-029](../../../../openspec/changes/archive/aaa-029-components-add-progress/)                                                                                                                                                                                  | Avance medible accesible; completa el trío de feedback                                 |
+| Familia `DsCard` (variantes outline/elevated/flat, sub-partes híbridas, padding ×2)     | [aaa-032](../../../../openspec/changes/archive/aaa-032-components-add-card/)                                                                                                                                                                                      | Contenedor de vistas tokenizado que preserva la semántica del contenido                |
 
 ## Historias de usuario
 
@@ -52,7 +53,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-015](HU-015-pagination.md)                 | Pagination de listados                     | Dev consumidor | Hecha (2026-07-20, aaa-028)                                               |
 | [HU-016](HU-016-progress.md)                   | Progress de avance medible                 | Dev consumidor | Hecha (2026-07-20, aaa-029 — cierra la tanda 2)                           |
 | [HU-017](HU-017-button-loading.md)             | Estado loading de ds-button                | Dev consumidor | Hecha (2026-07-22, aaa-031 — genera D-013, refinamiento visual del botón) |
-| [HU-019](HU-019-card.md)                       | Card contenedor                            | Dev consumidor | Refinada (2026-07-22; propuesta `aaa-032` activa)                         |
+| [HU-019](HU-019-card.md)                       | Card contenedor                            | Dev consumidor | Hecha (2026-07-22, aaa-032 — abre la tanda 3)                             |
 | [HU-020](HU-020-button-outline-destructive.md) | Variantes outline y destructive de Button  | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 | [HU-021](HU-021-badge.md)                      | Badge de estado                            | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 | [HU-022](HU-022-avatar.md)                     | Avatar y grupo de avatares                 | Dev consumidor | Identificada (tanda 3, D-014)                                             |
@@ -60,11 +61,11 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-024](HU-024-textarea.md)                   | Textarea                                   | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 | [HU-025](HU-025-slider.md)                     | Slider (range)                             | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 
-Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Las HU-012…HU-016 forman la **tanda 2** aprobada por [D-011](../../decisiones.md) con criterio "navegación y estructura de apps reales". [HU-017](HU-017-button-loading.md) no es de tanda: nace del refinamiento de [HU-009](HU-009-spinner.md) (decisión 1) y entra con su propio disparador (D-005). Las **HU-019…HU-025** forman la **tanda 3** aprobada por [D-014](../../decisiones.md) desde la referencia moder-minimal (Card, Button outline/destructive, Badge, Avatar, Switch, Textarea, Slider). Candidatas restantes ([BACKLOG § Cantera](../../../backlog/BACKLOG.md#cantera-sin-disparador) § componentes, requieren disparador propio según D-005): Stepper, DatePicker (wrapping).
+Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Las HU-012…HU-016 forman la **tanda 2** aprobada por [D-011](../../decisiones.md) con criterio "navegación y estructura de apps reales". [HU-017](HU-017-button-loading.md) no es de tanda: nace del refinamiento de [HU-009](HU-009-spinner.md) (decisión 1) y entra con su propio disparador (D-005). Las **HU-019…HU-025** forman la **tanda 3** aprobada por [D-014](../../decisiones.md) desde la referencia moder-minimal (Card, Button outline/destructive, Badge, Avatar, Switch, Textarea, Slider). Candidatas restantes ([BACKLOG § Cantera](../../../backlog/BACKLOG.md#cantera-sin-disparador) § componentes, promovibles por disparador propio o decisión del PO según D-015): Stepper, DatePicker (wrapping).
 
 ## Decisiones aplicables
 
-[D-001, D-002, D-005, D-007, D-009](../../decisiones.md) · Técnicas: [ADR-004](../../../architecture/adr/ADR-004-arquitectura-components.md), [ADR-007](../../../architecture/adr/ADR-007-naming-prefijos.md), [ADR-010](../../../architecture/adr/ADR-010-file-naming-sin-sufijo-component.md)–[ADR-014](../../../architecture/adr/ADR-014-overlays-anclados-popover-api.md).
+[D-001, D-002, D-007, D-009, D-015](../../decisiones.md) · Técnicas: [ADR-004](../../../architecture/adr/ADR-004-arquitectura-components.md), [ADR-007](../../../architecture/adr/ADR-007-naming-prefijos.md), [ADR-010](../../../architecture/adr/ADR-010-file-naming-sin-sufijo-component.md)–[ADR-014](../../../architecture/adr/ADR-014-overlays-anclados-popover-api.md).
 
 ## Orden sugerido
 

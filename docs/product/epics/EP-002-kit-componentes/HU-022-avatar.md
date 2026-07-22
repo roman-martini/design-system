@@ -2,7 +2,7 @@
 epica: EP-002
 actor: Dev consumidor
 estado: Identificada (tanda 3, D-014 2026-07-22; CAs binarios al refinar, justo antes de su change)
-decisiones: [D-005, D-007]
+decisiones: [D-007, D-015]
 adrs: [ADR-004]
 ---
 
@@ -33,7 +33,7 @@ Tanda 3 ([D-014](../../decisiones.md)), referencia [`moder-minimal`](../../../re
 
 ## Dependencias
 
-- **[HU-018](../EP-001-fundamentos-tokens/HU-018-tokens-aditivos-atlassian.md) CA-018.3** (`space.negative.*`) para el grupo — este es su **disparador real** (D-005). Se resuelve el orden al refinar.
+- **[HU-018](../EP-001-fundamentos-tokens/HU-018-tokens-aditivos-atlassian.md) CA-018.3** (`space.negative.*`) para el grupo — este es su **disparador real** (D-015). Se resuelve el orden al refinar.
 
 ## Fuera de alcance
 

@@ -1,8 +1,8 @@
 ---
 epica: EP-002
 actor: Dev consumidor
-estado: Refinada (2026-07-22; ejecución vía change components-add-card — BACKLOG Now, primera entrega de la tanda 3)
-decisiones: [D-002, D-005, D-007, D-014]
+estado: Hecha (2026-07-22, aaa-032 components-add-card archivado — primera entrega de la tanda 3; 10 tests, /ng:review 0 altas/medias y 7 bajas corregidas, verificación visual del PO en playground OK)
+decisiones: [D-002, D-007, D-014, D-015]
 adrs: [ADR-004, ADR-007]
 ---
 
@@ -27,13 +27,13 @@ Tanda 3 ([D-014](../../decisiones.md)), referencia [`moder-minimal`](../../../re
 <!-- Binarios: sí/no sin interpretación. Al implementar se vuelven scenarios del spec
      component-card (nuevo, ADR-018) — delta del change components-add-card. -->
 
-- [ ] **CA-019.1 (contenedor con variantes)** — Dado `<ds-card>` (standalone, OnPush) con `variant` `outline | elevated | flat` (default `outline`), entonces borde, radius, sombra y fondo salen de tokens `component.card.*`; el default reproduce la apariencia de la referencia (borde + sombra sutil).
-- [ ] **CA-019.2 (sub-partes híbridas)** — Dadas las sub-partes `ds-card-header`, `ds-card-content`, `ds-card-footer` (elemento) y `dsCardTitle`/`dsCardDescription` (elemento o atributo), entonces cada una aplica sus estilos tokenizados, todas son opcionales y el spacing entre partes sale de tokens.
-- [ ] **CA-019.3 (padding configurable)** — Dado `padding` `comfortable` (default) | `compact`, entonces ambos valores salen de tokens `component.card.*` y afectan de forma consistente a las sub-partes.
-- [ ] **CA-019.4 (semántica preservada)** — Dado `<h2 dsCardTitle>`, entonces el árbol de accesibilidad conserva el heading nivel 2; la card no impone `role` ni roba semántica al contenido.
-- [ ] **CA-019.5 (tokens sin pares nuevos)** — Dado el CSS del componente, entonces todo valor sale de `var(--ds-*)` (`component.card.*` + semantic existentes), sin hardcodes; las superficies usan `bg`/`border` existentes → sin pares de contraste nuevos.
-- [ ] **CA-019.6 (export público)** — Dado `public-api.ts`, entonces exporta `DsCard`, las sub-partes y los types `DsCardVariant`/`DsCardPadding`.
-- [ ] **CA-019.7 (showcase)** — Dado el playground (EP-006), entonces la página de `DsCard` reproduce al menos una vista de la referencia (ej. Cookie Settings), y muestra las 3 variantes y ambos paddings.
+- [x] **CA-019.1 (contenedor con variantes)** — Dado `<ds-card>` (standalone, OnPush) con `variant` `outline | elevated | flat` (default `outline`), entonces borde, radius, sombra y fondo salen de tokens `component.card.*`; el default reproduce la apariencia de la referencia (borde + sombra sutil).
+- [x] **CA-019.2 (sub-partes híbridas)** — Dadas las sub-partes `ds-card-header`, `ds-card-content`, `ds-card-footer` (elemento) y `dsCardTitle`/`dsCardDescription` (elemento o atributo), entonces cada una aplica sus estilos tokenizados, todas son opcionales y el spacing entre partes sale de tokens.
+- [x] **CA-019.3 (padding configurable)** — Dado `padding` `comfortable` (default) | `compact`, entonces ambos valores salen de tokens `component.card.*` y afectan de forma consistente a las sub-partes.
+- [x] **CA-019.4 (semántica preservada)** — Dado `<h2 dsCardTitle>`, entonces el árbol de accesibilidad conserva el heading nivel 2; la card no impone `role` ni roba semántica al contenido.
+- [x] **CA-019.5 (tokens sin pares nuevos)** — Dado el CSS del componente, entonces todo valor sale de `var(--ds-*)` (`component.card.*` + semantic existentes), sin hardcodes; las superficies usan `bg`/`border` existentes → sin pares de contraste nuevos.
+- [x] **CA-019.6 (export público)** — Dado `public-api.ts`, entonces exporta `DsCard`, las sub-partes y los types `DsCardVariant`/`DsCardPadding`.
+- [x] **CA-019.7 (showcase)** — Dado el playground (EP-006), entonces la página de `DsCard` reproduce al menos una vista de la referencia (ej. Cookie Settings), y muestra las 3 variantes y ambos paddings.
 
 ## Dependencias
 

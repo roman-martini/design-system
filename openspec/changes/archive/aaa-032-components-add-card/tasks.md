@@ -46,16 +46,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API presentacional (design �
 - [x] 6.3 Auditoría `/ng:review` sobre `src/lib/card/` — 0 altas, 0 medias, 7 bajas, **todas corregidas**: 6 templates inline extraídos a `.html` (convención templateUrl del repo) y `border-width` tokenizado (`card.border-width` → `{dimension.1}`, patrón de checkbox/input/select). Excepciones legítimas verificadas por el auditor contra design.md §2 (selector híbrido) y precedente aaa-023 (CSS por readFileSync).
 - [x] 6.4 `npm pack --dry-run`: tarball sin `*.spec.ts`/`*.stories.ts`.
 - [x] 6.5 Changeset único con **minor** de components (familia `DsCard`) y **minor** de tokens (`component.card.*`). Lockstep (ADR-015).
-- [ ] 6.6 Mensaje de commit propuesto y esperado el OK del PO antes de commitear.
+- [x] 6.6 Commits autorizados por el PO ("ejecuta todo", 2026-07-22) — feat `6382233`.
 
 **Criterio**: automáticos verdes; gates resueltos; changeset correcto; aprobación explícita antes del commit.
 
 ## 7. Archive
 
-- [ ] 7.1 Sin ADR nuevo salvo que el selector híbrido se repita en otra familia (patrón transversal).
-- [ ] 7.2 Mover a `archive/aaa-032-components-add-card/`; `status: archived` + fecha; **crear la spec base `component-card`** desde el delta ADDED (spec nueva, ADR-018) y sumarla al catálogo de specs.
-- [ ] 7.3 Registros: `openspec/README.md` (IDs en vuelo), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Card sale de Now; `components-button-variants` promovido a Now), HU-019 → Hecha con CAs tildados, EP-002 actualizado.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Commit del archive.
+- [x] 7.1 Sin ADR nuevo salvo que el selector híbrido se repita en otra familia (patrón transversal).
+- [x] 7.2 Mover a `archive/aaa-032-components-add-card/`; `status: archived` + fecha; **crear la spec base `component-card`** desde el delta ADDED (spec nueva, ADR-018) y sumarla al catálogo de specs.
+- [x] 7.3 Registros: `openspec/README.md` (IDs en vuelo), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Card sale de Now; `components-button-variants` promovido a Now), HU-019 → Hecha con CAs tildados, EP-002 actualizado.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive.
 
 **Criterio**: change archivado, spec base creada, registros al día.

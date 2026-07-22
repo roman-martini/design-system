@@ -61,11 +61,11 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 | [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor      | —                              | En desarrollo (primera tanda 2026-07-11)                    |
 | [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor  | 011                            | En desarrollo (HU-011 Hecha 2026-07-19)                     |
 
-Próximos IDs libres: **EP-007**, **HU-026**, **D-015**.
+Próximos IDs libres: **EP-007**, **HU-026**, **D-016**.
 
 ## Roadmap
 
-Sin fechas: el avance lo marcan los **disparadores** (D-005) y el orden operativo vive en [docs/backlog/BACKLOG.md](../backlog/BACKLOG.md). El rumbo se expresa como **hitos de producto**, cada uno con su condición de salida binaria:
+Sin fechas: el avance lo marcan los **disparadores y las decisiones directas del PO** (D-015) y el orden operativo vive en [docs/backlog/BACKLOG.md](../backlog/BACKLOG.md). El rumbo se expresa como **hitos de producto**, cada uno con su condición de salida binaria:
 
 | Hito                                         | Qué lo compone                                                                                        | Condición de salida                                               | Estado                                                                                                                                             |
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -138,7 +138,7 @@ Para épicas: Identificada → En refinamiento → Refinada (todas sus HUs refin
 
 ## Flujo de trabajo
 
-1. **Idea nueva** → si es grande, crear carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como documento homónimo `EP-XXX-nombre-corto.md`; si es chica, crear la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada). Las HUs candidatas sin refinar pueden listarse en el documento de la épica sin archivo propio. Las ideas crudas sin disparador van a la [Cantera del BACKLOG](../backlog/BACKLOG.md#cantera-sin-disparador), no generan artefactos acá.
+1. **Idea nueva** → si es grande, crear carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como documento homónimo `EP-XXX-nombre-corto.md`; si es chica, crear la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada). Las HUs candidatas sin refinar pueden listarse en el documento de la épica sin archivo propio. Las ideas crudas sin disparador ni aprobación del PO van a la [Cantera del BACKLOG](../backlog/BACKLOG.md#cantera-sin-disparador), no generan artefactos acá.
 2. **Refinamiento** → cada ambigüedad se resuelve con el product owner y se registra como **D-XXX en [decisiones.md](decisiones.md)** — las HUs referencian decisiones, no las repiten.
 3. **Ejecución** → una HU Refinada se implementa vía **change OpenSpec** (`aaa-NNN`, flujo del repo). Las decisiones técnicas que surjan van como ADR a `docs/architecture/adr/`.
 4. **Cierre** → CAs tildados al archivar el change, estado Hecha. La épica se cierra cuando todas sus HUs están Hechas (o queda abierta como flujo continuo).
@@ -150,4 +150,4 @@ Para épicas: Identificada → En refinamiento → Refinada (todas sus HUs refin
 - **Los CAs son binarios**: se puede responder sí/no sin interpretación. Formato Dado/Cuando/Entonces.
 - **Las decisiones viven en un solo lugar** (decisiones.md); épicas y HUs enlazan por ID. Nada de copiar la decisión en tres archivos.
 - **Fuera de alcance explícito** en cada HU: lo que no está escrito ahí se discute, no se asume.
-- **Sin HUs hipotéticas**: una HU entra cuando hay disparador o necesidad real (misma regla que el BACKLOG). La Cantera del BACKLOG es inspiración, no contrato.
+- **Sin HUs en silencio** (D-015): una HU entra con disparador/caso de uso real **o** como buena idea fundamentada que el PO aprueba — el norte es un kit completo, capaz de soportar cualquier requerimiento futuro. La Cantera del BACKLOG es la cola de ideas aún no aprobadas.

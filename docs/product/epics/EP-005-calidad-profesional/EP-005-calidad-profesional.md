@@ -27,7 +27,7 @@ Los items derivados de la auditoría ya se encauzaron: `components-fix-a11y-mino
 
 ## Decisiones aplicables
 
-[D-002, D-005, D-007](../../decisiones.md).
+[D-002, D-007, D-015](../../decisiones.md).
 
 ## Orden sugerido
 

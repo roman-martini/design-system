@@ -2,7 +2,7 @@
 epica: EP-002
 actor: Dev consumidor
 estado: Identificada (tanda 3, D-014 2026-07-22; CAs binarios al refinar, justo antes de su change)
-decisiones: [D-005, D-007]
+decisiones: [D-007, D-015]
 adrs: [ADR-004]
 ---
 
