@@ -31,11 +31,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ### `components-add-switch` — Switch/Toggle (tanda 3)
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-023](../product/epics/EP-002-kit-componentes/HU-023-switch.md) / EP-002 — origen, alcance y decisiones abiertas viven en la HU.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-023](../product/epics/EP-002-kit-componentes/HU-023-switch.md) / EP-002 — origen, alcance y decisiones viven en la HU.
 
-**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-badge` (`aaa-034`, 2026-07-22). Reutiliza el patrón CVA de Checkbox/Radio.
+**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-badge` (`aaa-034`, 2026-07-22).
 
-**Estado**: pendiente — refinar HU-023 → `/opsx:propose`.
+**Estado**: **propuesta activa** — [`aaa-035`](../../openspec/changes/components-add-switch/) (`proposed`, 4/4 artefactos, HU-023 Refinada). Apply en curso (modo "ejecuta todo"). Sale de acá al archivar.
 
 ---
 
