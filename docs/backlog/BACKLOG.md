@@ -31,11 +31,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ### `components-add-textarea` — Textarea (tanda 3)
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-024](../product/epics/EP-002-kit-componentes/HU-024-textarea.md) / EP-002 — origen, alcance y decisiones abiertas viven en la HU.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-024](../product/epics/EP-002-kit-componentes/HU-024-textarea.md) / EP-002 — origen, alcance y decisiones viven en la HU.
 
-**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-switch` (`aaa-035`, 2026-07-23). Reutiliza el patrón field de DsInput.
+**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-switch` (`aaa-035`, 2026-07-23).
 
-**Estado**: pendiente — refinar HU-024 -> `/opsx:propose`.
+**Estado**: **propuesta activa** — [`aaa-036`](../../openspec/changes/components-add-textarea/) (`proposed`, 4/4 artefactos, HU-024 Refinada; extrae `DsFieldBase` de Input, genera ADR-020 al cerrar). Apply en curso. Sale de acá al archivar.
 
 ---
 
@@ -48,6 +48,20 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 **Cola en orden** (cada item se promueve a Now al archivarse el anterior, en el grooming; `components-add-textarea` ya promovido a Now, 2026-07-23): `components-add-avatar` ([HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md), activa `space.negative` de HU-018) → `components-add-slider` ([HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md)).
 
 **Disparador** (cada uno): su turno en la cola — el change anterior de la tanda se archiva.
+
+**Estado**: pendiente (Next).
+
+---
+
+### `playground-theme-switcher` — Toggle de theme/brand en el playground
+
+**Tipo**: commit directo o OpenSpec chico (playground). **Producto**: [EP-006](../product/epics/EP-006-playground/EP-006-playground.md).
+
+**Origen**: gap detectado el 2026-07-23 — el playground importa solo los tokens base (`@romanmartinidev/tokens/css`), no los themes; hoy **no hay forma de validar visualmente dark/brand** de los componentes (la corrección de dark sí la verifica el gate de contraste por script, pero no se ve). El PO lo pidió y luego lo difirió para no cortar el loop de la tanda 3.
+
+**Alcance propuesto**: toolbar con toggle light/dark + selector de brand (default/a/b); cargar los CSS de themes (`/themes/dark`, `/brand-a`, `/brand-b`) y setear `data-theme`/`data-brand` en el root.
+
+**Disparador**: activado por decisión del PO (diferido 2026-07-23) — se retoma cuando quiera, o antes de un release para QA visual multi-theme.
 
 **Estado**: pendiente (Next).
 
