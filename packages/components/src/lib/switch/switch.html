@@ -1,0 +1,15 @@
+<label class="switch" [class.switch--disabled]="disabled()">
+  <input
+    #inputEl
+    type="checkbox"
+    role="switch"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    [attr.aria-checked]="checked() ? 'true' : 'false'"
+    [attr.data-size]="size()"
+    (change)="handleInput($event)"
+  />
+  <span class="switch__label">
+    <ng-content>{{ label() }}</ng-content>
+  </span>
+</label>

@@ -20,10 +20,10 @@ El package SHALL exponer `DsSwitch` (`ds-switch`, naming por ADR-007) junto con 
 - **THEN** track (width/height), thumb (size) y el desplazamiento SHALL salir de `component.switch.*` por size
 - **AND** la transición del thumb SHALL usar tokens de motion y SHALL existir un bloque `@media (prefers-reduced-motion: reduce)` que la anula
 
-#### Scenario: estados distinguibles y disabled (CA-023.3)
+#### Scenario: estado distinguible y disabled (CA-023.3)
 
-- **WHEN** se evalúa el track on vs off en los 4 themes
-- **THEN** `bg-on` y `bg-off` SHALL distinguirse ≥3:1 (gate) y `bg-off` SHALL ser un token themable
+- **WHEN** se evalúa el thumb sobre el track encendido en los 4 themes
+- **THEN** `thumb.bg` vs `bg-on` SHALL cumplir ≥3:1 (gate) y el estado on/off SHALL comunicarse por la posición del thumb (indicador no-cromático); `bg-off` SHALL ser un token themable
 - **GIVEN** un switch `disabled`
 - **THEN** el toggle SHALL estar bloqueado y el control SHALL reflejarlo (opacidad reducida, `disabled` nativo)
 

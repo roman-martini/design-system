@@ -4,26 +4,30 @@
       "track": {
         "width": {
           "sm": { "value": "{dimension.32}" },
-          "md": { "value": "{dimension.44}" }
+          "md": { "value": "{dimension.44}" },
+          "lg": { "value": "{dimension.56}" }
         },
         "height": {
           "sm": { "value": "{dimension.18}" },
-          "md": { "value": "{dimension.24}" }
+          "md": { "value": "{dimension.24}" },
+          "lg": { "value": "{dimension.28}" }
         },
         "radius":       { "value": "{semantic.radius.full}" },
-        "bg-off":       { "value": "{color.neutral.300}" },
-        "bg-off-hover": { "value": "{color.neutral.400}" },
+        "bg-off":       { "value": "{semantic.color.bg.secondary-active}" },
+        "bg-off-hover": { "value": "{semantic.color.border.strong}" },
         "bg-on":        { "value": "{semantic.color.bg.primary}" },
         "bg-on-hover":  { "value": "{semantic.color.bg.primary-hover}" }
       },
       "thumb": {
         "size": {
           "sm": { "value": "{dimension.14}" },
-          "md": { "value": "{dimension.20}" }
+          "md": { "value": "{dimension.20}" },
+          "lg": { "value": "{dimension.24}" }
         },
         "bg":     { "value": "{color.white}" },
         "shadow": { "value": "{shadow.sm}" }
       },
+      "padding":  { "value": "{dimension.2}" },
       "focus-ring":     { "value": "{semantic.color.focus-ring}" },
       "label-font-size":{ "value": "{font.size.sm}" },
       "label-color":    { "value": "{semantic.color.text.primary}" }

@@ -1,0 +1,49 @@
+<app-showcase-case title="Sizes y estados" [snippet]="sizesSnippet">
+  <div class="playground__row">
+    <ds-switch size="sm" label="Small" />
+    <ds-switch size="md" [checked]="true" label="Medium (on)" />
+    <ds-switch size="lg" label="Large" />
+  </div>
+  <div class="playground__row">
+    <ds-switch [disabled]="true" label="Off disabled" />
+    <ds-switch [disabled]="true" [checked]="true" label="On disabled" />
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Cookie Settings (vista de la referencia)" [snippet]="cookieSnippet">
+  <p class="playground__note">
+    El switch es la acción inmediata (settings, cookies); integra Angular Forms por
+    <code>ControlValueAccessor</code>, igual que <code>ds-checkbox</code>.
+  </p>
+  <ds-card style="max-width: 26rem">
+    <ds-card-header>
+      <h2 dsCardTitle>Cookie Settings</h2>
+      <p dsCardDescription>Manage your cookie settings here.</p>
+    </ds-card-header>
+    <ds-card-content style="display: flex; flex-direction: column; gap: 1.25rem">
+      <div
+        style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem"
+      >
+        <div>
+          <strong>Strictly Necessary</strong>
+          <p dsCardDescription>These cookies are essential in order to use the website.</p>
+        </div>
+        <ds-switch [(checked)]="necessary" />
+      </div>
+      <div
+        style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem"
+      >
+        <div>
+          <strong>Functional Cookies</strong>
+          <p dsCardDescription>
+            These cookies allow the website to provide personalized functionality.
+          </p>
+        </div>
+        <ds-switch [(checked)]="functional" />
+      </div>
+    </ds-card-content>
+    <ds-card-footer>
+      <ds-button variant="secondary" style="flex: 1">Save preferences</ds-button>
+    </ds-card-footer>
+  </ds-card>
+</app-showcase-case>

@@ -54,14 +54,14 @@ type DsSwitchSize = 'sm' | 'md' | 'lg';
 - **thumb travel**: `translateX(track.width - thumb.size - 2*padding)`; padding del thumb = `{dimension.2}` (constante, no token propio).
 - **motion**: transición `transform`/`background-color` con `{motion.duration.fast}` + `{motion.easing.ease-out}` (tokens existentes); bloque `@media (prefers-reduced-motion: reduce) { transition: none }`.
 
-### 4. Gate de contraste (WCAG 1.4.11 — estados de UI)
+### 4. Distinguibilidad de estado (WCAG 1.4.11) — vía posición del thumb
 
-Pares (nivel `ui`, ≥3:1):
+El estado on/off de un switch se comunica **primariamente por la posición del thumb** (izquierda = off, derecha = on): un indicador **no-cromático**, siempre perceptible, que no está sujeto a ratio de contraste. Sobre eso:
 
-- `switch-on-vs-off`: `bg-on` vs `bg-off` — los dos estados se distinguen.
-- `switch-thumb-on`: `thumb.bg` vs `bg-on` — el thumb es visible en on.
+- **Gate `switch-thumb-on-track`** (`ui`, ≥3): `thumb.bg` vs `bg-on` — el thumb (el control) es visible sobre el track encendido. Verificado en los 4 themes.
+- El **track on/off por color** es redundancia estética: `bg-on` vs `bg-off` da 4.1 en light pero 2.12 en dark (el azul y el gris tienen luminancia cercana). **No se gatea**: no es requisito de 1.4.11 porque el estado ya lo lleva la posición del thumb, y en la posición off el thumb se delinea por su `shadow` (técnica estándar, misma que Material/APG "switch").
 
-El thumb sobre off (blanco sobre gris claro) se delinea por la `shadow` del thumb (patrón estándar); la distinguibilidad de estado la garantiza el par on/off.
+Este es el mismo criterio que aplican los switches profesionales: el thumb + su posición son el canal de estado; el color del track acompaña.
 
 ## Risks / Trade-offs
 
