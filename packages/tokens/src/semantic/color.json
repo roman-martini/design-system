@@ -27,6 +27,7 @@
         "secondary":         { "value": "{color.white}" },
         "secondary-hover":   { "value": "{color.neutral.100}" },
         "secondary-active":  { "value": "{color.neutral.200}" },
+        "neutral-subtle":    { "value": "{color.neutral.100}" },
         "danger":            { "value": "{color.red.600}" },
         "danger-hover":      { "value": "{color.red.700}" },
         "danger-active":     { "value": "{color.red.800}" },

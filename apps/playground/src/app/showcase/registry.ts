@@ -22,6 +22,11 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     loadComponent: () => import('./button/button-showcase').then((m) => m.ButtonShowcase),
   },
   {
+    slug: 'badge',
+    label: 'Badge',
+    loadComponent: () => import('./badge/badge-showcase').then((m) => m.BadgeShowcase),
+  },
+  {
     slug: 'card',
     label: 'Card',
     loadComponent: () => import('./card/card-showcase').then((m) => m.CardShowcase),

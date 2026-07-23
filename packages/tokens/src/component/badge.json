@@ -1,50 +1,67 @@
 {
   "component": {
     "badge": {
-      "padding-x": {
-        "sm": { "value": "{dimension.6}" },
-        "md": { "value": "{dimension.10}" }
+      "radius": { "value": "{semantic.radius.md}" },
+      "border-width": { "value": "{dimension.1}" },
+      "font-weight": { "value": "{semantic.font.weight.label}" },
+      "size": {
+        "sm": {
+          "padding-y": { "value": "{dimension.2}" },
+          "padding-x": { "value": "{dimension.6}" },
+          "font-size": { "value": "{semantic.font.size.label-sm}" },
+          "gap": { "value": "{dimension.4}" },
+          "dot-size": { "value": "{dimension.6}" }
+        },
+        "md": {
+          "padding-y": { "value": "{dimension.4}" },
+          "padding-x": { "value": "{dimension.8}" },
+          "font-size": { "value": "{semantic.font.size.label-md}" },
+          "gap": { "value": "{dimension.4}" },
+          "dot-size": { "value": "{dimension.8}" }
+        },
+        "lg": {
+          "padding-y": { "value": "{dimension.4}" },
+          "padding-x": { "value": "{dimension.12}" },
+          "font-size": { "value": "{semantic.font.size.label-lg}" },
+          "gap": { "value": "{dimension.6}" },
+          "dot-size": { "value": "{dimension.10}" }
+        }
       },
-      "padding-y": {
-        "sm": { "value": "{dimension.2}" },
-        "md": { "value": "{dimension.4}" }
-      },
-      "font-size": {
-        "sm": { "value": "{font.size.xs}" },
-        "md": { "value": "{font.size.sm}" }
-      },
-      "font-weight": { "value": "{font.weight.medium}" },
-      "radius":      { "value": "{semantic.radius.full}" },
-      "dot-size":    { "value": "{dimension.6}" },
-      "default": {
-        "bg":     { "value": "{semantic.color.bg.secondary-hover}" },
-        "text":   { "value": "{semantic.color.text.secondary}" },
-        "border": { "value": "{semantic.color.border.default}" }
+      "neutral": {
+        "subtle-bg": { "value": "{semantic.color.bg.neutral-subtle}" },
+        "text": { "value": "{semantic.color.text.secondary}" },
+        "solid-bg": { "value": "{color.neutral.700}" },
+        "solid-text": { "value": "{color.white}" }
       },
       "primary": {
-        "bg":     { "value": "{semantic.color.bg.primary-subtle}" },
-        "text":   { "value": "{semantic.color.text.link}" },
-        "border": { "value": "{semantic.color.border.primary}" }
-      },
-      "success": {
-        "bg":     { "value": "{semantic.color.bg.success-subtle}" },
-        "text":   { "value": "{semantic.color.text.success}" },
-        "border": { "value": "{semantic.color.border.success}" }
-      },
-      "warning": {
-        "bg":     { "value": "{semantic.color.bg.warning-subtle}" },
-        "text":   { "value": "{semantic.color.text.warning}" },
-        "border": { "value": "{semantic.color.border.warning}" }
+        "subtle-bg": { "value": "{semantic.color.bg.primary-subtle}" },
+        "text": { "value": "{semantic.color.text.link-hover}" },
+        "solid-bg": { "value": "{color.blue.600}" },
+        "solid-text": { "value": "{color.white}" }
       },
       "danger": {
-        "bg":     { "value": "{semantic.color.bg.danger-subtle}" },
-        "text":   { "value": "{semantic.color.text.danger}" },
-        "border": { "value": "{semantic.color.border.danger}" }
+        "subtle-bg": { "value": "{semantic.color.bg.danger-subtle}" },
+        "text": { "value": "{semantic.color.text.danger}" },
+        "solid-bg": { "value": "{color.red.600}" },
+        "solid-text": { "value": "{color.white}" }
+      },
+      "success": {
+        "subtle-bg": { "value": "{semantic.color.bg.success-subtle}" },
+        "text": { "value": "{semantic.color.text.success}" },
+        "solid-bg": { "value": "{color.green.700}" },
+        "solid-text": { "value": "{color.white}" }
+      },
+      "warning": {
+        "subtle-bg": { "value": "{semantic.color.bg.warning-subtle}" },
+        "text": { "value": "{semantic.color.text.warning}" },
+        "solid-bg": { "value": "{color.yellow.400}" },
+        "solid-text": { "value": "{color.neutral.900}" }
       },
       "info": {
-        "bg":     { "value": "{semantic.color.bg.info-subtle}" },
-        "text":   { "value": "{semantic.color.text.info}" },
-        "border": { "value": "{semantic.color.border.info}" }
+        "subtle-bg": { "value": "{semantic.color.bg.info-subtle}" },
+        "text": { "value": "{semantic.color.text.info}" },
+        "solid-bg": { "value": "{color.teal.700}" },
+        "solid-text": { "value": "{color.white}" }
       }
     }
   }

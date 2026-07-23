@@ -1,0 +1,100 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-component-badge-size-md-gap);
+  padding: var(--ds-component-badge-size-md-padding-y) var(--ds-component-badge-size-md-padding-x);
+  border: var(--ds-component-badge-border-width) solid transparent;
+  border-radius: var(--ds-component-badge-radius);
+  font-family: inherit;
+  font-size: var(--ds-component-badge-size-md-font-size);
+  font-weight: var(--ds-component-badge-font-weight);
+  line-height: var(--ds-font-line-height-tight);
+  white-space: nowrap;
+}
+
+/* sizes */
+:host([data-size='sm']) {
+  gap: var(--ds-component-badge-size-sm-gap);
+  padding: var(--ds-component-badge-size-sm-padding-y) var(--ds-component-badge-size-sm-padding-x);
+  font-size: var(--ds-component-badge-size-sm-font-size);
+}
+:host([data-size='lg']) {
+  gap: var(--ds-component-badge-size-lg-gap);
+  padding: var(--ds-component-badge-size-lg-padding-y) var(--ds-component-badge-size-lg-padding-x);
+  font-size: var(--ds-component-badge-size-lg-font-size);
+}
+
+/* dot: hereda el color del tono vía currentColor */
+.ds-badge__dot {
+  flex: none;
+  width: var(--ds-component-badge-size-md-dot-size);
+  height: var(--ds-component-badge-size-md-dot-size);
+  border-radius: var(--ds-semantic-radius-full);
+  background-color: currentColor;
+}
+:host([data-size='sm']) .ds-badge__dot {
+  width: var(--ds-component-badge-size-sm-dot-size);
+  height: var(--ds-component-badge-size-sm-dot-size);
+}
+:host([data-size='lg']) .ds-badge__dot {
+  width: var(--ds-component-badge-size-lg-dot-size);
+  height: var(--ds-component-badge-size-lg-dot-size);
+}
+
+/* ── appearance: subtle (default) ── */
+:host([data-tone='neutral']) {
+  background-color: var(--ds-component-badge-neutral-subtle-bg);
+  color: var(--ds-component-badge-neutral-text);
+}
+:host([data-tone='primary']) {
+  background-color: var(--ds-component-badge-primary-subtle-bg);
+  color: var(--ds-component-badge-primary-text);
+}
+:host([data-tone='danger']) {
+  background-color: var(--ds-component-badge-danger-subtle-bg);
+  color: var(--ds-component-badge-danger-text);
+}
+:host([data-tone='success']) {
+  background-color: var(--ds-component-badge-success-subtle-bg);
+  color: var(--ds-component-badge-success-text);
+}
+:host([data-tone='warning']) {
+  background-color: var(--ds-component-badge-warning-subtle-bg);
+  color: var(--ds-component-badge-warning-text);
+}
+:host([data-tone='info']) {
+  background-color: var(--ds-component-badge-info-subtle-bg);
+  color: var(--ds-component-badge-info-text);
+}
+
+/* ── appearance: solid ── */
+:host([data-appearance='solid'][data-tone='neutral']) {
+  background-color: var(--ds-component-badge-neutral-solid-bg);
+  color: var(--ds-component-badge-neutral-solid-text);
+}
+:host([data-appearance='solid'][data-tone='primary']) {
+  background-color: var(--ds-component-badge-primary-solid-bg);
+  color: var(--ds-component-badge-primary-solid-text);
+}
+:host([data-appearance='solid'][data-tone='danger']) {
+  background-color: var(--ds-component-badge-danger-solid-bg);
+  color: var(--ds-component-badge-danger-solid-text);
+}
+:host([data-appearance='solid'][data-tone='success']) {
+  background-color: var(--ds-component-badge-success-solid-bg);
+  color: var(--ds-component-badge-success-solid-text);
+}
+:host([data-appearance='solid'][data-tone='warning']) {
+  background-color: var(--ds-component-badge-warning-solid-bg);
+  color: var(--ds-component-badge-warning-solid-text);
+}
+:host([data-appearance='solid'][data-tone='info']) {
+  background-color: var(--ds-component-badge-info-solid-bg);
+  color: var(--ds-component-badge-info-solid-text);
+}
+
+/* ── appearance: outline (bg transparente, borde del color del texto) ── */
+:host([data-appearance='outline']) {
+  background-color: transparent;
+  border-color: currentColor;
+}

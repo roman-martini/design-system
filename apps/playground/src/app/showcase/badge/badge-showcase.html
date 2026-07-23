@@ -1,0 +1,54 @@
+<app-showcase-case title="Matriz tono × apariencia (ADR-019)" [snippet]="matrixSnippet">
+  <p class="playground__note">
+    Dos ejes: <code>tone</code> (6) × <code>appearance</code> (3). Cada una de las 18 combinaciones
+    cumple contraste AA en los 4 themes (gate por script). Default: <code>neutral</code> /
+    <code>subtle</code>.
+  </p>
+  <div class="playground__stack">
+    @for (a of appearances; track a) {
+    <div class="playground__row">
+      <strong style="width: 4.5rem; font-size: 0.75rem; text-transform: capitalize">{{ a }}</strong>
+      @for (t of tones; track t) {
+      <ds-badge [tone]="t" [appearance]="a">{{ t }}</ds-badge>
+      }
+    </div>
+    }
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Sizes" [snippet]="sizesSnippet">
+  <div class="playground__row">
+    <ds-badge tone="primary" size="sm">Small</ds-badge>
+    <ds-badge tone="primary" size="md">Medium</ds-badge>
+    <ds-badge tone="primary" size="lg">Large</ds-badge>
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Ícono y punto de estado" [snippet]="iconDotSnippet">
+  <div class="playground__row">
+    <ds-badge tone="success">
+      <svg lucideCheck dsBadgeIcon size="14" strokeWidth="2.5"></svg>
+      Active
+    </ds-badge>
+    <ds-badge tone="warning" [dot]="true">Pending</ds-badge>
+    <ds-badge tone="danger" appearance="solid" [dot]="true">Down</ds-badge>
+    <ds-badge tone="info" appearance="outline" [dot]="true">Beta</ds-badge>
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="En contexto: roles de team (referencia)" [snippet]="matrixSnippet">
+  <div class="playground__stack">
+    <div class="playground__row">
+      <span>Sofia Davis</span>
+      <ds-badge tone="primary" appearance="outline">Owner</ds-badge>
+    </div>
+    <div class="playground__row">
+      <span>Jackson Lee</span>
+      <ds-badge appearance="outline">Developer</ds-badge>
+    </div>
+    <div class="playground__row">
+      <span>Isabella Nguyen</span>
+      <ds-badge appearance="outline">Billing</ds-badge>
+    </div>
+  </div>
+</app-showcase-case>
