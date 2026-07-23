@@ -1,5 +1,5 @@
 ---
-estado: En desarrollo (tandas 1-2 completas + Button loading aaa-031; tanda 3 D-014 en curso 3/7 — Card/Button variants/Badge entregados (aaa-032/033/034), sigue Switch)
+estado: En desarrollo (tandas 1-2 completas + Button loading aaa-031; tanda 3 D-014 en curso 4/7 -- Card/Button variants/Badge/Switch entregados (aaa-032..035), sigue Textarea)
 actor: Dev consumidor
 ---
 
@@ -36,6 +36,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | `DsProgress` (determinada/indeterminada, tonos, reduced-motion por pulso)                | [aaa-029](../../../../openspec/changes/archive/aaa-029-components-add-progress/)                                                                                                                                                                                                                                                                       | Avance medible accesible; completa el trío de feedback                                                            |
 | Familia `DsCard` (variantes outline/elevated/flat, sub-partes híbridas, padding ×2)      | [aaa-032](../../../../openspec/changes/archive/aaa-032-components-add-card/)                                                                                                                                                                                                                                                                           | Contenedor de vistas tokenizado que preserva la semántica del contenido                                           |
 | `DsBadge` (tone × appearance: 6 tonos × 3 apariencias × 3 sizes, ícono/dot)              | [aaa-034](../../../../openspec/changes/archive/aaa-034-components-add-badge/)                                                                                                                                                                                                                                                                          | Etiquetas de estado accesibles y consistentes; estrena el estándar de variantes ADR-019                           |
+| `DsSwitch` (toggle CVA, sizes sm/md/lg, label, reduced-motion)                           | [aaa-035](../../../../openspec/changes/archive/aaa-035-components-add-switch/)                                                                                                                                                                                                                                                                         | Toggle on/off accesible integrado a Forms para settings                                                           |
 
 ## Historias de usuario
 
@@ -58,7 +59,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-020](HU-020-button-outline-destructive.md) | Variantes outline y danger de Button       | Dev consumidor | Hecha (2026-07-22, aaa-033 — genera D-016)                                |
 | [HU-021](HU-021-badge.md)                      | Badge de estado                            | Dev consumidor | Hecha (2026-07-22, aaa-034 — estrena ADR-019)                             |
 | [HU-022](HU-022-avatar.md)                     | Avatar y grupo de avatares                 | Dev consumidor | Identificada (tanda 3, D-014)                                             |
-| [HU-023](HU-023-switch.md)                     | Switch/Toggle                              | Dev consumidor | Refinada (2026-07-22; propuesta `aaa-035` activa)                         |
+| [HU-023](HU-023-switch.md)                     | Switch/Toggle                              | Dev consumidor | Hecha (2026-07-23, aaa-035)                                               |
 | [HU-024](HU-024-textarea.md)                   | Textarea                                   | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 | [HU-025](HU-025-slider.md)                     | Slider (range)                             | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 

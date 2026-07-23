@@ -1,7 +1,7 @@
 ---
 epica: EP-002
 actor: Dev consumidor
-estado: Refinada (2026-07-22; ejecución vía change components-add-switch — BACKLOG Now, cuarta entrega de la tanda 3)
+estado: Hecha (2026-07-23, aaa-035 components-add-switch archivado — cuarta entrega de la tanda 3; gate del thumb 3.68 dark, /ng:review 0 altas/medias corregidas, verificacion visual del PO OK)
 decisiones: [D-007, D-014, D-015, D-017]
 adrs: [ADR-004, ADR-011]
 ---
@@ -27,12 +27,12 @@ Tanda 3 ([D-014](../../decisiones.md)), referencia [`moder-minimal`](../../../re
 
 <!-- Binarios: al implementar se vuelven scenarios del spec component-switch (nuevo, ADR-018). -->
 
-- [ ] **CA-023.1 (control accesible)** — Dado `<ds-switch>` (standalone, OnPush) con `ControlValueAccessor`, entonces el control es un `<input type="checkbox" role="switch">` con `aria-checked` reflejando el estado; alterna con click y Space; `[(checked)]` y `formControl` funcionan.
-- [ ] **CA-023.2 (visual tokenizado + reduced-motion)** — Dado el track y el thumb, entonces salen de tokens `component.switch.*` por size (sm/md/lg); la transición del thumb usa tokens de motion y bajo `prefers-reduced-motion` no anima.
-- [ ] **CA-023.3 (estados)** — Dado on/off/disabled, entonces el track on usa `bg.primary` y off un neutral **themable**; el estado se comunica por la **posición del thumb** (indicador no-cromático) y el thumb sobre el track on cumple ≥3:1 (WCAG 1.4.11, gate); disabled reduce opacidad y bloquea el toggle.
-- [ ] **CA-023.4 (label)** — Dado `label`, entonces se renderiza asociado y clickable; el switch conserva su nombre accesible.
-- [ ] **CA-023.5 (tokens)** — Dado el CSS, entonces todo valor sale de `var(--ds-*)` (`component.switch.*`), sin hardcodes ni hex.
-- [ ] **CA-023.6 (export + showcase)** — Dado `public-api.ts`, exporta `DsSwitch` y `DsSwitchSize`; el showcase reproduce el bloque Cookie Settings de la referencia + estados y sizes.
+- [x] **CA-023.1 (control accesible)** — Dado `<ds-switch>` (standalone, OnPush) con `ControlValueAccessor`, entonces el control es un `<input type="checkbox" role="switch">` con `aria-checked` reflejando el estado; alterna con click y Space; `[(checked)]` y `formControl` funcionan.
+- [x] **CA-023.2 (visual tokenizado + reduced-motion)** — Dado el track y el thumb, entonces salen de tokens `component.switch.*` por size (sm/md/lg); la transición del thumb usa tokens de motion y bajo `prefers-reduced-motion` no anima.
+- [x] **CA-023.3 (estados)** — Dado on/off/disabled, entonces el track on usa `bg.primary` y off un neutral **themable**; el estado se comunica por la **posición del thumb** (indicador no-cromático) y el thumb sobre el track on cumple ≥3:1 (WCAG 1.4.11, gate); disabled reduce opacidad y bloquea el toggle.
+- [x] **CA-023.4 (label)** — Dado `label`, entonces se renderiza asociado y clickable; el switch conserva su nombre accesible.
+- [x] **CA-023.5 (tokens)** — Dado el CSS, entonces todo valor sale de `var(--ds-*)` (`component.switch.*`), sin hardcodes ni hex.
+- [x] **CA-023.6 (export + showcase)** — Dado `public-api.ts`, exporta `DsSwitch` y `DsSwitchSize`; el showcase reproduce el bloque Cookie Settings de la referencia + estados y sizes.
 
 ## Dependencias
 

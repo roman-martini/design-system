@@ -50,10 +50,10 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API paridad Checkbox (design
 
 ## 7. Archive
 
-- [ ] 7.1 Sin ADR nuevo (reutiliza ADR-011; tokens reversibles).
-- [ ] 7.2 Mover a `archive/aaa-035-components-add-switch/`; `status: archived` + fecha; crear la spec base `component-switch` desde el delta.
-- [ ] 7.3 Registros: `openspec/README.md`, catálogo de changes y specs en `docs/architecture/README.md`, grooming del BACKLOG (Switch sale; `components-add-textarea` promovido), HU-023 → Hecha, EP-002 al día.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Commit del archive.
+- [x] 7.1 Sin ADR nuevo (reutiliza ADR-011; tokens reversibles).
+- [x] 7.2 Mover a `archive/aaa-035-components-add-switch/`; `status: archived` + fecha; crear la spec base `component-switch` desde el delta.
+- [x] 7.3 Registros: `openspec/README.md`, catálogo de changes y specs en `docs/architecture/README.md`, grooming del BACKLOG (Switch sale; `components-add-textarea` promovido), HU-023 → Hecha, EP-002 al día.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive.
 
 **Criterio**: change archivado, spec base creada, registros al día.

@@ -2,7 +2,8 @@
 id: aaa-035
 name: components-add-switch
 type: change
-status: proposed
+status: archived
+archived: 2026-07-23
 introduces-specs:
   - component-switch
 modifies-specs:
