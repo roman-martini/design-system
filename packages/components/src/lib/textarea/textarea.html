@@ -2,15 +2,15 @@
 <label class="ds-field__label" [for]="fieldId">{{ label() }}</label>
 }
 <div
-  class="ds-field__control"
+  class="ds-field__control ds-field__control--textarea"
   [attr.data-size]="size()"
+  [attr.data-resize]="resize()"
   [class.ds-field__control--invalid]="isInvalid()"
   [class.ds-field__control--disabled]="disabled()"
 >
-  <ng-content select="[ds-input-prefix]" />
-  <input
+  <textarea
     [id]="fieldId"
-    [type]="type()"
+    [rows]="rows()"
     [value]="value()"
     [placeholder]="placeholder()"
     [disabled]="disabled()"
@@ -20,8 +20,7 @@
     [attr.aria-describedby]="describedBy()"
     (input)="onInput($event)"
     (blur)="onBlur()"
-  />
-  <ng-content select="[ds-input-suffix]" />
+  ></textarea>
 </div>
 <!-- Live region siempre presente: anuncia la aparición del error sin interrumpir. -->
 <p class="ds-field__error" [id]="errorId" aria-live="polite">@if (showError()) { {{ error() }} }</p>

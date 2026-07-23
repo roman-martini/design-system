@@ -21,3 +21,4 @@ export * from './lib/switch';
 export * from './lib/toast';
 export * from './lib/tooltip';
 export * from './lib/tabs';
+export * from './lib/textarea';

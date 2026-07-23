@@ -1,0 +1,22 @@
+/* Específico del <textarea> multilínea: sin height fijo (crece por rows +
+   contenido), padding vertical propio y resize configurable. El wrapper, la
+   tipografía, los estados y los helpers viven en ../field/field.css. */
+.ds-field__control--textarea {
+  /* El control multilínea alinea al tope, no al centro como el input. */
+  align-items: stretch;
+  padding-block: var(--ds-component-textarea-padding-y);
+}
+
+.ds-field__control--textarea textarea {
+  min-height: var(--ds-component-textarea-min-height);
+  /* Multilínea legible: line-height cómodo en vez del tight del input. */
+  line-height: var(--ds-font-line-height-normal);
+}
+
+.ds-field__control--textarea[data-resize='vertical'] textarea {
+  resize: vertical;
+}
+
+.ds-field__control--textarea[data-resize='none'] textarea {
+  resize: none;
+}

@@ -1,0 +1,114 @@
+/* Estilos compartidos de form fields (Input, Textarea, …). Reutilizan los
+   tokens component.input.* como look base del wrapper: renombrarlos a
+   component.field.* sería breaking y queda fuera de aaa-036. Cada control
+   concreto suma solo lo específico (height en input, min-height/resize en
+   textarea) vía su propio stylesheet en styleUrls. */
+:host {
+  display: block;
+}
+
+.ds-field__label {
+  display: block;
+  margin-bottom: var(--ds-component-input-label-gap);
+  color: var(--ds-component-input-label-color);
+  font-size: var(--ds-component-input-label-font-size);
+  font-weight: var(--ds-component-input-label-font-weight);
+  line-height: var(--ds-font-line-height-tight);
+}
+
+.ds-field__control {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-semantic-space-2xs);
+  border: var(--ds-component-input-border-width) solid var(--ds-component-input-border);
+  border-radius: var(--ds-component-input-radius);
+  background: var(--ds-component-input-bg);
+  /* Los slots pasivos heredan este color (currentColor); el control lo pisa
+     con su propio token de texto. */
+  color: var(--ds-semantic-color-icon-default);
+  transition:
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out);
+}
+
+/* padding horizontal + tipografía por size son compartidos; la altura la fija
+   cada control (input: height; textarea: min-height + padding vertical). */
+.ds-field__control[data-size='sm'] {
+  padding-inline: var(--ds-component-input-padding-x-sm);
+  font-size: var(--ds-component-input-font-size-sm);
+}
+.ds-field__control[data-size='md'] {
+  padding-inline: var(--ds-component-input-padding-x-md);
+  font-size: var(--ds-component-input-font-size-md);
+}
+.ds-field__control[data-size='lg'] {
+  padding-inline: var(--ds-component-input-padding-x-lg);
+  font-size: var(--ds-component-input-font-size-lg);
+}
+
+.ds-field__control:hover:not(.ds-field__control--disabled):not(.ds-field__control--invalid) {
+  border-color: var(--ds-component-input-border-hover);
+}
+
+.ds-field__control:focus-within {
+  border-color: var(--ds-component-input-border-focus);
+  box-shadow: var(--ds-semantic-shadow-focus);
+}
+
+.ds-field__control--invalid {
+  border-color: var(--ds-component-input-border-error);
+}
+
+.ds-field__control--disabled {
+  background: var(--ds-component-input-bg-disabled);
+  cursor: not-allowed;
+}
+
+.ds-field__control input,
+.ds-field__control textarea {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ds-component-input-text);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: var(--ds-font-line-height-tight);
+}
+
+.ds-field__control input::placeholder,
+.ds-field__control textarea::placeholder {
+  color: var(--ds-component-input-text-placeholder);
+}
+
+.ds-field__control input:disabled,
+.ds-field__control textarea:disabled {
+  color: var(--ds-component-input-text-disabled);
+  cursor: not-allowed;
+}
+
+.ds-field__hint,
+.ds-field__error {
+  margin: var(--ds-component-input-helper-gap) 0 0;
+  font-size: var(--ds-component-input-helper-font-size);
+  line-height: var(--ds-font-line-height-tight);
+}
+
+.ds-field__hint {
+  color: var(--ds-semantic-color-text-secondary);
+}
+
+.ds-field__error {
+  color: var(--ds-semantic-color-text-danger);
+}
+
+.ds-field__error:empty {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-field__control {
+    transition: none;
+  }
+}

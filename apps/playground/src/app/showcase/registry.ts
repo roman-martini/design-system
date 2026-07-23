@@ -63,6 +63,11 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     loadComponent: () => import('./input/input-showcase').then((m) => m.InputShowcase),
   },
   {
+    slug: 'textarea',
+    label: 'Textarea',
+    loadComponent: () => import('./textarea/textarea-showcase').then((m) => m.TextareaShowcase),
+  },
+  {
     slug: 'menu',
     label: 'Menu',
     loadComponent: () => import('./menu/menu-showcase').then((m) => m.MenuShowcase),

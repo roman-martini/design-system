@@ -1,0 +1,32 @@
+<app-showcase-case
+  title="Campo Notes con ReactiveForm y error automático (ADR-011)"
+  [snippet]="formSnippet"
+>
+  <div class="playground__row">
+    <ds-textarea
+      [formControl]="notesCtrl"
+      [rows]="4"
+      label="Notas"
+      hint="Tocá afuera vacío para ver el error automático"
+      error="La nota es obligatoria"
+      placeholder="Escribí una nota…"
+    />
+    <span>ctrl: {{ notesCtrl.value || '—' }} · invalid: {{ notesCtrl.invalid }}</span>
+  </div>
+  <p class="playground__hint">
+    Comparte toda la base de field con Input (label, hint, error automático por invalid + touched,
+    aria-describedby). El multilínea suma <code>rows</code> y <code>resize</code>.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Sizes y resize" [snippet]="sizesSnippet">
+  <div
+    class="playground__row"
+    style="flex-direction: column; align-items: stretch; max-width: 420px"
+  >
+    <ds-textarea size="sm" label="Small" placeholder="sm" />
+    <ds-textarea size="md" label="Medium" placeholder="md" />
+    <ds-textarea size="lg" label="Large" placeholder="lg" />
+    <ds-textarea resize="none" [rows]="3" label="Sin resize" placeholder="Alto fijo por rows" />
+  </div>
+</app-showcase-case>

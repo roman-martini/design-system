@@ -50,7 +50,7 @@ describe('DsInput (two-way, sin forms)', () => {
   });
 
   it('hint is associated via aria-describedby', () => {
-    const hint = fixture.nativeElement.querySelector('.ds-input__hint') as HTMLElement;
+    const hint = fixture.nativeElement.querySelector('.ds-field__hint') as HTMLElement;
     expect(hint.textContent).toContain('Nunca lo compartimos');
     expect(input.getAttribute('aria-describedby')).toBe(hint.id);
   });
@@ -69,7 +69,7 @@ describe('DsInput (two-way, sin forms)', () => {
   });
 
   it('projects passive prefix and suffix inside the control wrapper', () => {
-    const control = fixture.nativeElement.querySelector('.ds-input__control') as HTMLElement;
+    const control = fixture.nativeElement.querySelector('.ds-field__control') as HTMLElement;
     const prefix = control.querySelector('[ds-input-prefix]') as HTMLElement;
     const suffix = control.querySelector('[ds-input-suffix]') as HTMLElement;
     expect(prefix.textContent).toBe('@');
@@ -112,7 +112,7 @@ describe('DsInput invalid manual (sin forms)', () => {
     const fixture = TestBed.createComponent(ManualInvalidHost);
     fixture.detectChanges();
     const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
-    const error = fixture.nativeElement.querySelector('.ds-input__error') as HTMLElement;
+    const error = fixture.nativeElement.querySelector('.ds-field__error') as HTMLElement;
     expect(input.getAttribute('aria-invalid')).toBe('true');
     expect(error.textContent).toContain('Tomado');
     expect(input.getAttribute('aria-describedby')).toBe(error.id);
@@ -164,7 +164,7 @@ describe('DsInput + FormControl', () => {
   it('estado normal mientras el control está pristine aunque sea invalid', () => {
     expect(host.ctrl.invalid).toBe(true);
     expect(input.getAttribute('aria-invalid')).toBeNull();
-    const error = fixture.nativeElement.querySelector('.ds-input__error') as HTMLElement;
+    const error = fixture.nativeElement.querySelector('.ds-field__error') as HTMLElement;
     expect(error.textContent?.trim()).toBe('');
   });
 
@@ -172,20 +172,20 @@ describe('DsInput + FormControl', () => {
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
     expect(input.getAttribute('aria-invalid')).toBe('true');
-    const error = fixture.nativeElement.querySelector('.ds-input__error') as HTMLElement;
+    const error = fixture.nativeElement.querySelector('.ds-field__error') as HTMLElement;
     expect(error.textContent).toContain('Email inválido');
     expect(input.getAttribute('aria-describedby')).toBe(error.id);
-    const control = fixture.nativeElement.querySelector('.ds-input__control') as HTMLElement;
-    expect(control.classList.contains('ds-input__control--invalid')).toBe(true);
+    const control = fixture.nativeElement.querySelector('.ds-field__control') as HTMLElement;
+    expect(control.classList.contains('ds-field__control--invalid')).toBe(true);
   });
 
   it('el error reemplaza al hint mientras está presente', () => {
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.ds-input__hint')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.ds-field__hint')).toBeNull();
     host.ctrl.setValue('valido@ejemplo.com');
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.ds-input__hint')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.ds-field__hint')).not.toBeNull();
   });
 
   it('ctrl.disable() aplica disabled nativo (ADR-011 rama form control)', () => {

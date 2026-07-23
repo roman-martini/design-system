@@ -75,3 +75,11 @@ El resto (border, bg, radius, colores, label, hint, error, font por size) se reu
 ## Open Questions
 
 (ninguna — HU-024 cerró forma, rows/resize, scope)
+
+## Notas de apply (insumo para ADR-020)
+
+Surgidas del `/ng:review` de aaa-036; a consolidar en el ADR-020 al archivar:
+
+1. **Staleness bajo OnPush — resuelto (no diferido).** `isInvalid()` lee `touched`/`invalid` del `NgControl`, que no son signals. aaa-017 había aceptado como trade-off que un cambio _externo_ (p.ej. `form.markAllAsTouched()` en un submit) no repintara el error hasta el próximo evento local. Al promover la lógica a `DsFieldBase` el radio de impacto pasa a **todo field futuro**, así que se resolvió en el punto único: `DsFieldBase` se suscribe en `ngOnInit` a `AbstractControl.events` (Angular 18+, emite Touched/Pristine/Status/Value change) con `takeUntilDestroyed` y hace `markForCheck`. Cubierto por test (`textarea.spec.ts` › "markAsTouched externo … sin blur local"). El ADR-020 reafirma la regla: **todo form field de la familia deriva su reactividad de estado del control vía `control.events`**.
+2. **Herencia vs composición — `hostDirectives` evaluado y descartado.** La base comparte CVA+a11y por herencia (`@Directive()` abstracto + `extends`), contra el default "composición sobre herencia" (§9 del knowledge). Se evaluó `hostDirectives` y se descartó: los `input()`/`model()` deben declararse en la clase que los usa en su template, y las plantillas de `DsInput`/`DsTextarea` llaman directo a métodos `protected` de la base — con `hostDirectives` habría que reinyectar la directiva y reenviar cada input/método (más ceremonia, sin beneficio). El ADR-020 deja registrada la excepción para que el próximo field no reabra la pregunta.
+3. **Excepciones de consistencia de paquete (no-hallazgos).** Naming de handlers por evento (`onInput`/`onBlur`), queries de test por `querySelector`, y reutilización de tokens `component.input.*` en `field.css`: los tres son consistentes con el resto del package o ya están documentados en el propio código. Cambiarlos sería transversal, fuera de aaa-036.

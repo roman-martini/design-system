@@ -1,0 +1,8 @@
+{
+  "component": {
+    "textarea": {
+      "min-height": { "value": "{dimension.80}" },
+      "padding-y": { "value": "{semantic.space.xs}" }
+    }
+  }
+}
