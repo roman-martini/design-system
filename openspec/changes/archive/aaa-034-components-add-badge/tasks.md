@@ -51,10 +51,10 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API dos ejes (design §1), t
 
 ## 7. Archive
 
-- [ ] 7.1 Sin ADR nuevo — ADR-019 (estrenado por este change) ya cubre el patrón; el semantic neutral es aditivo reversible.
-- [ ] 7.2 Mover a `archive/aaa-034-components-add-badge/`; `status: archived` + fecha; crear la spec base `component-badge` desde el delta.
-- [ ] 7.3 Registros: `openspec/README.md`, catálogo de changes y specs en `docs/architecture/README.md`, grooming del BACKLOG (Badge sale; `components-add-switch` promovido), HU-021 → Hecha, EP-002 al día.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Commit del archive.
+- [x] 7.1 Sin ADR nuevo — ADR-019 (estrenado por este change) ya cubre el patrón; el semantic neutral es aditivo reversible.
+- [x] 7.2 Mover a `archive/aaa-034-components-add-badge/`; `status: archived` + fecha; crear la spec base `component-badge` desde el delta.
+- [x] 7.3 Registros: `openspec/README.md`, catálogo de changes y specs en `docs/architecture/README.md`, grooming del BACKLOG (Badge sale; `components-add-switch` promovido), HU-021 → Hecha, EP-002 al día.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive.
 
 **Criterio**: change archivado, spec base creada, registros al día.

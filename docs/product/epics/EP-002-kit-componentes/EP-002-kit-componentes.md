@@ -1,5 +1,5 @@
 ---
-estado: En desarrollo (tandas 1-2 completas + Button loading aaa-031; tanda 3 D-014 en curso 2/7 — Card aaa-032 y Button variants aaa-033 entregados, sigue Badge)
+estado: En desarrollo (tandas 1-2 completas + Button loading aaa-031; tanda 3 D-014 en curso 3/7 — Card/Button variants/Badge entregados (aaa-032/033/034), sigue Switch)
 actor: Dev consumidor
 ---
 
@@ -35,6 +35,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | `DsPagination` (ventana con elipsis, compacta, extremos ADR-011)                         | [aaa-028](../../../../openspec/changes/archive/aaa-028-components-add-pagination/)                                                                                                                                                                                                                                                                     | Navegación de listados largos accesible                                                                           |
 | `DsProgress` (determinada/indeterminada, tonos, reduced-motion por pulso)                | [aaa-029](../../../../openspec/changes/archive/aaa-029-components-add-progress/)                                                                                                                                                                                                                                                                       | Avance medible accesible; completa el trío de feedback                                                            |
 | Familia `DsCard` (variantes outline/elevated/flat, sub-partes híbridas, padding ×2)      | [aaa-032](../../../../openspec/changes/archive/aaa-032-components-add-card/)                                                                                                                                                                                                                                                                           | Contenedor de vistas tokenizado que preserva la semántica del contenido                                           |
+| `DsBadge` (tone × appearance: 6 tonos × 3 apariencias × 3 sizes, ícono/dot)              | [aaa-034](../../../../openspec/changes/archive/aaa-034-components-add-badge/)                                                                                                                                                                                                                                                                          | Etiquetas de estado accesibles y consistentes; estrena el estándar de variantes ADR-019                           |
 
 ## Historias de usuario
 
@@ -55,7 +56,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-017](HU-017-button-loading.md)             | Estado loading de ds-button                | Dev consumidor | Hecha (2026-07-22, aaa-031 — genera D-013, refinamiento visual del botón) |
 | [HU-019](HU-019-card.md)                       | Card contenedor                            | Dev consumidor | Hecha (2026-07-22, aaa-032 — abre la tanda 3)                             |
 | [HU-020](HU-020-button-outline-destructive.md) | Variantes outline y danger de Button       | Dev consumidor | Hecha (2026-07-22, aaa-033 — genera D-016)                                |
-| [HU-021](HU-021-badge.md)                      | Badge de estado                            | Dev consumidor | Refinada (2026-07-22; propuesta `aaa-034` activa, estrena ADR-019)        |
+| [HU-021](HU-021-badge.md)                      | Badge de estado                            | Dev consumidor | Hecha (2026-07-22, aaa-034 — estrena ADR-019)                             |
 | [HU-022](HU-022-avatar.md)                     | Avatar y grupo de avatares                 | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 | [HU-023](HU-023-switch.md)                     | Switch/Toggle                              | Dev consumidor | Identificada (tanda 3, D-014)                                             |
 | [HU-024](HU-024-textarea.md)                   | Textarea                                   | Dev consumidor | Identificada (tanda 3, D-014)                                             |

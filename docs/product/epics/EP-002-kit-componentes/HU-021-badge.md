@@ -1,7 +1,7 @@
 ---
 epica: EP-002
 actor: Dev consumidor
-estado: Refinada (2026-07-22; ejecución vía change components-add-badge — BACKLOG Now, tercera entrega de la tanda 3; primera implementación de ADR-019)
+estado: Hecha (2026-07-22, aaa-034 components-add-badge archivado — tercera entrega de la tanda 3; primera implementación de ADR-019; gate 18 combos × 4 themes verde, /ng:review 0 altas/medias corregidas, verificación visual del PO OK)
 decisiones: [D-007, D-012, D-014, D-015, D-017]
 adrs: [ADR-004, ADR-019]
 ---
@@ -26,13 +26,13 @@ Tanda 3 ([D-014](../../decisiones.md)), referencia [`moder-minimal`](../../../re
 
 <!-- Binarios: al implementar se vuelven scenarios del spec component-badge (nuevo, ADR-018). -->
 
-- [ ] **CA-021.1 (dos ejes)** — Dado `<ds-badge>` (standalone, OnPush) con `tone` (`neutral | primary | danger | success | warning | info`, default `neutral`) y `appearance` (`subtle | solid | outline`, default `subtle`), entonces refleja ambos en `data-tone`/`data-appearance` y el texto va proyectado.
-- [ ] **CA-021.2 (contraste AA por combinación)** — Dada cada combinación `tone × appearance`, entonces el par texto/fondo (y borde en `outline`) cumple WCAG AA (≥4.5:1 texto, ≥3:1 borde) en los 4 themes, verificado por el gate de contraste por script. En `solid`, el color de texto se elige por tono (blanco en tonos oscuros; texto oscuro en `warning`).
-- [ ] **CA-021.3 (sizes)** — Dado `size` `sm | md | lg` (default `md`), entonces padding, font-size, radius y tamaño de ícono/dot salen de tokens `component.badge.*` por size.
-- [ ] **CA-021.4 (ícono y dot)** — Dado `icon` (Lucide, leading) o `dot` (punto de estado leading), entonces se renderiza con el color del tono; el ícono es decorativo (`aria-hidden`) — el significado lo lleva el texto.
-- [ ] **CA-021.5 (a11y)** — Dado un badge, entonces es un contenedor de texto sin `role` impuesto; el estado se comunica por el **texto**, nunca solo por color (WCAG 1.4.1).
-- [ ] **CA-021.6 (tokens)** — Dado el CSS, entonces todo valor sale de `var(--ds-*)` (`component.badge.*` referenciando semantic), sin hardcodes ni hex.
-- [ ] **CA-021.7 (export + showcase)** — Dado `public-api.ts`, exporta `DsBadge`, `DsBadgeTone`, `DsBadgeAppearance`, `DsBadgeSize`; el showcase muestra la matriz tono × apariencia, los 3 sizes, y ejemplos en contexto (roles del team, ícono, dot).
+- [x] **CA-021.1 (dos ejes)** — Dado `<ds-badge>` (standalone, OnPush) con `tone` (`neutral | primary | danger | success | warning | info`, default `neutral`) y `appearance` (`subtle | solid | outline`, default `subtle`), entonces refleja ambos en `data-tone`/`data-appearance` y el texto va proyectado.
+- [x] **CA-021.2 (contraste AA por combinación)** — Dada cada combinación `tone × appearance`, entonces el par texto/fondo (y borde en `outline`) cumple WCAG AA (≥4.5:1 texto, ≥3:1 borde) en los 4 themes, verificado por el gate de contraste por script. En `solid`, el color de texto se elige por tono (blanco en tonos oscuros; texto oscuro en `warning`).
+- [x] **CA-021.3 (sizes)** — Dado `size` `sm | md | lg` (default `md`), entonces padding, font-size, radius y tamaño de ícono/dot salen de tokens `component.badge.*` por size.
+- [x] **CA-021.4 (ícono y dot)** — Dado `icon` (Lucide, leading) o `dot` (punto de estado leading), entonces se renderiza con el color del tono; el ícono es decorativo (`aria-hidden`) — el significado lo lleva el texto.
+- [x] **CA-021.5 (a11y)** — Dado un badge, entonces es un contenedor de texto sin `role` impuesto; el estado se comunica por el **texto**, nunca solo por color (WCAG 1.4.1).
+- [x] **CA-021.6 (tokens)** — Dado el CSS, entonces todo valor sale de `var(--ds-*)` (`component.badge.*` referenciando semantic), sin hardcodes ni hex.
+- [x] **CA-021.7 (export + showcase)** — Dado `public-api.ts`, exporta `DsBadge`, `DsBadgeTone`, `DsBadgeAppearance`, `DsBadgeSize`; el showcase muestra la matriz tono × apariencia, los 3 sizes, y ejemplos en contexto (roles del team, ícono, dot).
 
 ## Dependencias
 
