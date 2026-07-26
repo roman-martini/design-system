@@ -35,7 +35,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-textarea` (`aaa-036`, 2026-07-26).
 
-**Estado**: pendiente de refinar HU-022 + propose. Su grupo de avatares activa `space.negative` → dispara [HU-018](../product/epics/EP-001-fundamentos-tokens/HU-018-tokens-aditivos-atlassian.md) CA-018.3 (`tokens-add-negative-space`, Next). Sale de acá al archivar.
+**Estado**: **propuesta activa** — [`aaa-037`](../../openspec/changes/components-add-avatar/) (`proposed`, 4/4 artefactos, HU-022 Refinada 2026-07-26; entrega `space.negative.*` dentro del change — cumple HU-018 CA-018.3, `tokens-add-negative-space` no se abre como change separado). Sale de acá al archivar.
 
 ---
 
@@ -95,9 +95,9 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit, micro-changes). **Producto**: [HU-018](../product/epics/EP-001-fundamentos-tokens/HU-018-tokens-aditivos-atlassian.md) / EP-001 — origen, alcance por token y fuera-de-alcance viven en la HU.
 
-**Micro-changes** (cada uno su change y su disparador; detalle en HU-018): `tokens-add-space-zero`, `tokens-add-metric-typography`, `tokens-add-negative-space`.
+**Micro-changes** (cada uno su change y su disparador; detalle en HU-018): `tokens-add-space-zero`, `tokens-add-metric-typography`. ~~`tokens-add-negative-space`~~ — resuelto por decisión del PO (2026-07-26): `space.negative.*` se entrega **dentro de `components-add-avatar`** (`aaa-037`, su primer consumidor real); CA-018.3 se marca cumplido al archivar ese change, sin change de tokens separado.
 
-**Disparador** (cada uno): primer caso de uso real en playground o componente. Nota (2026-07-22): `tokens-add-negative-space` tiene disparador a la vista — el grupo de `DsAvatar` ([HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md), tanda 3) lo consumirá; se activa cuando ese change arranque.
+**Disparador** (cada uno de los restantes): primer caso de uso real en playground o componente.
 
 **Estado**: pendiente, sin disparador activo.
 
