@@ -8,7 +8,15 @@
       "lg":  { "value": "{dimension.24}" },
       "xl":  { "value": "{dimension.32}" },
       "2xl": { "value": "{dimension.48}" },
-      "3xl": { "value": "{dimension.64}" }
+      "3xl": { "value": "{dimension.64}" },
+      "negative": {
+        "2xs": { "value": "calc(-1 * {semantic.space.2xs})" },
+        "xs": { "value": "calc(-1 * {semantic.space.xs})" },
+        "sm": { "value": "calc(-1 * {semantic.space.sm})" },
+        "md": { "value": "calc(-1 * {semantic.space.md})" },
+        "lg": { "value": "calc(-1 * {semantic.space.lg})" },
+        "xl": { "value": "calc(-1 * {semantic.space.xl})" }
+      }
     },
     "radius": {
       "xs":   { "value": "{dimension.2}" },

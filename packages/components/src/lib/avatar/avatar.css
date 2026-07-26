@@ -1,0 +1,92 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  vertical-align: middle;
+  border-radius: var(--ds-component-avatar-radius);
+  font-weight: var(--ds-component-avatar-font-weight);
+}
+
+:host([data-size='xs']) {
+  width: var(--ds-component-avatar-size-xs);
+  height: var(--ds-component-avatar-size-xs);
+  font-size: var(--ds-component-avatar-font-size-xs);
+}
+:host([data-size='sm']) {
+  width: var(--ds-component-avatar-size-sm);
+  height: var(--ds-component-avatar-size-sm);
+  font-size: var(--ds-component-avatar-font-size-sm);
+}
+:host([data-size='md']) {
+  width: var(--ds-component-avatar-size-md);
+  height: var(--ds-component-avatar-size-md);
+  font-size: var(--ds-component-avatar-font-size-md);
+}
+:host([data-size='lg']) {
+  width: var(--ds-component-avatar-size-lg);
+  height: var(--ds-component-avatar-size-lg);
+  font-size: var(--ds-component-avatar-font-size-lg);
+}
+:host([data-size='xl']) {
+  width: var(--ds-component-avatar-size-xl);
+  height: var(--ds-component-avatar-size-xl);
+  font-size: var(--ds-component-avatar-font-size-xl);
+}
+
+.ds-avatar__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ds-avatar__initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+:host([data-tone='neutral']) .ds-avatar__initials {
+  background: var(--ds-component-avatar-tone-neutral-bg);
+  color: var(--ds-component-avatar-tone-neutral-text);
+}
+:host([data-tone='primary']) .ds-avatar__initials {
+  background: var(--ds-component-avatar-tone-primary-bg);
+  color: var(--ds-component-avatar-tone-primary-text);
+}
+:host([data-tone='success']) .ds-avatar__initials {
+  background: var(--ds-component-avatar-tone-success-bg);
+  color: var(--ds-component-avatar-tone-success-text);
+}
+:host([data-tone='warning']) .ds-avatar__initials {
+  background: var(--ds-component-avatar-tone-warning-bg);
+  color: var(--ds-component-avatar-tone-warning-text);
+}
+:host([data-tone='info']) .ds-avatar__initials {
+  background: var(--ds-component-avatar-tone-info-bg);
+  color: var(--ds-component-avatar-tone-info-text);
+}
+:host([data-tone='danger']) .ds-avatar__initials {
+  background: var(--ds-component-avatar-tone-danger-bg);
+  color: var(--ds-component-avatar-tone-danger-text);
+}
+
+/* En grupo: anillo de separación por box-shadow (no altera el box) y solape
+   por space.negative desde el segundo avatar (design §2). */
+:host([data-in-group]) {
+  box-shadow: 0 0 0 var(--ds-component-avatar-border-width) var(--ds-component-avatar-border-color);
+}
+
+:host([data-in-group]:not(:first-child)) {
+  margin-inline-start: var(--ds-component-avatar-group-overlap);
+}
+
+/* Excedente de `max`: colapsado en el "+N" del grupo. */
+:host([data-group-hidden]) {
+  display: none;
+}

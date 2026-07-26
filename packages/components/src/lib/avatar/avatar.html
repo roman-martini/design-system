@@ -1,0 +1,17 @@
+@if (showImage()) {
+<!-- <img> plano a propósito (no NgOptimizedImage): el contrato de `src` acepta
+     cualquier URL del consumidor, incluidas data:/blob: (preview de subida de
+     foto de perfil), que NgOptimizedImage rechaza en runtime. A 24–64px el
+     avatar no es candidato LCP: el beneficio sería marginal y el costo, real. -->
+<img class="ds-avatar__image" [src]="src()" [alt]="name()" (error)="onImgError()" />
+} @else {
+<span
+  class="ds-avatar__initials"
+  [attr.role]="name() ? 'img' : null"
+  [attr.aria-label]="name() || null"
+  [attr.aria-hidden]="name() ? null : 'true'"
+>
+  <!-- Las letras son decoración del aria-label del contenedor. -->
+  <span aria-hidden="true">{{ initials() }}</span>
+</span>
+}

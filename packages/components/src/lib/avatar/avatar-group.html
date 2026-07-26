@@ -1,0 +1,11 @@
+<ng-content />
+@if (overflowCount() > 0) {
+<span
+  class="ds-avatar-group__more"
+  role="img"
+  [attr.aria-label]="moreLabel()"
+  [attr.data-size]="moreSize()"
+>
+  <span aria-hidden="true">+{{ overflowCount() }}</span>
+</span>
+}

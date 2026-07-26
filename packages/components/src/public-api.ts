@@ -2,6 +2,7 @@
 // Only re-export what should be part of the contract.
 
 export * from './lib/accordion';
+export * from './lib/avatar';
 export * from './lib/breadcrumbs';
 export * from './lib/badge';
 export * from './lib/button';

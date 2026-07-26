@@ -2,26 +2,112 @@
   "component": {
     "avatar": {
       "size": {
-        "xs": { "value": "{dimension.24}" },
-        "sm": { "value": "{dimension.32}" },
-        "md": { "value": "{dimension.40}" },
-        "lg": { "value": "{dimension.48}" },
-        "xl": { "value": "{dimension.64}" }
+        "xs": {
+          "value": "{dimension.24}"
+        },
+        "sm": {
+          "value": "{dimension.32}"
+        },
+        "md": {
+          "value": "{dimension.40}"
+        },
+        "lg": {
+          "value": "{dimension.48}"
+        },
+        "xl": {
+          "value": "{dimension.64}"
+        }
       },
       "font-size": {
-        "xs": { "value": "{font.size.xs}" },
-        "sm": { "value": "{font.size.xs}" },
-        "md": { "value": "{font.size.sm}" },
-        "lg": { "value": "{font.size.md}" },
-        "xl": { "value": "{font.size.xl}" }
+        "xs": {
+          "value": "{font.size.xs}"
+        },
+        "sm": {
+          "value": "{font.size.xs}"
+        },
+        "md": {
+          "value": "{font.size.sm}"
+        },
+        "lg": {
+          "value": "{font.size.md}"
+        },
+        "xl": {
+          "value": "{font.size.xl}"
+        }
       },
-      "font-weight":   { "value": "{font.weight.semibold}" },
-      "bg":            { "value": "{semantic.color.bg.primary-subtle}" },
-      "text":          { "value": "{semantic.color.text.link}" },
-      "border-color":  { "value": "{semantic.color.bg.surface}" },
-      "border-width":  { "value": "{dimension.2}" },
-      "status-size":   { "value": "{dimension.10}" },
-      "status-border": { "value": "{dimension.2}" }
+      "font-weight": {
+        "value": "{font.weight.semibold}"
+      },
+      "radius": {
+        "value": "{semantic.radius.full}"
+      },
+      "tone": {
+        "neutral": {
+          "bg": {
+            "value": "{semantic.color.bg.neutral-subtle}"
+          },
+          "text": {
+            "value": "{semantic.color.text.secondary}"
+          }
+        },
+        "primary": {
+          "bg": {
+            "value": "{semantic.color.bg.primary-subtle}"
+          },
+          "text": {
+            "value": "{semantic.color.text.link-hover}"
+          }
+        },
+        "success": {
+          "bg": {
+            "value": "{semantic.color.bg.success-subtle}"
+          },
+          "text": {
+            "value": "{semantic.color.text.success}"
+          }
+        },
+        "warning": {
+          "bg": {
+            "value": "{semantic.color.bg.warning-subtle}"
+          },
+          "text": {
+            "value": "{semantic.color.text.warning}"
+          }
+        },
+        "info": {
+          "bg": {
+            "value": "{semantic.color.bg.info-subtle}"
+          },
+          "text": {
+            "value": "{semantic.color.text.info}"
+          }
+        },
+        "danger": {
+          "bg": {
+            "value": "{semantic.color.bg.danger-subtle}"
+          },
+          "text": {
+            "value": "{semantic.color.text.danger}"
+          }
+        }
+      },
+      "border-color": {
+        "value": "{semantic.color.bg.surface}"
+      },
+      "border-width": {
+        "value": "{dimension.2}"
+      },
+      "group": {
+        "overlap": {
+          "value": "{semantic.space.negative.sm}"
+        }
+      },
+      "status-size": {
+        "value": "{dimension.10}"
+      },
+      "status-border": {
+        "value": "{dimension.2}"
+      }
     }
   }
 }

@@ -1,0 +1,61 @@
+<app-showcase-case title="Iniciales, hash determinístico y sizes" [snippet]="basicSnippet">
+  <div class="playground__row">
+    <ds-avatar name="Sofia Davis" size="xs" />
+    <ds-avatar name="Sofia Davis" size="sm" />
+    <ds-avatar name="Sofia Davis" size="md" />
+    <ds-avatar name="Sofia Davis" size="lg" />
+    <ds-avatar name="Sofia Davis" size="xl" />
+  </div>
+  <div class="playground__row">
+    <ds-avatar name="Sofia Davis" />
+    <ds-avatar name="Jackson Lee" />
+    <ds-avatar name="Isabella Nguyen" />
+    <ds-avatar name="Liam Brown" />
+    <ds-avatar name="Emma Wilson" />
+    <ds-avatar name="Sofia Davis" tone="info" />
+  </div>
+  <p class="playground__hint">
+    Sin <code>src</code>, las iniciales salen de <code>name</code> y el tono se elige por hash
+    determinístico del nombre (mismo nombre → mismo tono, en cualquier app). El último fija
+    <code>tone="info"</code> manualmente. Con <code>src</code>, un error de carga cae al fallback
+    automáticamente.
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Grupo apilado con «+N» (referencia img 1)" [snippet]="groupSnippet">
+  <div class="playground__row">
+    <ds-avatar-group label="Miembros del equipo" [max]="3">
+      <ds-avatar name="Sofia Davis" size="sm" />
+      <ds-avatar name="Jackson Lee" size="sm" />
+      <ds-avatar name="Isabella Nguyen" size="sm" />
+      <ds-avatar name="Liam Brown" size="sm" />
+      <ds-avatar name="Emma Wilson" size="sm" />
+    </ds-avatar-group>
+  </div>
+  <p class="playground__hint">
+    El solape usa <code>space.negative.sm</code> (primer consumidor real — HU-018 CA-018.3); el
+    anillo de separación es <code>box-shadow</code> tokenizado. Los que exceden
+    <code>max</code> colapsan en «+N» con nombre accesible («y N más»).
+  </p>
+</app-showcase-case>
+
+<app-showcase-case title="Filas de team (referencia img 5)" [snippet]="teamSnippet">
+  <ds-card style="max-width: 30rem">
+    <ds-card-header>
+      <h2 dsCardTitle>Team Members</h2>
+      <p dsCardDescription>Invite your team members to collaborate.</p>
+    </ds-card-header>
+    <ul class="playground__team">
+      @for (member of team; track member.email) {
+      <li class="playground__team-row">
+        <ds-avatar [name]="member.name" size="md" />
+        <div class="playground__team-who">
+          <span class="playground__team-name">{{ member.name }}</span>
+          <span class="playground__team-email">{{ member.email }}</span>
+        </div>
+        <ds-badge tone="neutral" appearance="outline">{{ member.role }}</ds-badge>
+      </li>
+      }
+    </ul>
+  </ds-card>
+</app-showcase-case>

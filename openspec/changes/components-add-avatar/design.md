@@ -78,3 +78,10 @@ Pares nuevos `avatar-tone-<t>` (`text` sobre `bg`, nivel "text" ≥4.5) en los 4
 ## Open Questions
 
 (ninguna — HU-022 cerró fallback, tokens, overflow y sizes)
+
+## Notas de apply
+
+Del `/ng:review` de aaa-037 (0 altas / 1 media / 0 bajas):
+
+1. **`<img>` plano en vez de `NgOptimizedImage` — decisión, no omisión.** `NgOptimizedImage` rechaza `data:`/`blob:` URIs en runtime; el `src` de un avatar de librería debe aceptar cualquier URL del consumidor (preview de subida = `blob:`, imágenes embebidas = `data:`). A 24–64px el avatar no es candidato LCP, así que el beneficio de la directiva es marginal y el costo de contrato, real (D-017). Constancia explícita en comentario de `avatar.html` (lo que pidió el review). Si el kit sumara un componente de imagen grande (hero/media), ahí sí aplica `NgOptimizedImage`.
+2. Excepciones de consistencia de paquete ya conocidas (naming de handlers por evento, queries de test por selector CSS): mismas de aaa-036, sin cambios.
