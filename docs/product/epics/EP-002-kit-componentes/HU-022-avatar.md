@@ -1,7 +1,7 @@
 ---
 epica: EP-002
 actor: Dev consumidor
-estado: Refinada (2026-07-26; ejecución vía change components-add-avatar — BACKLOG Now, sexta entrega de la tanda 3)
+estado: Hecha (2026-07-26, aaa-037 components-add-avatar archivado — sexta entrega de la tanda 3; gate de tonos 6×4 themes AA, space.negative entregado (HU-018 CA-018.3), /ng:review 1 media resuelta por decisión documentada, verificación visual del PO OK)
 decisiones: [D-007, D-014, D-015, D-017]
 adrs: [ADR-004]
 ---
@@ -27,11 +27,11 @@ Tanda 3 ([D-014](../../decisiones.md)), referencia [`moder-minimal`](../../../re
 
 <!-- Binarios: al implementar se vuelven scenarios del spec component-avatar (nuevo, ADR-018). -->
 
-- [ ] **CA-022.1 (avatar)** — `<ds-avatar>` (standalone, OnPush) circular; muestra `src` (imagen con `alt` = `name`) o, en su ausencia o error de carga, iniciales derivadas de `name` (1–2 letras) como fallback; sizes `xs–xl` por tokens `component.avatar.*` (default `md`).
-- [ ] **CA-022.2 (fallback por hash)** — Dado un avatar sin `src`, el tono del fondo sale del hash determinístico de `name` sobre la paleta subtle tokenizada (mismo `name` → mismo tono, siempre); el input `tone` lo fija manualmente; cada par bg/texto de la paleta cumple AA verificado por gate en los 4 themes.
-- [ ] **CA-022.3 (grupo apilado)** — `ds-avatar-group` solapa los avatares usando `space.negative.*` (nuevo, jerarquía intacta: semantic → primitive sin duplicar valores) con borde de separación tokenizado; `max` colapsa el resto en "+N" accesible ("y N más").
-- [ ] **CA-022.4 (a11y)** — Con `name`, el avatar expone nombre accesible (`alt` en imagen; `role="img"` + `aria-label` en iniciales); sin `name`, es decorativo (`aria-hidden="true"`).
-- [ ] **CA-022.5 (showcase)** — El showcase muestra iniciales (hash y `tone` manual), imagen con fallback por error, sizes, el grupo apilado con "+N" y las filas de team de la referencia.
+- [x] **CA-022.1 (avatar)** — `<ds-avatar>` (standalone, OnPush) circular; muestra `src` (imagen con `alt` = `name`) o, en su ausencia o error de carga, iniciales derivadas de `name` (1–2 letras) como fallback; sizes `xs–xl` por tokens `component.avatar.*` (default `md`).
+- [x] **CA-022.2 (fallback por hash)** — Dado un avatar sin `src`, el tono del fondo sale del hash determinístico de `name` sobre la paleta subtle tokenizada (mismo `name` → mismo tono, siempre); el input `tone` lo fija manualmente; cada par bg/texto de la paleta cumple AA verificado por gate en los 4 themes.
+- [x] **CA-022.3 (grupo apilado)** — `ds-avatar-group` solapa los avatares usando `space.negative.*` (nuevo, jerarquía intacta: semantic → primitive sin duplicar valores) con borde de separación tokenizado; `max` colapsa el resto en "+N" accesible ("y N más").
+- [x] **CA-022.4 (a11y)** — Con `name`, el avatar expone nombre accesible (`alt` en imagen; `role="img"` + `aria-label` en iniciales); sin `name`, es decorativo (`aria-hidden="true"`).
+- [x] **CA-022.5 (showcase)** — El showcase muestra iniciales (hash y `tone` manual), imagen con fallback por error, sizes, el grupo apilado con "+N" y las filas de team de la referencia.
 
 ## Dependencias
 

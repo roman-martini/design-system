@@ -1,7 +1,7 @@
 ---
 epica: EP-001
 actor: Dev consumidor
-estado: Identificada (BACKLOG Later, sin disparador activo; cada CA se activa por separado como su propio change cuando aparece su caso de uso real o el PO lo aprueba, D-015)
+estado: Identificada, cierre parcial 1/3 (CA-018.3 Hecho 2026-07-26 vía aaa-037 components-add-avatar por decisión del PO — sin change de tokens separado; CA-018.1 y CA-018.2 siguen en BACKLOG Later esperando disparador, D-015)
 decisiones: [D-002, D-015]
 adrs: [ADR-003]
 ---
@@ -20,11 +20,11 @@ adrs: [ADR-003]
 
 Esta HU agrupa tres entregas independientes; cada una es su propio change y se dispara por su cuenta:
 
-| CA candidato | Change tentativo               | Capa                  | Changeset | Disparador                                        |
-| ------------ | ------------------------------ | --------------------- | --------- | ------------------------------------------------- |
-| CA-018.1     | `tokens-add-space-zero`        | `semantic/space`      | patch     | Primer dev que quiera `gap/margin: 0` con token   |
-| CA-018.2     | `tokens-add-metric-typography` | `semantic/typography` | minor     | Primer componente que renderice cifras (KPI/stat) |
-| CA-018.3     | `tokens-add-negative-space`    | `semantic/space`      | minor     | Primer componente con overlap (avatares, badges)  |
+| CA candidato | Change tentativo                                                                    | Capa                  | Changeset | Disparador                                                                 |
+| ------------ | ----------------------------------------------------------------------------------- | --------------------- | --------- | -------------------------------------------------------------------------- |
+| CA-018.1     | `tokens-add-space-zero`                                                             | `semantic/space`      | patch     | Primer dev que quiera `gap/margin: 0` con token                            |
+| CA-018.2     | `tokens-add-metric-typography`                                                      | `semantic/typography` | minor     | Primer componente que renderice cifras (KPI/stat)                          |
+| CA-018.3     | ~~`tokens-add-negative-space`~~ → entregado por `components-add-avatar` (`aaa-037`) | `semantic/space`      | minor     | ✅ Disparado y cumplido (2026-07-26): `DsAvatarGroup`, primer overlap real |
 
 ## Criterios de aceptación (candidatos)
 
@@ -33,7 +33,7 @@ Esta HU agrupa tres entregas independientes; cada una es su propio change y se d
 
 - [ ] **CA-018.1 (space.0)** — Dado `semantic/space.json`, cuando se agrega `space.0` mapeado a la primitive `dimension.0`, entonces existe `var(--ds-space-0)` con valor `0`, el build de Style Dictionary pasa y no se altera ningún nombre existente (changeset **patch**).
 - [ ] **CA-018.2 (metric typography)** — Dado `semantic/typography.json`, cuando se agregan `metric.small` (16px/bold), `metric.medium` (24px/bold) y `metric.large` (28px/bold) con su line-height (valores del research §1.2), entonces existen los tres tokens como capa aditiva sin reemplazar `heading.*`/`body.*` (changeset **minor**).
-- [ ] **CA-018.3 (negative space)** — Dado `semantic/space.json`, cuando se agregan `space.negative.*` (`-2 … -32`, mapeados a las primitives correspondientes), entonces existen para overlapping/romper padding sin duplicar valores fuera de la jerarquía (changeset **minor**).
+- [x] **CA-018.3 (negative space)** — Dado `semantic/space.json`, cuando se agregan `space.negative.*` (`-2 … -32`, mapeados a las primitives correspondientes), entonces existen para overlapping/romper padding sin duplicar valores fuera de la jerarquía (changeset **minor**). **Hecho (2026-07-26)** por [`aaa-037` components-add-avatar](../../../../openspec/changes/archive/aaa-037-components-add-avatar/) (decisión del PO: dentro del change de su primer consumidor, `DsAvatarGroup`): `negative.2xs–xl` vía `calc(-1 * {semantic.space.*})` — referencia viva a la jerarquía, cumple también CA-018.4.
 - [ ] **CA-018.4 (jerarquía intacta)** — Dado cualquiera de los tres changes, cuando se audita la cadena de referencia, entonces cada token `semantic` referencia una `primitive` (respeta la regla anti-duplicación `component → semantic → primitive` de [ADR-003](../../../architecture/adr/ADR-003-arquitectura-design-tokens.md)) y no introduce valores hardcodeados (caso de validación).
 
 ## Dependencias

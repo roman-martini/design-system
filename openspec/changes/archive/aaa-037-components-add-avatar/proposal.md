@@ -2,7 +2,8 @@
 id: aaa-037
 name: components-add-avatar
 type: change
-status: proposed
+status: archived
+archived: 2026-07-26
 introduces-specs:
   - component-avatar
 modifies-specs:

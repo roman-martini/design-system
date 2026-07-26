@@ -27,31 +27,19 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 14: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress, Button loading, Card, Button variants, Badge, Switch y Textarea) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 15: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress, Button loading, Card, Button variants, Badge, Switch, Textarea y Avatar) y el release NO es candidato automático.
 
-### `components-add-avatar` — Avatar (tanda 3)
+### `components-add-slider` — Slider (tanda 3, último)
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md) / EP-002 — origen, alcance y decisiones viven en la HU.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md) / EP-002 — origen, alcance y decisiones viven en la HU.
 
-**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-textarea` (`aaa-036`, 2026-07-26).
+**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-avatar` (`aaa-037`, 2026-07-26). **Cierra la tanda 3** (7/7).
 
-**Estado**: **propuesta activa** — [`aaa-037`](../../openspec/changes/components-add-avatar/) (`proposed`, 4/4 artefactos, HU-022 Refinada 2026-07-26; entrega `space.negative.*` dentro del change — cumple HU-018 CA-018.3, `tokens-add-negative-space` no se abre como change separado). Sale de acá al archivar.
+**Estado**: pendiente de refinar HU-025 + propose. Es el más complejo de la tanda (slider/range accesible). Sale de acá al archivar.
 
 ---
 
 ## Next — esperando disparador o decisión del PO
-
-### Tanda 3 — cola restante (D-014)
-
-**Tipo**: OpenSpec (kit, un change por componente). **Producto**: HUs de [EP-002](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md) (origen y alcance en cada HU).
-
-**Cola en orden** (cada item se promueve a Now al archivarse el anterior, en el grooming; `components-add-avatar` ya promovido a Now, 2026-07-26): `components-add-slider` ([HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md)) — último de la tanda.
-
-**Disparador** (cada uno): su turno en la cola — el change anterior de la tanda se archiva.
-
-**Estado**: pendiente (Next).
-
----
 
 ### `playground-theme-switcher` — Toggle de theme/brand en el playground
 

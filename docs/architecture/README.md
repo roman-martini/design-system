@@ -450,6 +450,7 @@ Una capability por componente del kit (ADR-018, aaa-030): cada una con el contra
 
 | Spec                                                                        | Componente(s)                          |
 | --------------------------------------------------------------------------- | -------------------------------------- |
+| [component-avatar](../../openspec/specs/component-avatar/spec.md)           | `DsAvatar` + `DsAvatarGroup`           |
 | [component-badge](../../openspec/specs/component-badge/spec.md)             | `DsBadge` (tone × appearance)          |
 | [component-button](../../openspec/specs/component-button/spec.md)           | `DsButton` (loading, variantes, tests) |
 | [component-card](../../openspec/specs/component-card/spec.md)               | Familia `DsCard`                       |
@@ -510,6 +511,7 @@ Una capability por componente del kit (ADR-018, aaa-030): cada una con el contra
 | [aaa-034](../../openspec/changes/archive/aaa-034-components-add-badge/)             | components-add-badge             | archived | 2026-07-22 | introduce component-badge (DsBadge tone × appearance) + tokens badge/neutral    | ADR-019 (modelo tone × appearance; estrenado por Badge) · D-017                |
 | [aaa-035](../../openspec/changes/archive/aaa-035-components-add-switch/)            | components-add-switch            | archived | 2026-07-23 | introduce component-switch (DsSwitch CVA) + tokens switch (lg, bg-off themable) | — (D-014 tanda 3; reutiliza ADR-011 disabled nativo)                           |
 | [aaa-036](../../openspec/changes/archive/aaa-036-components-add-textarea/)          | components-add-textarea          | archived | 2026-07-26 | introduce component-textarea (DsTextarea sobre DsFieldBase) + tokens textarea   | ADR-020 (base compartida de form fields; fix staleness OnPush vía events)      |
+| [aaa-037](../../openspec/changes/archive/aaa-037-components-add-avatar/)            | components-add-avatar            | archived | 2026-07-26 | introduce component-avatar (DsAvatar hash + DsAvatarGroup) + space.negative     | — (D-014 tanda 3; entrega HU-018 CA-018.3 en el change de su consumidor)       |
 
 Convención operativa + próximo ID disponible: [openspec/README.md](../../openspec/README.md).
 

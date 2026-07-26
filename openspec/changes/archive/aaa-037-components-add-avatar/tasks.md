@@ -44,16 +44,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API y fallback (design §1),
 - [x] 6.3 Auditoría `/ng:review` sobre `src/lib/avatar/` — 0 altas, 0 medias; hallazgos menores resueltos.
 - [x] 6.4 `npm pack --dry-run`: tarball sin `*.spec.ts`/`*.stories.ts`.
 - [x] 6.5 Changeset único con **minor** de components (DsAvatar + DsAvatarGroup) y **minor** de tokens (`space.negative.*` + paleta avatar).
-- [ ] 6.6 Commit del feat autorizado por el PO.
+- [x] 6.6 Commit del feat autorizado por el PO.
 
 **Criterio**: automáticos verdes; changeset correcto.
 
 ## 7. Archive
 
-- [ ] 7.1 Mover a `archive/aaa-037-components-add-avatar/`; `status: archived` + fecha; crear la spec base `component-avatar` desde el delta.
-- [ ] 7.2 **HU-018**: marcar CA-018.3 cumplido por este change (referencia cruzada en la HU y su tabla).
-- [ ] 7.3 Registros: `openspec/README.md`, catálogos en `docs/architecture/README.md`, grooming del BACKLOG (Avatar sale; `components-add-slider` promovido — último de la tanda), HU-022 → Hecha, EP-002 al día.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Commit del archive.
+- [x] 7.1 Mover a `archive/aaa-037-components-add-avatar/`; `status: archived` + fecha; crear la spec base `component-avatar` desde el delta.
+- [x] 7.2 **HU-018**: marcar CA-018.3 cumplido por este change (referencia cruzada en la HU y su tabla).
+- [x] 7.3 Registros: `openspec/README.md`, catálogos en `docs/architecture/README.md`, grooming del BACKLOG (Avatar sale; `components-add-slider` promovido — último de la tanda), HU-022 → Hecha, EP-002 al día.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive.
 
 **Criterio**: change archivado, spec base creada, HU-018 CA-018.3 registrado, registros al día.
