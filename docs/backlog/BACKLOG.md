@@ -27,15 +27,15 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 14: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress, Button loading, Card, Button variants, Badge y Switch) y el release NO es candidato automático.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 14: Toast, Spinner, Skeleton, Menu, Accordion, Breadcrumbs, Pagination, Progress, Button loading, Card, Button variants, Badge, Switch y Textarea) y el release NO es candidato automático.
 
-### `components-add-textarea` — Textarea (tanda 3)
+### `components-add-avatar` — Avatar (tanda 3)
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-024](../product/epics/EP-002-kit-componentes/HU-024-textarea.md) / EP-002 — origen, alcance y decisiones viven en la HU.
+**Tipo**: OpenSpec (kit). **Producto**: [HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md) / EP-002 — origen, alcance y decisiones viven en la HU.
 
-**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-switch` (`aaa-035`, 2026-07-23).
+**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-textarea` (`aaa-036`, 2026-07-26).
 
-**Estado**: **propuesta activa** — [`aaa-036`](../../openspec/changes/components-add-textarea/) (`proposed`, 4/4 artefactos, HU-024 Refinada; extrae `DsFieldBase` de Input, genera ADR-020 al cerrar). Apply en curso. Sale de acá al archivar.
+**Estado**: pendiente de refinar HU-022 + propose. Su grupo de avatares activa `space.negative` → dispara [HU-018](../product/epics/EP-001-fundamentos-tokens/HU-018-tokens-aditivos-atlassian.md) CA-018.3 (`tokens-add-negative-space`, Next). Sale de acá al archivar.
 
 ---
 
@@ -45,7 +45,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Tipo**: OpenSpec (kit, un change por componente). **Producto**: HUs de [EP-002](../product/epics/EP-002-kit-componentes/EP-002-kit-componentes.md) (origen y alcance en cada HU).
 
-**Cola en orden** (cada item se promueve a Now al archivarse el anterior, en el grooming; `components-add-textarea` ya promovido a Now, 2026-07-23): `components-add-avatar` ([HU-022](../product/epics/EP-002-kit-componentes/HU-022-avatar.md), activa `space.negative` de HU-018) → `components-add-slider` ([HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md)).
+**Cola en orden** (cada item se promueve a Now al archivarse el anterior, en el grooming; `components-add-avatar` ya promovido a Now, 2026-07-26): `components-add-slider` ([HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md)) — último de la tanda.
 
 **Disparador** (cada uno): su turno en la cola — el change anterior de la tanda se archiva.
 

@@ -44,16 +44,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: base `@Directive()` (design 
 - [x] 6.3 Auditoría `/ng:review` sobre `src/lib/field/`, `src/lib/textarea/` y el diff de `input/` — 0 altas, 0 medias; hallazgos menores resueltos.
 - [x] 6.4 `npm pack --dry-run`: tarball sin `*.spec.ts`/`*.stories.ts`.
 - [x] 6.5 Changeset único con **minor** de components (DsTextarea + refactor interno de Input) y **minor** de tokens.
-- [ ] 6.6 Commit del feat autorizado por el PO.
+- [x] 6.6 Commit del feat autorizado por el PO.
 
 **Criterio**: automáticos verdes; Input sin regresión; changeset correcto.
 
 ## 7. Archive
 
-- [ ] 7.1 **Crear ADR-020** (base compartida `DsFieldBase` para form fields): decisión + alternativas (multiline / duplicar / base) + regla para futuros form fields. Actualizar decisions-log.
-- [ ] 7.2 Mover a `archive/aaa-036-components-add-textarea/`; `status: archived` + fecha; crear la spec base `component-textarea` desde el delta.
-- [ ] 7.3 Registros: `openspec/README.md`, catálogo de changes/specs/ADRs en `docs/architecture/README.md`, grooming del BACKLOG (Textarea sale; `components-add-avatar` promovido), HU-024 → Hecha, EP-002 al día.
-- [ ] 7.4 `pnpm openspec validate --all` pasa.
-- [ ] 7.5 Commit del archive.
+- [x] 7.1 **Crear ADR-020** (base compartida `DsFieldBase` para form fields): decisión + alternativas (multiline / duplicar / base) + regla para futuros form fields. Actualizar decisions-log.
+- [x] 7.2 Mover a `archive/aaa-036-components-add-textarea/`; `status: archived` + fecha; crear la spec base `component-textarea` desde el delta.
+- [x] 7.3 Registros: `openspec/README.md`, catálogo de changes/specs/ADRs en `docs/architecture/README.md`, grooming del BACKLOG (Textarea sale; `components-add-avatar` promovido), HU-024 → Hecha, EP-002 al día.
+- [x] 7.4 `pnpm openspec validate --all` pasa.
+- [x] 7.5 Commit del archive.
 
 **Criterio**: change archivado, spec base + ADR-020 creados, registros al día.

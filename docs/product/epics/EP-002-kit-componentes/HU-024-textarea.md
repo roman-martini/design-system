@@ -1,9 +1,9 @@
 ---
 epica: EP-002
 actor: Dev consumidor
-estado: Refinada (2026-07-23; ejecución vía change components-add-textarea — BACKLOG Now, quinta entrega de la tanda 3)
+estado: Hecha (2026-07-26, aaa-036 components-add-textarea archivado — quinta entrega de la tanda 3; DsFieldBase extraída sin regresión de Input, /ng:review 1 media/2 bajas corregidas incl. staleness OnPush resuelta vía control.events, verificación visual del PO OK)
 decisiones: [D-007, D-014, D-017]
-adrs: [ADR-004, ADR-011]
+adrs: [ADR-004, ADR-011, ADR-020]
 ---
 
 # HU-024 — Textarea (dev consumidor)
@@ -27,12 +27,12 @@ Tanda 3 ([D-014](../../decisiones.md)), referencia [`moder-minimal`](../../../re
 
 <!-- Binarios: al implementar se vuelven scenarios del spec component-textarea (nuevo, ADR-018). -->
 
-- [ ] **CA-024.1 (base compartida)** — Dado `DsFieldBase` (`@Directive()` abstracto), entonces contiene la lógica de field (CVA por `NgControl` self, models, inputs, IDs, `isInvalid`/`describedBy`); `DsInput` la extiende **sin cambio de API** y su suite de tests sigue verde.
-- [ ] **CA-024.2 (DsTextarea)** — Dado `<ds-textarea>` (standalone, OnPush) que extiende `DsFieldBase`, entonces renderiza un `<textarea>` con `rows` (default 3), integrado a Forms (CVA por `NgControl`), con label/hint/error/invalid del field compartido.
-- [ ] **CA-024.3 (a11y)** — Dado un textarea con label/hint/error, entonces label asociado por `for`/`id`, `aria-invalid` cuando corresponde, `aria-describedby` apuntando a error (live region) o hint — idéntico a `DsInput`.
-- [ ] **CA-024.4 (resize y tokens)** — Dado `resize` `vertical` (default) | `none`, entonces se aplica; el field usa tokens `component.input.*` (compartidos) y `component.textarea.*` (min-height/padding); sin hardcodes ni hex.
-- [ ] **CA-024.5 (export)** — Dado `public-api.ts`, exporta `DsTextarea`, `DsTextareaResize` (y no expone `DsFieldBase`, que es interno).
-- [ ] **CA-024.6 (showcase)** — El showcase reproduce el campo Notes de la referencia con hint y estado de error, y muestra los sizes.
+- [x] **CA-024.1 (base compartida)** — Dado `DsFieldBase` (`@Directive()` abstracto), entonces contiene la lógica de field (CVA por `NgControl` self, models, inputs, IDs, `isInvalid`/`describedBy`); `DsInput` la extiende **sin cambio de API** y su suite de tests sigue verde.
+- [x] **CA-024.2 (DsTextarea)** — Dado `<ds-textarea>` (standalone, OnPush) que extiende `DsFieldBase`, entonces renderiza un `<textarea>` con `rows` (default 3), integrado a Forms (CVA por `NgControl`), con label/hint/error/invalid del field compartido.
+- [x] **CA-024.3 (a11y)** — Dado un textarea con label/hint/error, entonces label asociado por `for`/`id`, `aria-invalid` cuando corresponde, `aria-describedby` apuntando a error (live region) o hint — idéntico a `DsInput`.
+- [x] **CA-024.4 (resize y tokens)** — Dado `resize` `vertical` (default) | `none`, entonces se aplica; el field usa tokens `component.input.*` (compartidos) y `component.textarea.*` (min-height/padding); sin hardcodes ni hex.
+- [x] **CA-024.5 (export)** — Dado `public-api.ts`, exporta `DsTextarea`, `DsTextareaResize` (y no expone `DsFieldBase`, que es interno).
+- [x] **CA-024.6 (showcase)** — El showcase reproduce el campo Notes de la referencia con hint y estado de error, y muestra los sizes.
 
 ## Dependencias
 

@@ -28,7 +28,6 @@ Actualizar al crear un change nuevo.
 IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/README.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
 
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
-> `aaa-036` asignado a `components-add-textarea` (status `proposed`; HU-024, genera ADR-020 al cerrar).
 
 ### Specs sin IDs
 

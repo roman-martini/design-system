@@ -2,7 +2,8 @@
 id: aaa-036
 name: components-add-textarea
 type: change
-status: proposed
+status: archived
+archived: 2026-07-26
 introduces-specs:
   - component-textarea
 modifies-specs:
@@ -10,6 +11,7 @@ modifies-specs:
 related-adrs:
   - ADR-004
   - ADR-011
+  - ADR-020
 related-decisions:
   - D-014
   - D-017
