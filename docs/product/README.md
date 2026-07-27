@@ -20,15 +20,16 @@ Conservado para trazabilidad — el pedido original ([docs/reference/contexto_in
 
 > Este proyecto lo voy a utilizar para desarrollar librerías. Las librerías solo van a tener alcance de arquitecturas frontend. […] `packages/tokens`: es un sistema de diseño […] `packages/components`: debe ser una librería de componentes Angular, estos componentes utilizarán la librería `packages/tokens`. […] Una app para probar los componentes […] también se va a usar para crear prototipos de casos de uso reales.
 
-El refinamiento (bootstrap aaa-001…aaa-005) consolidó el alcance en el monorepo actual. Este espacio de producto se creó el 2026-07-10 y las épicas se definieron **retro-mapeando el valor ya entregado** (12 changes archivados) más el pendiente (BACKLOG + el entonces `FUTURE-WORK.md`, fusionado el 2026-07-20 en la [Cantera del BACKLOG](../backlog/BACKLOG.md#cantera-sin-disparador)).
+El refinamiento (bootstrap aaa-001…aaa-005) consolidó el alcance en el monorepo actual. Este espacio de producto se creó el 2026-07-10 y las épicas se definieron **retro-mapeando el valor ya entregado** (12 changes archivados) más el pendiente (BACKLOG + el entonces `FUTURE-WORK.md`, fusionado el 2026-07-20 en la Cantera del BACKLOG, que a su vez fue reemplazada por el [intake](intake/README.md) el 2026-07-26).
 
 ## Estructura
 
 ```
 docs/product/
-├── README.md          ← esta guía + índice de épicas + roadmap
+├── README.md          ← esta guía + índice de épicas + tabla de HUs + roadmap
 ├── decisiones.md      ← registro de decisiones de producto (D-XXX), append-only
-├── templates/         ← plantillas para crear épicas y HUs nuevas
+├── intake/            ← ideas en exploración, antes de comprometerlas (D-019)
+├── templates/         ← plantillas para crear épicas, HUs y requerimientos
 └── epics/
     └── EP-XXX-nombre-corto/    ← una carpeta por épica, autocontenida
         ├── EP-XXX-nombre-corto.md  ← el documento de la épica (homónimo a la carpeta)
@@ -41,60 +42,116 @@ Principio: **todo lo que pertenece a una épica vive en su carpeta**. Lo que cru
 
 Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuente de verdad existente:
 
-| Artefacto                                                                           | Responde                                          | Relación con producto                                         |
-| ----------------------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------- |
-| `docs/product/` (HUs, épicas, D-XXX)                                                | ¿Qué valor, para qué actor, por qué ahora?        | Una HU Refinada se **ejecuta** vía uno o más changes OpenSpec |
-| `openspec/changes/` (`aaa-NNN`)                                                     | ¿Cómo se ejecuta un cambio significativo?         | El change referencia la HU que materializa (si existe)        |
-| `openspec/specs/`                                                                   | ¿Qué debe hacer el sistema? (contratos testables) | Los CAs de una HU se vuelven scenarios de spec al implementar |
-| `docs/architecture/adr/`                                                            | ¿Por qué esta decisión técnica?                   | Las D-XXX son de **producto/negocio**; lo técnico va a ADR    |
-| [`docs/backlog/`](../backlog/BACKLOG.md)                                            | Cola operativa con disparadores (Now/Next/Later)  | El roadmap de producto se materializa como items del backlog  |
-| [`docs/backlog/BACKLOG.md` § Cantera](../backlog/BACKLOG.md#cantera-sin-disparador) | Inspiración no normativa                          | Cantera de HUs candidatas (ideas sin disparador)              |
+| Artefacto                                  | Responde                                          | Relación con producto                                         |
+| ------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------- |
+| `docs/product/` (HUs, épicas, D-XXX)       | ¿Qué valor, para qué actor, por qué ahora?        | Una HU Refinada se **ejecuta** vía uno o más changes OpenSpec |
+| `openspec/changes/` (`aaa-NNN`)            | ¿Cómo se ejecuta un cambio significativo?         | El change referencia la HU que materializa (si existe)        |
+| `openspec/specs/`                          | ¿Qué debe hacer el sistema? (contratos testables) | Los CAs de una HU se vuelven scenarios de spec al implementar |
+| `docs/architecture/adr/`                   | ¿Por qué esta decisión técnica?                   | Las D-XXX son de **producto/negocio**; lo técnico va a ADR    |
+| [`docs/backlog/`](../backlog/BACKLOG.md)   | Cola operativa con disparadores (Now/Next/Later)  | El roadmap de producto se materializa como items del backlog  |
+| [`docs/product/intake/`](intake/README.md) | ¿Qué ideas están en exploración, sin comprometer? | Un intake se promueve a épica/HU y ahí se borra (D-019)       |
 
 ## Índice de épicas
 
-| ID                                                                         | Épica                         | Actor principal | HUs                            | Estado                                                      |
-| -------------------------------------------------------------------------- | ----------------------------- | --------------- | ------------------------------ | ----------------------------------------------------------- |
-| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor  | 004, 018                       | En desarrollo (base entregada)                              |
-| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor  | 003, 005–010, 012–017, 019–025 | En desarrollo (tandas 1-2 completas; tanda 3 D-014 en cola) |
-| [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor  | 002                            | En desarrollo (npm-ready, sin publicar)                     |
-| [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador       | 001                            | En refinamiento (aaa-012 propuesto)                         |
-| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor      | —                              | En desarrollo (primera tanda 2026-07-11)                    |
-| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor  | 011                            | En desarrollo (HU-011 Hecha 2026-07-19)                     |
+| ID                                                                         | Épica                         | Actor principal             | HUs                                      | Estado                                                             |
+| -------------------------------------------------------------------------- | ----------------------------- | --------------------------- | ---------------------------------------- | ------------------------------------------------------------------ |
+| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor              | 004, 018                                 | En desarrollo (base entregada)                                     |
+| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor              | 003, 005–010, 012–017, 019–025, 033, 034 | En desarrollo (tandas 1-2 completas; tanda 3 en 6/7, falta Slider) |
+| [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor              | 002                                      | En desarrollo (npm-ready, sin publicar)                            |
+| [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador                   | 001                                      | En refinamiento (aaa-012 activo y pausado, D-027)                  |
+| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor                  | 026–032                                  | En desarrollo (gates automáticos aprobados por D-021)              |
+| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor              | 011, 035, 036                            | En desarrollo (HU-011 Hecha 2026-07-19)                            |
+| [EP-007](epics/EP-007-template-lume/EP-007-template-lume.md)               | Template-lume                 | Dev consumidor · Mantenedor | 037–040                                  | Identificada (creada 2026-07-26 por D-020)                         |
 
-Próximos IDs libres: **EP-007**, **HU-026**, **D-018**.
+Próximos IDs libres: **EP-008**, **HU-041**, **D-028**.
+
+## Tabla de HUs
+
+Vista global del avance, pedida por [D-019](decisiones.md) — antes el estado de una HU solo se veía entrando a su épica. El detalle (fecha, change, artefactos generados) vive en el frontmatter de cada HU; acá está lo escaneable.
+
+| HU                                                                             | Título                                 | Épica  | Estado                        |
+| ------------------------------------------------------------------------------ | -------------------------------------- | ------ | ----------------------------- |
+| [HU-001](epics/EP-004-puente-codigo-diseno/HU-001-tokens-en-figma.md)          | Tokens como Variables de Figma         | EP-004 | Refinada — en pausa           |
+| [HU-002](epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md)       | Primer release publicado en npm        | EP-003 | Hecha (2026-07-18)            |
+| [HU-003](epics/EP-002-kit-componentes/HU-003-select-formularios.md)            | Select/Combobox para formularios       | EP-002 | Hecha (2026-07-11)            |
+| [HU-004](epics/EP-001-fundamentos-tokens/HU-004-contraste-aa-tokens.md)        | Tokens interactivos con contraste AA   | EP-001 | Hecha (2026-07-11)            |
+| [HU-005](epics/EP-002-kit-componentes/HU-005-input-textfield.md)               | Input/TextField                        | EP-002 | Hecha (2026-07-11)            |
+| [HU-006](epics/EP-002-kit-componentes/HU-006-tabs-navegacion.md)               | Tabs de navegación de contenido        | EP-002 | Hecha (2026-07-14)            |
+| [HU-007](epics/EP-002-kit-componentes/HU-007-tooltip.md)                       | Tooltip de ayuda contextual            | EP-002 | Hecha (2026-07-18)            |
+| [HU-008](epics/EP-002-kit-componentes/HU-008-toast-notificaciones.md)          | Toast para feedback asíncrono          | EP-002 | Hecha (2026-07-18)            |
+| [HU-009](epics/EP-002-kit-componentes/HU-009-spinner.md)                       | Spinner de carga                       | EP-002 | Hecha (2026-07-19)            |
+| [HU-010](epics/EP-002-kit-componentes/HU-010-skeleton.md)                      | Skeleton de contenido en carga         | EP-002 | Hecha (2026-07-19)            |
+| [HU-011](epics/EP-006-playground/HU-011-showcase-componentes.md)               | Showcase navegable del playground      | EP-006 | Hecha (2026-07-19)            |
+| [HU-012](epics/EP-002-kit-componentes/HU-012-menu-dropdown.md)                 | Menu/Dropdown de acciones              | EP-002 | Hecha (2026-07-19)            |
+| [HU-013](epics/EP-002-kit-componentes/HU-013-accordion.md)                     | Accordion colapsable                   | EP-002 | Hecha (2026-07-20)            |
+| [HU-014](epics/EP-002-kit-componentes/HU-014-breadcrumbs.md)                   | Breadcrumbs de ubicación               | EP-002 | Hecha (2026-07-20)            |
+| [HU-015](epics/EP-002-kit-componentes/HU-015-pagination.md)                    | Pagination de listados                 | EP-002 | Hecha (2026-07-20)            |
+| [HU-016](epics/EP-002-kit-componentes/HU-016-progress.md)                      | Progress de avance medible             | EP-002 | Hecha (2026-07-20)            |
+| [HU-017](epics/EP-002-kit-componentes/HU-017-button-loading.md)                | Estado loading de Button               | EP-002 | Hecha (2026-07-22)            |
+| [HU-018](epics/EP-001-fundamentos-tokens/HU-018-tokens-aditivos-atlassian.md)  | Tokens aditivos del research Atlassian | EP-001 | Identificada — 1/3 cerrado    |
+| [HU-019](epics/EP-002-kit-componentes/HU-019-card.md)                          | Card contenedor                        | EP-002 | Hecha (2026-07-22)            |
+| [HU-020](epics/EP-002-kit-componentes/HU-020-button-outline-destructive.md)    | Variantes outline y danger de Button   | EP-002 | Hecha (2026-07-22)            |
+| [HU-021](epics/EP-002-kit-componentes/HU-021-badge.md)                         | Badge de estado                        | EP-002 | Hecha (2026-07-22)            |
+| [HU-022](epics/EP-002-kit-componentes/HU-022-avatar.md)                        | Avatar y grupo de avatares             | EP-002 | Hecha (2026-07-26)            |
+| [HU-023](epics/EP-002-kit-componentes/HU-023-switch.md)                        | Switch/Toggle                          | EP-002 | Hecha (2026-07-23)            |
+| [HU-024](epics/EP-002-kit-componentes/HU-024-textarea.md)                      | Textarea                               | EP-002 | Hecha (2026-07-26)            |
+| [HU-025](epics/EP-002-kit-componentes/HU-025-slider.md)                        | Slider (range)                         | EP-002 | Identificada — cierra tanda 3 |
+| [HU-026](epics/EP-005-calidad-profesional/HU-026-coverage-typecheck-ci.md)     | Coverage y typecheck en CI             | EP-005 | Refinada (2026-07-26)         |
+| [HU-027](epics/EP-005-calidad-profesional/HU-027-gate-contraste-aa-ci.md)      | Gate de contraste WCAG AA en CI        | EP-005 | Refinada (2026-07-26)         |
+| [HU-028](epics/EP-005-calidad-profesional/HU-028-a11y-automatizada-axe.md)     | Accesibilidad automatizada con axe     | EP-005 | Refinada (2026-07-26)         |
+| [HU-029](epics/EP-005-calidad-profesional/HU-029-angular-eslint.md)            | angular-eslint (templates y a11y)      | EP-005 | Refinada (2026-07-26)         |
+| [HU-030](epics/EP-005-calidad-profesional/HU-030-bundle-size-budget.md)        | Presupuesto de tamaño de bundle        | EP-005 | Refinada (2026-07-26)         |
+| [HU-031](epics/EP-005-calidad-profesional/HU-031-storybook-publicado.md)       | Storybook publicado                    | EP-005 | Refinada (2026-07-26)         |
+| [HU-032](epics/EP-005-calidad-profesional/HU-032-audit-tokens-skill.md)        | Auditoría de consistencia de tokens    | EP-005 | Refinada (2026-07-26)         |
+| [HU-033](epics/EP-002-kit-componentes/HU-033-ajuste-dimensional-referencia.md) | Ajuste dimensional a modern-minimal    | EP-002 | Identificada (2026-07-26)     |
+| [HU-034](epics/EP-002-kit-componentes/HU-034-estetica-spinner.md)              | Refinamiento estético del Spinner      | EP-002 | Identificada (2026-07-26)     |
+| [HU-035](epics/EP-006-playground/HU-035-interaction-tests-storybook.md)        | Interaction tests de overlays          | EP-006 | Refinada (2026-07-26)         |
+| [HU-036](epics/EP-006-playground/HU-036-docs-tokens-storybook.md)              | Documentación de tokens en Storybook   | EP-006 | Refinada (2026-07-26)         |
+| [HU-037](epics/EP-007-template-lume/HU-037-rename-theme-modern-minimal.md)     | Rename del theme a modern-minimal      | EP-007 | Refinada (2026-07-26)         |
+| HU-038                                                                         | Research del sitio de referencia       | EP-007 | Identificada — sin archivo    |
+| HU-039                                                                         | Inventario de componentes faltantes    | EP-007 | Identificada — sin archivo    |
+| HU-040                                                                         | Web-page del template en el playground | EP-007 | Identificada — sin archivo    |
+
+**Resumen sobre 40 HUs**: 22 Hechas, 11 Refinadas (una de ellas en pausa) y 7 Identificadas, tres de las cuales todavía no tienen archivo propio.
 
 ## Roadmap
 
 Sin fechas: el avance lo marcan los **disparadores y las decisiones directas del PO** (D-015) y el orden operativo vive en [docs/backlog/BACKLOG.md](../backlog/BACKLOG.md). El rumbo se expresa como **hitos de producto**, cada uno con su condición de salida binaria:
 
-| Hito                                         | Qué lo compone                                                                                        | Condición de salida                                               | Estado                                                                                                                                             |
-| -------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **H1 — Kit mínimo viable para una app real** | Tanda 1 ([D-009](decisiones.md)) completa + tanda 2 ([D-011](decisiones.md)): HU-012…HU-016 (EP-002)  | Una app real se construye 100% con componentes del DS             | Tandas 1 y 2 completas (2026-07-20); condición de salida pendiente: construir una app real 100% con el DS (decisión del PO sobre cómo verificarla) |
-| **H2 — Libs consumibles desde otros repos**  | Primer release npm: [HU-002](epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) (EP-003) | Un proyecto externo instala desde npm y arranca con el quickstart | **Cumplido** (2026-07-18) — 0.2.0/0.2.0 en npm, consumo verificado ([D-010](decisiones.md), aaa-020)                                               |
-| **H3 — Puente con diseño**                   | Figma export: [HU-001](epics/EP-004-puente-codigo-diseno/HU-001-tokens-en-figma.md) (EP-004)          | Variables de Figma sincronizadas desde el código (one-way, D-006) | aaa-012 propuesto, 4/4 artefactos; en pausa por el PO                                                                                              |
+| Hito                                         | Qué lo compone                                                                                        | Condición de salida                                               | Estado                                                                                                                                                                                                                                |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **H1 — Kit mínimo viable para una app real** | Tanda 1 ([D-009](decisiones.md)) completa + tanda 2 ([D-011](decisiones.md)): HU-012…HU-016 (EP-002)  | Una app real se construye 100% con componentes del DS             | Tandas 1 y 2 completas (2026-07-20), tanda 3 en 6/7. **Cómo se verifica ya está decidido** ([D-023](decisiones.md)): un prototipo de la referencia `modern-minimal` en el playground al cerrar HU-025, no un checklist de componentes |
+| **H2 — Libs consumibles desde otros repos**  | Primer release npm: [HU-002](epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md) (EP-003) | Un proyecto externo instala desde npm y arranca con el quickstart | **Cumplido** (2026-07-18) — 0.2.0/0.2.0 en npm, consumo verificado ([D-010](decisiones.md), aaa-020)                                                                                                                                  |
+| **H3 — Puente con diseño**                   | Figma export: [HU-001](epics/EP-004-puente-codigo-diseno/HU-001-tokens-en-figma.md) (EP-004)          | Variables de Figma sincronizadas desde el código (one-way, D-006) | aaa-012 con 4/4 artefactos, **activo y pausado** ([D-027](decisiones.md)); fuera de la cola operativa, en [intake](intake/figma-export-tokens-studio.md)                                                                              |
 
-Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualquier momento. El horizonte más largo (multi-framework, patterns/recipes) vive en la [Cantera del BACKLOG](../backlog/BACKLOG.md#cantera-sin-disparador) (marco conceptual: [roadmap de madurez](../reference/roadmap-madurez-ds.md)); no es compromiso.
+Los hitos H2 y H3 no dependen de H1 — se activan por decisión del PO en cualquier momento. El horizonte más largo (multi-framework, patterns/recipes) vive en [intake/horizonte-largo.md](intake/horizonte-largo.md) (marco conceptual: [roadmap de madurez](../reference/roadmap-madurez-ds.md)); no es compromiso.
 
 ### Foto táctica
 
 ```
-EP-002: tanda 1 (D-009) COMPLETA  → HU-003 + HU-005…HU-010 Hechas (11 componentes + 1 directiva
-                                    + 1 service, 2026-07-19)
-EP-002: tanda 2 (D-011)           → COMPLETA (2026-07-20): HU-012…HU-016 Hechas (aaa-025…029;
-                                    Breadcrumbs genera ADR-017). + HU-017 Button loading Hecha
-                                    (aaa-031, 2026-07-22; genera D-013)
-EP-002: tanda 3 (D-014)           → EN COLA (2026-07-22): HU-019…HU-025 (Card, Button variants,
-                                    Badge, Avatar, Switch, Textarea, Slider — referencia
-                                    moder-minimal); arranca components-add-card
-EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.2.0 publicados en npm
-                                    (D-010, lockstep ADR-015, aaa-020)
-EP-004: HU-001 (Figma export)     → aaa-012 propuesto, 4/4 artefactos; en pausa por decisión del PO
-EP-005: /ds:audit-tokens          → posible activación (primer hardcode detectado en la auditoría)
-EP-006: HU-011 (showcase)         → Hecha (2026-07-19): sidebar + ruta lazy por componente + demos
-                                    con snippet copiable; la página única del playground ya no existe
+EP-001: tokens base + contraste AA → HU-004 Hecha; HU-018 (aditivos Atlassian) 1/3 cerrado
+                                    (space.negative entregado vía Avatar, 2026-07-26)
+EP-002: tandas 1 y 2 (D-009/D-011) → COMPLETAS. + HU-017 Button loading (aaa-031; genera D-013)
+EP-002: tanda 3 (D-014)           → 6/7 (2026-07-26): Card, Button variants, Badge, Switch,
+                                    Textarea y Avatar Hechas (aaa-032…037); falta HU-025 Slider,
+                                    que la cierra y habilita la verificación del hito H1 (D-023)
+EP-002: refinamiento visual        → HU-033 (ajuste dimensional) y HU-034 (Spinner) Identificadas,
+                                    traídas del inbox del PO a producto por D-019
+EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.2.0 en npm
+                                    (D-010, lockstep ADR-015, aaa-020). Veto de publicación vigente
+EP-004: HU-001 (Figma export)     → aaa-012 con 4/4 artefactos, activo y pausado (D-027)
+EP-005: gates automáticos          → 7 HUs Refinadas (HU-026…HU-032), aprobadas por D-021:
+                                    coverage, contraste AA, axe, angular-eslint, bundle size,
+                                    Storybook publicado y /ds:audit-tokens. Ninguna implementada
+EP-006: HU-011 (showcase)         → Hecha (2026-07-19). + HU-035/HU-036 Refinadas (interaction
+                                    tests y docs de tokens en Storybook)
+EP-007: template-lume              → Creada (D-020). HU-037 (rename del theme) Refinada;
+                                    HU-038…040 Identificadas sin archivo
 ```
 
-Última entrega: HU-017 (Button loading) Hecha — aaa-031 archivado el 2026-07-22 (genera D-013, refinamiento visual del botón); el kit mantiene 16 componentes + 3 directivas + 1 service. **Tanda 3 (D-014) en cola** con 7 HUs.
+Última entrega: **HU-022 (Avatar)** Hecha — `aaa-037` archivado el 2026-07-26; entregó además `space.negative` y con eso cerró CA-018.3. El kit está en 22 componentes y familias más el service de Toast.
+
+El movimiento más grande del 2026-07-26 no fue de código sino de gobernanza: la [review integral del repo](../reviews/2026-07-26-review-integral/plan-de-accion.md) produjo 140 hallazgos verificados y un plan por partes, del que ya se ejecutaron las decisiones (D-018…D-027) y este registro en producto. El resto se sigue desde [BACKLOG § Now](../backlog/BACKLOG.md).
 
 ## Convenciones
 
@@ -138,7 +195,7 @@ Para épicas: Identificada → En refinamiento → Refinada (todas sus HUs refin
 
 ## Flujo de trabajo
 
-1. **Idea nueva** → si es grande, crear carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como documento homónimo `EP-XXX-nombre-corto.md`; si es chica, crear la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada). Las HUs candidatas sin refinar pueden listarse en el documento de la épica sin archivo propio. Las ideas crudas sin disparador ni aprobación del PO van a la [Cantera del BACKLOG](../backlog/BACKLOG.md#cantera-sin-disparador), no generan artefactos acá.
+1. **Idea nueva** → las ideas sin comprometer entran al [intake](intake/README.md), donde se exploran y refinan antes de asumir el compromiso de una épica o HU ([D-019](decisiones.md)). Cuando el PO la aprueba: si es grande, se crea la carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como documento homónimo `EP-XXX-nombre-corto.md`; si es chica, la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada), y el intake **se borra**. Las HUs candidatas sin refinar pueden listarse en el documento de la épica sin archivo propio. Las notas crudas del PO viven en `TASK.md` (gitignored) y se trian en el grooming.
 2. **Refinamiento** → cada ambigüedad se resuelve con el product owner y se registra como **D-XXX en [decisiones.md](decisiones.md)** — las HUs referencian decisiones, no las repiten.
 3. **Ejecución** → una HU Refinada se implementa vía **change OpenSpec** (`aaa-NNN`, flujo del repo). Las decisiones técnicas que surjan van como ADR a `docs/architecture/adr/`.
 4. **Cierre** → CAs tildados al archivar el change, estado Hecha. La épica se cierra cuando todas sus HUs están Hechas (o queda abierta como flujo continuo).
@@ -150,4 +207,5 @@ Para épicas: Identificada → En refinamiento → Refinada (todas sus HUs refin
 - **Los CAs son binarios**: se puede responder sí/no sin interpretación. Formato Dado/Cuando/Entonces.
 - **Las decisiones viven en un solo lugar** (decisiones.md); épicas y HUs enlazan por ID. Nada de copiar la decisión en tres archivos.
 - **Fuera de alcance explícito** en cada HU: lo que no está escrito ahí se discute, no se asume.
-- **Sin HUs en silencio** (D-015): una HU entra con disparador/caso de uso real **o** como buena idea fundamentada que el PO aprueba — el norte es un kit completo, capaz de soportar cualquier requerimiento futuro. La Cantera del BACKLOG es la cola de ideas aún no aprobadas.
+- **Sin HUs en silencio** (D-015): una HU entra con disparador/caso de uso real **o** como buena idea fundamentada que el PO aprueba — el norte es un kit completo, capaz de soportar cualquier requerimiento futuro. El [intake](intake/README.md) es donde viven las ideas aún no aprobadas (D-019).
+- **Revisión visual antes de cerrar** (D-022): ningún change de componente se archiva sin el OK visual del PO. Los gates automáticos no cubren esa clase de defecto.

@@ -19,13 +19,24 @@ Queda afuera: Storybook (laboratorio interno por stories, por componente aislado
 
 ## Historias de usuario
 
-| HU                                       | Título                                            | Actor          | Estado                      |
-| ---------------------------------------- | ------------------------------------------------- | -------------- | --------------------------- |
-| [HU-011](HU-011-showcase-componentes.md) | Showcase navegable de casos de uso por componente | Dev consumidor | Hecha (2026-07-19, aaa-022) |
+| HU                                              | Título                                            | Actor          | Estado                      |
+| ----------------------------------------------- | ------------------------------------------------- | -------------- | --------------------------- |
+| [HU-011](HU-011-showcase-componentes.md)        | Showcase navegable de casos de uso por componente | Dev consumidor | Hecha (2026-07-19, aaa-022) |
+| [HU-035](HU-035-interaction-tests-storybook.md) | Interaction tests de overlays en Storybook        | Dev consumidor | Refinada (2026-07-26)       |
+| [HU-036](HU-036-docs-tokens-storybook.md)       | Documentación de tokens en Storybook              | Dev consumidor | Refinada (2026-07-26)       |
+
+HU-035 y HU-036 nacen de la [review integral del 2026-07-26](../../../reviews/2026-07-26-review-integral/plan-de-accion.md) y se ejecutan en su Parte L. Ambas amplían el alcance de esta épica hacia Storybook: hasta ahora quedaba explícitamente afuera (ver § Alcance), pero al volverse el soporte de los gates de calidad de [EP-005](../EP-005-calidad-profesional/EP-005-calidad-profesional.md) —interaction tests, a11y en navegador, publicación en GitHub Pages— dejó de ser un laboratorio aislado.
+
+### Candidatas sin archivo
+
+| Candidata                             | Estado                                                                                                                                             |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Theme/brand switcher en el playground | En [BACKLOG § Next](../../../backlog/BACKLOG.md); se ejecuta ampliado en la Parte K del plan                                                       |
+| Prototipos de flujos reales           | Absorbido por [EP-007](../EP-007-template-lume/EP-007-template-lume.md) y por [D-023](../../decisiones.md) (prototipo de verificación del hito H1) |
 
 ## Decisiones aplicables
 
-[D-015](../../decisiones.md) (cada evolución del playground entra con caso de uso real o por decisión del PO).
+[D-015, D-021, D-022](../../decisiones.md) — cada evolución del playground entra con caso de uso real o por decisión del PO; el gate visual del PO previo al archive (D-022) convierte al playground y a Storybook en herramientas de trabajo, no solo en vitrina.
 
 ## Preguntas abiertas
 
@@ -33,4 +44,4 @@ Queda afuera: Storybook (laboratorio interno por stories, por componente aislado
 
 ## Orden sugerido de implementación
 
-HU-011 primero (reestructura la app y absorbe las demos existentes); prototipos de flujos reales y theming switcher como candidatas futuras, cuando tengan disparador.
+HU-011 primero (hecha: reestructuró la app y absorbió las demos existentes). Después el theme switcher (Parte K), que habilita el QA visual multi-theme del que depende el gate del PO. HU-035 y HU-036 van al final, en la Parte L: la de tokens conviene **después** de la migración a formato DTCG ([D-024](../../decisiones.md)), para generar las páginas desde el output ya migrado y no dos veces.

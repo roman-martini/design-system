@@ -4,14 +4,14 @@ fecha-ingreso: YYYY-MM-DD
 ---
 
 <!-- Requerimiento SIN ID. Guardar como docs/product/intake/nombre-corto.md.
+     Ver docs/product/intake/README.md para el flujo completo.
 
-     Qué ES: registro claro de un pedido o idea, antes de refinarlo en épica/HU.
-       Refinamiento mínimo — ordenar la idea, no resolverla. Puede quedar en
-       Nuevo/Refinado indefinidamente, o descartarse con razón (estado Descartado).
-     Qué NO es: no es el backlog técnico, ni el registro de decisiones (D-XXX), ni el de
-       preguntas abiertas — las OQ-XXX viven en docs/product/preguntas-abiertas.md.
+     Qué ES: registro de una idea en exploración, antes de comprometerla como épica/HU.
+       Puede quedar en Nuevo/Refinado indefinidamente, o descartarse con razón escrita.
+     Qué NO es: no es el backlog operativo (ese es para trabajo ya comprometido), ni el
+       registro de decisiones (D-XXX), ni el inbox crudo del PO (TASK.md, gitignored).
      EFÍMERO: al promover a épica/HU, el intake SE BORRA (su contenido ya vive en la
-       épica/HU y las decisiones); dejarlo duplica y confunde.
+       épica/HU y en las decisiones); dejarlo duplica y confunde.
 
      Reglas ajustables: cambiá / agregá / quitá secciones según el requerimiento. -->
 
@@ -23,6 +23,10 @@ Registro profesional del pedido: se corrigen errores, se ordena y se redacta con
 
 ## Preguntas
 
-Checklist local mientras el intake está en Nuevo/Refinado. Las que ameriten una decisión se registran como **OQ-XXX** en [preguntas-abiertas.md](../preguntas-abiertas.md) (registro global del producto). Al promover, el intake se borra — las OQ ya viven allá.
+Checklist local mientras el intake está en Nuevo/Refinado — las preguntas viven acá y mueren con el intake. Si alguna es de producto y **trasciende esta idea**, se resuelve como **D-XXX** en [decisiones.md](../decisiones.md) y acá solo se enlaza.
 
 - [ ] …
+
+## Exploración
+
+Opcional, para cuando el intake pasa a Refinado: alcance tanteado, alternativas evaluadas, referencias externas, costo estimado en orden de magnitud. Es el lugar donde vale invertir el razonamiento antes de comprometer una HU.

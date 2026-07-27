@@ -27,4 +27,4 @@ Este directorio sirve como **base de conocimiento histórica e inspiracional**:
 
 - [`docs/architecture/README.md`](../architecture/README.md) — síntesis arquitectónica del repo actual (fuente de verdad).
 - [`docs/architecture/PLAYBOOK.md`](../architecture/PLAYBOOK.md) — cómo replicar esta arquitectura en otro repo.
-- [`docs/backlog/BACKLOG.md`](../backlog/BACKLOG.md) — cola operativa del DS (horizontes + Cantera de ideas sin disparador).
+- [`docs/backlog/BACKLOG.md`](../backlog/BACKLOG.md) — cola operativa del DS (horizontes Now/Next/Later). Las ideas sin comprometer viven en [`docs/product/intake/`](../product/intake/README.md) desde 2026-07-26.

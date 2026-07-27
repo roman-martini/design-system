@@ -41,7 +41,7 @@ decisiones: [D-005, D-007, D-011]
 ## Fuera de alcance
 
 - Progress circular: sin caso real (D-005); si aparece, change propio (probable variante de DsSpinner con medida).
-- Stepper de pasos discretos: candidata aparte en la [Cantera del BACKLOG](../../../backlog/BACKLOG.md#cantera-sin-disparador).
+- Stepper de pasos discretos: candidata aparte en [intake/componentes-pendientes.md](../../intake/componentes-pendientes.md).
 - Buffer/segundo valor (estilo video streaming): sin caso real (D-005).
 
 ## Notas

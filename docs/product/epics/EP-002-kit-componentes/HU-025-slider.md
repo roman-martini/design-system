@@ -14,7 +14,7 @@ adrs: [ADR-004, ADR-011]
 
 ## Origen
 
-Tanda 3 ([D-014](../../decisiones.md)), referencia [`moder-minimal`](../../../reference/components/moder-minimal/) img 1 (slider con fill). Sale de la [Cantera del BACKLOG](../../../backlog/BACKLOG.md#cantera-sin-disparador) al ganar el disparador de la tanda.
+Tanda 3 ([D-014](../../decisiones.md)), referencia [`moder-minimal`](../../../reference/components/moder-minimal/) img 1 (slider con fill). Salió de la ex Cantera del BACKLOG (hoy [intake](../../intake/README.md), por [D-019](../../decisiones.md)) al ganar el disparador de la tanda.
 
 ## Criterios de aceptación (candidatos)
 

@@ -1,5 +1,5 @@
 ---
-estado: En desarrollo (tandas 1-2 completas + Button loading aaa-031; tanda 3 D-014 en curso 4/7 -- Card/Button variants/Badge/Switch entregados (aaa-032..035), sigue Textarea)
+estado: En desarrollo (tandas 1-2 completas + Button loading aaa-031; tanda 3 D-014 en curso 6/7 -- Card/Button variants/Badge/Switch/Textarea/Avatar entregados (aaa-032..037), falta Slider)
 actor: Dev consumidor
 ---
 
@@ -40,30 +40,34 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 
 ## Historias de usuario
 
-| HU                                             | Título                                     | Actor          | Estado                                                                    |
-| ---------------------------------------------- | ------------------------------------------ | -------------- | ------------------------------------------------------------------------- |
-| [HU-003](HU-003-select-formularios.md)         | Select/Combobox para formularios reales    | Dev consumidor | Hecha (aaa-016 archivado 2026-07-11; generó ADR-014)                      |
-| [HU-005](HU-005-input-textfield.md)            | Input/TextField para formularios reales    | Dev consumidor | Hecha (aaa-017 archivado 2026-07-11)                                      |
-| [HU-006](HU-006-tabs-navegacion.md)            | Tabs para navegación de contenido          | Dev consumidor | Hecha (aaa-018 archivado 2026-07-14)                                      |
-| [HU-007](HU-007-tooltip.md)                    | Tooltip de ayuda contextual                | Dev consumidor | Hecha (aaa-019 archivado 2026-07-18)                                      |
-| [HU-008](HU-008-toast-notificaciones.md)       | Toast/Notification para feedback asíncrono | Dev consumidor | Hecha (2026-07-18, aaa-021)                                               |
-| [HU-009](HU-009-spinner.md)                    | Spinner de carga                           | Dev consumidor | Hecha (2026-07-19, aaa-023)                                               |
-| [HU-010](HU-010-skeleton.md)                   | Skeleton de contenido en carga             | Dev consumidor | Hecha (2026-07-19, aaa-024 — cierra la tanda 1)                           |
-| [HU-012](HU-012-menu-dropdown.md)              | Menu/Dropdown de acciones                  | Dev consumidor | Hecha (2026-07-19, aaa-025 — genera ADR-016)                              |
-| [HU-013](HU-013-accordion.md)                  | Accordion de contenido colapsable          | Dev consumidor | Hecha (2026-07-20, aaa-026)                                               |
-| [HU-014](HU-014-breadcrumbs.md)                | Breadcrumbs de ubicación                   | Dev consumidor | Hecha (2026-07-20, aaa-027 — genera ADR-017)                              |
-| [HU-015](HU-015-pagination.md)                 | Pagination de listados                     | Dev consumidor | Hecha (2026-07-20, aaa-028)                                               |
-| [HU-016](HU-016-progress.md)                   | Progress de avance medible                 | Dev consumidor | Hecha (2026-07-20, aaa-029 — cierra la tanda 2)                           |
-| [HU-017](HU-017-button-loading.md)             | Estado loading de ds-button                | Dev consumidor | Hecha (2026-07-22, aaa-031 — genera D-013, refinamiento visual del botón) |
-| [HU-019](HU-019-card.md)                       | Card contenedor                            | Dev consumidor | Hecha (2026-07-22, aaa-032 — abre la tanda 3)                             |
-| [HU-020](HU-020-button-outline-destructive.md) | Variantes outline y danger de Button       | Dev consumidor | Hecha (2026-07-22, aaa-033 — genera D-016)                                |
-| [HU-021](HU-021-badge.md)                      | Badge de estado                            | Dev consumidor | Hecha (2026-07-22, aaa-034 — estrena ADR-019)                             |
-| [HU-022](HU-022-avatar.md)                     | Avatar y grupo de avatares                 | Dev consumidor | Hecha (2026-07-26, aaa-037)                                               |
-| [HU-023](HU-023-switch.md)                     | Switch/Toggle                              | Dev consumidor | Hecha (2026-07-23, aaa-035)                                               |
-| [HU-024](HU-024-textarea.md)                   | Textarea                                   | Dev consumidor | Hecha (2026-07-26, aaa-036)                                               |
-| [HU-025](HU-025-slider.md)                     | Slider (range)                             | Dev consumidor | Identificada (tanda 3, D-014)                                             |
+| HU                                                | Título                                            | Actor          | Estado                                                                    |
+| ------------------------------------------------- | ------------------------------------------------- | -------------- | ------------------------------------------------------------------------- |
+| [HU-003](HU-003-select-formularios.md)            | Select/Combobox para formularios reales           | Dev consumidor | Hecha (aaa-016 archivado 2026-07-11; generó ADR-014)                      |
+| [HU-005](HU-005-input-textfield.md)               | Input/TextField para formularios reales           | Dev consumidor | Hecha (aaa-017 archivado 2026-07-11)                                      |
+| [HU-006](HU-006-tabs-navegacion.md)               | Tabs para navegación de contenido                 | Dev consumidor | Hecha (aaa-018 archivado 2026-07-14)                                      |
+| [HU-007](HU-007-tooltip.md)                       | Tooltip de ayuda contextual                       | Dev consumidor | Hecha (aaa-019 archivado 2026-07-18)                                      |
+| [HU-008](HU-008-toast-notificaciones.md)          | Toast/Notification para feedback asíncrono        | Dev consumidor | Hecha (2026-07-18, aaa-021)                                               |
+| [HU-009](HU-009-spinner.md)                       | Spinner de carga                                  | Dev consumidor | Hecha (2026-07-19, aaa-023)                                               |
+| [HU-010](HU-010-skeleton.md)                      | Skeleton de contenido en carga                    | Dev consumidor | Hecha (2026-07-19, aaa-024 — cierra la tanda 1)                           |
+| [HU-012](HU-012-menu-dropdown.md)                 | Menu/Dropdown de acciones                         | Dev consumidor | Hecha (2026-07-19, aaa-025 — genera ADR-016)                              |
+| [HU-013](HU-013-accordion.md)                     | Accordion de contenido colapsable                 | Dev consumidor | Hecha (2026-07-20, aaa-026)                                               |
+| [HU-014](HU-014-breadcrumbs.md)                   | Breadcrumbs de ubicación                          | Dev consumidor | Hecha (2026-07-20, aaa-027 — genera ADR-017)                              |
+| [HU-015](HU-015-pagination.md)                    | Pagination de listados                            | Dev consumidor | Hecha (2026-07-20, aaa-028)                                               |
+| [HU-016](HU-016-progress.md)                      | Progress de avance medible                        | Dev consumidor | Hecha (2026-07-20, aaa-029 — cierra la tanda 2)                           |
+| [HU-017](HU-017-button-loading.md)                | Estado loading de ds-button                       | Dev consumidor | Hecha (2026-07-22, aaa-031 — genera D-013, refinamiento visual del botón) |
+| [HU-019](HU-019-card.md)                          | Card contenedor                                   | Dev consumidor | Hecha (2026-07-22, aaa-032 — abre la tanda 3)                             |
+| [HU-020](HU-020-button-outline-destructive.md)    | Variantes outline y danger de Button              | Dev consumidor | Hecha (2026-07-22, aaa-033 — genera D-016)                                |
+| [HU-021](HU-021-badge.md)                         | Badge de estado                                   | Dev consumidor | Hecha (2026-07-22, aaa-034 — estrena ADR-019)                             |
+| [HU-022](HU-022-avatar.md)                        | Avatar y grupo de avatares                        | Dev consumidor | Hecha (2026-07-26, aaa-037)                                               |
+| [HU-023](HU-023-switch.md)                        | Switch/Toggle                                     | Dev consumidor | Hecha (2026-07-23, aaa-035)                                               |
+| [HU-024](HU-024-textarea.md)                      | Textarea                                          | Dev consumidor | Hecha (2026-07-26, aaa-036)                                               |
+| [HU-025](HU-025-slider.md)                        | Slider (range)                                    | Dev consumidor | Identificada (tanda 3, D-014)                                             |
+| [HU-033](HU-033-ajuste-dimensional-referencia.md) | Ajuste dimensional a la referencia modern-minimal | Dev consumidor | Identificada (2026-07-26)                                                 |
+| [HU-034](HU-034-estetica-spinner.md)              | Refinamiento estético del Spinner                 | Dev consumidor | Identificada (2026-07-26)                                                 |
 
-Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Las HU-012…HU-016 forman la **tanda 2** aprobada por [D-011](../../decisiones.md) con criterio "navegación y estructura de apps reales". [HU-017](HU-017-button-loading.md) no es de tanda: nace del refinamiento de [HU-009](HU-009-spinner.md) (decisión 1) y entra con su propio disparador (D-005). Las **HU-019…HU-025** forman la **tanda 3** aprobada por [D-014](../../decisiones.md) desde la referencia moder-minimal (Card, Button outline/destructive, Badge, Avatar, Switch, Textarea, Slider). Candidatas restantes ([BACKLOG § Cantera](../../../backlog/BACKLOG.md#cantera-sin-disparador) § componentes, promovibles por disparador propio o decisión del PO según D-015): Stepper, DatePicker (wrapping).
+Las HU-005…HU-010 forman la **tanda 1 de expansión** aprobada por [D-009](../../decisiones.md): completar el criterio "una app real se construye 100% con el DS". Las HU-012…HU-016 forman la **tanda 2** aprobada por [D-011](../../decisiones.md) con criterio "navegación y estructura de apps reales". [HU-017](HU-017-button-loading.md) no es de tanda: nace del refinamiento de [HU-009](HU-009-spinner.md) (decisión 1) y entra con su propio disparador (D-005). Las **HU-019…HU-025** forman la **tanda 3** aprobada por [D-014](../../decisiones.md) desde la referencia modern-minimal (Card, Button outline/destructive, Badge, Avatar, Switch, Textarea, Slider). **HU-033 y HU-034** no son de tanda: nacen de la [review integral del 2026-07-26](../../../reviews/2026-07-26-review-integral/plan-de-accion.md), que detectó que ese trabajo vivía solo en el inbox personal del PO — [D-019](../../decisiones.md) lo prohíbe para trabajo real, y estas dos HUs lo traen a producto. Ambas son refinamiento visual contra la misma referencia que gobierna la tanda 3.
+
+Candidatas restantes (en [intake/componentes-pendientes.md](../../intake/componentes-pendientes.md), promovibles por disparador propio o decisión del PO según D-015): Stepper y DatePicker (por wrapping de una librería existente, no construido desde cero).
 
 ## Decisiones aplicables
 
