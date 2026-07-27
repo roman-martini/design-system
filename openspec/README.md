@@ -28,6 +28,8 @@ Actualizar al crear un change nuevo.
 IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/README.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
 
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
+>
+> ⏸️ **En pausa desde el 2026-07-03 por decisión del PO**, ratificada por [D-027](../docs/product/decisiones.md): el change queda activo acá con sus 4 artefactos intactos, pero **no se debe aplicar**. Sus 29 tasks están sin ejecutar a propósito — que estén "listas para apply" no es una invitación. Condición de reactivación: que el PO lo pida explícitamente; su validación final depende además de conectar Tokens Studio en Figma, trabajo del PO. Coordinar con la migración a formato DTCG de la fuente de tokens ([D-024](../docs/product/decisiones.md)).
 
 ### Specs sin IDs
 
@@ -72,8 +74,12 @@ introduces-specs: # opcional
   - <spec-name>
 related-adrs: # opcional
   - ADR-NNN
+related-decisions: # opcional — decisiones de producto (docs/product/decisiones.md)
+  - D-NNN
 ---
 ```
+
+`related-decisions` enlaza el change con las decisiones de producto que lo originan o lo condicionan, y es lo que hace bidireccional la trazabilidad **HU/decisión ↔ change**. Se usa desde `aaa-031`.
 
 ### Spec base (`spec.md`)
 
@@ -99,10 +105,16 @@ created: YYYY-MM-DD
 
 ## Workflow
 
-1. **Crear change**: `pnpm openspec new change <kebab-name>` o equivalente. Asignar ID en frontmatter (próximo disponible arriba). Actualizar en este README el próximo ID y la lista de IDs en vuelo.
-2. **Generar artifacts** (proposal, design opcional, specs delta, tasks). Validar con `pnpm openspec validate --changes`.
+1. **Crear change**: en la práctica se crea con `/opsx:propose <kebab-name>` (o a mano siguiendo la estructura de arriba). Asignar ID en frontmatter (próximo disponible arriba). Actualizar en este README el próximo ID y la lista de IDs en vuelo.
+2. **Generar artifacts** (proposal, design opcional, specs delta, tasks). Validar con `npx --yes openspec validate --changes`.
 3. **Apply**: implementar tasks marcando checkboxes. Última task siempre es "proponer mensaje de commit y esperar OK del usuario".
-4. **Archivar**: mover dir a `archive/<id>-<name>/`, sincronizar spec base con deltas, borrar la línea del change de "IDs en vuelo" en este README, agregar fila al catálogo histórico en `docs/architecture/README.md`.
+4. **Archivar**: mover dir a `archive/<id>-<name>/`, sincronizar spec base con deltas, borrar la línea del change de "IDs en vuelo" en este README, agregar fila al catálogo histórico en `docs/architecture/README.md`. Ver el [checklist completo de archive](../docs/product/README.md#checklist-de-archive) — incluye los registros de producto y el gate visual del PO ([D-022](../docs/product/decisiones.md)).
+
+> El CLI corre vía `npx --yes openspec` (todavía no está pinneado como devDependency del repo; su instalación está prevista en el hardening de CI).
+
+### `.openspec.yaml` — marker opcional
+
+Algunos changes tienen un `.openspec.yaml` (`schema: spec-driven` + `created:`) y otros no: lo genera el scaffold del CLI cuando el change se crea con `openspec new change`, y falta en los creados a mano. **No es requerido**: `openspec validate --all` descubre y valida los changes sin él (verificado el 2026-07-27 sobre `tokens-figma-export`, que no lo tiene). No hace falta backfillearlo; si está, se preserva al archivar.
 
 ---
 

@@ -195,10 +195,30 @@ Para épicas: Identificada → En refinamiento → Refinada (todas sus HUs refin
 
 ## Flujo de trabajo
 
-1. **Idea nueva** → las ideas sin comprometer entran al [intake](intake/README.md), donde se exploran y refinan antes de asumir el compromiso de una épica o HU ([D-019](decisiones.md)). Cuando el PO la aprueba: si es grande, se crea la carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como documento homónimo `EP-XXX-nombre-corto.md`; si es chica, la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada), y el intake **se borra**. Las HUs candidatas sin refinar pueden listarse en el documento de la épica sin archivo propio. Las notas crudas del PO viven en `TASK.md` (gitignored) y se trian en el grooming.
+1. **Idea nueva** → las ideas sin comprometer entran al [intake](intake/README.md), donde se exploran y refinan antes de asumir el compromiso de una épica o HU ([D-019](decisiones.md)). Cuando el PO la aprueba: si es grande, se crea la carpeta de épica con [plantilla-epica.md](templates/plantilla-epica.md) como documento homónimo `EP-XXX-nombre-corto.md`; si es chica, la HU con [plantilla-hu.md](templates/plantilla-hu.md) dentro de la épica que corresponda (estado: Identificada), y el intake **se borra**. Las HUs candidatas sin refinar pueden listarse en el documento de la épica sin archivo propio. Las notas crudas del PO viven en su inbox personal (gitignored) y se trian en cada grooming ([D-019](decisiones.md)); ese inbox no se cita desde artefactos versionados.
 2. **Refinamiento** → cada ambigüedad se resuelve con el product owner y se registra como **D-XXX en [decisiones.md](decisiones.md)** — las HUs referencian decisiones, no las repiten.
 3. **Ejecución** → una HU Refinada se implementa vía **change OpenSpec** (`aaa-NNN`, flujo del repo). Las decisiones técnicas que surjan van como ADR a `docs/architecture/adr/`.
-4. **Cierre** → CAs tildados al archivar el change, estado Hecha. La épica se cierra cuando todas sus HUs están Hechas (o queda abierta como flujo continuo).
+4. **Cierre** → CAs tildados al archivar el change, estado Hecha. La épica se cierra cuando todas sus HUs están Hechas (o queda abierta como flujo continuo). Ver el checklist de abajo.
+
+### Checklist de archive
+
+Lo que hay que actualizar **cada vez que se archiva un change**. Es la lista canónica: la referencian `openspec/config.yaml` (regla de redacción de `tasks.md`) y el § "Cómo se gestiona" del [BACKLOG](../backlog/BACKLOG.md). Se escribió porque los registros de producto quedaban afuera y el README derivaba varias entregas.
+
+**Antes de archivar** (solo changes de componente):
+
+- [ ] **Gate visual del PO** ([D-022](decisiones.md)): OK explícito sobre el resultado renderizado. Sin esto el archive no arranca.
+
+**Al archivar**:
+
+- [ ] Spec base sincronizada con los deltas del change.
+- [ ] `openspec/README.md`: próximo ID e "IDs en vuelo" al día.
+- [ ] `docs/architecture/README.md`: fila nueva en el catálogo de changes (y en el de specs si introdujo alguna).
+- [ ] ADR nuevo creado y fila en `decisions-log.md`, si el change generó una decisión one-way door.
+- [ ] **HU** → estado `Hecha (fecha, change; artefactos generados)` con sus CAs tildados. Si el change cerró un CA de otra HU, tildarlo también.
+- [ ] **Documento de la épica** → frontmatter (`estado`, contador de la tanda), tabla de HUs, tabla "Valor entregado" con la fila de esta entrega, y "Decisiones aplicables" si aparecieron D-XXX nuevas.
+- [ ] **Este README** → "Tabla de HUs", "Foto táctica" y "Última entrega". Es el que más se atrasa: el BACKLOG delega acá la dirección del producto.
+- [ ] **Grooming del [BACKLOG](../backlog/BACKLOG.md)**: el item cerrado se elimina, se reevalúan disparadores, se promueven horizontes y se tría el inbox del PO.
+- [ ] Revisar si algún [intake](intake/README.md) maduró con lo entregado.
 
 ## Reglas de oro
 

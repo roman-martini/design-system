@@ -22,16 +22,21 @@ design-system/
 ├── docs/
 │   ├── architecture/            # Fuente de verdad arquitectónica
 │   │   ├── README.md            # Visión general
+│   │   ├── PLAYBOOK.md          # Cómo replicar esta arquitectura en otro repo
 │   │   ├── decisions-log.md     # Índice tabular de decisiones
 │   │   └── adr/                 # ADRs en formato MADR
 │   ├── product/                 # Producto: épicas, HUs, decisiones D-XXX, intake de ideas
-│   ├── backlog/                 # BACKLOG.md (Now/Next/Later)
+│   ├── backlog/                 # BACKLOG.md (Now/Next/Later) + reportes de fix del PO
+│   ├── design/                  # Evidencia fechada de diseño: auditorías a11y + research
+│   ├── reviews/                 # Reviews integrales del repo (hallazgos + plan de acción)
 │   └── reference/               # Material de referencia (no normativo, otros repos)
 ├── openspec/                    # Specs y propuestas de cambio significativo
 │   ├── config.yaml
 │   ├── specs/
 │   └── changes/
-├── .changeset/                  # Versionado con Changesets (a crear en Fase 1)
+├── scripts/                     # Utilidades de repo (PowerShell)
+├── .github/                     # Workflows de CI y release + composite action de setup
+├── .changeset/                  # Versionado con Changesets
 ├── package.json                 # Root del monorepo (workspaces, devDeps compartidas)
 ├── pnpm-workspace.yaml
 ├── .nvmrc                       # Versión de Node fija
@@ -51,7 +56,6 @@ design-system/
 - **Build tokens**: Style Dictionary 4.x
 - **Testing**: Vitest 4
 - **Storybook**: 10
-- **Docs componentes**: Compodoc (en `apps/playground/` si se mantiene)
 - **Versionado packages**: Changesets
 - **Lint**: ESLint
 - **Format**: Prettier
@@ -62,21 +66,23 @@ design-system/
 
 Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si tenés una duda, mirá la tabla:
 
-| Pregunta                                                    | Fuente de verdad                      | Naturaleza                                                                |
-| ----------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------- |
-| ¿Qué debe hacer el sistema?                                 | `openspec/specs/<capability>/spec.md` | Contratos testables (Given/When/Then)                                     |
-| ¿Qué cambios significativos están en curso?                 | `openspec/changes/<change-name>/`     | Propuesta activa (`proposal.md` + `design.md` + `tasks.md` + spec deltas) |
-| ¿Cuál es el historial de cambios cerrados?                  | `openspec/changes/archive/`           | Auditoría de cambios pasados                                              |
-| ¿Por qué se decidió X?                                      | `docs/architecture/adr/ADR-NNN-*.md`  | Decisión inmutable + opciones evaluadas                                   |
-| ¿Hay un índice de todas las decisiones?                     | `docs/architecture/decisions-log.md`  | Tabla cronológica                                                         |
-| ¿Cómo está organizado el repo (visión general, principios)? | `docs/architecture/README.md`         | Mapa mental                                                               |
-| ¿Cómo trabajo como dev en este repo?                        | `CONTRIBUTING.md`                     | Flujo de PR, commits, changesets                                          |
-| ¿Cómo arranco como dev nuevo?                               | `README.md` (root)                    | Quickstart                                                                |
-| ¿Cómo debe trabajar Claude acá?                             | `CLAUDE.md` (este archivo)            | Contrato Claude ↔ repo                                                    |
-| ¿Qué valor, para qué actor, por qué ahora? (producto)       | `docs/product/`                       | Épicas + HUs + decisiones de producto (D-XXX)                             |
-| ¿Qué está en cola y cuándo se activa? (backlog operativo)   | `docs/backlog/BACKLOG.md`             | Cola Now/Next/Later con disparadores                                      |
-| Ideas en exploración, aún no comprometidas                  | `docs/product/intake/`                | Un documento por idea; se borra al promoverse a épica/HU (D-019)          |
-| Material de investigación de referencia (no normativo)      | `docs/reference/`                     | Histórico/inspiración                                                     |
+| Pregunta                                                                     | Fuente de verdad                      | Naturaleza                                                                                   |
+| ---------------------------------------------------------------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------- |
+| ¿Qué debe hacer el sistema?                                                  | `openspec/specs/<capability>/spec.md` | Contratos testables (Given/When/Then)                                                        |
+| ¿Qué cambios significativos están en curso?                                  | `openspec/changes/<change-name>/`     | Propuesta activa (`proposal.md` + `design.md` + `tasks.md` + spec deltas)                    |
+| ¿Cuál es el historial de cambios cerrados?                                   | `openspec/changes/archive/`           | Auditoría de cambios pasados                                                                 |
+| ¿Por qué se decidió X?                                                       | `docs/architecture/adr/ADR-NNN-*.md`  | Decisión inmutable + opciones evaluadas                                                      |
+| ¿Hay un índice de todas las decisiones?                                      | `docs/architecture/decisions-log.md`  | Tabla cronológica                                                                            |
+| ¿Cómo está organizado el repo (visión general, principios)?                  | `docs/architecture/README.md`         | Mapa mental                                                                                  |
+| ¿Cómo trabajo como dev en este repo?                                         | `CONTRIBUTING.md`                     | Flujo de PR, commits, changesets                                                             |
+| ¿Cómo arranco como dev nuevo?                                                | `README.md` (root)                    | Quickstart                                                                                   |
+| ¿Cómo debe trabajar Claude acá?                                              | `CLAUDE.md` (este archivo)            | Contrato Claude ↔ repo                                                                       |
+| ¿Qué valor, para qué actor, por qué ahora? (producto)                        | `docs/product/`                       | Épicas + HUs + decisiones de producto (D-XXX)                                                |
+| ¿Qué está en cola y cuándo se activa? (backlog operativo)                    | `docs/backlog/BACKLOG.md`             | Cola Now/Next/Later con disparadores                                                         |
+| Ideas en exploración, aún no comprometidas                                   | `docs/product/intake/`                | Un documento por idea; se borra al promoverse a épica/HU (D-019)                             |
+| ¿Qué arrojó la última auditoría de a11y o el research de un sistema externo? | `docs/design/` (`a11y/`, `research/`) | Evidencia fechada, no normativa; la producen `/ds:check-a11y` y `/ds:research-design-system` |
+| ¿Qué encontró la última review integral del repo?                            | `docs/reviews/<fecha>-<nombre>/`      | Hallazgos + plan de acción fechados; no normativo una vez ejecutado                          |
+| Material de investigación de referencia (no normativo)                       | `docs/reference/`                     | Histórico/inspiración                                                                        |
 
 ### Reglas para no mezclar
 
@@ -131,39 +137,40 @@ Todo cambio significativo (nueva lib, refactor mayor, cambio de tooling base) ar
 - Nombre kebab-case corto y descriptivo (ej. `tokens`, `components`, `icons`).
 - Mismo nombre que la carpeta en `packages/`.
 
-## Comandos esenciales (post-Fase 1)
+## Comandos esenciales
 
 ```bash
 # Setup
 pnpm install
 
 # Build de toda la cadena
-pnpm -r build
+pnpm build            # pnpm -r build
 
 # Build de un package específico
 pnpm -F @romanmartinidev/tokens build
 
 # Levantar playground
-pnpm -F playground start
+pnpm dev              # alias: pnpm start
 
 # Storybook
-pnpm -F playground storybook
+pnpm storybook
+pnpm storybook:build
+
+# Tests
+pnpm test             # pnpm -r test
 
 # Lint + format
 pnpm lint
-pnpm format
+pnpm format           # pnpm format:check en CI
 
 # Agregar un changeset
 pnpm changeset
 
-# Versionar (en release)
-pnpm changeset version
-
-# Publicar (en release)
-pnpm -r publish
+# Versionar (lo ejecuta el PR de release, no a mano)
+pnpm changeset version   # NO usar `pnpm version`: el builtin de pnpm pisa al script homónimo
 ```
 
-> Los comandos se completan a medida que avanzan las fases del bootstrap.
+> **La publicación a npm no se ejecuta manualmente.** El único camino es `.github/workflows/release.yml`, que corre `pnpm release` (`pnpm -r build && changeset publish`) según [ADR-006](docs/architecture/adr/ADR-006-estrategia-ci-cd.md) y el lockstep de [ADR-015](docs/architecture/adr/ADR-015-versionado-lockstep.md). Además hay un **veto de publicación vigente hasta orden explícita del PO** ([D-018](docs/product/decisiones.md)): no correr `changeset publish` ni `pnpm -r publish` bajo ninguna circunstancia.
 
 ## Cómo trabajar en este repo (para Claude)
 
@@ -184,19 +191,19 @@ pnpm -r publish
 
 Grupo `ng-*` de agentes + un skill para **asegurar la calidad de componentes Angular** sobre este proyecto existente: crearlos bien desde el inicio, auditarlos contra un set de buenas prácticas extraído de angular.dev, producir —cuando el arreglo es grande— un artefacto de cambio autocontenido que cualquier agente pueda implementar, y mantener las buenas prácticas al día contra la documentación oficial.
 
-**Perfil del stack** — el comportamiento se adapta a `.claude/knowledge/ng-stack-profile.md` (versión de Angular, motor de estilos, framework de testing, design system, prefijo de selector). **Completalo antes del primer uso** de `/ng:component` y `/ng:review`: sin él, esos agentes paran y lo piden (fail fast).
+**Perfil del stack** — el comportamiento se adapta a `.claude/knowledge/ng-stack-profile.md` (versión de Angular, motor de estilos, framework de testing, design system, prefijo de selector). **Completalo antes del primer uso** de `/ng:create` y `/ng:review`: sin él, esos agentes paran y lo piden (fail fast).
 
 **Knowledge vivo** — las buenas prácticas viven en `.claude/knowledge/ng-best-practices.md` (extraídas de angular.dev, con su tabla de URLs fuente y fecha de extracción). `/ng:sync` las mantiene al día.
 
 | Comando                      | Qué hace                                                                                    |
 | ---------------------------- | ------------------------------------------------------------------------------------------- |
 | `/ng:ask`                    | Clasifica la intención y deriva a la pieza correcta                                         |
-| `/ng:component <nombre>`     | Genera un componente moderno (standalone, OnPush, signals, control flow nativo, a11y, test) |
+| `/ng:create <nombre>`        | Genera un componente moderno (standalone, OnPush, signals, control flow nativo, a11y, test) |
 | `/ng:review <archivo\|glob>` | Audita componentes; hallazgos con `archivo:línea` y severidad                               |
 | `/ng:change <review>`        | Convierte un review grande en un único Markdown autocontenido (propuesta + diseño + tareas) |
 | `/ng:sync`                   | Sincroniza el knowledge con angular.dev y reporta componentes desalineados                  |
 
-**Flujo**: `/ng:component` para crear → `/ng:review` para auditar → si el arreglo es chico, aplicar directo; si es grande, `/ng:change` produce el artefacto autocontenido → periódicamente, `/ng:sync` mantiene el knowledge al día.
+**Flujo**: `/ng:create` para crear → `/ng:review` para auditar → si el arreglo es chico, aplicar directo; si es grande, `/ng:change` produce el artefacto autocontenido → periódicamente, `/ng:sync` mantiene el knowledge al día.
 
 **Convenciones críticas**:
 

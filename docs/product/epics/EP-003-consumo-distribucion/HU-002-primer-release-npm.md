@@ -3,6 +3,7 @@ epica: EP-003
 actor: Dev consumidor
 estado: Hecha (2026-07-18, aaa-020 repo-release-lockstep; 0.2.0 en npm, lockstep ADR-015)
 decisiones: [D-003, D-004]
+adrs: [ADR-015]
 ---
 
 # HU-002 — Primer release publicado en npm (dev consumidor)

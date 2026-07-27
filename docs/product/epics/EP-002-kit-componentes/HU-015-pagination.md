@@ -3,6 +3,7 @@ epica: EP-002
 actor: Dev consumidor
 estado: Hecha (2026-07-20, aaa-028 components-add-pagination)
 decisiones: [D-005, D-007, D-011]
+adrs: [ADR-011, ADR-012]
 ---
 
 # HU-015 — Pagination de listados (dev consumidor)

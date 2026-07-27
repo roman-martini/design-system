@@ -87,11 +87,17 @@ design-system/
 │   │   ├── PLAYBOOK.md        # Cómo replicar la arq en otro repo
 │   │   ├── adr/               # ADRs en formato MADR
 │   │   └── decisions-log.md   # Índice cronológico de ADRs
-│   └── reference/                # Material de investigación (no normativo)
+│   ├── product/               # Épicas (EP-XXX), HUs (HU-XXX), decisiones D-XXX, intake de ideas
+│   ├── backlog/               # BACKLOG.md (Now/Next/Later) + reportes de fix del PO
+│   ├── design/                # Evidencia fechada: auditorías a11y + research de sistemas externos
+│   ├── reviews/               # Reviews integrales del repo (hallazgos + plan de acción)
+│   └── reference/             # Material de investigación (no normativo)
 ├── openspec/
 │   ├── README.md              # Convención de IDs + próximo ID disponible (operativo, no arquitectónico)
 │   ├── specs/                 # Contratos testables (sin IDs — identificados por nombre)
 │   └── changes/               # Propuestas de cambio (activos sin prefijo, archivados con aaa-NNN-)
+├── scripts/                   # Utilidades de repo (new-github-repo.ps1)
+├── .github/                   # workflows/ (pr.yml, release.yml) + actions/setup/ (composite)
 ├── .changeset/                # Cambios pendientes de release
 ├── .husky/                    # pre-commit + commit-msg hooks
 ├── package.json               # Root del monorepo
@@ -323,7 +329,11 @@ Laboratorio interno. **No se publica** (`"private": true`). Sirve como:
 import { provideZonelessChangeDetection } from '@angular/core';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideZonelessChangeDetection(),
+    provideRouter(routes),
+  ],
 };
 ```
 
@@ -336,9 +346,14 @@ Sin `zone.js` en deps ni polyfills. Bundle más chico, change detection purament
 - Targets `storybook` y `build-storybook` en `angular.json` con builder `@storybook/angular`.
 - Tokens CSS inyectados vía `styles: ["src/styles.css"]` del target (no via `preview.ts`).
 
-### Single page sin routing, sin SSR
+### Showcase con router (aaa-022), sin SSR
 
-`AppComponent` standalone, sin `provideRouter`, sin `<router-outlet>`. Foco en demos.
+Desde [aaa-022](../../openspec/changes/archive/aaa-022-playground-showcase/) el playground es un **showcase navegable**, no una single page de demos:
+
+- `provideRouter(routes)` en `app.config.ts` y `<router-outlet />` en `app.html`.
+- Las rutas **se generan desde un registro único** (`src/app/showcase/registry.ts`, hoy 24 entradas): una ruta **lazy** por componente vía `loadComponent`, más `''` y `**` redirigiendo a la primera entrada. Agregar un componente al showcase es agregar una entrada al registro — no se tocan las rutas a mano.
+- Cada vista vive en `src/app/showcase/<slug>/` y lleva `data: { breadcrumb }`, que alimenta la demo de auto-generación de `ds-breadcrumbs-router` (ADR-017).
+- **Sin SSR**: el playground se sirve solo en browser (ver el estado de compatibilidad SSR de la lib en su change correspondiente).
 
 ## Convenciones del repo
 
@@ -361,9 +376,11 @@ Validado en el hook `commit-msg` por commitlint con `@commitlint/config-conventi
 ### Versionado con Changesets
 
 - Cada PR que afecta una lib publicable agrega un changeset (`pnpm changeset`).
-- Al release: `pnpm version` (actualiza versiones + CHANGELOG) + `pnpm release` (build + publish).
+- Al release: `pnpm changeset version` (actualiza versiones + CHANGELOG) + `pnpm changeset publish`, **ambos ejecutados por `release.yml` vía `changesets/action`, nunca a mano**. El workflow invoca `changeset` directo y no el script `version` del root porque el builtin `pnpm version` lo pisa.
+- **Lockstep** ([ADR-015](adr/ADR-015-versionado-lockstep.md)): `tokens` y `components` versionan juntos (`fixed` de Changesets, versión única del par). El bump que se elige en el changeset aplica al par, no a un package suelto. El peer de tokens es un rango plano pre-1.0 (`>=0.1.0 <1.0.0`) con `onlyUpdatePeerDependentsWhenOutOfRange`, para evitar la cascada peer→major.
 - `workspace:*` se reescribe a semver real al publicar.
 - Pre-1.0: política permisiva; al primer release se decide la política definitiva.
+- **Veto de publicación vigente** ([D-018](../product/decisiones.md)): los changesets se acumulan a propósito y nada se publica hasta orden explícita del PO.
 
 ### ADRs (formato MADR)
 
@@ -419,18 +436,30 @@ Dos workflows GitHub Actions:
 
 ## Catálogo de ADRs
 
-| ID                                                        | Título                                                | Dominio              | Estado   |
-| --------------------------------------------------------- | ----------------------------------------------------- | -------------------- | -------- |
-| [ADR-001](adr/ADR-001-monorepo-pnpm-workspaces.md)        | Adoptar pnpm workspaces                               | transversal          | Aceptado |
-| [ADR-002](adr/ADR-002-conventional-commits-changesets.md) | Conventional Commits + Changesets                     | transversal          | Aceptado |
-| [ADR-003](adr/ADR-003-arquitectura-design-tokens.md)      | Arquitectura de design tokens                         | frontend/tokens      | Aceptado |
-| [ADR-004](adr/ADR-004-arquitectura-components.md)         | Arquitectura de components                            | frontend/components  | Aceptado |
-| [ADR-005](adr/ADR-005-arquitectura-playground.md)         | Arquitectura del playground                           | frontend/playground  | Aceptado |
-| [ADR-006](adr/ADR-006-estrategia-ci-cd.md)                | Estrategia de CI/CD                                   | transversal/ci       | Aceptado |
-| [ADR-007](adr/ADR-007-naming-prefijos.md)                 | Convención de naming y prefijos `Ds`/`ds-`/`--ds-*`   | frontend/components  | Aceptado |
-| [ADR-008](adr/ADR-008-convencion-ids-openspec.md)         | Convención de IDs de OpenSpec (aaa-NNN, specs sin ID) | transversal/openspec | Aceptado |
+| ID                                                               | Título                                                                    | Dominio               | Estado                                    |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------- | ----------------------------------------- |
+| [ADR-001](adr/ADR-001-monorepo-pnpm-workspaces.md)               | Adoptar pnpm workspaces                                                   | transversal           | Aceptado                                  |
+| [ADR-002](adr/ADR-002-conventional-commits-changesets.md)        | Conventional Commits + Changesets                                         | transversal           | Aceptado                                  |
+| [ADR-003](adr/ADR-003-arquitectura-design-tokens.md)             | Arquitectura de design tokens                                             | frontend/tokens       | Aceptado                                  |
+| [ADR-004](adr/ADR-004-arquitectura-components.md)                | Arquitectura de components                                                | frontend/components   | Aceptado                                  |
+| [ADR-005](adr/ADR-005-arquitectura-playground.md)                | Arquitectura del playground                                               | frontend/playground   | Aceptado                                  |
+| [ADR-006](adr/ADR-006-estrategia-ci-cd.md)                       | Estrategia de CI/CD                                                       | transversal/ci        | Aceptado                                  |
+| [ADR-007](adr/ADR-007-naming-prefijos.md)                        | Convención de naming y prefijos `Ds`/`ds-`/`--ds-*`                       | frontend/components   | Aceptado                                  |
+| [ADR-008](adr/ADR-008-convencion-ids-openspec.md)                | Convención de IDs de OpenSpec (aaa-NNN, specs sin ID)                     | transversal/openspec  | Aceptado                                  |
+| [ADR-009](adr/ADR-009-figma-tokens-export.md)                    | Export de tokens a Figma (DTCG vía Tokens Studio)                         | frontend/tokens       | **Propuesto** (change `aaa-012` en pausa) |
+| [ADR-010](adr/ADR-010-file-naming-sin-sufijo-component.md)       | File naming sin sufijo de rol (`button.ts`)                               | frontend/components   | Aceptado                                  |
+| [ADR-011](adr/ADR-011-estado-disabled-accesible.md)              | Estado disabled accesible (`aria-disabled` + guarda vs `disabled` nativo) | frontend/components   | Aceptado                                  |
+| [ADR-012](adr/ADR-012-iconografia-lucide.md)                     | Iconografía vía `@lucide/angular`                                         | frontend/components   | Aceptado                                  |
+| [ADR-013](adr/ADR-013-overlays-dialog-nativo.md)                 | Overlays modales sobre `<dialog>` nativo                                  | frontend/components   | Aceptado                                  |
+| [ADR-014](adr/ADR-014-overlays-anclados-popover-api.md)          | Overlays anclados sobre Popover API                                       | frontend/components   | Aceptado                                  |
+| [ADR-015](adr/ADR-015-versionado-lockstep.md)                    | Versionado lockstep de tokens + components                                | transversal/release   | Aceptado                                  |
+| [ADR-016](adr/ADR-016-posicionamiento-placements-por-overlay.md) | Placements por tipo de overlay (flip + clamp propios)                     | frontend/components   | Aceptado                                  |
+| [ADR-017](adr/ADR-017-secondary-entry-points.md)                 | Secondary entry points APF con peer opcional                              | transversal/packaging | Aceptado                                  |
+| [ADR-018](adr/ADR-018-specs-por-componente.md)                   | Specs por componente (`component-<name>`) + regla de partición            | transversal/openspec  | Aceptado                                  |
+| [ADR-019](adr/ADR-019-modelo-variantes-tono-apariencia.md)       | Modelo de variantes: `tone × appearance` vs `variant` plano               | frontend/components   | Aceptado                                  |
+| [ADR-020](adr/ADR-020-base-compartida-form-fields.md)            | Base compartida `DsFieldBase` para form fields                            | frontend/components   | Aceptado                                  |
 
-Ver índice completo: [decisions-log.md](decisions-log.md).
+Ver índice completo con el fundamento de cada decisión (incluidas las que no generaron ADR): [decisions-log.md](decisions-log.md).
 
 ## Catálogo de Specs
 

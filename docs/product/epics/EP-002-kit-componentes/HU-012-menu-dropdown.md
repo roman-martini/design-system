@@ -3,6 +3,7 @@ epica: EP-002
 actor: Dev consumidor
 estado: Hecha (2026-07-19, aaa-025 components-add-menu; genera ADR-016 y D-012)
 decisiones: [D-005, D-007, D-011, D-012]
+adrs: [ADR-011, ADR-012, ADR-014, ADR-016]
 ---
 
 # HU-012 — Menu/Dropdown de acciones (dev consumidor)

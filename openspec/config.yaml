@@ -92,4 +92,5 @@ rules:
     - Marcar tareas que afectan config compartida como "afecta-todo-el-repo"
     - Última tarea de implementación siempre es proponer mensaje de commit y esperar OK
     - Incluir tarea de validación final con openspec validate, lint, format, build, tests, storybook, npm pack
-    - Incluir tarea final de archive con sincronización de spec base, openspec/README.md (próximo ID) y catálogo en docs/architecture/README.md
+    - Incluir tarea final de archive con el checklist completo de docs/product/README.md § "Checklist de archive": spec base, openspec/README.md (próximo ID e IDs en vuelo), catálogo en docs/architecture/README.md, HU a Hecha, doc de la épica (contador y valor entregado), README de producto (Foto táctica y Última entrega), grooming del BACKLOG
+    - En changes de componente, el archive requiere el gate visual del PO antes de ejecutarse (D-022): la tarea de archive queda bloqueada hasta su OK explícito

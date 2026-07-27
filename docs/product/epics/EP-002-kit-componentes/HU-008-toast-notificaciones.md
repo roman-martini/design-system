@@ -3,6 +3,7 @@ epica: EP-002
 actor: Dev consumidor
 estado: Hecha (2026-07-18, aaa-021 components-add-toast)
 decisiones: [D-005, D-007, D-009]
+adrs: [ADR-007, ADR-013, ADR-014]
 ---
 
 # HU-008 — Toast/Notification para feedback asíncrono (dev consumidor)

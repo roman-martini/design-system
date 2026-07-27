@@ -3,6 +3,7 @@ epica: EP-004
 actor: Diseñador
 estado: Refinada (change aaa-012 tokens-figma-export propuesto, 4/4 artefactos; en pausa por decisión del PO)
 decisiones: [D-006]
+adrs: [ADR-009]
 ---
 
 # HU-001 — Tokens del DS disponibles como Variables de Figma (diseñador)

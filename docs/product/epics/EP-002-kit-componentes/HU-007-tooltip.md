@@ -3,6 +3,7 @@ epica: EP-002
 actor: Dev consumidor
 estado: Hecha (2026-07-18, aaa-019 components-add-tooltip)
 decisiones: [D-005, D-007, D-009]
+adrs: [ADR-007, ADR-010, ADR-014]
 ---
 
 # HU-007 — Tooltip de ayuda contextual (dev consumidor)

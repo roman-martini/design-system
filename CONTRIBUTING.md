@@ -83,7 +83,7 @@ pnpm format:check    # verifica formato sin escribir
 
 ## Versionado con Changesets
 
-Cada PR que afecta una librería publicable (cualquier cosa en `packages/*`) **requiere un changeset**.
+Cada PR que afecta una librería publicable (cualquier cosa en `packages/*`) **requiere un changeset**. El gate 6 de `pr.yml` lo verifica y bloquea el merge si falta.
 
 ### Crear un changeset
 
@@ -91,13 +91,26 @@ Cada PR que afecta una librería publicable (cualquier cosa en `packages/*`) **r
 pnpm changeset
 ```
 
-El CLI pregunta:
+El CLI interactivo pregunta:
 
-1. Qué packages cambiaron.
-2. Tipo de bump por package: `patch` (fix), `minor` (feature), `major` (breaking).
-3. Descripción del cambio (va al CHANGELOG generado).
+1. **Qué packages cambiaron** (selección con espacio).
+2. **Tipo de bump**:
+   - `patch`: bug fix sin cambios de API (`0.2.0 → 0.2.1`).
+   - `minor`: feature nueva backward-compatible (`0.2.0 → 0.3.0` en pre-1.0; `1.0.0 → 1.1.0` en post-1.0).
+   - `major`: breaking change (`0.2.0 → 0.3.0` en pre-1.0; `1.0.0 → 2.0.0` en post-1.0).
+3. **Descripción** del cambio, que va al CHANGELOG generado.
 
-Esto crea un archivo en `.changeset/` que se commitea junto con tus cambios.
+Genera un archivo en `.changeset/<random-name>.md`. **Commiteá ese archivo junto con tus cambios** en el PR.
+
+**Idioma**: los changesets y los CHANGELOG se escriben en **español**, igual que el resto del repo ([D-018](docs/product/decisiones.md)). El histórico del `0.2.0` quedó en inglés y se acepta como está — no se reescribe.
+
+### Lockstep: tokens y components versionan juntos
+
+Desde [ADR-015](docs/architecture/adr/ADR-015-versionado-lockstep.md), `@romanmartinidev/tokens` y `@romanmartinidev/components` están configurados como `fixed` en Changesets: **comparten una única versión**. Consecuencias prácticas al escribir un changeset:
+
+- El bump que elegís **aplica al par**, no a un package suelto: si marcás un `minor` en `tokens`, `components` sube igual aunque no lo hayas tocado.
+- El peer de tokens dentro de components es un **rango plano pre-1.0** (`>=0.1.0 <1.0.0`) con `onlyUpdatePeerDependentsWhenOutOfRange`, lo que evita que cada bump de tokens fuerce un major en components.
+- Elegí el bump por el **impacto mayor** de los dos packages.
 
 ### Pre-1.0
 
@@ -105,7 +118,9 @@ Mientras los packages no lleguen a 1.0, respetamos semver pero entendiendo que l
 
 ### Release (mantenedores)
 
-El release está automatizado vía GitHub Actions + Changesets (ver [`docs/architecture/adr/ADR-006-estrategia-ci-cd.md`](docs/architecture/adr/ADR-006-estrategia-ci-cd.md)). El mantenedor NO publica manualmente — todo pasa por el workflow `release.yml`. Ver sección [CI / Release](#ci--release) más abajo.
+El release está automatizado vía GitHub Actions + Changesets (ver [`ADR-006`](docs/architecture/adr/ADR-006-estrategia-ci-cd.md)). El mantenedor NO publica manualmente — todo pasa por el workflow `release.yml`. Ver sección [CI / Release](#ci--release) más abajo.
+
+> **Publicación pausada**: hay un veto vigente del PO sobre publicar a npm ([D-018](docs/product/decisiones.md)). Los changesets se acumulan a propósito y el PR de versionado no se mergea hasta que el veto se levante.
 
 ## CI / Release
 
@@ -121,7 +136,7 @@ Valida en orden:
 2. `pnpm lint` — fallo: corré `pnpm lint --fix` y revisá los errores no auto-fixables.
 3. `pnpm -r build` — fallo: revisá el error de build localmente con el mismo comando.
 4. `pnpm -r test` — fallo: corré `pnpm test` localmente y arreglá los specs.
-5. `openspec validate --all` — fallo: corré `openspec validate --all` localmente y arreglá la spec/change.
+5. `openspec validate --all` — fallo: corré `npx --yes openspec validate --all` localmente y arreglá la spec/change. (El CLI todavía no está pinneado como devDependency del repo; hasta entonces se invoca vía `npx`.)
 6. **Changeset enforcement** — fallo: el PR toca `packages/*` sin agregar un changeset. Corré `pnpm changeset` y agregá el archivo generado al PR.
 
 Si cualquier step falla, el PR queda con check rojo y NO debería mergearse (la branch protection lo bloquea, ver más abajo).
@@ -142,7 +157,9 @@ El workflow abre o actualiza un PR titulado `chore(repo): version packages` con:
 
 **Modo 2 — No hay changesets pendientes** (típicamente porque el PR de release recién se mergeó):
 
-El workflow ejecuta `pnpm release` (build + publish) y publica los packages cambiados a npm.
+El workflow buildea y ejecuta `pnpm changeset publish`, publicando los packages cambiados a npm.
+
+> El workflow invoca `changeset` directo (`pnpm changeset version` / `pnpm changeset publish`) y no los scripts del root, porque **`pnpm version` es un builtin de pnpm que pisa al script homónimo** de `package.json`.
 
 ### Flujo completo de release
 
@@ -161,26 +178,9 @@ sequenceDiagram
     Note right of GH: PR de release tiene<br/>bumps + CHANGELOG +<br/>borra .changeset/*.md
     Maintainer->>GH: Revisa CHANGELOG + merge PR de release
     GH->>GH: release.yml ya no encuentra changesets pendientes
-    GH->>NPM: pnpm release (build + publish)
+    GH->>NPM: build + pnpm changeset publish
     NPM-->>GH: Packages publicados
 ```
-
-### Cómo agregar un changeset
-
-```bash
-pnpm changeset
-```
-
-El CLI interactivo te pregunta:
-
-1. **Qué packages cambiaron** (selección con espacio).
-2. **Tipo de bump**:
-   - `patch`: bug fix sin cambios de API (`0.1.0 → 0.1.1`).
-   - `minor`: feature nueva backward-compatible (`0.1.0 → 0.2.0` en pre-1.0; `1.0.0 → 1.1.0` en post-1.0).
-   - `major`: breaking change (`0.1.0 → 0.2.0` en pre-1.0; `1.0.0 → 2.0.0` en post-1.0).
-3. **Descripción** del cambio para el CHANGELOG.
-
-Genera un archivo en `.changeset/<random-name>.md`. **Commiteá ese archivo junto con tus cambios** en el PR.
 
 ### Branch protection (acción del mantenedor)
 
@@ -247,7 +247,9 @@ openspec/changes/<change-name>/
 └── specs/<capability>/spec.md   # deltas con G/W/T
 ```
 
-Validar con `openspec validate --changes`. Cambios triviales (typo, fix local) **no** requieren propuesta OpenSpec.
+Validar con `npx --yes openspec validate --changes`. Cambios triviales (typo, fix local) **no** requieren propuesta OpenSpec.
+
+La convención de IDs (`aaa-NNN`) y el próximo ID disponible viven en [`openspec/README.md`](openspec/README.md).
 
 ## Decisiones arquitectónicas: ADRs
 
@@ -269,13 +271,15 @@ Ver [`docs/architecture/adr/README.md`](docs/architecture/adr/README.md) para el
 
 Si tenés dudas sobre dónde mirar:
 
-| Pregunta                       | Fuente                        |
-| ------------------------------ | ----------------------------- |
-| ¿Qué debe hacer el sistema?    | `openspec/specs/`             |
-| ¿Qué cambios están en curso?   | `openspec/changes/`           |
-| ¿Por qué se decidió X?         | `docs/architecture/adr/`      |
-| ¿Cómo está organizado el repo? | `docs/architecture/README.md` |
-| ¿Cómo trabajo?                 | este archivo                  |
-| ¿Cómo arranco?                 | [`README.md`](README.md)      |
+| Pregunta                       | Fuente                                          |
+| ------------------------------ | ----------------------------------------------- |
+| ¿Qué debe hacer el sistema?    | `openspec/specs/`                               |
+| ¿Qué cambios están en curso?   | `openspec/changes/`                             |
+| ¿Por qué se decidió X?         | `docs/architecture/adr/`                        |
+| ¿Cómo está organizado el repo? | `docs/architecture/README.md`                   |
+| ¿Por qué se prioriza X?        | `docs/product/` (épicas, HUs, decisiones D-XXX) |
+| ¿Qué está en cola?             | `docs/backlog/BACKLOG.md`                       |
+| ¿Cómo trabajo?                 | este archivo                                    |
+| ¿Cómo arranco?                 | [`README.md`](README.md)                        |
 
 Ver también [`CLAUDE.md`](CLAUDE.md) para el contrato con Claude Code.

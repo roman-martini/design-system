@@ -105,3 +105,16 @@ El resto de ADR-004 (§1 build tool, §2 arquitectura flat, §3 standalone+signa
 
 - [ADR-003 — Arquitectura de design tokens](ADR-003-arquitectura-design-tokens.md): el prefijo `--ds-*` ya estaba decidido ahí. Esta ADR lo confirma como parte del prefijo unificador.
 - [ADR-004 — Arquitectura de @romanmartinidev/components](ADR-004-arquitectura-components.md): ADR-007 supersede parcialmente §4 (selector prefix) y §5 (class naming).
+- [ADR-010 — File naming sin sufijo de rol](ADR-010-file-naming-sin-sufijo-component.md): supersede parcialmente este ADR (ver nota abajo).
+
+## Nota de supersesión parcial
+
+El **2026-07-03**, la parte de este ADR referida a **folder y file naming** fue superseded por [ADR-010](ADR-010-file-naming-sin-sufijo-component.md) (change `aaa-010`):
+
+- La fila **"Folder y file naming | sin cambios | `src/lib/button/button.component.ts`"** de la tabla de Decisión → reemplazada por **`src/lib/button/button.ts`**: los archivos no llevan sufijo de rol, alineado con el style guide de Angular v20+. Lo mismo aplica a `.css` y `.spec.ts`.
+- La **regla adicional** que mantenía `<name>.component.ts` "para alineación con la convención Angular del repo" → ya no rige.
+- La **open question** "¿Migrar también el folder/file naming a la convención Angular 21 moderna (`button.ts` sin `.component`)?" → **resuelta afirmativamente** por ADR-010, en el change separado que este ADR anticipaba.
+
+El resto de ADR-007 (prefijos `Ds` / `ds-` / `--ds-*` en selector, class, types y CSS custom properties) sigue **Aceptado** sin cambios, y el estado global del ADR sigue siendo **Aceptado**.
+
+Las menciones a `button.component.ts` en el cuerpo de este documento se preservan como **contexto histórico** (los ADRs son inmutables). Ver ADR-010 para el estado actual del file naming.

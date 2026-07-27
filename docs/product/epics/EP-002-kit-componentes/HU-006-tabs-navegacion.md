@@ -3,6 +3,7 @@ epica: EP-002
 actor: Dev consumidor
 estado: Hecha (2026-07-14, aaa-018 components-add-tabs)
 decisiones: [D-005, D-007, D-009]
+adrs: [ADR-011]
 ---
 
 # HU-006 — Tabs para navegación de contenido (dev consumidor)

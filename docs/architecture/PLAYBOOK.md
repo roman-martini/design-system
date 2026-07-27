@@ -401,7 +401,7 @@ pnpm -F @<scope>/components add -D \
 
 ### Crear primer componente (ej. Button)
 
-Carpeta `src/lib/button/` con `button.component.ts` (standalone + signals), `button.component.css` (usando `var(--ds-*)`), `button.component.spec.ts` (Vitest), `button.stories.ts` (CSF 3), `index.ts`.
+Carpeta `src/lib/button/` con `button.ts` (standalone + signals), `button.css` (usando `var(--ds-*)`), `button.spec.ts` (Vitest), `button.stories.ts` (CSF 3), `index.ts`. Los archivos **no llevan sufijo de rol** (`button.ts`, no `button.component.ts`), alineado con el style guide de Angular v20+ — ver [ADR-010](adr/ADR-010-file-naming-sin-sufijo-component.md).
 
 ### Cierre Fase 3
 
@@ -522,34 +522,65 @@ Crear `.storybook/main.ts`, `.storybook/preview.ts`, `.storybook/tsconfig.json` 
 
 ## Fase 5 — CI y release
 
-> Esta fase aún no está implementada en el repo de referencia. Plan tentativo:
+Decisión formal: [ADR-006](adr/ADR-006-estrategia-ci-cd.md). Contrato testable: [`ci-cd-pipeline`](../../openspec/specs/ci-cd-pipeline/spec.md). Lo que sigue es el CI **real** del repo de referencia.
 
-### GitHub Actions
+### Composite action de setup
 
-**`.github/workflows/pr.yml`** — corre en cada PR:
+Todo el setup común (pnpm + Node desde `.nvmrc` + cache + `install --frozen-lockfile`) se extrae a `.github/actions/setup/` y se reutiliza en ambos workflows. Sin esto, cada workflow duplica cuatro steps que derivan por separado.
+
+### `.github/workflows/pr.yml` — 6 gates en cada PR a `main`
 
 ```yaml
 name: PR
-on: [pull_request]
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with: { node-version-file: '.nvmrc', cache: 'pnpm' }
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
-      - run: pnpm test
-      - run: pnpm -r build
-      - run: npx openspec validate --all
+        with: { fetch-depth: 0 } # full history para `changeset status --since`
+      - uses: ./.github/actions/setup
+      - run: pnpm format:check # 1
+      - run: pnpm lint # 2
+      - run: pnpm -r build # 3
+      - run: pnpm -r test # 4
+      - run: npx --yes openspec validate --all # 5
+      # 6 — changeset enforcement: si el diff vs main toca packages/*
+      #     (excluyendo README.md y CHANGELOG.md), exige un changeset nuevo.
 ```
 
-**`.github/workflows/release.yml`** — al merge a `main`:
+Los dos gates que suelen faltar en un bootstrap y son los que más valen: **`format:check`** (Prettier no negociable en CI, no solo en el hook) y el **changeset enforcement** (impide mergear cambios de una lib publicable sin declarar su bump).
 
-Usar [`changesets/action`](https://github.com/changesets/action) para abrir PR de release o publicar.
+### `.github/workflows/release.yml` — al push a `main`
+
+```yaml
+permissions:
+  contents: write
+  pull-requests: write
+
+# ...checkout con fetch-depth: 0 + composite setup + pnpm -r build
+- uses: changesets/action@v1
+  with:
+    version: pnpm changeset version
+    publish: pnpm changeset publish
+    commit: 'chore(repo): version packages'
+    title: 'chore(repo): version packages'
+    setupGitUser: true
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+Modo dual de `changesets/action`: si hay changesets pendientes abre el PR de versionado; si no hay (post-merge de ese PR) publica.
+
+> **Invocar `changeset` directo, no el script del root**: `pnpm version` es un builtin de pnpm que pisa al script homónimo de `package.json`. Conviene además nombrar el script `changeset:version` para evitar la colisión desde el arranque.
 
 ### Storybook deploy
 
@@ -569,7 +600,10 @@ Al replicar esta arquitectura, **mantener estas convenciones** o documentar expl
 - **Prefijos**:
   - `--ds-*` para CSS variables (tokens, agnóstico al framework consumidor).
   - `<system>-` para selectores Angular (ej. `ds-`, `myorg-`). En este repo: `ds-` (Design System, agnóstico). Ver [ADR-007](adr/ADR-007-naming-prefijos.md).
-- **Naming components Angular**: `<Name>Component` clase + `<name>.component.ts` archivo + `<org>-<name>` selector.
+- **Naming components Angular** (ver [ADR-007](adr/ADR-007-naming-prefijos.md) y [ADR-010](adr/ADR-010-file-naming-sin-sufijo-component.md)):
+  - Class `Ds<Name>` **sin sufijo `Component`** (`DsButton`) — el sufijo genera colisiones de nombre en libs publicables.
+  - Archivo `<name>.ts` **sin sufijo de rol** (`button.ts`), igual para `.css` y `.spec.ts`; style guide de Angular v20+.
+  - Carpeta kebab-case (`button/`), selector `<prefix>-<name>` (`ds-button`), types `Ds<Name><TypeName>` (`DsButtonVariant`).
 - **Standalone + signals**: nunca NgModules en libs nuevas.
 - **CSS plain con tokens via vars**: sin SCSS, sin CSS-in-JS.
 - **Conventional Commits + Changesets**: una sola fuente de versionado.
@@ -597,7 +631,7 @@ Al replicar esta arquitectura, **mantener estas convenciones** o documentar expl
 - [ ] `pnpm -F playground exec ng run playground:build-storybook` produce `storybook-static/`.
 - [ ] `npm pack --dry-run` de cada package publicable lista solo `dist/` + `README.md` + `package.json`.
 - [ ] ADRs 001-005 (al menos) creados.
-- [ ] Specs base 001-004 promovidas.
+- [ ] Specs base promovidas: `monorepo-structure`, `design-tokens-package`, `components-package`, `playground-app` (y `ci-cd-pipeline` al cerrar la Fase 5). Las specs **no llevan ID**: se identifican por el nombre de su carpeta ([ADR-008](adr/ADR-008-convencion-ids-openspec.md)).
 - [ ] `openspec validate --all` pasa.
 - [ ] `openspec/README.md` con la convención de IDs y el "próximo ID disponible" al día.
 - [ ] `docs/architecture/README.md` con la síntesis arquitectónica.

@@ -3,6 +3,7 @@ epica: EP-002
 actor: Dev consumidor
 estado: Hecha (2026-07-11, aaa-017 components-add-input)
 decisiones: [D-005, D-007, D-009]
+adrs: [ADR-011, ADR-012, ADR-014]
 ---
 
 # HU-005 — Input/TextField para formularios reales (dev consumidor)

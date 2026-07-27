@@ -3,6 +3,7 @@ epica: EP-002
 actor: Dev consumidor
 estado: Hecha (2026-07-20, aaa-026 components-add-accordion)
 decisiones: [D-005, D-007, D-011]
+adrs: [ADR-011, ADR-013, ADR-014]
 ---
 
 # HU-013 — Accordion de contenido colapsable (dev consumidor)

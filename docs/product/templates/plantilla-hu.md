@@ -35,8 +35,10 @@ adrs: [ADR-XXX]
 
 <!-- Binarios: se responden con sí/no sin interpretación. Uno por comportamiento.
      El título corto entre paréntesis hace la lista escaneable; el ID CA-XXX.Y es lo
-     referenciable (se vuelve scenario de spec al implementar). Incluir siempre al menos
-     un caso de error/validación. -->
+     referenciable (se vuelve scenario de spec al implementar). Incluir un caso de
+     error/validación cuando el componente tenga superficie de fallo real: formularios,
+     entrada del usuario, carga de recursos externos. Si no aplica (componente puramente
+     presentacional, como Card o Badge), declararlo en Notas en vez de forzar un CA vacío. -->
 
 - [ ] **CA-XXX.1 (título corto)** — Dado que …, cuando …, entonces …
 - [ ] **CA-XXX.2 (caso de error)** — Dado que …, cuando falla …, entonces …

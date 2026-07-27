@@ -21,19 +21,22 @@ Design tokens en jerarquía `primitives → semantic → component → theme` (A
 | Jerarquía z-index formalizada + motion de overlays + effect.blur                                          | [aaa-009](../../../../openspec/changes/archive/aaa-009-tokens-add-z-index/)      | Capas y animaciones de overlay consistentes sin hardcodear                              |
 | Regla anti-duplicación component→semantic                                                                 | [aaa-014](../../../../openspec/changes/archive/aaa-014-components-add-modal/)    | Jerarquía de referencia auditada como contrato                                          |
 | Contraste WCAG AA en tokens interactivos (primario + border.strong) + requirement anti-regresión en spec  | [aaa-015](../../../../openspec/changes/archive/aaa-015-tokens-fix-contrast-aa/)  | Button/Checkbox/Radio accesibles out-of-the-box en los 4 themes, verificado por script  |
+| `space.negative.*` (CA-018.3 de HU-018), entregado dentro del change de su primer consumidor real         | [aaa-037](../../../../openspec/changes/archive/aaa-037-components-add-avatar/)   | Solapamiento tokenizado para composiciones como `DsAvatarGroup`, sin márgenes mágicos   |
 
 ## Historias de usuario
 
-| HU                                            | Título                                    | Actor          | Estado                                                            |
-| --------------------------------------------- | ----------------------------------------- | -------------- | ----------------------------------------------------------------- |
-| [HU-004](HU-004-contraste-aa-tokens.md)       | Tokens interactivos con contraste WCAG AA | Dev consumidor | Hecha (aaa-015 archivado 2026-07-11)                              |
-| [HU-018](HU-018-tokens-aditivos-atlassian.md) | Tokens aditivos del research Atlassian    | Dev consumidor | Identificada (Later; sin disparador activo — un change por token) |
+| HU                                            | Título                                    | Actor          | Estado                                                                                                                                                    |
+| --------------------------------------------- | ----------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [HU-004](HU-004-contraste-aa-tokens.md)       | Tokens interactivos con contraste WCAG AA | Dev consumidor | Hecha (aaa-015 archivado 2026-07-11)                                                                                                                      |
+| [HU-018](HU-018-tokens-aditivos-atlassian.md) | Tokens aditivos del research Atlassian    | Dev consumidor | Identificada — **cierre parcial 1/3**: CA-018.3 (`space.negative.*`) Hecho el 2026-07-26 vía aaa-037; los otros dos siguen en Later sin disparador activo |
 
-Candidatas (en [intake/tokens-pendientes.md](../../intake/tokens-pendientes.md), entran con disparador o por decisión del PO según D-015): breakpoints responsive (cuando haya primer componente responsive), motion adicional (delays/easings extra), density tokens. Los aditivos del research Atlassian (`space.0`, `metric.*`, `space.negative.*`) ya están formalizados en [HU-018](HU-018-tokens-aditivos-atlassian.md), cada uno esperando su disparador.
+Candidatas (en [intake/tokens-pendientes.md](../../intake/tokens-pendientes.md), entran con disparador o por decisión del PO según D-015): breakpoints responsive (cuando haya primer componente responsive), motion adicional (delays/easings extra), density tokens. Los aditivos del research Atlassian están formalizados en [HU-018](HU-018-tokens-aditivos-atlassian.md): `space.negative.*` ya se entregó (2026-07-26, dentro de aaa-037, su primer consumidor real); `space.0` y `metric.*` siguen esperando su disparador — el primer caso de uso real en un componente o en el playground.
 
 ## Decisiones aplicables
 
-[D-001, D-002, D-006, D-007, D-008, D-015](../../decisiones.md) · Técnica: [ADR-003](../../../architecture/adr/ADR-003-arquitectura-design-tokens.md).
+[D-001, D-002, D-006, D-007, D-008, D-015, D-024](../../decisiones.md) — D-024 compromete dos cambios de fondo pendientes en la fuente de tokens (migración al formato DTCG y normalización completa de la taxonomía de namespaces), a ejecutar antes del 1.0.
+
+Técnica: [ADR-003](../../../architecture/adr/ADR-003-arquitectura-design-tokens.md).
 
 ## Orden sugerido
 

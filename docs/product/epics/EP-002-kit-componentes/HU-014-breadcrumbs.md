@@ -3,6 +3,7 @@ epica: EP-002
 actor: Dev consumidor
 estado: Hecha (2026-07-20, aaa-027 components-add-breadcrumbs; genera ADR-017)
 decisiones: [D-005, D-007, D-011]
+adrs: [ADR-012, ADR-017]
 ---
 
 # HU-014 — Breadcrumbs de ubicación (dev consumidor)

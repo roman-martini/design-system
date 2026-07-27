@@ -23,13 +23,13 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
    - **Next** — disparador definido pero no activado, o esperando una decisión puntual del PO.
    - **Later** — disparador definido pero lejano; sin urgencia ni fecha.
 3. **Activación**: item OpenSpec → `/opsx:propose <slug>` (convención e ID en [openspec/README.md](../../openspec/README.md)); item de tooling/docs → commit directo. Al activarse, el item cambia a estado `propuesta activa` con link al change, y **se elimina de acá cuando el change se archiva** (el histórico vive en el [catálogo de changes](../architecture/README.md#catálogo-de-changes)).
-4. **Grooming**: al **archivar cada change** se revisita este archivo — se reevalúan disparadores (¿alguno se activó?), se promueven items entre horizontes y se eliminan los cerrados. Es el mismo momento en que se tría el inbox del PO (`TASK.md`, [D-019](../product/decisiones.md)), se actualizan catálogo y `openspec/README.md`, y se revisa si algún intake maduró. Así el backlog nunca deriva.
+4. **Grooming**: al **archivar cada change** se revisita este archivo — se reevalúan disparadores (¿alguno se activó?), se promueven items entre horizontes y se eliminan los cerrados. Es el mismo momento en que se tría el inbox del PO ([D-019](../product/decisiones.md)) y se revisa si algún intake maduró. El grooming es un paso del [checklist de archive](../product/README.md#checklist-de-archive), que es la lista canónica de todo lo que hay que actualizar al cerrar un change. Así el backlog nunca deriva.
 
 ---
 
 ## Now — disparador activado
 
-> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan (hoy 15) y el release NO es candidato automático. [D-018](../product/decisiones.md) convierte ese veto en control técnico (environment `npm-publish` con required reviewer), pendiente de ejecución en la Parte E.
+> **Publicar a npm sigue vetado hasta orden explícita del PO** (2026-07-19) — los changesets se acumulan a propósito (inventario en [`.changeset/`](../../.changeset/); no se enumeran acá para no duplicar su fuente de verdad) y el release NO es candidato automático. [D-018](../product/decisiones.md) convierte ese veto en control técnico (environment `npm-publish` con required reviewer), pendiente de ejecución en la Parte E.
 
 ### `review-integral-2026-07-26` — Ejecución del plan de la review
 
@@ -45,7 +45,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 | ----- | ----------------------------------- | ----------------------- | ----------------------------------- |
 | A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027) |
 | B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)              |
-| C     | Sincronización documental           | Commit directo          | Pendiente                           |
+| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)              |
 | D     | Release-readiness (APF + packaging) | OpenSpec change         | Pendiente                           |
 | E     | CI: correctness + hardening         | OpenSpec change         | Pendiente                           |
 | F     | Gates de calidad automáticos        | OpenSpec change(s)      | Pendiente — HU-026…HU-028, HU-030   |
@@ -86,7 +86,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Alcance propuesto**: toolbar con toggle light/dark + selector de brand (default/`modern-minimal`/brand-b); cargar los CSS de themes y setear `data-theme`/`data-brand` en el root. Se ejecuta **ampliado dentro de la Parte K** del plan, que le suma los globalTypes y el decorator de Storybook.
 
-**Disparador**: activado por decisión del PO (diferido 2026-07-23) — se retoma con la Parte K, o antes de un release para QA visual multi-theme.
+**Disparador**: decisión del PO (diferido el 2026-07-23) — se retoma con la Parte K del plan de la review, o antes de un release para QA visual multi-theme.
 
 **Nota**: el gate visual del PO previo al archive ([D-022](../product/decisiones.md)) sube el valor de este item — es la herramienta con la que ese gate se ejerce sobre themes.
 

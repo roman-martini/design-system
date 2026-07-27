@@ -9,7 +9,7 @@ created: 2026-05-31
 
 ## Purpose
 
-Define los requisitos del package `@romanmartinidev/components` como artefacto publicable Angular: identidad y metadata, dependencias (Angular y tokens como peerDependencies), arquitectura interna flat por componente, contrato de componentes (standalone + signals), selector prefix `rmd-`, naming convention de class y archivo, estrategia de styles (CSS plain con tokens vía CSS variables), ViewEncapsulation, surface de exports vía `public-api.ts`, build con ng-packagr en Angular Package Format, tests con Vitest, y reglas de dependencia que cierran ciclos con `@romanmartinidev/tokens`.
+Define los requisitos del package `@romanmartinidev/components` como artefacto publicable Angular: identidad y metadata, dependencias (Angular y tokens como peerDependencies), arquitectura interna flat por componente, contrato de componentes (standalone + signals), selector prefix `ds-`, naming convention de class (`Ds<Name>`) y archivo (`<name>.ts`, sin sufijo de rol), estrategia de styles (CSS plain con tokens vía CSS variables), ViewEncapsulation, surface de exports vía `public-api.ts`, build con ng-packagr en Angular Package Format, tests con Vitest, y reglas de dependencia que cierran ciclos con `@romanmartinidev/tokens`.
 
 ## Requirements
 
