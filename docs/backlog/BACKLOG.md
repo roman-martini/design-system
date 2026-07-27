@@ -41,22 +41,22 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Estado por parte** (el detalle de cada una vive en el plan; acá solo el avance):
 
-| Parte | Contenido                           | Vía                     | Estado                              |
-| ----- | ----------------------------------- | ----------------------- | ----------------------------------- |
-| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027) |
-| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)              |
-| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)              |
-| D     | Release-readiness (APF + packaging) | OpenSpec change         | Pendiente                           |
-| E     | CI: correctness + hardening         | OpenSpec change         | Pendiente                           |
-| F     | Gates de calidad automáticos        | OpenSpec change(s)      | Pendiente — HU-026…HU-028, HU-030   |
-| G     | Fixes de componentes (6 changes)    | OpenSpec por componente | Pendiente                           |
-| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                           |
-| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                           |
-| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                           |
-| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                           |
-| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036  |
-| M     | Ecosistema `.claude/`               | Commit directo          | Pendiente — HU-032                  |
-| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                  |
+| Parte | Contenido                           | Vía                     | Estado                                    |
+| ----- | ----------------------------------- | ----------------------- | ----------------------------------------- |
+| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)       |
+| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                    |
+| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                    |
+| D     | Release-readiness (APF + packaging) | OpenSpec change         | Pendiente                                 |
+| E     | CI: correctness + hardening         | OpenSpec change         | Pendiente                                 |
+| F     | Gates de calidad automáticos        | OpenSpec change(s)      | Pendiente — HU-026…HU-028, HU-030         |
+| G     | Fixes de componentes (6 changes)    | OpenSpec por componente | Pendiente                                 |
+| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                 |
+| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                 |
+| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                 |
+| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                 |
+| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036        |
+| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada |
+| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                        |
 
 **Protocolo de ejecución**: una parte por sesión, con `/ds:handoff` → `/clear` → `/ds:resume` entre partes. El modelo y el effort de cada parte están declarados en el plan (§ "Modelo por parte" y § "Cuándo cortar sesión"); no se alterna modelo dentro de una sesión.
 

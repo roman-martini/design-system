@@ -67,7 +67,7 @@ Si la decisión **emerge a mitad de un item** (no estaba declarada), aplicar la 
 
 #### 3.2 Ejecución según tipo
 
-- **Tipo OpenSpec** → flujo completo con las skills `opsx:*`: propose → apply → verify → archive. El ID sale de `openspec/README.md`. Respetar el patrón establecido de 2 commits por change (implementación + archive).
+- **Tipo OpenSpec** → flujo completo con las skills `opsx:*`: propose → apply → verify → **gate visual del PO si es un componente** (ver § Límites duros) → archive. El ID sale de `openspec/README.md`. Respetar el patrón establecido de 2 commits por change (implementación + archive) y el [checklist de archive](../../../docs/product/README.md#checklist-de-archive).
 - **Tipo commit directo** (tooling/docs/housekeeping) → implementar directo siguiendo CLAUDE.md, los ADRs aceptados y las convenciones del área (ej. commands `/ds:*` = wrapper thin + skill rica, actualizar el README de commands).
 
 #### 3.3 Gates de calidad (no negociables)
@@ -88,10 +88,11 @@ Si un gate falla y no se resuelve razonablemente, el item queda abierto, se revi
 
 #### 3.5 Grooming post-item
 
-Al cerrar cada item (en OpenSpec, como parte del archive): eliminarlo de `BACKLOG.md`, reevaluar disparadores de Next/Later, actualizar catálogo de changes y `openspec/README.md` si corresponde. El grooming forma parte del commit del item (o del commit de archive).
+Al cerrar cada item (en OpenSpec, como parte del archive) se ejecuta el [checklist de archive](../../../docs/product/README.md#checklist-de-archive) completo — es la lista canónica e incluye los registros de producto (HU, doc de épica, README de producto) que históricamente quedaban afuera. El grooming del `BACKLOG.md` es uno de sus pasos: eliminar el item cerrado, reevaluar disparadores de Next/Later y triar el inbox del PO. Todo eso forma parte del commit del item (o del commit de archive).
 
 ### 4. Límites duros (independientes de la configuración)
 
+- **Nunca** archivar un change de componente sin el **gate visual del PO** ([D-022](../../../docs/product/decisiones.md)): antes del archive hay que mostrarle el resultado renderizado y obtener su OK explícito, sea cual sea el modo de `commit`. Con `commit=auto` esto **no** es opcional: la corrida se detiene ahí y espera. Fundamento: el defecto de centrado vertical del Button llegó a `main` sin que ningún gate automático lo detectara — la verificación visual humana es el único control que cubre esa clase de defecto.
 - **Nunca** ejecutar items de Next/Later: esperan disparador o decisión del PO por definición.
 - **Nunca** decidir producto (D-XXX), publicar en npm, hacer `git push`, ni gastar dinero.
 - **Nunca** tomar decisiones one-way door: se difieren o preguntan; si ameritan ADR, se propone el ADR, no se decide en silencio.

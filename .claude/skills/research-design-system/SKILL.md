@@ -77,10 +77,10 @@ Usar `WebFetch` con URLs específicas de foundations:
 
 ### 2-B. Captura via headless browser (sitios compilados o cualquier sitio bloqueado)
 
-Ejecutar el script Playwright que vive al lado de este SKILL.md:
+Ejecutar el script Playwright que vive al lado de este SKILL.md, mandando la salida al **scratchpad de la sesión** — nunca al repo ni a `/tmp` (en Windows `/tmp` solo existe bajo Git Bash y falla en PowerShell). Misma convención que usa la skill hermana `check-a11y` para su manifest de pares:
 
 ```bash
-node .claude/skills/research-design-system/scripts/extract-design.mjs <url> > /tmp/extract.json
+node .claude/skills/research-design-system/scripts/extract-design.mjs <url> > <scratchpad>/extract.json
 ```
 
 El script abre la página con Chromium headless, espera networkidle + 800ms, y extrae:

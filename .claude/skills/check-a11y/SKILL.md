@@ -127,7 +127,7 @@ Método: análisis estático + contraste calculado con `check-a11y/scripts/contr
 
 1. ¿El reporte está en `docs/design/a11y/<fecha>-audit.md` con las 5 secciones?
 2. ¿Todos los componentes del alcance tienen fila en el resumen?
-3. ¿La tabla de contraste cubre los 4 scopes (default + 3 themes) o declara por qué no?
+3. ¿La tabla de contraste cubre **todos los scopes que reporta el script** (default + un scope por cada `dist/themes/*.css`) o declara por qué no? No fijar el número: el script los descubre leyendo el directorio, así que agregar o quitar un theme cambia el total.
 4. ¿Cada hallazgo tiene severidad + `archivo:línea` + SC?
 5. ¿Se tocó algún archivo fuera de `docs/design/a11y/`? Si sí, error — revertir y declarar.
 
@@ -140,4 +140,4 @@ Método: análisis estático + contraste calculado con `check-a11y/scripts/contr
 
 - Para **arreglar** hallazgos — eso es trabajo posterior (commit directo o change OpenSpec según tamaño).
 - Para auditar sitios externos (eso es `research-design-system` o los agentes `web-*`).
-- Para auditar consistencia de tokens no relacionada con color/contraste (eso será `/ds:audit-tokens`).
+- Para auditar consistencia de tokens no relacionada con color/contraste — huérfanos, hardcodes, jerarquía: eso es [`/ds:audit-tokens`](../audit-tokens/SKILL.md).

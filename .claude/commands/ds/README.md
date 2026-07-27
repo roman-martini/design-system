@@ -23,14 +23,13 @@ Diferencia con el patrón `opsx:*`: los commands de opsx duplican el contenido d
 | `/ds:check-a11y` | `check-a11y` | Activa | Auditar los componentes contra WCAG AA y los ADRs de a11y (011/012/013): ARIA, teclado, foco, reduced-motion y contraste calculado con script determinístico (`scripts/contrast.mjs`). Reporte en `docs/design/a11y/<fecha>-audit.md`. Materializa D-007. |
 | `/ds:add-component` | `add-component` | Activa | Workflow guiado para sumar un componente al kit: relevamiento → clasificación contra ADR-004/007/010/011/012/013 → change OpenSpec (proposal + spec delta + tasks patrón aaa-014) → implementación con OK del usuario. |
 | `/ds:auto` | `backlog-auto` | Activa | Ejecutar en automático los items **Now** de `docs/backlog/BACKLOG.md` (OpenSpec o commit directo según tipo), sin decidir nada que sea del PO. Args: `commit=ask\|auto\|none`, `decisiones=defer\|inline`. |
+| `/ds:audit-tokens` | `audit-tokens` | Activa | Auditar la consistencia de los tokens con script determinístico (`scripts/audit-tokens.mjs`): hardcodes en el CSS de componentes, violaciones del contrato de jerarquía, advertencias de bypass permitidas por ADR-003 y tokens huérfanos. Reporte en `docs/design/tokens/<fecha>-audit.md`. Materializa HU-032 (D-021). |
 
 ## Backlog
 
 Cada skill se crea **cuando aparezca la primera necesidad concreta**, no antes (anti-pattern del repo: skills sin uso real).
 
-| Command planificado | Propósito | Cuándo crearlo |
-|---|---|---|
-| `/ds:audit-tokens` | Auditar consistencia de la jerarquía `primitives → semantic → component → theme`. Detectar tokens huérfanos (definidos pero no referenciados), CSS de componentes con valores hardcoded fuera de `var(--ds-*)`, semantic tokens que no consumen primitives. | Cuando el package `tokens` crezca a >100 tokens o aparezca el primer drift detectado en code review. |
+_Sin commands planificados._ El último pendiente, `/ds:audit-tokens`, se activó el 2026-07-27: su disparador declarado ("más de 100 tokens **o** el primer drift en code review") estaba cumplido por partida doble —754 declaraciones `--ds-` y el hardcode de `white` detectado el 2026-07-11 en la auditoría de a11y— y [D-021](../../../docs/product/decisiones.md) aprobó la promoción.
 
 ## Cómo agregar un command nuevo `/ds:*`
 

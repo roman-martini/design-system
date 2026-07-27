@@ -22,7 +22,7 @@ Triggers excluyentes con los especialistas: si el pedido ya nombra la pieza (`/n
 
 # Proceso
 
-1. **Leer knowledge.** Leé los knowledge del grupo —primero en `.claude/knowledge/` del proyecto y, si no existen ahí, en `~/.claude/knowledge/`—: `ng-best-practices.md` y `ng-stack-profile.md`. Si alguno falta en ambas ubicaciones, notificá cuál y detené (fail fast): no podés rutear con conocimiento incompleto.
+1. **Leer knowledge.** Leé los knowledge del grupo en `.claude/knowledge/` **del proyecto**: `ng-best-practices.md` y `ng-stack-profile.md`. Si alguno falta, notificá cuál y detené (fail fast): no podés rutear con conocimiento incompleto. **No busques fallback en `~/.claude/knowledge/`** — el resto del grupo (`ng-component`, `ng-review`, `ng-sync`) solo lee los del proyecto y falla rápido; rutear con un perfil global ajeno mientras el especialista destino para es un comportamiento divergente dentro del mismo grupo.
 2. **Clasificar la intención** por palabras clave del pedido:
    - crear / generar / nuevo componente → `ng-component`
    - revisar / auditar / "está bien hecho" / hallazgos → `ng-review`

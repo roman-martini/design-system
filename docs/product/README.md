@@ -59,7 +59,7 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 | [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor              | 003, 005–010, 012–017, 019–025, 033, 034 | En desarrollo (tandas 1-2 completas; tanda 3 en 6/7, falta Slider) |
 | [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor              | 002                                      | En desarrollo (npm-ready, sin publicar)                            |
 | [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador                   | 001                                      | En refinamiento (aaa-012 activo y pausado, D-027)                  |
-| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor                  | 026–032                                  | En desarrollo (gates automáticos aprobados por D-021)              |
+| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor                  | 026–032                                  | En desarrollo (gates de D-021 en 1/7: HU-032 Hecha)                |
 | [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor              | 011, 035, 036                            | En desarrollo (HU-011 Hecha 2026-07-19)                            |
 | [EP-007](epics/EP-007-template-lume/EP-007-template-lume.md)               | Template-lume                 | Dev consumidor · Mantenedor | 037–040                                  | Identificada (creada 2026-07-26 por D-020)                         |
 
@@ -102,7 +102,7 @@ Vista global del avance, pedida por [D-019](decisiones.md) — antes el estado d
 | [HU-029](epics/EP-005-calidad-profesional/HU-029-angular-eslint.md)            | angular-eslint (templates y a11y)      | EP-005 | Refinada (2026-07-26)         |
 | [HU-030](epics/EP-005-calidad-profesional/HU-030-bundle-size-budget.md)        | Presupuesto de tamaño de bundle        | EP-005 | Refinada (2026-07-26)         |
 | [HU-031](epics/EP-005-calidad-profesional/HU-031-storybook-publicado.md)       | Storybook publicado                    | EP-005 | Refinada (2026-07-26)         |
-| [HU-032](epics/EP-005-calidad-profesional/HU-032-audit-tokens-skill.md)        | Auditoría de consistencia de tokens    | EP-005 | Refinada (2026-07-26)         |
+| [HU-032](epics/EP-005-calidad-profesional/HU-032-audit-tokens-skill.md)        | Auditoría de consistencia de tokens    | EP-005 | **Hecha** (2026-07-27)        |
 | [HU-033](epics/EP-002-kit-componentes/HU-033-ajuste-dimensional-referencia.md) | Ajuste dimensional a modern-minimal    | EP-002 | Identificada (2026-07-26)     |
 | [HU-034](epics/EP-002-kit-componentes/HU-034-estetica-spinner.md)              | Refinamiento estético del Spinner      | EP-002 | Identificada (2026-07-26)     |
 | [HU-035](epics/EP-006-playground/HU-035-interaction-tests-storybook.md)        | Interaction tests de overlays          | EP-006 | Refinada (2026-07-26)         |
@@ -112,7 +112,7 @@ Vista global del avance, pedida por [D-019](decisiones.md) — antes el estado d
 | HU-039                                                                         | Inventario de componentes faltantes    | EP-007 | Identificada — sin archivo    |
 | HU-040                                                                         | Web-page del template en el playground | EP-007 | Identificada — sin archivo    |
 
-**Resumen sobre 40 HUs**: 22 Hechas, 11 Refinadas (una de ellas en pausa) y 7 Identificadas, tres de las cuales todavía no tienen archivo propio.
+**Resumen sobre 40 HUs**: 23 Hechas, 10 Refinadas (una de ellas en pausa) y 7 Identificadas, tres de las cuales todavía no tienen archivo propio.
 
 ## Roadmap
 
@@ -140,9 +140,10 @@ EP-002: refinamiento visual        → HU-033 (ajuste dimensional) y HU-034 (Spi
 EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.2.0 en npm
                                     (D-010, lockstep ADR-015, aaa-020). Veto de publicación vigente
 EP-004: HU-001 (Figma export)     → aaa-012 con 4/4 artefactos, activo y pausado (D-027)
-EP-005: gates automáticos          → 7 HUs Refinadas (HU-026…HU-032), aprobadas por D-021:
-                                    coverage, contraste AA, axe, angular-eslint, bundle size,
-                                    Storybook publicado y /ds:audit-tokens. Ninguna implementada
+EP-005: gates automáticos          → 7 HUs aprobadas por D-021 (HU-026…HU-032), 1/7 entregada:
+                                    HU-032 /ds:audit-tokens Hecha (2026-07-27). Siguen Refinadas
+                                    coverage, contraste AA, axe, angular-eslint, bundle size y
+                                    Storybook publicado
 EP-006: HU-011 (showcase)         → Hecha (2026-07-19). + HU-035/HU-036 Refinadas (interaction
                                     tests y docs de tokens en Storybook)
 EP-007: template-lume              → Creada (D-020). HU-037 (rename del theme) Refinada;

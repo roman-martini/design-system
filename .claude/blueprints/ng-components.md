@@ -1,9 +1,19 @@
 ---
 blueprint: ng-components
-version: 1.1.0
+version: 1.2.0
 schema: 1
-updated: 2026-06-08
+updated: 2026-07-27
 ---
+
+<!--
+Changelog
+- 1.2.0 (2026-07-27) — Sincronización con el scaffold vivo tras la review integral
+  del repo: el comando de creación es `create.md` / `/ng:create` (era `component.md` /
+  `/ng:component`) y el bloque verbatim del §9 recupera la nota de procedencia que el
+  knowledge ya tenía ("criterio del autor; `ng-sync` no los re-verifica").
+- 1.1.0 (2026-06-08) — Versión scaffoldeada en design-system.
+-->
+
 
 # Blueprint: NG Components — Calidad de componentes Angular (familia `ng-`)
 
@@ -13,7 +23,7 @@ updated: 2026-06-08
 
 1. Abrí Claude Code en el directorio raíz del proyecto Angular destino.
 2. Ejecutá: `/as-project-scaffolder .claude/blueprints/ng-components.md`
-3. El scaffolder creará: 4 agentes (`ng-router`, `ng-component`, `ng-review`, `ng-sync`), 1 skill (`ng-change`), 5 comandos namespaced en `commands/ng/` (`ask.md`, `component.md`, `review.md`, `change.md`, `sync.md`), 2 knowledge files (`ng-best-practices.md`, `ng-stack-profile.md`), 1 rule (`ng-constraints.md`) y `settings.json`.
+3. El scaffolder creará: 4 agentes (`ng-router`, `ng-component`, `ng-review`, `ng-sync`), 1 skill (`ng-change`), 5 comandos namespaced en `commands/ng/` (`ask.md`, `create.md`, `review.md`, `change.md`, `sync.md`), 2 knowledge files (`ng-best-practices.md`, `ng-stack-profile.md`), 1 rule (`ng-constraints.md`) y `settings.json`.
 4. El scaffolder actualizará el `CLAUDE.md` del repo destino con la sección "Componentes Angular (familia `ng-`)".
 5. La primera vez, antes de generar o revisar componentes, completá el **perfil del stack** del proyecto en `.claude/knowledge/ng-stack-profile.md` (versión de Angular, motor de estilos, framework de testing, design system). Los agentes lo leen como primer paso; sin él, `ng-component` y `ng-review` paran.
 6. Verificá el resultado contra la sección "Criterios de calidad del scaffold".
@@ -29,12 +39,12 @@ updated: 2026-06-08
 | Pieza | Tipo | Invocación | Rol | Model | Tools |
 |---|---|---|---|---|---|
 | `ng-router` | Agente (router) | `/ng:ask` | Clasifica la intención (crear / revisar / proponer cambio / sincronizar) y deriva a la pieza correcta; resuelve casos triviales | haiku | Read, Glob, Grep |
-| `ng-component` | Agente | `/ng:component` | Genera componentes Angular aplicando el knowledge `ng-best-practices.md` y el `ng-stack-profile.md` | sonnet | Read, Write, Edit, Glob, Grep |
+| `ng-component` | Agente | `/ng:create` | Genera componentes Angular aplicando el knowledge `ng-best-practices.md` y el `ng-stack-profile.md` | sonnet | Read, Write, Edit, Glob, Grep |
 | `ng-review` | Agente | `/ng:review` | Audita uno o varios componentes contra el knowledge; produce un artefacto de review con hallazgos, severidad y `archivo:línea` | sonnet | Read, Glob, Grep, Write |
 | `ng-change` | Skill | `/ng:change` | Convierte un review grande en **un único Markdown autocontenido** (propuesta + diseño + tareas), implementable sin contexto adicional | — | Read, Write, Glob |
 | `ng-sync` | Agente (web) | `/ng:sync` | Recorre las URLs canónicas de angular.dev, detecta prácticas nuevas/cambiadas vs. el knowledge, propone actualizarlo y reporta componentes desalineados | opus | Read, Write, Glob, Grep, WebFetch, WebSearch |
 
-> **Convención de comandos**: todas las piezas del grupo se invocan namespaced por subdirectorio `.claude/commands/ng/<verbo>.md`, que Claude Code expone como `/ng:ask` (router), `/ng:component`, `/ng:review`, `/ng:change`, `/ng:sync` (mismo patrón que `/bl:*` en `backlog.md`). **No hay comando pelado `/ng` en la raíz**: el router es una pieza más del namespace (`/ng:ask`), lo que mantiene el grupo uniforme y evita el archivo suelto en la raíz de `commands/`. Cada comando es un wrapper fino que delega en el agente o skill.
+> **Convención de comandos**: todas las piezas del grupo se invocan namespaced por subdirectorio `.claude/commands/ng/<verbo>.md`, que Claude Code expone como `/ng:ask` (router), `/ng:create`, `/ng:review`, `/ng:change`, `/ng:sync` (mismo patrón que `/bl:*` en `backlog.md`). **No hay comando pelado `/ng` en la raíz**: el router es una pieza más del namespace (`/ng:ask`), lo que mantiene el grupo uniforme y evita el archivo suelto en la raíz de `commands/`. Cada comando es un wrapper fino que delega en el agente o skill.
 
 ### Por qué cada pieza es agente o skill (decisión por pieza)
 
@@ -103,7 +113,7 @@ Estructura **fija que instala el scaffolder** dentro de `.claude/`:
     ├── commands/
     │   └── ng/                                  # comandos namespaced /ng:* (incluido el router)
     │       ├── ask.md                           # /ng:ask — router
-    │       ├── component.md                     # /ng:component
+    │       ├── create.md                        # /ng:create
     │       ├── review.md                        # /ng:review
     │       ├── change.md                        # /ng:change → skill
     │       └── sync.md                          # /ng:sync
@@ -247,7 +257,7 @@ Los agentes `ng-component` y `ng-review` leen `ng-stack-profile.md` como primer 
 
 ## Checklist de auto-revisión
 
-### Checklist de sesión — creación (`/ng:component`)
+### Checklist de sesión — creación (`/ng:create`)
 - [ ] Se leyó `ng-stack-profile.md`; si faltaba un campo, el agente paró y lo pidió (N/A si todos presentes)
 - [ ] El componente es **standalone** (cero `NgModule`) con `ChangeDetectionStrategy.OnPush`
 - [ ] Inputs con `input()`/`input.required()`, outputs con `output()`, two-way con `model()`; queries con `viewChild()`/`contentChild()`
@@ -281,7 +291,7 @@ Los agentes `ng-component` y `ng-review` leen `ng-stack-profile.md` como primer 
 ### Criterios de calidad del scaffold (verifica la instalación)
 - [ ] Existen los 4 agentes en `.claude/agents/`: `ng-router.md`, `ng-component.md`, `ng-review.md`, `ng-sync.md`
 - [ ] Existe el skill `.claude/skills/ng-change/SKILL.md` (`name: ng-change`)
-- [ ] Existen los 5 comandos namespaced en `.claude/commands/ng/`: `ask.md`, `component.md`, `review.md`, `change.md`, `sync.md` (`/ng:ask`, `/ng:component`, `/ng:review`, `/ng:change`, `/ng:sync`); no hay `ng.md` en la raíz de `commands/`
+- [ ] Existen los 5 comandos namespaced en `.claude/commands/ng/`: `ask.md`, `create.md`, `review.md`, `change.md`, `sync.md` (`/ng:ask`, `/ng:create`, `/ng:review`, `/ng:change`, `/ng:sync`); no hay `ng.md` en la raíz de `commands/`
 - [ ] Existen los 2 knowledge en `.claude/knowledge/`: `ng-best-practices.md` (con la tabla de URLs canónicas intacta) y `ng-stack-profile.md`
 - [ ] Existe la rule `.claude/rules/ng-constraints.md`
 - [ ] `ng-sync` es el único con `WebFetch`/`WebSearch` en sus tools; ningún otro `ng-*` tiene acceso web
@@ -303,7 +313,7 @@ Los agentes `ng-component` y `ng-review` leen `ng-stack-profile.md` como primer 
 
 ### `ng-component`
 - **Rol**: Genera componentes Angular modernos aplicando `ng-best-practices.md` y adaptándose al `ng-stack-profile.md`. Objetivo medible: produce el set de archivos del componente (TS standalone OnPush, template con control flow nativo, estilos en la sintaxis del perfil, `.spec.ts` con el framework del perfil) que pasarían el review de `ng-review` sin hallazgos de severidad alta o media.
-- **Trigger**: `/ng:component`, "creá un componente", "generá el componente X con estos inputs", cuando `ng-router` deriva la creación.
+- **Trigger**: `/ng:create`, "creá un componente", "generá el componente X con estos inputs", cuando `ng-router` deriva la creación.
 - **Tools**: Read, Write, Edit, Glob, Grep.
 - **Model**: sonnet.
 - **Knowledge**: `ng-best-practices.md`, `ng-stack-profile.md`.
@@ -529,6 +539,8 @@ _Fuente: https://angular.dev/best-practices/a11y_
 
 ## 9. Principios transversales de frontend (agnósticos de Angular)
 
+_No provienen de angular.dev: son principios generales de frontend (criterio del autor); `ng-sync` no los re-verifica contra la doc oficial._
+
 - Composición sobre herencia; responsabilidad única; separación de incumbencias.
 - Flujo de datos unidireccional; inmutabilidad de inputs (nunca mutar un input).
 - Frontera clara entre lógica de dominio y UI (presentacionales puros, sin servicios de dominio).
@@ -549,7 +561,7 @@ _Fuente: https://angular.dev/best-practices/a11y_
 
 ### `ng-stack-profile.md`
 - **Ruta**: `.claude/knowledge/ng-stack-profile.md`
-- **Contenido**: el **perfil variable del proyecto destino**, creado por el scaffolder con los campos vacíos y una nota: "Completar antes del primer uso de `/ng:component` y `/ng:review`". Campos:
+- **Contenido**: el **perfil variable del proyecto destino**, creado por el scaffolder con los campos vacíos y una nota: "Completar antes del primer uso de `/ng:create` y `/ng:review`". Campos:
   - `angular_version` — versión exacta del repo (ej. `22.0.1`).
   - `style_engine` — `scss` | `css` | `less` | `tailwind` (o combinación).
   - `test_framework` — `jest` | `vitest` | `karma` | `web-test-runner`.
@@ -565,7 +577,7 @@ _Fuente: https://angular.dev/best-practices/a11y_
 ### `ng-constraints.md`
 - **Paths**: `.claude/agents/ng-*.md`, `.claude/skills/ng-change/**`, `.claude/commands/ng/**`, `.claude/knowledge/ng-*.md`.
 - **Contenido**:
-  - **Prefijo `ng-`**: todos los artefactos (agentes, skill, knowledge, rule) llevan el prefijo. Comandos: todos namespaced en `commands/ng/` — `/ng:ask` (router), `/ng:component`, `/ng:review`, `/ng:change`, `/ng:sync`.
+  - **Prefijo `ng-`**: todos los artefactos (agentes, skill, knowledge, rule) llevan el prefijo. Comandos: todos namespaced en `commands/ng/` — `/ng:ask` (router), `/ng:create`, `/ng:review`, `/ng:change`, `/ng:sync`.
   - **Leer el knowledge primero**: todo `ng-*` lee `ng-best-practices.md` y `ng-stack-profile.md` antes de operar; falla rápido si faltan.
   - **Knowledge como fuente única**: las buenas prácticas no se reinventan de memoria; viven en `ng-best-practices.md` con su URL. Solo `ng-sync` lo modifica, y solo tras mostrar el diff.
   - **Web solo en `ng-sync`**: es la única pieza con `WebFetch`/`WebSearch`. Ningún otro `ng-*` accede a Internet.
@@ -589,8 +601,8 @@ Usá el sub-agent `ng-router` para clasificar el pedido (crear / revisar / propo
 $ARGUMENTS
 ```
 
-### `/ng:component`
-- **Archivo**: `.claude/commands/ng/component.md`
+### `/ng:create`
+- **Archivo**: `.claude/commands/ng/create.md`
 ```markdown
 Usá el sub-agent `ng-component` para generar un componente Angular moderno (standalone, OnPush, signals, control flow nativo, a11y, test) aplicando `ng-best-practices.md` y adaptándose a `ng-stack-profile.md`.
 
@@ -635,12 +647,12 @@ El scaffolder agrega al `CLAUDE.md` del repo Angular (sin pisar lo existente) un
   | Comando | Qué hace |
   |---|---|
   | `/ng:ask` | Clasifica la intención y deriva a la pieza correcta |
-  | `/ng:component <nombre>` | Genera un componente moderno (standalone, OnPush, signals, control flow nativo, a11y, test) |
+  | `/ng:create <nombre>` | Genera un componente moderno (standalone, OnPush, signals, control flow nativo, a11y, test) |
   | `/ng:review <archivo\|glob>` | Audita componentes; hallazgos con `archivo:línea` y severidad |
   | `/ng:change <review>` | Convierte un review grande en un único Markdown autocontenido (propuesta + diseño + tareas) |
   | `/ng:sync` | Sincroniza el knowledge con angular.dev y reporta componentes desalineados |
 
-- **Flujo**: `/ng:component` para crear → `/ng:review` para auditar → si el arreglo es chico, aplicar directo; si es grande, `/ng:change` produce el artefacto autocontenido → periódicamente, `/ng:sync` mantiene el knowledge al día.
+- **Flujo**: `/ng:create` para crear → `/ng:review` para auditar → si el arreglo es chico, aplicar directo; si es grande, `/ng:change` produce el artefacto autocontenido → periódicamente, `/ng:sync` mantiene el knowledge al día.
 - **Convenciones críticas (máx 5)**:
   - Angular moderno es el estándar (standalone, signals-first, control flow nativo, OnPush/zoneless); legacy es hallazgo.
   - El knowledge `ng-best-practices.md` es la única fuente de verdad; solo `ng-sync` lo modifica.

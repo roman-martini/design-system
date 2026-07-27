@@ -1,14 +1,17 @@
 {
   "lockVersion": 1,
   "scaffoldedAt": "2026-06-08",
-  "agentStudioVersion": "unknown",
+  "agentStudioVersion": "not-installed",
+  "agentStudioVersionNote": "@roman-agents/agent-studio no es dependencia de este repo: el scaffold se aplicó desde una instalación externa y acá solo vive el resultado. El campo queda en 'not-installed' a propósito — 'unknown' sugería un dato perdido cuando en realidad no hay nada que registrar. Si algún día se agrega la dep, reemplazar por su versión real.",
   "blueprints": [
     {
       "name": "ng-components",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "schemaVersion": 1,
       "appliedAt": "2026-06-08",
-      "source": "@roman-agents/agent-studio"
+      "updatedAt": "2026-07-27",
+      "source": "@roman-agents/agent-studio",
+      "localChanges": "Blueprint editado localmente en la Parte M de la review integral 2026-07-27 (rename component.md -> create.md y nota del §9). Los cambios están en el repo, no propagados upstream."
     }
   ]
 }
