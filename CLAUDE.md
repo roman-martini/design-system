@@ -170,7 +170,7 @@ pnpm changeset
 pnpm changeset version   # NO usar `pnpm version`: el builtin de pnpm pisa al script homónimo
 ```
 
-> **La publicación a npm no se ejecuta manualmente.** El único camino es `.github/workflows/release.yml`, que corre `pnpm release` (`pnpm -r build && changeset publish`) según [ADR-006](docs/architecture/adr/ADR-006-estrategia-ci-cd.md) y el lockstep de [ADR-015](docs/architecture/adr/ADR-015-versionado-lockstep.md). Además hay un **veto de publicación vigente hasta orden explícita del PO** ([D-018](docs/product/decisiones.md)): no correr `changeset publish` ni `pnpm -r publish` bajo ninguna circunstancia.
+> **La publicación a npm no se ejecuta manualmente.** El único camino es `.github/workflows/release.yml`, que corre `pnpm release` (`pnpm -r build && changeset publish`) según [ADR-006](docs/architecture/adr/ADR-006-estrategia-ci-cd.md) y el lockstep de [ADR-015](docs/architecture/adr/ADR-015-versionado-lockstep.md). El veto de publicación fue **levantado el 2026-07-28** ([D-028](docs/product/decisiones.md)), pero eso **no habilita publicar desde acá**: no correr `changeset publish` ni `pnpm -r publish` bajo ninguna circunstancia — el release corre por CI con aprobación explícita del PO por versión. Cómo se empaqueta cada package (components publica su `dist/`, tokens desde el root) lo gobierna [ADR-021](docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md); `pnpm verify:packaging` verifica el contrato sobre el artefacto emitido.
 
 ## Cómo trabajar en este repo (para Claude)
 

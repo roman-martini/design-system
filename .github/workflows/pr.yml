@@ -34,6 +34,9 @@ jobs:
       - name: Test (recursive)
         run: pnpm -r test
 
+      - name: Verify packaging
+        run: pnpm verify:packaging
+
       - name: OpenSpec validate
         run: npx --yes openspec validate --all
 

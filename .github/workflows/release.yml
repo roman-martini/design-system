@@ -11,6 +11,9 @@ concurrency:
 permissions:
   contents: write
   pull-requests: write
+  # Requerido para emitir la attestation de procedencia (npm provenance) al
+  # publicar desde Actions, junto con publishConfig.provenance en los packages (D-018c).
+  id-token: write
 
 jobs:
   release:

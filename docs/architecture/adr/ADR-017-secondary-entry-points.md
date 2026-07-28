@@ -53,3 +53,11 @@ HU-014 (Breadcrumbs, change [`aaa-027`](../../../openspec/changes/archive/aaa-02
 
 - Próximo entry point (si aparece caso real): seguir reglas 1–5 sin re-decidir; si alguna no aplica, ADR nuevo.
 - Si ng-packagr incorpora la gestión automática del `exports` del package.json raíz, adoptar y simplificar la regla 4.
+
+## Nota de matización parcial
+
+El **2026-07-28**, [ADR-021](ADR-021-estrategia-publicacion-packages.md) matizó la **regla 4** de este ADR. Al pasar `@romanmartinidev/components` a publicar su `dist/` (`publishConfig.directory`), el manifest publicado es el **generado por ng-packagr**: el `exports` manual del `package.json` raíz **sale del artefacto publicado** y queda como detalle de resolución interna del monorepo. Ya no hay que alinearlo con el generado para proteger al consumidor — el generado _es_ el contrato.
+
+El trade-off que este ADR aceptó ("el `exports` manual puede desalinearse … mitigado con el gate de `npm pack --dry-run`") queda resuelto por partida doble: el drift deja de llegar a npm por construcción, y el **gate prometido existe** desde ADR-021 regla 7 (`scripts/verify-packaging.mjs`), que verifica que cada path de `exports` del manifest publicado resuelva dentro del tarball.
+
+Las reglas 1, 2, 3 y 5 (criterio de creación, estructura, peers opcionales, tooling) siguen **Aceptadas** sin cambios, y el estado global de este ADR sigue siendo **Aceptado**. Las menciones al mantenimiento manual del `exports` en el cuerpo se preservan como **contexto histórico**.

@@ -21,12 +21,9 @@
   "bugs": {
     "url": "https://github.com/roman-martini/design-system/issues"
   },
-  "engines": {
-    "node": ">=22.12.0",
-    "pnpm": ">=9.0.0"
-  },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "type": "module",
   "exports": {
@@ -37,7 +34,8 @@
     "./css": "./dist/tokens.css",
     "./themes/dark": "./dist/themes/dark.css",
     "./themes/brand-a": "./dist/themes/brand-a.css",
-    "./themes/brand-b": "./dist/themes/brand-b.css"
+    "./themes/brand-b": "./dist/themes/brand-b.css",
+    "./package.json": "./package.json"
   },
   "sideEffects": [
     "./dist/*.css",
@@ -45,12 +43,15 @@
   ],
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "node sd.config.mjs",
     "watch": "node --watch sd.config.mjs",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepublishOnly": "node ../../scripts/verify-dist.mjs"
   },
   "devDependencies": {
     "style-dictionary": "^4.3.0",

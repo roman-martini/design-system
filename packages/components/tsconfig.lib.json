@@ -22,6 +22,10 @@
     "noFallthroughCasesInSwitch": true
   },
   "angularCompilerOptions": {
+    // APF: obligatorio en librerías publicadas. `-c` reemplaza el tsconfig
+    // interno de ng-packagr (que lo traía), no lo extiende: sin esta línea
+    // el build cae a full mode y ata el bundle a la versión exacta de Angular.
+    "compilationMode": "partial",
     "strictTemplates": true,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

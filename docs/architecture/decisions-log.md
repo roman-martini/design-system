@@ -30,6 +30,8 @@
 | 2026-07-22 | frontend    | Modelo de variantes por naturaleza del componente: `tone × appearance` (dos ejes) para componentes de estado/display (Badge, futuros Alert/Tag/Chip); `variant` de énfasis plano para componentes de acción (Button se mantiene). Vocabulario de tono = semantic (`danger`/`success`/…), default `appearance=subtle`, AA por gate. Primera implementación: DsBadge (aaa-034). Ejecuta D-017. | [ADR-019](adr/ADR-019-modelo-variantes-tono-apariencia.md) ✅       |
 | 2026-07-26 | frontend    | Base compartida `DsFieldBase` para form fields (`@Directive()` abstracto, interno): CVA por auto-registración de NgControl, a11y de label/hint/error, reactividad de estado vía `control.events` + `markForCheck` (resuelve staleness OnPush diferida en aaa-017); `hostDirectives` evaluado y descartado. `DsInput` y `DsTextarea` la extienden. Change `aaa-036`.                          | [ADR-020](adr/ADR-020-base-compartida-form-fields.md) ✅            |
 
+| 2026-07-28 | transversal | Estrategia de publicación por tipo de artefacto: `components` publica su `dist/` (`publishConfig.directory`), dejando el manifest generado por ng-packagr como fuente única del contrato publicado; `tokens` publica desde su root con guard propio. Corrige el `0.2.0` publicado en full compilation mode y **matiza ADR-017 regla 4** (el `exports` manual sale del artefacto publicado), materializando su mitigación por gate de `npm pack`. Change `aaa-038`. | [ADR-021](adr/ADR-021-estrategia-publicacion-packages.md) ✅ |
+
 ## Cómo agregar una entrada
 
 1. Si la decisión afecta ≥2 packages o es one-way door → crear ADR en [adr/](adr/) siguiendo formato MADR.
