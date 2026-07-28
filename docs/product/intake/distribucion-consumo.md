@@ -24,3 +24,5 @@ Dos mejoras en cómo se consumen los packages desde afuera. El actor es el **dev
 Migrado desde la Cantera del BACKLOG el 2026-07-26 ([D-019](../decisiones.md)), donde figuraba como "nivel 3" del roadmap de madurez.
 
 Ambos ítems tienen el mismo disparador natural: **el primer release post-veto**. Hasta que se levante el veto de publicación y se defina la política 1.0, ninguno de los dos tiene consumidor real.
+
+**Revisión del 2026-07-28** (grooming al archivar `aaa-038`): el **veto se levantó** ([D-028](../decisiones.md)), así que ya no es el obstáculo — pero el disparador sigue sin cumplirse, porque el release en sí no ocurrió: falta destrabar el pipeline (Parte E) y cerrar las Partes G e I antes de publicar `0.3.0`. La **guía de migración** sigue además bloqueada por la política de estabilidad 1.0 ([D-004](../decisiones.md), pendiente). Este intake se revisita cuando `0.3.0` esté publicado.

@@ -21,7 +21,7 @@ Adicionalmente, el próximo CHG (Modal — `aaa-011` esperado) necesita 2 tokens
 
 El `bg.overlay = rgba(0, 0, 0, 0.5)` (scrim) **ya existe** en `semantic/color.json` — no se toca.
 
-Este change cierra el ítem `tokens-add-z-index` del [BACKLOG.md](../../openspec/BACKLOG.md) (auditoría) y desbloquea parcialmente `aaa-011 components-add-modal` (transitions + blur listos).
+Este change cierra el ítem `tokens-add-z-index` del BACKLOG.md (`openspec/BACKLOG.md`) (auditoría) y desbloquea parcialmente `aaa-011 components-add-modal` (transitions + blur listos).
 
 Respalda las 3 prioridades del repo:
 

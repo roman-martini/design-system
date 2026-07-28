@@ -62,6 +62,6 @@ Cada tarea es ≤2 h con criterio binario. Diseño: fix de compilación (design 
 - [x] 8.2 `npx --yes openspec validate --changes` verde.
 - [x] 8.3 Changesets: **patch** de components y de tokens (lockstep ADR-015), en español (D-018a).
 - [x] 8.4 Registrar la decisión de publicación en **ADR-021** y anotar en ADR-017 que su mitigación se materializó acá.
-- [ ] 8.5 Proponer mensaje de commit y **esperar el OK del PO** antes de commitear.
+- [x] 8.5 Proponer mensaje de commit y **esperar el OK del PO** antes de commitear. — OK del PO el 2026-07-28, commit `9864412`.
 
 **Criterio**: repo verde, gobernanza registrada, commit a la espera de aprobación.

@@ -14,7 +14,7 @@ related-adrs:
 
 ## Why
 
-El pre-flight del primer release npm ([HU-002](../../../docs/product/epics/EP-003-consumo-distribucion/HU-002-primer-release-npm.md), aprobado por [D-010](../../../docs/product/decisiones.md)) destapó dos problemas con dry-run verificado:
+El pre-flight del primer release npm (HU-002, aprobado por D-010) destapó dos problemas con dry-run verificado:
 
 1. **Cascada peer→major**: con versionado independiente, los minors de `tokens` fuerzan a Changesets a bumpear `components` con **major** (el peer `^0.x` no cruza minors — semver honesto pero produce `1.0.0`, violando D-004).
 2. **`workspace:*` publica pin exacto**: pnpm lo reescribe a `0.2.0` (versión clavada), no al rango `^0.2.0` que el spec y ADR-004 esperan.

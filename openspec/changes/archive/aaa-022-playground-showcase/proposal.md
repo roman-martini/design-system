@@ -14,7 +14,7 @@ related-adrs:
 
 ## Why
 
-Con el kit en 11 entregables (9 componentes + directiva + service), la página única del playground dejó de escalar: encontrar los casos de uso de una pieza exige scrollear todo, y el "sin routing" que fijó la Fase 4 ([ADR-005](../../../docs/architecture/adr/ADR-005-scaffolding-playground.md) / aaa-004) ya cumplió su propósito de simplicidad inicial. [HU-011](../../../docs/product/epics/EP-006-playground/HU-011-showcase-componentes.md) (EP-006, pedido directo del PO en 2026-07-18) convierte el playground en un **showcase navegable**: sidebar + una vista por componente con sus casos de uso y el código de cada uno.
+Con el kit en 11 entregables (9 componentes + directiva + service), la página única del playground dejó de escalar: encontrar los casos de uso de una pieza exige scrollear todo, y el "sin routing" que fijó la Fase 4 (ADR-005 / aaa-004) ya cumplió su propósito de simplicidad inicial. HU-011 (EP-006, pedido directo del PO en 2026-07-18) convierte el playground en un **showcase navegable**: sidebar + una vista por componente con sus casos de uso y el código de cada uno.
 
 ## What Changes
 

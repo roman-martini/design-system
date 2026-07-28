@@ -4,7 +4,7 @@ Decisiones técnicas del change. Muere al archivar; lo one-way door ya vive en A
 
 ## Context
 
-Primera implementación de [ADR-019](../../../docs/architecture/adr/ADR-019-modelo-variantes-tono-apariencia.md) (dos ejes `tone × appearance`). `DsBadge` es un componente de estado presentacional: texto proyectado + tono + apariencia + size + ícono/dot opcionales. El desafío real es el **contraste por combinación**: 6 tonos × 3 apariencias, y en `solid` los tonos claros (`warning`, `success`, `info`) no pasan AA con texto blanco.
+Primera implementación de ADR-019 (dos ejes `tone × appearance`). `DsBadge` es un componente de estado presentacional: texto proyectado + tono + apariencia + size + ícono/dot opcionales. El desafío real es el **contraste por combinación**: 6 tonos × 3 apariencias, y en `solid` los tonos claros (`warning`, `success`, `info`) no pasan AA con texto blanco.
 
 ## Goals / Non-Goals
 

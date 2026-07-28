@@ -2,7 +2,7 @@
 
 ### Requirement: Componente Checkbox
 
-El package SHALL exponer `CheckboxComponent` (selector `rmd-checkbox`) cumpliendo las convenciones de [ADR-004](../../docs/architecture/adr/ADR-004-arquitectura-components.md): standalone, OnPush, signal-based API. El componente SHALL implementar `ControlValueAccessor` para integración nativa con Angular Forms (reactivos y template-driven). SHALL soportar estado `checked` (model two-way), `indeterminate` (input one-way), `disabled` (model two-way; CVA puede mutarlo), `label` (input string fallback), `size` ('sm' | 'md' | 'lg' con default 'md').
+El package SHALL exponer `CheckboxComponent` (selector `rmd-checkbox`) cumpliendo las convenciones de ADR-004: standalone, OnPush, signal-based API. El componente SHALL implementar `ControlValueAccessor` para integración nativa con Angular Forms (reactivos y template-driven). SHALL soportar estado `checked` (model two-way), `indeterminate` (input one-way), `disabled` (model two-way; CVA puede mutarlo), `label` (input string fallback), `size` ('sm' | 'md' | 'lg' con default 'md').
 
 #### Scenario: estructura de archivos sigue ADR-004
 

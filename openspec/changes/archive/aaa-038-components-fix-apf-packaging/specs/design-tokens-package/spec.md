@@ -33,7 +33,7 @@ El `package.json` SHALL declarar el campo `exports` con sub-paths separados para
 
 ### Requirement: Contenido publicable limitado a dist/
 
-El package SHALL publicarse **desde el root del package** (a diferencia de `@romanmartinidev/components`, que publica su `dist/` — ver [ADR-021](../../../docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md)): Style Dictionary no genera un `package.json`, y el manifest escrito a mano es el contrato publicado.
+El package SHALL publicarse **desde el root del package** (a diferencia de `@romanmartinidev/components`, que publica su `dist/` — ver ADR-021): Style Dictionary no genera un `package.json`, y el manifest escrito a mano es el contrato publicado.
 
 El `package.json` SHALL declarar `files` con `dist/`, `README.md`, `LICENSE` y `CHANGELOG.md`. El `node_modules/`, sources (`src/`), tests (`test/`), configs de build (`sd.config.mjs`, `vitest.config.ts`) y archivos de desarrollo NO SHALL incluirse en el tarball publicado.
 

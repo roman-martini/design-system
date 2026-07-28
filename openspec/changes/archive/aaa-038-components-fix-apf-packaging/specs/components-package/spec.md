@@ -32,7 +32,7 @@ El manifest raíz **NO SHALL** declarar `engines`: los requisitos de Node y pnpm
 
 - **GIVEN** el manifest generado en `dist/package.json`
 - **WHEN** se resuelve cada path declarado en su `exports` contra el contenido del tarball
-- **THEN** todos SHALL existir — la verificación que [ADR-017](../../../docs/architecture/adr/ADR-017-secondary-entry-points.md) declaró como mitigación del entry point secundario
+- **THEN** todos SHALL existir — la verificación que ADR-017 declaró como mitigación del entry point secundario
 
 #### Scenario: el tarball incluye el texto de la licencia
 

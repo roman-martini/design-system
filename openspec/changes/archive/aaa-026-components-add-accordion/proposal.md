@@ -17,7 +17,7 @@ related-adrs:
 
 ## Why
 
-Segunda pieza de la **tanda 2** ([D-011](../../../docs/product/decisiones.md), criterio "navegación y estructura de apps reales"): páginas de settings, FAQs y detalles opcionales necesitan contenido colapsable, y los accordions caseros fallan siempre en lo mismo — headers que no son botones (invisibles al teclado), jerarquía de headings rota para screen readers, animaciones de altura que ignoran `prefers-reduced-motion`. [HU-013](../../../docs/product/epics/EP-002-kit-componentes/HU-013-accordion.md) fue refinada con el PO el 2026-07-19 (base APG heading+button+region, expansión configurable default single, **accordions anidados en v1** — costo aceptado explícitamente). Respalda la prioridad 1 del repo (buenas prácticas: patrón APG completo de serie).
+Segunda pieza de la **tanda 2** (D-011, criterio "navegación y estructura de apps reales"): páginas de settings, FAQs y detalles opcionales necesitan contenido colapsable, y los accordions caseros fallan siempre en lo mismo — headers que no son botones (invisibles al teclado), jerarquía de headings rota para screen readers, animaciones de altura que ignoran `prefers-reduced-motion`. HU-013 fue refinada con el PO el 2026-07-19 (base APG heading+button+region, expansión configurable default single, **accordions anidados en v1** — costo aceptado explícitamente). Respalda la prioridad 1 del repo (buenas prácticas: patrón APG completo de serie).
 
 ## What Changes
 

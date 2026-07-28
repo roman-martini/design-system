@@ -17,7 +17,7 @@ related-adrs:
 
 ## Why
 
-Entrada de texto es, junto con Select (`aaa-016`), el mínimo de cualquier formulario real — segundo componente de la tanda 1 aprobada por [D-009](../../../docs/product/decisiones.md). [HU-005](../../../docs/product/epics/EP-002-kit-componentes/HU-005-input-textfield.md) fue refinada con el PO el 2026-07-11 (field completo, tipos sin `number`, slots pasivos, invalid automático) y tiene 8 CAs binarios listos para convertirse en scenarios.
+Entrada de texto es, junto con Select (`aaa-016`), el mínimo de cualquier formulario real — segundo componente de la tanda 1 aprobada por D-009. HU-005 fue refinada con el PO el 2026-07-11 (field completo, tipos sin `number`, slots pasivos, invalid automático) y tiene 8 CAs binarios listos para convertirse en scenarios.
 
 ## What Changes
 

@@ -15,7 +15,7 @@ related-adrs:
 
 `@romanmartinidev/components` tiene Button + Checkbox. Radio es la pareja conceptual del Checkbox para selección **única** dentro de un grupo. Sin Radio, una app de formularios real no se puede armar con solo este DS — hoy un dev tendría que importar otra lib solo para esto.
 
-Este change cierra el siguiente ítem del Nivel 1 de [FUTURE-WORK](../../docs/architecture/FUTURE-WORK.md) y figura como item activo en [BACKLOG.md](../../openspec/BACKLOG.md). Adicionalmente, valida que el patrón "componente compuesto con context injection" (DsRadioGroup contiene DsRadio que se inyecta el grupo) escala en el repo siguiendo las convenciones de [ADR-004](../../docs/architecture/adr/ADR-004-arquitectura-components.md) y [ADR-007](../../docs/architecture/adr/ADR-007-naming-prefijos.md).
+Este change cierra el siguiente ítem del Nivel 1 de FUTURE-WORK (`docs/architecture/FUTURE-WORK.md`) y figura como item activo en BACKLOG.md (`openspec/BACKLOG.md`). Adicionalmente, valida que el patrón "componente compuesto con context injection" (DsRadioGroup contiene DsRadio que se inyecta el grupo) escala en el repo siguiendo las convenciones de ADR-004 y ADR-007.
 
 Respalda las 3 prioridades del repo:
 

@@ -18,7 +18,7 @@ related-adrs:
 
 ## Why
 
-Tercera pieza de la **tanda 2** ([D-011](../../../docs/product/decisiones.md), criterio "navegación y estructura de apps reales"): toda app con jerarquía de páginas necesita ubicar al usuario y dejarlo volver a niveles superiores, y los breadcrumbs caseros fallan siempre en lo mismo — sin landmark `nav`, item actual sin `aria-current`, separadores anunciados por screen readers y truncamientos que rompen el teclado. [HU-014](../../../docs/product/epics/EP-002-kit-componentes/HU-014-breadcrumbs.md) fue refinada con el PO el 2026-07-20 (links proyectados agnósticos del router, separador por template, **truncamiento opt-in y auto-generación desde rutas en v1** — esta última empaquetada para no acoplar el core al router). Respalda la prioridad 1 del repo (buenas prácticas: patrón APG completo de serie) y la 2 (el secondary entry point escala la estructura del package sin encarecer a quien no lo usa).
+Tercera pieza de la **tanda 2** (D-011, criterio "navegación y estructura de apps reales"): toda app con jerarquía de páginas necesita ubicar al usuario y dejarlo volver a niveles superiores, y los breadcrumbs caseros fallan siempre en lo mismo — sin landmark `nav`, item actual sin `aria-current`, separadores anunciados por screen readers y truncamientos que rompen el teclado. HU-014 fue refinada con el PO el 2026-07-20 (links proyectados agnósticos del router, separador por template, **truncamiento opt-in y auto-generación desde rutas en v1** — esta última empaquetada para no acoplar el core al router). Respalda la prioridad 1 del repo (buenas prácticas: patrón APG completo de serie) y la 2 (el secondary entry point escala la estructura del package sin encarecer a quien no lo usa).
 
 ## What Changes
 

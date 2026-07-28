@@ -12,7 +12,7 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API por directiva + panel (d
 ## 2. Tokens
 
 - [x] 2.1 Creado `packages/tokens/src/component/menu.json` según la tabla del design §6 (20 vars emitidas); `submenu-delay` `150ms` y `panel.min-width` `180px` raw documentados (la escala de dimension termina en 128; precedente select.listbox.max-height).
-- [x] 2.2 Build + test de tokens verdes (11/11). **Gate ejecutado y escalado**: el par danger/danger-subtle falló (4.41 light / 3.62 dark) → parado y resuelto con el PO como **[D-012](../../../docs/product/decisiones.md)** (text.danger sube un paso: red.700 light / red.300 dark, calco de D-008). Re-verificado: los 4 pares del menú pasan en los 4 scopes (panel 6.47/7.97, hover 5.91/5.28) y el par de error de Input mejora (6.47/9.45), sin regresiones. Bonus: sanea el par latente de alert.
+- [x] 2.2 Build + test de tokens verdes (11/11). **Gate ejecutado y escalado**: el par danger/danger-subtle falló (4.41 light / 3.62 dark) → parado y resuelto con el PO como **D-012** (text.danger sube un paso: red.700 light / red.300 dark, calco de D-008). Re-verificado: los 4 pares del menú pasan en los 4 scopes (panel 6.47/7.97, hover 5.91/5.28) y el par de error de Input mejora (6.47/9.45), sin regresiones. Bonus: sanea el par latente de alert.
 
 **Criterio**: tokens nuevos emitidos; jerarquía ADR-003 respetada; pares danger verificados o escalados.
 
@@ -54,7 +54,7 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API por directiva + panel (d
 
 ## 7. ADR + archive
 
-- [x] 7.1 Promoción confirmada por el PO: **[ADR-016](../../../docs/architecture/adr/ADR-016-posicionamiento-placements-por-overlay.md)** (posicionamiento propio con placements por tipo de overlay; umbral de floating-ui y migración a anchor positioning reafirmados) + fila en `decisions-log.md`.
+- [x] 7.1 Promoción confirmada por el PO: **ADR-016** (posicionamiento propio con placements por tipo de overlay; umbral de floating-ui y migración a anchor positioning reafirmados) + fila en `decisions-log.md`.
 - [x] 7.2 Movido a `archive/aaa-025-components-add-menu/`; frontmatter `archived: 2026-07-19` + ADR-016 en related-adrs; spec base `components-package` sincronizada (ADDED autocontenido).
 - [x] 7.3 Registros: `openspec/README.md` (línea de IDs en vuelo eliminada), catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Menu sale de Now; `components-add-accordion` — HU-013 — promovido a Now), HU-012 → Hecha con CAs tildados, EP-002 actualizado.
 - [x] 7.4 `pnpm openspec validate --all` pasa.

@@ -13,7 +13,7 @@ related-adrs:
 
 ## Why
 
-Hoy el package `@romanmartinidev/components` convive con **3 prefijos heterogéneos**: `rmd-` en el selector HTML, `--ds-*` en las CSS custom properties, y sin prefijo en las class TypeScript (`ButtonComponent`, `CheckboxComponent`). Esta disonancia está reconocida como trade-off aceptado en [ADR-004 § Negativas](../../docs/architecture/adr/ADR-004-arquitectura-components.md) y figuraba como duda explícita en el TODO `contexto_post_fases.md` (borrado en CHG-006).
+Hoy el package `@romanmartinidev/components` convive con **3 prefijos heterogéneos**: `rmd-` en el selector HTML, `--ds-*` en las CSS custom properties, y sin prefijo en las class TypeScript (`ButtonComponent`, `CheckboxComponent`). Esta disonancia está reconocida como trade-off aceptado en ADR-004 § Negativas y figuraba como duda explícita en el TODO `contexto_post_fases.md` (borrado en CHG-006).
 
 Resolverlo **ahora** tiene ventana óptima: el package no se publicó nunca, solo hay 2 componentes (Button, Checkbox) sin consumidores externos, y el patrón establecido por CHG-006 (Checkbox) no se replicó todavía a más componentes. Cada CHG futuro de componente (Radio, Modal, Tabs, …) perpetúa la disonancia si no se cierra ahora.
 

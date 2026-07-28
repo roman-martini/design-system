@@ -15,7 +15,7 @@ related-adrs:
 
 ## Why
 
-Sexto entregable de la tanda 1 (D-009): la espera indeterminada (fetch, submit, carga inicial) es el único feedback de proceso que el kit todavía no cubre, y los spinners caseros fallan siempre en lo mismo — sin anuncio a lectores de pantalla, animación que ignora `prefers-reduced-motion` y colores hardcodeados que rompen en dark. [HU-009](../../../docs/product/epics/EP-002-kit-componentes/HU-009-spinner.md) fue refinada con el PO el 2026-07-19 (spinner solo, `currentColor`, pulso de opacidad en reduced-motion, anuncio con opt-out). Respalda la prioridad 1 del repo (buenas prácticas: a11y y motion accesible de serie).
+Sexto entregable de la tanda 1 (D-009): la espera indeterminada (fetch, submit, carga inicial) es el único feedback de proceso que el kit todavía no cubre, y los spinners caseros fallan siempre en lo mismo — sin anuncio a lectores de pantalla, animación que ignora `prefers-reduced-motion` y colores hardcodeados que rompen en dark. HU-009 fue refinada con el PO el 2026-07-19 (spinner solo, `currentColor`, pulso de opacidad en reduced-motion, anuncio con opt-out). Respalda la prioridad 1 del repo (buenas prácticas: a11y y motion accesible de serie).
 
 ## What Changes
 

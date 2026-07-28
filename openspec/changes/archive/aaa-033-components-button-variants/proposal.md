@@ -19,7 +19,7 @@ related-decisions:
 
 ## Why
 
-Segunda entrega de la **tanda 3** ([D-014](../../../docs/product/decisiones.md)): la referencia moder-minimal muestra las variantes **Outline** y **Delete** que `DsButton` no tiene (hoy: primary/secondary/ghost) — el dev que necesita una acción con borde liviano o un botón de borrado hoy recrea estilos a mano. [HU-020](../../../docs/product/epics/EP-002-kit-componentes/HU-020-button-outline-destructive.md) fue refinada con el PO el 2026-07-22 (naming `danger`, contraste corregido en la fuente vía [D-016](../../../docs/product/decisiones.md), alcance danger completo: sólida + outline + ghost). Respalda la **prioridad 1** (a11y de serie: el par danger pasa de 3.76:1 a 4.83:1 corrigiendo el token semantic, no parcheando el componente) y ejecuta D-007.
+Segunda entrega de la **tanda 3** (D-014): la referencia moder-minimal muestra las variantes **Outline** y **Delete** que `DsButton` no tiene (hoy: primary/secondary/ghost) — el dev que necesita una acción con borde liviano o un botón de borrado hoy recrea estilos a mano. HU-020 fue refinada con el PO el 2026-07-22 (naming `danger`, contraste corregido en la fuente vía D-016, alcance danger completo: sólida + outline + ghost). Respalda la **prioridad 1** (a11y de serie: el par danger pasa de 3.76:1 a 4.83:1 corrigiendo el token semantic, no parcheando el componente) y ejecuta D-007.
 
 ## What Changes
 

@@ -1,5 +1,5 @@
 ---
-estado: En desarrollo (primer release 0.2.0 en npm 2026-07-18; próximos releases son operación normal del pipeline)
+estado: En desarrollo (0.2.0 en npm 2026-07-18; su bundle violaba APF y se corrigió en aaa-038 — la versión sana sale como 0.3.0, D-028)
 actor: Dev consumidor
 ---
 
@@ -15,13 +15,14 @@ Empaquetado (APF/exports/tree-shaking), versionado (Changesets), pipeline de rel
 
 ## Valor entregado
 
-| Entrega                                                             | Change                                                                               | Qué obtuvo el dev consumidor   |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------ |
-| Monorepo + Changesets + Conventional Commits                        | [aaa-001](../../../../openspec/changes/archive/aaa-001-bootstrap-fase-1-monorepo/)   | Versionado semver disciplinado |
-| Tokens npm-ready (exports granulares, tree-shaking, tarball limpio) | [aaa-002](../../../../openspec/changes/archive/aaa-002-bootstrap-fase-2-tokens/)     | Importa solo lo que usa        |
-| Components npm-ready (APF, peerDependencies, barrel único)          | [aaa-003](../../../../openspec/changes/archive/aaa-003-bootstrap-fase-3-components/) | Instalación estándar Angular   |
-| CI/CD: PR validation + release pipeline con Changesets              | [aaa-005](../../../../openspec/changes/archive/aaa-005-bootstrap-fase-5-ci/)         | Releases reproducibles         |
-| Primer release npm: 0.2.0 en lockstep, peer con rango plano         | [aaa-020](../../../../openspec/changes/archive/aaa-020-repo-release-lockstep/)       | Instala las libs desde npm     |
+| Entrega                                                                   | Change                                                                                | Qué obtuvo el dev consumidor                                                                                           |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Monorepo + Changesets + Conventional Commits                              | [aaa-001](../../../../openspec/changes/archive/aaa-001-bootstrap-fase-1-monorepo/)    | Versionado semver disciplinado                                                                                         |
+| Tokens npm-ready (exports granulares, tree-shaking, tarball limpio)       | [aaa-002](../../../../openspec/changes/archive/aaa-002-bootstrap-fase-2-tokens/)      | Importa solo lo que usa                                                                                                |
+| Components npm-ready (APF, peerDependencies, barrel único)                | [aaa-003](../../../../openspec/changes/archive/aaa-003-bootstrap-fase-3-components/)  | Instalación estándar Angular                                                                                           |
+| CI/CD: PR validation + release pipeline con Changesets                    | [aaa-005](../../../../openspec/changes/archive/aaa-005-bootstrap-fase-5-ci/)          | Releases reproducibles                                                                                                 |
+| Primer release npm: 0.2.0 en lockstep, peer con rango plano               | [aaa-020](../../../../openspec/changes/archive/aaa-020-repo-release-lockstep/)        | Instala las libs desde npm                                                                                             |
+| APF partial mode + empaquetado publicable correcto + gate de verificación | [aaa-038](../../../../openspec/changes/archive/aaa-038-components-fix-apf-packaging/) | La lib funciona en cualquier Angular 21.x (y en 22), con licencia MIT en el tarball y sin requisitos de entorno falsos |
 
 ## Historias de usuario
 

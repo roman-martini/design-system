@@ -17,7 +17,7 @@ related-adrs:
 
 ## Why
 
-Selección de opciones es el gap más grande del kit para armar un formulario real ([HU-003](../../../docs/product/epics/EP-002-kit-componentes/HU-003-select-formularios.md), Refinada). La tanda 1 de expansión del kit fue aprobada por [D-009](../../../docs/product/decisiones.md) (2026-07-11) y Select es el primer componente porque su decisión de posicionamiento la reutiliza Tooltip (HU-007, hoy bloqueado por esto).
+Selección de opciones es el gap más grande del kit para armar un formulario real (HU-003, Refinada). La tanda 1 de expansión del kit fue aprobada por D-009 (2026-07-11) y Select es el primer componente porque su decisión de posicionamiento la reutiliza Tooltip (HU-007, hoy bloqueado por esto).
 
 ## What Changes
 

@@ -67,6 +67,13 @@ context: |
     - docs/product/                      épicas, HUs y decisiones de producto (D-XXX)
 
 rules:
+  all-artifacts:
+    - Sin links markdown relativos en artefactos de change (proposal, design, tasks, deltas)
+    - Referenciar por ID - ADR-NNN, D-NNN, HU-NNN, EP-NNN, CA-NNN.Y, aaa-NNN; specs por nombre de carpeta
+    - Archivos sin ID - citar el path desde el root del repo en codigo inline, no como link
+    - Motivo - archivar mueve el change un nivel y rompe toda ruta relativa (110 links rotos corregidos el 2026-07-28)
+    - Los links markdown si se usan dentro de docs/, donde los archivos no se mueven
+
   proposal:
     - Antes de redactar leer CLAUDE.md, architecture/README.md, decisions-log.md, openspec/README.md y docs/backlog/BACKLOG.md
     - Declarar cuál de las 3 prioridades del repo respalda la propuesta
@@ -92,5 +99,5 @@ rules:
     - Marcar tareas que afectan config compartida como "afecta-todo-el-repo"
     - Última tarea de implementación siempre es proponer mensaje de commit y esperar OK
     - Incluir tarea de validación final con openspec validate, lint, format, build, tests, storybook, npm pack
-    - Incluir tarea final de archive con el checklist completo de docs/product/README.md § "Checklist de archive": spec base, openspec/README.md (próximo ID e IDs en vuelo), catálogo en docs/architecture/README.md, HU a Hecha, doc de la épica (contador y valor entregado), README de producto (Foto táctica y Última entrega), grooming del BACKLOG
+    - Incluir tarea final de archive con el checklist completo de docs/product/README.md § "Checklist de archive": spec base, artefactos del change sin links relativos, openspec/README.md (próximo ID e IDs en vuelo), catálogo en docs/architecture/README.md, HU a Hecha, doc de la épica (contador y valor entregado), README de producto (Foto táctica y Última entrega), grooming del BACKLOG
     - En changes de componente, el archive requiere el gate visual del PO antes de ejecutarse (D-022): la tarea de archive queda bloqueada hasta su OK explícito

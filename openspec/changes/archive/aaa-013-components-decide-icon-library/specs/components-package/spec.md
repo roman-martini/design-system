@@ -2,7 +2,7 @@
 
 ### Requirement: Convención de iconografía con Lucide
 
-El sistema de diseño SHALL usar **Lucide** (package `@lucide/angular`) como librería de iconos, según [ADR-012](../../../../docs/architecture/adr/ADR-012-iconografia-lucide.md). Los iconos SHALL importarse como **componentes standalone por icono** (tree-shakeable, type-safe), NO vía registry por nombre. Los usos de iconos en componentes del DS SHALL declarar el estilo explícitamente — tamaño base `16` y `strokeWidth` `1.5` (starting point del DS), color heredado vía `currentColor` — sin depender de configuración global de la app consumidora. Mientras ningún componente publicado consuma iconos, `@lucide/angular` NO SHALL declararse como dependencia de `@romanmartinidev/components`; cuando el primer componente publicado los consuma, SHALL declararse como **`peerDependency`** (mismo criterio que Angular y `@romanmartinidev/tokens`).
+El sistema de diseño SHALL usar **Lucide** (package `@lucide/angular`) como librería de iconos, según ADR-012. Los iconos SHALL importarse como **componentes standalone por icono** (tree-shakeable, type-safe), NO vía registry por nombre. Los usos de iconos en componentes del DS SHALL declarar el estilo explícitamente — tamaño base `16` y `strokeWidth` `1.5` (starting point del DS), color heredado vía `currentColor` — sin depender de configuración global de la app consumidora. Mientras ningún componente publicado consuma iconos, `@lucide/angular` NO SHALL declararse como dependencia de `@romanmartinidev/components`; cuando el primer componente publicado los consuma, SHALL declararse como **`peerDependency`** (mismo criterio que Angular y `@romanmartinidev/tokens`).
 
 #### Scenario: import tree-shakeable por icono
 

@@ -16,7 +16,7 @@ related-adrs:
 
 ## Why
 
-Cuarto entregable de la tanda 1 (D-009): la ayuda contextual sobre controles compactos es el complemento natural de un kit con botones ícono-only, y su a11y (WCAG 1.4.13) es de las más incumplidas en tooltips caseros. [HU-007](../../../docs/product/epics/EP-002-kit-componentes/HU-007-tooltip.md) fue refinada con el PO el 2026-07-18 y hereda **todo** el patrón de overlays anclados de [ADR-014](../../../docs/architecture/adr/ADR-014-overlays-anclados-popover-api.md) — es el primer reuso del ADR y su validación.
+Cuarto entregable de la tanda 1 (D-009): la ayuda contextual sobre controles compactos es el complemento natural de un kit con botones ícono-only, y su a11y (WCAG 1.4.13) es de las más incumplidas en tooltips caseros. HU-007 fue refinada con el PO el 2026-07-18 y hereda **todo** el patrón de overlays anclados de ADR-014 — es el primer reuso del ADR y su validación.
 
 ## What Changes
 

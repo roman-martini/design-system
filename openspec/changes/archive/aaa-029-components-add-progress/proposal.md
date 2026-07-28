@@ -15,7 +15,7 @@ related-adrs:
 
 ## Why
 
-Quinta y **última pieza de la tanda 2** ([D-011](../../../docs/product/decisiones.md)): las operaciones con avance (upload, importación, wizard) necesitan comunicar progreso, y las barras caseras fallan siempre en lo mismo — sin `role="progressbar"` ni `aria-valuenow`, animaciones indeterminadas que ignoran `prefers-reduced-motion` y porcentajes calculados a mano. [HU-016](../../../docs/product/epics/EP-002-kit-componentes/HU-016-progress.md) fue refinada con el PO el 2026-07-20 (ambas variantes con guía de uso vs spinner — criterio de mejor práctica de la industria —, `showValue` opt-in, sizes, 3 tonos). **Cerrar este change completa la tanda 2** y el trío de feedback (Spinner/Skeleton/Progress). Respalda la prioridad 1 del repo.
+Quinta y **última pieza de la tanda 2** (D-011): las operaciones con avance (upload, importación, wizard) necesitan comunicar progreso, y las barras caseras fallan siempre en lo mismo — sin `role="progressbar"` ni `aria-valuenow`, animaciones indeterminadas que ignoran `prefers-reduced-motion` y porcentajes calculados a mano. HU-016 fue refinada con el PO el 2026-07-20 (ambas variantes con guía de uso vs spinner — criterio de mejor práctica de la industria —, `showValue` opt-in, sizes, 3 tonos). **Cerrar este change completa la tanda 2** y el trío de feedback (Spinner/Skeleton/Progress). Respalda la prioridad 1 del repo.
 
 ## What Changes
 

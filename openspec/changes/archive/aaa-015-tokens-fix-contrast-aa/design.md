@@ -2,7 +2,7 @@
 
 ## Context
 
-Los ratios actuales salen de la [auditoría 2026-07-11](../../../docs/design/a11y/2026-07-11-audit.md), calculados con `check-a11y/scripts/contrast.mjs` sobre `packages/tokens/dist/` (4 scopes). Las fallas viven en el mapeo semantic → primitives del theme default y del override de brand-a; dark y brand-b ya pasan con sus propios overrides. Los componentes consumen los tokens vía CSS variables, así que el fix no toca `packages/components`.
+Los ratios actuales salen de la auditoría 2026-07-11 (`docs/design/a11y/2026-07-11-audit.md`), calculados con `check-a11y/scripts/contrast.mjs` sobre `packages/tokens/dist/` (4 scopes). Las fallas viven en el mapeo semantic → primitives del theme default y del override de brand-a; dark y brand-b ya pasan con sus propios overrides. Los componentes consumen los tokens vía CSS variables, así que el fix no toca `packages/components`.
 
 ## Goals / Non-Goals
 

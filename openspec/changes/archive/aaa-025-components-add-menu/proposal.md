@@ -19,7 +19,7 @@ related-adrs:
 
 ## Why
 
-Primera pieza de la **tanda 2** ([D-011](../../../docs/product/decisiones.md), criterio "navegación y estructura de apps reales"): las acciones contextuales (editar, duplicar, eliminar tras un botón kebab) son el patrón de navegación más frecuente que el kit todavía no cubre, y los menús caseros fallan siempre en lo mismo — sin teclado APG, foco que no vuelve al trigger, dropdowns recortados por `overflow` y items destructivos sin contraste. [HU-012](../../../docs/product/epics/EP-002-kit-componentes/HU-012-menu-dropdown.md) fue refinada con el PO el 2026-07-19 (trigger por directiva, items declarativos, capacidades completas incluyendo typeahead y **submenús anidados en v1** — costo aceptado explícitamente). Respalda la prioridad 1 del repo (buenas prácticas: patrón APG completo de serie).
+Primera pieza de la **tanda 2** (D-011, criterio "navegación y estructura de apps reales"): las acciones contextuales (editar, duplicar, eliminar tras un botón kebab) son el patrón de navegación más frecuente que el kit todavía no cubre, y los menús caseros fallan siempre en lo mismo — sin teclado APG, foco que no vuelve al trigger, dropdowns recortados por `overflow` y items destructivos sin contraste. HU-012 fue refinada con el PO el 2026-07-19 (trigger por directiva, items declarativos, capacidades completas incluyendo typeahead y **submenús anidados en v1** — costo aceptado explícitamente). Respalda la prioridad 1 del repo (buenas prácticas: patrón APG completo de serie).
 
 ## What Changes
 

@@ -20,7 +20,7 @@ related-decisions:
 
 # Why
 
-Cuarta entrega de la **tanda 3** ([D-014](../../../docs/product/decisiones.md)): la referencia moder-minimal usa toggles on/off (img 1) y el bloque Cookie Settings (img 4) que hoy el consumidor arma a mano. [HU-023](../../../docs/product/epics/EP-002-kit-componentes/HU-023-switch.md) fue refinada con el PO el 2026-07-22 (base `<input type="checkbox" role="switch">` + CVA, sizes sm/md/lg, label opcional). Respalda la **prioridad 1** (a11y de plataforma + Forms nativos) y ejecuta D-007. Es la contraparte de acción inmediata del `DsCheckbox` (selección en un form).
+Cuarta entrega de la **tanda 3** (D-014): la referencia moder-minimal usa toggles on/off (img 1) y el bloque Cookie Settings (img 4) que hoy el consumidor arma a mano. HU-023 fue refinada con el PO el 2026-07-22 (base `<input type="checkbox" role="switch">` + CVA, sizes sm/md/lg, label opcional). Respalda la **prioridad 1** (a11y de plataforma + Forms nativos) y ejecuta D-007. Es la contraparte de acción inmediata del `DsCheckbox` (selección en un form).
 
 # What Changes
 

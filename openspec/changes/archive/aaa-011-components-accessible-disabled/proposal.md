@@ -21,7 +21,7 @@ El estado disabled de los componentes del DS hoy usa el **atributo `disabled` na
 
 Decisión tomada (con Roman, 2026-06-08): adoptar el patrón **`aria-disabled` accesible** como **estándar transversal del DS** —control focuseable, anunciado por el SR como no disponible, y con un **mecanismo para explicar el motivo**— en lugar de parchar componente por componente. El beneficio central no es el atributo: es **comunicar por qué** está deshabilitado, que es lo que convierte un dead-end en feedback accionable.
 
-Disparador: el `/ng:review` del `ds-button` destapó una guarda `if(disabled()) return` redundante con el `disabled` nativo; al analizarla surgió que el patrón nativo es subóptimo en a11y. Alineado con el Nivel 2 ("Calidad profesional — a11y en CI") de [`docs/architecture/FUTURE-WORK.md`](../../../docs/architecture/FUTURE-WORK.md).
+Disparador: el `/ng:review` del `ds-button` destapó una guarda `if(disabled()) return` redundante con el `disabled` nativo; al analizarla surgió que el patrón nativo es subóptimo en a11y. Alineado con el Nivel 2 ("Calidad profesional — a11y en CI") de `docs/architecture/FUTURE-WORK.md`.
 
 Respalda las prioridades del repo:
 

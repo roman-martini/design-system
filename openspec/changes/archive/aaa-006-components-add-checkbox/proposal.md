@@ -12,7 +12,7 @@ related-adrs:
 
 ## Why
 
-Cierra el primer item del **Nivel 1 — Cerrar deuda obvia** del [FUTURE-WORK](../../docs/architecture/FUTURE-WORK.md): un Design System con un solo componente (Button) no es usable para una app real. Checkbox es alta frecuencia de uso, no requiere librerías externas (a diferencia de Select / Tooltip que necesitan `@floating-ui/dom`), y permite validar el patrón "sumar componente nuevo a la lib" siguiendo [ADR-004](../../docs/architecture/adr/ADR-004-arquitectura-components.md) (flat por componente, standalone + signals, prefix `rmd-`, CSS plain con tokens).
+Cierra el primer item del **Nivel 1 — Cerrar deuda obvia** del FUTURE-WORK (`docs/architecture/FUTURE-WORK.md`): un Design System con un solo componente (Button) no es usable para una app real. Checkbox es alta frecuencia de uso, no requiere librerías externas (a diferencia de Select / Tooltip que necesitan `@floating-ui/dom`), y permite validar el patrón "sumar componente nuevo a la lib" siguiendo ADR-004 (flat por componente, standalone + signals, prefix `rmd-`, CSS plain con tokens).
 
 Esta propuesta es el **primer change post-bootstrap** y establece la plantilla de "cómo se suman componentes nuevos" que CHG-007 (Radio), CHG-009 (Modal), etc., van a copiar.
 
@@ -147,7 +147,7 @@ Agregar `@angular/forms` como **peerDependency** (`^21.0.0`). Hoy NO está decla
 
 ### Spec deltas en SPC-003
 
-Agregar a [SPC-003 components-package](../../openspec/specs/SPC-003-components-package/spec.md) un requirement nuevo **"Componente Checkbox"** con scenarios específicos del API + ControlValueAccessor + ARIA. Sigue la convención: cada change que suma componente agrega un requirement ADDED al spec base.
+Agregar a SPC-003 components-package un requirement nuevo **"Componente Checkbox"** con scenarios específicos del API + ControlValueAccessor + ARIA. Sigue la convención: cada change que suma componente agrega un requirement ADDED al spec base.
 
 ### Cleanup operativo
 

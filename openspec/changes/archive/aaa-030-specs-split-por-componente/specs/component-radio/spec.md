@@ -2,7 +2,7 @@
 
 ### Requirement: Componente DsRadioGroup
 
-El package SHALL exponer `DsRadioGroup` (selector `ds-radio-group`) que agrupa componentes `DsRadio` hijos para representar una selección única. Sigue las convenciones de [ADR-004](../../../docs/architecture/adr/ADR-004-arquitectura-components.md) (arquitectura) y [ADR-007](../../../docs/architecture/adr/ADR-007-naming-prefijos.md) (naming). El componente SHALL implementar `ControlValueAccessor` para integración con Angular Forms reactivos y template-driven. SHALL soportar `value` (model two-way con tipo genérico), `name` (input opcional), `disabled` (model two-way).
+El package SHALL exponer `DsRadioGroup` (selector `ds-radio-group`) que agrupa componentes `DsRadio` hijos para representar una selección única. Sigue las convenciones de ADR-004 (arquitectura) y ADR-007 (naming). El componente SHALL implementar `ControlValueAccessor` para integración con Angular Forms reactivos y template-driven. SHALL soportar `value` (model two-way con tipo genérico), `name` (input opcional), `disabled` (model two-way).
 
 #### Scenario: estructura de archivos
 

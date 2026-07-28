@@ -21,7 +21,7 @@ related-decisions:
 
 # Why
 
-Tercera entrega de la **tanda 3** ([D-014](../../../docs/product/decisiones.md)) y **primera implementación de referencia de [ADR-019](../../../docs/architecture/adr/ADR-019-modelo-variantes-tono-apariencia.md)** (modelo `tone × appearance`, estándar del kit por [D-017](../../../docs/product/decisiones.md)). La referencia moder-minimal muestra badges de estado (Badge/Secondary/Outline/Error) y roles de team; hoy el consumidor recrea pills a mano, sin garantía de contraste. [HU-021](../../../docs/product/epics/EP-002-kit-componentes/HU-021-badge.md) fue refinada con el PO el 2026-07-22 (dos ejes, sizes sm/md/lg, ícono + dot). Respalda la **prioridad 1** (a11y: cada combinación tono×apariencia cumple AA por gate) y ejecuta D-017 (patrón profesional aplicado como estándar).
+Tercera entrega de la **tanda 3** (D-014) y **primera implementación de referencia de ADR-019** (modelo `tone × appearance`, estándar del kit por D-017). La referencia moder-minimal muestra badges de estado (Badge/Secondary/Outline/Error) y roles de team; hoy el consumidor recrea pills a mano, sin garantía de contraste. HU-021 fue refinada con el PO el 2026-07-22 (dos ejes, sizes sm/md/lg, ícono + dot). Respalda la **prioridad 1** (a11y: cada combinación tono×apariencia cumple AA por gate) y ejecuta D-017 (patrón profesional aplicado como estándar).
 
 # What Changes
 

@@ -17,7 +17,7 @@ related-adrs:
 
 ## Why
 
-Quinto entregable de la tanda 1 (D-009): el feedback asíncrono (guardado, error de red, deshacer) es el único patrón del kit que hoy obliga al consumidor a inventar su propia solución — y los toasts caseros fallan sistemáticamente en lo mismo: anuncios a lectores de pantalla, timers que no pausan (WCAG 2.2.1) y errores que se esfuman antes de leerse. [HU-008](../../../docs/product/epics/EP-002-kit-componentes/HU-008-toast-notificaciones.md) fue refinada con el PO el 2026-07-18 (posición global por provider, danger persistente, acción única opcional, top layer).
+Quinto entregable de la tanda 1 (D-009): el feedback asíncrono (guardado, error de red, deshacer) es el único patrón del kit que hoy obliga al consumidor a inventar su propia solución — y los toasts caseros fallan sistemáticamente en lo mismo: anuncios a lectores de pantalla, timers que no pausan (WCAG 2.2.1) y errores que se esfuman antes de leerse. HU-008 fue refinada con el PO el 2026-07-18 (posición global por provider, danger persistente, acción única opcional, top layer).
 
 ## What Changes
 

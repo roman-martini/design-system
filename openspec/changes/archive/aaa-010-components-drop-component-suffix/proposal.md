@@ -15,7 +15,7 @@ related-adrs:
 
 ## Why
 
-[ADR-007](../../../docs/architecture/adr/ADR-007-naming-prefijos.md) unificó el naming del DS bajo `Ds` / `ds-` / `--ds-*` y **dropeó el sufijo `Component` de la clase** (`DsRadio`, no `DsRadioComponent`), pero **conservó el sufijo `.component` en el nombre de archivo** (`radio.component.ts`). Esa conservación fue una decisión **deliberadamente postergada**, no un cierre:
+ADR-007 unificó el naming del DS bajo `Ds` / `ds-` / `--ds-*` y **dropeó el sufijo `Component` de la clase** (`DsRadio`, no `DsRadioComponent`), pero **conservó el sufijo `.component` en el nombre de archivo** (`radio.component.ts`). Esa conservación fue una decisión **deliberadamente postergada**, no un cierre:
 
 - ADR-007 §Decisión, fila "Folder y file naming": _"sin cambios … el archivo sigue `<name>.component.ts` … Si se quiere evolucionar a `<name>.ts` al estilo Angular 21 moderno, va en un CHG separado."_
 - ADR-007 §Open questions: _"¿Migrar también el folder/file naming a la convención Angular 21 moderna (`button.ts` sin `.component`)? Postergado. … Si aparece motivación, va en CHG separado."_

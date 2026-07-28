@@ -4,7 +4,7 @@
 
 ### Requirement: Angular y tokens como peerDependencies
 
-El `package.json` SHALL declarar `@angular/core`, `@angular/common` y `@romanmartinidev/tokens` como `peerDependencies`. Angular SHALL declararse con rango `^21.0.0`. `@romanmartinidev/tokens` SHALL declararse con el rango semver plano **`>=0.1.0 <1.0.0`** mientras el par esté pre-1.0 (al saltar a 1.0 pasa a `^1.0.0`), publicado **tal cual** (sin pin exacto ni protocol de workspace). Ambos packages versionan en **lockstep** ([ADR-015](../../../../docs/architecture/adr/ADR-015-versionado-lockstep.md)): la versión hermana siempre satisface el rango, y el consumidor SHALL instalar ambos en la misma versión (documentado en README). NO SHALL declararse ninguna de estas tres como `dependencies` regular (evitar duplicación en el bundle del consumidor; convención de ng-packagr y del ecosistema Angular libs).
+El `package.json` SHALL declarar `@angular/core`, `@angular/common` y `@romanmartinidev/tokens` como `peerDependencies`. Angular SHALL declararse con rango `^21.0.0`. `@romanmartinidev/tokens` SHALL declararse con el rango semver plano **`>=0.1.0 <1.0.0`** mientras el par esté pre-1.0 (al saltar a 1.0 pasa a `^1.0.0`), publicado **tal cual** (sin pin exacto ni protocol de workspace). Ambos packages versionan en **lockstep** (ADR-015): la versión hermana siempre satisface el rango, y el consumidor SHALL instalar ambos en la misma versión (documentado en README). NO SHALL declararse ninguna de estas tres como `dependencies` regular (evitar duplicación en el bundle del consumidor; convención de ng-packagr y del ecosistema Angular libs).
 
 #### Scenario: instalar el package en un consumidor con Angular
 

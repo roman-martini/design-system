@@ -27,8 +27,6 @@ Actualizar al crear un change nuevo.
 
 IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/README.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
 
-> `aaa-038` asignado a `components-fix-apf-packaging` (status `proposed`; genera ADR-021). Parte D de la review integral 2026-07-26: fix de Angular Package Format del `0.2.0` publicado + modelo de publicación por package.
->
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
 >
 > ⏸️ **En pausa desde el 2026-07-03 por decisión del PO**, ratificada por [D-027](../docs/product/decisiones.md): el change queda activo acá con sus 4 artefactos intactos, pero **no se debe aplicar**. Sus 29 tasks están sin ejecutar a propósito — que estén "listas para apply" no es una invitación. Condición de reactivación: que el PO lo pida explícitamente; su validación final depende además de conectar Tokens Studio en Figma, trabajo del PO. Coordinar con la migración a formato DTCG de la fuente de tokens ([D-024](../docs/product/decisiones.md)).
@@ -46,6 +44,36 @@ Desde `aaa-030`, las specs del kit se organizan como una capability **transversa
 - que cambia algo **transversal** (peer dep, build, una convención cross-cutting) → `modifies-specs: components-package`.
 
 Regla de partición (ADR-018): un requirement es transversal si gobierna el package o ≥2 componentes; es per-componente si gobierna exactamente uno.
+
+---
+
+## Referencias dentro de artefactos de change
+
+Los artefactos de un change (`proposal.md`, `design.md`, `tasks.md`, deltas de spec) **NO usan links markdown relativos**. Referencian por **ID**.
+
+**Por qué**: los changes se mueven al archivarse (`changes/<name>/` → `changes/archive/<id>-<name>/`), lo que baja un nivel toda ruta relativa y rompe cada link. No es hipotético: el 2026-07-28 se corrigieron **110 links rotos** en 56 archivos, acumulados en 37 changes archivados — ninguno resolvía. Los IDs no dependen de dónde viva el archivo.
+
+Esto **no aplica a `docs/`** (ADRs, producto, backlog, arquitectura), donde los links markdown sí se usan: esos archivos no se mueven.
+
+| Destino                       | Cómo se referencia                                 |
+| ----------------------------- | -------------------------------------------------- |
+| ADR                           | `ADR-021`                                          |
+| Decisión de producto          | `D-028`                                            |
+| HU / épica                    | `HU-022`, `EP-003`                                 |
+| Criterio de aceptación        | `CA-018.3`                                         |
+| Otro change                   | `aaa-037`                                          |
+| Spec                          | por su nombre de carpeta (`components-package`)    |
+| Archivo sin ID (código, docs) | el path desde el root del repo, en `código inline` |
+
+```markdown
+<!-- bien -->
+
+Lockstep (ADR-015); ejecuta D-014. Evidencia en `docs/reviews/2026-07-26-review-integral/hallazgos.md`.
+
+<!-- mal: se rompe al archivar -->
+
+Lockstep ([ADR-015](../../../docs/architecture/adr/ADR-015-versionado-lockstep.md)).
+```
 
 ---
 
@@ -110,7 +138,7 @@ created: YYYY-MM-DD
 1. **Crear change**: en la práctica se crea con `/opsx:propose <kebab-name>` (o a mano siguiendo la estructura de arriba). Asignar ID en frontmatter (próximo disponible arriba). Actualizar en este README el próximo ID y la lista de IDs en vuelo.
 2. **Generar artifacts** (proposal, design opcional, specs delta, tasks). Validar con `npx --yes openspec validate --changes`.
 3. **Apply**: implementar tasks marcando checkboxes. Última task siempre es "proponer mensaje de commit y esperar OK del usuario".
-4. **Archivar**: mover dir a `archive/<id>-<name>/`, sincronizar spec base con deltas, borrar la línea del change de "IDs en vuelo" en este README, agregar fila al catálogo histórico en `docs/architecture/README.md`. Ver el [checklist completo de archive](../docs/product/README.md#checklist-de-archive) — incluye los registros de producto y el gate visual del PO ([D-022](../docs/product/decisiones.md)).
+4. **Archivar**: mover dir a `archive/<id>-<name>/`, sincronizar spec base con deltas, verificar que los artefactos no tengan links relativos (ver § "Referencias dentro de artefactos de change" — es lo que el movimiento rompe), borrar la línea del change de "IDs en vuelo" en este README, agregar fila al catálogo histórico en `docs/architecture/README.md`. Ver el [checklist completo de archive](../docs/product/README.md#checklist-de-archive) — incluye los registros de producto y el gate visual del PO ([D-022](../docs/product/decisiones.md)).
 
 > El CLI corre vía `npx --yes openspec` (todavía no está pinneado como devDependency del repo; su instalación está prevista en el hardening de CI).
 

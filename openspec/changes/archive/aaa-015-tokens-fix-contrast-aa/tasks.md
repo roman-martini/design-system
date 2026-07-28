@@ -1,6 +1,6 @@
 # Tasks — aaa-015 — Fix de contraste AA en tokens semantic
 
-Cada tarea es ≤2 h con criterio binario. Valores objetivo y ratios pre-verificados: design.md y [auditoría 2026-07-11](../../../docs/design/a11y/2026-07-11-audit.md).
+Cada tarea es ≤2 h con criterio binario. Valores objetivo y ratios pre-verificados: design.md y auditoría 2026-07-11 (`docs/design/a11y/2026-07-11-audit.md`).
 
 ## 1. Pre-flight
 

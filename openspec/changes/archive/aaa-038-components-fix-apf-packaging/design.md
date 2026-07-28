@@ -1,6 +1,6 @@
 # Design — components-fix-apf-packaging
 
-Diseño técnico del fix de Angular Package Format y del modelo de publicación. Las decisiones one-way door se promueven a [ADR-021](../../../docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md) al archivar.
+Diseño técnico del fix de Angular Package Format y del modelo de publicación. Las decisiones one-way door se promueven a ADR-021 al archivar.
 
 ## 1. Fix de compilation mode
 
@@ -23,7 +23,7 @@ Diseño técnico del fix de Angular Package Format y del modelo de publicación.
 
 ### El problema estructural
 
-Publicar desde el root con `files: ["dist"]` produce un tarball con **dos manifests**: el raíz (escrito a mano) que npm usa como contrato, y `dist/package.json` (generado por ng-packagr) que queda adentro como archivo inerte. Todo lo que ng-packagr calcula correctamente — `exports` de ambos entry points, `sideEffects`, el guard de compilation mode — se descarta a favor de una copia manual que hay que mantener sincronizada. Ese es el drift que [ADR-017](../../../docs/architecture/adr/ADR-017-secondary-entry-points.md) aceptó "mitigado con el gate de `npm pack --dry-run`", gate que nunca se escribió.
+Publicar desde el root con `files: ["dist"]` produce un tarball con **dos manifests**: el raíz (escrito a mano) que npm usa como contrato, y `dist/package.json` (generado por ng-packagr) que queda adentro como archivo inerte. Todo lo que ng-packagr calcula correctamente — `exports` de ambos entry points, `sideEffects`, el guard de compilation mode — se descarta a favor de una copia manual que hay que mantener sincronizada. Ese es el drift que ADR-017 aceptó "mitigado con el gate de `npm pack --dry-run`", gate que nunca se escribió.
 
 ### La decisión
 
@@ -68,7 +68,7 @@ El costo es un `files` en el manifest raíz que describe la estructura de `dist/
 
 **Por qué el `exports` raíz se conserva**: no hay `paths` de tsconfig en el monorepo — `apps/playground` declara `"@romanmartinidev/components": "workspace:*"` y pnpm enlaza el **directorio del package**, así que la resolución local sale del manifest raíz. Sacarlo rompería playground y Storybook. Lo que cambia es su **naturaleza**: deja de ser el contrato publicado y pasa a ser detalle de resolución interna. Un desalineo ahora rompe el build local de forma inmediata y ruidosa, en vez de viajar en silencio a npm.
 
-**Riesgo residual asumido**: sin `files`, un `npm publish` corrido a mano desde el root del package subiría el directorio completo — npm nativo **no** soporta `publishConfig.directory`, así que ahí la redirección no protege. Se acepta porque (a) el publish del repo pasa siempre por pnpm vía changesets, (b) el publish manual ya está prohibido por [ADR-006](../../../docs/architecture/adr/ADR-006-estrategia-ci-cd.md) y denegado en `.claude/settings.json`, y (c) el gate de §4 inspecciona el tarball real en cada PR.
+**Riesgo residual asumido**: sin `files`, un `npm publish` corrido a mano desde el root del package subiría el directorio completo — npm nativo **no** soporta `publishConfig.directory`, así que ahí la redirección no protege. Se acepta porque (a) el publish del repo pasa siempre por pnpm vía changesets, (b) el publish manual ya está prohibido por ADR-006 y denegado en `.claude/settings.json`, y (c) el gate de §4 inspecciona el tarball real en cada PR.
 
 ## 3. LICENSE y CHANGELOG en los tarballs
 
@@ -103,12 +103,12 @@ Exit 1 con el detalle de cada fallo. Se agrega como step de `pr.yml` después de
 
 ## 5. Metadata restante
 
-| Ítem                           | Cambio                                                                                                                                                                                          |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"./package.json"`             | Se agrega al `exports` de tokens y al raíz de components. Sin él, `require.resolve('@romanmartinidev/tokens/package.json')` falla con `ERR_PACKAGE_PATH_NOT_EXPORTED` (schematics, bundlers).   |
-| `engines`                      | Se elimina de ambos publicables. Queda en el `package.json` root, que es privado y sí gobierna al equipo del repo.                                                                              |
-| `@changesets/changelog-github` | Reemplaza al generador default: las 15 entradas del próximo release enlazan commit, PR y autor en vez de mostrar un hash pelado.                                                                |
-| Provenance                     | `id-token: write` en `release.yml` + `publishConfig.provenance: true` en ambos packages, por [D-018](../../../docs/product/decisiones.md)(c). Queda **latente**: no publica ni cambia el flujo. |
+| Ítem                           | Cambio                                                                                                                                                                                        |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"./package.json"`             | Se agrega al `exports` de tokens y al raíz de components. Sin él, `require.resolve('@romanmartinidev/tokens/package.json')` falla con `ERR_PACKAGE_PATH_NOT_EXPORTED` (schematics, bundlers). |
+| `engines`                      | Se elimina de ambos publicables. Queda en el `package.json` root, que es privado y sí gobierna al equipo del repo.                                                                            |
+| `@changesets/changelog-github` | Reemplaza al generador default: las 15 entradas del próximo release enlazan commit, PR y autor en vez de mostrar un hash pelado.                                                              |
+| Provenance                     | `id-token: write` en `release.yml` + `publishConfig.provenance: true` en ambos packages, por D-018(c). Queda **latente**: no publica ni cambia el flujo.                                      |
 
 ## 6. Estrategia de verificación
 
@@ -118,6 +118,6 @@ El fix se prueba sobre el **artefacto emitido**, no sobre la configuración: que
 
 ## 7. Fuera de alcance
 
-- **El publish en sí.** El veto fue levantado por el PO ([D-028](../../../docs/product/decisiones.md)) con destino **0.3.0 con los changesets acumulados**, pero el pipeline sigue bloqueado por [ci-cd-01] (el enforcement de changesets rompe el PR que crea `changesets/action`), cuyo arreglo es la **Parte E**. Este change deja el artefacto sano; no dispara ningún release.
-- **El environment `npm-publish` con required reviewer** ([D-018](../../../docs/product/decisiones.md)(b)): es Parte E, junto al resto del hardening de workflows.
+- **El publish en sí.** El veto fue levantado por el PO (D-028) con destino **0.3.0 con los changesets acumulados**, pero el pipeline sigue bloqueado por [ci-cd-01] (el enforcement de changesets rompe el PR que crea `changesets/action`), cuyo arreglo es la **Parte E**. Este change deja el artefacto sano; no dispara ningún release.
+- **El environment `npm-publish` con required reviewer** (D-018(b)): es Parte E, junto al resto del hardening de workflows.
 - **`0.2.1` correctivo**: no es ejecutable — los 15 changesets acumulados son todos `minor`, así que `changeset version` produce `0.3.0`, y el repo no tiene tags desde donde armar un branch de patch. El PO optó por corregir vía 0.3.0.

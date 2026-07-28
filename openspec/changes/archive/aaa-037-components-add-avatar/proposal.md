@@ -21,7 +21,7 @@ related-decisions:
 
 # Why
 
-Sexta entrega de la **tanda 3** ([D-014](../../../docs/product/decisiones.md)): la referencia moder-minimal muestra el grupo S/J/I apilado (img 1) y filas de team con avatares de iniciales (img 5). Hoy el dev no tiene forma consistente y accesible de representar usuarios. [HU-022](../../../docs/product/epics/EP-002-kit-componentes/HU-022-avatar.md) fue refinada con el PO el 2026-07-26: fallback por **hash del nombre**, grupo con **`max` + "+N"**, sizes **xs–xl**, y **`space.negative.*` entregado en este mismo change** — es su disparador real ([HU-018](../../../docs/product/epics/EP-001-fundamentos-tokens/HU-018-tokens-aditivos-atlassian.md) CA-018.3, D-015) y lo implementa él.
+Sexta entrega de la **tanda 3** (D-014): la referencia moder-minimal muestra el grupo S/J/I apilado (img 1) y filas de team con avatares de iniciales (img 5). Hoy el dev no tiene forma consistente y accesible de representar usuarios. HU-022 fue refinada con el PO el 2026-07-26: fallback por **hash del nombre**, grupo con **`max` + "+N"**, sizes **xs–xl**, y **`space.negative.*` entregado en este mismo change** — es su disparador real (HU-018 CA-018.3, D-015) y lo implementa él.
 
 # What Changes
 

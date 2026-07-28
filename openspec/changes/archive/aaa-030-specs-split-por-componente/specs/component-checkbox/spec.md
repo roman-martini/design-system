@@ -2,7 +2,7 @@
 
 ### Requirement: Componente Checkbox
 
-El package SHALL exponer `DsCheckbox` (selector `ds-checkbox`) cumpliendo las convenciones de [ADR-004](../../../docs/architecture/adr/ADR-004-arquitectura-components.md) (arquitectura) y [ADR-007](../../../docs/architecture/adr/ADR-007-naming-prefijos.md) (naming): standalone, OnPush, signal-based API, prefix `Ds` en class y `ds-` en selector. El componente SHALL implementar `ControlValueAccessor` para integración nativa con Angular Forms (reactivos y template-driven). SHALL soportar estado `checked` (model two-way), `indeterminate` (input one-way), `disabled` (model two-way; CVA puede mutarlo), `label` (input string fallback), `size` ('sm' | 'md' | 'lg' con default 'md').
+El package SHALL exponer `DsCheckbox` (selector `ds-checkbox`) cumpliendo las convenciones de ADR-004 (arquitectura) y ADR-007 (naming): standalone, OnPush, signal-based API, prefix `Ds` en class y `ds-` en selector. El componente SHALL implementar `ControlValueAccessor` para integración nativa con Angular Forms (reactivos y template-driven). SHALL soportar estado `checked` (model two-way), `indeterminate` (input one-way), `disabled` (model two-way; CVA puede mutarlo), `label` (input string fallback), `size` ('sm' | 'md' | 'lg' con default 'md').
 
 #### Scenario: estructura de archivos sigue ADR-004 + ADR-007
 

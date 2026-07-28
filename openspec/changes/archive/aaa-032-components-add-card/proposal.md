@@ -19,7 +19,7 @@ related-decisions:
 
 ## Why
 
-Primera entrega de la **tanda 3** ([D-014](../../../docs/product/decisiones.md)): las 5 vistas de la referencia [`moder-minimal`](../../../docs/reference/components/moder-minimal/) (subscription, settings, auth, cookie consent, team) usan la card como contenedor — hoy el consumidor la recrea a mano con borde/sombra/padding ad-hoc en cada pantalla. [HU-019](../../../docs/product/epics/EP-002-kit-componentes/HU-019-card.md) fue refinada con el PO el 2026-07-22 (sub-partes híbridas, variantes de elevación, padding configurable). Es el componente **foundational** de la tanda: los 6 restantes se muestran dentro. Respalda la **prioridad 2** del repo (composición que escala: un contenedor tokenizado en vez de N copias) y la 1 (semántica de heading preservada, D-007).
+Primera entrega de la **tanda 3** (D-014): las 5 vistas de la referencia `moder-minimal` (`docs/reference/components/moder-minimal/`) (subscription, settings, auth, cookie consent, team) usan la card como contenedor — hoy el consumidor la recrea a mano con borde/sombra/padding ad-hoc en cada pantalla. HU-019 fue refinada con el PO el 2026-07-22 (sub-partes híbridas, variantes de elevación, padding configurable). Es el componente **foundational** de la tanda: los 6 restantes se muestran dentro. Respalda la **prioridad 2** del repo (composición que escala: un contenedor tokenizado en vez de N copias) y la 1 (semántica de heading preservada, D-007).
 
 ## What Changes
 

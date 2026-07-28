@@ -1,6 +1,6 @@
 # Design — `aaa-011` components-accessible-disabled
 
-> Decide el detalle técnico del patrón de estado disabled accesible. Lee `proposal.md` y [ADR-004](../../../docs/architecture/adr/ADR-004-arquitectura-components.md). Las decisiones one-way-door se promueven al ADR al archivar.
+> Decide el detalle técnico del patrón de estado disabled accesible. Lee `proposal.md` y ADR-004. Las decisiones one-way-door se promueven al ADR al archivar.
 
 ## Decisión central — patrón **diferenciado por tipo de componente**
 

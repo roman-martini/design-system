@@ -21,7 +21,7 @@ related-decisions:
 
 # Why
 
-Quinta entrega de la **tanda 3** ([D-014](../../../docs/product/decisiones.md)): la referencia moder-minimal usa un campo multilínea (img 2, "Notes"). Hoy el dev que necesita texto largo no tiene un field accesible del kit. [HU-024](../../../docs/product/epics/EP-002-kit-componentes/HU-024-textarea.md) fue refinada con el PO el 2026-07-23: **`DsTextarea` sobre una base compartida `DsFieldBase`** extraída de `DsInput`. Respalda la **prioridad 1** (misma a11y/validación que Input) y **D-017** (cero duplicación, patrón reutilizable para futuros form fields).
+Quinta entrega de la **tanda 3** (D-014): la referencia moder-minimal usa un campo multilínea (img 2, "Notes"). Hoy el dev que necesita texto largo no tiene un field accesible del kit. HU-024 fue refinada con el PO el 2026-07-23: **`DsTextarea` sobre una base compartida `DsFieldBase`** extraída de `DsInput`. Respalda la **prioridad 1** (misma a11y/validación que Input) y **D-017** (cero duplicación, patrón reutilizable para futuros form fields).
 
 # What Changes
 

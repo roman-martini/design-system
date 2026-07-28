@@ -15,7 +15,7 @@ related-adrs:
 
 ## Why
 
-Tercer componente de la tanda 1 (D-009): alternar contenido en una misma pantalla es el patrón de organización más común después de los formularios, y su a11y (roving tabindex, ARIA tabs) es de las más fáciles de hacer mal a mano. [HU-006](../../../docs/product/epics/EP-002-kit-componentes/HU-006-tabs-navegacion.md) fue refinada con el PO el 2026-07-12 (las 3 variantes, activación automática, paneles con `hidden`, `[(value)]` por id) y tiene 8 CAs binarios.
+Tercer componente de la tanda 1 (D-009): alternar contenido en una misma pantalla es el patrón de organización más común después de los formularios, y su a11y (roving tabindex, ARIA tabs) es de las más fáciles de hacer mal a mano. HU-006 fue refinada con el PO el 2026-07-12 (las 3 variantes, activación automática, paneles con `hidden`, `[(value)]` por id) y tiene 8 CAs binarios.
 
 ## What Changes
 

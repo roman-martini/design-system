@@ -16,7 +16,7 @@ related-adrs:
 
 Aclaración que enmarca el scope: **tokens ≠ componentes**. Este package distribuye **variables**, no componentes de Figma. La integración hace que las Variables de Figma —y por ende los componentes que las consumen— tomen sus valores del repo. **No genera componentes de Figma** (eso es diseño manual; ver Non-Goals en `design.md`).
 
-La dirección, la herramienta y el formato de esta integración se deciden en **[ADR-009](../../../docs/architecture/adr/ADR-009-figma-tokens-export.md)** (Propuesto): **code → Figma one-way**, vía **Tokens Studio for Figma**, alimentado por un **export DTCG (W3C)** con aliases preservados. ADR-003 ya había anticipado este ADR (su Opción D postergada y su acción de seguimiento "sync Figma"). Este change **implementa** esa decisión sin tocar build tool, jerarquía ni prefix de ADR-003: es **aditivo** (un target más de Style Dictionary).
+La dirección, la herramienta y el formato de esta integración se deciden en **ADR-009** (Propuesto): **code → Figma one-way**, vía **Tokens Studio for Figma**, alimentado por un **export DTCG (W3C)** con aliases preservados. ADR-003 ya había anticipado este ADR (su Opción D postergada y su acción de seguimiento "sync Figma"). Este change **implementa** esa decisión sin tocar build tool, jerarquía ni prefix de ADR-003: es **aditivo** (un target más de Style Dictionary).
 
 Respalda las 3 prioridades del repo:
 
@@ -81,7 +81,7 @@ Posible nueva devDep `@tokens-studio/sd-transforms` (a decidir en design vs cust
 
 ## Alternativas evaluadas
 
-> Las alternativas **arquitectónicas** (dirección, herramienta, formato) se evalúan en [ADR-009](../../../docs/architecture/adr/ADR-009-figma-tokens-export.md) (Opciones A–E). Acá quedan las alternativas **de implementación** del change una vez fijada la Opción B del ADR.
+> Las alternativas **arquitectónicas** (dirección, herramienta, formato) se evalúan en ADR-009 (Opciones A–E). Acá quedan las alternativas **de implementación** del change una vez fijada la Opción B del ADR.
 
 ### Opción A — Custom format/transform con Style Dictionary 4 puro
 
@@ -101,7 +101,7 @@ Usar el paquete oficial de Tokens Studio que adapta Style Dictionary a su format
 
 ## ADRs y follow-ups
 
-- **Generado**: [ADR-009](../../../docs/architecture/adr/ADR-009-figma-tokens-export.md) — Figma como consumidor de tokens (export DTCG vía Tokens Studio). Estado **Propuesto**; se promueve a **Aceptado** al cerrar este change.
+- **Generado**: ADR-009 — Figma como consumidor de tokens (export DTCG vía Tokens Studio). Estado **Propuesto**; se promueve a **Aceptado** al cerrar este change.
 - **Coordinación de IDs de ADR**: ADR-009 se asigna a este change por ser el **primer ADR escrito físicamente** (regla del repo: los ADRs se numeran al crearse, no se reservan). Los changes `aaa-011 components-accessible-disabled` y el futuro `components-decide-icon-library`, que mencionaban tentativamente ADR-009, tomarán **ADR-010+** al crear sus ADRs al cerrarse.
 - **Follow-ups posibles**:
   - Si la sincronización manual vía plugin se vuelve fricción, evaluar la **API REST de Variables de Figma** (Opción C del ADR) en un ADR futuro.

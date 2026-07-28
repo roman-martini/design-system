@@ -15,7 +15,7 @@ related-adrs:
 
 ## Why
 
-Séptimo y último entregable de la tanda 1 (D-009): las vistas con datos remotos hoy solo pueden esperar con un spinner, que no preserva la estructura y produce layout shift al llegar el contenido. [HU-010](../../../docs/product/epics/EP-002-kit-componentes/HU-010-skeleton.md) fue refinada con el PO el 2026-07-19 (dimensiones libres con defaults por shape, pulso de opacidad, estático bajo reduced-motion, decorativo siempre). Respalda la prioridad 1 del repo (buenas prácticas: placeholders estables y motion accesible de serie). Cierra el criterio de D-009: "una app real se construye 100% con el DS".
+Séptimo y último entregable de la tanda 1 (D-009): las vistas con datos remotos hoy solo pueden esperar con un spinner, que no preserva la estructura y produce layout shift al llegar el contenido. HU-010 fue refinada con el PO el 2026-07-19 (dimensiones libres con defaults por shape, pulso de opacidad, estático bajo reduced-motion, decorativo siempre). Respalda la prioridad 1 del repo (buenas prácticas: placeholders estables y motion accesible de serie). Cierra el criterio de D-009: "una app real se construye 100% con el DS".
 
 ## What Changes
 

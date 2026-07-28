@@ -2,7 +2,7 @@
 
 ### Requirement: Componente DsModal
 
-El package SHALL exponer `DsModal` (selector `ds-modal`), el primer componente overlay del kit, implementado sobre el elemento `<dialog>` nativo con `showModal()` (top layer, focus trap, fondo inerte y restauración de foco provistos por la plataforma — [ADR-013](../../../docs/architecture/adr/ADR-013-overlays-dialog-nativo.md)). Sigue ADR-004/ADR-007/ADR-010 (arquitectura y naming), ADR-012 (iconografía del botón de cierre) y el patrón de overlay de tokens de aaa-009. SHALL soportar `open` (model two-way boolean), `size` (`'sm' | 'md' | 'lg' | 'xl'`, default `'md'`), `heading` (input string para el título accesible), `closeLabel` (input string, default "Cerrar"), `closeOnEscape` (input boolean, default `true`), `closeOnOverlay` (input boolean, default `true`), slot default para el cuerpo y slot `[ds-modal-footer]` para acciones.
+El package SHALL exponer `DsModal` (selector `ds-modal`), el primer componente overlay del kit, implementado sobre el elemento `<dialog>` nativo con `showModal()` (top layer, focus trap, fondo inerte y restauración de foco provistos por la plataforma — ADR-013). Sigue ADR-004/ADR-007/ADR-010 (arquitectura y naming), ADR-012 (iconografía del botón de cierre) y el patrón de overlay de tokens de aaa-009. SHALL soportar `open` (model two-way boolean), `size` (`'sm' | 'md' | 'lg' | 'xl'`, default `'md'`), `heading` (input string para el título accesible), `closeLabel` (input string, default "Cerrar"), `closeOnEscape` (input boolean, default `true`), `closeOnOverlay` (input boolean, default `true`), slot default para el cuerpo y slot `[ds-modal-footer]` para acciones.
 
 #### Scenario: estructura de archivos
 

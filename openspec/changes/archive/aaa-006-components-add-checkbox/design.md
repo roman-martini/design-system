@@ -1,6 +1,6 @@
 ## Context
 
-Primer componente post-bootstrap. Se suma a la lib `@romanmartinidev/components` siguiendo el patrón documentado en [ADR-004](../../docs/architecture/adr/ADR-004-arquitectura-components.md). Establece la plantilla para futuros componentes (Radio, Modal, Tabs, Select, etc.).
+Primer componente post-bootstrap. Se suma a la lib `@romanmartinidev/components` siguiendo el patrón documentado en ADR-004. Establece la plantilla para futuros componentes (Radio, Modal, Tabs, Select, etc.).
 
 Decisiones tomadas en kickoff:
 

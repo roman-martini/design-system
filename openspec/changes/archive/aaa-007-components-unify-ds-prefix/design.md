@@ -2,8 +2,8 @@
 
 El package `@romanmartinidev/components` arrancó con 2 prefijos heredados de decisiones independientes:
 
-- **`rmd-`** en selectores HTML — decidido en [ADR-004 §4](../../docs/architecture/adr/ADR-004-arquitectura-components.md) por afinidad con la marca "Roman Martini Design".
-- **`--ds-*`** en CSS custom properties — decidido en [ADR-003](../../docs/architecture/adr/ADR-003-arquitectura-design-tokens.md) por agnosticismo del sistema.
+- **`rmd-`** en selectores HTML — decidido en ADR-004 §4 por afinidad con la marca "Roman Martini Design".
+- **`--ds-*`** en CSS custom properties — decidido en ADR-003 por agnosticismo del sistema.
 - **Sin prefijo** en class TypeScript (`ButtonComponent`, `CheckboxComponent`) — convención Angular clásica.
 
 La disonancia entre `rmd-` y `--ds-*` fue reconocida explícitamente como trade-off en ADR-004 § "Negativas". El TODO del autor (`contexto_post_fases.md`, borrado en CHG-006) marcaba esta duda como pendiente de resolución antes de seguir escalando componentes.
@@ -116,7 +116,7 @@ Estado actual del package en cifras:
 
 **Alternativas consideradas:**
 
-- **Reescribir ADR-004 completo**: rechazado. Viola la inmutabilidad de ADRs aceptados ([rule arch-architecture-decisions.md](../../../.claude/rules/arch-architecture-decisions.md)).
+- **Reescribir ADR-004 completo**: rechazado. Viola la inmutabilidad de ADRs aceptados (rule arch-architecture-decisions.md (`.claude/rules/arch-architecture-decisions.md`)).
 - **No tocar ADR-004**: rechazado. Sin nota, un dev futuro lee §4 ("Selector prefix `rmd-`") y aplica esa regla sin saber que fue superseded.
 
 **Por qué nota al final**: respeta inmutabilidad (no toca el contenido original) y agrega trazabilidad. Estado de ADR-004 sigue **Aceptado** porque la mayoría del documento (§1, §2, §3, §6, §7, §8, §9, §10) sigue 100% vigente. Solo §4 (prefix selector) y §5 (naming class TS) fueron superseded.

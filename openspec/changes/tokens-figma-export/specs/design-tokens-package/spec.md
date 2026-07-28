@@ -2,7 +2,7 @@
 
 ### Requirement: Output DTCG para integración con Figma
 
-El package SHALL emitir, además de los outputs CSS y JS/TS, un artefacto en formato **DTCG (W3C Design Tokens)** apto para ser consumido por Figma vía Tokens Studio. El output SHALL usar `$value`/`$type`, SHALL **preservar las referencias como aliases** (`{group.token}`) en lugar de resolverlas a valores crudos, y SHALL emitir los temas como sets diferenciados. La dirección de la integración es **code → Figma (one-way)**, según [ADR-009](../../../../docs/architecture/adr/ADR-009-figma-tokens-export.md). Este output es **aditivo**: no altera los outputs CSS/JS ni el prefix `--ds-*`.
+El package SHALL emitir, además de los outputs CSS y JS/TS, un artefacto en formato **DTCG (W3C Design Tokens)** apto para ser consumido por Figma vía Tokens Studio. El output SHALL usar `$value`/`$type`, SHALL **preservar las referencias como aliases** (`{group.token}`) en lugar de resolverlas a valores crudos, y SHALL emitir los temas como sets diferenciados. La dirección de la integración es **code → Figma (one-way)**, según ADR-009. Este output es **aditivo**: no altera los outputs CSS/JS ni el prefix `--ds-*`.
 
 #### Scenario: el build emite el artefacto DTCG
 

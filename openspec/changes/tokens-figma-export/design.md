@@ -1,6 +1,6 @@
 ## Context
 
-`@romanmartinidev/tokens` emite CSS + JS/TS desde `packages/tokens/src/` con Style Dictionary (ADR-003). No hay puente a Figma. [ADR-009](../../../docs/architecture/adr/ADR-009-figma-tokens-export.md) fija la arquitectura: **code → Figma one-way**, vía **Tokens Studio for Figma**, alimentado por un **export DTCG (W3C)** con aliases preservados, sin tocar build tool / jerarquía / prefix de ADR-003. Este `design.md` resuelve el **cómo** de implementación.
+`@romanmartinidev/tokens` emite CSS + JS/TS desde `packages/tokens/src/` con Style Dictionary (ADR-003). No hay puente a Figma. ADR-009 fija la arquitectura: **code → Figma one-way**, vía **Tokens Studio for Figma**, alimentado por un **export DTCG (W3C)** con aliases preservados, sin tocar build tool / jerarquía / prefix de ADR-003. Este `design.md` resuelve el **cómo** de implementación.
 
 Aclaración estructural que enmarca el alcance: **tokens ≠ componentes de Figma**. El export provee Variables; el diseño de componentes en Figma y su enlace a esas Variables es trabajo manual de diseño, fuera de este change.
 

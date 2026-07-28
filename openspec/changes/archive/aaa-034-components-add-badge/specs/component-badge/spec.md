@@ -4,7 +4,7 @@
 
 ### Requirement: Badge de estado (DsBadge)
 
-El package SHALL exponer `DsBadge` (`ds-badge`, naming por ADR-007) junto con los types `DsBadgeTone`, `DsBadgeAppearance` y `DsBadgeSize`. El componente SHALL implementar el modelo de dos ejes de [ADR-019](../../../../docs/architecture/adr/ADR-019-modelo-variantes-tono-apariencia.md): `tone` (`neutral | primary | danger | success | warning | info`, default `neutral`) × `appearance` (`subtle | solid | outline`, default `subtle`), con `size` (`sm | md | lg`, default `md`). El texto va proyectado; `icon` (Lucide leading) y `dot` (punto de estado leading) son opcionales y decorativos. Cada combinación `tone × appearance` SHALL cumplir WCAG AA verificado por el gate de contraste por script. Todo estilo SHALL salir de tokens `component.badge.*`.
+El package SHALL exponer `DsBadge` (`ds-badge`, naming por ADR-007) junto con los types `DsBadgeTone`, `DsBadgeAppearance` y `DsBadgeSize`. El componente SHALL implementar el modelo de dos ejes de ADR-019: `tone` (`neutral | primary | danger | success | warning | info`, default `neutral`) × `appearance` (`subtle | solid | outline`, default `subtle`), con `size` (`sm | md | lg`, default `md`). El texto va proyectado; `icon` (Lucide leading) y `dot` (punto de estado leading) son opcionales y decorativos. Cada combinación `tone × appearance` SHALL cumplir WCAG AA verificado por el gate de contraste por script. Todo estilo SHALL salir de tokens `component.badge.*`.
 
 #### Scenario: dos ejes reflejados en el host (CA-021.1)
 

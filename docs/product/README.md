@@ -53,17 +53,17 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 
 ## Índice de épicas
 
-| ID                                                                         | Épica                         | Actor principal             | HUs                                      | Estado                                                             |
-| -------------------------------------------------------------------------- | ----------------------------- | --------------------------- | ---------------------------------------- | ------------------------------------------------------------------ |
-| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor              | 004, 018                                 | En desarrollo (base entregada)                                     |
-| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor              | 003, 005–010, 012–017, 019–025, 033, 034 | En desarrollo (tandas 1-2 completas; tanda 3 en 6/7, falta Slider) |
-| [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor              | 002                                      | En desarrollo (npm-ready, sin publicar)                            |
-| [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador                   | 001                                      | En refinamiento (aaa-012 activo y pausado, D-027)                  |
-| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor                  | 026–032                                  | En desarrollo (gates de D-021 en 1/7: HU-032 Hecha)                |
-| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor              | 011, 035, 036                            | En desarrollo (HU-011 Hecha 2026-07-19)                            |
-| [EP-007](epics/EP-007-template-lume/EP-007-template-lume.md)               | Template-lume                 | Dev consumidor · Mantenedor | 037–040                                  | Identificada (creada 2026-07-26 por D-020)                         |
+| ID                                                                         | Épica                         | Actor principal             | HUs                                      | Estado                                                                    |
+| -------------------------------------------------------------------------- | ----------------------------- | --------------------------- | ---------------------------------------- | ------------------------------------------------------------------------- |
+| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor              | 004, 018                                 | En desarrollo (base entregada)                                            |
+| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor              | 003, 005–010, 012–017, 019–025, 033, 034 | En desarrollo (tandas 1-2 completas; tanda 3 en 6/7, falta Slider)        |
+| [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor              | 002                                      | En desarrollo (0.2.0 en npm; su bundle violaba APF, corregido en aaa-038) |
+| [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador                   | 001                                      | En refinamiento (aaa-012 activo y pausado, D-027)                         |
+| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor                  | 026–032                                  | En desarrollo (gates de D-021 en 1/7: HU-032 Hecha)                       |
+| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor              | 011, 035, 036                            | En desarrollo (HU-011 Hecha 2026-07-19)                                   |
+| [EP-007](epics/EP-007-template-lume/EP-007-template-lume.md)               | Template-lume                 | Dev consumidor · Mantenedor | 037–040                                  | Identificada (creada 2026-07-26 por D-020)                                |
 
-Próximos IDs libres: **EP-008**, **HU-041**, **D-028**.
+Próximos IDs libres: **EP-008**, **HU-041**, **D-029**.
 
 ## Tabla de HUs
 
@@ -138,7 +138,10 @@ EP-002: tanda 3 (D-014)           → 6/7 (2026-07-26): Card, Button variants, B
 EP-002: refinamiento visual        → HU-033 (ajuste dimensional) y HU-034 (Spinner) Identificadas,
                                     traídas del inbox del PO a producto por D-019
 EP-003: HU-002 (primer release)   → Hecha (2026-07-18): tokens y components 0.2.0 en npm
-                                    (D-010, lockstep ADR-015, aaa-020). Veto de publicación vigente
+                                    (D-010, lockstep ADR-015, aaa-020). Ese bundle violaba APF
+                                    (full compilation mode): corregido en aaa-038 (2026-07-28,
+                                    ADR-021). Veto levantado (D-028); la versión sana sale como
+                                    0.3.0, bloqueada por Parte E + G + I
 EP-004: HU-001 (Figma export)     → aaa-012 con 4/4 artefactos, activo y pausado (D-027)
 EP-005: gates automáticos          → 7 HUs aprobadas por D-021 (HU-026…HU-032), 1/7 entregada:
                                     HU-032 /ds:audit-tokens Hecha (2026-07-27). Siguen Refinadas
@@ -150,9 +153,9 @@ EP-007: template-lume              → Creada (D-020). HU-037 (rename del theme)
                                     HU-038…040 Identificadas sin archivo
 ```
 
-Última entrega: **HU-022 (Avatar)** Hecha — `aaa-037` archivado el 2026-07-26; entregó además `space.negative` y con eso cerró CA-018.3. El kit está en 22 componentes y familias más el service de Toast.
+Última entrega: **`aaa-038` — corrección de Angular Package Format y del empaquetado publicable**, archivado el 2026-07-28 (Parte D de la review). No suma componentes: repara el artefacto. El `0.2.0` publicado se había compilado en _full compilation mode_, lo que lo rompía para consumidores en otra versión de Angular 21.x y lo habría roto seguro en Angular 22; el guard que ng-packagr había plantado nunca corría porque se publicaba desde el root del package. Ahora `components` publica su `dist/` con el manifest generado como contrato único ([ADR-021](../architecture/adr/ADR-021-estrategia-publicacion-packages.md)), ambos tarballs llevan la licencia MIT, y `pnpm verify:packaging` verifica todo eso en cada PR sobre el artefacto emitido — el gate que ADR-017 prometía desde julio. La entrega anterior de kit sigue siendo **HU-022 (Avatar)** (`aaa-037`, 2026-07-26): 22 componentes y familias más el service de Toast.
 
-El movimiento más grande del 2026-07-26 no fue de código sino de gobernanza: la [review integral del repo](../reviews/2026-07-26-review-integral/plan-de-accion.md) produjo 140 hallazgos verificados y un plan por partes, del que ya se ejecutaron las decisiones (D-018…D-027) y este registro en producto. El resto se sigue desde [BACKLOG § Now](../backlog/BACKLOG.md).
+El movimiento más grande del 2026-07-26 no fue de código sino de gobernanza: la [review integral del repo](../reviews/2026-07-26-review-integral/plan-de-accion.md) produjo 140 hallazgos verificados y un plan por partes A–N. Ya se ejecutaron **A, B, C, M y D** (decisiones D-018…D-028, sincronización documental, ecosistema `.claude/` y release-readiness). El resto se sigue desde [BACKLOG § Now](../backlog/BACKLOG.md); la próxima es la **Parte E**, que destraba el pipeline de release.
 
 ## Convenciones
 
@@ -212,6 +215,7 @@ Lo que hay que actualizar **cada vez que se archiva un change**. Es la lista can
 **Al archivar**:
 
 - [ ] Spec base sincronizada con los deltas del change.
+- [ ] **Artefactos del change sin links markdown relativos**: referencias por ID (`ADR-021`, `D-028`, `HU-022`, `aaa-037`) o path del repo en código. Convención y motivo en [openspec/README.md § Referencias dentro de artefactos de change](../../openspec/README.md#referencias-dentro-de-artefactos-de-change) — mover el change a `archive/` baja un nivel toda ruta relativa y la rompe.
 - [ ] `openspec/README.md`: próximo ID e "IDs en vuelo" al día.
 - [ ] `docs/architecture/README.md`: fila nueva en el catálogo de changes (y en el de specs si introdujo alguna).
 - [ ] ADR nuevo creado y fila en `decisions-log.md`, si el change generó una decisión one-way door.

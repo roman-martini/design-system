@@ -12,7 +12,7 @@ modifies-specs:
 
 ## Why
 
-La [auditoría de accesibilidad 2026-07-11](../../../docs/design/a11y/2026-07-11-audit.md) verificó con script 3 hallazgos de severidad alta que reducen a 2 causas en tokens: el texto del botón primario falla WCAG AA 1.4.3 en los themes default (3.68:1) y brand-a (3.30:1), y el borde de Checkbox/Radio sin marcar falla 1.4.11 (2.52:1) siendo el único indicador visual del control. D-007 define la a11y como parte del valor del producto; el PO aprobó el cambio visual el 2026-07-11.
+La auditoría de accesibilidad 2026-07-11 (`docs/design/a11y/2026-07-11-audit.md`) verificó con script 3 hallazgos de severidad alta que reducen a 2 causas en tokens: el texto del botón primario falla WCAG AA 1.4.3 en los themes default (3.68:1) y brand-a (3.30:1), y el borde de Checkbox/Radio sin marcar falla 1.4.11 (2.52:1) siendo el único indicador visual del control. D-007 define la a11y como parte del valor del producto; el PO aprobó el cambio visual el 2026-07-11.
 
 ## What Changes
 

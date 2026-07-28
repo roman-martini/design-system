@@ -17,7 +17,7 @@ related-adrs:
 
 ## Why
 
-Cuarta pieza de la **tanda 2** ([D-011](../../../docs/product/decisiones.md), criterio "navegación y estructura de apps reales"): todo listado largo necesita paginado, y los paginados caseros fallan siempre en lo mismo — botones sin nombre accesible, página actual sin `aria-current`, extremos deshabilitados con `disabled` nativo (invisibles al teclado) y ventanas de páginas recalculadas a mano en cada app. [HU-015](../../../docs/product/epics/EP-002-kit-componentes/HU-015-pagination.md) fue refinada con el PO el 2026-07-20 (modelo `page`+`totalPages`, ventana `siblingCount` con "…" estático, **variante compacta y first/last en v1** — completitud aceptada explícitamente). Respalda la prioridad 1 del repo (buenas prácticas: patrón de navegación accesible de serie).
+Cuarta pieza de la **tanda 2** (D-011, criterio "navegación y estructura de apps reales"): todo listado largo necesita paginado, y los paginados caseros fallan siempre en lo mismo — botones sin nombre accesible, página actual sin `aria-current`, extremos deshabilitados con `disabled` nativo (invisibles al teclado) y ventanas de páginas recalculadas a mano en cada app. HU-015 fue refinada con el PO el 2026-07-20 (modelo `page`+`totalPages`, ventana `siblingCount` con "…" estático, **variante compacta y first/last en v1** — completitud aceptada explícitamente). Respalda la prioridad 1 del repo (buenas prácticas: patrón de navegación accesible de serie).
 
 ## What Changes
 

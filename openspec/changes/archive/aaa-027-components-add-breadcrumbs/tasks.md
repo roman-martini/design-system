@@ -62,7 +62,7 @@ Cada tarea es ≤2 h con criterio binario. Diseño: API con links proyectados (d
 
 ## 8. ADR + archive
 
-- [x] 8.1 Escrito **[ADR-017](../../../docs/architecture/adr/ADR-017-secondary-entry-points.md)** (confirmado en proposal §Impact): criterio de creación, estructura ng-packagr, peers opcionales, relación con ADR-004 §surface; fila en `decisions-log.md`.
+- [x] 8.1 Escrito **ADR-017** (confirmado en proposal §Impact): criterio de creación, estructura ng-packagr, peers opcionales, relación con ADR-004 §surface; fila en `decisions-log.md`.
 - [x] 8.2 Movido a `archive/aaa-027-components-add-breadcrumbs/`; frontmatter `archived: 2026-07-20` + ADR-017 en related-adrs + spec base `components-package` sincronizada (ADDED autocontenido).
 - [x] 8.3 Registros: `openspec/README.md`, catálogo en `docs/architecture/README.md`, grooming del BACKLOG (Breadcrumbs sale de Now; `components-add-pagination` — HU-015 — promovido a Now), HU-014 → Hecha con CAs tildados, EP-002 actualizado (3/5).
 - [x] 8.4 `pnpm openspec validate --all` pasa.

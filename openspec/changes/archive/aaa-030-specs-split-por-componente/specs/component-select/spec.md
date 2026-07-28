@@ -2,7 +2,7 @@
 
 ### Requirement: Componente DsSelect
 
-El package SHALL exponer `DsSelect` (selector `ds-select`), combobox de selección única sobre opciones `DsOption` proyectadas, siguiendo ADR-004/007/010 (arquitectura y naming), ADR-012 (iconografía) y el patrón ARIA APG combobox. SHALL implementar `ControlValueAccessor` para Angular Forms (reactivos y template-driven). SHALL soportar `value` (model two-way, genérico), `placeholder` (input string), `disabled` (model two-way; CVA puede mutarlo), `size` (`'sm' | 'md' | 'lg'`, default `'md'`). El listado SHALL renderizarse en el **top layer** vía Popover API nativa; el posicionamiento respecto del trigger SHALL resolverse según [ADR-014](../../../docs/architecture/adr/ADR-014-overlays-anclados-popover-api.md) (fallback JS propio hasta que anchor positioning cubra el target), nunca recortado por contenedores con overflow.
+El package SHALL exponer `DsSelect` (selector `ds-select`), combobox de selección única sobre opciones `DsOption` proyectadas, siguiendo ADR-004/007/010 (arquitectura y naming), ADR-012 (iconografía) y el patrón ARIA APG combobox. SHALL implementar `ControlValueAccessor` para Angular Forms (reactivos y template-driven). SHALL soportar `value` (model two-way, genérico), `placeholder` (input string), `disabled` (model two-way; CVA puede mutarlo), `size` (`'sm' | 'md' | 'lg'`, default `'md'`). El listado SHALL renderizarse en el **top layer** vía Popover API nativa; el posicionamiento respecto del trigger SHALL resolverse según ADR-014 (fallback JS propio hasta que anchor positioning cubra el target), nunca recortado por contenedores con overflow.
 
 #### Scenario: estructura de archivos
 

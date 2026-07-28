@@ -46,7 +46,7 @@ El repo SHALL incluir un workflow `.github/workflows/release.yml` que se dispara
 1. **Hay changesets pendientes en `.changeset/`**: abrir o actualizar un PR titulado "chore(repo): version packages" con los bumps de versión y CHANGELOGs actualizados.
 2. **No hay changesets pendientes (post-merge del PR de release)**: ejecutar `pnpm release` para buildear y publicar al npm registry.
 
-El job SHALL declarar el permiso **`id-token: write`**, requerido para emitir la attestation de procedencia (npm provenance) al publicar desde GitHub Actions, junto con `publishConfig.provenance: true` en los packages publicables ([D-018](../../../docs/product/decisiones.md)(c)).
+El job SHALL declarar el permiso **`id-token: write`**, requerido para emitir la attestation de procedencia (npm provenance) al publicar desde GitHub Actions, junto con `publishConfig.provenance: true` en los packages publicables (D-018(c)).
 
 La configuración de changesets SHALL usar el generador **`@changesets/changelog-github`**, de modo que cada entrada del CHANGELOG publicado enlace su commit, PR y autor en lugar de mostrar un hash sin link.
 
