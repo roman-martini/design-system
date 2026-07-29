@@ -226,9 +226,9 @@ describe('DsPagination', () => {
     solo.componentRef.setInput('pageLabel', 'Page');
     solo.componentRef.setInput('nextLabel', 'Next page');
     solo.detectChanges();
-    const labels = Array.from(solo.nativeElement.querySelectorAll<HTMLElement>('button')).map((c) =>
-      c.getAttribute('aria-label'),
-    );
+    const labels = Array.from(
+      (solo.nativeElement as HTMLElement).querySelectorAll<HTMLElement>('button'),
+    ).map((c) => c.getAttribute('aria-label'));
     expect(labels).toContain('Page 1');
     expect(labels).toContain('Next page');
   });

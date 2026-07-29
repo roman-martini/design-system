@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
-    "types": ["vitest/globals", "node"]
+    // Sin "node": ningún spec ni story usa APIs de Node, y declarar un type
+    // library no instalado rompe el typecheck con TS2688.
+    "types": ["vitest/globals"]
   },
   "include": ["src/**/*.ts", "router/src/**/*.ts"],
   "exclude": []

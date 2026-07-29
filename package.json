@@ -22,6 +22,8 @@
     "storybook:build": "pnpm -F playground build-storybook",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
+    "test:coverage": "pnpm -r test:coverage",
+    "typecheck": "pnpm -r typecheck",
     "lint": "eslint .",
     "verify:packaging": "node scripts/verify-packaging.mjs",
     "format": "prettier --write .",

@@ -68,10 +68,13 @@ describe('DsMenu family', () => {
     fixture = TestBed.createComponent(MenuHost);
     host = fixture.componentInstance;
     fixture.detectChanges();
-    trigger = fixture.nativeElement.querySelector('button');
-    const panels = Array.from(fixture.nativeElement.querySelectorAll<HTMLElement>('[role="menu"]'));
+    // `fixture.nativeElement` es `any`: tipar la raíz permite que el typecheck
+    // verifique estas consultas en vez de darlas por buenas.
+    const root = fixture.nativeElement as HTMLElement;
+    trigger = root.querySelector('button')!;
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[role="menu"]'));
     [rootPanel, subPanel] = panels;
-    items = Array.from(fixture.nativeElement.querySelectorAll<HTMLElement>('[role="menuitem"]'));
+    items = Array.from(root.querySelectorAll<HTMLElement>('[role="menuitem"]'));
     // Items del nivel raíz (excluye PDF y CSV, que viven en el subpanel).
     rootItems = items.filter((item) => !subPanel.contains(item));
   });

@@ -55,7 +55,10 @@
   "scripts": {
     "build": "ng-packagr -p ng-package.json -c tsconfig.lib.json",
     "watch": "ng-packagr -p ng-package.json -c tsconfig.lib.json --watch",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc -p tsconfig.spec.json --noEmit"
   },
   "peerDependencies": {
     "@angular/common": "^21.0.0",
@@ -71,9 +74,7 @@
     }
   },
   "devDependencies": {
-    "@romanmartinidev/tokens": "workspace:*",
     "@analogjs/vite-plugin-angular": "^2.5.2",
-    "@lucide/angular": "^1.23.0",
     "@analogjs/vitest-angular": "^2.5.2",
     "@angular/build": "^21",
     "@angular/common": "^21",
@@ -82,7 +83,10 @@
     "@angular/core": "^21",
     "@angular/platform-browser": "^21",
     "@angular/router": "^21",
+    "@lucide/angular": "^1.23.0",
+    "@romanmartinidev/tokens": "workspace:*",
     "@storybook/angular": "^10",
+    "@vitest/coverage-v8": "^4.1.7",
     "jsdom": "^27",
     "ng-packagr": "~21.0",
     "rxjs": "~7.8",

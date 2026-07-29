@@ -1,0 +1,21 @@
+{
+  // Este package no compila TypeScript: su build es Style Dictionary (sd.config.mjs)
+  // y su salida es CSS + JS generados. Este tsconfig existe sólo para typechequear
+  // los specs, que el runner de tests transpila sin verificar tipos.
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    // Los specs importan los JSON de tokens con import attributes
+    // (`import x from '../src/…json' with { type: 'json' }`).
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2022"],
+    "noEmit": true,
+    "types": ["vitest/globals"]
+  },
+  "include": ["test/**/*.ts"]
+}

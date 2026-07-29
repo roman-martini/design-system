@@ -136,13 +136,14 @@ Valida en orden:
 2. **commitlint** — fallo: algún commit del PR no cumple Conventional Commits. Corré `pnpm exec commitlint --from origin/main --to HEAD --verbose` y reescribí el mensaje.
 3. `pnpm format:check` — fallo: corré `pnpm format` y commiteá.
 4. `pnpm lint` — fallo: corré `pnpm lint --fix` y revisá los errores no auto-fixables.
-5. `pnpm -r build` — fallo: revisá el error de build localmente con el mismo comando.
-6. `pnpm -r test` — fallo: corré `pnpm test` localmente y arreglá los specs.
-7. `pnpm verify:packaging` — fallo: el artefacto emitido no cumple el contrato de publicación ([ADR-021](docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md)).
-8. `pnpm exec openspec validate --all` — fallo: corré `pnpm openspec validate --all` localmente y arreglá la spec/change.
-9. **Changeset enforcement** — fallo: el PR toca `packages/*` sin agregar un changeset. Corré `pnpm changeset` y agregá el archivo generado al PR.
+5. `pnpm typecheck` — fallo: hay un error de tipos en un spec o en una story (ver [Typecheck](#typecheck)).
+6. `pnpm -r build` — fallo: revisá el error de build localmente con el mismo comando.
+7. `pnpm test:coverage` — fallo: o rompiste un test, o la cobertura cayó bajo el piso (ver [Cobertura](#cobertura)).
+8. `pnpm verify:packaging` — fallo: el artefacto emitido no cumple el contrato de publicación ([ADR-021](docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md)).
+9. `pnpm exec openspec validate --all` — fallo: corré `pnpm openspec validate --all` localmente y arreglá la spec/change.
+10. **Changeset enforcement** — fallo: el PR toca `packages/*` sin agregar un changeset. Corré `pnpm changeset` y agregá el archivo generado al PR.
 
-> El step 9 se **omite** en el PR autogenerado `changeset-release/main`: ese PR bumpea `packages/*/package.json` después de consumir los changesets, así que por construcción no puede satisfacer el gate. También se omite si el PR solo toca `README.md` o `CHANGELOG.md` de un package.
+> El step 10 se **omite** en el PR autogenerado `changeset-release/main`: ese PR bumpea `packages/*/package.json` después de consumir los changesets, así que por construcción no puede satisfacer el gate. También se omite si el PR solo toca `README.md` o `CHANGELOG.md` de un package.
 
 Si cualquier step falla, el PR queda con check rojo y NO debería mergearse (la branch protection lo bloquea, ver más abajo).
 
@@ -263,6 +264,45 @@ actionlint .github/workflows/*.yml
 CI usa una **versión fija** verificada por checksum SHA256 antes de ejecutarse (ver `ACTIONLINT_VERSION` en `pr.yml`); si tu binario local es de otra versión el veredicto puede diferir.
 
 > No le pases `.github/actions/**/action.yml`: actionlint solo entiende el schema de workflow y reporta una composite action como inválida por no declarar `on` ni `jobs`.
+
+## Cobertura
+
+CI corre la suite con cobertura (`pnpm test:coverage`) y **falla el PR si la cobertura cae por debajo del piso** de cualquier package. No es una advertencia.
+
+```bash
+pnpm test:coverage                          # los tres workspaces
+pnpm -F @romanmartinidev/components test:coverage   # uno solo
+```
+
+Pisos vigentes, declarados en el `vitest.config.ts` de cada workspace:
+
+| Workspace                     | Statements | Branches | Functions | Lines |
+| ----------------------------- | ---------- | -------- | --------- | ----- |
+| `@romanmartinidev/components` | 93         | 76       | 96        | 93    |
+| `playground`                  | 23         | 49       | 17        | 25    |
+| `@romanmartinidev/tokens`     | —          | —        | —         | —     |
+
+**El piso es un trinquete: solo sube.** Se fijó en la cobertura realmente medida al instalarlo (2026-07-29) menos 1 punto de margen, para absorber la variación de instrumentación sin dejar el pipeline al borde. Si tu PR sube la cobertura de forma estable, subí el piso con él. **Bajarlo requiere decisión explícita del product owner** — no lo bajes para destrabar un PR: agregá el test que falta.
+
+Dos aclaraciones sobre la tabla:
+
+- **`tokens` no declara umbrales a propósito.** El package no expone módulos TypeScript (su fuente son JSON y su build es Style Dictionary), así que no hay código instrumentable y la cobertura mide `0/0`. Un umbral ahí no podría fallar nunca. Su contrato de calidad se verifica sobre el **artefacto emitido**, no sobre líneas cubiertas.
+- **Los números del `playground` son un piso de no-regresión, no una vara de calidad.** Es un laboratorio interno no publicable ([D-001](docs/product/decisiones.md)) y su showcase es mayormente markup declarativo.
+
+## Typecheck
+
+El build de las librerías excluye `*.spec.ts` y `*.stories.ts` por exigencia del Angular Package Format, y el runner de tests los transpila **sin verificar tipos**. El script `typecheck` cubre ese hueco y corre como step bloqueante en CI:
+
+```bash
+pnpm typecheck                              # los tres workspaces
+pnpm -F @romanmartinidev/components typecheck
+```
+
+Sin él, renombrar un input de componente deja specs y stories rotas en tipos con CI en verde.
+
+> **Las 22 stories de `components` se typechequean desde el `playground`**, vía `.storybook/tsconfig.json` — es donde vive la configuración de Storybook, y duplicarla en el package no aportaría nada. Si tocás una story y querés verificarla sin correr todo: `pnpm -F playground typecheck`.
+
+**Gap conocido**: los archivos de configuración del repo (`vitest.config.ts`, `sd.config.mjs`) no están en ningún tsconfig y hoy nadie los typechequea. Requiere `@types/node` por workspace; queda como ítem propio.
 
 ## Cambios significativos: OpenSpec
 

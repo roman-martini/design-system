@@ -71,11 +71,19 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      # Antes del build: es más rápido y reporta el archivo y la línea exactos,
+      # así que un error de tipos se ve como tal y no como un build roto.
+      # Cubre lo que el build de las libs excluye por APF: *.spec.ts y *.stories.ts.
+      - name: Typecheck
+        run: pnpm typecheck
+
       - name: Build (recursive)
         run: pnpm -r build
 
-      - name: Test (recursive)
-        run: pnpm -r test
+      # Con cobertura: el umbral por package vive en su vitest.config y falla el
+      # job si la cobertura cae. No se corre la suite dos veces.
+      - name: Test (recursive, con cobertura)
+        run: pnpm test:coverage
 
       - name: Verify packaging
         run: pnpm verify:packaging

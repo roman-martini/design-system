@@ -41,22 +41,32 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Estado por parte** (el detalle de cada una vive en el plan; acá solo el avance):
 
-| Parte | Contenido                           | Vía                     | Estado                                             |
-| ----- | ----------------------------------- | ----------------------- | -------------------------------------------------- |
-| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                |
-| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                             |
-| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                             |
-| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028 |
-| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022        |
-| F     | Gates de calidad automáticos        | OpenSpec change(s)      | Pendiente — HU-026…HU-028, HU-030                  |
-| G     | Fixes de componentes (6 changes)    | OpenSpec por componente | Pendiente                                          |
-| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                          |
-| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                          |
-| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                          |
-| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                          |
-| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                 |
-| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada          |
-| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                 |
+| Parte | Contenido                           | Vía                     | Estado                                              |
+| ----- | ----------------------------------- | ----------------------- | --------------------------------------------------- |
+| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                 |
+| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                              |
+| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                              |
+| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028  |
+| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022         |
+| F     | Gates de calidad automáticos        | OpenSpec change(s)      | **En curso** (partida en F1/F2) — ver detalle abajo |
+| G     | Fixes de componentes (6 changes)    | OpenSpec por componente | Pendiente                                           |
+| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                           |
+| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                           |
+| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                           |
+| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                           |
+| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                  |
+| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada           |
+| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                  |
+
+**Detalle de la Parte F** (11 ítems; el plan autoriza partirla, el PO lo aprobó el 2026-07-29):
+
+| Sub-parte | Contenido                                                                  | Change    | Estado             |
+| --------- | -------------------------------------------------------------------------- | --------- | ------------------ |
+| F1-a      | Coverage con thresholds + typecheck de specs/stories (ítems 1, 6, 10)      | `aaa-040` | **Hecha** — HU-026 |
+| F1-b      | Gates de tokens: contraste AA versionado, jerarquía, build (ítems 2, 3, 4) | —         | Pendiente — HU-027 |
+| F2        | a11y (axe) y playground (ítems 5, 7, 8, 9, 11)                             | —         | Pendiente — HU-028 |
+
+> **HU-030** (bundle size budget con `size-limit`, aprobada en A14/[D-021](../product/decisiones.md)) figuraba como entregable de F, pero **no está entre los 11 ítems del plan ni asignada a otra parte**. Detectado el 2026-07-29 al ejecutar F1-a; hay que ubicarla al cerrar la parte.
 
 **Protocolo de ejecución**: una parte por sesión, con `/ds:handoff` → `/clear` → `/ds:resume` entre partes. El modelo y el effort de cada parte están declarados en el plan (§ "Modelo por parte" y § "Cuándo cortar sesión"); no se alterna modelo dentro de una sesión.
 

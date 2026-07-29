@@ -45,7 +45,9 @@ describe('DsBreadcrumbsRouter (@romanmartinidev/components/router)', () => {
 
   const labels = (): string[] =>
     Array.from(
-      fixture.nativeElement.querySelectorAll<HTMLElement>('.ds-breadcrumb-item__content'),
+      (fixture.nativeElement as HTMLElement).querySelectorAll<HTMLElement>(
+        '.ds-breadcrumb-item__content',
+      ),
     ).map((c) => c.textContent!.trim());
 
   beforeEach(async () => {

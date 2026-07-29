@@ -2,7 +2,10 @@ import { describe, expect, it } from 'vitest';
 
 import zIndexJson from '../src/semantic/z-index.json' with { type: 'json' };
 
-const tokens = zIndexJson.semantic['z-index'];
+// El tipo inferido del JSON tiene claves literales, y los tests indexan con
+// variables `string`. La anotación habilita ese acceso sin perder la forma
+// del token (`{ value }`), que es lo que las aserciones verifican.
+const tokens: Record<string, { value: string }> = zIndexJson.semantic['z-index'];
 
 describe('semantic z-index tokens', () => {
   const expectedLevels = [

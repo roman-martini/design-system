@@ -17,5 +17,22 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['src/test-setup.ts'],
     include: ['src/**/*.spec.ts', 'router/src/**/*.spec.ts'],
+    coverage: {
+      provider: 'v8',
+      // `text` para leer el resultado en consola y en el log de CI; `lcov` como
+      // formato máquina, sin atarnos a ninguna herramienta externa hoy.
+      reporter: ['text', 'lcov'],
+      include: ['src/**/*.ts', 'router/src/**/*.ts'],
+      exclude: ['**/*.spec.ts', '**/*.stories.ts', 'src/test-setup.ts'],
+      // Piso fijado en la cobertura real medida el 2026-07-29 (94.80 / 77.23 /
+      // 97.15 / 94.65) menos 1 punto de margen. Es un trinquete: sólo sube.
+      // Bajarlo requiere decisión explícita del PO — ver CONTRIBUTING.md.
+      thresholds: {
+        statements: 93,
+        branches: 76,
+        functions: 96,
+        lines: 93,
+      },
+    },
   },
 });

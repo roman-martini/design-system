@@ -51,10 +51,15 @@
     "build": "node sd.config.mjs",
     "watch": "node --watch sd.config.mjs",
     "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "prepublishOnly": "node ../../scripts/verify-dist.mjs"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.7",
     "style-dictionary": "^4.3.0",
+    "typescript": "~5.9",
     "vitest": "^4.0.8"
   }
 }
