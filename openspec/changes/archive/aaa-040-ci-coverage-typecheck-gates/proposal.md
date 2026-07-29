@@ -2,7 +2,8 @@
 id: aaa-040
 name: ci-coverage-typecheck-gates
 type: change
-status: proposed
+status: archived
+archived: 2026-07-29
 modifies-specs:
   - ci-cd-pipeline
   - monorepo-structure

@@ -1,7 +1,7 @@
 ---
 epica: EP-005
 actor: Mantenedor
-estado: Refinada (2026-07-26)
+estado: Hecha (2026-07-29, aaa-040; coverage v8 con umbral en los tres workspaces, typecheck de specs y stories, scripts uniformes, dos steps bloqueantes en pr.yml, política en CONTRIBUTING)
 decisiones: [D-021, D-002, D-017]
 ---
 
@@ -19,12 +19,12 @@ decisiones: [D-021, D-002, D-017]
 
 ## Criterios de aceptación
 
-- [ ] **CA-026.1 (coverage configurado)** — Dado cualquiera de los tres `vitest.config.ts` (components, tokens, playground), cuando se inspecciona su bloque `test`, entonces existe configuración de `coverage` con provider `v8` y reporters aptos para consola y para CI (texto legible + formato máquina tipo lcov).
-- [ ] **CA-026.2 (thresholds activos)** — Dado los packages publicables (`tokens` y `components`), cuando se corre la suite con cobertura, entonces se evalúan thresholds declarados en el config; el valor inicial de cada uno se fija midiendo la cobertura real al implementar y queda documentado en el change.
-- [ ] **CA-026.3 (coverage bajo umbral falla)** — Dado un package cuya cobertura queda por debajo de su threshold, cuando corre el job de CI, entonces el job **termina en error** y el PR no puede mergearse — no alcanza con emitir una advertencia.
-- [ ] **CA-026.4 (script typecheck por package)** — Dado cada package/app del workspace, cuando se ejecuta su script `typecheck`, entonces se typechequean **sin emitir** los archivos que el build de la lib excluye — `*.spec.ts` y `*.stories.ts` incluidos — y el root expone un `typecheck` que los corre a todos.
-- [ ] **CA-026.5 (error de tipos en spec o story falla)** — Dado un spec o una story que referencia un input o un tipo inexistente (por ejemplo, tras renombrar un input de componente), cuando corre CI, entonces el step de typecheck **falla** señalando el archivo; hoy ese caso pasa verde.
-- [ ] **CA-026.6 (cableado en el pipeline)** — Dado el workflow de PR, cuando se ejecuta, entonces incluye un step de typecheck y uno de tests con cobertura, ambos bloqueantes, y la política de coverage queda documentada en `CONTRIBUTING.md`.
+- [x] **CA-026.1 (coverage configurado)** — Dado cualquiera de los tres `vitest.config.ts` (components, tokens, playground), cuando se inspecciona su bloque `test`, entonces existe configuración de `coverage` con provider `v8` y reporters aptos para consola y para CI (texto legible + formato máquina tipo lcov).
+- [x] **CA-026.2 (thresholds activos)** — Dado los packages publicables (`tokens` y `components`), cuando se corre la suite con cobertura, entonces se evalúan thresholds declarados en el config; el valor inicial de cada uno se fija midiendo la cobertura real al implementar y queda documentado en el change. **Cumplido con desviación declarada en `tokens`**, decidida por el PO el 2026-07-29: el package no expone módulos TypeScript (su fuente son JSON y su build es Style Dictionary), así que la cobertura mide `0/0` y cualquier umbral pasaría siempre. Declarar un gate que no puede fallar contradice D-021 y D-017, de modo que `tokens` lleva provider y reporters sin thresholds, y su contrato de calidad se verifica sobre el artefacto emitido (HU-027). Razonamiento completo en el `design.md` de `aaa-040` (D2).
+- [x] **CA-026.3 (coverage bajo umbral falla)** — Dado un package cuya cobertura queda por debajo de su threshold, cuando corre el job de CI, entonces el job **termina en error** y el PR no puede mergearse — no alcanza con emitir una advertencia. Verificado en los dos sentidos al implementar.
+- [x] **CA-026.4 (script typecheck por package)** — Dado cada package/app del workspace, cuando se ejecuta su script `typecheck`, entonces se typechequean **sin emitir** los archivos que el build de la lib excluye — `*.spec.ts` y `*.stories.ts` incluidos — y el root expone un `typecheck` que los corre a todos. Las stories de `components` se cubren desde el `playground` vía el tsconfig de Storybook.
+- [x] **CA-026.5 (error de tipos en spec o story falla)** — Dado un spec o una story que referencia un input o un tipo inexistente (por ejemplo, tras renombrar un input de componente), cuando corre CI, entonces el step de typecheck **falla** señalando el archivo; hoy ese caso pasa verde. El gate expuso 12 errores preexistentes al instalarse, corregidos en el mismo change.
+- [x] **CA-026.6 (cableado en el pipeline)** — Dado el workflow de PR, cuando se ejecuta, entonces incluye un step de typecheck y uno de tests con cobertura, ambos bloqueantes, y la política de coverage queda documentada en `CONTRIBUTING.md`.
 
 ## Dependencias
 

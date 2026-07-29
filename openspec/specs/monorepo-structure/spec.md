@@ -9,7 +9,7 @@ created: 2026-05-30
 
 ## Purpose
 
-Define los requisitos estructurales del monorepo `design-system`: elección y uso de package manager, declaración de workspaces, fijación de versiones de runtime, hooks de calidad (commits, lint, format), estrategia de versionado/publicación, y reglas de dependencia entre packages internos. Esta capability captura el contrato que debe cumplir el repo para que las librerías publicables (`packages/*`) y la app de prueba (`apps/playground`) coexistan de forma escalable y mantenible.
+Define los requisitos estructurales del monorepo `design-system`: elección y uso de package manager, declaración de workspaces, fijación de versiones de runtime, hooks de calidad (commits, lint, format), scripts uniformes de test y typecheck por workspace, estrategia de versionado/publicación, y reglas de dependencia entre packages internos. Esta capability captura el contrato que debe cumplir el repo para que las librerías publicables (`packages/*`) y la app de prueba (`apps/playground`) coexistan de forma escalable y mantenible.
 
 ## Requirements
 
@@ -112,6 +112,42 @@ El repo SHALL tener `eslint.config.js` y `.prettierrc` en root. Estos SHALL serv
 - **GIVEN** `eslint.config.js` en root con reglas base
 - **WHEN** `packages/components/eslint.config.js` extiende la base
 - **THEN** las reglas base aplican + las específicas del package se suman sin duplicación
+
+### Requirement: Scripts de test y typecheck uniformes por workspace
+
+Todo workspace del monorepo que tenga tests SHALL exponer el mismo juego de scripts con semántica idéntica:
+
+| Script          | Semántica                                                                 |
+| --------------- | ------------------------------------------------------------------------- |
+| `test`          | corre la suite **una vez** y retorna exit code; nunca queda en modo watch |
+| `test:watch`    | corre la suite en modo watch, para desarrollo local                       |
+| `test:coverage` | corre la suite una vez recolectando cobertura                             |
+| `typecheck`     | typechequea sin emitir los archivos excluidos del build de la librería    |
+
+El root SHALL agregar estos scripts de forma recursiva, de modo que el comando documentado en `CLAUDE.md` se comporte igual en local que en CI.
+
+`test` SHALL retornar control al terminar en cualquier entorno: un script que entra en watch cuando corre en una terminal interactiva NO satisface este requirement, porque bloquea la ejecución recursiva desde el root.
+
+#### Scenario: pnpm test del root termina en local
+
+- **GIVEN** una terminal interactiva en la raíz del monorepo
+- **WHEN** se ejecuta `pnpm test`
+- **THEN** SHALL correr la suite de los tres workspaces
+- **AND** SHALL retornar el control con un exit code, sin quedar en watch
+
+#### Scenario: cada workspace expone el mismo juego de scripts
+
+- **GIVEN** los `package.json` de `packages/tokens`, `packages/components` y `apps/playground`
+- **WHEN** se inspeccionan sus scripts
+- **THEN** los cuatro nombres SHALL estar presentes en los tres
+- **AND** SHALL tener la misma semántica en todos
+
+#### Scenario: typecheck recursivo desde el root
+
+- **GIVEN** la raíz del monorepo
+- **WHEN** se ejecuta `pnpm typecheck`
+- **THEN** SHALL ejecutar el `typecheck` de cada workspace
+- **AND** SHALL fallar si cualquiera de ellos reporta un error de tipos
 
 ### Requirement: ADRs documentan decisiones one-way door
 

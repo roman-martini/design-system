@@ -9,7 +9,7 @@ created: 2026-06-01
 
 ## Purpose
 
-Define los requisitos del pipeline de CI/CD del repo: dos workflows GitHub Actions (`pr.yml` para validacion de PRs y `release.yml` para release con Changesets, este ultimo partido en un job de versionado y uno de publish con gate de aprobacion), composite action de setup compartido, secret `NPM_TOKEN` en el environment `npm-publish`, cache de pnpm habilitado, version de Node leida desde `.nvmrc`, branch protection y environment documentados en CONTRIBUTING.md, y los gates obligatorios de cada PR: `actionlint`, Conventional Commits, packaging, validacion OpenSpec y changeset obligatorio en PRs que tocan packages publicables.
+Define los requisitos del pipeline de CI/CD del repo: dos workflows GitHub Actions (`pr.yml` para validacion de PRs y `release.yml` para release con Changesets, este ultimo partido en un job de versionado y uno de publish con gate de aprobacion), composite action de setup compartido, secret `NPM_TOKEN` en el environment `npm-publish`, cache de pnpm habilitado, version de Node leida desde `.nvmrc`, branch protection y environment documentados en CONTRIBUTING.md, y los gates obligatorios de cada PR: `actionlint`, Conventional Commits, typecheck de specs y stories, cobertura con umbral, packaging, validacion OpenSpec y changeset obligatorio en PRs que tocan packages publicables.
 
 Cubre ademas el hardening del pipeline: permisos de least-privilege y `timeout-minutes` por job, actions externas pineadas por SHA de commit completo, y actualizacion automatizada de dependencias vía Dependabot como contraparte de ese pinning.
 
@@ -17,7 +17,9 @@ Cubre ademas el hardening del pipeline: permisos de least-privilege y `timeout-m
 
 ### Requirement: Workflow de validación en cada PR
 
-El repo SHALL incluir un workflow `.github/workflows/pr.yml` que se dispara en cada `pull_request` apuntado a `main`. El workflow SHALL ejecutar al menos: instalación de deps con lockfile congelado, format check, lint, build recursivo de todos los workspaces, tests, y validación de OpenSpec. El workflow SHALL fallar si cualquier paso reporta exit code distinto de 0.
+El repo SHALL incluir un workflow `.github/workflows/pr.yml` que se dispara en cada `pull_request` apuntado a `main`. El workflow SHALL ejecutar al menos: instalación de deps con lockfile congelado, format check, lint, **typecheck recursivo**, build recursivo de todos los workspaces, **tests con cobertura**, y validación de OpenSpec. El workflow SHALL fallar si cualquier paso reporta exit code distinto de 0.
+
+El step de typecheck SHALL ejecutarse **antes** del build recursivo, de modo que un error de tipos se reporte como tal —con archivo y línea— en vez de manifestarse como un build roto.
 
 La validación de OpenSpec SHALL ejecutarse con el CLI **`@fission-ai/openspec`** declarado como devDependency del root e invocado vía `pnpm exec`, de modo que quede bajo `pnpm install --frozen-lockfile` como el resto del toolchain. NO SHALL invocarse vía `npx --yes openspec`: el package `openspec` del registry de npm es un placeholder sin ejecutable y no corresponde a este CLI.
 
@@ -32,7 +34,7 @@ La validación de OpenSpec SHALL ejecutarse con el CLI **`@fission-ai/openspec`*
 
 - **GIVEN** un PR que rompe un test existente
 - **WHEN** se dispara el workflow
-- **THEN** el step `pnpm -r test` SHALL fallar con exit code distinto de 0
+- **THEN** el step de tests con cobertura SHALL fallar con exit code distinto de 0
 
 #### Scenario: PR con OpenSpec inválido falla CI
 
@@ -52,6 +54,73 @@ La validación de OpenSpec SHALL ejecutarse con el CLI **`@fission-ai/openspec`*
 - **GIVEN** un PR con archivos no formateados según Prettier
 - **WHEN** se dispara el workflow
 - **THEN** el step `pnpm format:check` SHALL fallar
+
+#### Scenario: el typecheck falla antes que el build
+
+- **GIVEN** un PR cuyo único defecto es un error de tipos en un archivo de test
+- **WHEN** se dispara el workflow
+- **THEN** el step de typecheck SHALL fallar señalando el archivo
+- **AND** el step de build recursivo NO SHALL haberse ejecutado
+
+### Requirement: Gate de cobertura con umbral en packages con código instrumentable
+
+Los workspaces con código fuente instrumentable SHALL declarar en su `vitest.config.ts` un bloque `coverage` con provider `v8` y reporters aptos para lectura humana y para consumo por herramientas (texto en consola más un formato máquina tipo `lcov`).
+
+Todo workspace con código instrumentable SHALL declarar **thresholds** de cobertura, y la corrida con cobertura SHALL **fallar** con exit code distinto de 0 cuando cualquier métrica cae por debajo de su umbral. Emitir una advertencia sin fallar NO satisface este requirement.
+
+Los umbrales SHALL fijarse en el nivel de cobertura **realmente medido** al instalarlos, no en un valor aspiracional, y SHALL comportarse como trinquete: una vez fijados solo suben. Bajar un umbral SHALL requerir decisión explícita del product owner, registrada como tal.
+
+Un workspace **sin código fuente instrumentable** —aquel cuyos tests validan un artefacto generado y no un módulo propio— SHALL declarar el bloque `coverage` sin thresholds, y su contrato de calidad SHALL cubrirse con tests de validación del artefacto. Declarar un umbral que no puede fallar NO satisface este requirement.
+
+La política de cobertura vigente SHALL estar documentada en `CONTRIBUTING.md`.
+
+#### Scenario: cobertura bajo el umbral falla el PR
+
+- **GIVEN** un PR que agrega código sin tests a `@romanmartinidev/components`, dejando la cobertura por debajo de su threshold
+- **WHEN** corre el step de tests con cobertura
+- **THEN** el step SHALL terminar con exit code distinto de 0
+- **AND** el PR NO SHALL poder mergearse
+
+#### Scenario: cobertura sobre el umbral pasa
+
+- **GIVEN** un PR cuya cobertura se mantiene igual o por encima de todos los thresholds declarados
+- **WHEN** corre el step de tests con cobertura
+- **THEN** el step SHALL terminar con exit code 0
+
+#### Scenario: package sin código instrumentable no declara umbral vacuo
+
+- **GIVEN** `@romanmartinidev/tokens`, cuyos tests validan el artefacto emitido por Style Dictionary y que no expone módulos TypeScript propios
+- **WHEN** se inspecciona su configuración de cobertura
+- **THEN** SHALL tener provider y reporters declarados
+- **AND** NO SHALL declarar thresholds que ninguna corrida pueda incumplir
+
+### Requirement: Typecheck de specs y stories en CI
+
+Cada workspace SHALL exponer un script `typecheck` que ejecute el compilador de TypeScript **sin emitir** sobre una configuración que incluya los archivos excluidos del build de la librería — `*.spec.ts` y `*.stories.ts` entre ellos. El root SHALL exponer un `typecheck` que los agregue a todos.
+
+El workflow `pr.yml` SHALL ejecutar el typecheck recursivo como step bloqueante: un error de tipos en un spec o en una story SHALL fallar el PR.
+
+Toda configuración de typecheck referenciada por el script SHALL ser ejecutable en un checkout limpio: los type libraries que declare SHALL estar instalados como dependencias del workspace.
+
+#### Scenario: rename de input rompe una story y falla CI
+
+- **GIVEN** un PR que renombra un input público de un componente sin actualizar su story
+- **WHEN** corre el step de typecheck
+- **THEN** el step SHALL fallar señalando el archivo de la story
+- **AND** el resultado SHALL ser rojo aunque el build de la librería sea exitoso
+
+#### Scenario: error de tipos en un spec falla CI
+
+- **GIVEN** un PR con un spec que referencia un tipo inexistente
+- **WHEN** corre el step de typecheck
+- **THEN** el step SHALL fallar señalando el archivo del spec
+
+#### Scenario: el typecheck corre en un checkout limpio
+
+- **GIVEN** un runner que acaba de correr `pnpm install --frozen-lockfile`
+- **WHEN** se ejecuta `pnpm typecheck` en el root
+- **THEN** SHALL typechequear los tres workspaces
+- **AND** NO SHALL abortar por un type library declarado pero no instalado
 
 ### Requirement: Verificación de packaging en cada PR
 

@@ -1,5 +1,5 @@
 ---
-estado: En desarrollo (primera tanda de tooling entregada 2026-07-11; tanda de gates automáticos aprobada 2026-07-26 por D-021, 1/7 entregada -- HU-032 /ds:audit-tokens el 2026-07-27)
+estado: En desarrollo (primera tanda de tooling entregada 2026-07-11; tanda de gates automáticos aprobada 2026-07-26 por D-021, 2/7 entregadas -- HU-032 /ds:audit-tokens el 2026-07-27 y HU-026 coverage+typecheck el 2026-07-29)
 actor: Mantenedor
 ---
 
@@ -22,15 +22,15 @@ Queda afuera: los tests unitarios por componente (parte de cada change de EP-002
 
 ## Historias de usuario
 
-| HU                                        | Título                                                   | Estado                 | Ejecuta     |
-| ----------------------------------------- | -------------------------------------------------------- | ---------------------- | ----------- |
-| [HU-026](HU-026-coverage-typecheck-ci.md) | Coverage con thresholds y typecheck en CI                | Refinada (2026-07-26)  | Parte F     |
-| [HU-027](HU-027-gate-contraste-aa-ci.md)  | Gate de contraste WCAG AA en CI                          | Refinada (2026-07-26)  | Parte F     |
-| [HU-028](HU-028-a11y-automatizada-axe.md) | Accesibilidad automatizada con axe (2 fases)             | Refinada (2026-07-26)  | Parte F y L |
-| [HU-029](HU-029-angular-eslint.md)        | angular-eslint con reglas de template y a11y             | Refinada (2026-07-26)  | Parte N     |
-| [HU-030](HU-030-bundle-size-budget.md)    | Presupuesto de tamaño de bundle                          | Refinada (2026-07-26)  | Parte F     |
-| [HU-031](HU-031-storybook-publicado.md)   | Storybook publicado y regresión visual                   | Refinada (2026-07-26)  | Parte L     |
-| [HU-032](HU-032-audit-tokens-skill.md)    | Auditoría de consistencia de tokens (`/ds:audit-tokens`) | **Hecha** (2026-07-27) | Parte M     |
+| HU                                        | Título                                                   | Estado                 | Ejecuta      |
+| ----------------------------------------- | -------------------------------------------------------- | ---------------------- | ------------ |
+| [HU-026](HU-026-coverage-typecheck-ci.md) | Coverage con thresholds y typecheck en CI                | **Hecha** (2026-07-29) | Parte F1-a   |
+| [HU-027](HU-027-gate-contraste-aa-ci.md)  | Gate de contraste WCAG AA en CI                          | Refinada (2026-07-26)  | Parte F1-b   |
+| [HU-028](HU-028-a11y-automatizada-axe.md) | Accesibilidad automatizada con axe (2 fases)             | Refinada (2026-07-26)  | Parte F2 y L |
+| [HU-029](HU-029-angular-eslint.md)        | angular-eslint con reglas de template y a11y             | Refinada (2026-07-26)  | Parte N      |
+| [HU-030](HU-030-bundle-size-budget.md)    | Presupuesto de tamaño de bundle                          | Refinada (2026-07-26)  | Parte F3     |
+| [HU-031](HU-031-storybook-publicado.md)   | Storybook publicado y regresión visual                   | Refinada (2026-07-26)  | Parte L      |
+| [HU-032](HU-032-audit-tokens-skill.md)    | Auditoría de consistencia de tokens (`/ds:audit-tokens`) | **Hecha** (2026-07-27) | Parte M      |
 
 Las siete nacen de [D-021](../../decisiones.md) (2026-07-26). Las cuatro que exigían OK explícito del PO por [D-015](../../decisiones.md) —a11y en CI, presupuesto de bundle, Storybook publicado y `/ds:audit-tokens`— venían de la ex Cantera del BACKLOG y quedaron aprobadas en esa misma decisión.
 

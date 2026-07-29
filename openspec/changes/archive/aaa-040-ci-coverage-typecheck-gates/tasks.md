@@ -74,6 +74,6 @@ Orden: primero se arreglan los 12 errores que el gate va a exponer (§2 y §3), 
 - [x] 8.2 Agregar changeset `patch` para ambos packages: el change toca `packages/*/package.json` y dispara el enforcement de `pr.yml`, aunque no altera el artefacto publicado.
 - [x] 8.3 Actualizar `openspec/README.md`: próximo ID disponible y lista de IDs en vuelo.
 - [x] 8.4 Marcar el avance de la Parte F en `docs/backlog/BACKLOG.md` y anotar que HU-026 queda entregada.
-- [ ] 8.5 Proponer el mensaje de commit y **esperar el OK del PO** antes de commitear.
+- [x] 8.5 Proponer el mensaje de commit y **esperar el OK del PO** antes de commitear. (OK del PO el 2026-07-29; commiteado por el PO en `2e907e4`, más `a318737` con el registro de HU-030.)
 
 **Criterio**: repo verde, artefactos de gobernanza actualizados, commit propuesto y no ejecutado sin OK.
