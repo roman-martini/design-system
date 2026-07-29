@@ -551,7 +551,7 @@ jobs:
       - run: pnpm lint # 2
       - run: pnpm -r build # 3
       - run: pnpm -r test # 4
-      - run: npx --yes openspec validate --all # 5
+      - run: pnpm exec openspec validate --all # 5 — @fission-ai/openspec como devDep del root
       # 6 — changeset enforcement: si el diff vs main toca packages/*
       #     (excluyendo README.md y CHANGELOG.md), exige un changeset nuevo.
 ```

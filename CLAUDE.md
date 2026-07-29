@@ -163,14 +163,17 @@ pnpm test             # pnpm -r test
 pnpm lint
 pnpm format           # pnpm format:check en CI
 
+# Validar OpenSpec (CLI pinneado en el repo: @fission-ai/openspec)
+pnpm openspec validate --all
+
 # Agregar un changeset
 pnpm changeset
 
 # Versionar (lo ejecuta el PR de release, no a mano)
-pnpm changeset version   # NO usar `pnpm version`: el builtin de pnpm pisa al script homónimo
+pnpm changeset:version   # el script NO se llama `version`: el builtin de pnpm lo pisaría
 ```
 
-> **La publicación a npm no se ejecuta manualmente.** El único camino es `.github/workflows/release.yml`, que corre `pnpm release` (`pnpm -r build && changeset publish`) según [ADR-006](docs/architecture/adr/ADR-006-estrategia-ci-cd.md) y el lockstep de [ADR-015](docs/architecture/adr/ADR-015-versionado-lockstep.md). El veto de publicación fue **levantado el 2026-07-28** ([D-028](docs/product/decisiones.md)), pero eso **no habilita publicar desde acá**: no correr `changeset publish` ni `pnpm -r publish` bajo ninguna circunstancia — el release corre por CI con aprobación explícita del PO por versión. Cómo se empaqueta cada package (components publica su `dist/`, tokens desde el root) lo gobierna [ADR-021](docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md); `pnpm verify:packaging` verifica el contrato sobre el artefacto emitido.
+> **La publicación a npm no se ejecuta manualmente.** El único camino es `.github/workflows/release.yml`, cuyo job `publish` corre `pnpm changeset publish` según [ADR-006](docs/architecture/adr/ADR-006-estrategia-ci-cd.md) y el lockstep de [ADR-015](docs/architecture/adr/ADR-015-versionado-lockstep.md). No existe un script `release` en el root: fue eliminado a propósito para que no haya un publish manual de un comando. El veto de publicación fue **levantado el 2026-07-28** ([D-028](docs/product/decisiones.md)), pero eso **no habilita publicar desde acá**: no correr `changeset publish` ni `pnpm -r publish` bajo ninguna circunstancia — el release corre por CI y queda detrás del environment `npm-publish` con aprobación explícita del PO por versión ([ADR-022](docs/architecture/adr/ADR-022-gate-aprobacion-publish-npm.md)). Cómo se empaqueta cada package (components publica su `dist/`, tokens desde el root) lo gobierna [ADR-021](docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md); `pnpm verify:packaging` verifica el contrato sobre el artefacto emitido.
 
 ## Cómo trabajar en este repo (para Claude)
 

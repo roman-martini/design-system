@@ -376,7 +376,7 @@ Validado en el hook `commit-msg` por commitlint con `@commitlint/config-conventi
 ### Versionado con Changesets
 
 - Cada PR que afecta una lib publicable agrega un changeset (`pnpm changeset`).
-- Al release: `pnpm changeset version` (actualiza versiones + CHANGELOG) + `pnpm changeset publish`, **ambos ejecutados por `release.yml` vía `changesets/action`, nunca a mano**. El workflow invoca `changeset` directo y no el script `version` del root porque el builtin `pnpm version` lo pisa.
+- Al release: `changeset version` (actualiza versiones + CHANGELOG) + `changeset publish`, **ambos ejecutados por `release.yml` vía `changesets/action`, nunca a mano**. El script del root se llama `changeset:version` y no `version`, porque el builtin `pnpm version` pisaría al homónimo; no existe script `release` (eliminado para que no haya publish manual de un comando).
 - **Lockstep** ([ADR-015](adr/ADR-015-versionado-lockstep.md)): `tokens` y `components` versionan juntos (`fixed` de Changesets, versión única del par). El bump que se elige en el changeset aplica al par, no a un package suelto. El peer de tokens es un rango plano pre-1.0 (`>=0.1.0 <1.0.0`) con `onlyUpdatePeerDependentsWhenOutOfRange`, para evitar la cascada peer→major.
 - `workspace:*` se reescribe a semver real al publicar.
 - Pre-1.0: política permisiva; al primer release se decide la política definitiva.
@@ -425,8 +425,10 @@ Validado en el hook `commit-msg` por commitlint con `@commitlint/config-conventi
 
 Dos workflows GitHub Actions:
 
-- **`pr.yml`** (trigger: `pull_request` a `main`) — corre `format:check` + `lint` + `pnpm -r build` + `pnpm -r test` + `openspec validate --all` + changeset enforcement (PRs que tocan `packages/*` requieren changeset, excepto README/CHANGELOG).
-- **`release.yml`** (trigger: `push` a `main`) — usa [`changesets/action@v1`](https://github.com/changesets/action) en modo dual: abre PR `chore(repo): version packages` si hay changesets pendientes; ejecuta `pnpm release` (build + publish) si no hay (post-merge del PR de release).
+- **`pr.yml`** (trigger: `pull_request` a `main`) — corre `actionlint` + `commitlint` + `format:check` + `lint` + `pnpm -r build` + `pnpm -r test` + `verify:packaging` + `openspec validate --all` + changeset enforcement (PRs que tocan `packages/*` requieren changeset, excepto README/CHANGELOG y el PR autogenerado `changeset-release/main`).
+- **`release.yml`** (trigger: `push` a `main`) — usa [`changesets/action`](https://github.com/changesets/action) en **dos jobs**: `version` abre o actualiza el PR `chore(repo): version packages` si hay changesets pendientes; `publish` corre build + `changeset publish` si no quedan (post-merge del PR de release), **detrás del environment `npm-publish` con required reviewer** ([ADR-022](adr/ADR-022-gate-aprobacion-publish-npm.md)).
+
+**Supply chain**: todas las actions externas están pineadas por SHA completo con el tag como comentario, y `.github/dependabot.yml` (npm + github-actions, weekly) trae los bumps como PRs revisables.
 
 **Composite action** `.github/actions/setup/` extrae setup pnpm + node (`node-version-file: '.nvmrc'`) + cache + install. Reutilizada en ambos workflows.
 

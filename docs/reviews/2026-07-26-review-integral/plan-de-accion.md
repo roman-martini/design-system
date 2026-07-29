@@ -197,7 +197,7 @@ Checklist (detalle y evidencia en hallazgos.md):
 2. Environment `npm-publish` con required reviewer (si A2) [ci-cd-02]
 3. `permissions: contents: read` + `timeout-minutes` [ci-cd-03]
 4. Pinning de las 4 actions por SHA [ci-cd-04]
-5. `openspec` como devDependency pinneada + `pnpm exec` en CI [ci-cd-05, openspec-01]
+5. `openspec` como devDependency pinneada + `pnpm exec` en CI [ci-cd-05, openspec-01] — **corregido al ejecutar (2026-07-28)**: el package correcto es `@fission-ai/openspec`; el `openspec` de npm es un placeholder sin `bin`, así que el step **fallaba en todo run de CI** y el gate nunca validó nada. Ver la corrección en [ci-cd-05] de `hallazgos.md`.
 6. commitlint en CI (`--from origin/main`) [ci-cd-06]
 7. `.github/dependabot.yml` (npm + github-actions, con groups) [ci-cd-07, tooling-repo-02]
 8. Alinear spec/CONTRIBUTING con el publish real (`changeset publish`) [ci-cd-12]

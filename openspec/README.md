@@ -19,7 +19,7 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-039`**
+**`aaa-040`**
 
 Actualizar al crear un change nuevo.
 
@@ -27,6 +27,8 @@ Actualizar al crear un change nuevo.
 
 IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/README.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
 
+> `aaa-039` asignado a `ci-correctness-hardening` (status `proposed`; genera ADR-022). Parte E de la review integral 2026-07-26.
+>
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
 >
 > ⏸️ **En pausa desde el 2026-07-03 por decisión del PO**, ratificada por [D-027](../docs/product/decisiones.md): el change queda activo acá con sus 4 artefactos intactos, pero **no se debe aplicar**. Sus 29 tasks están sin ejecutar a propósito — que estén "listas para apply" no es una invitación. Condición de reactivación: que el PO lo pida explícitamente; su validación final depende además de conectar Tokens Studio en Figma, trabajo del PO. Coordinar con la migración a formato DTCG de la fuente de tokens ([D-024](../docs/product/decisiones.md)).
@@ -140,7 +142,9 @@ created: YYYY-MM-DD
 3. **Apply**: implementar tasks marcando checkboxes. Última task siempre es "proponer mensaje de commit y esperar OK del usuario".
 4. **Archivar**: mover dir a `archive/<id>-<name>/`, sincronizar spec base con deltas, verificar que los artefactos no tengan links relativos (ver § "Referencias dentro de artefactos de change" — es lo que el movimiento rompe), borrar la línea del change de "IDs en vuelo" en este README, agregar fila al catálogo histórico en `docs/architecture/README.md`. Ver el [checklist completo de archive](../docs/product/README.md#checklist-de-archive) — incluye los registros de producto y el gate visual del PO ([D-022](../docs/product/decisiones.md)).
 
-> El CLI corre vía `npx --yes openspec` (todavía no está pinneado como devDependency del repo; su instalación está prevista en el hardening de CI).
+> El CLI es **`@fission-ai/openspec`**, pinneado como devDependency del root (`aaa-039`): se invoca con `pnpm openspec <cmd>` o `pnpm exec openspec <cmd>`, y así queda bajo `pnpm install --frozen-lockfile` igual que el resto del toolchain.
+>
+> **No usar `npx --yes openspec`**: el package `openspec` del registry de npm es un placeholder de 2019 sin ejecutable, no este CLI. Localmente el comando parecía funcionar solo porque el binario estaba instalado global; en CI nunca validó nada.
 
 ### `.openspec.yaml` — marker opcional
 

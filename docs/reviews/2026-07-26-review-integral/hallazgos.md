@@ -843,6 +843,8 @@ El step de validación OpenSpec corre `npx --yes openspec validate --all`: desca
 
 **Nota de verificación**: pr.yml:38 dice exactamente `run: npx --yes openspec validate --all` y `openspec` no aparece como dependencia en ningún package.json del repo (grep sin matches) — es la única herramienta del pipeline fuera del lockfile. Recomendación (devDependency + pnpm exec) correcta y de bajo costo.
 
+**Corrección (2026-07-28, al ejecutar la Parte E)**: el hallazgo **subestima el problema**. El package `openspec` del registry de npm **no es el CLI de OpenSpec**: es un placeholder de `openspecio/openspec` (2019, autor `akerust`), con una única versión `0.0.0` y **sin campo `bin`**. `npx` no puede determinar un ejecutable, así que el step **falla en todo run de CI** — nunca validó una sola spec. Localmente parecía funcionar porque el mantenedor tiene `@fission-ai/openspec@1.3.1` instalado global y `npx` resuelve primero el PATH. El CLI real es **`@fission-ai/openspec`**. No es "falta pinear la versión": es el package equivocado. Resuelto en `aaa-039` pinneando `@fission-ai/openspec@1.6.0` como devDependency (verificado: valida el repo con 27 passed, 0 failed, idéntico al global 1.3.1).
+
 ### ci-cd-06 — Conventional Commits no se valida en CI: commitlint solo vive en el hook local
 
 - **Archivo**: `.husky/commit-msg:1`
@@ -1224,6 +1226,8 @@ El gate de PR corre `npx --yes openspec validate --all`, que descarga la última
 **Recomendación**: Agregar `openspec` como devDependency pinneada en el root, exponer script `"openspec": "openspec"` (o usar `pnpm exec`), cambiar el step de pr.yml a `pnpm openspec validate --all`, y alinear CONTRIBUTING.md y openspec/README.md con el comando real.
 
 **Nota de verificación**: Toda la evidencia existe: pr.yml:38 corre `npx --yes openspec validate --all`; `openspec` no aparece en package.json (ni en deps ni en scripts) ni en pnpm-lock.yaml; openspec/README.md:102-103 documenta `pnpm openspec new change` y `pnpm openspec validate --changes`, que fallan porque no hay script `openspec` ni el paquete instalado; CONTRIBUTING.md:124 manda correr `openspec validate --all` localmente sin documentar instalación. Severidad alta razonable para la vara del repo: CLI de terceros sin pinnear ejecutándose en un gate obligatorio de PR (build no reproducible + exposición supply-chain) y workflow documentado roto para un dev nuevo.
+
+**Corrección (2026-07-28, al ejecutar la Parte E)**: ver la corrección en [ci-cd-05]. El package `openspec` de npm es un placeholder sin `bin` — no el CLI. El step no corría una versión "no pinneada": **no corría en absoluto**, y el gate de OpenSpec de CI nunca validó nada. Resuelto en `aaa-039` con `@fission-ai/openspec@1.6.0` bajo lockfile.
 
 ### openspec-02 — Directorio huérfano changes/components-decide-icon-library/ con nota obsoleta de un change ya archivado
 

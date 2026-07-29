@@ -8,19 +8,62 @@ concurrency:
   group: pr-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
+# Least-privilege: el workflow solo lee el repo y corre scripts.
+permissions:
+  contents: read
+
+env:
+  # actionlint se descarga en versión fija y se verifica por checksum antes de
+  # ejecutarse — mismo criterio que el pinning por SHA de las actions.
+  ACTIONLINT_VERSION: 1.7.12
+  ACTIONLINT_SHA256: 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+
 jobs:
   validate:
     name: Validate
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          # Full history para changeset status --since=origin/main
+          # Full history: commitlint y el changeset enforcement resuelven los
+          # SHAs base/head del PR, que el merge commit del evento no alcanza.
           fetch-depth: 0
 
       - name: Setup
         uses: ./.github/actions/setup
+
+      - name: Lint workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          TARBALL="actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+          URL="https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/${TARBALL}"
+          WORKDIR="$(mktemp -d)"
+
+          curl --fail --silent --show-error --location --retry 3 --output "${WORKDIR}/${TARBALL}" "$URL"
+
+          # Verificar ANTES de extraer: nada se ejecuta sin identidad confirmada.
+          echo "${ACTIONLINT_SHA256}  ${WORKDIR}/${TARBALL}" | sha256sum --check --strict -
+
+          tar -xzf "${WORKDIR}/${TARBALL}" -C "$WORKDIR" actionlint
+
+          # Solo workflows: actionlint no soporta composite actions (las parsea
+          # como workflow y falla por "jobs"/"on" ausentes).
+          "${WORKDIR}/actionlint" .github/workflows/*.yml
+
+      - name: Commit messages
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          # Rango real del PR: incluir HEAD metería el merge commit sintético del
+          # evento, cuyo mensaje no cumple Conventional Commits por construcción.
+          pnpm exec commitlint --from "$BASE_SHA" --to "$HEAD_SHA" --verbose
 
       - name: Format check
         run: pnpm format:check
@@ -38,33 +81,53 @@ jobs:
         run: pnpm verify:packaging
 
       - name: OpenSpec validate
-        run: npx --yes openspec validate --all
+        run: pnpm exec openspec validate --all
 
+      # El PR autogenerado por changesets/action bumpea packages/*/package.json
+      # DESPUÉS de consumir los changesets: por construcción no puede satisfacer
+      # este gate. La excepción es declarativa para que se vea como step skipped.
       - name: Changeset enforcement
+        if: github.head_ref != 'changeset-release/main'
         shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
 
-          # Fetch main para diff
-          git fetch origin main --depth=1 || true
+          # Detección 100% basada en archivos — nunca se parsea output de un CLI.
+          # Sin `|| true` acá: un fallo de git aborta el step en vez de degradar
+          # a "el PR no toca packages" y dejar pasar el cambio en silencio.
+          CHANGED=$(git diff --name-only "${BASE_SHA}...${HEAD_SHA}" -- 'packages/')
 
-          # Detecta cambios bajo packages/*, excluyendo README.md y CHANGELOG.md de cada package
-          PKG_CHANGES=$(git diff --name-only origin/main...HEAD -- 'packages/' \
-            | grep -vE 'packages/[^/]+/(README|CHANGELOG)\.md$' \
-            || true)
-
-          if [ -z "$PKG_CHANGES" ]; then
-            echo "✓ No hay cambios en packages/* que requieran changeset."
+          if [ -z "$CHANGED" ]; then
+            echo "✓ El PR no toca packages/*: no requiere changeset."
             exit 0
           fi
 
-          echo "Cambios detectados en packages/*:"
-          echo "$PKG_CHANGES" | sed 's/^/  - /'
+          # `|| true` acotado al grep, cuyo exit 1 solo significa "sin matches".
+          PKG_CHANGES=$(printf '%s\n' "$CHANGED" \
+            | grep -vE '^packages/[^/]+/(README|CHANGELOG)\.md$' \
+            || true)
+
+          if [ -z "$PKG_CHANGES" ]; then
+            echo "✓ El PR solo toca README/CHANGELOG de packages."
+            echo "  Excepción reconocida: son documentación y output, no cambios de API."
+            exit 0
+          fi
+
+          echo "Cambios en packages/* que requieren changeset:"
+          printf '%s\n' "$PKG_CHANGES" | sed 's/^/  - /'
           echo ""
 
-          # Verifica si hay changesets nuevos vs main
-          if pnpm changeset status --since=origin/main 2>&1 | grep -qE '^🦋|---.*\.md$|changeset.*found'; then
-            echo "✓ Changeset encontrado para el PR."
+          # --diff-filter=AM: un PR que BORRA un changeset no lo está agregando.
+          NEW_CHANGESETS=$(git diff --name-only --diff-filter=AM "${BASE_SHA}...${HEAD_SHA}" -- '.changeset/*.md' \
+            | grep -vE '^\.changeset/README\.md$' \
+            || true)
+
+          if [ -n "$NEW_CHANGESETS" ]; then
+            echo "✓ Changeset encontrado:"
+            printf '%s\n' "$NEW_CHANGESETS" | sed 's/^/  - /'
             exit 0
           fi
 

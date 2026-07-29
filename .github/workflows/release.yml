@@ -8,22 +8,60 @@ concurrency:
   group: release
   cancel-in-progress: false
 
-permissions:
-  contents: write
-  pull-requests: write
-  # Requerido para emitir la attestation de procedencia (npm provenance) al
-  # publicar desde Actions, junto con publishConfig.provenance en los packages (D-018c).
-  id-token: write
-
 jobs:
-  release:
-    name: Release
+  # Modo 1 — hay changesets pendientes: abrir/actualizar el PR de versionado.
+  # Sin gate de aprobación: la operación es reversible y ocurre en cada merge.
+  version:
+    name: Version
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      has-changesets: ${{ steps.changesets.outputs.hasChangesets }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # Full history para changesets/action
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Create or update release PR
+        id: changesets
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        with:
+          version: pnpm changeset:version
+          commit: 'chore(repo): version packages'
+          title: 'chore(repo): version packages'
+          setupGitUser: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Modo 2 — no quedan changesets (se mergeó el PR de versionado): publicar.
+  # El acto es irreversible (npm no permite republicar una versión), así que
+  # queda detrás del environment `npm-publish` con required reviewer (D-018b).
+  # NPM_TOKEN es secret DE ESE ENVIRONMENT: ningún otro job puede leerlo.
+  publish:
+    name: Publish
+    needs: version
+    if: needs.version.outputs.has-changesets == 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: npm-publish
+    permissions:
+      # write: changeset publish pushea los tags de release y crea los GitHub releases.
+      contents: write
+      # Requerido para emitir la attestation de procedencia (npm provenance) al
+      # publicar desde Actions, junto con publishConfig.provenance en los packages (D-018c).
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
           fetch-depth: 0
 
       - name: Setup
@@ -32,15 +70,10 @@ jobs:
       - name: Build (recursive)
         run: pnpm -r build
 
-      - name: Create release PR or publish
-        uses: changesets/action@v1
+      - name: Publish to npm
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
         with:
-          # OJO: `pnpm version` es un builtin de pnpm que pisa al script
-          # homónimo — invocar changesets directo, sin ambigüedad.
-          version: pnpm changeset version
           publish: pnpm changeset publish
-          commit: 'chore(repo): version packages'
-          title: 'chore(repo): version packages'
           setupGitUser: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

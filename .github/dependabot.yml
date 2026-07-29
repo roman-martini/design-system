@@ -1,0 +1,35 @@
+version: 2
+
+# Contraparte operativa del pinning por SHA: sin actualización automatizada,
+# pinear congela las versiones indefinidamente. Cada bump llega como PR que
+# pasa por pr.yml como cualquier otro.
+updates:
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: 'ci'
+      include: scope
+    groups:
+      actions-minor-patch:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: npm
+    # Dependabot resuelve el workspace pnpm desde el root del monorepo.
+    directory: '/'
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'chore'
+      include: scope
+    groups:
+      # Minor y patch agrupados para acotar la cola; los majors llegan sueltos,
+      # que es donde hace falta leer las release notes.
+      npm-minor-patch:
+        update-types:
+          - minor
+          - patch

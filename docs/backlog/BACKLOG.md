@@ -47,7 +47,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 | B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                             |
 | C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                             |
 | D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028 |
-| E     | CI: correctness + hardening         | OpenSpec change         | Pendiente                                          |
+| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022        |
 | F     | Gates de calidad automáticos        | OpenSpec change(s)      | Pendiente — HU-026…HU-028, HU-030                  |
 | G     | Fixes de componentes (6 changes)    | OpenSpec por componente | Pendiente                                          |
 | H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                          |
