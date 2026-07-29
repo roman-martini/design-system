@@ -58,15 +58,16 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 | M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada           |
 | N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                  |
 
-**Detalle de la Parte F** (11 ítems; el plan autoriza partirla, el PO lo aprobó el 2026-07-29):
+**Detalle de la Parte F** (12 ítems; el plan autoriza partirla, el PO lo aprobó el 2026-07-29):
 
 | Sub-parte | Contenido                                                                  | Change    | Estado             |
 | --------- | -------------------------------------------------------------------------- | --------- | ------------------ |
 | F1-a      | Coverage con thresholds + typecheck de specs/stories (ítems 1, 6, 10)      | `aaa-040` | **Hecha** — HU-026 |
 | F1-b      | Gates de tokens: contraste AA versionado, jerarquía, build (ítems 2, 3, 4) | —         | Pendiente — HU-027 |
 | F2        | a11y (axe) y playground (ítems 5, 7, 8, 9, 11)                             | —         | Pendiente — HU-028 |
+| F3        | Bundle size budget con `size-limit` sobre el `dist` (ítem 12)              | —         | Pendiente — HU-030 |
 
-> **HU-030** (bundle size budget con `size-limit`, aprobada en A14/[D-021](../product/decisiones.md)) figuraba como entregable de F, pero **no está entre los 11 ítems del plan ni asignada a otra parte**. Detectado el 2026-07-29 al ejecutar F1-a; hay que ubicarla al cerrar la parte.
+> **El ítem 12 se agregó al plan el 2026-07-29.** HU-030 estaba aprobada en A14/[D-021](../product/decisiones.md) y la propia HU declaraba "Ejecución: Parte F", pero el plan nunca la listó entre sus ítems: quedó aprobada y sin sesión asignada. Se ejecuta como **F3** —no encaja en F1-b (todo `tokens`) ni en F2 (a11y + playground), porque toca ambos packages y el pipeline— y hereda el patrón probado en `aaa-040`: medir primero, techo con margen sobre lo medido, trinquete, step bloqueante.
 
 **Protocolo de ejecución**: una parte por sesión, con `/ds:handoff` → `/clear` → `/ds:resume` entre partes. El modelo y el effort de cada parte están declarados en el plan (§ "Modelo por parte" y § "Cuándo cortar sesión"); no se alterna modelo dentro de una sesión.
 

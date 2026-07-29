@@ -221,6 +221,9 @@ Checklist (detalle y evidencia en hallazgos.md):
 9. vitest-axe fase 1 en specs jsdom (si A13) [testing-03]
 10. Script `typecheck` por package (specs + stories) + step CI [tooling-repo-06]
 11. `build-storybook` (o tsc del tsconfig de .storybook) como smoke en CI [playground-02]
+12. **Bundle size budget** con `size-limit` sobre el `dist` de ambos packages + step CI [ci-cd-14] (HU-030)
+
+> **Corrección del 2026-07-29** (al ejecutar F1-a): el ítem 12 **faltaba en este plan**. HU-030 fue aprobada en A14/[D-021] y registrada en la Parte B declarando "Ejecución: Parte F… junto al resto de los gates de CI", pero nunca se listó acá — quedó aprobada y sin sesión asignada. Se incorpora como ítem 12 y se ejecuta como **F3**: no encaja en F1-b (todo `tokens`) ni en F2 (a11y + playground), porque toca ambos packages y el pipeline. Va al final por no bloquear nada, y hereda el patrón ya probado en `aaa-040`: medir primero, fijar el techo con margen sobre lo medido, trinquete, step bloqueante.
 
 ---
 

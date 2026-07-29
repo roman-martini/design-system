@@ -150,4 +150,4 @@ No hay migración: todo el cambio es configuración, scripts y workflow. **Rollb
 Ninguna bloqueante. Anotadas para después:
 
 - Typechequear los archivos de configuración del repo (`vitest.config.ts`, `sd.config.mjs`) requiere `@types/node` por workspace — hoy nadie los verifica. Candidato a ítem propio.
-- `HU-030` (bundle size budget con `size-limit`, aprobada en A14/[D-021]) **no está asignada a ninguna parte del plan de acción**: aparece en el registro de la Parte B pero no entre los 11 ítems de F ni en otra parte. Detectado al retomar F; hay que ubicarla al cerrar la parte.
+- ~~`HU-030` (bundle size budget con `size-limit`) no está asignada a ninguna parte del plan~~ → **resuelto el 2026-07-29**: el PO delegó la ubicación; se incorporó como **ítem 12 de la Parte F**, ejecutable como **F3** (change propio, después de F2). Registrado en el plan de acción y en el BACKLOG.
