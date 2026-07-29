@@ -2,7 +2,8 @@
 id: aaa-039
 name: ci-correctness-hardening
 type: change
-status: proposed
+status: archived
+archived: 2026-07-29
 modifies-specs:
   - ci-cd-pipeline
 related-adrs:
