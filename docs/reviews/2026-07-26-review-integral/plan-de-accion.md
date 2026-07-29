@@ -310,7 +310,7 @@ Orden sugerido por severidad:
 
 - Interaction tests (play functions) para overlays + CI [playground-05]
 - Páginas de foundations/tokens en Storybook generadas desde el output de Style Dictionary [playground-07]
-- Storybook deploy (GH Pages) + evaluación de visual regression [playground-08, ci-cd-09]
+- Storybook deploy (GH Pages) + evaluación de visual regression [playground-08, ci-cd-09] — **desbloqueado el 2026-07-29**: GH Pages exige repo público o plan Pro/Team, y el repo pasó a público por D-029
 - Vitest Browser Mode para comportamiento de plataforma (focus trap, top layer) [testing-04]
 
 ## Parte N — Estratégico pre-1.0

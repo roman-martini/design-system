@@ -214,23 +214,37 @@ El job de publish de `release.yml` declara `environment: npm-publish`. Ese envir
 
 > ⚠️ **Hasta que el environment exista con su reviewer, el gate NO protege nada.** GitHub crea implícitamente un environment desconocido en el primer run que lo referencia — sin reviewers y sin avisar. El workflow no falla: publica. La garantía la da esta configuración, no el YAML.
 
-Checklist:
+**Estado: configurado el 2026-07-29** ([D-029](docs/product/decisiones.md)). Este checklist queda como referencia para reconstruirlo o replicarlo.
 
-- [ ] Crear el environment llamado exactamente **`npm-publish`**.
-- [ ] **Required reviewers**: agregar al mantenedor. Sin esto el environment es decorativo.
-- [ ] **Deployment branches**: restringir a `main`.
-- [ ] Agregar **`NPM_TOKEN`** como secret **del environment** (Environment secrets), no del repositorio.
-- [ ] Si `NPM_TOKEN` ya existía como repository secret, **borrarlo** de ahí: mientras siga a nivel repo, cualquier job puede leerlo.
+- [x] Crear el environment llamado exactamente **`npm-publish`**.
+- [x] **Required reviewers**: agregar al mantenedor. Sin esto el environment es decorativo.
+- [x] **Desmarcar "Allow administrators to bypass configured protection rules"** (viene marcado por defecto). Si queda activo, el mantenedor —que es admin— puede saltarse su propio gate, y el control vuelve a ser decorativo.
+- [x] **Deployment branches**: restringir a `main`.
+- [x] Agregar **`NPM_TOKEN`** como secret **del environment** (Environment secrets), no del repositorio.
+- [x] Si `NPM_TOKEN` ya existía como repository secret, **borrarlo** de ahí: mientras siga a nivel repo, cualquier job puede leerlo.
+- [ ] **`Prevent self-review`**: dejar **sin marcar** mientras haya un solo mantenedor — exige que el aprobador sea distinto de quien disparó el run, lo que bloquearía todo release. Activarlo al sumar un segundo mantenedor.
+
+> **Requiere repo público o plan Pro/Team.** GitHub no ofrece deployment protection rules en repos privados con plan Free: la sección directamente no aparece. Es una de las razones por las que el repo es público (D-029).
 
 ### Secrets requeridos (acción del mantenedor)
 
-| Secret          | Dónde va                                 | Cómo obtener                                                                                                     | Permisos requeridos                    |
-| --------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| **`NPM_TOKEN`** | Secret del **environment `npm-publish`** | `npm token create --read-only=false --cidr=0.0.0.0/0` (o vía UI: npmjs.com → Access Tokens → Generate New Token) | Publish sobre scope `@romanmartinidev` |
+| Secret          | Dónde va                                 | Cómo obtener                                                           | Permisos requeridos                                |
+| --------------- | ---------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------- |
+| **`NPM_TOKEN`** | Secret del **environment `npm-publish`** | **Granular Access Token** de npmjs.com (no classic) — ver receta abajo | `Read and write` sobre el scope `@romanmartinidev` |
+
+Cómo generarlo: npmjs.com → Access Tokens → **Generate New Token → Granular**.
+
+- **Bypass two-factor authentication (2FA)**: ✅ marcar. Es lo que en los tokens clásicos hacía el tipo "Automation"; sin esto, con 2FA activo el publish desde CI falla pidiendo OTP.
+- **Packages and scopes**: `Read and write` sobre el **scope completo**, no sobre los dos packages sueltos — un token granular no puede apuntar a un package que todavía no existe en npm, así que el scope cubre los publicables futuros.
+- **Organizations**: `No access`. El publish no administra la organización.
+- **Allowed IP ranges**: dejar **vacío**. Los runners hosted de GitHub no tienen rangos acotables de forma práctica; declarar `0.0.0.0/0` es lo mismo que no restringir, pero aparentando un control que no existe.
+- **Expiration**: el plazo más largo disponible. Cuando expira, el release falla con un error de autenticación de npm que no dice "token vencido" — conviene anotarse la fecha.
 
 **`GITHUB_TOKEN`** lo provee GitHub Actions automáticamente, no requiere setup.
 
 Si `NPM_TOKEN` falta, el job de publish fallará con error de autenticación de npm.
+
+> **A futuro**: [ci-cd-11] propone migrar a **trusted publishing vía OIDC**, que elimina el token de larga vida por completo. `changesets/action` ya lo soporta — usa OIDC cuando no encuentra `NPM_TOKEN`. Pendiente de decisión del PO.
 
 ### Lint de workflows
 
