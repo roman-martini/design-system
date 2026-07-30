@@ -105,6 +105,24 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ---
 
+### `tokens-audit-formal` — Auditoría formal de tokens y triage de huérfanos
+
+**Tipo**: skill (`/ds:audit-tokens`) + sesión de triage. **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md) y [EP-005](../product/epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md).
+
+**La herramienta ya existe**: `/ds:audit-tokens` se entregó como [HU-032](../product/epics/EP-005-calidad-profesional/HU-032-audit-tokens-skill.md) el 2026-07-27 (Parte M) — skill + script determinista + command. **No hay nada que construir.**
+
+**Origen**: la única corrida hasta hoy fue de **verificación de los CAs de HU-032**, no una auditoría formal: `docs/design/tokens/` no existe y no hay reporte fechado persistido. Esa corrida arrojó `2` hardcodes, `0` violaciones de contrato, `44` advertencias y **219 huérfanos sobre 754 tokens** — y nadie separó todavía qué parte de esos 219 es **deuda real** (un token que quedó sin consumidor tras un refactor) y qué parte es **inventario deliberado** (una escala de color completa, los 13 niveles de z-index de `aaa-009`). El `SKILL.md` ya instruye hacer esa distinción en el reporte, así que la corrida nueva debería entregarlo clasificado, no como lista cruda.
+
+**Alcance**: (1) correr `/ds:audit-tokens` y persistir el reporte fechado; (2) sesión de triage de los huérfanos con veredicto por grupo — deuda a limpiar / inventario que se conserva y por qué; (3) lo que resulte deuda entra a la Parte H como ítem, no se corrige en la auditoría (la skill audita, no arregla).
+
+**Se ejecuta con Fable 5** (decisión del PO, 2026-07-29): el triage no es trabajo mecánico sino criterio sobre 219 ítems —cuál es deuda y cuál cobertura futura deliberada—, que es el perfil que el plan reserva para Fable (razonamiento como cuello de botella, ver § "Modelo por parte" del [plan de acción](../reviews/2026-07-26-review-integral/plan-de-accion.md)). La corrida de la skill en sí es mecánica y no necesita Fable.
+
+**Disparador**: **antes de la Parte H** (tokens: fixes y consistencia). El orden importa: los hallazgos de la auditoría son el insumo de H, así que hacerla antes convierte H en "arreglar lo que la auditoría marcó" en lugar de trabajar sobre la lista de la review del 2026-07-26. Conviene además cerrarla antes del `0.3.0` de [D-028](../product/decisiones.md), por ser un release público.
+
+**Estado**: pendiente (Next).
+
+---
+
 ## Later — sin urgencia
 
 ### Tokens aditivos del research Atlassian
