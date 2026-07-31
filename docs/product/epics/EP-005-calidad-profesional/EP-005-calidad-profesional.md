@@ -28,7 +28,7 @@ Queda afuera: los tests unitarios por componente (parte de cada change de EP-002
 | [HU-027](HU-027-gate-contraste-aa-ci.md)  | Gate de contraste WCAG AA en CI                          | **Hecha** (2026-07-30)                          | Parte F1-b   |
 | [HU-028](HU-028-a11y-automatizada-axe.md) | Accesibilidad automatizada con axe (2 fases)             | **Fase 1 hecha** (2026-07-31); fase 2 pendiente | Parte F2 y L |
 | [HU-029](HU-029-angular-eslint.md)        | angular-eslint con reglas de template y a11y             | Refinada (2026-07-26)                           | Parte N      |
-| [HU-030](HU-030-bundle-size-budget.md)    | Presupuesto de tamaño de bundle                          | Refinada (2026-07-26)                           | Parte F3     |
+| [HU-030](HU-030-bundle-size-budget.md)    | Presupuesto de tamaño de bundle                          | **Hecha** (2026-07-31)                          | Parte F3     |
 | [HU-031](HU-031-storybook-publicado.md)   | Storybook publicado y regresión visual                   | Refinada (2026-07-26)                           | Parte L      |
 | [HU-032](HU-032-audit-tokens-skill.md)    | Auditoría de consistencia de tokens (`/ds:audit-tokens`) | **Hecha** (2026-07-27)                          | Parte M      |
 
@@ -45,12 +45,14 @@ Los items derivados de aquella auditoría ya se encauzaron: `components-fix-a11y
 
 ## Decisiones aplicables
 
-[D-002, D-007, D-015, D-017, D-021, D-022](../../decisiones.md), y [D-030](../../decisiones.md) — surgida al ejecutar HU-027: el primer gate que se instala encuentra un incumplimiento real y su corrección se decide como decisión de producto, igual que D-008/D-012/D-016.
+[D-002, D-007, D-015, D-017, D-021, D-022](../../decisiones.md), [D-030](../../decisiones.md) — surgida al ejecutar HU-027: el primer gate que se instala encuentra un incumplimiento real y su corrección se decide como decisión de producto, igual que D-008/D-012/D-016 — y [D-031](../../decisiones.md), surgida al ejecutar HU-030: el margen del presupuesto de bundle se fija con la medición en la mano, no al refinar.
 
 ## Orden sugerido
 
-Los gates baratos primero, porque protegen todo lo que viene después: **HU-026 (coverage + typecheck)** y **HU-027 (contraste AA)**, que solo portan al repo lógica que ya existe. **Ambas entregadas** (2026-07-29 y 2026-07-31). **HU-028 fase 1** (axe sobre los specs que ya corren) se entregó el 2026-07-31; queda **HU-030** (presupuesto de bundle). **HU-032** (`/ds:audit-tokens`) es independiente y puede intercalarse en cualquier punto; su corrida formal está en el backlog como `tokens-audit-formal`, con disparador antes de la Parte H.
+Los gates baratos primero, porque protegen todo lo que viene después: **HU-026 (coverage + typecheck)** y **HU-027 (contraste AA)**, que solo portan al repo lógica que ya existe. **Ambas entregadas** (2026-07-29 y 2026-07-31). **HU-028 fase 1** (axe sobre los specs que ya corren) y **HU-030** (presupuesto de bundle) se entregaron el 2026-07-31, y con HU-030 **cierra la Parte F**. **HU-032** (`/ds:audit-tokens`) es independiente y puede intercalarse en cualquier punto; su corrida formal está en el backlog como `tokens-audit-formal`, con disparador antes de la Parte H.
 
 > Nota de HU-027 sobre "solo portan lógica que ya existe": portarla fue la mitad del trabajo. La otra mitad fue derivar los pares de los requirements de las specs y **decidir cuáles no corresponden** — 6 de los 111 pares de la primera enumeración eran ampliaciones que ninguna spec exige (bordes decorativos de contenedor) y 2 eran un incumplimiento real ([D-030](../../decisiones.md)). Vale tenerlo en cuenta al planificar HU-028: "la herramienta ya existe" no implica que instalar el gate sea mecánico.
+
+> Nota de HU-030, que matiza la anterior: acá instalar **sí** fue mecánico —`size-limit` se comporta bien incluso en el caso degenerado, así que no hubo que blindar nada— y lo caro fue **decidir el número**. Fijar el margen exigió medir cuánto pesa un componente real (2 316 B) para descubrir que el margen del 5% (2 162 B) queda apenas por debajo, que es justo lo que lo hace un gate y no un colchón. La forma general de la lección: en un gate, el trabajo caro está donde vive el criterio, y eso cambia de lugar en cada gate.
 
 Quedan para el final las que traen infraestructura nueva: **HU-031** (Storybook publicado, prerequisito de la fase 2 de a11y) y **HU-028 fase 2**. **HU-029** (angular-eslint) va aparte, en la Parte N: no es solo configurar el linter, es corregir lo que emerja en los 23 componentes existentes, y eso merece su propio change.

@@ -206,9 +206,13 @@ Checklist (detalle y evidencia en hallazgos.md):
 
 ---
 
-## Parte F — Gates de calidad automáticos
+## Parte F — Gates de calidad automáticos ✅ **CERRADA** (2026-07-31)
 
 **Modelo: Opus 5 · Effort: high** · Vía: OpenSpec change(s) — puede partirse en F1 (tokens+coverage) y F2 (a11y+playground), una sesión cada una · Depende de: A12/A13 para los ítems de Cantera.
+
+> **Los 12 ítems están ejecutados**, en cuatro sub-partes y cuatro changes: **F1-a** (`aaa-040`, ítems 1/6/10 — HU-026), **F1-b** (`aaa-041`, ítems 2/3/4 — HU-027), **F2** (`aaa-042`, ítems 5/7/8/9/11 — HU-028 fase 1) y **F3** (`aaa-043`, ítem 12 — HU-030). `pr.yml` corre hoy 12 steps bloqueantes y la suite está en 878 tests.
+>
+> **La lección transversal de la parte**, que conviene llevarse a cualquier gate futuro: **un gate que no se probó fallando no está instalado**. Aplicada en las cuatro sub-partes, encontró un incumplimiento real de contraste (F1-b, [D-030]) y **dos gates recién escritos que daban verde falso** (F2). En F3 la pregunta obligada —qué hace el gate cuando _no puede medir_— dio bien sin trabajo extra: `size-limit` falla ante un `dist` ausente en vez de reportar 0 B. Que la respuesta sea buena no exime de hacer la pregunta.
 
 1. Coverage v8 + thresholds + reporters en los tres vitest.config + step CI [testing-02, ci-cd-08]
 2. **Portar el gate de contraste AA a `packages/tokens/test/contrast.spec.ts`** (pares versionados; el skill sigue consumiendo la misma lógica) [testing-01, tokens-04]
@@ -222,6 +226,8 @@ Checklist (detalle y evidencia en hallazgos.md):
 10. Script `typecheck` por package (specs + stories) + step CI [tooling-repo-06]
 11. `build-storybook` (o tsc del tsconfig de .storybook) como smoke en CI [playground-02]
 12. **Bundle size budget** con `size-limit` sobre el `dist` de ambos packages + step CI [ci-cd-14] (HU-030)
+
+> **Ajuste del 2026-07-31** (al ejecutar F3, `aaa-043`): el hallazgo `ci-cd-14` ofrece "`size-limit` **o** `pnpm pack` + medición del tarball" como equivalentes, y **no lo son** — el tarball de `components` está dominado por sourcemaps (225 kB de `.map` contra 293 kB de código), que el consumidor no descarga nunca. Se midió el `dist`, como ya había decidido HU-030. El otro dato que solo aparece midiendo: el **margen** del techo tenía que quedar por debajo del costo de un componente para ser un gate y no un colchón — un componente real cuesta 2 316 B gzip (medido quitando `accordion` del `public-api.ts`) contra 2 162 B del margen del 5% que eligió el PO ([D-031]). Un componente _minimalista_ pesa 260 B, así que calibrar contra el caso mínimo habría hecho parecer holgado un margen que no lo es.
 
 > **Ajuste del 2026-07-31** (al ejecutar F2, `aaa-042`): tres correcciones con la medición en la mano. **(a)** El ítem 11 (`build-storybook` como smoke) estaba **medio cerrado sin registrarse**: el `tsc` del tsconfig de `.storybook` que el hallazgo ofrecía como alternativa ya había entrado con `aaa-040` dentro de `pnpm typecheck`. **(b)** Y la otra mitad **no cierra el hallazgo**: se midió que el build de Storybook sale **exit 0 con un template de story roto** (los templates son strings evaluados en runtime; ni webpack ni `tsc` los ven) y exit 1 solo con imports o configuración rotos. El caso que `playground-02` describe —un refactor de API que desactualiza la story— **sigue sin gate**; se cierra con interaction tests en navegador, que son de la Parte L. El step se instaló igual, con su alcance declarado. **(c)** El ítem 7 preguntaba si convenía llevar `packages/components` a zoneless además del playground: se midió que los 316 tests pasan sin modificarse, así que se hizo en ambos.
 >

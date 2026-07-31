@@ -1,0 +1,32 @@
+[
+  {
+    "name": "@romanmartinidev/components — entrypoint principal (fesm2022)",
+    "path": "packages/components/dist/fesm2022/romanmartinidev-components.mjs",
+    "limit": "45.38 kB",
+    "gzip": true
+  },
+  {
+    "name": "@romanmartinidev/components — subpath ./router (fesm2022)",
+    "path": "packages/components/dist/fesm2022/romanmartinidev-components-router.mjs",
+    "limit": "2.11 kB",
+    "gzip": true
+  },
+  {
+    "name": "@romanmartinidev/tokens — hoja de CSS variables (./css)",
+    "path": "packages/tokens/dist/tokens.css",
+    "limit": "6.15 kB",
+    "gzip": true
+  },
+  {
+    "name": "@romanmartinidev/tokens — módulo JS (entrypoint principal)",
+    "path": "packages/tokens/dist/tokens.js",
+    "limit": "5.81 kB",
+    "gzip": true
+  },
+  {
+    "name": "@romanmartinidev/tokens — themes (dark + brand-a + brand-b)",
+    "path": "packages/tokens/dist/themes/*.css",
+    "limit": "1.05 kB",
+    "gzip": true
+  }
+]

@@ -101,6 +101,41 @@ jobs:
       - name: Verify packaging
         run: pnpm verify:packaging
 
+      # Presupuesto de tamaño sobre el dist que este PR acaba de construir, no
+      # sobre un artefacto previo ni sobre el source. Mide gzip por entrypoint
+      # publicable; el techo se fijó midiendo, con 5% de margen ([D-031]).
+      #
+      # Un componente real cuesta ~2.3 kB gzip y el margen son 2.16 kB: subir el
+      # techo es parte del PR que agrega un componente, no un accidente. La
+      # política para moverlo está en CONTRIBUTING.md.
+      - name: Bundle size budget
+        id: size-budget
+        run: pnpm size
+
+      # size-limit cierra con "Try to reduce size or increase limit", que pone
+      # "reduce" primero. En este repo el default es el opuesto: si el peso extra
+      # es algo que se quiso agregar, se sube el techo. Sin esta nota, la política
+      # solo vive en CONTRIBUTING.md y no está a la vista de quien lee el fallo.
+      #
+      # Acotado por conclusion del step: `if: failure()` a secas dispararía este
+      # mensaje cuando lo que falló fue el lint.
+      - name: Cómo tratar un exceso de presupuesto
+        if: ${{ failure() && steps.size-budget.conclusion == 'failure' }}
+        shell: bash
+        run: |
+          echo "El presupuesto de tamaño falló. Antes de recortar nada:"
+          echo ""
+          echo "  Si el peso extra es un componente o una feature que querías"
+          echo "  agregar, la acción correcta es SUBIR el techo en .size-limit.json"
+          echo "  al peso medido + 5%, y explicar en el commit cuánto pesó."
+          echo "  El techo es un registro de crecimiento deliberado, no una meta."
+          echo ""
+          echo "  Si NO agregaste nada que justifique el peso, ahí sí el gate"
+          echo "  está haciendo su trabajo: buscá la dependencia o el import que"
+          echo "  entró sin querer."
+          echo ""
+          echo "Política completa: CONTRIBUTING.md § Presupuesto de bundle"
+
       - name: OpenSpec validate
         run: pnpm exec openspec validate --all
 

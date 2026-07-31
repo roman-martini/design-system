@@ -26,6 +26,7 @@
     "typecheck": "pnpm -r typecheck",
     "lint": "eslint .",
     "verify:packaging": "node scripts/verify-packaging.mjs",
+    "size": "size-limit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
@@ -40,12 +41,14 @@
     "@commitlint/config-conventional": "^21.0.2",
     "@eslint/js": "^10.0.1",
     "@fission-ai/openspec": "1.6.0",
+    "@size-limit/file": "^13.0.3",
     "eslint": "^10.4.1",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.5",
     "playwright": "^1.60.0",
     "prettier": "^3.8.3",
+    "size-limit": "^13.0.3",
     "typescript-eslint": "^8.60.0"
   },
   "pnpm": {

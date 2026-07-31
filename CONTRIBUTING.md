@@ -139,11 +139,13 @@ Valida en orden:
 5. `pnpm typecheck` — fallo: hay un error de tipos en un spec o en una story (ver [Typecheck](#typecheck)).
 6. `pnpm -r build` — fallo: revisá el error de build localmente con el mismo comando.
 7. `pnpm test:coverage` — fallo: o rompiste un test, o la cobertura cayó bajo el piso (ver [Cobertura](#cobertura)).
-8. `pnpm verify:packaging` — fallo: el artefacto emitido no cumple el contrato de publicación ([ADR-021](docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md)).
-9. `pnpm exec openspec validate --all` — fallo: corré `pnpm openspec validate --all` localmente y arreglá la spec/change.
-10. **Changeset enforcement** — fallo: el PR toca `packages/*` sin agregar un changeset. Corré `pnpm changeset` y agregá el archivo generado al PR.
+8. `pnpm -F playground build-storybook` — fallo: la configuración de Storybook está rota, un addon no existe o un import no resuelve. **No detecta un template de story desactualizado** (los templates son strings evaluados en runtime): para eso están el typecheck de las stories y, más adelante, los interaction tests.
+9. `pnpm verify:packaging` — fallo: el artefacto emitido no cumple el contrato de publicación ([ADR-021](docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md)).
+10. `pnpm size` — fallo: un entrypoint publicable superó su presupuesto de tamaño (ver [Presupuesto de bundle](#presupuesto-de-bundle)).
+11. `pnpm exec openspec validate --all` — fallo: corré `pnpm openspec validate --all` localmente y arreglá la spec/change.
+12. **Changeset enforcement** — fallo: el PR toca `packages/*` sin agregar un changeset. Corré `pnpm changeset` y agregá el archivo generado al PR.
 
-> El step 10 se **omite** en el PR autogenerado `changeset-release/main`: ese PR bumpea `packages/*/package.json` después de consumir los changesets, así que por construcción no puede satisfacer el gate. También se omite si el PR solo toca `README.md` o `CHANGELOG.md` de un package.
+> El step 12 se **omite** en el PR autogenerado `changeset-release/main`: ese PR bumpea `packages/*/package.json` después de consumir los changesets, así que por construcción no puede satisfacer el gate. También se omite si el PR solo toca `README.md` o `CHANGELOG.md` de un package.
 
 Si cualquier step falla, el PR queda con check rojo y NO debería mergearse (la branch protection lo bloquea, ver más abajo).
 
@@ -303,6 +305,38 @@ Sin él, renombrar un input de componente deja specs y stories rotas en tipos co
 > **Las 22 stories de `components` se typechequean desde el `playground`**, vía `.storybook/tsconfig.json` — es donde vive la configuración de Storybook, y duplicarla en el package no aportaría nada. Si tocás una story y querés verificarla sin correr todo: `pnpm -F playground typecheck`.
 
 **Gap conocido**: los archivos de configuración del repo (`vitest.config.ts`, `sd.config.mjs`) no están en ningún tsconfig y hoy nadie los typechequea. Requiere `@types/node` por workspace; queda como ítem propio.
+
+## Presupuesto de bundle
+
+CI mide el peso **gzip** de cada entrypoint publicable sobre el `dist` que ese mismo PR construyó, y **falla el PR si alguno supera su techo**. No es una advertencia.
+
+```bash
+pnpm -r build   # el presupuesto mide el dist: sin build no hay nada que medir
+pnpm size
+```
+
+Techos vigentes, declarados en `.size-limit.json` del root:
+
+| Entrypoint                                           | Medido (2026-07-31) | Techo    |
+| ---------------------------------------------------- | ------------------- | -------- |
+| `@romanmartinidev/components` — principal (`.`)      | 43.22 kB            | 45.38 kB |
+| `@romanmartinidev/components` — `./router`           | 2.00 kB             | 2.11 kB  |
+| `@romanmartinidev/tokens` — `./css`                  | 5.85 kB             | 6.15 kB  |
+| `@romanmartinidev/tokens` — principal (`.`)          | 5.53 kB             | 5.81 kB  |
+| `@romanmartinidev/tokens` — themes (los tres juntos) | 1.00 kB             | 1.05 kB  |
+
+Los valores son **kB decimales (1000 B)**, que es como los reporta `size-limit` — no KiB.
+
+**El techo solo se mueve por decisión explícita del product owner**, y el PR que lo mueve deja registrada la razón. Se fijó midiendo el `dist` construido el 2026-07-31 y aplicando un margen del **5%** ([D-031](docs/product/decisiones.md)), con la regla `medido × 1.05` redondeado hacia arriba al siguiente múltiplo de 10 B.
+
+Dos cosas que conviene saber antes de que te frene:
+
+- **Un componente nuevo va a hacerte subir el techo, y está bien.** Un componente real del kit cuesta ~2.3 kB gzip (medido) contra 2.16 kB de margen: el margen es deliberadamente más chico que un componente, para que el gate no pueda absorber uno entero en silencio. Subir el techo en el PR que agrega el componente es el mecanismo, no un obstáculo — deja registrado cuánto pesó.
+- **Lo que se mide es el bundle completo, no lo que paga un consumidor con tree-shaking.** El gate detecta que el kit engordó; no mide el costo de importar un solo componente. Medir eso exigiría bundlear con Angular como external, y queda como candidato futuro.
+
+Si el gate falla, la salida te dice qué entrypoint excedió, cuánto pesa y cuál es el límite, y el job imprime esta misma política a continuación. Antes de subir el techo, verificá que el peso extra es algo que querías agregar: si no agregaste nada que lo justifique, ahí el gate está haciendo su trabajo y lo que hay que buscar es la dependencia o el import que entró sin querer.
+
+> **Si estás agregando un componente**, no esperes a que CI te frene: `/ds:add-component` corre `pnpm size` en su validación de cierre, justamente para que el ajuste del techo sea un paso del flujo y no una interrupción. El motivo de fondo es que un gate que se pone rojo de forma rutinaria enseña a subir el número sin mirar — y ahí deja de avisar del crecimiento que **no** era deliberado, que es para lo que existe.
 
 ## Cambios significativos: OpenSpec
 

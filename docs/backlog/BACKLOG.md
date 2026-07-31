@@ -41,22 +41,22 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Estado por parte** (el detalle de cada una vive en el plan; acá solo el avance):
 
-| Parte | Contenido                           | Vía                     | Estado                                              |
-| ----- | ----------------------------------- | ----------------------- | --------------------------------------------------- |
-| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                 |
-| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                              |
-| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                              |
-| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028  |
-| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022         |
-| F     | Gates de calidad automáticos        | OpenSpec change(s)      | **En curso** (partida en F1/F2) — ver detalle abajo |
-| G     | Fixes de componentes (6 changes)    | OpenSpec por componente | Pendiente                                           |
-| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                           |
-| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                           |
-| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                           |
-| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                           |
-| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                  |
-| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada           |
-| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                  |
+| Parte | Contenido                           | Vía                     | Estado                                             |
+| ----- | ----------------------------------- | ----------------------- | -------------------------------------------------- |
+| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                |
+| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                             |
+| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                             |
+| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028 |
+| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022        |
+| F     | Gates de calidad automáticos        | OpenSpec change(s)      | **Hecha** (2026-07-31) — 4 sub-partes, ver abajo   |
+| G     | Fixes de componentes (6 changes)    | OpenSpec por componente | Pendiente                                          |
+| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                          |
+| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                          |
+| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                          |
+| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                          |
+| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                 |
+| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada          |
+| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                 |
 
 **Detalle de la Parte F** (12 ítems; el plan autoriza partirla, el PO lo aprobó el 2026-07-29):
 
@@ -65,7 +65,11 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 | F1-a      | Coverage con thresholds + typecheck de specs/stories (ítems 1, 6, 10)      | `aaa-040` | **Hecha** — HU-026        |
 | F1-b      | Gates de tokens: contraste AA versionado, jerarquía, build (ítems 2, 3, 4) | `aaa-041` | **Hecha** — HU-027        |
 | F2        | a11y (axe) y playground (ítems 5, 7, 8, 9, 11)                             | `aaa-042` | **Hecha** — HU-028 fase 1 |
-| F3        | Bundle size budget con `size-limit` sobre el `dist` (ítem 12)              | —         | Pendiente — HU-030        |
+| F3        | Bundle size budget con `size-limit` sobre el `dist` (ítem 12)              | `aaa-043` | **Hecha** — HU-030        |
+
+**Los 12 ítems están ejecutados: la Parte F queda cerrada.** `pr.yml` corre hoy **12 steps bloqueantes** y la suite está en **878 tests** (tokens 484, components 362, playground 32).
+
+> **F3 dejó un dato para planificar la Parte G y HU-025** (2026-07-31, `aaa-043`): el techo de `components` es **45.38 kB** gzip sobre 43.22 kB medidos, y un componente real cuesta ~2.3 kB. Es decir, **el próximo componente que entre al kit va a tener que subir el techo en su propio PR** — está previsto por [D-031](../product/decisiones.md) y documentado en `CONTRIBUTING.md`, pero conviene no descubrirlo con el PR en rojo.
 
 > **El ítem 12 se agregó al plan el 2026-07-29.** HU-030 estaba aprobada en A14/[D-021](../product/decisiones.md) y la propia HU declaraba "Ejecución: Parte F", pero el plan nunca la listó entre sus ítems: quedó aprobada y sin sesión asignada. Se ejecuta como **F3** —no encaja en F1-b (todo `tokens`) ni en F2 (a11y + playground), porque toca ambos packages y el pipeline— y hereda el patrón probado en `aaa-040`: medir primero, techo con margen sobre lo medido, trinquete, step bloqueante.
 >
