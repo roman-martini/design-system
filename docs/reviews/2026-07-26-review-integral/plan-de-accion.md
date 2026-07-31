@@ -223,6 +223,8 @@ Checklist (detalle y evidencia en hallazgos.md):
 11. `build-storybook` (o tsc del tsconfig de .storybook) como smoke en CI [playground-02]
 12. **Bundle size budget** con `size-limit` sobre el `dist` de ambos packages + step CI [ci-cd-14] (HU-030)
 
+> **Ajuste del 2026-07-30** (al ejecutar F1-b, `aaa-041`): dos recomendaciones de los ítems 3 y 4 se corrigieron con la medición en la mano. **(a)** El ítem 3 pedía además "reporte de huérfanos": queda **fuera del gate** a propósito — hay 219 huérfanos sobre 754 tokens y separar deuda real de inventario deliberado es criterio humano, que es el item `tokens-audit-formal` del backlog; un gate que fallara por huérfanos entraba rojo el día uno. **(b)** El ítem 4 pedía "paridad de claves entre themes", y eso es **imposible por construcción**: `sd.config.mjs` filtra cada theme a sus propios overrides, así que emiten 9, 9 y 55 propiedades contra 754 del default. La aserción correcta —y la que sí detecta el fallback silencioso que describe `testing-09`— es la **contención** de cada theme en el default más cero `var()` colgantes. Razonamiento completo en el `design.md` de `aaa-041` (D5).
+>
 > **Corrección del 2026-07-29** (al ejecutar F1-a): el ítem 12 **faltaba en este plan**. HU-030 fue aprobada en A14/[D-021] y registrada en la Parte B declarando "Ejecución: Parte F… junto al resto de los gates de CI", pero nunca se listó acá — quedó aprobada y sin sesión asignada. Se incorpora como ítem 12 y se ejecuta como **F3**: no encaja en F1-b (todo `tokens`) ni en F2 (a11y + playground), porque toca ambos packages y el pipeline. Va al final por no bloquear nada, y hereda el patrón ya probado en `aaa-040`: medir primero, fijar el techo con margen sobre lo medido, trinquete, step bloqueante.
 
 ---

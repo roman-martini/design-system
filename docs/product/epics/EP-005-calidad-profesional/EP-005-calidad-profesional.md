@@ -1,5 +1,5 @@
 ---
-estado: En desarrollo (primera tanda de tooling entregada 2026-07-11; tanda de gates automáticos aprobada 2026-07-26 por D-021, 2/7 entregadas -- HU-032 /ds:audit-tokens el 2026-07-27 y HU-026 coverage+typecheck el 2026-07-29)
+estado: En desarrollo (primera tanda de tooling entregada 2026-07-11; tanda de gates automáticos aprobada 2026-07-26 por D-021, 3/7 entregadas -- HU-032 /ds:audit-tokens el 2026-07-27, HU-026 coverage+typecheck el 2026-07-29 y HU-027 gate de contraste AA el 2026-07-30)
 actor: Mantenedor
 ---
 
@@ -25,7 +25,7 @@ Queda afuera: los tests unitarios por componente (parte de cada change de EP-002
 | HU                                        | Título                                                   | Estado                 | Ejecuta      |
 | ----------------------------------------- | -------------------------------------------------------- | ---------------------- | ------------ |
 | [HU-026](HU-026-coverage-typecheck-ci.md) | Coverage con thresholds y typecheck en CI                | **Hecha** (2026-07-29) | Parte F1-a   |
-| [HU-027](HU-027-gate-contraste-aa-ci.md)  | Gate de contraste WCAG AA en CI                          | Refinada (2026-07-26)  | Parte F1-b   |
+| [HU-027](HU-027-gate-contraste-aa-ci.md)  | Gate de contraste WCAG AA en CI                          | **Hecha** (2026-07-30) | Parte F1-b   |
 | [HU-028](HU-028-a11y-automatizada-axe.md) | Accesibilidad automatizada con axe (2 fases)             | Refinada (2026-07-26)  | Parte F2 y L |
 | [HU-029](HU-029-angular-eslint.md)        | angular-eslint con reglas de template y a11y             | Refinada (2026-07-26)  | Parte N      |
 | [HU-030](HU-030-bundle-size-budget.md)    | Presupuesto de tamaño de bundle                          | Refinada (2026-07-26)  | Parte F3     |
@@ -45,10 +45,12 @@ Los items derivados de aquella auditoría ya se encauzaron: `components-fix-a11y
 
 ## Decisiones aplicables
 
-[D-002, D-007, D-015, D-017, D-021, D-022](../../decisiones.md).
+[D-002, D-007, D-015, D-017, D-021, D-022](../../decisiones.md), y [D-030](../../decisiones.md) — surgida al ejecutar HU-027: el primer gate que se instala encuentra un incumplimiento real y su corrección se decide como decisión de producto, igual que D-008/D-012/D-016.
 
 ## Orden sugerido
 
-Los gates baratos primero, porque protegen todo lo que viene después: **HU-026 (coverage + typecheck)** y **HU-027 (contraste AA)**, que solo portan al repo lógica que ya existe. Después **HU-028 fase 1** (vitest-axe sobre los specs que ya corren) y **HU-030** (presupuesto de bundle). **HU-032** (`/ds:audit-tokens`) es independiente y puede intercalarse en cualquier punto.
+Los gates baratos primero, porque protegen todo lo que viene después: **HU-026 (coverage + typecheck)** y **HU-027 (contraste AA)**, que solo portan al repo lógica que ya existe. **Ambas entregadas** (2026-07-29 y 2026-07-31). Siguen **HU-028 fase 1** (vitest-axe sobre los specs que ya corren) y **HU-030** (presupuesto de bundle). **HU-032** (`/ds:audit-tokens`) es independiente y puede intercalarse en cualquier punto; su corrida formal está en el backlog como `tokens-audit-formal`, con disparador antes de la Parte H.
+
+> Nota de HU-027 sobre "solo portan lógica que ya existe": portarla fue la mitad del trabajo. La otra mitad fue derivar los pares de los requirements de las specs y **decidir cuáles no corresponden** — 6 de los 111 pares de la primera enumeración eran ampliaciones que ninguna spec exige (bordes decorativos de contenedor) y 2 eran un incumplimiento real ([D-030](../../decisiones.md)). Vale tenerlo en cuenta al planificar HU-028: "la herramienta ya existe" no implica que instalar el gate sea mecánico.
 
 Quedan para el final las que traen infraestructura nueva: **HU-031** (Storybook publicado, prerequisito de la fase 2 de a11y) y **HU-028 fase 2**. **HU-029** (angular-eslint) va aparte, en la Parte N: no es solo configurar el linter, es corregir lo que emerja en los 23 componentes existentes, y eso merece su propio change.

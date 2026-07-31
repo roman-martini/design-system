@@ -64,10 +64,20 @@ Leer los 5 archivos del componente (`.ts`, `.html`, `.css`, `.spec.ts`, `.storie
 2. Escribir el manifest de pares en el **scratchpad de la sesión** (no en el repo) y ejecutar:
 
    ```bash
-   node .claude/skills/check-a11y/scripts/contrast.mjs --pairs <scratchpad>/pairs.json
+   node packages/tokens/scripts/contrast-cli.mjs --pairs <scratchpad>/pairs.json
    ```
 
    El script resuelve cada token contra `packages/tokens/dist/tokens.css` y todos los themes de `dist/themes/*.css`, y devuelve ratio + pass/fail por scope (default, dark, brand-a, brand-b, …). Exit code: `0` pasa todo, `1` hay fallas, `2` hay pares no resolubles.
+
+   **La lógica de cálculo vive en el repo productivo, no en esta skill** (`aaa-041`, CA-027.5 de HU-027): `packages/tokens/scripts/contrast.mjs` es la única implementación del ratio WCAG del repo, y la consumen tanto este comando como el gate de CI (`packages/tokens/test/contrast.spec.ts`). No reintroducir una copia acá: dos implementaciones divergen y terminan dando veredictos distintos sobre el mismo par.
+
+   Para correr el **set versionado** de pares del package —los que el gate protege en cada PR— en vez de un manifest ad-hoc:
+
+   ```bash
+   node packages/tokens/scripts/contrast-cli.mjs --pairs-default
+   ```
+
+   Sirve para contrastar los hallazgos de la auditoría contra lo que el gate ya cubre: si un par que derivaste del CSS no está en el set versionado y debería, corresponde sumarlo a `packages/tokens/test/contrast-pairs.json` (es un archivo de datos; no requiere tocar lógica).
 
 3. Reglas de honestidad:
    - Par con `error` (no resoluble a color plano) → fila "no determinable" en el reporte, nunca inventar el ratio.
@@ -86,7 +96,7 @@ Escribir `docs/design/a11y/<YYYY-MM-DD>-audit.md`. Si ya existe uno con la misma
 # Auditoría de accesibilidad — <YYYY-MM-DD>
 
 Alcance: <componentes auditados> · Referencias: WCAG 2.2 AA, ADR-011/012/013, D-007
-Método: análisis estático + contraste calculado con `check-a11y/scripts/contrast.mjs` sobre <n> pares × <m> scopes
+Método: análisis estático + contraste calculado con `packages/tokens/scripts/contrast.mjs` sobre <n> pares × <m> scopes
 
 ## Resumen ejecutivo
 

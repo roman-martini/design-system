@@ -13,7 +13,7 @@
       "bg-off":         { "value": "{color.white}" },
       "bg-off-hover":   { "value": "{color.neutral.50}" },
       "bg-on":          { "value": "{color.white}" },
-      "border-off":     { "value": "{color.neutral.400}" },
+      "border-off":     { "value": "{semantic.color.border.strong}" },
       "border-on":      { "value": "{semantic.color.bg.primary}" },
       "dot-color":      { "value": "{semantic.color.bg.primary}" },
       "focus-ring":     { "value": "{semantic.color.focus-ring}" },

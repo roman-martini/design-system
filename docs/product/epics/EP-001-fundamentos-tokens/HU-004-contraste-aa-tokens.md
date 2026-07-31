@@ -13,7 +13,7 @@ decisiones: [D-007, D-008]
 
 ## Criterios de aceptación
 
-<!-- Los ratios se verifican con check-a11y/scripts/contrast.mjs post-build; el change aaa-015 los fija como scenarios del spec design-tokens-package para que no regresen. -->
+<!-- Los ratios se verifican por cálculo post-build; el change aaa-015 los fija como scenarios del spec design-tokens-package para que no regresen. Desde aaa-041 la lógica vive en packages/tokens/scripts/contrast.mjs (antes en la skill check-a11y) y los pares corren como gate de CI en packages/tokens/test/contrast.spec.ts, así que estos CAs ya no dependen de correr un script a mano. -->
 
 - [x] **CA-004.1** — Dado el theme default, cuando se mide `text.inverse` sobre `bg.primary`, entonces el ratio es ≥ 4.5:1 (WCAG AA 1.4.3). _Verificado: 5.17:1._
 - [x] **CA-004.2** — Dado el theme brand-a, cuando se mide `text.inverse` sobre `bg.primary`, entonces el ratio es ≥ 4.5:1. _Verificado: 5.02:1._

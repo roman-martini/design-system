@@ -22,9 +22,12 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
 
-  // Scripts de repo: corren en Node (CLI y steps de CI), no en el browser.
+  // Scripts de repo y de package: corren en Node (CLI y steps de CI), no en el browser.
+  // El glob cubre `scripts/` del root y el de cualquier workspace — desde aaa-041,
+  // `packages/tokens/scripts/` aloja la lógica de contraste que antes vivía sin lintear
+  // dentro de `.claude/`, que está en `ignores`.
   {
-    files: ['scripts/**/*.mjs'],
+    files: ['**/scripts/**/*.mjs'],
     languageOptions: {
       globals: {
         console: 'readonly',

@@ -15,7 +15,14 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["ES2022"],
     "noEmit": true,
-    "types": ["vitest/globals"]
+    // `node` es necesario desde aaa-041: los gates leen el build y los JSON fuente con
+    // `node:fs`. La versión de @types/node se alinea con `.nvmrc` (22), no con la que el
+    // árbol resuelve transitivamente para vite/vitest — typechequear contra los tipos de
+    // una versión de Node distinta de la que se ejecuta habilita APIs inexistentes en CI.
+    "types": ["vitest/globals", "node"]
   },
-  "include": ["test/**/*.ts"]
+  // Los specs, más las declaraciones de tipos de la lógica portada en `scripts/`. El
+  // `.mjs` en sí no entra: activar `checkJs` sobre un módulo que ya tiene su `.d.mts`
+  // duplicaría las declaraciones. Ese archivo lo cubre ESLint.
+  "include": ["test/**/*.ts", "scripts/**/*.d.mts"]
 }

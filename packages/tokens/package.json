@@ -57,6 +57,7 @@
     "prepublishOnly": "node ../../scripts/verify-dist.mjs"
   },
   "devDependencies": {
+    "@types/node": "^22",
     "@vitest/coverage-v8": "^4.1.7",
     "style-dictionary": "^4.3.0",
     "typescript": "~5.9",

@@ -1,0 +1,751 @@
+[
+  {
+    "id": "semantic/border-danger-on-bg-surface",
+    "fg": "--ds-semantic-color-border-danger",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "semantic/border-info-on-bg-surface",
+    "fg": "--ds-semantic-color-border-info",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "semantic/border-strong-on-bg-surface",
+    "fg": "--ds-semantic-color-border-strong",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "semantic/border-success-on-bg-surface",
+    "fg": "--ds-semantic-color-border-success",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "semantic/border-warning-on-bg-surface",
+    "fg": "--ds-semantic-color-border-warning",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "semantic/text-inverse-on-bg-primary",
+    "fg": "--ds-semantic-color-text-inverse",
+    "bg": "--ds-semantic-color-bg-primary",
+    "level": "text",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "semantic/text-inverse-on-bg-primary-active",
+    "fg": "--ds-semantic-color-text-inverse",
+    "bg": "--ds-semantic-color-bg-primary-active",
+    "level": "text",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "semantic/text-inverse-on-bg-primary-hover",
+    "fg": "--ds-semantic-color-text-inverse",
+    "bg": "--ds-semantic-color-bg-primary-hover",
+    "level": "text",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "accordion/header-hover",
+    "fg": "--ds-component-accordion-header-text",
+    "bg": "--ds-component-accordion-header-bg-hover",
+    "level": "text",
+    "specRef": "component-accordion"
+  },
+  {
+    "id": "accordion/header-rest",
+    "fg": "--ds-component-accordion-header-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-accordion"
+  },
+  {
+    "id": "accordion/panel-text",
+    "fg": "--ds-component-accordion-panel-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-accordion"
+  },
+  {
+    "id": "avatar/tone-danger",
+    "fg": "--ds-component-avatar-tone-danger-text",
+    "bg": "--ds-component-avatar-tone-danger-bg",
+    "level": "text",
+    "specRef": "component-avatar"
+  },
+  {
+    "id": "avatar/tone-info",
+    "fg": "--ds-component-avatar-tone-info-text",
+    "bg": "--ds-component-avatar-tone-info-bg",
+    "level": "text",
+    "specRef": "component-avatar"
+  },
+  {
+    "id": "avatar/tone-neutral",
+    "fg": "--ds-component-avatar-tone-neutral-text",
+    "bg": "--ds-component-avatar-tone-neutral-bg",
+    "level": "text",
+    "specRef": "component-avatar"
+  },
+  {
+    "id": "avatar/tone-primary",
+    "fg": "--ds-component-avatar-tone-primary-text",
+    "bg": "--ds-component-avatar-tone-primary-bg",
+    "level": "text",
+    "specRef": "component-avatar"
+  },
+  {
+    "id": "avatar/tone-success",
+    "fg": "--ds-component-avatar-tone-success-text",
+    "bg": "--ds-component-avatar-tone-success-bg",
+    "level": "text",
+    "specRef": "component-avatar"
+  },
+  {
+    "id": "avatar/tone-warning",
+    "fg": "--ds-component-avatar-tone-warning-text",
+    "bg": "--ds-component-avatar-tone-warning-bg",
+    "level": "text",
+    "specRef": "component-avatar"
+  },
+  {
+    "id": "badge/danger-solid",
+    "fg": "--ds-component-badge-danger-solid-text",
+    "bg": "--ds-component-badge-danger-solid-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/danger-subtle",
+    "fg": "--ds-component-badge-danger-text",
+    "bg": "--ds-component-badge-danger-subtle-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/info-solid",
+    "fg": "--ds-component-badge-info-solid-text",
+    "bg": "--ds-component-badge-info-solid-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/info-subtle",
+    "fg": "--ds-component-badge-info-text",
+    "bg": "--ds-component-badge-info-subtle-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/neutral-solid",
+    "fg": "--ds-component-badge-neutral-solid-text",
+    "bg": "--ds-component-badge-neutral-solid-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/neutral-subtle",
+    "fg": "--ds-component-badge-neutral-text",
+    "bg": "--ds-component-badge-neutral-subtle-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/primary-solid",
+    "fg": "--ds-component-badge-primary-solid-text",
+    "bg": "--ds-component-badge-primary-solid-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/primary-subtle",
+    "fg": "--ds-component-badge-primary-text",
+    "bg": "--ds-component-badge-primary-subtle-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/success-solid",
+    "fg": "--ds-component-badge-success-solid-text",
+    "bg": "--ds-component-badge-success-solid-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/success-subtle",
+    "fg": "--ds-component-badge-success-text",
+    "bg": "--ds-component-badge-success-subtle-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/warning-solid",
+    "fg": "--ds-component-badge-warning-solid-text",
+    "bg": "--ds-component-badge-warning-solid-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "badge/warning-subtle",
+    "fg": "--ds-component-badge-warning-text",
+    "bg": "--ds-component-badge-warning-subtle-bg",
+    "level": "text",
+    "specRef": "component-badge"
+  },
+  {
+    "id": "breadcrumbs/current",
+    "fg": "--ds-component-breadcrumbs-current-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-breadcrumbs"
+  },
+  {
+    "id": "breadcrumbs/ellipsis-hover",
+    "fg": "--ds-component-breadcrumbs-ellipsis-text-hover",
+    "bg": "--ds-component-breadcrumbs-ellipsis-bg-hover",
+    "level": "text",
+    "specRef": "component-breadcrumbs"
+  },
+  {
+    "id": "breadcrumbs/ellipsis-rest",
+    "fg": "--ds-component-breadcrumbs-ellipsis-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-breadcrumbs"
+  },
+  {
+    "id": "breadcrumbs/link-hover",
+    "fg": "--ds-component-breadcrumbs-link-text-hover",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-breadcrumbs"
+  },
+  {
+    "id": "breadcrumbs/link-rest",
+    "fg": "--ds-component-breadcrumbs-link-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-breadcrumbs"
+  },
+  {
+    "id": "button/danger-active",
+    "fg": "--ds-component-button-danger-text",
+    "bg": "--ds-component-button-danger-bg-active",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/danger-ghost-active",
+    "fg": "--ds-component-button-danger-ghost-text",
+    "bg": "--ds-component-button-danger-ghost-bg-active",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/danger-ghost-hover",
+    "fg": "--ds-component-button-danger-ghost-text",
+    "bg": "--ds-component-button-danger-ghost-bg-hover",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/danger-ghost-rest",
+    "fg": "--ds-component-button-danger-ghost-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/danger-hover",
+    "fg": "--ds-component-button-danger-text",
+    "bg": "--ds-component-button-danger-bg-hover",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/danger-outline-active",
+    "fg": "--ds-component-button-danger-outline-text",
+    "bg": "--ds-component-button-danger-outline-bg-active",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/danger-outline-border",
+    "fg": "--ds-component-button-danger-outline-border",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/danger-outline-hover",
+    "fg": "--ds-component-button-danger-outline-text",
+    "bg": "--ds-component-button-danger-outline-bg-hover",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/danger-outline-rest",
+    "fg": "--ds-component-button-danger-outline-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/danger-rest",
+    "fg": "--ds-component-button-danger-text",
+    "bg": "--ds-component-button-danger-bg",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/ghost-active",
+    "fg": "--ds-component-button-ghost-text",
+    "bg": "--ds-component-button-ghost-bg-active",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/ghost-hover",
+    "fg": "--ds-component-button-ghost-text",
+    "bg": "--ds-component-button-ghost-bg-hover",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/ghost-rest",
+    "fg": "--ds-component-button-ghost-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/link-hover",
+    "fg": "--ds-component-button-link-text-hover",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/link-rest",
+    "fg": "--ds-component-button-link-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/outline-active",
+    "fg": "--ds-component-button-outline-text",
+    "bg": "--ds-component-button-outline-bg-active",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/outline-hover",
+    "fg": "--ds-component-button-outline-text",
+    "bg": "--ds-component-button-outline-bg-hover",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/outline-rest",
+    "fg": "--ds-component-button-outline-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/primary-active",
+    "fg": "--ds-component-button-primary-text",
+    "bg": "--ds-component-button-primary-bg-active",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/primary-hover",
+    "fg": "--ds-component-button-primary-text",
+    "bg": "--ds-component-button-primary-bg-hover",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/primary-rest",
+    "fg": "--ds-component-button-primary-text",
+    "bg": "--ds-component-button-primary-bg",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/secondary-active",
+    "fg": "--ds-component-button-secondary-text",
+    "bg": "--ds-component-button-secondary-bg-active",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/secondary-hover",
+    "fg": "--ds-component-button-secondary-text",
+    "bg": "--ds-component-button-secondary-bg-hover",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "button/secondary-rest",
+    "fg": "--ds-component-button-secondary-text",
+    "bg": "--ds-component-button-secondary-bg",
+    "level": "text",
+    "specRef": "component-button"
+  },
+  {
+    "id": "card/subtitle",
+    "fg": "--ds-component-card-subtitle-color",
+    "bg": "--ds-component-card-bg",
+    "level": "text",
+    "specRef": "component-card"
+  },
+  {
+    "id": "card/title",
+    "fg": "--ds-component-card-title-color",
+    "bg": "--ds-component-card-bg",
+    "level": "text",
+    "specRef": "component-card"
+  },
+  {
+    "id": "checkbox/bg-on-on-surface",
+    "fg": "--ds-component-checkbox-bg-on",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-checkbox"
+  },
+  {
+    "id": "checkbox/border-off-on-bg-off",
+    "fg": "--ds-component-checkbox-border-off",
+    "bg": "--ds-component-checkbox-bg-off",
+    "level": "ui",
+    "specRef": "component-checkbox"
+  },
+  {
+    "id": "checkbox/border-off-on-surface",
+    "fg": "--ds-component-checkbox-border-off",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-checkbox"
+  },
+  {
+    "id": "checkbox/check-on-bg-on",
+    "fg": "--ds-component-checkbox-check-color",
+    "bg": "--ds-component-checkbox-bg-on",
+    "level": "ui",
+    "specRef": "component-checkbox"
+  },
+  {
+    "id": "checkbox/label",
+    "fg": "--ds-component-checkbox-label-color",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-checkbox"
+  },
+  {
+    "id": "input/border-error-on-surface",
+    "fg": "--ds-component-input-border-error",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-input"
+  },
+  {
+    "id": "input/border-on-surface",
+    "fg": "--ds-component-input-border",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-input"
+  },
+  {
+    "id": "input/label",
+    "fg": "--ds-component-input-label-color",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-input"
+  },
+  {
+    "id": "input/placeholder-on-bg",
+    "fg": "--ds-component-input-text-placeholder",
+    "bg": "--ds-component-input-bg",
+    "level": "text",
+    "specRef": "component-input"
+  },
+  {
+    "id": "input/text-on-bg",
+    "fg": "--ds-component-input-text",
+    "bg": "--ds-component-input-bg",
+    "level": "text",
+    "specRef": "component-input"
+  },
+  {
+    "id": "menu/danger-hover",
+    "fg": "--ds-component-menu-danger-text",
+    "bg": "--ds-component-menu-danger-bg-hover",
+    "level": "text",
+    "specRef": "component-menu"
+  },
+  {
+    "id": "menu/danger-rest",
+    "fg": "--ds-component-menu-danger-text",
+    "bg": "--ds-component-menu-panel-bg",
+    "level": "text",
+    "specRef": "component-menu"
+  },
+  {
+    "id": "menu/item-hover",
+    "fg": "--ds-component-menu-item-text",
+    "bg": "--ds-component-menu-item-bg-hover",
+    "level": "text",
+    "specRef": "component-menu"
+  },
+  {
+    "id": "menu/item-rest",
+    "fg": "--ds-component-menu-item-text",
+    "bg": "--ds-component-menu-panel-bg",
+    "level": "text",
+    "specRef": "component-menu"
+  },
+  {
+    "id": "pagination/counter",
+    "fg": "--ds-component-pagination-counter-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-pagination"
+  },
+  {
+    "id": "pagination/current",
+    "fg": "--ds-component-pagination-current-text",
+    "bg": "--ds-component-pagination-current-bg",
+    "level": "text",
+    "specRef": "component-pagination"
+  },
+  {
+    "id": "pagination/item-hover",
+    "fg": "--ds-component-pagination-item-text-hover",
+    "bg": "--ds-component-pagination-item-bg-hover",
+    "level": "text",
+    "specRef": "component-pagination"
+  },
+  {
+    "id": "pagination/item-rest",
+    "fg": "--ds-component-pagination-item-text",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-pagination"
+  },
+  {
+    "id": "progress/fill-danger-on-track",
+    "fg": "--ds-component-progress-fill-danger",
+    "bg": "--ds-component-progress-track-bg",
+    "level": "ui",
+    "specRef": "component-progress"
+  },
+  {
+    "id": "progress/fill-primary-on-track",
+    "fg": "--ds-component-progress-fill-primary",
+    "bg": "--ds-component-progress-track-bg",
+    "level": "ui",
+    "specRef": "component-progress"
+  },
+  {
+    "id": "progress/fill-success-on-track",
+    "fg": "--ds-component-progress-fill-success",
+    "bg": "--ds-component-progress-track-bg",
+    "level": "ui",
+    "specRef": "component-progress"
+  },
+  {
+    "id": "progress/value-text",
+    "fg": "--ds-component-progress-value-text-color",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-progress"
+  },
+  {
+    "id": "radio/border-off-on-bg-off",
+    "fg": "--ds-component-radio-border-off",
+    "bg": "--ds-component-radio-bg-off",
+    "level": "ui",
+    "specRef": "component-radio"
+  },
+  {
+    "id": "radio/border-off-on-surface",
+    "fg": "--ds-component-radio-border-off",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-radio"
+  },
+  {
+    "id": "radio/border-on-on-surface",
+    "fg": "--ds-component-radio-border-on",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-radio"
+  },
+  {
+    "id": "radio/dot-on-bg-on",
+    "fg": "--ds-component-radio-dot-color",
+    "bg": "--ds-component-radio-bg-on",
+    "level": "ui",
+    "specRef": "component-radio"
+  },
+  {
+    "id": "radio/label",
+    "fg": "--ds-component-radio-label-color",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-radio"
+  },
+  {
+    "id": "select/option-hover",
+    "fg": "--ds-component-select-option-text",
+    "bg": "--ds-component-select-option-bg-hover",
+    "level": "text",
+    "specRef": "component-select"
+  },
+  {
+    "id": "select/option-rest",
+    "fg": "--ds-component-select-option-text",
+    "bg": "--ds-component-select-listbox-bg",
+    "level": "text",
+    "specRef": "component-select"
+  },
+  {
+    "id": "select/option-selected",
+    "fg": "--ds-component-select-option-text",
+    "bg": "--ds-component-select-option-bg-selected",
+    "level": "text",
+    "specRef": "component-select"
+  },
+  {
+    "id": "select/trigger-border",
+    "fg": "--ds-component-select-trigger-border",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-select"
+  },
+  {
+    "id": "select/trigger-placeholder",
+    "fg": "--ds-component-select-trigger-text-placeholder",
+    "bg": "--ds-component-select-trigger-bg",
+    "level": "text",
+    "specRef": "component-select"
+  },
+  {
+    "id": "select/trigger-text",
+    "fg": "--ds-component-select-trigger-text",
+    "bg": "--ds-component-select-trigger-bg",
+    "level": "text",
+    "specRef": "component-select"
+  },
+  {
+    "id": "switch/label",
+    "fg": "--ds-component-switch-label-color",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-switch"
+  },
+  {
+    "id": "switch/thumb-on-track-on",
+    "fg": "--ds-component-switch-thumb-bg",
+    "bg": "--ds-component-switch-track-bg-on",
+    "level": "ui",
+    "specRef": "component-switch"
+  },
+  {
+    "id": "tabs/contained-active",
+    "fg": "--ds-component-tabs-contained-text-active",
+    "bg": "--ds-component-tabs-contained-bg-active",
+    "level": "text",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "tabs/contained-default",
+    "fg": "--ds-component-tabs-contained-text-default",
+    "bg": "--ds-component-tabs-contained-bg-default",
+    "level": "text",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "tabs/contained-hover",
+    "fg": "--ds-component-tabs-contained-text-hover",
+    "bg": "--ds-component-tabs-contained-bg-hover",
+    "level": "text",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "tabs/pills-active",
+    "fg": "--ds-component-tabs-pills-text-active",
+    "bg": "--ds-component-tabs-pills-bg-active",
+    "level": "text",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "tabs/pills-default",
+    "fg": "--ds-component-tabs-pills-text-default",
+    "bg": "--ds-component-tabs-pills-bg-default",
+    "level": "text",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "tabs/pills-hover",
+    "fg": "--ds-component-tabs-pills-text-hover",
+    "bg": "--ds-component-tabs-pills-bg-hover",
+    "level": "text",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "tabs/underline-indicator-active",
+    "fg": "--ds-component-tabs-underline-underline-active",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "tabs/underline-label-active",
+    "fg": "--ds-component-tabs-underline-color-active",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "tabs/underline-label-default",
+    "fg": "--ds-component-tabs-underline-color-default",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "tabs/underline-label-hover",
+    "fg": "--ds-component-tabs-underline-color-hover",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-tabs"
+  },
+  {
+    "id": "toast/text-on-bg",
+    "fg": "--ds-component-toast-text",
+    "bg": "--ds-component-toast-bg",
+    "level": "text",
+    "specRef": "component-toast"
+  },
+  {
+    "id": "tooltip/text-on-bg",
+    "fg": "--ds-component-tooltip-text",
+    "bg": "--ds-component-tooltip-bg",
+    "level": "text",
+    "specRef": "component-tooltip"
+  }
+]

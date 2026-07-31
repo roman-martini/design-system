@@ -11,7 +11,7 @@
       "bg-off-hover":   { "value": "{color.neutral.50}" },
       "bg-on":          { "value": "{semantic.color.bg.primary}" },
       "bg-on-hover":    { "value": "{semantic.color.bg.primary-hover}" },
-      "border-off":     { "value": "{color.neutral.400}" },
+      "border-off":     { "value": "{semantic.color.border.strong}" },
       "border-on":      { "value": "{semantic.color.bg.primary}" },
       "check-color":    { "value": "{color.white}" },
       "focus-ring":     { "value": "{semantic.color.focus-ring}" },

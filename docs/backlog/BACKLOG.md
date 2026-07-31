@@ -63,11 +63,13 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 | Sub-parte | Contenido                                                                  | Change    | Estado             |
 | --------- | -------------------------------------------------------------------------- | --------- | ------------------ |
 | F1-a      | Coverage con thresholds + typecheck de specs/stories (ítems 1, 6, 10)      | `aaa-040` | **Hecha** — HU-026 |
-| F1-b      | Gates de tokens: contraste AA versionado, jerarquía, build (ítems 2, 3, 4) | —         | Pendiente — HU-027 |
+| F1-b      | Gates de tokens: contraste AA versionado, jerarquía, build (ítems 2, 3, 4) | `aaa-041` | **Hecha** — HU-027 |
 | F2        | a11y (axe) y playground (ítems 5, 7, 8, 9, 11)                             | —         | Pendiente — HU-028 |
 | F3        | Bundle size budget con `size-limit` sobre el `dist` (ítem 12)              | —         | Pendiente — HU-030 |
 
 > **El ítem 12 se agregó al plan el 2026-07-29.** HU-030 estaba aprobada en A14/[D-021](../product/decisiones.md) y la propia HU declaraba "Ejecución: Parte F", pero el plan nunca la listó entre sus ítems: quedó aprobada y sin sesión asignada. Se ejecuta como **F3** —no encaja en F1-b (todo `tokens`) ni en F2 (a11y + playground), porque toca ambos packages y el pipeline— y hereda el patrón probado en `aaa-040`: medir primero, techo con margen sobre lo medido, trinquete, step bloqueante.
+>
+> **F1-b dejó dos cosas para más adelante** (2026-07-30, `aaa-041`): el gate de contraste expuso un incumplimiento real en el borde del control desmarcado de checkbox y radio, corregido en el momento bajo [D-030](../product/decisiones.md); y el **pendiente derivado** de que `checkbox.bg-off`/`radio.bg-off` siguen clavados a `{color.white}`, con lo que el control desmarcado se pinta blanco también en dark theme. Eso último no es contraste sino theming, y va a la **Parte G** como ítem de `components-fix-checkbox`/`radio` — hoy la Parte G no los incluye entre sus 6 changes.
 
 **Protocolo de ejecución**: una parte por sesión, con `/ds:handoff` → `/clear` → `/ds:resume` entre partes. El modelo y el effort de cada parte están declarados en el plan (§ "Modelo por parte" y § "Cuándo cortar sesión"); no se alterna modelo dentro de una sesión.
 
