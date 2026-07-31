@@ -2,7 +2,8 @@
 id: aaa-042
 name: a11y-testing-gates
 type: change
-status: proposed
+status: archived
+archived: 2026-07-31
 modifies-specs:
   - components-package
   - playground-app

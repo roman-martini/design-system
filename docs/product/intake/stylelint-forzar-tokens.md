@@ -18,3 +18,5 @@ Que un valor hardcodeado en el CSS de un componente (un color literal, un `px` s
 ## Exploración
 
 Migrado desde la Cantera del BACKLOG el 2026-07-26 ([D-019](../decisiones.md)), donde figuraba como complemento de `/ds:audit-tokens`. Conviene refinarlo **después** de que HU-032 esté hecha: recién ahí se sabe cuánto queda sin cubrir.
+
+**Dato nuevo (2026-07-31, `aaa-042`)**: hay una tercera vía ya en uso, que la exploración no contemplaba — **aserciones sobre el CSS fuente dentro del spec del componente** (`expect(css).not.toMatch(/#[0-9a-fA-F]{3,8}\b/)`). Existían en button, avatar, badge y card, y F2 las extendió a select y modal. Corren en cada PR y son gratis, pero son **por componente y hay que acordarse de escribirlas**: un componente nuevo sin esa aserción no falla nada. Eso acota mejor qué aportaría stylelint — no "detectar hardcodes", que ya se detectan en los componentes instrumentados, sino **cobertura universal sin depender de que alguien la escriba**, que es la misma clase de garantía que `axe-coverage.spec.ts` da para las aserciones de accesibilidad. Al refinarlo, comparar contra esas tres vías, no contra dos.

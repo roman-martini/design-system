@@ -10,8 +10,14 @@ El playground SHALL ejecutarse en modo **zoneless change detection** de Angular 
 
 #### Scenario: bootstrap declara zoneless
 
-- **WHEN** se inspecciona `app.config.ts`
+- **WHEN** se inspecciona `apps/playground/src/app/app.config.ts`
 - **THEN** el array `providers` SHALL contener `provideExperimentalZonelessChangeDetection()` (o equivalente Angular 21)
+
+#### Scenario: zone.js no está en el bundle
+
+- **WHEN** se ejecuta `pnpm -F playground build` y se inspecciona el output
+- **THEN** ningún chunk SHALL contener `zone.js` como dependencia
+- **AND** `apps/playground/angular.json` campo `polyfills` SHALL estar vacío o no incluir `zone.js`
 
 #### Scenario: el setup de test es zoneless
 

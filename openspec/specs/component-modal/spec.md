@@ -90,7 +90,7 @@ El package SHALL exponer `DsModal` (selector `ds-modal`), el primer componente o
 #### Scenario: backdrop con tokens de overlay
 
 - **WHEN** se inspecciona el estilo del `::backdrop`
-- **THEN** el fondo SHALL ser `var(--ds-semantic-color-bg-overlay)`
+- **THEN** el fondo SHALL ser `var(--ds-component-modal-overlay-bg)`, que resuelve a `{semantic.color.bg.overlay}`
 - **AND** SHALL aplicar `backdrop-filter: blur(var(--ds-semantic-effect-blur-overlay))`
 
 #### Scenario: body scroll lock mientras está abierto
