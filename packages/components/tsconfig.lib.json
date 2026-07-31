@@ -32,5 +32,13 @@
     "enableI18nLegacyMessageIdFormat": false
   },
   "include": ["src/**/*.ts", "router/src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts", "src/**/*.stories.ts", "router/src/**/*.spec.ts"]
+  // `src/testing/` es infraestructura de test (helpers de axe y de lectura de
+  // CSS fuente): no se exporta desde public-api.ts ni entra al artefacto, así
+  // que se excluye del build por el mismo criterio que specs y stories.
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.stories.ts",
+    "src/testing/**/*.ts",
+    "router/src/**/*.spec.ts"
+  ]
 }

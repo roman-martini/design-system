@@ -1,5 +1,3 @@
-import { existsSync, readFileSync } from 'node:fs';
-
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -7,11 +5,10 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { DsSwitch } from './switch';
 import * as publicApi from '../../public-api';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss } from '../../testing/css';
 
-const cssPath = ['src/lib/switch/switch.css', 'packages/components/src/lib/switch/switch.css'].find(
-  (p) => existsSync(p),
-);
-const css = cssPath ? readFileSync(cssPath, 'utf-8') : '';
+const css = readComponentCss('switch');
 
 describe('DsSwitch', () => {
   let fixture: ComponentFixture<DsSwitch>;
@@ -144,5 +141,21 @@ describe('DsSwitch + FormControl', () => {
     host.ctrl.disable();
     hostFixture.detectChanges();
     expect(input.disabled).toBe(true);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [DsSwitch] }).compileComponents();
+
+    const fixture = TestBed.createComponent(DsSwitch);
+    fixture.componentRef.setInput('label', 'Notificaciones');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

@@ -4,6 +4,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 
 import { DsTab } from './tab';
 import { DsTabs } from './tabs';
+import { expectNoAxeViolations } from '../../testing/axe';
 
 @Component({
   standalone: true,
@@ -12,7 +13,7 @@ import { DsTabs } from './tabs';
     <ds-tabs [(value)]="active" aria-label="Secciones">
       <ds-tab value="a" label="Alfa">
         <p>Contenido A</p>
-        <input id="stateful" />
+        <input id="stateful" aria-label="Campo con estado" />
       </ds-tab>
       <ds-tab value="b" label="Beta">Contenido B</ds-tab>
       <ds-tab value="c" label="Gamma" [disabled]="true">Contenido C</ds-tab>
@@ -176,5 +177,20 @@ describe('DsTabs registración dinámica', () => {
     fixture.detectChanges();
     expect(buttons().length).toBe(2);
     expect(buttons()[0].getAttribute('aria-selected')).toBe('true');
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [Host] }).compileComponents();
+
+    const fixture = TestBed.createComponent(Host);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

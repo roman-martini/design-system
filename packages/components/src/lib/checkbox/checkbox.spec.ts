@@ -4,6 +4,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { DsCheckbox } from './checkbox';
+import { expectNoAxeViolations } from '../../testing/axe';
 
 describe('DsCheckbox', () => {
   let fixture: ComponentFixture<DsCheckbox>;
@@ -157,5 +158,21 @@ describe('DsCheckbox + FormControl', () => {
     host.ctrl.disable();
     hostFixture.detectChanges();
     expect(inputEl.disabled).toBe(true);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [DsCheckbox] }).compileComponents();
+
+    const fixture = TestBed.createComponent(DsCheckbox);
+    fixture.componentRef.setInput('label', 'Acepto los términos');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

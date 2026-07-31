@@ -23,7 +23,9 @@ export default defineConfig({
       // formato máquina, sin atarnos a ninguna herramienta externa hoy.
       reporter: ['text', 'lcov'],
       include: ['src/**/*.ts', 'router/src/**/*.ts'],
-      exclude: ['**/*.spec.ts', '**/*.stories.ts', 'src/test-setup.ts'],
+      // `src/testing/` es infraestructura de test, igual que test-setup.ts:
+      // medirla infla la cobertura con código que los propios tests ejercitan.
+      exclude: ['**/*.spec.ts', '**/*.stories.ts', 'src/test-setup.ts', 'src/testing/**'],
       // Piso fijado en la cobertura real medida el 2026-07-29 (94.80 / 77.23 /
       // 97.15 / 94.65) menos 1 punto de margen. Es un trinquete: sólo sube.
       // Bajarlo requiere decisión explícita del PO — ver CONTRIBUTING.md.

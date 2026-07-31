@@ -5,6 +5,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { DsRadio } from '../radio/radio';
 import { DsRadioGroup } from './radio-group';
+import { expectNoAxeViolations } from '../../testing/axe';
 
 describe('DsRadioGroup (standalone)', () => {
   let fixture: ComponentFixture<DsRadioGroup>;
@@ -271,5 +272,20 @@ describe('DsRadioGroup + FormControl', () => {
     radios[1].click();
     fixture.detectChanges();
     expect(host.ctrl.value).toBe('angular');
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [TwoWayHost] }).compileComponents();
+
+    const fixture = TestBed.createComponent(TwoWayHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

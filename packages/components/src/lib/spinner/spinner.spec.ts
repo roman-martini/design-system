@@ -1,19 +1,15 @@
-import { existsSync, readFileSync } from 'node:fs';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 import { DsSpinner } from './spinner';
 import * as publicApi from '../../public-api';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss } from '../../testing/css';
 
 // Los scenarios CA-009.4/5 exigen inspeccionar el CSS; jsdom no computa estilos
 // de keyframes/media queries, así que se asserta sobre la fuente. El plugin de
 // Angular intercepta los imports de .css (incluso ?raw), de ahí el readFileSync.
-const cssPath = [
-  'src/lib/spinner/spinner.css',
-  'packages/components/src/lib/spinner/spinner.css',
-].find((p) => existsSync(p));
-const css = cssPath ? readFileSync(cssPath, 'utf-8') : '';
+const css = readComponentCss('spinner');
 
 describe('DsSpinner', () => {
   let fixture: ComponentFixture<DsSpinner>;
@@ -106,5 +102,20 @@ describe('DsSpinner', () => {
 
   it('is part of the public API together with its size type (public-api.ts)', () => {
     expect(publicApi.DsSpinner).toBe(DsSpinner);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [DsSpinner] }).compileComponents();
+
+    const fixture = TestBed.createComponent(DsSpinner);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

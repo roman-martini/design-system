@@ -1,7 +1,7 @@
 ---
 epica: EP-005
 actor: Mantenedor
-estado: Refinada (2026-07-26)
+estado: Fase 1 entregada (2026-07-31, aaa-042) — fase 2 pendiente (Parte L)
 decisiones: [D-021, D-007, D-002, D-017]
 ---
 
@@ -22,13 +22,15 @@ decisiones: [D-021, D-007, D-002, D-017]
 
 ## Criterios de aceptación
 
-### Fase 1 — `vitest-axe` sobre los specs jsdom
+### Fase 1 — axe sobre los specs jsdom · **entregada el 2026-07-31** (`aaa-042`)
 
-- [ ] **CA-028.1 (helper compartido)** — Dado el package de componentes, cuando se inspecciona su infraestructura de test, entonces existe un helper único y reutilizable (tipo `expectNoAxeViolations(fixture)`) que corre axe sobre el DOM renderizado de un fixture y no duplica configuración por componente.
-- [ ] **CA-028.2 (cobertura del kit)** — Dado cada componente del kit, cuando corre su spec, entonces incluye al menos una aserción de axe sobre su render por defecto; los componentes que no puedan cubrirse en jsdom se listan explícitamente con su motivo y quedan asignados a la fase 2.
-- [ ] **CA-028.3 (violación AA falla)** — Dado un componente al que se le introduce una violación de nivel AA (por ejemplo un control sin nombre accesible), cuando corre la suite, entonces el test **falla** identificando la regla de axe violada y el nodo; no se emite solo un warning.
-- [ ] **CA-028.4 (reglas acotadas y explícitas)** — Dado que jsdom no puede evaluar algunas reglas (color-contrast entre ellas), cuando se configura axe para la fase 1, entonces el conjunto de reglas evaluadas y las deshabilitadas están declarados en un solo lugar y **justificados**; ninguna se deshabilita para tapar un hallazgo real.
-- [ ] **CA-028.5 (en el pipeline sin infraestructura nueva)** — Dado el workflow de PR, cuando corre la suite de tests existente, entonces las aserciones de axe de fase 1 se ejecutan con ella, sin steps ni servicios adicionales.
+- [x] **CA-028.1 (helper compartido)** — Dado el package de componentes, cuando se inspecciona su infraestructura de test, entonces existe un helper único y reutilizable (tipo `expectNoAxeViolations(fixture)`) que corre axe sobre el DOM renderizado de un fixture y no duplica configuración por componente. _`packages/components/src/testing/axe.ts`; se descartó `vitest-axe` (0.1.0, sin releases desde enero 2025, no declara Vitest 4) a favor de `axe-core` directo._
+- [x] **CA-028.2 (cobertura del kit)** — Dado cada componente del kit, cuando corre su spec, entonces incluye al menos una aserción de axe sobre su render por defecto; los componentes que no puedan cubrirse en jsdom se listan explícitamente con su motivo y quedan asignados a la fase 2. _Verificado por `axe-coverage.spec.ts`, que enumera el filesystem en vez de una lista escrita a mano. Exclusiones: contenido del listbox de select, panel de menu e interior de modal abierto._
+- [x] **CA-028.3 (violación AA falla)** — Dado un componente al que se le introduce una violación de nivel AA (por ejemplo un control sin nombre accesible), cuando corre la suite, entonces el test **falla** identificando la regla de axe violada y el nodo; no se emite solo un warning. _Verificado como test permanente en `axe.spec.ts`, no por inyección manual._
+- [x] **CA-028.4 (reglas acotadas y explícitas)** — Dado que jsdom no puede evaluar algunas reglas (color-contrast entre ellas), cuando se configura axe para la fase 1, entonces el conjunto de reglas evaluadas y las deshabilitadas están declarados en un solo lugar y **justificados**; ninguna se deshabilita para tapar un hallazgo real. _Una sola regla apagada (`color-contrast`), cubierta por el gate de tokens de HU-027._
+- [x] **CA-028.5 (en el pipeline sin infraestructura nueva)** — Dado el workflow de PR, cuando corre la suite de tests existente, entonces las aserciones de axe de fase 1 se ejecutan con ella, sin steps ni servicios adicionales.
+
+> **Criterio que la HU no anticipaba y el change agregó**: una corrida de axe **no concluyente falla**. La medición mostró que con un `<dialog open>` en el árbol axe deja de detectar violaciones reales en jsdom, así que `violations.length === 0` habría dado verde falso sobre el modal. El helper exige además que el motor haya evaluado reglas con éxito. Sin eso, CA-028.2 se habría cumplido en la letra y no en el fondo.
 
 ### Fase 2 — Storybook test-runner con `axe-playwright`
 
@@ -50,6 +52,12 @@ decisiones: [D-021, D-007, D-002, D-017]
 - Interaction tests (play functions) de overlays — Parte L del plan, con su propio ítem.
 - Auditoría manual: la skill `check-a11y` sigue existiendo para revisiones amplias y de criterio; axe automatiza lo mecánico, no lo reemplaza.
 - WCAG AAA.
+
+## Resultado de la fase 1 (2026-07-31, `aaa-042`)
+
+- **El kit entró limpio**: 26 de 27 casos medidos sin violaciones. El gate es trinquete, no destapó deuda.
+- **Un hallazgo real**: `DsButton` no reenvía `aria-label` al `<button>` interno, así que un botón ícono-only queda sin nombre accesible (`button-name`, critical). Los otros 6 componentes del kit que necesitan nombre externo sí exponen el input con alias. Se encauzó como ítem de `components-fix-button` (Parte G), no se corrigió acá: toca la API pública y exige delta de `component-button`.
+- **Lo que la fase 1 NO cubre**, con motivo medido: el contenido de un `[popover]` abierto es invisible para axe en jsdom (no hay top layer), y un `<dialog open>` rompe 11 reglas del motor. Eso deja fuera el listbox de select, el panel de menu y el interior del modal — que es el alcance concreto de la fase 2.
 
 ## Notas
 

@@ -5,6 +5,8 @@ import { describe, it, expect, beforeEach } from 'vitest';
 
 import { DsOption } from './option';
 import { DsSelect } from './select';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss, readPublicApi } from '../../testing/css';
 
 @Component({
   standalone: true,
@@ -246,5 +248,81 @@ describe('DsSelect + FormControl', () => {
     fixture.detectChanges();
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
     expect(host.ctrl.value).toBe('angular');
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [TwoWayHost] }).compileComponents();
+
+    const fixture = TestBed.createComponent(TwoWayHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
+  });
+});
+
+@Component({
+  standalone: true,
+  imports: [DsSelect, DsOption],
+  template: `
+    <ds-select [size]="size()" placeholder="Elegí una opción" aria-label="Framework">
+      <ds-option [value]="'a'" label="Opción A" />
+    </ds-select>
+  `,
+})
+class SizeHost {
+  readonly size = signal<'sm' | 'md' | 'lg'>('md');
+}
+
+// Scenarios de la spec `component-select` que no tenían test (testing-05, aaa-042).
+// El criterio de aserción sobre el CSS fuente es el de aaa-023: jsdom no computa
+// estilos, así que el contrato de tokens se verifica sobre el archivo.
+describe('DsSelect — contrato de size, tokens y superficie pública', () => {
+  const selectCss = readComponentCss('select');
+  const optionCss = readComponentCss('select', 'option.css');
+
+  it('refleja cada size en data-size del trigger', async () => {
+    await TestBed.configureTestingModule({ imports: [SizeHost] }).compileComponents();
+    const fixture = TestBed.createComponent(SizeHost);
+    fixture.detectChanges();
+
+    const triggerDataSize = (): string | null =>
+      (fixture.nativeElement.querySelector('.ds-select__trigger') as HTMLElement).getAttribute(
+        'data-size',
+      );
+
+    // El default declarado por la spec es 'md'.
+    expect(triggerDataSize()).toBe('md');
+
+    for (const size of ['sm', 'md', 'lg'] as const) {
+      fixture.componentInstance.size.set(size);
+      fixture.detectChanges();
+      expect(triggerDataSize()).toBe(size);
+    }
+  });
+
+  it('no usa hex codes ni colores literales en su CSS fuente', () => {
+    for (const css of [selectCss, optionCss]) {
+      expect(css.length).toBeGreaterThan(0);
+      expect(css).not.toMatch(/#[0-9a-fA-F]{3,8}\b/);
+    }
+  });
+
+  it('anima la apertura y el cierre con los tokens de motion de overlay', () => {
+    expect(selectCss).toContain('--ds-semantic-motion-transition-overlay-enter');
+    expect(selectCss).toContain('--ds-semantic-motion-transition-overlay-exit');
+  });
+
+  it('desactiva las transiciones bajo prefers-reduced-motion', () => {
+    expect(selectCss).toMatch(/@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+  });
+
+  it('se exporta desde public-api.ts', () => {
+    expect(readPublicApi()).toContain(`export * from './lib/select';`);
   });
 });

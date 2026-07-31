@@ -7,17 +7,13 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { DsBreadcrumbItem } from './breadcrumb-item';
 import { DsBreadcrumbs } from './breadcrumbs';
 import { DsBreadcrumbsSeparator } from './breadcrumbs-separator';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss, readPublicApi } from '../../testing/css';
 
 // Límite jsdom declarado: display:none del colapso y wrap responsive no se
 // computan — se verifica la clase de estado + la fuente CSS; el layout se
 // verifica a mano en playground.
-function readSource(relative: string): string {
-  const path = [
-    `src/lib/breadcrumbs/${relative}`,
-    `packages/components/src/lib/breadcrumbs/${relative}`,
-  ].find((p) => existsSync(p));
-  return path ? readFileSync(path, 'utf-8') : '';
-}
+const readSource = (relative: string): string => readComponentCss('breadcrumbs', relative);
 
 interface Crumb {
   label: string;
@@ -170,10 +166,7 @@ describe('DsBreadcrumbs + DsBreadcrumbItem', () => {
 
   // Scenario: exportado desde los public-api
   it('el core se exporta en public-api.ts y el entry point router expone su public-api', () => {
-    const publicApiPath = ['src/public-api.ts', 'packages/components/src/public-api.ts'].find((p) =>
-      existsSync(p),
-    );
-    const publicApi = publicApiPath ? readFileSync(publicApiPath, 'utf-8') : '';
+    const publicApi = readPublicApi();
     expect(publicApi).toContain(`export * from './lib/breadcrumbs';`);
 
     const routerApiPath = [
@@ -182,5 +175,20 @@ describe('DsBreadcrumbs + DsBreadcrumbItem', () => {
     ].find((p) => existsSync(p));
     const routerApi = routerApiPath ? readFileSync(routerApiPath, 'utf-8') : '';
     expect(routerApi).toContain('DsBreadcrumbsRouter');
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [Host] }).compileComponents();
+
+    const fixture = TestBed.createComponent(Host);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

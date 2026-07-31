@@ -85,6 +85,19 @@ jobs:
       - name: Test (recursive, con cobertura)
         run: pnpm test:coverage
 
+      # Smoke de la vitrina. Cubre lo que el typecheck no ve: configuración de
+      # Storybook rota, addon inexistente, import que no resuelve.
+      #
+      # NO cubre un template de story desactualizado (p. ej. un input renombrado):
+      # los templates son strings evaluados en runtime por el renderer de Angular,
+      # así que ni webpack ni tsc los analizan — medido el 2026-07-31, exit 0 con
+      # un [inputInexistente] en el template y exit 1 con un import roto. Esa
+      # brecha se cierra ejecutando las stories en navegador (interaction tests).
+      #
+      # Después del build recursivo: las stories consumen el artefacto de las libs.
+      - name: Build Storybook (smoke)
+        run: pnpm -F playground build-storybook
+
       - name: Verify packaging
         run: pnpm verify:packaging
 

@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 import { DsModal } from './modal';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss, readPublicApi } from '../../testing/css';
 
 @Component({
   standalone: true,
@@ -228,5 +230,75 @@ describe('DsModal', () => {
     expect(document.body.style.overflow).toBe('');
 
     secondFixture.destroy();
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042). DsModal es el caso que la medición marcó como NO
+// auditable en jsdom: un `<dialog open>` en el árbol rompe 11 reglas de axe
+// (`checkVisibility` y `getAnimations` son undefined en jsdom 27), y el motor
+// deja de detectar violaciones que existen. Se declara la exclusión explícita
+// en vez de dejar un test verde que no prueba nada — la cobertura real de este
+// componente llega con la fase 2 (Storybook test-runner, Parte L).
+describe('a11y (axe)', () => {
+  it('el modal abierto queda declarado como no auditable en jsdom', async () => {
+    await TestBed.configureTestingModule({ imports: [Host] }).compileComponents();
+
+    const fixture = TestBed.createComponent(Host);
+    fixture.componentInstance.heading.set('Confirmar');
+    fixture.componentInstance.open.set(true);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    // Sin violaciones detectables; la corrida NO es concluyente y eso queda
+    // dicho acá, no escondido en la configuración del helper.
+    await expectNoAxeViolations(fixture.nativeElement, {
+      allowInconclusive:
+        'un <dialog open> rompe las reglas de axe en jsdom; la auditoría real del modal es de la fase 2',
+    });
+  });
+});
+
+// Scenarios de la spec `component-modal` que no tenían test (testing-05, aaa-042).
+// Criterio de aaa-023: jsdom no computa estilos, así que el contrato de tokens se
+// verifica sobre el CSS fuente.
+describe('DsModal — contrato de tokens y superficie pública', () => {
+  const css = readComponentCss('modal');
+
+  it('deriva el ancho de cada size de los tokens component.modal.size', () => {
+    for (const size of ['sm', 'md', 'lg', 'xl'] as const) {
+      expect(css).toContain(`--ds-component-modal-size-${size}`);
+    }
+  });
+
+  it('no hardcodea anchos ni hex codes en su CSS fuente', () => {
+    expect(css.length).toBeGreaterThan(0);
+    expect(css).not.toMatch(/#[0-9a-fA-F]{3,8}\b/);
+    // Un `width`/`max-width` en px sería un ancho hardcodeado; los tamaños salen
+    // de los tokens de arriba.
+    expect(css).not.toMatch(/\b(?:max-)?width:\s*\d+px/);
+  });
+
+  it('pinta el backdrop con los tokens de overlay', () => {
+    // Vía el token de componente, que resuelve a {semantic.color.bg.overlay}: es
+    // la jerarquía que exige `design-tokens-package` (un componente consume
+    // `component.*`, no `semantic.*` directo). El scenario de la spec decía
+    // `--ds-semantic-color-bg-overlay`; se corrigió en aaa-042 al escribir este
+    // test — la implementación estaba bien y la spec la describía mal.
+    expect(css).toContain('--ds-component-modal-overlay-bg');
+    expect(css).toContain('--ds-semantic-effect-blur-overlay');
+  });
+
+  it('anima entrada y salida con los tokens de motion de overlay', () => {
+    expect(css).toContain('--ds-semantic-motion-transition-overlay-enter');
+    expect(css).toContain('--ds-semantic-motion-transition-overlay-exit');
+  });
+
+  it('desactiva las transiciones bajo prefers-reduced-motion', () => {
+    expect(css).toMatch(/@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+  });
+
+  it('se exporta desde public-api.ts', () => {
+    expect(readPublicApi()).toContain(`export * from './lib/modal';`);
   });
 });

@@ -87,6 +87,7 @@
     "@romanmartinidev/tokens": "workspace:*",
     "@storybook/angular": "^10",
     "@vitest/coverage-v8": "^4.1.7",
+    "axe-core": "^4.12.1",
     "jsdom": "^27",
     "ng-packagr": "~21.0",
     "rxjs": "~7.8",

@@ -4,6 +4,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
 import * as tooltipPublicApi from './index';
 import { DsTooltip } from './tooltip';
+import { expectNoAxeViolations } from '../../testing/axe';
 
 @Component({
   standalone: true,
@@ -166,5 +167,20 @@ describe('DsTooltip', () => {
 
   it('el panel interno NO es parte de la API pública', () => {
     expect(Object.keys(tooltipPublicApi)).toEqual(['DsTooltip']);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el trigger con tooltip no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [Host] }).compileComponents();
+
+    const fixture = TestBed.createComponent(Host);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

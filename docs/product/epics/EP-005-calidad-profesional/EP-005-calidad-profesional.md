@@ -1,5 +1,5 @@
 ---
-estado: En desarrollo (primera tanda de tooling entregada 2026-07-11; tanda de gates automáticos aprobada 2026-07-26 por D-021, 3/7 entregadas -- HU-032 /ds:audit-tokens el 2026-07-27, HU-026 coverage+typecheck el 2026-07-29 y HU-027 gate de contraste AA el 2026-07-30)
+estado: En desarrollo (primera tanda de tooling entregada 2026-07-11; tanda de gates automáticos aprobada 2026-07-26 por D-021, 4/7 entregadas -- HU-032 /ds:audit-tokens el 2026-07-27, HU-026 coverage+typecheck el 2026-07-29, HU-027 gate de contraste AA el 2026-07-30 y HU-028 fase 1 (axe sobre el DOM) el 2026-07-31)
 actor: Mantenedor
 ---
 
@@ -22,15 +22,15 @@ Queda afuera: los tests unitarios por componente (parte de cada change de EP-002
 
 ## Historias de usuario
 
-| HU                                        | Título                                                   | Estado                 | Ejecuta      |
-| ----------------------------------------- | -------------------------------------------------------- | ---------------------- | ------------ |
-| [HU-026](HU-026-coverage-typecheck-ci.md) | Coverage con thresholds y typecheck en CI                | **Hecha** (2026-07-29) | Parte F1-a   |
-| [HU-027](HU-027-gate-contraste-aa-ci.md)  | Gate de contraste WCAG AA en CI                          | **Hecha** (2026-07-30) | Parte F1-b   |
-| [HU-028](HU-028-a11y-automatizada-axe.md) | Accesibilidad automatizada con axe (2 fases)             | Refinada (2026-07-26)  | Parte F2 y L |
-| [HU-029](HU-029-angular-eslint.md)        | angular-eslint con reglas de template y a11y             | Refinada (2026-07-26)  | Parte N      |
-| [HU-030](HU-030-bundle-size-budget.md)    | Presupuesto de tamaño de bundle                          | Refinada (2026-07-26)  | Parte F3     |
-| [HU-031](HU-031-storybook-publicado.md)   | Storybook publicado y regresión visual                   | Refinada (2026-07-26)  | Parte L      |
-| [HU-032](HU-032-audit-tokens-skill.md)    | Auditoría de consistencia de tokens (`/ds:audit-tokens`) | **Hecha** (2026-07-27) | Parte M      |
+| HU                                        | Título                                                   | Estado                                          | Ejecuta      |
+| ----------------------------------------- | -------------------------------------------------------- | ----------------------------------------------- | ------------ |
+| [HU-026](HU-026-coverage-typecheck-ci.md) | Coverage con thresholds y typecheck en CI                | **Hecha** (2026-07-29)                          | Parte F1-a   |
+| [HU-027](HU-027-gate-contraste-aa-ci.md)  | Gate de contraste WCAG AA en CI                          | **Hecha** (2026-07-30)                          | Parte F1-b   |
+| [HU-028](HU-028-a11y-automatizada-axe.md) | Accesibilidad automatizada con axe (2 fases)             | **Fase 1 hecha** (2026-07-31); fase 2 pendiente | Parte F2 y L |
+| [HU-029](HU-029-angular-eslint.md)        | angular-eslint con reglas de template y a11y             | Refinada (2026-07-26)                           | Parte N      |
+| [HU-030](HU-030-bundle-size-budget.md)    | Presupuesto de tamaño de bundle                          | Refinada (2026-07-26)                           | Parte F3     |
+| [HU-031](HU-031-storybook-publicado.md)   | Storybook publicado y regresión visual                   | Refinada (2026-07-26)                           | Parte L      |
+| [HU-032](HU-032-audit-tokens-skill.md)    | Auditoría de consistencia de tokens (`/ds:audit-tokens`) | **Hecha** (2026-07-27)                          | Parte M      |
 
 Las siete nacen de [D-021](../../decisiones.md) (2026-07-26). Las cuatro que exigían OK explícito del PO por [D-015](../../decisiones.md) —a11y en CI, presupuesto de bundle, Storybook publicado y `/ds:audit-tokens`— venían de la ex Cantera del BACKLOG y quedaron aprobadas en esa misma decisión.
 
@@ -49,7 +49,7 @@ Los items derivados de aquella auditoría ya se encauzaron: `components-fix-a11y
 
 ## Orden sugerido
 
-Los gates baratos primero, porque protegen todo lo que viene después: **HU-026 (coverage + typecheck)** y **HU-027 (contraste AA)**, que solo portan al repo lógica que ya existe. **Ambas entregadas** (2026-07-29 y 2026-07-31). Siguen **HU-028 fase 1** (vitest-axe sobre los specs que ya corren) y **HU-030** (presupuesto de bundle). **HU-032** (`/ds:audit-tokens`) es independiente y puede intercalarse en cualquier punto; su corrida formal está en el backlog como `tokens-audit-formal`, con disparador antes de la Parte H.
+Los gates baratos primero, porque protegen todo lo que viene después: **HU-026 (coverage + typecheck)** y **HU-027 (contraste AA)**, que solo portan al repo lógica que ya existe. **Ambas entregadas** (2026-07-29 y 2026-07-31). **HU-028 fase 1** (axe sobre los specs que ya corren) se entregó el 2026-07-31; queda **HU-030** (presupuesto de bundle). **HU-032** (`/ds:audit-tokens`) es independiente y puede intercalarse en cualquier punto; su corrida formal está en el backlog como `tokens-audit-formal`, con disparador antes de la Parte H.
 
 > Nota de HU-027 sobre "solo portan lógica que ya existe": portarla fue la mitad del trabajo. La otra mitad fue derivar los pares de los requirements de las specs y **decidir cuáles no corresponden** — 6 de los 111 pares de la primera enumeración eran ampliaciones que ninguna spec exige (bordes decorativos de contenedor) y 2 eran un incumplimiento real ([D-030](../../decisiones.md)). Vale tenerlo en cuenta al planificar HU-028: "la herramienta ya existe" no implica que instalar el gate sea mecánico.
 

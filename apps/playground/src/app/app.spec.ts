@@ -15,6 +15,21 @@ describe('Showcase — navegación', () => {
     TestBed.configureTestingModule({ providers: [provideRouter(routes)] });
   });
 
+  // Parametrizado sobre el registro, no sobre una lista escrita a mano: una
+  // entrada nueva queda cubierta sin tocar este archivo (aaa-042, design D8).
+  // Asserta que la vista montó; lo que cada vista muestra es asunto del spec
+  // del componente — replicar eso acá sería mantenimiento por entrada.
+  it.each(SHOWCASE_ENTRIES.map((e) => [e.slug, e.label] as const))(
+    '/%s monta la vista de %s (ruta lazy)',
+    async (slug) => {
+      const harness = await RouterTestingHarness.create(`/${slug}`);
+
+      expect(TestBed.inject(Location).path()).toBe(`/${slug}`);
+      expect(harness.routeNativeElement).not.toBeNull();
+      expect(harness.routeNativeElement?.textContent?.trim()).not.toBe('');
+    },
+  );
+
   it('/button renderiza la vista del Button (ruta lazy)', async () => {
     const harness = await RouterTestingHarness.create('/button');
     // Queries por contenido/rol, no por tag del DS: casos de uso del button visibles

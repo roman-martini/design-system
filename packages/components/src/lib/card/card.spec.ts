@@ -1,5 +1,3 @@
-import { existsSync, readFileSync } from 'node:fs';
-
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
@@ -11,13 +9,12 @@ import { DsCardFooter } from './card-footer';
 import { DsCardTitle } from './card-title';
 import { DsCardDescription } from './card-description';
 import * as publicApi from '../../public-api';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss } from '../../testing/css';
 
 // Los scenarios de tokens exigen inspeccionar el CSS; jsdom no computa sombras/gap,
 // así que se asserta sobre la fuente (mismo criterio que spinner, aaa-023).
-const cssPath = ['src/lib/card/card.css', 'packages/components/src/lib/card/card.css'].find((p) =>
-  existsSync(p),
-);
-const css = cssPath ? readFileSync(cssPath, 'utf-8') : '';
+const css = readComponentCss('card');
 
 @Component({
   standalone: true,
@@ -146,5 +143,20 @@ describe('DsCard (familia)', () => {
     expect(publicApi.DsCardFooter).toBe(DsCardFooter);
     expect(publicApi.DsCardTitle).toBe(DsCardTitle);
     expect(publicApi.DsCardDescription).toBe(DsCardDescription);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [FullCardHost] }).compileComponents();
+
+    const fixture = TestBed.createComponent(FullCardHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

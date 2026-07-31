@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import * as publicApi from '../../public-api';
 import { DsToastService, provideDsToasts } from './toast';
+import { expectNoAxeViolations } from '../../testing/axe';
 
 // jsdom no resuelve la CSS var --ds-component-toast-duration → aplica el
 // fallback documentado del item (5000ms), que coincide con el token.
@@ -242,5 +243,31 @@ describe('DsToastService con provideDsToasts', () => {
 
     expect(containerEl()?.getAttribute('data-position')).toBe('top-right');
     expect(closeButton(itemEls()[0], 'Dismiss')).not.toBeNull();
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el toast renderizado. El contenedor se
+// monta en document.body (no en un fixture), así que se audita ahí. Con timers
+// reales: axe.run es asíncrono y los fake timers del bloque de arriba lo colgarían.
+describe('a11y (axe)', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+  });
+
+  it('un toast con acción y cierre no tiene violaciones WCAG A/AA', async () => {
+    const service = TestBed.inject(DsToastService);
+    const appRef = TestBed.inject(ApplicationRef);
+
+    service.show({
+      message: 'Cambios guardados',
+      variant: 'success',
+      action: { label: 'Deshacer', callback: () => undefined },
+    });
+    appRef.tick();
+
+    const container = containerEl();
+    expect(container).not.toBeNull();
+
+    await expectNoAxeViolations(container as HTMLElement);
   });
 });

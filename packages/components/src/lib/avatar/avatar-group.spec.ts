@@ -5,6 +5,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { DsAvatar } from './avatar';
 import { DsAvatarGroup } from './avatar-group';
 import * as publicApi from '../../public-api';
+import { expectNoAxeViolations } from '../../testing/axe';
 
 @Component({
   standalone: true,
@@ -89,5 +90,20 @@ describe('DsAvatarGroup', () => {
 
   it('exporta DsAvatarGroup desde public-api', () => {
     expect(publicApi.DsAvatarGroup).toBe(DsAvatarGroup);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [GroupHost] }).compileComponents();
+
+    const fixture = TestBed.createComponent(GroupHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

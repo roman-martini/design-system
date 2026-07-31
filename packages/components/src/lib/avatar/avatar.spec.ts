@@ -1,16 +1,13 @@
-import { existsSync, readFileSync } from 'node:fs';
-
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 import { DsAvatar, avatarInitials, avatarToneFromName } from './avatar';
 import * as publicApi from '../../public-api';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss } from '../../testing/css';
 
-const cssPath = ['src/lib/avatar/avatar.css', 'packages/components/src/lib/avatar/avatar.css'].find(
-  (p) => existsSync(p),
-);
-const css = cssPath ? readFileSync(cssPath, 'utf-8') : '';
+const css = readComponentCss('avatar');
 
 @Component({
   standalone: true,
@@ -145,5 +142,20 @@ describe('DsAvatar CSS y API pública', () => {
 
   it('exporta DsAvatar desde public-api (CA-022.1)', () => {
     expect(publicApi.DsAvatar).toBe(DsAvatar);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [Host] }).compileComponents();
+
+    const fixture = TestBed.createComponent(Host);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

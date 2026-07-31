@@ -1,19 +1,15 @@
-import { existsSync, readFileSync } from 'node:fs';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 import { DsSkeleton } from './skeleton';
 import * as publicApi from '../../public-api';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss } from '../../testing/css';
 
 // Los scenarios CA-010.4/5 exigen inspeccionar el CSS; jsdom no computa estilos
 // de keyframes/media queries, así que se asserta sobre la fuente (mismo criterio
 // y límite declarado que spinner.spec.ts, aaa-023).
-const cssPath = [
-  'src/lib/skeleton/skeleton.css',
-  'packages/components/src/lib/skeleton/skeleton.css',
-].find((p) => existsSync(p));
-const css = cssPath ? readFileSync(cssPath, 'utf-8') : '';
+const css = readComponentCss('skeleton');
 
 describe('DsSkeleton', () => {
   let fixture: ComponentFixture<DsSkeleton>;
@@ -91,5 +87,20 @@ describe('DsSkeleton', () => {
 
   it('is part of the public API together with its shape type (public-api.ts)', () => {
     expect(publicApi.DsSkeleton).toBe(DsSkeleton);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [DsSkeleton] }).compileComponents();
+
+    const fixture = TestBed.createComponent(DsSkeleton);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

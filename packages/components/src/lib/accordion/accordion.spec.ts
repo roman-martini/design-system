@@ -1,24 +1,18 @@
-import { existsSync, readFileSync } from 'node:fs';
-
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 import { DsAccordion } from './accordion';
 import { DsAccordionItem } from './accordion-item';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss, readPublicApi } from '../../testing/css';
 
 // Angular intercepta los imports de .css (incluso ?raw), de ahí el readFileSync.
 // Límite jsdom declarado (design §4): jsdom no computa layout — la animación de
 // altura (grid 0fr→1fr) y la visibility con delay se verifican a mano en
 // playground; acá se verifica la fuente CSS. Enter/Space sobre el header son
 // activación de plataforma del <button> nativo (disparan click): se testea click.
-function readSource(relative: string): string {
-  const path = [
-    `src/lib/accordion/${relative}`,
-    `packages/components/src/lib/accordion/${relative}`,
-  ].find((p) => existsSync(p));
-  return path ? readFileSync(path, 'utf-8') : '';
-}
+const readSource = (relative: string): string => readComponentCss('accordion', relative);
 
 function keydown(el: HTMLElement, key: string): void {
   el.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }));
@@ -262,10 +256,22 @@ describe('DsAccordion + DsAccordionItem', () => {
 
   // Scenario: exportado desde public-api.ts
   it('la familia completa se exporta en public-api.ts', () => {
-    const publicApiPath = ['src/public-api.ts', 'packages/components/src/public-api.ts'].find((p) =>
-      existsSync(p),
-    );
-    const publicApi = publicApiPath ? readFileSync(publicApiPath, 'utf-8') : '';
+    const publicApi = readPublicApi();
     expect(publicApi).toContain(`export * from './lib/accordion';`);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [Host] }).compileComponents();
+
+    const fixture = TestBed.createComponent(Host);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

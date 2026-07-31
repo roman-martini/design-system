@@ -1,5 +1,3 @@
-import '@analogjs/vitest-angular/setup-zone';
-
 import { setupTestBed } from '@analogjs/vitest-angular/setup-testbed';
 
 // Cuando Vitest comparte el contexto entre archivos (runners con pocos
@@ -7,8 +5,12 @@ import { setupTestBed } from '@analogjs/vitest-angular/setup-testbed';
 // por-test solo se registran para el primer archivo; además el init manual
 // corre dos veces sobre el mismo TestBed. setupTestBed() cubre ambos casos:
 // inicializa el entorno una sola vez (guard en globalThis) y registra los
-// cleanup hooks en cada archivo. zoneless: false porque este setup usa zone.
-setupTestBed({ zoneless: false });
+// cleanup hooks en cada archivo.
+//
+// Zoneless: los componentes del kit son signals-first y se publican para apps
+// zoneless, así que la suite corre bajo el mismo modelo de change detection que
+// producción. Medido al migrar (aaa-042): los 316 tests pasan sin modificarse.
+setupTestBed({ zoneless: true });
 
 // jsdom (27.x) todavía no implementa los métodos de HTMLDialogElement.
 // Polyfill mínimo del contrato que DsModal necesita: showModal/close + evento

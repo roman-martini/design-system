@@ -60,14 +60,16 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Detalle de la Parte F** (12 ítems; el plan autoriza partirla, el PO lo aprobó el 2026-07-29):
 
-| Sub-parte | Contenido                                                                  | Change    | Estado             |
-| --------- | -------------------------------------------------------------------------- | --------- | ------------------ |
-| F1-a      | Coverage con thresholds + typecheck de specs/stories (ítems 1, 6, 10)      | `aaa-040` | **Hecha** — HU-026 |
-| F1-b      | Gates de tokens: contraste AA versionado, jerarquía, build (ítems 2, 3, 4) | `aaa-041` | **Hecha** — HU-027 |
-| F2        | a11y (axe) y playground (ítems 5, 7, 8, 9, 11)                             | —         | Pendiente — HU-028 |
-| F3        | Bundle size budget con `size-limit` sobre el `dist` (ítem 12)              | —         | Pendiente — HU-030 |
+| Sub-parte | Contenido                                                                  | Change    | Estado                    |
+| --------- | -------------------------------------------------------------------------- | --------- | ------------------------- |
+| F1-a      | Coverage con thresholds + typecheck de specs/stories (ítems 1, 6, 10)      | `aaa-040` | **Hecha** — HU-026        |
+| F1-b      | Gates de tokens: contraste AA versionado, jerarquía, build (ítems 2, 3, 4) | `aaa-041` | **Hecha** — HU-027        |
+| F2        | a11y (axe) y playground (ítems 5, 7, 8, 9, 11)                             | `aaa-042` | **Hecha** — HU-028 fase 1 |
+| F3        | Bundle size budget con `size-limit` sobre el `dist` (ítem 12)              | —         | Pendiente — HU-030        |
 
 > **El ítem 12 se agregó al plan el 2026-07-29.** HU-030 estaba aprobada en A14/[D-021](../product/decisiones.md) y la propia HU declaraba "Ejecución: Parte F", pero el plan nunca la listó entre sus ítems: quedó aprobada y sin sesión asignada. Se ejecuta como **F3** —no encaja en F1-b (todo `tokens`) ni en F2 (a11y + playground), porque toca ambos packages y el pipeline— y hereda el patrón probado en `aaa-040`: medir primero, techo con margen sobre lo medido, trinquete, step bloqueante.
+>
+> **F2 dejó tres cosas registradas** (2026-07-31, `aaa-042`): el gate de axe expuso que **`DsButton` no admite nombre accesible** —no reenvía `aria-label` al `<button>` interno, así que un botón ícono-only queda sin nombre—, encauzado como ítem de `components-fix-button` en la tabla de la Parte G. La **fase 2 de HU-028** queda con su alcance ya definido: el contenido de overlays abiertos (listbox de select, panel de menu, interior del modal) no es auditable en jsdom. Y el hallazgo `playground-02` **no queda cerrado del todo**: el build de Storybook detecta imports y configuración rotos, pero no un template de story desactualizado; eso exige ejecutar las stories en navegador (Parte L).
 >
 > **F1-b dejó dos cosas para más adelante** (2026-07-30, `aaa-041`): el gate de contraste expuso un incumplimiento real en el borde del control desmarcado de checkbox y radio, corregido en el momento bajo [D-030](../product/decisiones.md); y el **pendiente derivado** de que esos dos componentes no son theme-aware (`bg-off` clavado a `{color.white}`, más los hardcodes de `white` en su CSS). Eso último no es contraste sino theming, y quedó registrado el 2026-07-31 como **séptimo change de la Parte G** (`components-fix-checkbox-radio`), en la tabla del plan — no como nota suelta acá, que es como se pierden los pendientes.
 

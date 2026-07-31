@@ -1,16 +1,14 @@
-import { existsSync, readFileSync } from 'node:fs';
-
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { DsButton } from './button';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss } from '../../testing/css';
 
 // Scenarios de variantes (aaa-033) asertan tokens sobre el CSS fuente (criterio aaa-023):
 // jsdom no computa colores; los ratios reales los verifica el gate de contraste por script.
-const cssPath = ['src/lib/button/button.css', 'packages/components/src/lib/button/button.css'].find(
-  (p) => existsSync(p),
-);
-const buttonCss = cssPath ? readFileSync(cssPath, 'utf-8') : '';
+const buttonCss = readComponentCss('button');
 
 describe('DsButton', () => {
   let fixture: ComponentFixture<DsButton>;
@@ -266,5 +264,73 @@ describe('DsButton', () => {
       expect(reason).toBeTruthy();
       expect(buttonEl.getAttribute('aria-describedby')).toBe(reason.id);
     });
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+//
+// Se monta con host: el nombre accesible del botón sale de su contenido
+// proyectado, y `createComponent(DsButton)` no proyecta nada — auditar eso
+// mediría un caso que ningún consumidor escribe.
+@Component({
+  standalone: true,
+  imports: [DsButton],
+  template: `<ds-button>Guardar cambios</ds-button>`,
+})
+class A11yHost {}
+
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [A11yHost] }).compileComponents();
+
+    const fixture = TestBed.createComponent(A11yHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
+  });
+});
+
+// Scenario de la spec `component-button` que no tenía test: CA-017.7, estilos del
+// estado loading por tokens y sin pares de contraste propios (testing-05, aaa-042).
+describe('loading — estilos por tokens (CA-017.7)', () => {
+  // Reglas cuyo selector menciona el estado loading, con su bloque de declaraciones.
+  const reglasLoading = Array.from(
+    buttonCss.matchAll(/([^{}]*\[data-loading[^{}]*)\{([^}]*)\}/g),
+  ).map(([, selector, cuerpo]) => ({ selector: selector.trim(), cuerpo }));
+
+  it('el CSS del estado loading existe y es acotado', () => {
+    expect(reglasLoading.length).toBeGreaterThan(0);
+  });
+
+  it('no introduce pares de contraste propios: no declara color ni background', () => {
+    // El spinner hereda currentColor del botón; si el bloque loading pintara
+    // color o fondo propios, crearía un par que el gate de contraste no cubre.
+    for (const { selector, cuerpo } of reglasLoading) {
+      // Las reglas de variante que solo EXCLUYEN el estado loading
+      // (`:not([data-loading])`) no son estilos del estado: se saltean.
+      if (selector.includes(':not([data-loading])')) continue;
+
+      expect(cuerpo, `regla '${selector}'`).not.toMatch(/(?<!-)\bcolor:/);
+      expect(cuerpo, `regla '${selector}'`).not.toMatch(/\bbackground(-color)?:/);
+    }
+  });
+
+  it('todo valor visual del bloque loading sale de un token --ds-*', () => {
+    // Propiedades de layout puro (position, display, inset, opacity, cursor…) no
+    // son valores del sistema visual; las que sí lo son van por var(--ds-*).
+    const propiedadesTokenizables = /\b(gap|margin|padding|border-radius|font-size|box-shadow):/;
+
+    for (const { selector, cuerpo } of reglasLoading) {
+      if (selector.includes(':not([data-loading])')) continue;
+      if (!propiedadesTokenizables.test(cuerpo)) continue;
+
+      for (const linea of cuerpo.split('\n')) {
+        if (!propiedadesTokenizables.test(linea)) continue;
+        expect(linea, `regla '${selector}'`).toContain('var(--ds-');
+      }
+    }
   });
 });

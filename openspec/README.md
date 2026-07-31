@@ -19,7 +19,7 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-042`**
+**`aaa-043`**
 
 Actualizar al crear un change nuevo.
 
@@ -27,6 +27,8 @@ Actualizar al crear un change nuevo.
 
 IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/README.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
 
+> `aaa-042` asignado a `a11y-testing-gates` (status `proposed`; Parte F2 de la review integral, entrega la fase 1 de HU-028).
+>
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
 >
 > ⏸️ **En pausa desde el 2026-07-03 por decisión del PO**, ratificada por [D-027](../docs/product/decisiones.md): el change queda activo acá con sus 4 artefactos intactos, pero **no se debe aplicar**. Sus 29 tasks están sin ejecutar a propósito — que estén "listas para apply" no es una invitación. Condición de reactivación: que el PO lo pida explícitamente; su validación final depende además de conectar Tokens Studio en Figma, trabajo del PO. Coordinar con la migración a formato DTCG de la fuente de tokens ([D-024](../docs/product/decisiones.md)).
@@ -90,6 +92,8 @@ Lockstep ([ADR-015](../../../docs/architecture/adr/ADR-015-versionado-lockstep.m
 ## Frontmatter
 
 ### Change (`proposal.md`)
+
+> **Un change en curso usa `status: proposed`, no `active`.** No es cosmético: `openspec validate --all` —el step de `pr.yml`— **solo descubre los changes en `proposed`**. Con `status: active` el change se valida si se lo nombra (`openspec validate <name>`) y aparece en `openspec list`, pero el gate de CI lo ignora en silencio. Verificado el 2026-07-31 al crear `aaa-042`.
 
 ```yaml
 ---

@@ -1,18 +1,12 @@
-import { existsSync, readFileSync } from 'node:fs';
-
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 import { DsPagination, pageWindow } from './pagination';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss, readPublicApi } from '../../testing/css';
 
-function readSource(relative: string): string {
-  const path = [
-    `src/lib/pagination/${relative}`,
-    `packages/components/src/lib/pagination/${relative}`,
-  ].find((p) => existsSync(p));
-  return path ? readFileSync(path, 'utf-8') : '';
-}
+const readSource = (relative: string): string => readComponentCss('pagination', relative);
 
 describe('pageWindow (función pura)', () => {
   it('total que entra completo: sin elipsis', () => {
@@ -244,10 +238,22 @@ describe('DsPagination', () => {
 
   // Scenario: exportado desde public-api.ts
   it('el componente se exporta en public-api.ts', () => {
-    const publicApiPath = ['src/public-api.ts', 'packages/components/src/public-api.ts'].find((p) =>
-      existsSync(p),
-    );
-    const publicApi = publicApiPath ? readFileSync(publicApiPath, 'utf-8') : '';
+    const publicApi = readPublicApi();
     expect(publicApi).toContain(`export * from './lib/pagination';`);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [Host] }).compileComponents();
+
+    const fixture = TestBed.createComponent(Host);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });

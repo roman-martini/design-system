@@ -1,5 +1,3 @@
-import { existsSync, readFileSync } from 'node:fs';
-
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
@@ -7,14 +5,13 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { DsBadge, DsBadgeTone, DsBadgeAppearance, DsBadgeSize } from './badge';
 import { DsBadgeIcon } from './badge-icon';
 import * as publicApi from '../../public-api';
+import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss } from '../../testing/css';
 
 // Los colores por combinación tono×apariencia los verifica el gate de contraste por
 // script (18 pares × 4 themes); jsdom no computa colores. Acá asertamos data-* + tokens
 // en el CSS fuente (criterio aaa-023/033).
-const cssPath = ['src/lib/badge/badge.css', 'packages/components/src/lib/badge/badge.css'].find(
-  (p) => existsSync(p),
-);
-const css = cssPath ? readFileSync(cssPath, 'utf-8') : '';
+const css = readComponentCss('badge');
 
 @Component({
   standalone: true,
@@ -121,5 +118,20 @@ describe('DsBadge', () => {
 
   it('exports DsBadge and its types from public-api (CA-021.7)', () => {
     expect(publicApi.DsBadge).toBe(DsBadge);
+  });
+});
+
+// Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
+// tanto ante una violación como ante una corrida que no pudo evaluar nada.
+describe('a11y (axe)', () => {
+  it('el render por defecto no tiene violaciones WCAG A/AA', async () => {
+    await TestBed.configureTestingModule({ imports: [BadgeHost] }).compileComponents();
+
+    const fixture = TestBed.createComponent(BadgeHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    await expectNoAxeViolations(fixture.nativeElement);
   });
 });
