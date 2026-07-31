@@ -27,7 +27,7 @@ Antes de cada corte: `/ds:handoff` (guarda el estado en `.claude/session-handoff
 
 1. **Al terminar una parte** — regla base: una parte por sesión. Cada parte es autocontenida (referencia hallazgos.md por ID); el contexto de la parte anterior no aporta y solo consume ventana de contexto y límite de uso.
 2. **Al cambiar de modelo o de effort** entre partes (p.ej. de C en low a D en high) — siempre sesión nueva.
-3. **Entre changes OpenSpec independientes** dentro de una misma parte (los 6 changes de G, los sub-changes de N): cada change completa su ciclo propose → apply → verify → archive y ahí se corta.
+3. **Entre changes OpenSpec independientes** dentro de una misma parte (los 7 changes de G, los sub-changes de N): cada change completa su ciclo propose → apply → verify → archive y ahí se corta.
 4. **Nunca cortar a mitad de un change** si se puede evitar. Si un límite de sesión obliga, `/ds:handoff` primero y retomar el mismo change con `/ds:resume` en la sesión nueva.
 5. **Combinaciones válidas en una sesión** (mismo modelo, effort parejo, temática continua): A+B, C+M, y 2–3 changes chicos de G.
 
@@ -53,22 +53,22 @@ La base del repo es **muy sólida**: gobernanza OpenSpec+ADR ejemplar, Angular m
 
 ## Mapa de partes
 
-| Orden | Parte                                       | Contenido                                               | Vía                     | Modelo                                  | Effort         | Depende de       |
-| ----- | ------------------------------------------- | ------------------------------------------------------- | ----------------------- | --------------------------------------- | -------------- | ---------------- |
-| 1     | **A** — Decisiones del PO                   | 21 decisiones agrupadas en 5 bloques                    | Sesión + D-XXX          | Opus 5                                  | **medium**     | —                |
-| 2     | **B** — Registro en producto y backlog      | HUs nuevas/refinadas + items backlog                    | Commit directo (docs)   | Opus 5                                  | **medium**     | A                |
-| 3     | **C** — Sincronización documental           | ~28 fixes de drift en docs                              | Commit directo (docs)   | Opus 5                                  | **low**        | A (solo un ítem) |
-| 4     | **D** — Release-readiness (APF + packaging) | Fix crítico de compilación + tarballs                   | OpenSpec change         | Opus 5                                  | **high**       | —                |
-| 5     | **E** — CI: correctness + hardening         | Enforcement, pinning, permisos, dependabot              | OpenSpec change         | Opus 5                                  | **high**       | A (gate publish) |
-| 6     | **F** — Gates de calidad automáticos        | Coverage, contraste, jerarquía, typecheck, axe f1       | OpenSpec change(s)      | Opus 5                                  | **high**       | A (a11y CI)      |
-| 7     | **G** — Fixes de componentes                | menu, select, toast, modal, button, avatar              | OpenSpec por componente | Opus 5                                  | **medium** c/u | B                |
-| 8     | **H** — Tokens: fixes y consistencia        | Focus ring brands + 5 limpiezas                         | OpenSpec change         | Opus 5                                  | **medium**     | A (parcial)      |
-| 9     | **K** — Playground como QA visual           | Theme switcher, compodoc, viewport, limpiezas           | OpenSpec + commits      | Opus 5                                  | **medium**     | A                |
-| 10    | **M** — Ecosistema `.claude/`               | Guardrails, drift, allowlist                            | Commit directo          | Opus 5                                  | **low**        | A (parcial)      |
-| 11    | **I** — Compatibilidad SSR                  | DOCUMENT + guardas + ADR de patrón                      | OpenSpec change         | **Fable 5**                             | **ultra**      | —                |
-| 12    | **J** — Refactors internos compartidos      | Overlay scaffold, typeahead, uid, readCssNumber         | OpenSpec change         | Opus 5                                  | **high**       | G                |
-| 13    | **L** — Storybook avanzado y docs públicas  | Interaction tests, MDX tokens, deploy, visual reg.      | OpenSpec (HUs de B)     | Opus 5                                  | **high**       | A, B, F          |
-| 14    | **N** — Estratégico pre-1.0                 | angular-eslint, strictness TS, pnpm 10, DTCG, taxonomía | OpenSpec, un change c/u | **Fable 5** (ADRs) / Opus 5 (ejecución) | **ultra**      | A                |
+| Orden | Parte                                       | Contenido                                                  | Vía                     | Modelo                                  | Effort         | Depende de       |
+| ----- | ------------------------------------------- | ---------------------------------------------------------- | ----------------------- | --------------------------------------- | -------------- | ---------------- |
+| 1     | **A** — Decisiones del PO                   | 21 decisiones agrupadas en 5 bloques                       | Sesión + D-XXX          | Opus 5                                  | **medium**     | —                |
+| 2     | **B** — Registro en producto y backlog      | HUs nuevas/refinadas + items backlog                       | Commit directo (docs)   | Opus 5                                  | **medium**     | A                |
+| 3     | **C** — Sincronización documental           | ~28 fixes de drift en docs                                 | Commit directo (docs)   | Opus 5                                  | **low**        | A (solo un ítem) |
+| 4     | **D** — Release-readiness (APF + packaging) | Fix crítico de compilación + tarballs                      | OpenSpec change         | Opus 5                                  | **high**       | —                |
+| 5     | **E** — CI: correctness + hardening         | Enforcement, pinning, permisos, dependabot                 | OpenSpec change         | Opus 5                                  | **high**       | A (gate publish) |
+| 6     | **F** — Gates de calidad automáticos        | Coverage, contraste, jerarquía, typecheck, axe f1          | OpenSpec change(s)      | Opus 5                                  | **high**       | A (a11y CI)      |
+| 7     | **G** — Fixes de componentes                | menu, select, toast, modal, button, avatar, checkbox+radio | OpenSpec por componente | Opus 5                                  | **medium** c/u | B                |
+| 8     | **H** — Tokens: fixes y consistencia        | Focus ring brands + 5 limpiezas                            | OpenSpec change         | Opus 5                                  | **medium**     | A (parcial)      |
+| 9     | **K** — Playground como QA visual           | Theme switcher, compodoc, viewport, limpiezas              | OpenSpec + commits      | Opus 5                                  | **medium**     | A                |
+| 10    | **M** — Ecosistema `.claude/`               | Guardrails, drift, allowlist                               | Commit directo          | Opus 5                                  | **low**        | A (parcial)      |
+| 11    | **I** — Compatibilidad SSR                  | DOCUMENT + guardas + ADR de patrón                         | OpenSpec change         | **Fable 5**                             | **ultra**      | —                |
+| 12    | **J** — Refactors internos compartidos      | Overlay scaffold, typeahead, uid, readCssNumber            | OpenSpec change         | Opus 5                                  | **high**       | G                |
+| 13    | **L** — Storybook avanzado y docs públicas  | Interaction tests, MDX tokens, deploy, visual reg.         | OpenSpec (HUs de B)     | Opus 5                                  | **high**       | A, B, F          |
+| 14    | **N** — Estratégico pre-1.0                 | angular-eslint, strictness TS, pnpm 10, DTCG, taxonomía    | OpenSpec, un change c/u | **Fable 5** (ADRs) / Opus 5 (ejecución) | **ultra**      | A                |
 
 ---
 
@@ -235,14 +235,19 @@ Checklist (detalle y evidencia en hallazgos.md):
 
 Orden sugerido por severidad:
 
-| Change                  | Ítems                                                                                                                                |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `components-fix-menu`   | Hover-timer sin cancelación en mouseleave/close (bug real) [components-02]; named exports en index [components-14]                   |
-| `components-fix-select` | `onTouched` en blur [components-03]; typeahead APG [components-07]; gap 4px tokenizado [components-13]                               |
-| `components-fix-toast`  | Live region eager (primer toast no se anuncia) [components-04]                                                                       |
-| `components-fix-modal`  | Alias `aria-label`/`aria-labelledby` (dialog sin nombre accesible) [components-08]; border tokenizado [components-12]                |
-| `components-fix-button` | **Fix del PO: texto no centrado** (fix-button.md); `type` input para submit/reset [components-06]; border tokenizado [components-12] |
-| `components-fix-avatar` | `moreLabel` overridable (i18n) [components-09]                                                                                       |
+| Change                          | Ítems                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `components-fix-menu`           | Hover-timer sin cancelación en mouseleave/close (bug real) [components-02]; named exports en index [components-14]                                                                                                                                                                                                                                                                                                                                            |
+| `components-fix-select`         | `onTouched` en blur [components-03]; typeahead APG [components-07]; gap 4px tokenizado [components-13]                                                                                                                                                                                                                                                                                                                                                        |
+| `components-fix-toast`          | Live region eager (primer toast no se anuncia) [components-04]                                                                                                                                                                                                                                                                                                                                                                                                |
+| `components-fix-modal`          | Alias `aria-label`/`aria-labelledby` (dialog sin nombre accesible) [components-08]; border tokenizado [components-12]                                                                                                                                                                                                                                                                                                                                         |
+| `components-fix-button`         | **Fix del PO: texto no centrado** (fix-button.md); `type` input para submit/reset [components-06]; border tokenizado [components-12]                                                                                                                                                                                                                                                                                                                          |
+| `components-fix-avatar`         | `moreLabel` overridable (i18n) [components-09]                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `components-fix-checkbox-radio` | **Theming del control desmarcado**: `bg-off` clavado a `{color.white}` en ambos, así que el control sin marcar se pinta blanco también en dark; `checkbox.css:55,63` hardcodea `stroke='white'` en el SVG data URI mientras el token `component.checkbox.check-color` existe y nadie lo consume; `radio.css:51` pinta el dot con `var(--ds-color-white)` mientras su token `dot-color` vale `{semantic.color.bg.primary}` — token y CSS dicen cosas distintas |
+
+> **`components-fix-checkbox-radio` se agregó el 2026-07-31**, al cerrar F1-b (`aaa-041`). No sale de los 140 hallazgos de la review: el gate de contraste lo destapó al medir, y el hardcode de `white` en el CSS ya venía señalado como severidad media en la [auditoría a11y del 2026-07-11](../../design/a11y/2026-07-11-audit.md) sin haber sido encauzado. Los tres ítems son el mismo problema —checkbox y radio no son theme-aware y sus tokens de color no se consumen—, por eso van juntos en un change y no repartidos.
+>
+> **No es un reemplazo mecánico de literales por `var()`**: un `stroke` dentro de un SVG data URI no resuelve custom properties, así que el checkmark exige pasar a `mask-image` + `background-color: var(--ds-component-checkbox-check-color)` (o equivalente). Estimarlo como "cambiar tres strings" subestima el trabajo. El fix de contraste del borde ya se hizo aparte, en `aaa-041` bajo [D-030].
 
 ---
 
