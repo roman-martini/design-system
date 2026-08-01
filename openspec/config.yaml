@@ -107,3 +107,19 @@ rules:
     - Incluir tarea de validación final con openspec validate, lint, format, build, tests, storybook, npm pack
     - 'Incluir tarea final de archive con el checklist completo de docs/product/README.md § "Checklist de archive": spec base, artefactos del change sin links relativos, openspec/README.md (próximo ID e IDs en vuelo), catálogo en docs/architecture/catalog.md, HU a Hecha, doc de la épica (contador y valor entregado), README de producto (Foto táctica y Última entrega), grooming del BACKLOG'
     - 'En changes de componente, el archive requiere el gate visual del PO antes de ejecutarse (D-022): la tarea de archive queda bloqueada hasta su OK explícito'
+
+# Guidance por operación (clave soportada desde el CLI 1.7.0): el CLI la inyecta al
+# ejecutar apply y archive. Es advisory — refuerza, no reemplaza, las tasks del change.
+operations:
+  apply:
+    guidance:
+      - Implementar las tasks en orden marcando checkboxes; no marcar una task sin cumplir su criterio binario
+      - Nunca commitear sin proponer el mensaje y esperar OK explícito del PO; staging solo con paths explícitos (nunca git add -A)
+      - Si una task pide apartarse de un ADR aceptado, parar y decirlo (el camino es un ADR nuevo, no una excepción silenciosa)
+  archive:
+    guidance:
+      - Seguir el checklist completo de archive de docs/product/README.md (sección "Checklist de archive")
+      - Renombrar el directorio a <id>-<name> al moverlo a openspec/changes/archive/ (ADR-008) y sincronizar la spec base con los deltas
+      - Verificar que los artefactos archivados no tengan links markdown relativos (referencias por ID)
+      - Actualizar openspec/README.md (próximo ID e IDs en vuelo), docs/architecture/catalog.md, la HU y su épica, el README de producto y el BACKLOG
+      - En changes de componente el archive queda bloqueado hasta el OK visual explícito del PO (D-022)
