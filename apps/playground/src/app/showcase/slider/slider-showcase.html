@@ -1,0 +1,45 @@
+<app-showcase-case title="Slider (vista de la referencia)" [snippet]="minimalSnippet">
+  <p class="playground__note">
+    Motor <code>&lt;input type="range"&gt;</code> nativo (teclado, arrastre y forms sin JS propio)
+    con capa visual tokenizada. El default es el mínimo de la referencia: track + fill + thumb.
+  </p>
+  <div style="max-width: 24rem">
+    <ds-slider label="Volumen" [(value)]="volume" />
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Valor visible + Angular Forms" [snippet]="valueSnippet">
+  <p class="playground__note">
+    <code>showValue</code> renderiza un <code>&lt;output&gt;</code> asociado al control; integra
+    Reactive Forms por <code>ControlValueAccessor</code> propagando <strong>números</strong>.
+  </p>
+  <div style="max-width: 24rem">
+    <ds-slider label="Brillo" [formControl]="brightness" [showValue]="true" [valueText]="percent" />
+  </div>
+  <p class="playground__note">FormControl.value: {{ brightness.value }}</p>
+</app-showcase-case>
+
+<app-showcase-case title="Marcas con etiquetas" [snippet]="ticksSnippet">
+  <div style="max-width: 24rem">
+    <ds-slider label="Calidad" [min]="0" [max]="100" [step]="50" [ticks]="qualityTicks" />
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Tooltip de valor" [snippet]="tooltipSnippet">
+  <p class="playground__note">
+    La burbuja sigue al thumb durante el arrastre y aparece con foco de teclado. Es un indicador del
+    propio control: no usa <code>DsTooltip</code> ni Popover API.
+  </p>
+  <div style="max-width: 24rem">
+    <ds-slider label="Zoom" [valueTooltip]="true" [valueText]="percent" />
+  </div>
+</app-showcase-case>
+
+<app-showcase-case title="Sizes y disabled" [snippet]="sizesSnippet">
+  <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1.5rem">
+    <ds-slider size="sm" label="Small" [value]="30" />
+    <ds-slider size="md" label="Medium" [value]="50" />
+    <ds-slider size="lg" label="Large" [value]="70" />
+    <ds-slider label="Disabled" [value]="40" [disabled]="true" [showValue]="true" />
+  </div>
+</app-showcase-case>

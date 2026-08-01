@@ -1,0 +1,55 @@
+@if (label()) {
+<label class="ds-slider__label" [for]="inputId">{{ label() }}</label>
+}
+<div class="ds-slider__row">
+  <div
+    class="ds-slider__control"
+    [class.ds-slider__control--dragging]="dragging()"
+    [style.--ds-slider-pct]="pct()"
+  >
+    <!-- Motor: el input va primero para estilar a los hermanos visuales con ~ -->
+    <input
+      type="range"
+      class="ds-slider__input"
+      [id]="inputId"
+      [min]="min()"
+      [max]="max()"
+      [step]="step()"
+      [value]="value()"
+      [disabled]="disabled()"
+      [attr.aria-label]="ariaLabel()"
+      [attr.aria-labelledby]="ariaLabelledby()"
+      [attr.aria-valuetext]="valueText() ? displayValue() : null"
+      (input)="handleInput($event)"
+      (blur)="handleBlur()"
+      (pointerdown)="dragging.set(true)"
+      (pointerup)="dragging.set(false)"
+      (pointercancel)="dragging.set(false)"
+    />
+    <div class="ds-slider__track" aria-hidden="true">
+      <div class="ds-slider__fill"></div>
+    </div>
+    @if (ticks().length > 0) {
+    <div class="ds-slider__ticks" aria-hidden="true">
+      @for (tick of ticks(); track tick.value) {
+      <span class="ds-slider__tick" [style.--ds-slider-tick-pct]="tickPct(tick.value)"></span>
+      @if (tick.label) {
+      <span
+        class="ds-slider__tick-label"
+        [class.ds-slider__tick-label--start]="tick.value <= min()"
+        [class.ds-slider__tick-label--end]="tick.value >= max()"
+        [style.--ds-slider-tick-pct]="tickPct(tick.value)"
+        >{{ tick.label }}</span
+      >
+      } }
+    </div>
+    }
+    <span class="ds-slider__thumb" aria-hidden="true"></span>
+    @if (valueTooltip()) {
+    <span class="ds-slider__tooltip" aria-hidden="true">{{ displayValue() }}</span>
+    }
+  </div>
+  @if (showValue()) {
+  <output class="ds-slider__value" [attr.for]="inputId">{{ displayValue() }}</output>
+  }
+</div>

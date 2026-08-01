@@ -130,6 +130,11 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     loadComponent: () => import('./switch/switch-showcase').then((m) => m.SwitchShowcase),
   },
   {
+    slug: 'slider',
+    label: 'Slider',
+    loadComponent: () => import('./slider/slider-showcase').then((m) => m.SliderShowcase),
+  },
+  {
     slug: 'iconography',
     label: 'Iconografía',
     loadComponent: () =>

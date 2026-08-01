@@ -319,11 +319,16 @@ Techos vigentes, declarados en `.size-limit.json` del root:
 
 | Entrypoint                                           | Medido (2026-07-31) | Techo    |
 | ---------------------------------------------------- | ------------------- | -------- |
-| `@romanmartinidev/components` — principal (`.`)      | 43.22 kB            | 45.38 kB |
+| `@romanmartinidev/components` — principal (`.`)      | 46.10 kB            | 48.41 kB |
 | `@romanmartinidev/components` — `./router`           | 2.00 kB             | 2.11 kB  |
-| `@romanmartinidev/tokens` — `./css`                  | 5.85 kB             | 6.15 kB  |
-| `@romanmartinidev/tokens` — principal (`.`)          | 5.53 kB             | 5.81 kB  |
+| `@romanmartinidev/tokens` — `./css`                  | 6.03 kB             | 6.15 kB  |
+| `@romanmartinidev/tokens` — principal (`.`)          | 5.69 kB             | 5.81 kB  |
 | `@romanmartinidev/tokens` — themes (los tres juntos) | 1.00 kB             | 1.05 kB  |
+
+> El techo de `components` subió de 45.38 a 48.41 kB con la entrada de `DsSlider` (`aaa-044`): el
+> kit pasó de 43.22 a 46.10 kB medidos (+2.88 kB del componente, coherente con el costo típico de
+> ~2.3 kB más los tres extras opt-in). Los medidos de `tokens` se refrescaron en la misma corrida
+> (+33 vars de `component.slider.*`) sin mover sus techos: siguen por debajo.
 
 Los valores son **kB decimales (1000 B)**, que es como los reporta `size-limit` — no KiB.
 

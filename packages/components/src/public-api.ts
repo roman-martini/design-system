@@ -17,6 +17,7 @@ export * from './lib/radio';
 export * from './lib/radio-group';
 export * from './lib/select';
 export * from './lib/skeleton';
+export * from './lib/slider';
 export * from './lib/spinner';
 export * from './lib/switch';
 export * from './lib/toast';

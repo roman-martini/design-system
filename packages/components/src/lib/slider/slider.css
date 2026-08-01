@@ -1,0 +1,209 @@
+:host {
+  display: block;
+  --_track-h: var(--ds-component-slider-track-height-md);
+  --_thumb: var(--ds-component-slider-thumb-size-md);
+}
+
+:host([data-size='sm']) {
+  --_track-h: var(--ds-component-slider-track-height-sm);
+  --_thumb: var(--ds-component-slider-thumb-size-sm);
+}
+:host([data-size='lg']) {
+  --_track-h: var(--ds-component-slider-track-height-lg);
+  --_thumb: var(--ds-component-slider-thumb-size-lg);
+}
+
+/* Reserva de espacio para las capas que desbordan el control (burbuja arriba,
+   labels de ticks abajo): así el slider no pisa al contenido vecino. */
+:host(.ds-slider--with-tooltip) {
+  padding-top: calc(
+    var(--ds-component-slider-tooltip-offset) + var(--ds-component-slider-tooltip-font-size) + 2 *
+      var(--ds-component-slider-tooltip-padding-y)
+  );
+}
+:host(.ds-slider--with-tick-labels) {
+  padding-bottom: calc(
+    var(--ds-component-slider-tick-label-gap) + var(--ds-component-slider-tick-label-font-size)
+  );
+}
+
+.ds-slider__label {
+  display: block;
+  margin-bottom: var(--ds-semantic-space-xs);
+  font-size: var(--ds-component-slider-label-font-size);
+  color: var(--ds-component-slider-label-color);
+  line-height: var(--ds-font-line-height-tight);
+}
+
+.ds-slider__row {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-component-slider-value-text-gap);
+}
+
+/* La fórmula del patrón híbrido (design §1): el centro del thumb nativo recorre
+   thumb/2 → 100% - thumb/2; --_pos replica ese recorrido para fill/thumb/burbuja. */
+.ds-slider__control {
+  --_pos: calc(var(--ds-slider-pct) / 100 * (100% - var(--_thumb)) + var(--_thumb) / 2);
+  position: relative;
+  flex: 1 1 auto;
+  /* Área interactiva: nunca menor a 24px, aunque el track visual sea más fino. */
+  height: max(var(--ds-dimension-24), var(--_thumb));
+}
+
+/* Motor invisible: cubre toda el área interactiva; sigue enfocable y arrastrable. */
+.ds-slider__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.ds-slider__input:disabled {
+  cursor: not-allowed;
+}
+/* El thumb nativo no se pinta (el input ya es transparente) pero conserva el
+   tamaño del visual para que la mecánica de arrastre coincida con lo que se ve. */
+.ds-slider__input::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--_thumb);
+  height: var(--_thumb);
+}
+.ds-slider__input::-moz-range-thumb {
+  width: var(--_thumb);
+  height: var(--_thumb);
+  border: none;
+}
+
+.ds-slider__track {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: var(--_track-h);
+  overflow: hidden;
+  transform: translateY(-50%);
+  border-radius: var(--ds-component-slider-track-radius);
+  background: var(--ds-component-slider-track-bg);
+  pointer-events: none;
+}
+
+.ds-slider__fill {
+  width: var(--_pos);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ds-component-slider-fill-bg);
+}
+
+.ds-slider__ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Marcas y labels comparten la fórmula de posicionamiento del thumb (design §1). */
+.ds-slider__tick,
+.ds-slider__tick-label {
+  --_tick-pos: calc(var(--ds-slider-tick-pct) / 100 * (100% - var(--_thumb)) + var(--_thumb) / 2);
+  position: absolute;
+  left: var(--_tick-pos);
+}
+
+.ds-slider__tick {
+  top: 50%;
+  width: var(--ds-component-slider-tick-size);
+  height: var(--ds-component-slider-tick-size);
+  transform: translate(-50%, -50%);
+  border-radius: var(--ds-semantic-radius-full);
+  background: var(--ds-component-slider-tick-color);
+}
+
+.ds-slider__tick-label {
+  top: calc(50% + var(--_thumb) / 2 + var(--ds-component-slider-tick-label-gap));
+  transform: translateX(-50%);
+  font-size: var(--ds-component-slider-tick-label-font-size);
+  color: var(--ds-component-slider-tick-label-color);
+  line-height: var(--ds-font-line-height-tight);
+  white-space: nowrap;
+}
+/* Extremos alineados hacia adentro para no desbordar el track. */
+.ds-slider__tick-label--start {
+  transform: none;
+}
+.ds-slider__tick-label--end {
+  transform: translateX(-100%);
+}
+
+.ds-slider__thumb {
+  position: absolute;
+  top: 50%;
+  left: var(--_pos);
+  width: var(--_thumb);
+  height: var(--_thumb);
+  transform: translate(-50%, -50%);
+  border: var(--ds-component-slider-thumb-border-width) solid
+    var(--ds-component-slider-thumb-border-color);
+  border-radius: var(--ds-semantic-radius-full);
+  background: var(--ds-component-slider-thumb-bg);
+  box-shadow: var(--ds-component-slider-thumb-shadow);
+  pointer-events: none;
+  transition: transform var(--ds-component-slider-motion-duration)
+    var(--ds-component-slider-motion-easing);
+}
+
+/* Affordance de hover/arrastre (escala, no color: el par de contraste no varía). */
+.ds-slider__control:hover .ds-slider__input:not(:disabled) ~ .ds-slider__thumb,
+.ds-slider__control--dragging .ds-slider__input:not(:disabled) ~ .ds-slider__thumb {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* El foco vive en el input; el anillo se pinta sobre el thumb visual. */
+.ds-slider__input:focus-visible ~ .ds-slider__thumb {
+  box-shadow: var(--ds-semantic-shadow-focus);
+}
+
+.ds-slider__tooltip {
+  position: absolute;
+  bottom: calc(50% + var(--_thumb) / 2 + var(--ds-component-slider-tooltip-offset));
+  left: var(--_pos);
+  padding: var(--ds-component-slider-tooltip-padding-y) var(--ds-component-slider-tooltip-padding-x);
+  transform: translateX(-50%);
+  border-radius: var(--ds-component-slider-tooltip-radius);
+  background: var(--ds-component-slider-tooltip-bg);
+  color: var(--ds-component-slider-tooltip-text);
+  font-size: var(--ds-component-slider-tooltip-font-size);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--ds-font-line-height-tight);
+  white-space: nowrap;
+  box-shadow: var(--ds-component-slider-tooltip-shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ds-component-slider-motion-duration)
+    var(--ds-component-slider-motion-easing);
+}
+.ds-slider__input:focus-visible ~ .ds-slider__tooltip,
+.ds-slider__control--dragging .ds-slider__tooltip {
+  opacity: 1;
+}
+
+.ds-slider__value {
+  flex-shrink: 0;
+  font-size: var(--ds-component-slider-value-text-font-size);
+  color: var(--ds-component-slider-value-text-color);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--ds-font-line-height-tight);
+}
+
+:host(.ds-slider--disabled) .ds-slider__label,
+:host(.ds-slider--disabled) .ds-slider__row {
+  opacity: var(--ds-opacity-50);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-slider__thumb,
+  .ds-slider__tooltip {
+    transition: none;
+  }
+}

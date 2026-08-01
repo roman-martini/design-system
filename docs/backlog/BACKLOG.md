@@ -89,7 +89,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-avatar` (`aaa-037`, 2026-07-26). **Cierra la tanda 3** (7/7).
 
-**Estado**: pendiente de refinar HU-025 + propose. Es el más complejo de la tanda (slider/range accesible). **En espera mientras corre el plan de la review**, salvo que el PO decida lo contrario.
+**Estado**: **propuesta activa** — [`aaa-044`](../../openspec/changes/components-add-slider/proposal.md) (2026-07-31; HU-025 refinada el mismo día con base híbrida, control autónomo y extras opt-in). El PO decidió ejecutarlo ahora, intercalado en el plan de la review.
 
 **Nota**: al cerrarse habilita la verificación del hito H1 — el prototipo de la referencia `modern-minimal` en el playground ([D-023](../product/decisiones.md)).
 
