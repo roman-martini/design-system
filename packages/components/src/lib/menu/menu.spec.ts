@@ -328,6 +328,15 @@ describe('DsMenu family', () => {
     expect(submenuItem.getAttribute('aria-expanded')).toBe('false');
   });
 
+  // Scenario: apertura desde el trigger — la separación ancla↔panel sale de un
+  // token (components-13), igual que la del submenú. jsdom no resuelve CSS
+  // vars ni layout (todo rect en 0): lo que se verifica es el fallback
+  // documentado; sin él un parseFloat('') dejaría `NaNpx`.
+  it('posiciona el panel raíz con el offset de fallback cuando el entorno no resuelve el token', () => {
+    openRoot();
+    expect(rootPanel.style.top).toBe('4px');
+  });
+
   // Scenario: light-dismiss del árbol (CA-012.7)
   it('sincroniza el estado con el cierre nativo del popover (evento toggle)', () => {
     openRoot();

@@ -16,6 +16,7 @@
   (pointerdown)="onTriggerPointerdown()"
   (click)="onTriggerClick()"
   (keydown)="onTriggerKeydown($event)"
+  (blur)="onTriggerBlur()"
 >
   <span class="ds-select__value">{{ triggerLabel() }}</span>
   <svg

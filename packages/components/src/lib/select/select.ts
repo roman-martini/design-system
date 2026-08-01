@@ -30,6 +30,14 @@ export interface DsOptionRegistration {
 
 let nextSelectId = 0;
 
+// Reset del buffer de typeahead. Constante interna (no es un valor visual,
+// no va a tokens): es el ritmo de tipeo, no un estilo. Mismo valor que DsMenu;
+// el helper compartido queda para el refactor de overlays (Parte J).
+const TYPEAHEAD_RESET_MS = 500;
+
+// Fallback cuando el entorno no resuelve las CSS vars (jsdom en tests).
+const DEFAULT_LISTBOX_OFFSET_PX = 4;
+
 @Component({
   selector: 'ds-select',
   standalone: true,
@@ -88,8 +96,14 @@ export class DsSelect implements ControlValueAccessor {
   private onTouched: () => void = () => {};
   private readonly repositionListener = () => this.position();
 
+  private typeaheadBuffer = '';
+  private typeaheadTimer: ReturnType<typeof setTimeout> | null = null;
+
   constructor() {
-    inject(DestroyRef).onDestroy(() => this.detachRepositionListeners());
+    inject(DestroyRef).onDestroy(() => {
+      this.detachRepositionListeners();
+      this.clearTypeaheadTimer();
+    });
   }
 
   // ControlValueAccessor
@@ -167,6 +181,13 @@ export class DsSelect implements ControlValueAccessor {
         // y el scroll de página (flechas/Space).
         event.preventDefault();
         this.openList();
+      } else if (this.isTypeaheadKey(event)) {
+        // APG select-only: tipear con el combobox cerrado abre el listado y
+        // posiciona la opción activa en la primera coincidencia, sin cambiar
+        // el valor. La búsqueda arranca desde la primera opción (fromStart):
+        // el ciclo de iniciales solo tiene sentido con el listado ya abierto.
+        this.openList();
+        this.typeahead(event.key, true);
       }
       return;
     }
@@ -201,16 +222,32 @@ export class DsSelect implements ControlValueAccessor {
         event.preventDefault();
         this.closeList();
         break;
+      default:
+        if (this.isTypeaheadKey(event)) {
+          this.typeahead(event.key);
+        }
+    }
+  }
+
+  // Marca touched cuando el foco abandona el trigger sin listado abierto.
+  // Con el listado abierto el blur solo ocurre dentro de una secuencia de
+  // cierre (light-dismiss, Tab-out) cuyo dueño es el propio cierre (design §1).
+  protected onTriggerBlur(): void {
+    if (!this.open()) {
+      this.onTouched();
     }
   }
 
   // Sincroniza el estado cuando la plataforma cierra el popover por su cuenta
-  // (light-dismiss por click fuera o ESC a nivel documento).
+  // (light-dismiss por click fuera o ESC a nivel documento). Marca touched:
+  // es un cierre de listado como cualquier otro (paridad con closeList).
   protected onPopoverToggle(event: Event): void {
     const newState = (event as Event & { newState?: string }).newState;
     if (newState === 'closed' && this.open()) {
       this.open.set(false);
       this.detachRepositionListeners();
+      this.resetTypeahead();
+      this.onTouched();
     }
   }
 
@@ -231,6 +268,7 @@ export class DsSelect implements ControlValueAccessor {
     this.open.set(false);
     this.listboxRef().nativeElement.hidePopover?.();
     this.detachRepositionListeners();
+    this.resetTypeahead();
     this.onTouched();
   }
 
@@ -274,18 +312,81 @@ export class DsSelect implements ControlValueAccessor {
     return -1;
   }
 
-  // Posicionamiento fallback JS (design.md §2): debajo del trigger, mismo
-  // ancho, flip vertical si no hay espacio. Se migra a CSS anchor positioning
-  // cuando Safari 18 salga de la ventana de soporte (ver ADR-014).
+  private isTypeaheadKey(event: KeyboardEvent): boolean {
+    // Space queda fuera: cerrado abre el listado y abierto confirma la
+    // selección (design §2). Un label con espacios se alcanza por el prefijo.
+    return (
+      event.key.length === 1 &&
+      event.key !== ' ' &&
+      !event.ctrlKey &&
+      !event.metaKey &&
+      !event.altKey
+    );
+  }
+
+  // Typeahead APG portado de DsMenu, adaptado a aria-activedescendant: mueve
+  // la opción activa, nunca el valor. A diferencia del menú saltea disabled,
+  // la misma regla que moveActive (una opción disabled no puede ser activa).
+  private typeahead(char: string, fromStart = false): void {
+    this.typeaheadBuffer += char.toLowerCase();
+    this.clearTypeaheadTimer();
+    this.typeaheadTimer = setTimeout(() => this.resetTypeahead(), TYPEAHEAD_RESET_MS);
+
+    // Same-letter cycling (APG): "aa" busca como "a" — repetir la inicial
+    // cicla entre las opciones que empiezan con ella en vez de no matchear.
+    const buffer = this.typeaheadBuffer;
+    const query = /^(.)\1*$/.test(buffer) ? buffer[0] : buffer;
+
+    const opts = this.options();
+    // Con query de una letra arranca en la siguiente a la activa (ciclar);
+    // con query más larga incluye la actual (refinar la búsqueda). En la
+    // apertura por tipeo busca desde la primera opción.
+    const start = fromStart ? 0 : Math.max(this.activeIndex(), 0);
+    const offset = fromStart ? 0 : query.length === 1 ? 1 : 0;
+    for (let step = 0; step < opts.length; step++) {
+      const index = (start + offset + step) % opts.length;
+      const option = opts[index];
+      if (!option.isDisabled() && option.labelText().toLowerCase().startsWith(query)) {
+        this.activeIndex.set(index);
+        return;
+      }
+    }
+  }
+
+  private resetTypeahead(): void {
+    this.typeaheadBuffer = '';
+    this.clearTypeaheadTimer();
+  }
+
+  private clearTypeaheadTimer(): void {
+    if (this.typeaheadTimer !== null) {
+      clearTimeout(this.typeaheadTimer);
+      this.typeaheadTimer = null;
+    }
+  }
+
+  // Posicionamiento fallback JS (design.md §2): debajo del trigger, al menos
+  // tan ancho como él, flip vertical si no hay espacio. Se migra a CSS anchor
+  // positioning cuando Safari 18 salga de la ventana de soporte (ADR-014).
   private position(): void {
     const trigger = this.triggerRef().nativeElement;
     const listbox = this.listboxRef().nativeElement;
     const rect = trigger.getBoundingClientRect();
-    const gap = 4;
+    const gap = this.readCssNumber(
+      listbox,
+      '--ds-component-select-listbox-offset',
+      DEFAULT_LISTBOX_OFFSET_PX,
+    );
 
     listbox.style.position = 'fixed';
-    listbox.style.width = `${rect.width}px`;
-    listbox.style.left = `${rect.left}px`;
+    // Piso, no ancho exacto: una opción más larga que el trigger se muestra
+    // entera en vez de partirse en varias líneas (el max-width del CSS la
+    // acota al viewport). Con `width` el listbox heredaba el ancho de un
+    // trigger contraído por su label seleccionado.
+    listbox.style.minWidth = `${rect.width}px`;
+    // Clamp horizontal: el listbox puede ser más ancho que el trigger, así que
+    // se corre a la izquierda antes que salirse por el borde derecho.
+    listbox.style.left = `${Math.max(0, Math.min(rect.left, window.innerWidth - listbox.offsetWidth))}px`;
 
     const listboxHeight = listbox.offsetHeight;
     const spaceBelow = window.innerHeight - rect.bottom - gap;
@@ -299,5 +400,13 @@ export class DsSelect implements ControlValueAccessor {
   private detachRepositionListeners(): void {
     window.removeEventListener('scroll', this.repositionListener, { capture: true });
     window.removeEventListener('resize', this.repositionListener);
+  }
+
+  // Copia consciente del readCssNumber de DsMenu (components-11): la util
+  // compartida se extrae en el refactor de overlays (Parte J), no acá.
+  private readCssNumber(el: HTMLElement, name: string, fallback: number): number {
+    const raw = getComputedStyle(el).getPropertyValue(name).trim();
+    const parsed = parseFloat(raw);
+    return Number.isNaN(parsed) ? fallback : parsed;
   }
 }

@@ -19,6 +19,10 @@
         },
         "radius":           { "value": "{semantic.radius.md}" },
         "border-width":     { "value": "{dimension.1}" },
+        "min-width": {
+          "value": "180px",
+          "comment": "Raw documentado, mismo criterio y valor que menu.panel.min-width: piso de ancho para que el control no colapse al seleccionar un label corto. La escala de dimension termina en 128."
+        },
         "bg":               { "value": "{semantic.color.bg.surface}" },
         "bg-disabled":      { "value": "{semantic.color.bg.disabled}" },
         "text":             { "value": "{semantic.color.text.primary}" },
@@ -30,6 +34,7 @@
         "icon":             { "value": "{semantic.color.icon.default}" }
       },
       "listbox": {
+        "offset":     { "value": "{dimension.4}" },
         "bg":         { "value": "{semantic.color.bg.elevated}" },
         "border":     { "value": "{semantic.color.border.default}" },
         "radius":     { "value": "{semantic.radius.md}" },

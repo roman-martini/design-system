@@ -14,13 +14,13 @@
   {
     "name": "@romanmartinidev/tokens — hoja de CSS variables (./css)",
     "path": "packages/tokens/dist/tokens.css",
-    "limit": "6.15 kB",
+    "limit": "6.48 kB",
     "gzip": true
   },
   {
     "name": "@romanmartinidev/tokens — módulo JS (entrypoint principal)",
     "path": "packages/tokens/dist/tokens.js",
-    "limit": "5.81 kB",
+    "limit": "6.14 kB",
     "gzip": true
   },
   {

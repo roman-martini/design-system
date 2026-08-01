@@ -317,18 +317,32 @@ pnpm size
 
 Techos vigentes, declarados en `.size-limit.json` del root:
 
-| Entrypoint                                           | Medido (2026-07-31) | Techo    |
+| Entrypoint                                           | Medido (2026-08-01) | Techo    |
 | ---------------------------------------------------- | ------------------- | -------- |
-| `@romanmartinidev/components` — principal (`.`)      | 46.10 kB            | 48.41 kB |
+| `@romanmartinidev/components` — principal (`.`)      | 48.35 kB            | 48.41 kB |
 | `@romanmartinidev/components` — `./router`           | 2.00 kB             | 2.11 kB  |
-| `@romanmartinidev/tokens` — `./css`                  | 6.03 kB             | 6.15 kB  |
-| `@romanmartinidev/tokens` — principal (`.`)          | 5.69 kB             | 5.81 kB  |
+| `@romanmartinidev/tokens` — `./css`                  | 6.17 kB             | 6.48 kB  |
+| `@romanmartinidev/tokens` — principal (`.`)          | 5.84 kB             | 6.14 kB  |
 | `@romanmartinidev/tokens` — themes (los tres juntos) | 1.00 kB             | 1.05 kB  |
 
 > El techo de `components` subió de 45.38 a 48.41 kB con la entrada de `DsSlider` (`aaa-044`): el
 > kit pasó de 43.22 a 46.10 kB medidos (+2.88 kB del componente, coherente con el costo típico de
 > ~2.3 kB más los tres extras opt-in). Los medidos de `tokens` se refrescaron en la misma corrida
 > (+33 vars de `component.slider.*`) sin mover sus techos: siguen por debajo.
+>
+> **Los dos techos de `tokens` subieron con `aaa-046`** (2026-08-01): tres tokens nuevos
+> (`select.listbox.offset`, `menu.panel.offset`, `select.trigger.min-width`) excedieron el CSS por
+> 18 B y el JS por 34 B. Es el escenario que `aaa-045` dejó anotado al consumir el margen previo, y
+> el trinquete funcionó como debe — el gate frenó, no pasó en silencio. Techos recalculados con la
+> regla de D-031 (`medido × 1.05` al múltiplo de 10 B): 6.15 → 6.48 kB y 5.81 → 6.14 kB.
+>
+> **El margen de `components` quedó en 60 B** (mismo change): el typeahead de `DsSelect` costó
+> +1.9 kB sobre los 46.47 kB con que cerró `aaa-045` — más de lo que sugiere su tamaño en líneas,
+> porque los nombres de miembros que un template referencia no se manglan. Ese techo **no se movió**:
+> nadie lo excedió y moverlo sin exceder es justamente lo que el trinquete evita. Consecuencia
+> práctica: el próximo change que sume código a `components` va a chocar contra el gate, y ahí el
+> ajuste es el mecanismo previsto. Parte del exceso se recupera en la Parte J, que deduplica el
+> typeahead y el scaffolding de overlays entre `select`, `menu` y `tooltip`.
 
 Los valores son **kB decimales (1000 B)**, que es como los reporta `size-limit` — no KiB.
 

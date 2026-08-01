@@ -8,6 +8,11 @@
   justify-content: space-between;
   gap: var(--ds-semantic-space-2xs);
   width: 100%;
+  /* Piso de ancho: sin él el control se dimensiona por el label seleccionado y
+     se contrae al elegir uno corto (medido: 133px con placeholder → 79px con
+     "Chile"). Para un ancho totalmente estable el consumidor declara el suyo
+     sobre <ds-select>; el token evita el colapso en el caso por defecto. */
+  min-width: var(--ds-component-select-trigger-min-width);
   border: var(--ds-component-select-trigger-border-width) solid
     var(--ds-component-select-trigger-border);
   border-radius: var(--ds-component-select-trigger-radius);
@@ -90,7 +95,16 @@
   box-shadow: var(--ds-component-select-listbox-shadow);
   max-height: var(--ds-component-select-listbox-max-height);
   overflow-y: auto;
-  display: flex;
+  /* El posicionador fija el ancho del trigger como piso (min-width), no como
+     ancho exacto: una opción más larga que el trigger se muestra entera en vez
+     de partirse en varias líneas. El tope evita que se salga del viewport. */
+  max-width: calc(100vw - 2 * var(--ds-component-select-listbox-offset));
+
+  /* Cerrado no genera caja. `display: flex` a secas pisaría la regla del UA
+     que oculta un [popover] cerrado (autor gana sobre UA), y el listbox
+     quedaría ocupando con opacity 0 y el position: fixed que le dejó el
+     posicionador (mismo defecto corregido en el menú, aaa-045). */
+  display: none;
   flex-direction: column;
   gap: var(--ds-component-select-listbox-gap);
 
@@ -105,6 +119,7 @@
 }
 
 .ds-select__listbox:popover-open {
+  display: flex;
   opacity: 1;
   transform: none;
   transition:

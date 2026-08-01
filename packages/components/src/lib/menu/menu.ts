@@ -27,9 +27,9 @@ let nextMenuId = 0;
 // no va a tokens): es el ritmo de tipeo, no un estilo.
 const TYPEAHEAD_RESET_MS = 500;
 
-// Fallback cuando el entorno no resuelve las CSS vars (jsdom en tests).
+// Fallbacks cuando el entorno no resuelve las CSS vars (jsdom en tests).
 const DEFAULT_SUBMENU_OFFSET_PX = 4;
-const ROOT_GAP_PX = 4;
+const DEFAULT_PANEL_OFFSET_PX = 4;
 
 @Component({
   selector: 'ds-menu',
@@ -291,12 +291,17 @@ export class DsMenu {
       return;
     }
 
-    const spaceBelow = window.innerHeight - rect.bottom - ROOT_GAP_PX;
+    const gap = this.readCssNumber(
+      panel,
+      '--ds-component-menu-panel-offset',
+      DEFAULT_PANEL_OFFSET_PX,
+    );
+    const spaceBelow = window.innerHeight - rect.bottom - gap;
     const openUpwards = panelHeight > spaceBelow && rect.top > spaceBelow;
     panel.style.left = `${Math.max(0, Math.min(rect.left, window.innerWidth - panelWidth))}px`;
     panel.style.top = openUpwards
-      ? `${Math.max(0, rect.top - panelHeight - ROOT_GAP_PX)}px`
-      : `${rect.bottom + ROOT_GAP_PX}px`;
+      ? `${Math.max(0, rect.top - panelHeight - gap)}px`
+      : `${rect.bottom + gap}px`;
   }
 
   private readCssNumber(el: HTMLElement, name: string, fallback: number): number {

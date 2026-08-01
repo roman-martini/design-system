@@ -2,6 +2,7 @@
   "component": {
     "menu": {
       "panel": {
+        "offset":    { "value": "{dimension.4}" },
         "bg":        { "value": "{semantic.color.bg.elevated}" },
         "border":    { "value": "{semantic.color.border.default}" },
         "radius":    { "value": "{semantic.radius.md}" },
