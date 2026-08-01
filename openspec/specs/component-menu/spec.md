@@ -68,6 +68,28 @@ El package SHALL exponer la familia `DsMenuTrigger` (directiva `[dsMenuTriggerFo
 - **WHEN** se activa un item hoja del submenú
 - **THEN** todo el árbol SHALL cerrarse
 
+#### Scenario: la apertura por hover pendiente se cancela al salir del item
+
+- **GIVEN** un item con submenú sobre el que el puntero entró y cuyo delay de hover todavía no venció
+- **WHEN** el puntero abandona ese item
+- **THEN** el submenú SHALL permanecer cerrado una vez transcurrido el delay
+- **AND** el foco SHALL permanecer donde el usuario lo dejó
+
+#### Scenario: la apertura por hover pendiente se cancela al cerrarse el menú
+
+- **GIVEN** un item con submenú sobre el que el puntero entró y cuyo delay de hover todavía no venció
+- **WHEN** el menú que lo contiene se cierra por cualquier vía (Esc, Tab, activación de un item o light-dismiss)
+- **THEN** transcurrido el delay NO SHALL quedar ningún panel de submenú visible
+- **AND** el foco SHALL permanecer en el destino que definió el cierre
+
+#### Scenario: el panel abre sin barras de scroll espurias
+
+- **GIVEN** un menú cuyo contenido entra holgado en la altura máxima del panel
+- **WHEN** el panel abre
+- **THEN** el panel SHALL renderizarse sin barras de scroll en ningún eje, incluido el primer frame de la animación de entrada
+- **GIVEN** un menú cuyo contenido excede la altura máxima del panel
+- **THEN** el panel SHALL scrollear verticalmente hasta esa altura, y SHALL NO scrollear horizontalmente en ningún caso
+
 #### Scenario: light-dismiss del árbol (CA-012.7)
 
 - **GIVEN** cualquier nivel de menú abierto

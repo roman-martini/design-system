@@ -35,7 +35,7 @@ Reportado por el PO durante la ejecución de este change, con captura. Entra ac�
 - [x] 3b.3 Fix: `display: none` en el panel, `display: flex` en `:popover-open`. **Verificado con la misma medición**: en la segunda apertura el panel queda en `scrollHeight === clientHeight` y el submenú cerrado en `display: none`. Test sobre el fuente (jsdom no computa estilos).
 - [x] 3b.4 Se conserva el `max-height` tokenizado (`component.menu.panel.max-height`, 320px) con `overflow-y: auto` + `overflow-x: clip`, ya no como el fix sino por su valor propio: un menú más largo que el viewport hoy se sale de pantalla sin poder scrollearse. Scenario nuevo en el delta de `component-menu`.
 - [x] 3b.5 **Pendiente derivado registrado**: `select.css` tiene el mismo `display: flex` sin `:popover-open` (defecto latente — su listbox no contiene overlays anidados, así que nadie lo desborda). Va como ítem de `components-fix-select` en la tabla de la Parte G, no acá.
-- [ ] 3b.6 Verificación visual del PO sobre la secuencia que reportó (parte del gate de la sección 5).
+- [x] 3b.6 Verificación visual del PO sobre la secuencia que reportó: **OK el 2026-08-01**.
 
 **Criterio**: el panel cerrado no genera caja; el alto máximo sale de un token; el PO confirma que las barras no aparecen en su secuencia.
 
@@ -47,22 +47,23 @@ Reportado por el PO durante la ejecución de este change, con captura. Entra ac�
   - **Dato para la próxima entrega de tokens**: el token del panel dejó los dos techos de `tokens` con ~60 B y ~50 B de margen. Bajo el trinquete de D-031, el próximo token que entre va a tener que subirlos en su propio PR — el mismo aviso que F3 dejó para los componentes.
 - [x] 4.4 `pnpm verify:packaging` (el gate del repo sobre el artefacto emitido, aaa-038): 2 packages sin observaciones.
 - [x] 4.5 Changeset `fix-menu-hover.md`: **patch** de components + patch de tokens (lockstep ADR-015).
-- [ ] 4.6 Proponer el mensaje de commit de implementación y **esperar el OK del PO**.
+- [x] 4.6 Mensaje de commit propuesto; **OK del PO el 2026-08-01**. Dos commits: `5e67bad` (hover-timer + superficie de exports) y `f7bd42c` (panel cerrado que generaba caja).
 
 **Criterio**: automáticos verdes; changeset correcto; commit propuesto y aprobado.
 
 ## 5. Gate visual del PO (D-022 — bloqueante)
 
-- [ ] 5.1 El PO verifica en el showcase `/menu`: hover entre items hermanos con submenú (el foco no salta hacia atrás), Esc con una apertura en curso (no queda panel huérfano), salir del menú con el puntero durante el delay, y el camino feliz del árbol de submenús sin regresión.
+- [x] 5.1 El PO verificó en el showcase `/menu` el hover entre hermanos, el Esc con una apertura en curso, su secuencia de las barras de scroll y el árbol de submenús sin regresión: **OK explícito el 2026-08-01**.
+  - **Dato operativo**: el playground consume el `dist/` de la lib, no el fuente, así que el dev server sirve el bundle anterior hasta que se reinicia. Costó una vuelta de verificación en falso; conviene rebuildear y reiniciar antes de pedir el gate visual de un change que toca CSS o tokens.
 
 **Criterio**: OK visual explícito del PO registrado. El archive no arranca sin él.
 
 ## 6. Archive
 
-- [ ] 6.1 Mover a `archive/aaa-045-components-fix-menu/` con `status: archived` + fecha; sincronizar las specs base `component-menu` y `components-package` con los deltas, scenario por scenario.
-- [ ] 6.2 Verificar que los artefactos archivados no tengan links markdown relativos (referencias por ID).
-- [ ] 6.3 Registros del checklist de archive de `docs/product/README.md`: `openspec/README.md` (próximo ID e IDs en vuelo), catálogo de `docs/architecture/catalog.md`, nota de cierre en HU-012, EP-002, README de producto (foto táctica y última entrega) y grooming del BACKLOG (avance de la Parte G en la tabla de estado por parte).
-- [ ] 6.4 `pnpm openspec validate --all` pasa; suite completa, lint y format verdes.
+- [x] 6.1 Movido a `archive/aaa-045-components-fix-menu/` (`status: archived`, 2026-08-01); specs base `component-menu` (3 scenarios nuevos) y `components-package` (párrafo del requirement + 1 scenario) sincronizadas scenario por scenario.
+- [x] 6.2 Verificado por grep: cero links markdown relativos en los artefactos archivados.
+- [x] 6.3 Registros: `openspec/README.md` (aaa-045 fuera de IDs en vuelo), catálogo de changes, nota de cierre en HU-012, EP-002 (fila de valor del menú + tabla de HUs), README de producto (foto táctica, última entrega, avance del plan) y grooming del BACKLOG — la Parte G pasa a **En curso 1/7** con tabla de detalle propia y las dos lecciones operativas registradas.
+- [x] 6.4 `pnpm openspec validate --all` pasa (28 items); suite completa **931 tests** verdes (tokens 504, components 395, playground 33); lint y format verdes.
 - [ ] 6.5 Proponer el mensaje de commit del archive y esperar el OK del PO.
 
 **Criterio**: change archivado, specs base sincronizadas, registros al día y Parte G con su primer change cerrado.

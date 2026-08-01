@@ -49,7 +49,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 | D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028 |
 | E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022        |
 | F     | Gates de calidad automáticos        | OpenSpec change(s)      | **Hecha** (2026-07-31) — 4 sub-partes, ver abajo   |
-| G     | Fixes de componentes (6 changes)    | OpenSpec por componente | Pendiente                                          |
+| G     | Fixes de componentes (7 changes)    | OpenSpec por componente | **En curso** — 1/7 (2026-08-01, `aaa-045` menu)    |
 | H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                          |
 | I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                          |
 | J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                          |
@@ -76,6 +76,22 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 > **F2 dejó tres cosas registradas** (2026-07-31, `aaa-042`): el gate de axe expuso que **`DsButton` no admite nombre accesible** —no reenvía `aria-label` al `<button>` interno, así que un botón ícono-only queda sin nombre—, encauzado como ítem de `components-fix-button` en la tabla de la Parte G. La **fase 2 de HU-028** queda con su alcance ya definido: el contenido de overlays abiertos (listbox de select, panel de menu, interior del modal) no es auditable en jsdom. Y el hallazgo `playground-02` **no queda cerrado del todo**: el build de Storybook detecta imports y configuración rotos, pero no un template de story desactualizado; eso exige ejecutar las stories en navegador (Parte L).
 >
 > **F1-b dejó dos cosas para más adelante** (2026-07-30, `aaa-041`): el gate de contraste expuso un incumplimiento real en el borde del control desmarcado de checkbox y radio, corregido en el momento bajo [D-030](../product/decisiones.md); y el **pendiente derivado** de que esos dos componentes no son theme-aware (`bg-off` clavado a `{color.white}`, más los hardcodes de `white` en su CSS). Eso último no es contraste sino theming, y quedó registrado el 2026-07-31 como **séptimo change de la Parte G** (`components-fix-checkbox-radio`), en la tabla del plan — no como nota suelta acá, que es como se pierden los pendientes.
+
+**Detalle de la Parte G** (7 changes, uno por componente; corte de sesión cada 2–3):
+
+| Change                          | Estado                                                         |
+| ------------------------------- | -------------------------------------------------------------- |
+| `components-fix-menu`           | **Hecha** (2026-08-01, `aaa-045`) — HU-012, 3 fixes + 1 del PO |
+| `components-fix-select`         | Pendiente — siguiente por severidad                            |
+| `components-fix-toast`          | Pendiente                                                      |
+| `components-fix-modal`          | Pendiente                                                      |
+| `components-fix-button`         | Pendiente — incluye el `aria-label` que expuso `aaa-042`       |
+| `components-fix-avatar`         | Pendiente                                                      |
+| `components-fix-checkbox-radio` | Pendiente — theming de `{color.white}`                         |
+
+> **Lo que `aaa-045` dejó para el resto de la parte** (2026-08-01): tres de sus cuatro ítems no eran bugs aislados sino **convenciones que el kit ya cumplía en algún componente y nunca se escribieron** (índices con exports enumerados, el `display` del popover cerrado, el `max-height` de los overlays). Se propagaban por imitación y se rompían donde el autor no tenía un vecino a mano — `slider/index.ts`, escrito un día antes, reincidió en dos de ellas. Conviene mirar cada fix de esta parte con esa pregunta: ¿caso aislado o convención implícita? Si es lo segundo, se escribe como requirement con test en lugar de arreglar solo la instancia. El fix visual del PO además solo se diagnosticó **midiendo en un navegador real** (Playwright está en el repo): la hipótesis razonable desde el código era falsa.
+>
+> **Dato operativo para los gates visuales**: el playground consume el `dist/` de la lib, así que un cambio de CSS o tokens **no se ve hasta rebuildear y reiniciar el dev server**. Costó una vuelta de verificación en falso.
 
 **Protocolo de ejecución**: una parte por sesión, con `/ds:handoff` → `/clear` → `/ds:resume` entre partes. El modelo y el effort de cada parte están declarados en el plan (§ "Modelo por parte" y § "Cuándo cortar sesión"); no se alterna modelo dentro de una sesión.
 

@@ -2,7 +2,8 @@
 id: aaa-045
 name: components-fix-menu
 type: change
-status: proposed
+status: archived
+archived: 2026-08-01
 modifies-specs:
   - component-menu
   - components-package
