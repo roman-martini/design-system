@@ -33,7 +33,9 @@ export class App {
           this.initialNavigation = false;
           return;
         }
-        this.main().nativeElement.focus();
+        // preventScroll: el scroll al top lo maneja el router (withInMemoryScrolling);
+        // sin esto, focus() scrollea hasta el <main> y oculta el header.
+        this.main().nativeElement.focus({ preventScroll: true });
       });
   }
 }
