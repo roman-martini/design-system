@@ -34,6 +34,7 @@ const DEFAULT_SUBMENU_DELAY_MS = 150;
     '(click)': 'onClick($event)',
     '(keydown)': 'onKeydown($event)',
     '(mouseenter)': 'onMouseEnter()',
+    '(mouseleave)': 'onMouseLeave()',
   },
 })
 export class DsMenuItem implements DsMenuItemRegistration, OnInit, OnDestroy {
@@ -81,6 +82,12 @@ export class DsMenuItem implements DsMenuItemRegistration, OnInit, OnDestroy {
   }
 
   closeOwnSubmenu(): void {
+    // Un submenú con apertura agendada está tan abierto como uno visible: si no
+    // se cancela acá, el timer sobrevive al cierre y abre un panel huérfano o le
+    // roba el foco al item donde ya está el puntero. Este es el punto único por
+    // el que DsMenu pide cerrar (close, closeOpenSubmenus, closeSubmenusExcept,
+    // sincronización del light-dismiss), así que cubre todas esas vías.
+    this.clearHoverTimer();
     this.submenu()?.close();
   }
 
@@ -118,6 +125,12 @@ export class DsMenuItem implements DsMenuItemRegistration, OnInit, OnDestroy {
       // queda en el item — entrar al panel es decisión explícita (→/Enter).
       this.hoverTimer = setTimeout(() => this.openSubmenu(false), this.resolveHoverDelay());
     }
+  }
+
+  protected onMouseLeave(): void {
+    // El hover intent se cancela cuando el puntero deja de sostenerlo. Cubre la
+    // salida del menú hacia la página, que no dispara ningún camino de cierre.
+    this.clearHoverTimer();
   }
 
   private activate(focusIntoSubmenu: boolean): void {

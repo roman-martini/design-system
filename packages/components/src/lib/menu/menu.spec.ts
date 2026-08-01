@@ -275,6 +275,59 @@ describe('DsMenu family', () => {
     expect(submenuItem.getAttribute('aria-expanded')).toBe('false');
   });
 
+  // Scenarios: la apertura por hover pendiente se cancela al salir del item y
+  // al cerrarse el menú. El delay efectivo en jsdom es el fallback de 150 ms
+  // (tokens.css no se carga), así que 100 ms cae dentro de la ventana.
+  const hoverSubmenuItemHalfway = (): HTMLElement => {
+    vi.useFakeTimers();
+    openRoot();
+    const submenuItem = rootItems[3];
+    submenuItem.dispatchEvent(new MouseEvent('mouseenter', { bubbles: false }));
+    vi.advanceTimersByTime(100);
+    return submenuItem;
+  };
+
+  it('el puntero que abandona el item antes del delay cancela la apertura', () => {
+    const submenuItem = hoverSubmenuItemHalfway();
+
+    submenuItem.dispatchEvent(new MouseEvent('mouseleave', { bubbles: false }));
+    vi.advanceTimersByTime(300);
+    fixture.detectChanges();
+    expect(submenuItem.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  it('el hover sobre un hermano antes del delay cancela la apertura y le deja el foco', () => {
+    const submenuItem = hoverSubmenuItemHalfway();
+
+    rootItems[1].dispatchEvent(new MouseEvent('mouseenter', { bubbles: false }));
+    vi.advanceTimersByTime(300);
+    fixture.detectChanges();
+    expect(submenuItem.getAttribute('aria-expanded')).toBe('false');
+    expect(document.activeElement).toBe(rootItems[1]);
+  });
+
+  it('Escape con una apertura en curso no deja un submenú huérfano', () => {
+    const submenuItem = hoverSubmenuItemHalfway();
+
+    keydown(rootPanel, 'Escape');
+    vi.advanceTimersByTime(300);
+    fixture.detectChanges();
+    expect(submenuItem.getAttribute('aria-expanded')).toBe('false');
+    expect(trigger.getAttribute('aria-expanded')).toBe('false');
+    expect(document.activeElement).toBe(trigger);
+  });
+
+  it('el light-dismiss nativo cancela la apertura en curso', () => {
+    const submenuItem = hoverSubmenuItemHalfway();
+
+    const toggle = new Event('toggle') as Event & { newState?: string };
+    toggle.newState = 'closed';
+    rootPanel.dispatchEvent(toggle);
+    vi.advanceTimersByTime(300);
+    fixture.detectChanges();
+    expect(submenuItem.getAttribute('aria-expanded')).toBe('false');
+  });
+
   // Scenario: light-dismiss del árbol (CA-012.7)
   it('sincroniza el estado con el cierre nativo del popover (evento toggle)', () => {
     openRoot();

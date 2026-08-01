@@ -1,4 +1,4 @@
-export * from './menu';
-export * from './menu-item';
-export * from './menu-separator';
-export * from './menu-trigger';
+export { DsMenu, type DsMenuItemRegistration } from './menu';
+export { DsMenuItem } from './menu-item';
+export { DsMenuSeparator } from './menu-separator';
+export { DsMenuTrigger } from './menu-trigger';
