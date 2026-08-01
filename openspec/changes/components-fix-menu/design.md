@@ -39,6 +39,31 @@ Por eso el delta va a `components-package` y no a `component-menu`: por la regla
 
 **Qué queda público**: los cinco símbolos que `menu/index.ts` ya exportaba, incluido `DsMenuItemRegistration`. Se conserva a propósito y con el mismo criterio que `select/index.ts` aplica a `DsOptionRegistration`: es el contrato mínimo que un item alternativo cumpliría para participar del registro, navegación y typeahead del panel sin que el menú importe la clase concreta. Enumerarlo lo vuelve una decisión escrita en lugar de un efecto colateral de `export *`.
 
-## 5. Sin ADR
+## 5. El panel cerrado que seguía ocupando (fix del PO)
+
+El PO reportó barras de scroll al abrir el menú, que desaparecen a los milisegundos (`docs/backlog/fixs/menu/fix-menu.md`, con captura). **La primera hipótesis fue incorrecta** y conviene dejarla escrita, porque el error es instructivo: se atribuyó al `overflow: auto` que el UA aplica a todo `[popover]` y que el panel heredaba. Era plausible y falso — medido en Chromium sobre el playground, un menú sin submenús abre con `scrollHeight === clientHeight` en todos los frames: no hay desborde que justifique una barra.
+
+Lo que destrabó el diagnóstico fue la secuencia exacta que dio el PO: la barra aparece **solo tras haber abierto un submenú por hover, cerrar el menú y volver a abrirlo**. Con esos pasos reproducidos en Playwright, el panel del submenú cerrado mide así:
+
+```
+{ id: "ds-menu-panel-3", abierto: false,
+  display: "flex",                                   // no display:none
+  inline: "position: fixed; left: 496px; top: 512px" }
+```
+
+Son dos hechos que se combinan:
+
+1. **El panel cerrado generaba caja.** `.ds-menu__panel { display: flex }` es una declaración de **autor**, y el origen de autor gana sobre el del UA sin importar la especificidad: la regla `[popover]:not(:popover-open) { display: none }` quedaba pisada. El panel cerrado no se veía solo por su `opacity: 0`, pero seguía existiendo para el layout.
+2. **El transform del padre lo capturaba.** Un elemento con `transform` distinto de `none` se vuelve containing block de sus descendientes `position: fixed`. Durante la animación de entrada el panel padre tiene transform, así que el panel del submenú —que conserva el `left`/`top` inline que le escribió el posicionador la primera vez— pasa a medirse **dentro** del padre y lo desborda. Terminada la animación, `transform: none` devuelve el submenú al viewport y la barra desaparece.
+
+Eso explica cada detalle del reporte: por qué solo pasa después de abrir un submenú (antes no hay `left`/`top` inline), por qué solo dura unos milisegundos (es la ventana de la animación) y por qué se veían las dos barras (el `left` desborda en X y el `top` en Y).
+
+**El fix**: `display: none` en el panel y `display: flex` en `:popover-open`, que es como debe declararse un popover con transición `display allow-discrete`. Verificado con la misma medición: en la segunda apertura el panel pasa a `scrollHeight === clientHeight` y el submenú cerrado a `display: none`.
+
+**Esta convención también existía y tampoco se había propagado** (tercera vez en este change, después de los índices y el overflow): `toast-container.css` la declara con el comentario "display solo en abierto: no pisar el display:none del UA para popover cerrado". `menu` y `select` no la siguen. En select el defecto es latente —su listbox no contiene overlays anidados, así que nadie lo desborda—, y por eso se registra como ítem de `components-fix-select` en lugar de arreglarse acá.
+
+**El `overflow` y el `max-height` se conservan**, ya no como el fix sino por su valor propio: sin `max-height` un menú más largo que el viewport se sale de pantalla sin poder scrollearse. Va con el mismo valor y criterio que `select.listbox.max-height` (320px, raw documentado), y `overflow-x: clip` porque un menú no scrollea en horizontal — el ancho lo definen los labels.
+
+## 6. Sin ADR
 
 No hay decisión one-way door. El fix vive dentro de ADR-014 y ADR-016; la regla de índices es la lectura explícita de la surface que ADR-004 ya define, no una decisión nueva que la contradiga.

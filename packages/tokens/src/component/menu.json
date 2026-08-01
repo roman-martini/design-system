@@ -10,6 +10,10 @@
         "min-width": {
           "value": "180px",
           "comment": "Raw documentado: la escala de dimension termina en 128. Mismo criterio que select.listbox.max-height (320px, aaa-016)."
+        },
+        "max-height": {
+          "value": "320px",
+          "comment": "Raw documentado, mismo criterio y valor que select.listbox.max-height: un panel más alto que esto se scrollea en vez de salirse del viewport."
         }
       },
       "item": {

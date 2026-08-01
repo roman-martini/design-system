@@ -15,8 +15,26 @@
   background: var(--ds-component-menu-panel-bg);
   box-shadow: var(--ds-component-menu-panel-shadow);
   min-width: var(--ds-component-menu-panel-min-width);
-  display: flex;
   flex-direction: column;
+
+  /* Cerrado no genera caja. `display: flex` a secas pisaría la regla del UA
+     que oculta un [popover] cerrado (autor gana sobre UA), y el panel quedaría
+     ocupando con opacity 0. En un menú con submenús eso es visible: el panel
+     hijo conserva el `position: fixed` + left/top que le escribió el
+     posicionador, y mientras el panel padre anima su transform —que lo vuelve
+     containing block de sus descendientes fixed— el hijo cerrado desborda al
+     padre y le dispara las barras de scroll. */
+  display: none;
+
+  /* Reset del `overflow: auto` que el UA aplica a todo [popover]: heredarlo
+     mostraba barras de scroll durante el primer frame de la apertura, mientras
+     el contenido del panel terminaba de medirse. En el eje X un menú nunca
+     scrollea (los labels definen el ancho); en el Y se scrollea recién pasada
+     la altura máxima, para no salirse del viewport (mismo criterio que el
+     listbox de select). */
+  max-height: var(--ds-component-menu-panel-max-height);
+  overflow-x: clip;
+  overflow-y: auto;
 
   /* Estado cerrado + transición de salida */
   opacity: 0;
@@ -29,6 +47,7 @@
 }
 
 .ds-menu__panel:popover-open {
+  display: flex;
   opacity: 1;
   transform: none;
   transition:

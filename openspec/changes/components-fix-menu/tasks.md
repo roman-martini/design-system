@@ -26,11 +26,25 @@ Cada tarea es ≤2 h con criterio binario. Diseño: dónde se cancela (design §
 
 **Criterio**: cero `export *` en índices de componente; la superficie pública emitida no pierde ni gana símbolos.
 
+## 3-bis. Fix del PO: barras de scroll al abrir (`docs/backlog/fixs/menu/fix-menu.md`)
+
+Reportado por el PO durante la ejecución de este change, con captura. Entra acá y no como pendiente suelto: es del menú y el change está abierto.
+
+- [x] 3b.1 **Primera hipótesis descartada por medición**: se atribuyó al `overflow: auto` que el UA da a `[popover]`. Medido en Chromium sobre el playground, un menú sin submenús abre con `scrollHeight === clientHeight` en todos los frames — no había desborde. Queda registrada en design §5 porque el error es instructivo.
+- [x] 3b.2 **Causa real**, hallada reproduciendo en Playwright la secuencia exacta del PO (abrir → hover hasta que abre el submenú → cerrar → reabrir): el panel del submenú cerrado medía `display: flex` con `position: fixed; left: 496px; top: 512px` inline. `display: flex` de autor pisa la regla del UA que oculta un popover cerrado, y el transform del panel padre durante la animación lo vuelve containing block de ese hijo fixed, que entonces lo desborda (design §5).
+- [x] 3b.3 Fix: `display: none` en el panel, `display: flex` en `:popover-open`. **Verificado con la misma medición**: en la segunda apertura el panel queda en `scrollHeight === clientHeight` y el submenú cerrado en `display: none`. Test sobre el fuente (jsdom no computa estilos).
+- [x] 3b.4 Se conserva el `max-height` tokenizado (`component.menu.panel.max-height`, 320px) con `overflow-y: auto` + `overflow-x: clip`, ya no como el fix sino por su valor propio: un menú más largo que el viewport hoy se sale de pantalla sin poder scrollearse. Scenario nuevo en el delta de `component-menu`.
+- [x] 3b.5 **Pendiente derivado registrado**: `select.css` tiene el mismo `display: flex` sin `:popover-open` (defecto latente — su listbox no contiene overlays anidados, así que nadie lo desborda). Va como ítem de `components-fix-select` en la tabla de la Parte G, no acá.
+- [ ] 3b.6 Verificación visual del PO sobre la secuencia que reportó (parte del gate de la sección 5).
+
+**Criterio**: el panel cerrado no genera caja; el alto máximo sale de un token; el PO confirma que las barras no aparecen en su secuencia.
+
 ## 4. Validación de cierre
 
 - [x] 4.1 `pnpm openspec validate components-fix-menu --strict`, `pnpm lint` y `pnpm format:check` pasan.
-- [x] 4.2 `pnpm -r build` y `pnpm -r test` pasan: **930 tests** (tokens 504, components 393, playground 33) — +6 (4 de regresión del hover, 2 del spec de superficie).
-- [x] 4.3 `pnpm typecheck` y `pnpm storybook:build` verdes. `pnpm size`: **46.37 kB** gzip contra el techo de 48.41 kB (+270 B por el handler y la cancelación) — el techo no se mueve.
+- [x] 4.2 `pnpm -r build` y `pnpm -r test` pasan: **931 tests** (tokens 504, components 394, playground 33) — +7 (4 de regresión del hover, 2 del spec de superficie, 1 del reset de overflow).
+- [x] 4.3 `pnpm typecheck` y `pnpm storybook:build` verdes. `pnpm size` verde en los 5 targets, ninguno movido: components **46.4 kB** / 48.41; tokens css **6.09 kB** / 6.15; tokens js **5.76 kB** / 5.81.
+  - **Dato para la próxima entrega de tokens**: el token del panel dejó los dos techos de `tokens` con ~60 B y ~50 B de margen. Bajo el trinquete de D-031, el próximo token que entre va a tener que subirlos en su propio PR — el mismo aviso que F3 dejó para los componentes.
 - [x] 4.4 `pnpm verify:packaging` (el gate del repo sobre el artefacto emitido, aaa-038): 2 packages sin observaciones.
 - [x] 4.5 Changeset `fix-menu-hover.md`: **patch** de components + patch de tokens (lockstep ADR-015).
 - [ ] 4.6 Proponer el mensaje de commit de implementación y **esperar el OK del PO**.

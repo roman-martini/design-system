@@ -6,6 +6,7 @@ status: proposed
 modifies-specs:
   - component-menu
   - components-package
+  - design-tokens-package (sin delta de spec; agrega component.menu.panel.max-height)
 related-adrs:
   - ADR-004
   - ADR-014
@@ -36,6 +37,8 @@ En el mismo componente, `menu/index.ts` es el único índice del kit que hace `e
 - **Tests de regresión** para las dos secuencias del hallazgo (foco robado entre hermanos, panel huérfano tras Esc) más el light-dismiss, con timers falsos.
 - **Named exports curados en `menu/index.ts`**, conservando exactamente los cinco símbolos que hoy salen (`DsMenu`, `DsMenuItemRegistration`, `DsMenuItem`, `DsMenuSeparator`, `DsMenuTrigger`) — cero breaking. `DsMenuItemRegistration` queda público con el mismo criterio explícito con el que `select/index.ts` exporta `DsOptionRegistration`: es el contrato que un item alternativo cumpliría.
 - **Misma corrección en `slider/index.ts`** (`DsSlider`, `DsSliderSize`, `DsSliderTick`), el otro índice con `export *`.
+- **El panel cerrado deja de generar caja** (fix del PO, `docs/backlog/fixs/menu/fix-menu.md`): `display: none` + `display: flex` en `:popover-open`. Declarar `display: flex` a secas pisaba la regla del UA que oculta un `[popover]` cerrado, así que el panel del submenú seguía existiendo para el layout con el `position: fixed` que le dejó el posicionador; mientras el panel padre anima su transform —que lo vuelve containing block de sus descendientes fixed— el submenú cerrado lo desbordaba y le disparaba las barras de scroll. Diagnóstico medido en Chromium reproduciendo la secuencia del PO (design §5).
+- **El panel acota su alto**: `max-height` tokenizado nuevo (`component.menu.panel.max-height`, 320px, igual que el listbox de select) con `overflow-y: auto` y `overflow-x: clip`. No es el fix del bug —eso lo resuelve el `display`— sino la corrección de un defecto latente: hoy un menú más largo que el viewport se sale de pantalla sin poder scrollearse.
 - **La convención pasa a ser un requirement de `components-package`**: cada `index.ts` de componente enumera sus exports. Es transversal por la regla de partición de ADR-018 (gobierna el package, no un componente), y es lo que convierte "todos los índices auditados lo hacen" en algo verificable.
 - Changeset: **patch** de `components` (y de `tokens` por el lockstep de ADR-015) — corrige comportamiento y no altera la superficie pública.
 

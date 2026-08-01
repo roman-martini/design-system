@@ -350,6 +350,27 @@ describe('DsMenu family', () => {
     expect(readSource('menu.css')).toContain('@starting-style');
   });
 
+  // Un panel cerrado no debe generar caja: `display: flex` a secas pisa la regla
+  // del UA que oculta un [popover] cerrado (autor gana sobre UA) y el panel
+  // queda ocupando con opacity 0 — lo que en un menú con submenús desbordaba al
+  // padre y le disparaba las barras de scroll. jsdom no computa estilos, así que
+  // se verifica sobre el fuente (mismo criterio que los tokens).
+  it('el panel solo genera caja cuando el popover está abierto', () => {
+    // Sin comentarios: se asertan declaraciones, no la prosa que las explica.
+    const css = readSource('menu.css').replace(/\/\*[\s\S]*?\*\//g, '');
+    const cerrado = css.slice(css.indexOf('.ds-menu__panel {'), css.indexOf(':popover-open'));
+    expect(cerrado).toContain('display: none');
+    expect(cerrado).not.toContain('display: flex');
+    expect(css.slice(css.indexOf(':popover-open'))).toContain('display: flex');
+  });
+
+  it('el panel resetea el overflow del UA y limita su alto con un token', () => {
+    const css = readSource('menu.css');
+    expect(css).toContain('overflow-x: clip');
+    expect(css).toContain('overflow-y: auto');
+    expect(css).toContain('max-height: var(--ds-component-menu-panel-max-height)');
+  });
+
   // Scenario: exportado desde public-api.ts
   it('la familia completa se exporta en public-api.ts', () => {
     const publicApi = readPublicApi();
