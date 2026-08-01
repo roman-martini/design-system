@@ -2,7 +2,9 @@
 
 Documento **operativo** del tool OpenSpec en este repo. No es decisión arquitectónica: cubre formato de IDs, frontmatter, paths y workflow del propio sistema de gobernanza.
 
-Para el **catálogo histórico de changes y specs**, ver [`docs/architecture/README.md`](../docs/architecture/README.md) §§ "Catálogo de Specs" y "Catálogo de Changes".
+Para el **catálogo histórico de changes y specs**, ver [`docs/architecture/catalog.md`](../docs/architecture/catalog.md).
+
+> **README ↔ `config.yaml`**: las convenciones que el CLI inyecta al generar artefactos (`context` + `rules` por artefacto, vía `openspec instructions`) viven en [`config.yaml`](config.yaml). Este README y ese config se solapan a propósito — este documenta para humanos/Claude, aquel alimenta al CLI. Si cambiás una convención en uno, sincronizá el otro.
 
 ---
 
@@ -25,7 +27,7 @@ Actualizar al crear un change nuevo.
 
 ### IDs en vuelo
 
-IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/README.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
+IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/catalog.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
 
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
 >
@@ -138,9 +140,9 @@ created: YYYY-MM-DD
 ## Workflow
 
 1. **Crear change**: en la práctica se crea con `/opsx:propose <kebab-name>` (o a mano siguiendo la estructura de arriba). Asignar ID en frontmatter (próximo disponible arriba). Actualizar en este README el próximo ID y la lista de IDs en vuelo.
-2. **Generar artifacts** (proposal, design opcional, specs delta, tasks). Validar con `npx --yes openspec validate --changes`.
+2. **Generar artifacts** (proposal, design opcional, specs delta, tasks). Validar con `pnpm openspec validate --changes`.
 3. **Apply**: implementar tasks marcando checkboxes. Última task siempre es "proponer mensaje de commit y esperar OK del usuario".
-4. **Archivar**: mover dir a `archive/<id>-<name>/`, sincronizar spec base con deltas, verificar que los artefactos no tengan links relativos (ver § "Referencias dentro de artefactos de change" — es lo que el movimiento rompe), borrar la línea del change de "IDs en vuelo" en este README, agregar fila al catálogo histórico en `docs/architecture/README.md`. Ver el [checklist completo de archive](../docs/product/README.md#checklist-de-archive) — incluye los registros de producto y el gate visual del PO ([D-022](../docs/product/decisiones.md)).
+4. **Archivar**: mover dir a `archive/<id>-<name>/`, sincronizar spec base con deltas, verificar que los artefactos no tengan links relativos (ver § "Referencias dentro de artefactos de change" — es lo que el movimiento rompe), borrar la línea del change de "IDs en vuelo" en este README, agregar fila al catálogo histórico en `docs/architecture/catalog.md`. Ver el [checklist completo de archive](../docs/product/README.md#checklist-de-archive) — incluye los registros de producto y el gate visual del PO ([D-022](../docs/product/decisiones.md)).
 
 > El CLI es **`@fission-ai/openspec`**, pinneado como devDependency del root (`aaa-039`): se invoca con `pnpm openspec <cmd>` o `pnpm exec openspec <cmd>`, y así queda bajo `pnpm install --frozen-lockfile` igual que el resto del toolchain.
 >

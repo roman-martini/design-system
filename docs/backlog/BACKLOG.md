@@ -22,7 +22,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
    - **Now** — disparador **activado** o decisión tomada: se puede arrancar en la próxima sesión.
    - **Next** — disparador definido pero no activado, o esperando una decisión puntual del PO.
    - **Later** — disparador definido pero lejano; sin urgencia ni fecha.
-3. **Activación**: item OpenSpec → `/opsx:propose <slug>` (convención e ID en [openspec/README.md](../../openspec/README.md)); item de tooling/docs → commit directo. Al activarse, el item cambia a estado `propuesta activa` con link al change, y **se elimina de acá cuando el change se archiva** (el histórico vive en el [catálogo de changes](../architecture/README.md#catálogo-de-changes)).
+3. **Activación**: item OpenSpec → `/opsx:propose <slug>` (convención e ID en [openspec/README.md](../../openspec/README.md)); item de tooling/docs → commit directo. Al activarse, el item cambia a estado `propuesta activa` con link al change, y **se elimina de acá cuando el change se archiva** (el histórico vive en el [catálogo de changes](../architecture/catalog.md#catálogo-de-changes)).
 4. **Grooming**: al **archivar cada change** se revisita este archivo — se reevalúan disparadores (¿alguno se activó?), se promueven items entre horizontes y se eliminan los cerrados. Es el mismo momento en que se tría el inbox del PO ([D-019](../product/decisiones.md)) y se revisa si algún intake maduró. El grooming es un paso del [checklist de archive](../product/README.md#checklist-de-archive), que es la lista canónica de todo lo que hay que actualizar al cerrar un change. Así el backlog nunca deriva.
 
 ---
@@ -182,7 +182,7 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 - **Respaldo obligatorio en los horizontes** (D-015): disparador concreto **o** decisión explícita del PO; sin ninguno de los dos → [intake](../product/intake/README.md), no Now/Next/Later.
 - **Nada entra en silencio** (D-015): completar el kit es un objetivo válido, pero cada entrada la aprueba el PO — por disparador o por buena idea fundamentada; el intake guarda lo aún no aprobado.
 - **La dirección no vive acá**: qué sigue lo deciden los hitos y D-XXX de [docs/product/](../product/README.md#roadmap); este archivo no propone candidatos ni prioriza por su cuenta.
-- **Los items cerrados se eliminan**: el histórico vive en el [catálogo de changes](../architecture/README.md#catálogo-de-changes) y en `openspec/changes/archive/`. Este archivo solo tiene pendientes.
+- **Los items cerrados se eliminan**: el histórico vive en el [catálogo de changes](../architecture/catalog.md#catálogo-de-changes) y en `openspec/changes/archive/`. Este archivo solo tiene pendientes.
 - **Cuando un item gana HU, se deduplica** (no se elimina — el item sigue vivo hasta que su change se archive): la HU pasa a ser la fuente de "qué/por qué" (origen, alcance, decisiones, fuera-de-alcance) y el item conserva **solo lo operativo** (tipo, link a la HU, disparador, horizonte, estado). No se repite en el backlog lo que la HU ya dice.
 - **Grooming al archivar cada change** (ver "Cómo se gestiona" §4): disparadores reevaluados, horizontes promovidos, cerrados eliminados, inbox del PO triado.
 - **Un item = una entrada**: si crece a múltiples entregas independientes, se parte (como los tokens Atlassian).

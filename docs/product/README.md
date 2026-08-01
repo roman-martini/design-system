@@ -231,7 +231,7 @@ Lo que hay que actualizar **cada vez que se archiva un change**. Es la lista can
 - [ ] Spec base sincronizada con los deltas del change.
 - [ ] **Artefactos del change sin links markdown relativos**: referencias por ID (`ADR-021`, `D-028`, `HU-022`, `aaa-037`) o path del repo en código. Convención y motivo en [openspec/README.md § Referencias dentro de artefactos de change](../../openspec/README.md#referencias-dentro-de-artefactos-de-change) — mover el change a `archive/` baja un nivel toda ruta relativa y la rompe.
 - [ ] `openspec/README.md`: próximo ID e "IDs en vuelo" al día.
-- [ ] `docs/architecture/README.md`: fila nueva en el catálogo de changes (y en el de specs si introdujo alguna).
+- [ ] `docs/architecture/catalog.md`: fila nueva en el catálogo de changes (y en el de specs si introdujo alguna).
 - [ ] ADR nuevo creado y fila en `decisions-log.md`, si el change generó una decisión one-way door.
 - [ ] **HU** → estado `Hecha (fecha, change; artefactos generados)` con sus CAs tildados. Si el change cerró un CA de otra HU, tildarlo también.
 - [ ] **Documento de la épica** → frontmatter (`estado`, contador de la tanda), tabla de HUs, tabla "Valor entregado" con la fila de esta entrega, y "Decisiones aplicables" si aparecieron D-XXX nuevas.

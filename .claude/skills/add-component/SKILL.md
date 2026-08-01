@@ -4,7 +4,7 @@ description: Guided workflow to add a new Angular component to @romanmartinidev/
 license: MIT
 metadata:
   author: roman.martini.dev@gmail.com
-  version: "1.0"
+  version: "1.1"
 ---
 
 # add-component
@@ -30,9 +30,12 @@ Guiá el alta de un componente nuevo en `@romanmartinidev/components` reproducie
 5. [ADR-011](../../../docs/architecture/adr/ADR-011-estado-disabled-accesible.md) — patrón disabled por tipo (acción vs form control).
 6. [ADR-012](../../../docs/architecture/adr/ADR-012-iconografia-lucide.md) — iconos Lucide: import por icono, `size="16"` + `strokeWidth="1.5"`, `currentColor`, reglas a11y, peer al primer consumo.
 7. [ADR-013](../../../docs/architecture/adr/ADR-013-overlays-dialog-nativo.md) — si el componente es overlay modal: `<dialog>` nativo, reglas 1–6.
-8. [ADR-018](../../../docs/architecture/adr/ADR-018-specs-por-componente.md) — organización de specs: transversal (`components-package`) vs una por componente (`component-<name>`); dónde va el delta.
-9. `openspec/specs/components-package/spec.md` — requirements **transversales** vigentes que el delta debe respetar; si el componente ya existe, además su `openspec/specs/component-<name>/spec.md`.
-10. Un change archivado de referencia (`openspec/changes/archive/aaa-014-components-add-modal/`) — estructura de proposal/design/tasks a replicar.
+8. [ADR-014](../../../docs/architecture/adr/ADR-014-overlays-anclados-popover-api.md) + [ADR-016](../../../docs/architecture/adr/ADR-016-posicionamiento-placements-por-overlay.md) — si es overlay anclado (dropdown, tooltip, popover): Popover API + posicionamiento propio del repo; sin librerías de posicionamiento.
+9. [ADR-019](../../../docs/architecture/adr/ADR-019-modelo-variantes-tono-apariencia.md) — modelo de variantes: estado/display usan dos ejes `tone × appearance`; acción usa un `variant` de énfasis plano.
+10. [ADR-020](../../../docs/architecture/adr/ADR-020-base-compartida-form-fields.md) — form fields (label/hint/error) extienden `DsFieldBase`; implementar el `ControlValueAccessor` a mano en un field es hallazgo.
+11. [ADR-018](../../../docs/architecture/adr/ADR-018-specs-por-componente.md) — organización de specs: transversal (`components-package`) vs una por componente (`component-<name>`); dónde va el delta.
+12. `openspec/specs/components-package/spec.md` — requirements **transversales** vigentes que el delta debe respetar; si el componente ya existe, además su `openspec/specs/component-<name>/spec.md`.
+13. El change de componente archivado **más reciente** (hoy `openspec/changes/archive/aaa-044-components-add-slider/`) — estructura de proposal/design/tasks a replicar: es el que incorpora los gates vigentes (size budget D-031, gate visual D-022, `/ng:review` como cierre).
 
 ---
 
@@ -51,10 +54,12 @@ Resolver antes de escribir artefactos — preguntar solo lo que no se pueda infe
 
 | Si el componente es… | Entonces (fuente) |
 |---|---|
-| **Form control** (recibe valor de un form) | Implementa **CVA** (`ControlValueAccessor`); disabled **nativo** (ADR-011) |
+| **Form field** (campo con label/hint/error: input, textarea, select…) | Extiende **`DsFieldBase`** (ADR-020) — CVA a mano en un field es hallazgo; disabled **nativo** (ADR-011) |
+| **Form control simple** (sin chrome de field: checkbox, radio, switch, slider…) | Implementa **CVA** (`ControlValueAccessor`) directo; disabled **nativo** (ADR-011) |
 | **Botón/control de acción** | `aria-disabled` + guarda + `disabledReason` (ADR-011) |
 | **Overlay modal** (modal, drawer, sheet) | Sobre `<dialog>` nativo, reglas 1–6 de ADR-013; no crear stack manager |
-| **Overlay no modal** (dropdown, tooltip, popover) | Evaluar plataforma primero (Popover API / anchor positioning) con el criterio de ADR-013 antes de sumar dependencia de posicionamiento — si la decisión no es obvia, va al `design.md` del change |
+| **Overlay anclado** (dropdown, tooltip, popover) | Popover API + posicionamiento propio del repo (ADR-014, ADR-016); no sumar librería de posicionamiento |
+| **Con variantes visuales** | Estado/display: dos ejes `tone × appearance`; acción: `variant` de énfasis plano (ADR-019) |
 | **Consume iconos** | Convención ADR-012 §1; verificar peer `@lucide/angular` ya declarada (lo está desde aaa-014) |
 
 Si el componente no encaja en ninguna fila o requiere una decisión one-way door nueva (dependencia externa, patrón de interacción sin precedente), la decisión se documenta en el `design.md` del change y, si corresponde, se promueve a ADR al archivar — no la toma la skill en silencio.
@@ -66,12 +71,18 @@ Si el componente no encaja en ninguna fila o requiere una decisión one-way door
 
 ### 4. Generar el change OpenSpec
 
-Crear `openspec/changes/components-add-<name>/` con el próximo ID de `openspec/README.md`:
+Scaffold con el CLI — el mismo camino que usa el resto del repo; crea el directorio y el marker `.openspec.yaml`:
+
+```bash
+pnpm openspec new change components-add-<name>
+```
+
+Luego escribir el **contenido** de los artefactos, asignando en el frontmatter el próximo ID de `openspec/README.md` (el CLI no conoce la convención `aaa-NNN`) y pisando cualquier template que el scaffold haya dejado:
 
 - **`proposal.md`** — frontmatter (`id`, `name`, `type: change`, `status: proposed`, `introduces-specs: component-<name>` para un componente nuevo — o `modifies-specs: component-<name>` si ya existe —, `modifies-specs: components-package` solo si cambia algo transversal, `design-tokens-package` si toca tokens), porqué/qué/impacto. Referenciar la HU de producto si existe. (Convención: [ADR-018](../../../docs/architecture/adr/ADR-018-specs-por-componente.md).)
 - **`design.md`** — solo si hay decisiones no triviales del paso 2 (posicionamiento, patrón nuevo, trade-offs). Si todo es aplicación mecánica de ADRs, omitirlo y decirlo en el proposal.
 - **`specs/component-<name>/spec.md`** — delta `ADDED Requirements` (componente nuevo) o `MODIFIED` (existente) con scenarios Given/When/Then **testables** que cubran: API pública, estados, a11y (ARIA, teclado, foco, reduced motion), tokens consumidos. Un requirement transversal nuevo va en `specs/components-package/spec.md`.
-- **`tasks.md`** — replicar la estructura de 8 fases de `aaa-014`, cada task ≤2h con criterio binario:
+- **`tasks.md`** — replicar el esqueleto de fases del change de referencia (el número exacto se adapta: se omiten las fases que no aplican y se fusionan donde el componente lo pida — `aaa-044` fusionó tests+story+showcase y no tuvo fase de dependencias), cada task ≤2h con criterio binario:
   1. **Pre-flight**: suite verde (`pnpm -r build && pnpm -r test`); soporte jsdom de las APIs usadas; tokens confirmados en `dist/tokens.css`.
   2. **Tokens**: `component/<name>.json` + build + test de tokens.
   3. **Dependencias** (si aplica): peers + verificación de que ng-packagr no bundlea + README.
@@ -81,9 +92,11 @@ Crear `openspec/changes/components-add-<name>/` con el próximo ID de `openspec/
   7. **Validación de cierre**: `pnpm openspec validate <change> --strict`, `pnpm lint`, `pnpm format:check`, `pnpm -r build`, `pnpm -r test`, auditoría **`/ng:review`** sobre los archivos del componente nuevo como quality gate (sin hallazgos de severidad alta ni media — "crear y revisar con el mismo rasero"; **pasarle el path de salida**: `docs/design/reviews/<fecha>-<componente>.md` o el scratchpad de la sesión — nunca el default "junto al componente", que escribiría dentro del package publicable), `npm pack --dry-run` (sin `*.spec.ts`/`*.stories.ts` en el tarball), **`pnpm size`** y changeset **minor** de components (+ **patch/minor** de tokens si tocó tokens). Última task: **proponer mensaje de commit y esperar OK**.
      - **Sobre `pnpm size`**: un componente cuesta ~2.3 kB gzip y el margen del techo es 2.16 kB ([D-031](../../../docs/product/decisiones.md)), así que **lo normal es que un componente nuevo exceda el presupuesto**. La acción correcta es **subir el límite en `.size-limit.json`** al nuevo peso medido más el 5% (redondeando hacia arriba a dos decimales de kB) y decir en el mensaje del commit cuánto pesó el componente — no recortar el componente ni ampliar el margen. Se corre acá, en la validación de cierre, para que el número se vea al cerrar y no cuando CI frena el PR. Actualizar también la tabla de techos de `CONTRIBUTING.md`.
   8. **Gate visual del PO** ([D-022](../../../docs/product/decisiones.md)): mostrarle el componente renderizado (showcase o Storybook) y **esperar su OK explícito**. Es bloqueante: sin ese OK no se archiva. Los gates automáticos no detectan defectos visuales — el de centrado vertical del Button llegó a `main` con todo en verde.
-  9. **ADR + archive** (si hubo decisión promovible): ADR, decisions-log, mover a `archive/<id>-<name>/`, sincronizar spec base, y el resto del [checklist de archive](../../../docs/product/README.md#checklist-de-archive) — próximo ID en `openspec/README.md`, catálogo en `docs/architecture/README.md`, HU a Hecha, doc de la épica, README de producto y grooming del BACKLOG. Última task: proponer commit del archive y esperar OK.
+  9. **ADR + archive** (si hubo decisión promovible): ADR, decisions-log, mover a `archive/<id>-<name>/`, sincronizar spec base, y el resto del [checklist de archive](../../../docs/product/README.md#checklist-de-archive) — próximo ID en `openspec/README.md`, catálogo en `docs/architecture/catalog.md`, HU a Hecha, doc de la épica, README de producto y grooming del BACKLOG. Última task: proponer commit del archive y esperar OK.
 - Validar: `pnpm openspec validate --changes`.
 - Actualizar `openspec/README.md` (ID consumido) y el BACKLOG (item pasa a `propuesta activa` con link) — esto forma parte del commit de la propuesta.
+
+> **Por qué el CLI solo scaffoldea y valida**: `/opsx:propose` sí recibe las convenciones generales del repo — `openspec/config.yaml` le inyecta `context` + `rules` por artefacto vía `openspec instructions` (IDs `aaa-NNN`, referencias por ID, qué leer antes de redactar). Lo que ese canal no cubre —porque aplica a **cualquier** change, no a un tipo— es el playbook específico del alta de componente: la clasificación contra la tabla de ADRs (§2), tokens primero, el esqueleto de fases con sus gates (D-031, D-022, `/ng:review`) y la delegación a `/ng:create`. Mecánica y convenciones generales → CLI + `config.yaml`; playbook del caso → esta skill.
 
 ### 5. Checkpoint con el usuario
 

@@ -392,7 +392,7 @@ Si tenés dudas sobre dónde mirar:
 | ¿Qué debe hacer el sistema?    | `openspec/specs/`                               |
 | ¿Qué cambios están en curso?   | `openspec/changes/`                             |
 | ¿Por qué se decidió X?         | `docs/architecture/adr/`                        |
-| ¿Cómo está organizado el repo? | `docs/architecture/README.md`                   |
+| ¿Cómo está organizado el repo? | `docs/architecture/ARCHITECTURE.md`             |
 | ¿Por qué se prioriza X?        | `docs/product/` (épicas, HUs, decisiones D-XXX) |
 | ¿Qué está en cola?             | `docs/backlog/BACKLOG.md`                       |
 | ¿Cómo trabajo?                 | este archivo                                    |

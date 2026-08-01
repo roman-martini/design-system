@@ -21,8 +21,9 @@ design-system/
 │   └── playground/              # App Angular para probar libs y crear prototipos
 ├── docs/
 │   ├── architecture/            # Fuente de verdad arquitectónica
-│   │   ├── README.md            # Visión general
-│   │   ├── PLAYBOOK.md          # Cómo replicar esta arquitectura en otro repo
+│   │   ├── README.md            # Guía del directorio (qué artefacto responde qué)
+│   │   ├── ARCHITECTURE.md      # Síntesis técnica de la arquitectura
+│   │   ├── catalog.md           # Catálogo de specs y changes
 │   │   ├── decisions-log.md     # Índice tabular de decisiones
 │   │   └── adr/                 # ADRs en formato MADR
 │   ├── product/                 # Producto: épicas, HUs, decisiones D-XXX, intake de ideas
@@ -73,7 +74,7 @@ Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si te
 | ¿Cuál es el historial de cambios cerrados?                                   | `openspec/changes/archive/`           | Auditoría de cambios pasados                                                                 |
 | ¿Por qué se decidió X?                                                       | `docs/architecture/adr/ADR-NNN-*.md`  | Decisión inmutable + opciones evaluadas                                                      |
 | ¿Hay un índice de todas las decisiones?                                      | `docs/architecture/decisions-log.md`  | Tabla cronológica                                                                            |
-| ¿Cómo está organizado el repo (visión general, principios)?                  | `docs/architecture/README.md`         | Mapa mental                                                                                  |
+| ¿Cómo está organizado el repo (visión general, principios)?                  | `docs/architecture/ARCHITECTURE.md`   | Mapa mental                                                                                  |
 | ¿Cómo trabajo como dev en este repo?                                         | `CONTRIBUTING.md`                     | Flujo de PR, commits, changesets                                                             |
 | ¿Cómo arranco como dev nuevo?                                                | `README.md` (root)                    | Quickstart                                                                                   |
 | ¿Cómo debe trabajar Claude acá?                                              | `CLAUDE.md` (este archivo)            | Contrato Claude ↔ repo                                                                       |
@@ -88,7 +89,7 @@ Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si te
 
 1. **Specs ≠ ADRs.** Specs describen comportamiento testable (qué). ADRs justifican decisiones tecnológicas (por qué). Si dudás: ¿se puede convertir en un test? → spec. ¿Documenta una elección entre alternativas? → ADR.
 2. **`design.md` de un change ≠ ADR.** El `design.md` muere cuando el change se archiva. El ADR queda eterno. Decisiones one-way door del change se promueven a ADR al cerrarse.
-3. **`docs/architecture/README.md` no duplica specs.** Da contexto (diagramas, principios, mapa). Las reglas testables linkean al spec correspondiente.
+3. **`docs/architecture/ARCHITECTURE.md` no duplica specs.** Da contexto (diagramas, principios, mapa). Las reglas testables linkean al spec correspondiente.
 4. **OpenSpec excluye explícitamente** elecciones de framework/librería y detalles de implementación. Eso va a `design.md` o ADRs, no a specs.
 
 ## Convenciones
@@ -124,7 +125,7 @@ Todo cambio significativo (nueva lib, refactor mayor, cambio de tooling base) ar
 - Los **paths de changes activos NO incluyen el ID** (los directorios siguen con kebab-case). El ID vive solo en el frontmatter. Al archivar, el directorio se renombra a `<id>-<name>` y se mueve a `archive/`.
 - Las **specs NO tienen ID**. Se identifican por su nombre de carpeta (`openspec/specs/<name>/`).
 - Convención + próximo ID disponible: [`openspec/README.md`](openspec/README.md) (operativo, no arquitectónico).
-- Catálogo histórico de changes y specs: [`docs/architecture/README.md`](docs/architecture/README.md) §§ "Catálogo de Specs" y "Catálogo de Changes".
+- Catálogo histórico de changes y specs: [`docs/architecture/catalog.md`](docs/architecture/catalog.md).
 
 ### Versionado
 
@@ -177,16 +178,16 @@ pnpm changeset:version   # el script NO se llama `version`: el builtin de pnpm l
 
 ## Cómo trabajar en este repo (para Claude)
 
-1. **Leer siempre primero** `docs/architecture/README.md`, `docs/architecture/decisions-log.md` y los ADRs aceptados antes de proponer cambios estructurales.
+1. **Leer siempre primero** `docs/architecture/ARCHITECTURE.md`, `docs/architecture/decisions-log.md` y los ADRs aceptados antes de proponer cambios estructurales.
 2. **Detectar y marcar malas prácticas**. Si el código viola las prioridades de arriba, mencionarlo y proponer alternativa fundamentada — no continuar en silencio.
-3. **Cambios significativos siguen el flujo de OpenSpec** — propuesta → review → apply → archive. Ver `docs/architecture/README.md` § "Catálogo de Changes" para el inventario histórico y `openspec/README.md` para la convención operativa.
+3. **Cambios significativos siguen el flujo de OpenSpec** — propuesta → review → apply → archive. Ver `docs/architecture/catalog.md` para el inventario histórico y `openspec/README.md` para la convención operativa.
 4. **No modificar ADRs aceptados.** Para cambiar una decisión, crear un nuevo ADR.
 5. **Documentar decisiones nuevas.** Toda decisión arquitectónica significativa actualiza `decisions-log.md` y genera ADR si corresponde.
 6. **No crear archivos `*.md` de planificación o resumen ad-hoc** salvo que se pidan explícitamente. Las decisiones van a ADRs; los cambios significativos van a OpenSpec.
 
 ## Referencias
 
-- Síntesis arquitectónica: `docs/architecture/README.md`
+- Síntesis arquitectónica: `docs/architecture/ARCHITECTURE.md`
 - Material de investigación: `docs/reference/`
 - Contexto original del proyecto: `docs/reference/contexto_inicial.md`
 

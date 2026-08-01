@@ -54,7 +54,7 @@ Antes de hacer fetch completo:
 Leé en este orden, independiente del tipo de sitio:
 
 1. `CLAUDE.md` — prioridades del repo y convenciones.
-2. `docs/architecture/README.md` — mapa mental del sistema actual.
+2. `docs/architecture/ARCHITECTURE.md` — síntesis del sistema actual.
 3. `docs/architecture/decisions-log.md` — ADRs aceptados que pueden chocar con la adopción.
 4. **Todos** los JSON en `packages/tokens/src/` — primitives, semantic, component, theme. Este es el inventario actual contra el que vas a comparar.
 5. Los ADRs relacionados a tokens y components (`ADR-003`, `ADR-004`, `ADR-007` si existe).

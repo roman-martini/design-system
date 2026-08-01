@@ -84,7 +84,7 @@ Cada tarea es ≤2 h y tiene criterio de aceptación binario.
 
 - [ ] 9.1 Mover `openspec/changes/tokens-figma-export/` → `openspec/changes/archive/aaa-012-tokens-figma-export/`.
 - [ ] 9.2 Sincronizar la spec base `openspec/specs/design-tokens-package/spec.md` con el Requirement ADDED del delta (output DTCG).
-- [ ] 9.3 Promover **ADR-009** de `Propuesto` → `Aceptado`; agregar fila en `docs/architecture/decisions-log.md` y en el "Catálogo de Changes" de `docs/architecture/README.md`.
+- [ ] 9.3 Promover **ADR-009** de `Propuesto` → `Aceptado`; agregar fila en `docs/architecture/decisions-log.md` y en el "Catálogo de Changes" de `docs/architecture/catalog.md`.
 - [ ] 9.4 Actualizar frontmatter del proposal: `status: archived` + `archived: 2026-06-NN`.
 - [ ] 9.5 Actualizar `openspec/README.md`: nota de aaa-012 archivado (el "próximo disponible" ya quedó en aaa-013 al crear el change).
 - [ ] 9.6 `pnpm openspec validate --all` pasa.

@@ -22,7 +22,7 @@ design-system/
 ├── apps/
 │   └── playground/    Angular app de prueba + showcase navegable + Storybook
 ├── docs/
-│   ├── architecture/  Fuente de verdad arquitectónica (ADRs + visión + playbook)
+│   ├── architecture/  Fuente de verdad arquitectónica (ADRs + síntesis + catálogos)
 │   ├── product/       Épicas, HUs y decisiones de producto (D-XXX)
 │   ├── backlog/       Cola operativa Now/Next/Later
 │   └── ...
@@ -30,7 +30,7 @@ design-system/
 └── ...
 ```
 
-Detalles: ver [`docs/architecture/README.md`](docs/architecture/README.md).
+Detalles: ver [`docs/architecture/ARCHITECTURE.md`](docs/architecture/ARCHITECTURE.md).
 
 ## Soporte
 
