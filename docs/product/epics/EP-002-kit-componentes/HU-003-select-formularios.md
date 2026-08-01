@@ -1,7 +1,7 @@
 ---
 epica: EP-002
 actor: Dev consumidor
-estado: Hecha (2026-07-11, aaa-016 components-add-select; genera ADR-014)
+estado: Hecha (2026-07-11, aaa-016 components-add-select; genera ADR-014; fixes en aaa-046 2026-08-01)
 decisiones: [D-005, D-007, D-009]
 adrs: [ADR-011, ADR-012, ADR-013, ADR-014]
 ---
@@ -23,6 +23,13 @@ adrs: [ADR-011, ADR-012, ADR-013, ADR-014]
 - [x] **CA-003.5** — Dado el CSS del componente, entonces todo valor visual sale de tokens (`var(--ds-*)`), incluidos los sizes, sin hardcodes. _Contraste de los pares nuevos verificado por script (2 tokens ajustados en el gate)._
 - [x] **CA-003.6** — Dado un select deshabilitado vía forms API (`setDisabledState`), entonces no es operable pero su estado es perceptible (contraste y semántica según [ADR-011](../../../architecture/adr/ADR-011-estado-disabled-accesible.md), extendido por ADR-014 §5 al form control operado por botón).
 - [x] **CA-003.7** — Dado el listado abierto, entonces se posiciona relativo al trigger sin quedar cortado por contenedores con overflow (top layer, Popover API), y se cierra al clickear fuera (light-dismiss).
+
+> **Fixes posteriores** (2026-08-01, `aaa-046`, Parte G de la review integral 2026-07-26). Los CAs seguían cumpliéndose en lo que enunciaban, pero la review y el uso real expusieron cuatro huecos que ninguno cubría y uno que sí:
+>
+> - **CA-003.1 estaba incompleto en la práctica**: el control solo pasaba a `touched` al cerrar el listado, así que enfocarlo y tabular sin abrirlo nunca lo marcaba y el patrón `invalid && touched` del consumidor no mostraba el error. Ahora lo marcan el blur y el cierre por cualquier vía.
+> - **CA-003.2 no exigía typeahead**, que el patrón APG _select-only combobox_ sí incluye y `DsMenu` ya tenía: tipear ahora mueve la opción activa, con listado abierto o cerrado.
+> - **El ancho del control dependía del label seleccionado** (reporte del PO): medido en Chromium, el trigger caía de 133 a 79 px al elegir una opción corta y el listado heredaba la contracción partiendo las opciones largas. Piso tokenizado en el trigger y ancho del trigger como mínimo del listado.
+> - **El listbox cerrado generaba caja** (pisaba el `display: none` del UA) y la separación trigger↔listado estaba hardcodeada en JS en vez de salir de un token.
 
 ## Dependencias
 

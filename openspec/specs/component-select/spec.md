@@ -31,6 +31,13 @@ El package SHALL exponer `DsSelect` (selector `ds-select`), combobox de selecci�
 - **WHEN** el consumidor ejecuta `ctrl.setValue('c')`
 - **THEN** el trigger SHALL mostrar el label de la opción `'c'` y esa opción SHALL exponerse como seleccionada
 
+#### Scenario: el control pasa a touched al perder el foco sin abrirse
+
+- **GIVEN** `<ds-select [formControl]="ctrl">` con foco en el trigger y el listado cerrado
+- **WHEN** el foco abandona el trigger sin que el listado se haya abierto
+- **THEN** `ctrl.touched` SHALL ser `true` — el patrón `invalid && touched` del consumidor SHALL visibilizar la validación de un select requerido no tocado
+- **AND** cerrar el listado (selección, Esc o light-dismiss) SHALL seguir marcando touched
+
 #### Scenario: apertura por teclado
 
 - **GIVEN** el select cerrado con foco en el trigger
@@ -46,6 +53,16 @@ El package SHALL exponer `DsSelect` (selector `ds-select`), combobox de selecci�
 - **THEN** la opción activa SHALL ir a la primera/última habilitada
 - **WHEN** presiona `Enter`
 - **THEN** la opción activa SHALL quedar seleccionada, el listado SHALL cerrarse y el model SHALL actualizarse
+
+#### Scenario: typeahead por caracteres imprimibles
+
+- **GIVEN** el listado abierto
+- **WHEN** el usuario tipea un carácter imprimible
+- **THEN** la opción activa SHALL saltar a la siguiente habilitada cuyo label empiece con el buffer tipeado (case-insensitive), sin cambiar el valor hasta confirmar
+- **AND** repetir la misma letra antes del reset del buffer SHALL ciclar entre las opciones con esa inicial; un buffer de varios caracteres SHALL refinar la búsqueda incluyendo la opción activa
+- **GIVEN** el listado cerrado con foco en el trigger
+- **WHEN** el usuario tipea un carácter imprimible
+- **THEN** el listado SHALL abrirse con la opción activa en la primera coincidencia, sin cambiar el valor
 
 #### Scenario: ESC cierra sin cambiar la selección
 
@@ -86,8 +103,24 @@ El package SHALL exponer `DsSelect` (selector `ds-select`), combobox de selecci�
 - **GIVEN** un `ds-select` dentro de un contenedor con `overflow: hidden`
 - **WHEN** el listado se abre
 - **THEN** SHALL renderizarse en el top layer (popover), sin quedar recortado por el contenedor
+- **AND** la separación entre el trigger y el listado SHALL salir del token `component.select.listbox.offset` (con fallback documentado para entornos que no resuelven CSS vars)
 - **WHEN** el usuario clickea fuera del select
 - **THEN** el listado SHALL cerrarse sin cambiar la selección (light-dismiss)
+
+#### Scenario: el ancho del control no depende de la opción seleccionada
+
+- **GIVEN** un `ds-select` sin ancho declarado por el consumidor, con opciones de labels de distinta longitud
+- **WHEN** el usuario selecciona una opción cuyo label es más corto que el placeholder
+- **THEN** el ancho del control SHALL mantenerse — el trigger SHALL respetar el piso `component.select.trigger.min-width`
+- **WHEN** el listado se abre
+- **THEN** el listado SHALL ser al menos tan ancho como el trigger y SHALL mostrar cada label en una sola línea, creciendo hasta el ancho disponible del viewport si alguna opción lo excede
+- **AND** el listado SHALL permanecer dentro del viewport, corriéndose horizontalmente antes que desbordar por su borde
+
+#### Scenario: el listbox cerrado no genera caja
+
+- **GIVEN** un `ds-select` renderizado con el listado cerrado
+- **WHEN** se inspecciona `select.css`
+- **THEN** el `display` de autor del listbox SHALL declararse únicamente para el estado `:popover-open`, conservando en el estado cerrado la ocultación del UA (`display: none`) — el listbox cerrado SHALL NO participar del layout
 
 #### Scenario: animación con tokens y reduced motion
 

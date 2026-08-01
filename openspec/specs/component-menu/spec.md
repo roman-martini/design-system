@@ -23,6 +23,7 @@ El package SHALL exponer la familia `DsMenuTrigger` (directiva `[dsMenuTriggerFo
 - **WHEN** se activa por click, Enter, Space o ↓
 - **THEN** el panel SHALL abrirse vía Popover API con `role="menu"` y el foco en el primer item habilitado
 - **AND** el trigger SHALL exponer `aria-haspopup="menu"` y `aria-expanded="true"` (y `"false"` cerrado)
+- **AND** la separación entre el ancla y el panel raíz SHALL salir del token `component.menu.panel.offset` (paridad con `component.menu.submenu.offset`, con fallback documentado para entornos que no resuelven CSS vars)
 
 #### Scenario: navegación por teclado con typeahead (CA-012.2)
 

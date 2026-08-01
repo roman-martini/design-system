@@ -45,10 +45,10 @@
 
 ## 7. Commit (requiere OK del PO)
 
-- [ ] 7.1 `git status` fresco + staging con paths explícitos (el PO trabaja en paralelo); proponer mensaje de commit Conventional (`fix(components): …`, header ≤100 chars, sin trailer) y **esperar el OK explícito del PO**
+- [x] 7.1 `git status` fresco + staging con paths explícitos (el PO trabaja en paralelo); proponer mensaje de commit Conventional (`fix(components): …`, header ≤100 chars, sin trailer) y **esperar el OK explícito del PO** — commiteado con OK del PO en `5fc4d3f`
 
 ## 8. Gate visual y archive (bloqueado por D-022)
 
-- [ ] 8.1 Gate visual del PO sobre el select en el playground — el archive no se ejecuta sin su OK explícito
+- [x] 8.1 Gate visual del PO sobre el select en el playground — el archive no se ejecuta sin su OK explícito (dado el 2026-08-01)
 - [ ] 8.2 Archive con el checklist completo de `docs/product/README.md` § "Checklist de archive": sync de specs base (component-select, component-menu, components-package), artefactos sin links relativos, `openspec/README.md` (próximo ID e IDs en vuelo), `docs/architecture/catalog.md`, HU-003 (estado según lo que la HU declare pendiente), doc de EP correspondiente, README de producto (Foto táctica y Última entrega), grooming de `docs/backlog/BACKLOG.md` (tabla Parte G → 2/7)
 - [ ] 8.3 Proponer el commit de archive (`chore(openspec): archivar aaa-046 …`) y esperar el OK del PO — mismo patrón de sesión que `aaa-045`

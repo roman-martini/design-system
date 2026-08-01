@@ -2,7 +2,8 @@
 id: aaa-046
 name: components-fix-select
 type: change
-status: proposed
+status: archived
+archived: 2026-08-01
 modifies-specs:
   - component-select
   - component-menu

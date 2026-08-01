@@ -22,3 +22,8 @@ Opciones tanteadas en la ex Cantera: **Chromatic** (free tier, integrado con Sto
 **Diferido explícitamente** al aprobar [D-021](../decisiones.md): el PO aprobó publicar Storybook en GitHub Pages ahora ([HU-031](../epics/EP-005-calidad-profesional/HU-031-storybook-publicado.md)) y dejó Chromatic y la regresión visual para evaluar por separado. Este intake es ese "por separado".
 
 Disparador natural: que HU-031 esté hecha (Storybook publicado es prerequisito de Chromatic) y que aparezca la primera regresión visual real que el gate del PO no haya atajado.
+
+**Evidencia acumulada en la Parte G** (2026-08-01, `aaa-045` y `aaa-046`). El disparador **no** se activó: los dos defectos visuales los detectó el PO, así que el gate humano funcionó. Pero aportan dos datos a la pregunta 2, que es la que decide si esto entra:
+
+- **Los gates automáticos no vieron ninguno de los dos**, con la suite en 945 tests, axe corriendo sobre todo el kit y el gate de contraste activo: un panel cerrado que generaba caja y un control que se contraía al seleccionar no son violaciones de a11y ni de contraste. La clase de defecto que este intake apunta a cubrir está confirmada como real y recurrente, no hipotética.
+- **Ambos diagnósticos se cerraron midiendo cajas en Chromium con Playwright**, que ya está en el repo y ya se usa de forma ad-hoc para esto. Eso abarata la opción "Playwright" respecto de lo estimado acá y sugiere una tercera vía más barata que los snapshots de imagen: **aserciones dimensionales** (el ancho del trigger no cambia al seleccionar; un popover cerrado mide 0×0), que no sufren la fragilidad entre sistemas operativos porque comparan números, no pixeles.
