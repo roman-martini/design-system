@@ -1,5 +1,5 @@
 ---
-estado: En desarrollo (tandas 1-2 completas + Button loading aaa-031; tanda 3 D-014 en curso 6/7 -- Card/Button variants/Badge/Switch/Textarea/Avatar entregados (aaa-032..037), falta Slider)
+estado: En desarrollo (tandas 1-2-3 completas -- la tanda 3 D-014 cerró 7/7 el 2026-08-01 con Slider aaa-044; quedan HU-033/HU-034 de refinamiento visual, fuera de tanda)
 actor: Dev consumidor
 ---
 
@@ -39,6 +39,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | `DsSwitch` (toggle CVA, sizes sm/md/lg, label, reduced-motion)                           | [aaa-035](../../../../openspec/changes/archive/aaa-035-components-add-switch/)                                                                                                                                                                                                                                                                         | Toggle on/off accesible integrado a Forms para settings                                                           |
 | `DsTextarea` sobre la base compartida `DsFieldBase` (ADR-020)                            | [aaa-036](../../../../openspec/changes/archive/aaa-036-components-add-textarea/)                                                                                                                                                                                                                                                                       | Entrada multilínea accesible con el mismo contrato de field que Input                                             |
 | `DsAvatar` + `DsAvatarGroup` (color por hash del nombre, fallback, solapamiento)         | [aaa-037](../../../../openspec/changes/archive/aaa-037-components-add-avatar/)                                                                                                                                                                                                                                                                         | Identidad visual de usuarios y equipos; entrega además `space.negative` y con eso cierra CA-018.3 de EP-001       |
+| `DsSlider` (híbrido nativo+visual, CVA numérico, showValue/ticks/tooltip opt-in)         | [aaa-044](../../../../openspec/changes/archive/aaa-044-components-add-slider/)                                                                                                                                                                                                                                                                         | Captura de un número en rango accesible por teclado y pointer; estrena ADR-023 y **cierra la tanda 3 (7/7)**      |
 
 ## Historias de usuario
 
@@ -63,7 +64,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-022](HU-022-avatar.md)                        | Avatar y grupo de avatares                        | Dev consumidor | Hecha (2026-07-26, aaa-037)                                               |
 | [HU-023](HU-023-switch.md)                        | Switch/Toggle                                     | Dev consumidor | Hecha (2026-07-23, aaa-035)                                               |
 | [HU-024](HU-024-textarea.md)                      | Textarea                                          | Dev consumidor | Hecha (2026-07-26, aaa-036)                                               |
-| [HU-025](HU-025-slider.md)                        | Slider (range)                                    | Dev consumidor | Identificada (tanda 3, D-014)                                             |
+| [HU-025](HU-025-slider.md)                        | Slider (range)                                    | Dev consumidor | Hecha (2026-08-01, aaa-044 — genera ADR-023, cierra la tanda 3)           |
 | [HU-033](HU-033-ajuste-dimensional-referencia.md) | Ajuste dimensional a la referencia modern-minimal | Dev consumidor | Identificada (2026-07-26)                                                 |
 | [HU-034](HU-034-estetica-spinner.md)              | Refinamiento estético del Spinner                 | Dev consumidor | Identificada (2026-07-26)                                                 |
 

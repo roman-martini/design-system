@@ -2,7 +2,8 @@
 id: aaa-044
 name: components-add-slider
 type: change
-status: proposed
+status: archived
+archived: 2026-08-01
 introduces-specs:
   - component-slider
 modifies-specs:
@@ -12,6 +13,7 @@ related-adrs:
   - ADR-007
   - ADR-011
   - ADR-020
+  - ADR-023
 related-decisions:
   - D-014
   - D-022

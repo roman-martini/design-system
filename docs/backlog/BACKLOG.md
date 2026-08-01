@@ -83,15 +83,17 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 ---
 
-### `components-add-slider` — Slider (tanda 3, último)
+### `playground-prototipo-h1` — Verificación del hito H1 (prototipo modern-minimal)
 
-**Tipo**: OpenSpec (kit). **Producto**: [HU-025](../product/epics/EP-002-kit-componentes/HU-025-slider.md) / EP-002 — origen, alcance y decisiones viven en la HU.
+**Tipo**: playground (no publicable; commit directo o change chico según alcance). **Producto**: hito **H1** del [roadmap](../product/README.md#roadmap) / EP-006.
 
-**Disparador**: su turno en la cola de la tanda 3 ([D-014](../product/decisiones.md)) — promovido al archivarse `components-add-avatar` (`aaa-037`, 2026-07-26). **Cierra la tanda 3** (7/7).
+**Origen**: [D-023](../product/decisiones.md) definió cómo se verifica H1 — **un prototipo de la referencia `modern-minimal` construido en el playground 100% con componentes del DS**, no un checklist. La tanda 3 cerró 7/7 el 2026-08-01 (`aaa-044`, Slider), así que la verificación quedó habilitada.
 
-**Estado**: **propuesta activa** — [`aaa-044`](../../openspec/changes/components-add-slider/proposal.md) (2026-07-31; HU-025 refinada el mismo día con base híbrida, control autónomo y extras opt-in). El PO decidió ejecutarlo ahora, intercalado en el plan de la review.
+**Alcance propuesto**: página en el playground que reproduzca la referencia usando exclusivamente el kit; lo que no se pueda construir con el kit es hallazgo (gap del hito), no motivo para CSS ad-hoc.
 
-**Nota**: al cerrarse habilita la verificación del hito H1 — el prototipo de la referencia `modern-minimal` en el playground ([D-023](../product/decisiones.md)).
+**Disparador**: activado — cierre de la tanda 3 (D-023). El PO decide cuándo agendarlo respecto del plan de la review (Partes G–N pendientes).
+
+**Estado**: pendiente (Now).
 
 ---
 

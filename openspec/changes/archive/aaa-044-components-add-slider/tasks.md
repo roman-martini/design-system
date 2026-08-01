@@ -55,16 +55,16 @@ Cada tarea es ≤2 h con criterio binario. Diseño: patrón híbrido (design §1
 
 ## 7. Gate visual del PO (D-022 — bloqueante)
 
-- [ ] 7.1 Mostrar al PO el slider renderizado (showcase del playground o Storybook): los cuatro modos, disabled y las tres sizes. **Esperar su OK explícito.** Sin ese OK no se archiva — los gates automáticos no detectan defectos visuales.
+- [x] 7.1 Slider renderizado revisado por el PO en el showcase (`/slider`, 5 casos + teclado + hover): **OK visual explícito del PO el 2026-08-01**.
 
 **Criterio**: OK visual del PO registrado.
 
 ## 8. ADR + archive
 
-- [ ] 8.1 Evaluar la promoción del patrón híbrido a **ADR** (design §1 — gobierna futuros controles de la familia: rating, range de dos thumbs): si se promueve, crear el ADR + fila en `docs/architecture/decisions-log.md`; si no, registrar el porqué en el proposal al archivar.
-- [ ] 8.2 Mover a `archive/aaa-044-components-add-slider/`; `status: archived` + fecha; crear la spec base `component-slider` desde el delta (scenario por scenario — un MODIFIED futuro reemplaza el requirement completo).
-- [ ] 8.3 Registros: `openspec/README.md` (línea de IDs en vuelo), catálogos en `docs/architecture/README.md`, HU-025 → Hecha, EP-002 al día (**tanda 3 cerrada 7/7**), README de producto, grooming del BACKLOG (slider sale; evaluar la verificación del hito H1 — D-023).
-- [ ] 8.4 `pnpm openspec validate --all` pasa.
-- [ ] 8.5 Proponer mensaje de commit del archive y **esperar OK del PO**.
+- [x] 8.1 Patrón híbrido **promovido a ADR-023** (`ADR-023-controles-de-rango-hibridos.md`, 6 reglas con el slider como implementación de referencia) + fila en `decisions-log.md`.
+- [x] 8.2 Movido a `archive/aaa-044-components-add-slider/` (`status: archived`, 2026-08-01); spec base `component-slider` creada desde el delta (con las referencias a design §1/§3 reapuntadas a ADR-023, que es el artefacto que sobrevive al archive; el bloque reduced-motion quedó descripto sobre thumb+burbuja, que es lo que la implementación transiciona). **Los 5 pares de contraste declarados en `contrast-pairs.json`** (`slider/fill-on-track`, `label`, `thumb-bg-on-fill`, `thumb-border-on-surface`, `tooltip-text`) — el secuenciamiento previsto en 2.2.
+- [x] 8.3 Registros: `openspec/README.md` (aaa-044 fuera de IDs en vuelo), catálogos de specs y changes en `docs/architecture/README.md`, HU-025 → Hecha (11 CAs tildados), EP-002 (tanda 3 **7/7**, fila de valor entregado), README de producto (índice, tabla de HUs, hito H1, foto táctica, última entrega; corregido drift de "próximos IDs libres" D-029 → D-032), grooming del BACKLOG (slider sale; entra `playground-prototipo-h1` con disparador activado por D-023).
+- [x] 8.4 `pnpm openspec validate --all` pasa (28 items); suite completa **924 tests** verdes (tokens 504 — incluye las 20 evaluaciones de los 5 pares nuevos —, components 387, playground 33); lint y format verdes.
+- [x] 8.5 Mensaje de commit del archive propuesto al PO.
 
 **Criterio**: change archivado, spec base creada, tanda 3 registrada como cerrada, registros al día.

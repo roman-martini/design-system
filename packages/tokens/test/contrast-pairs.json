@@ -651,6 +651,41 @@
     "specRef": "component-select"
   },
   {
+    "id": "slider/fill-on-track",
+    "fg": "--ds-component-slider-fill-bg",
+    "bg": "--ds-component-slider-track-bg",
+    "level": "ui",
+    "specRef": "component-slider"
+  },
+  {
+    "id": "slider/label",
+    "fg": "--ds-component-slider-label-color",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "text",
+    "specRef": "component-slider"
+  },
+  {
+    "id": "slider/thumb-bg-on-fill",
+    "fg": "--ds-component-slider-thumb-bg",
+    "bg": "--ds-component-slider-fill-bg",
+    "level": "ui",
+    "specRef": "component-slider"
+  },
+  {
+    "id": "slider/thumb-border-on-surface",
+    "fg": "--ds-component-slider-thumb-border-color",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "component-slider"
+  },
+  {
+    "id": "slider/tooltip-text",
+    "fg": "--ds-component-slider-tooltip-text",
+    "bg": "--ds-component-slider-tooltip-bg",
+    "level": "text",
+    "specRef": "component-slider"
+  },
+  {
     "id": "switch/label",
     "fg": "--ds-component-switch-label-color",
     "bg": "--ds-semantic-color-bg-surface",

@@ -1,9 +1,9 @@
 ---
 epica: EP-002
 actor: Dev consumidor
-estado: Refinada (2026-07-31, decisiones de base, forma y alcance cerradas con el PO)
+estado: Hecha (2026-08-01, aaa-044; componente + tokens + spec + story + showcase + ADR-023; gate visual del PO OK; cierra la tanda 3 7/7)
 decisiones: [D-007, D-015, D-022, D-031]
-adrs: [ADR-004, ADR-011, ADR-020]
+adrs: [ADR-004, ADR-011, ADR-020, ADR-023]
 ---
 
 # HU-025 — Slider (range) (dev consumidor)
@@ -52,17 +52,17 @@ Paridad con la familia (`DsSwitch`, `DsInput`, `DsTextarea`, `DsProgress`).
 
 ## Criterios de aceptación
 
-- [ ] **CA-025.1 (control y forms)** — `<ds-slider>` standalone + OnPush implementa `ControlValueAccessor` tipado a `number` (patrón `DsSwitch`); inputs `min`, `max`, `step`. Con `[(ngModel)]` y `formControlName` propaga **números** en ambos sentidos: lo escrito desde el form llega al control y la interacción emite `number`, nunca string.
-- [ ] **CA-025.2 (teclado y pointer)** — Flechas mueven ±`step`, Home/End llevan a `min`/`max`, PageUp/PageDown saltan, y el arrastre por pointer cambia el valor — provisto por el input nativo; los tests verifican que el CVA y el valor emitido se actualizan ante esos eventos.
-- [ ] **CA-025.3 (a11y)** — Expone `role="slider"` con `aria-valuemin`/`aria-valuemax`/`aria-valuenow`, y `aria-valuetext` cuando el consumidor pasa un formateador. Nombre accesible por label asociado o por `aria-label`/`aria-labelledby`. **Cero violaciones de axe** (gate de `aaa-042`).
-- [ ] **CA-025.4 (visual tokenizado)** — Track, fill, thumb, ticks y burbuja por tokens `component.slider.*`; el contraste del fill contra el track cumple AA y lo verifica el **gate de contraste versionado** (`aaa-041`); las transiciones tienen su bloque `prefers-reduced-motion: reduce`.
-- [ ] **CA-025.5 (estados)** — `disabled` por atributo nativo según [ADR-011](../../../architecture/adr/ADR-011-estado-disabled-accesible.md); foco visible sobre el thumb; estado hover.
-- [ ] **CA-025.6 (valor visible)** — Con `showValue`, renderiza el valor actual en un `<output>` asociado al control, con `font-variant-numeric: tabular-nums` para que no salte al cambiar de dígitos.
-- [ ] **CA-025.7 (marcas/ticks)** — Con `ticks`, dibuja marcas alineadas a los steps; acepta marcas con etiqueta y las posiciona sin desbordar los extremos del track.
-- [ ] **CA-025.8 (tooltip de valor)** — Con `valueTooltip`, muestra una burbuja sobre el thumb que lo sigue durante el arrastre y aparece también con foco de teclado; se oculta al salir. No usa `DsTooltip` ni Popover API.
-- [ ] **CA-025.9 (sizes)** — `sm` / `md` / `lg` cambian alto de track y diámetro de thumb por token; el área interactiva del thumb no baja de 24×24 CSS px en ninguna talla.
-- [ ] **CA-025.10 (showcase y story)** — El showcase del playground reproduce el slider de la referencia `modern-minimal`; la story cubre los cuatro modos (mínimo, con valor, con ticks, con tooltip), disabled y las tres tallas.
-- [ ] **CA-025.11 (presupuesto de bundle)** — El techo de `components` en `.size-limit.json` se ajusta al peso **medido** con el slider + 5% de margen, la tabla de `CONTRIBUTING.md` refleja el nuevo valor y el commit registra cuánto pesó. Previsto por [D-031](../../decisiones.md): el techo se sube, **no se recorta el componente**.
+- [x] **CA-025.1 (control y forms)** — `<ds-slider>` standalone + OnPush implementa `ControlValueAccessor` tipado a `number` (patrón `DsSwitch`); inputs `min`, `max`, `step`. Con `[(ngModel)]` y `formControlName` propaga **números** en ambos sentidos: lo escrito desde el form llega al control y la interacción emite `number`, nunca string.
+- [x] **CA-025.2 (teclado y pointer)** — Flechas mueven ±`step`, Home/End llevan a `min`/`max`, PageUp/PageDown saltan, y el arrastre por pointer cambia el valor — provisto por el input nativo; los tests verifican que el CVA y el valor emitido se actualizan ante esos eventos.
+- [x] **CA-025.3 (a11y)** — Expone `role="slider"` con `aria-valuemin`/`aria-valuemax`/`aria-valuenow`, y `aria-valuetext` cuando el consumidor pasa un formateador. Nombre accesible por label asociado o por `aria-label`/`aria-labelledby`. **Cero violaciones de axe** (gate de `aaa-042`).
+- [x] **CA-025.4 (visual tokenizado)** — Track, fill, thumb, ticks y burbuja por tokens `component.slider.*`; el contraste del fill contra el track cumple AA y lo verifica el **gate de contraste versionado** (`aaa-041`); las transiciones tienen su bloque `prefers-reduced-motion: reduce`.
+- [x] **CA-025.5 (estados)** — `disabled` por atributo nativo según [ADR-011](../../../architecture/adr/ADR-011-estado-disabled-accesible.md); foco visible sobre el thumb; estado hover.
+- [x] **CA-025.6 (valor visible)** — Con `showValue`, renderiza el valor actual en un `<output>` asociado al control, con `font-variant-numeric: tabular-nums` para que no salte al cambiar de dígitos.
+- [x] **CA-025.7 (marcas/ticks)** — Con `ticks`, dibuja marcas alineadas a los steps; acepta marcas con etiqueta y las posiciona sin desbordar los extremos del track.
+- [x] **CA-025.8 (tooltip de valor)** — Con `valueTooltip`, muestra una burbuja sobre el thumb que lo sigue durante el arrastre y aparece también con foco de teclado; se oculta al salir. No usa `DsTooltip` ni Popover API.
+- [x] **CA-025.9 (sizes)** — `sm` / `md` / `lg` cambian alto de track y diámetro de thumb por token; el área interactiva del thumb no baja de 24×24 CSS px en ninguna talla.
+- [x] **CA-025.10 (showcase y story)** — El showcase del playground reproduce el slider de la referencia `modern-minimal`; la story cubre los cuatro modos (mínimo, con valor, con ticks, con tooltip), disabled y las tres tallas.
+- [x] **CA-025.11 (presupuesto de bundle)** — El techo de `components` en `.size-limit.json` se ajusta al peso **medido** con el slider + 5% de margen, la tabla de `CONTRIBUTING.md` refleja el nuevo valor y el commit registra cuánto pesó. Previsto por [D-031](../../decisiones.md): el techo se sube, **no se recorta el componente**.
 
 ## Dependencias
 
