@@ -1,6 +1,8 @@
 # design-system
 
-Monorepo `pnpm` con librerías de **arquitectura frontend** publicables bajo el scope `@romanmartinidev` y una app de prueba (`apps/playground`) para validarlas en condiciones reales.
+Monorepo `pnpm` con librerías de **arquitectura frontend** publicables bajo el scope `@romanmartinidev` — `packages/tokens` (design tokens, Style Dictionary 4) y `packages/components` (componentes Angular 21, ng-packagr/APF) — más `apps/playground` para validarlas en condiciones reales. Stack: TypeScript 5.9, Vitest 4, Storybook 10, Changesets, ESLint + Prettier, Husky + commitlint.
+
+Todo artefacto del repo (docs, commits, ADRs, specs) se escribe en español; código e identificadores en inglés.
 
 ## Prioridades estrictas (en orden)
 
@@ -9,59 +11,6 @@ Monorepo `pnpm` con librerías de **arquitectura frontend** publicables bajo el 
 3. **Mantenibilidad** vía estándares y convenciones claras.
 
 Toda decisión arquitectónica o de proceso debe poder justificarse contra estas prioridades. Frente a una disyuntiva, no elegir por velocidad; ofrecer 2-3 opciones evaluadas con pros/contras y recomendación.
-
-## Estructura del repo
-
-```
-design-system/
-├── packages/                    # Librerías publicables
-│   ├── tokens/                  # @romanmartinidev/tokens — design tokens (Style Dictionary)
-│   └── components/              # @romanmartinidev/components — componentes Angular (ng-packagr)
-├── apps/
-│   └── playground/              # App Angular para probar libs y crear prototipos
-├── docs/
-│   ├── architecture/            # Fuente de verdad arquitectónica
-│   │   ├── README.md            # Guía del directorio (qué artefacto responde qué)
-│   │   ├── ARCHITECTURE.md      # Síntesis técnica de la arquitectura
-│   │   ├── catalog.md           # Catálogo de specs y changes
-│   │   ├── decisions-log.md     # Índice tabular de decisiones
-│   │   └── adr/                 # ADRs en formato MADR
-│   ├── product/                 # Producto: épicas, HUs, decisiones D-XXX, intake de ideas
-│   ├── backlog/                 # BACKLOG.md (Now/Next/Later) + reportes de fix del PO
-│   ├── design/                  # Evidencia fechada de diseño: auditorías a11y + research
-│   ├── reviews/                 # Reviews integrales del repo (hallazgos + plan de acción)
-│   └── reference/               # Material de referencia (no normativo, otros repos)
-├── openspec/                    # Specs y propuestas de cambio significativo
-│   ├── config.yaml
-│   ├── specs/
-│   └── changes/
-├── scripts/                     # Utilidades de repo (PowerShell)
-├── .github/                     # Workflows de CI y release + composite action de setup
-├── .changeset/                  # Versionado con Changesets
-├── package.json                 # Root del monorepo (workspaces, devDeps compartidas)
-├── pnpm-workspace.yaml
-├── .nvmrc                       # Versión de Node fija
-├── .npmrc                       # Config pnpm
-├── .editorconfig
-├── CLAUDE.md                    # Este archivo
-└── README.md                    # Punto de entrada del repo
-```
-
-## Stack
-
-- **Package manager**: pnpm (workspaces)
-- **Node**: ver `.nvmrc`
-- **TypeScript**: 5.9
-- **Angular**: 21
-- **Build libs Angular**: ng-packagr (Angular Package Format)
-- **Build tokens**: Style Dictionary 4.x
-- **Testing**: Vitest 4
-- **Storybook**: 10
-- **Versionado packages**: Changesets
-- **Lint**: ESLint
-- **Format**: Prettier
-- **Commits**: Conventional Commits + commitlint
-- **Pre-commit**: Husky + lint-staged
 
 ## Fuentes de verdad
 
@@ -75,6 +24,7 @@ Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si te
 | ¿Por qué se decidió X?                                                       | `docs/architecture/adr/ADR-NNN-*.md`  | Decisión inmutable + opciones evaluadas                                                      |
 | ¿Hay un índice de todas las decisiones?                                      | `docs/architecture/decisions-log.md`  | Tabla cronológica                                                                            |
 | ¿Cómo está organizado el repo (visión general, principios)?                  | `docs/architecture/ARCHITECTURE.md`   | Mapa mental                                                                                  |
+| ¿Qué changes y specs existen o existieron?                                   | `docs/architecture/catalog.md`        | Catálogo histórico                                                                           |
 | ¿Cómo trabajo como dev en este repo?                                         | `CONTRIBUTING.md`                     | Flujo de PR, commits, changesets                                                             |
 | ¿Cómo arranco como dev nuevo?                                                | `README.md` (root)                    | Quickstart                                                                                   |
 | ¿Cómo debe trabajar Claude acá?                                              | `CLAUDE.md` (este archivo)            | Contrato Claude ↔ repo                                                                       |
@@ -94,125 +44,55 @@ Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si te
 
 ## Convenciones
 
-### Conventional Commits
+### Commits
 
-Todos los commits siguen [Conventional Commits](https://www.conventionalcommits.org/):
+[Conventional Commits](https://www.conventionalcommits.org/) validados por commitlint. Scopes habituales: `tokens`, `components`, `playground`, `repo`, `ci`, `docs`. Mensajes en español.
 
-```
-<type>(<scope>): <description>
+### ADRs
 
-[body opcional]
-
-[footer opcional, ej. BREAKING CHANGE]
-```
-
-Tipos: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `revert`.
-
-Scopes habituales: `tokens`, `components`, `playground`, `repo`, `ci`, `docs`.
-
-### ADRs (Architecture Decision Records)
-
-Toda decisión one-way door o que afecta ≥2 packages genera un ADR en formato MADR en `docs/architecture/adr/`. Los ADRs son **inmutables**: para revertir, crear un nuevo ADR que referencia al anterior. Ver `docs/architecture/adr/README.md` para el formato.
+Toda decisión one-way door o que afecta ≥2 packages genera un ADR en formato MADR en `docs/architecture/adr/`. Los ADRs son **inmutables**: para revertir, crear un nuevo ADR que referencia al anterior. Formato: `docs/architecture/adr/README.md`.
 
 ### OpenSpec
 
-Todo cambio significativo (nueva lib, refactor mayor, cambio de tooling base) arranca como propuesta en `openspec/changes/`. Los cambios triviales o de implementación local **no** requieren propuesta OpenSpec.
+Todo cambio significativo (nueva lib, refactor mayor, cambio de tooling base) arranca como propuesta en `openspec/changes/`; los cambios triviales o de implementación local van por commit directo. Los changes llevan un ID **permanente** `aaa-NNN` en el frontmatter del `proposal.md` ([ADR-008](docs/architecture/adr/ADR-008-convencion-ids-openspec.md)); las specs se identifican por carpeta, sin ID. Convención operativa completa (frontmatter, paths, **próximo ID disponible**): [`openspec/README.md`](openspec/README.md). Las convenciones que el CLI inyecta al generar artefactos viven en `openspec/config.yaml` — si cambiás una en el README, sincronizá el config y viceversa.
 
-**IDs de Changes** (formato `<bloque>-<numero>`, ver [ADR-008](docs/architecture/adr/ADR-008-convencion-ids-openspec.md)):
+### Versionado y naming de packages
 
-- Cada change recibe un ID **permanente** (`aaa-001`, `aaa-002`, …) declarado en el **frontmatter YAML** del `proposal.md`.
-- Cuando `aaa-999` se llena, el siguiente change arranca `aab-001`, después `aac-001`, etc.
-- Los **paths de changes activos NO incluyen el ID** (los directorios siguen con kebab-case). El ID vive solo en el frontmatter. Al archivar, el directorio se renombra a `<id>-<name>` y se mueve a `archive/`.
-- Las **specs NO tienen ID**. Se identifican por su nombre de carpeta (`openspec/specs/<name>/`).
-- Convención + próximo ID disponible: [`openspec/README.md`](openspec/README.md) (operativo, no arquitectónico).
-- Catálogo histórico de changes y specs: [`docs/architecture/catalog.md`](docs/architecture/catalog.md).
-
-### Versionado
-
-- Cada PR que afecta una lib publicable agrega un changeset con `pnpm changeset`.
-- Pre-1.0: respetar semver pero entendiendo que la superficie API puede cambiar (la política definitiva se acuerda al primer release).
-
-### Naming de packages
-
-- Scope: `@romanmartinidev/`
-- Nombre kebab-case corto y descriptivo (ej. `tokens`, `components`, `icons`).
-- Mismo nombre que la carpeta en `packages/`.
+- Cada PR que afecta una lib publicable agrega un changeset (`pnpm changeset`). Pre-1.0: semver con superficie API aún móvil; versionado lockstep entre packages ([ADR-015](docs/architecture/adr/ADR-015-versionado-lockstep.md)).
+- Packages: scope `@romanmartinidev/`, nombre kebab-case corto, igual a la carpeta en `packages/`.
 
 ## Comandos esenciales
 
 ```bash
-# Setup
 pnpm install
-
-# Build de toda la cadena
-pnpm build            # pnpm -r build
-
-# Build de un package específico
-pnpm -F @romanmartinidev/tokens build
-
-# Levantar playground
-pnpm dev              # alias: pnpm start
-
-# Storybook
-pnpm storybook
-pnpm storybook:build
-
-# Tests
+pnpm build            # pnpm -r build; un package: pnpm -F @romanmartinidev/tokens build
+pnpm dev              # levantar playground (alias: pnpm start)
+pnpm storybook        # storybook:build para el build estático
 pnpm test             # pnpm -r test
-
-# Lint + format
 pnpm lint
 pnpm format           # pnpm format:check en CI
-
-# Validar OpenSpec (CLI pinneado en el repo: @fission-ai/openspec)
-pnpm openspec validate --all
-
-# Agregar un changeset
+pnpm openspec validate --all   # CLI pinneado: @fission-ai/openspec (nunca npx openspec)
 pnpm changeset
-
-# Versionar (lo ejecuta el PR de release, no a mano)
-pnpm changeset:version   # el script NO se llama `version`: el builtin de pnpm lo pisaría
+pnpm changeset:version   # solo lo ejecuta el PR de release; NO se llama `version` (el builtin de pnpm lo pisaría)
 ```
 
-> **La publicación a npm no se ejecuta manualmente.** El único camino es `.github/workflows/release.yml`, cuyo job `publish` corre `pnpm changeset publish` según [ADR-006](docs/architecture/adr/ADR-006-estrategia-ci-cd.md) y el lockstep de [ADR-015](docs/architecture/adr/ADR-015-versionado-lockstep.md). No existe un script `release` en el root: fue eliminado a propósito para que no haya un publish manual de un comando. El veto de publicación fue **levantado el 2026-07-28** ([D-028](docs/product/decisiones.md)), pero eso **no habilita publicar desde acá**: no correr `changeset publish` ni `pnpm -r publish` bajo ninguna circunstancia — el release corre por CI y queda detrás del environment `npm-publish` con aprobación explícita del PO por versión ([ADR-022](docs/architecture/adr/ADR-022-gate-aprobacion-publish-npm.md)). Cómo se empaqueta cada package (components publica su `dist/`, tokens desde el root) lo gobierna [ADR-021](docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md); `pnpm verify:packaging` verifica el contrato sobre el artefacto emitido.
+> **La publicación a npm no se ejecuta manualmente.** El único camino es `.github/workflows/release.yml`, cuyo job `publish` corre `pnpm changeset publish` según [ADR-006](docs/architecture/adr/ADR-006-estrategia-ci-cd.md) y el lockstep de [ADR-015](docs/architecture/adr/ADR-015-versionado-lockstep.md). No existe un script `release` en el root: fue eliminado a propósito para que no haya un publish manual de un comando. El veto de publicación fue **levantado el 2026-07-28** ([D-028](docs/product/decisiones.md)), pero eso **no habilita publicar desde acá**: no correr `changeset publish` ni `pnpm -r publish` bajo ninguna circunstancia — el release corre por CI y queda detrás del environment `npm-publish` con aprobación explícita del PO por versión ([ADR-022](docs/architecture/adr/ADR-022-gate-aprobacion-publish-npm.md)). Cómo se empaqueta cada package lo gobierna [ADR-021](docs/architecture/adr/ADR-021-estrategia-publicacion-packages.md); `pnpm verify:packaging` verifica el contrato sobre el artefacto emitido.
 
 ## Cómo trabajar en este repo (para Claude)
 
 1. **Leer siempre primero** `docs/architecture/ARCHITECTURE.md`, `docs/architecture/decisions-log.md` y los ADRs aceptados antes de proponer cambios estructurales.
-2. **Detectar y marcar malas prácticas**. Si el código viola las prioridades de arriba, mencionarlo y proponer alternativa fundamentada — no continuar en silencio.
-3. **Cambios significativos siguen el flujo de OpenSpec** — propuesta → review → apply → archive. Ver `docs/architecture/catalog.md` para el inventario histórico y `openspec/README.md` para la convención operativa.
-4. **No modificar ADRs aceptados.** Para cambiar una decisión, crear un nuevo ADR.
-5. **Documentar decisiones nuevas.** Toda decisión arquitectónica significativa actualiza `decisions-log.md` y genera ADR si corresponde.
-6. **No crear archivos `*.md` de planificación o resumen ad-hoc** salvo que se pidan explícitamente. Las decisiones van a ADRs; los cambios significativos van a OpenSpec.
-
-## Referencias
-
-- Síntesis arquitectónica: `docs/architecture/ARCHITECTURE.md`
-- Material de investigación: `docs/reference/`
-- Contexto original del proyecto: `docs/reference/contexto_inicial.md`
+2. **Nunca commitear sin OK.** Proponer el mensaje de commit y esperar el OK explícito del PO. Staging solo con paths explícitos (nunca `git add -A`).
+3. **Detectar y marcar malas prácticas.** Si el código viola las prioridades de arriba, mencionarlo y proponer alternativa fundamentada — no continuar en silencio.
+4. **Cambios significativos siguen el flujo de OpenSpec** — propuesta → review → apply → archive. Ver `openspec/README.md` para la convención y `docs/architecture/catalog.md` para el inventario.
+5. **No modificar ADRs aceptados.** Para cambiar una decisión, crear un nuevo ADR.
+6. **Documentar decisiones nuevas.** Toda decisión arquitectónica significativa actualiza `decisions-log.md` y genera ADR si corresponde.
+7. **No crear archivos `*.md` de planificación o resumen ad-hoc** salvo que se pidan explícitamente. Las decisiones van a ADRs; los cambios significativos van a OpenSpec.
 
 ## Componentes Angular (familia `ng-`)
 
-Grupo `ng-*` de agentes + un skill para **asegurar la calidad de componentes Angular** sobre este proyecto existente: crearlos bien desde el inicio, auditarlos contra un set de buenas prácticas extraído de angular.dev, producir —cuando el arreglo es grande— un artefacto de cambio autocontenido que cualquier agente pueda implementar, y mantener las buenas prácticas al día contra la documentación oficial.
+Grupo de agentes para la calidad de componentes Angular: `/ng:ask` (router), `/ng:create` (genera componente moderno), `/ng:review` (audita con hallazgos `archivo:línea` + severidad), `/ng:change` (convierte un review grande en un Markdown autocontenido), `/ng:sync` (actualiza el knowledge desde angular.dev — única pieza del grupo con acceso web).
 
-**Perfil del stack** — el comportamiento se adapta a `.claude/knowledge/ng-stack-profile.md` (versión de Angular, motor de estilos, framework de testing, design system, prefijo de selector). **Completalo antes del primer uso** de `/ng:create` y `/ng:review`: sin él, esos agentes paran y lo piden (fail fast).
-
-**Knowledge vivo** — las buenas prácticas viven en `.claude/knowledge/ng-best-practices.md` (extraídas de angular.dev, con su tabla de URLs fuente y fecha de extracción). `/ng:sync` las mantiene al día.
-
-| Comando                      | Qué hace                                                                                    |
-| ---------------------------- | ------------------------------------------------------------------------------------------- |
-| `/ng:ask`                    | Clasifica la intención y deriva a la pieza correcta                                         |
-| `/ng:create <nombre>`        | Genera un componente moderno (standalone, OnPush, signals, control flow nativo, a11y, test) |
-| `/ng:review <archivo\|glob>` | Audita componentes; hallazgos con `archivo:línea` y severidad                               |
-| `/ng:change <review>`        | Convierte un review grande en un único Markdown autocontenido (propuesta + diseño + tareas) |
-| `/ng:sync`                   | Sincroniza el knowledge con angular.dev y reporta componentes desalineados                  |
-
-**Flujo**: `/ng:create` para crear → `/ng:review` para auditar → si el arreglo es chico, aplicar directo; si es grande, `/ng:change` produce el artefacto autocontenido → periódicamente, `/ng:sync` mantiene el knowledge al día.
-
-**Convenciones críticas**:
-
+- Las buenas prácticas viven en `.claude/knowledge/ng-best-practices.md`; **solo `ng-sync` lo modifica**.
+- El perfil del stack vive en `.claude/knowledge/ng-stack-profile.md`; sin perfil completo, `/ng:create` y `/ng:review` **paran y lo piden** (fail fast).
 - Angular moderno es el estándar (standalone, signals-first, control flow nativo, OnPush/zoneless); legacy es hallazgo.
-- El knowledge `ng-best-practices.md` es la única fuente de verdad; solo `ng-sync` lo modifica.
-- `ng-sync` es la única pieza con acceso web.
-- El artefacto de cambio es un solo Markdown autocontenido, sin dependencias externas.
-- Los agentes leen `ng-stack-profile.md` primero; sin él, paran.
+- Restricciones completas del grupo: `.claude/rules/ng-constraints.md`.
