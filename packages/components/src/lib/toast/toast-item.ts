@@ -33,7 +33,10 @@ const DEFAULT_DURATION_MS = 5000;
   styleUrl: './toast-item.css',
   imports: [LucideCircleAlert, LucideCircleCheck, LucideInfo, LucideTriangleAlert, LucideX],
   host: {
-    '[attr.role]': "entry().variant === 'danger' ? 'alert' : 'status'",
+    // Sin rol de live region: el anuncio lo hace la región persistente del
+    // service (aaa-047). Declararlo también acá produciría un anuncio doble, y
+    // no serviría igual: este nodo se inserta junto con su texto, que es lo
+    // que los lectores no observan de forma confiable.
     '[attr.data-variant]': 'entry().variant',
     '(mouseenter)': 'setPausedByHover(true)',
     '(mouseleave)': 'setPausedByHover(false)',

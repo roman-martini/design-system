@@ -18,6 +18,16 @@ function itemEls(): HTMLElement[] {
   return Array.from(document.querySelectorAll('ds-toast-container ds-toast-item'));
 }
 
+// Las regiones viven fuera del contenedor (que es un popover: cerrado computa
+// display:none y queda fuera del árbol de accesibilidad).
+function politeRegion(): HTMLElement | null {
+  return document.querySelector('body > div [aria-live="polite"]');
+}
+
+function assertiveRegion(): HTMLElement | null {
+  return document.querySelector('body > div [aria-live="assertive"]');
+}
+
 // Queries por accesible name (rol button + aria-label / texto visible), no por clase CSS.
 function closeButton(item: HTMLElement, label = 'Cerrar'): HTMLButtonElement | null {
   return item.querySelector<HTMLButtonElement>(`button[aria-label="${label}"]`);
@@ -174,15 +184,63 @@ describe('DsToastService', () => {
     outside.remove();
   });
 
-  it('roles de live region por variante y aria-label del cierre (CA-008.5)', () => {
+  // Scenario: la región de anuncios preexiste al primer toast (CA-008.5). Una
+  // live region insertada junto con su contenido frecuentemente no se anuncia:
+  // el primer toast de la sesión —el más importante— se perdía.
+  it('las regiones de anuncio existen antes del primer toast', () => {
+    expect(itemEls()).toHaveLength(0);
+    expect(politeRegion()).not.toBeNull();
+    expect(assertiveRegion()).not.toBeNull();
+  });
+
+  it('las regiones son dos, con politeness fija cada una', () => {
+    // Dos estáticas en vez de una mutable: varios lectores cachean la
+    // politeness al construir el árbol (design §2).
+    expect(politeRegion()!.getAttribute('role')).toBe('status');
+    expect(assertiveRegion()!.getAttribute('role')).toBe('alert');
+  });
+
+  it('el mensaje se anuncia con la urgencia de su variante (CA-008.5)', () => {
+    service.info('estado');
+    tick();
+    expect(politeRegion()!.textContent).toBe('estado');
+    expect(assertiveRegion()!.textContent).toBe('');
+
+    service.danger('alerta');
+    tick();
+    expect(assertiveRegion()!.textContent).toBe('alerta');
+  });
+
+  it('el elemento visual del toast no declara rol de live region (evita el anuncio doble)', () => {
     service.info('estado');
     service.danger('alerta');
     tick();
     const [status, alert] = itemEls();
-    expect(status.getAttribute('role')).toBe('status');
-    expect(alert.getAttribute('role')).toBe('alert');
+    expect(status.hasAttribute('role')).toBe(false);
+    expect(alert.hasAttribute('role')).toBe(false);
     // El cierre se resuelve por accesible name: existe un button con el aria-label default.
     expect(closeButton(status)).not.toBeNull();
+  });
+
+  it('un mensaje repetido pasa por vacío antes de reescribirse', () => {
+    service.info('mismo mensaje');
+    tick();
+
+    // takeRecords() entrega las mutaciones pendientes de forma síncrona; el
+    // callback del observer es asíncrono y no llegaría dentro del test.
+    const observer = new MutationObserver(() => {});
+    observer.observe(politeRegion()!, { childList: true, characterData: true, subtree: true });
+
+    service.info('mismo mensaje');
+    tick();
+    const records = observer.takeRecords();
+    observer.disconnect();
+
+    // El vaciado explícito es lo que hace que un mensaje idéntico vuelva a
+    // anunciarse: varios lectores comparan el texto y callan si no cambió.
+    expect(records.length).toBeGreaterThanOrEqual(2);
+    expect(records.some((record) => record.removedNodes.length > 0)).toBe(true);
+    expect(politeRegion()!.textContent).toBe('mismo mensaje');
   });
 
   it('los iconos de variante y del cierre son decorativos (ADR-012)', () => {

@@ -317,9 +317,9 @@ pnpm size
 
 Techos vigentes, declarados en `.size-limit.json` del root:
 
-| Entrypoint                                           | Medido (2026-08-01) | Techo    |
+| Entrypoint                                           | Medido (2026-08-02) | Techo    |
 | ---------------------------------------------------- | ------------------- | -------- |
-| `@romanmartinidev/components` — principal (`.`)      | 48.35 kB            | 48.41 kB |
+| `@romanmartinidev/components` — principal (`.`)      | 49.47 kB            | 51.94 kB |
 | `@romanmartinidev/components` — `./router`           | 2.00 kB             | 2.11 kB  |
 | `@romanmartinidev/tokens` — `./css`                  | 6.17 kB             | 6.48 kB  |
 | `@romanmartinidev/tokens` — principal (`.`)          | 5.84 kB             | 6.14 kB  |
@@ -336,7 +336,18 @@ Techos vigentes, declarados en `.size-limit.json` del root:
 > el trinquete funcionó como debe — el gate frenó, no pasó en silencio. Techos recalculados con la
 > regla de D-031 (`medido × 1.05` al múltiplo de 10 B): 6.15 → 6.48 kB y 5.81 → 6.14 kB.
 >
-> **El margen de `components` quedó en 60 B** (mismo change): el typeahead de `DsSelect` costó
+> **El techo de `components` subió a 51.94 kB con `aaa-047`** (2026-08-02, ajuste aprobado por el PO
+> al arrancar el change): la región de anuncios persistente del toast costó +1.12 kB y excedió el
+> techo anterior por 1.06 kB. **Y ahí apareció un efecto de segundo orden de D-031 que conviene
+> decidir**: el margen del 5% ya vale 2.47 kB, más que los 2.32 kB que cuesta un componente real —
+> justo lo que la política quería evitar ("el margen es deliberadamente más chico que un componente,
+> para que el gate no pueda absorber uno entero en silencio"). El 5% se fijó sobre 43.22 kB, donde
+> equivalía a 2.16 kB; el bundle creció y el porcentaje escaló con él. Se aplicó la regla vigente tal
+> cual está escrita, pero **hoy el gate ya no detecta la entrada silenciosa de un componente**.
+> Corregirlo es decisión del PO y pide un ADR o una D-XXX que reemplace el 5% por un margen fijo en
+> bytes (p. ej. 1.5 kB), que no escala con el bundle.
+>
+> **El margen de `components` había quedado en 60 B con `aaa-046`**: el typeahead de `DsSelect` costó
 > +1.9 kB sobre los 46.47 kB con que cerró `aaa-045` — más de lo que sugiere su tamaño en líneas,
 > porque los nombres de miembros que un template referencia no se manglan. Ese techo **no se movió**:
 > nadie lo excedió y moverlo sin exceder es justamente lo que el trinquete evita. Consecuencia

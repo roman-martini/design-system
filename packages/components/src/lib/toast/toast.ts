@@ -1,3 +1,4 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   ApplicationRef,
   ComponentRef,
@@ -6,6 +7,7 @@ import {
   Injectable,
   InjectionToken,
   OnDestroy,
+  PLATFORM_ID,
   createComponent,
   inject,
   makeEnvironmentProviders,
@@ -78,6 +80,7 @@ type DsToastShortcutOptions = Omit<DsToastOptions, 'message' | 'variant'>;
 export class DsToastService implements OnDestroy {
   private readonly appRef = inject(ApplicationRef);
   private readonly environmentInjector = inject(EnvironmentInjector);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   private readonly entriesState = signal<readonly DsToastEntry[]>([]);
 
@@ -89,11 +92,29 @@ export class DsToastService implements OnDestroy {
   private popoverOpen = false;
   private nextId = 0;
 
+  // Regiones de anuncio. Viven fuera del contenedor a propósito: el contenedor
+  // es un popover y cerrado computa `display: none`, o sea que está fuera del
+  // árbol de accesibilidad — una región alojada ahí adentro aparecería recién
+  // con el primer toast, que es justo el defecto a corregir (design §1).
+  private announcer: HTMLElement | null = null;
+  private politeRegion: HTMLElement | null = null;
+  private assertiveRegion: HTMLElement | null = null;
+
+  constructor() {
+    // Eager: una live region insertada junto con su contenido frecuentemente
+    // no se anuncia; tiene que preexistir. La guarda no es opcional — el
+    // service es `providedIn: 'root'` y sin ella tocaría el DOM en SSR.
+    if (this.isBrowser) {
+      this.createAnnouncer();
+    }
+  }
+
   show(options: DsToastOptions): DsToastRef {
     const entry: DsToastEntry = { id: this.nextId++, ...options };
     this.ensureContainer();
     this.entriesState.update((list) => [...list, entry]);
     this.syncPopover();
+    this.announce(entry);
     return { dismiss: () => this.dismiss(entry.id) };
   }
 
@@ -124,6 +145,51 @@ export class DsToastService implements OnDestroy {
       this.containerRef.destroy();
       this.containerRef = null;
     }
+    this.announcer?.remove();
+    this.announcer = null;
+    this.politeRegion = null;
+    this.assertiveRegion = null;
+  }
+
+  /**
+   * Dos regiones estáticas en vez de una que cambie `aria-live`: varios
+   * lectores cachean la politeness al construir el árbol, así que mutarla en
+   * caliente no es confiable (design §2).
+   */
+  private createAnnouncer(): void {
+    const announcer = document.createElement('div');
+    // Visually hidden que preserva el árbol de accesibilidad: ni `display:
+    // none` ni `visibility: hidden` ni `aria-hidden` sirven acá, sacan el
+    // elemento del árbol y con él el anuncio (design §3).
+    announcer.style.cssText =
+      'position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap';
+
+    this.politeRegion = this.createRegion('polite');
+    this.assertiveRegion = this.createRegion('assertive');
+    announcer.append(this.politeRegion, this.assertiveRegion);
+
+    document.body.appendChild(announcer);
+    this.announcer = announcer;
+  }
+
+  private createRegion(politeness: 'polite' | 'assertive'): HTMLElement {
+    const region = document.createElement('div');
+    region.setAttribute('aria-live', politeness);
+    region.setAttribute('aria-atomic', 'true');
+    region.setAttribute('role', politeness === 'assertive' ? 'alert' : 'status');
+    return region;
+  }
+
+  private announce(entry: DsToastEntry): void {
+    const region = entry.variant === 'danger' ? this.assertiveRegion : this.politeRegion;
+    if (!region) {
+      return;
+    }
+    // Vaciar antes de escribir: sin la limpieza, dos mensajes idénticos
+    // consecutivos no cambian el textContent y varios lectores no detectan
+    // mutación, así que el segundo no se anuncia (design §6).
+    region.textContent = '';
+    region.textContent = entry.message;
   }
 
   // Creación perezosa al primer toast; el elemento queda vivo entre ráfagas.
