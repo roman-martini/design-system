@@ -1,7 +1,7 @@
 dialog {
   width: min(var(--ds-component-modal-size-md), calc(100vw - 2 * var(--ds-semantic-space-lg)));
   padding: 0;
-  border: 1px solid var(--ds-component-modal-border);
+  border: var(--ds-dimension-1) solid var(--ds-component-modal-border);
   border-radius: var(--ds-component-modal-radius);
   background: var(--ds-component-modal-bg);
   box-shadow: var(--ds-component-modal-shadow);

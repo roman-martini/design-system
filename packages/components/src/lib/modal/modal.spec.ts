@@ -259,6 +259,93 @@ describe('a11y (axe)', () => {
   });
 });
 
+@Component({
+  standalone: true,
+  imports: [DsModal],
+  template: `
+    <p id="titulo-externo">Título propio del consumidor</p>
+    <ds-modal
+      [(open)]="open"
+      [heading]="heading()"
+      [aria-label]="ariaLabel()"
+      [aria-labelledby]="ariaLabelledby()"
+    >
+      <p>Contenido</p>
+    </ds-modal>
+  `,
+})
+class NameHost {
+  readonly open = signal(true);
+  readonly heading = signal('');
+  readonly ariaLabel = signal<string | null>(null);
+  readonly ariaLabelledby = signal<string | null>(null);
+}
+
+// Scenario: el diálogo siempre tiene nombre accesible (components-08). Sin
+// heading, `labelledBy` daba null y el <dialog> quedaba sin nombre — un modal
+// de confirmación con contenido proyectado, que es el caso más común del kit,
+// se anunciaba solo como "diálogo".
+describe('DsModal — nombre accesible', () => {
+  let fixture: ComponentFixture<NameHost>;
+  let host: NameHost;
+
+  const dialog = (): HTMLDialogElement =>
+    fixture.nativeElement.querySelector('dialog') as HTMLDialogElement;
+  const modalHost = (): HTMLElement =>
+    fixture.nativeElement.querySelector('ds-modal') as HTMLElement;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({ imports: [NameHost] }).compileComponents();
+    fixture = TestBed.createComponent(NameHost);
+    host = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    host.open.set(false);
+    fixture.detectChanges();
+    fixture.destroy();
+  });
+
+  it('con heading, el dialog lo referencia por aria-labelledby', () => {
+    host.heading.set('Confirmar acción');
+    fixture.detectChanges();
+    const headingEl = fixture.nativeElement.querySelector('.ds-modal__heading') as HTMLElement;
+    expect(dialog().getAttribute('aria-labelledby')).toBe(headingEl.id);
+    expect(dialog().hasAttribute('aria-label')).toBe(false);
+  });
+
+  it('sin heading, el aria-label del consumidor nombra al dialog', () => {
+    host.ariaLabel.set('Confirmar borrado');
+    fixture.detectChanges();
+    expect(dialog().getAttribute('aria-label')).toBe('Confirmar borrado');
+    expect(dialog().hasAttribute('aria-labelledby')).toBe(false);
+  });
+
+  it('el nombre no queda declarado sobre el host, donde sería inerte y prohibido', () => {
+    host.ariaLabel.set('Confirmar borrado');
+    fixture.detectChanges();
+    expect(modalHost().hasAttribute('aria-label')).toBe(false);
+    expect(modalHost().hasAttribute('aria-labelledby')).toBe(false);
+  });
+
+  it('un aria-labelledby explícito gana sobre el heading y excluye al aria-label', () => {
+    host.heading.set('Título del componente');
+    host.ariaLabelledby.set('titulo-externo');
+    host.ariaLabel.set('ignorado');
+    fixture.detectChanges();
+    expect(dialog().getAttribute('aria-labelledby')).toBe('titulo-externo');
+    expect(dialog().hasAttribute('aria-label')).toBe(false);
+  });
+
+  it('sin ninguna de las tres vías no inventa un nombre', () => {
+    // Un nombre por defecto ("Diálogo") apagaría el gate de axe sin resolver el
+    // problema real: el consumidor que no nombra su modal debe verlo.
+    expect(dialog().hasAttribute('aria-label')).toBe(false);
+    expect(dialog().hasAttribute('aria-labelledby')).toBe(false);
+  });
+});
+
 // Scenarios de la spec `component-modal` que no tenían test (testing-05, aaa-042).
 // Criterio de aaa-023: jsdom no computa estilos, así que el contrato de tokens se
 // verifica sobre el CSS fuente.
@@ -277,6 +364,10 @@ describe('DsModal — contrato de tokens y superficie pública', () => {
     // Un `width`/`max-width` en px sería un ancho hardcodeado; los tamaños salen
     // de los tokens de arriba.
     expect(css).not.toMatch(/\b(?:max-)?width:\s*\d+px/);
+    // El ancho de borde era el último valor dimensional hardcodeado del archivo
+    // (components-12): un theme que engrose bordes no llegaba al modal.
+    expect(css).not.toMatch(/(?<![-\w])[1-9]\d*px/);
+    expect(css).toContain('border: var(--ds-dimension-1)');
   });
 
   it('pinta el backdrop con los tokens de overlay', () => {

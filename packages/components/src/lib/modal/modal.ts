@@ -43,6 +43,13 @@ function unlockBodyScroll(): void {
   imports: [LucideX],
   templateUrl: './modal.html',
   styleUrl: './modal.css',
+  host: {
+    // Angular no remueve el atributo que un input con alias consume: sin esto,
+    // el aria-* del consumidor quedaría duplicado en el host, donde no nombra
+    // al diálogo y es en sí una violación (aria-prohibited-attr).
+    '[attr.aria-label]': 'null',
+    '[attr.aria-labelledby]': 'null',
+  },
 })
 export class DsModal {
   readonly open = model<boolean>(false);
@@ -51,9 +58,25 @@ export class DsModal {
   readonly closeLabel = input<string>('Cerrar');
   readonly closeOnEscape = input<boolean>(true);
   readonly closeOnOverlay = input<boolean>(true);
+  // El rol de diálogo lo tiene el <dialog> interno, no el host: el nombre
+  // accesible del consumidor se reenvía ahí (mismo patrón que DsSelect y
+  // DsFieldBase). Sobre el host quedaría inerte y sería una violación por
+  // atributo ARIA no permitido, así que los host bindings lo limpian.
+  readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });
+  readonly ariaLabelledby = input<string | null>(null, { alias: 'aria-labelledby' });
 
   protected readonly headingId = `ds-modal-heading-${nextHeadingId++}`;
-  protected readonly labelledBy = computed(() => (this.heading() ? this.headingId : null));
+
+  // Precedencia: aria-labelledby explícito > heading > aria-label. Un
+  // labelledby del consumidor es una instrucción directa y gana; el heading
+  // gana sobre aria-label porque el nombre accesible debe coincidir con el
+  // título visible cuando ambos existen (WCAG 2.5.3).
+  protected readonly labelledBy = computed(
+    () => this.ariaLabelledby() ?? (this.heading() ? this.headingId : null),
+  );
+
+  // Nunca los dos a la vez: con labelledby presente, el aria-label no se emite.
+  protected readonly label = computed(() => (this.labelledBy() ? null : this.ariaLabel()));
 
   private readonly dialogRef = viewChild<ElementRef<HTMLDialogElement>>('dialog');
   private holdsScrollLock = false;
