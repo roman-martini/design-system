@@ -1,7 +1,7 @@
 ---
 epica: EP-005
 actor: Mantenedor
-estado: Hecha (2026-07-31, aaa-043; size-limit sobre los 5 entrypoints publicables, techos medidos con 5% de margen bajo D-031, step bloqueante en pr.yml, gate probado fallando en ambas cadenas de build)
+estado: Hecha (2026-07-31, aaa-043; size-limit sobre los 5 entrypoints publicables, techos medidos con margen bajo D-031 —topado en 2 kB por D-032 el 2026-08-02, con verificador propio del margen—, step bloqueante en pr.yml, gate probado fallando en ambas cadenas de build)
 decisiones: [D-021, D-002, D-017, D-031]
 ---
 

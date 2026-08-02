@@ -27,6 +27,7 @@
     "lint": "eslint .",
     "verify:packaging": "node scripts/verify-packaging.mjs",
     "size": "size-limit",
+    "verify:size-margin": "node scripts/verify-size-margin.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",

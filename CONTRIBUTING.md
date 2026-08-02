@@ -311,15 +311,16 @@ Sin él, renombrar un input de componente deja specs y stories rotas en tipos co
 CI mide el peso **gzip** de cada entrypoint publicable sobre el `dist` que ese mismo PR construyó, y **falla el PR si alguno supera su techo**. No es una advertencia.
 
 ```bash
-pnpm -r build   # el presupuesto mide el dist: sin build no hay nada que medir
-pnpm size
+pnpm -r build          # el presupuesto mide el dist: sin build no hay nada que medir
+pnpm size              # ¿algún entrypoint superó su techo?
+pnpm verify:size-margin # ¿algún techo quedó tan holgado que dejó de ser un gate?
 ```
 
 Techos vigentes, declarados en `.size-limit.json` del root:
 
 | Entrypoint                                           | Medido (2026-08-02) | Techo    |
 | ---------------------------------------------------- | ------------------- | -------- |
-| `@romanmartinidev/components` — principal (`.`)      | 49.47 kB            | 51.94 kB |
+| `@romanmartinidev/components` — principal (`.`)      | 49.47 kB            | 51.47 kB |
 | `@romanmartinidev/components` — `./router`           | 2.00 kB             | 2.11 kB  |
 | `@romanmartinidev/tokens` — `./css`                  | 6.17 kB             | 6.48 kB  |
 | `@romanmartinidev/tokens` — principal (`.`)          | 5.84 kB             | 6.14 kB  |
@@ -336,16 +337,13 @@ Techos vigentes, declarados en `.size-limit.json` del root:
 > el trinquete funcionó como debe — el gate frenó, no pasó en silencio. Techos recalculados con la
 > regla de D-031 (`medido × 1.05` al múltiplo de 10 B): 6.15 → 6.48 kB y 5.81 → 6.14 kB.
 >
-> **El techo de `components` subió a 51.94 kB con `aaa-047`** (2026-08-02, ajuste aprobado por el PO
-> al arrancar el change): la región de anuncios persistente del toast costó +1.12 kB y excedió el
-> techo anterior por 1.06 kB. **Y ahí apareció un efecto de segundo orden de D-031 que conviene
-> decidir**: el margen del 5% ya vale 2.47 kB, más que los 2.32 kB que cuesta un componente real —
-> justo lo que la política quería evitar ("el margen es deliberadamente más chico que un componente,
-> para que el gate no pueda absorber uno entero en silencio"). El 5% se fijó sobre 43.22 kB, donde
-> equivalía a 2.16 kB; el bundle creció y el porcentaje escaló con él. Se aplicó la regla vigente tal
-> cual está escrita, pero **hoy el gate ya no detecta la entrada silenciosa de un componente**.
-> Corregirlo es decisión del PO y pide un ADR o una D-XXX que reemplace el 5% por un margen fijo en
-> bytes (p. ej. 1.5 kB), que no escala con el bundle.
+> **El techo de `components` subió con `aaa-047`** (2026-08-02): la región de anuncios persistente del
+> toast costó +1.12 kB y excedió el techo anterior por 1.06 kB. Al aplicar la regla apareció que **el
+> margen del 5% ya valía más que un componente entero** (2.47 contra 2.32 kB), justo lo que la
+> política existía para impedir. El 5% se había fijado sobre 43.22 kB, donde valía 2.16 kB: el
+> porcentaje escaló con el bundle y se comió su propia garantía. Se corrigió en el momento con
+> [D-032](docs/product/decisiones.md), que topa el margen en 2 kB: el techo quedó en **51.47 kB**, no
+> en los 51.94 kB que daba el 5% puro.
 >
 > **El margen de `components` había quedado en 60 B con `aaa-046`**: el typeahead de `DsSelect` costó
 > +1.9 kB sobre los 46.47 kB con que cerró `aaa-045` — más de lo que sugiere su tamaño en líneas,
@@ -357,11 +355,13 @@ Techos vigentes, declarados en `.size-limit.json` del root:
 
 Los valores son **kB decimales (1000 B)**, que es como los reporta `size-limit` — no KiB.
 
-**El techo solo se mueve por decisión explícita del product owner**, y el PR que lo mueve deja registrada la razón. Se fijó midiendo el `dist` construido el 2026-07-31 y aplicando un margen del **5%** ([D-031](docs/product/decisiones.md)), con la regla `medido × 1.05` redondeado hacia arriba al siguiente múltiplo de 10 B.
+**El techo solo se mueve por decisión explícita del product owner**, y el PR que lo mueve deja registrada la razón. Se fija midiendo el `dist` construido y aplicando un margen de **`min(5% del medido, 2 kB)`**, redondeado hacia arriba al siguiente múltiplo de 10 B ([D-031](docs/product/decisiones.md), topado por [D-032](docs/product/decisiones.md)).
+
+El tope de 2 kB no es cosmético: **el margen tiene que quedar por debajo del costo de un componente** (2.32 kB medidos), o el gate deja entrar uno entero sin decir nada. El 5% a secas cumplía eso cuando el bundle medía 43 kB y dejó de cumplirlo al llegar a 49 kB — un margen porcentual crece con aquello que debe vigilar. Por eso `pnpm verify:size-margin` **verifica el margen además del techo**, y falla si algún entrypoint quedó más holgado que el tope: la deriva anterior no la detectó nadie durante tres changes porque nada la miraba.
 
 Dos cosas que conviene saber antes de que te frene:
 
-- **Un componente nuevo va a hacerte subir el techo, y está bien.** Un componente real del kit cuesta ~2.3 kB gzip (medido) contra 2.16 kB de margen: el margen es deliberadamente más chico que un componente, para que el gate no pueda absorber uno entero en silencio. Subir el techo en el PR que agrega el componente es el mecanismo, no un obstáculo — deja registrado cuánto pesó.
+- **Un componente nuevo va a hacerte subir el techo, y está bien.** Un componente real del kit cuesta ~2.3 kB gzip (medido) contra 2 kB de margen máximo: el margen es deliberadamente más chico que un componente, para que el gate no pueda absorber uno entero en silencio. Subir el techo en el PR que agrega el componente es el mecanismo, no un obstáculo — deja registrado cuánto pesó.
 - **Lo que se mide es el bundle completo, no lo que paga un consumidor con tree-shaking.** El gate detecta que el kit engordó; no mide el costo de importar un solo componente. Medir eso exigiría bundlear con Angular como external, y queda como candidato futuro.
 
 Si el gate falla, la salida te dice qué entrypoint excedió, cuánto pesa y cuál es el límite, y el job imprime esta misma política a continuación. Antes de subir el techo, verificá que el peso extra es algo que querías agregar: si no agregaste nada que lo justifique, ahí el gate está haciendo su trabajo y lo que hay que buscar es la dependencia o el import que entró sin querer.

@@ -103,14 +103,22 @@ jobs:
 
       # Presupuesto de tamaño sobre el dist que este PR acaba de construir, no
       # sobre un artefacto previo ni sobre el source. Mide gzip por entrypoint
-      # publicable; el techo se fijó midiendo, con 5% de margen ([D-031]).
+      # publicable; el techo se fija midiendo, con margen `min(5%, 2 kB)`
+      # ([D-032], que topa el 5% original de [D-031]).
       #
-      # Un componente real cuesta ~2.3 kB gzip y el margen son 2.16 kB: subir el
-      # techo es parte del PR que agrega un componente, no un accidente. La
-      # política para moverlo está en CONTRIBUTING.md.
+      # Un componente real cuesta ~2.3 kB gzip: subir el techo es parte del PR
+      # que agrega un componente, no un accidente. La política para moverlo está
+      # en CONTRIBUTING.md.
       - name: Bundle size budget
         id: size-budget
         run: pnpm size
+
+      # El techo verde no alcanza: si el margen crece por encima del costo de un
+      # componente, el gate deja pasar uno entero sin decir nada. Pasó con el 5%
+      # de D-031, que escalaba con el bundle — nadie lo notó porque nada lo
+      # verificaba. Este step es esa verificación.
+      - name: Verify size margin
+        run: pnpm verify:size-margin
 
       # size-limit cierra con "Try to reduce size or increase limit", que pone
       # "reduce" primero. En este repo el default es el opuesto: si el peso extra
@@ -127,7 +135,7 @@ jobs:
           echo ""
           echo "  Si el peso extra es un componente o una feature que querías"
           echo "  agregar, la acción correcta es SUBIR el techo en .size-limit.json"
-          echo "  al peso medido + 5%, y explicar en el commit cuánto pesó."
+          echo "  al peso medido + min(5%, 2 kB), y explicar en el commit cuánto pesó."
           echo "  El techo es un registro de crecimiento deliberado, no una meta."
           echo ""
           echo "  Si NO agregaste nada que justifique el peso, ahí sí el gate"
