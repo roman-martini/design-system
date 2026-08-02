@@ -15,7 +15,7 @@ Contrato de `DsModal`: overlay modal sobre `<dialog>` nativo, gestión de foco, 
 
 ### Requirement: Componente DsModal
 
-El package SHALL exponer `DsModal` (selector `ds-modal`), el primer componente overlay del kit, implementado sobre el elemento `<dialog>` nativo con `showModal()` (top layer, focus trap, fondo inerte y restauración de foco provistos por la plataforma — [ADR-013](../../../docs/architecture/adr/ADR-013-overlays-dialog-nativo.md)). Sigue ADR-004/ADR-007/ADR-010 (arquitectura y naming), ADR-012 (iconografía del botón de cierre) y el patrón de overlay de tokens de aaa-009. SHALL soportar `open` (model two-way boolean), `size` (`'sm' | 'md' | 'lg' | 'xl'`, default `'md'`), `heading` (input string para el título accesible), `closeLabel` (input string, default "Cerrar"), `closeOnEscape` (input boolean, default `true`), `closeOnOverlay` (input boolean, default `true`), slot default para el cuerpo y slot `[ds-modal-footer]` para acciones.
+El package SHALL exponer `DsModal` (selector `ds-modal`), el primer componente overlay del kit, implementado sobre el elemento `<dialog>` nativo con `showModal()` (top layer, focus trap, fondo inerte y restauración de foco provistos por la plataforma — [ADR-013](../../../docs/architecture/adr/ADR-013-overlays-dialog-nativo.md)). Sigue ADR-004/ADR-007/ADR-010 (arquitectura y naming), ADR-012 (iconografía del botón de cierre) y el patrón de overlay de tokens de aaa-009. SHALL soportar `open` (model two-way boolean), `size` (`'sm' | 'md' | 'lg' | 'xl'`, default `'md'`), `heading` (input string para el título accesible), `closeLabel` (input string, default "Cerrar"), `closeOnEscape` (input boolean, default `true`), `closeOnOverlay` (input boolean, default `true`), slot default para el cuerpo y slot `[ds-modal-footer]` para acciones. SHALL aceptar además los alias `aria-label` y `aria-labelledby` para nombrar el diálogo cuando no hay `heading` visible, siguiendo el mismo patrón que `DsSelect` y `DsFieldBase`.
 
 #### Scenario: estructura de archivos
 
@@ -74,12 +74,22 @@ El package SHALL exponer `DsModal` (selector `ds-modal`), el primer componente o
 - **AND** el contenido de fondo SHALL quedar inerte (interacción y árbol de accesibilidad)
 - **AND** al cerrar, el foco SHALL restaurarse al elemento que tenía el foco antes de abrir
 
-#### Scenario: título accesible via heading
+#### Scenario: el diálogo siempre tiene nombre accesible
 
 - **GIVEN** `<ds-modal heading="Confirmar acción">`
 - **WHEN** se inspecciona el DOM abierto
-- **THEN** SHALL renderizarse un heading con ese texto e `id` único
-- **AND** el `<dialog>` SHALL referenciarlo vía `aria-labelledby`
+- **THEN** SHALL renderizarse un heading con ese texto e `id` único, y el `<dialog>` SHALL referenciarlo vía `aria-labelledby`
+- **GIVEN** un modal sin `heading` y con `aria-label` provisto por el consumidor
+- **THEN** el `<dialog>` SHALL exponer ese `aria-label`
+- **GIVEN** un modal sin `heading` y con `aria-labelledby` provisto por el consumidor
+- **THEN** el `<dialog>` SHALL referenciar ese id, que SHALL tener precedencia sobre el `heading` cuando ambos están presentes
+- **AND** el nombre accesible SHALL aplicarse al `<dialog>` —el elemento con rol— y NO SHALL quedar declarado sobre el host `<ds-modal>`, donde sería inerte y además una violación por atributo ARIA no permitido
+
+#### Scenario: estilos exclusivamente por tokens
+
+- **WHEN** se inspecciona `modal.css`
+- **THEN** todo valor visual SHALL referenciarse vía `var(--ds-*)`, incluido el ancho de borde
+- **AND** SHALL NO existir hex codes ni px hardcodeados (excepto `0`)
 
 #### Scenario: animación con tokens de overlay y reduced motion
 

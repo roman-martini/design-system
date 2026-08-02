@@ -29,10 +29,10 @@
 
 ## 5. Commit (requiere OK del PO)
 
-- [ ] 5.1 `git status` fresco + staging con paths explícitos; proponer mensaje Conventional (`fix(components): …`, header ≤100 chars, sin trailer) y **esperar el OK explícito del PO**
+- [x] 5.1 `git status` fresco + staging con paths explícitos; proponer mensaje Conventional (`fix(components): …`, header ≤100 chars, sin trailer) y **esperar el OK explícito del PO** — commiteado con OK
 
 ## 6. Gate visual y archive (bloqueado por D-022)
 
-- [ ] 6.1 Gate visual del PO sobre el modal en el playground — sin cambio visual esperado
-- [ ] 6.2 Archive con el checklist completo de `docs/product/README.md` § "Checklist de archive"
+- [x] 6.1 Gate visual del PO sobre el modal en el playground — sin cambio visual esperado (OK del PO el 2026-08-02; el borde computa `1px` igual que antes, verificado en Chromium)
+- [x] 6.2 Archive con el checklist completo de `docs/product/README.md` § "Checklist de archive"
 - [ ] 6.3 Proponer el commit de archive y esperar el OK del PO
