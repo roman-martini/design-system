@@ -56,14 +56,29 @@ El package SHALL exponer `DsToastService` (primera service del kit, naming por A
 - **WHEN** el usuario lo activa
 - **THEN** el callback SHALL ejecutarse y el toast SHALL cerrarse
 
-#### Scenario: anuncio por roles de live region sin robar foco (CA-008.5)
+#### Scenario: la región de anuncios preexiste al primer toast (CA-008.5)
+
+- **GIVEN** una app que inyectó `DsToastService` y todavía no mostró ningún toast
+- **WHEN** se inspecciona el documento
+- **THEN** SHALL existir una región de anuncios persistente, presente en el árbol de accesibilidad y sin presencia visual
+- **AND** SHALL ofrecer una región `polite` y una `assertive` independientes, de modo que la urgencia del anuncio no dependa de mutar la de una región existente
+
+#### Scenario: el mensaje se anuncia con la urgencia de su variante (CA-008.5)
 
 - **WHEN** aparece un toast success/info/warning
-- **THEN** su elemento SHALL tener `role="status"`
+- **THEN** su mensaje SHALL escribirse en la región `polite`
 - **WHEN** aparece un toast danger
-- **THEN** su elemento SHALL tener `role="alert"`
+- **THEN** su mensaje SHALL escribirse en la región `assertive`
+- **AND** el mensaje SHALL anunciarse aunque sea el primer toast de la sesión
+- **AND** cada mensaje SHALL anunciarse una sola vez: el elemento visual del toast NO SHALL declarar por su cuenta un rol de live region
 - **AND** en ningún caso el foco del documento SHALL moverse al aparecer
 - **AND** el botón de cierre SHALL tener `aria-label` (default "Cerrar", configurable por provider)
+
+#### Scenario: la región de anuncios no se crea fuera del navegador (CA-008.5)
+
+- **GIVEN** un entorno sin DOM (renderizado del lado del servidor)
+- **WHEN** se inyecta `DsToastService`
+- **THEN** la inicialización SHALL completarse sin acceder al documento
 
 #### Scenario: stack en top layer con reacomodo (CA-008.6)
 

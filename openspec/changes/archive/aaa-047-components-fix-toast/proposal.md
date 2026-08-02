@@ -2,7 +2,8 @@
 id: aaa-047
 name: components-fix-toast
 type: change
-status: proposed
+status: archived
+archived: 2026-08-02
 modifies-specs:
   - component-toast
 related-adrs:

@@ -28,10 +28,10 @@
 
 ## 5. Commit (requiere OK del PO)
 
-- [ ] 5.1 `git status` fresco + staging con paths explícitos; proponer mensaje Conventional (`fix(components): …`, header ≤100 chars, sin trailer) y **esperar el OK explícito del PO**
+- [x] 5.1 `git status` fresco + staging con paths explícitos; proponer mensaje Conventional (`fix(components): …`, header ≤100 chars, sin trailer) y **esperar el OK explícito del PO** — commiteado con OK en `8809d86`
 
 ## 6. Gate visual y archive (bloqueado por D-022)
 
-- [ ] 6.1 Gate visual del PO sobre el stack de toasts en el playground — sin cambio visual esperado, es justamente lo que se verifica
+- [x] 6.1 Gate visual del PO sobre el stack de toasts en el playground — sin cambio visual esperado, es justamente lo que se verifica (OK del PO el 2026-08-02; medido además en Chromium: sin scroll fantasma, sin captura de foco ni de clicks)
 - [ ] 6.2 Archive con el checklist completo de `docs/product/README.md` § "Checklist de archive": sync de `component-toast`, artefactos sin links relativos, `openspec/README.md`, `docs/architecture/catalog.md`, HU-008 y EP-002, README de producto, grooming del BACKLOG (Parte G → 3/7)
 - [ ] 6.3 Proponer el commit de archive y esperar el OK del PO

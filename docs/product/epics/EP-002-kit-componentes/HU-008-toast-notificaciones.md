@@ -1,7 +1,7 @@
 ---
 epica: EP-002
 actor: Dev consumidor
-estado: Hecha (2026-07-18, aaa-021 components-add-toast)
+estado: Hecha (2026-07-18, aaa-021 components-add-toast; fix de anuncio en aaa-047 2026-08-02)
 decisiones: [D-005, D-007, D-009]
 adrs: [ADR-007, ADR-013, ADR-014]
 ---
@@ -27,7 +27,7 @@ adrs: [ADR-007, ADR-013, ADR-014]
 - [x] **CA-008.2** — Dada la configuración del provider (`provideDsToasts({ position })`, default `bottom-right`), entonces todos los toasts de la app aparecen en esa posición; no existe posición por toast.
 - [x] **CA-008.3** — Dado un toast success/info/warning, entonces se auto-cierra tras la duración (default tokenizado ~5s; `duration` lo ajusta y `0` lo hace persistente) y el timer **se pausa con hover o foco** dentro del toast (WCAG 2.2.1); dado un toast danger, entonces **no** se auto-cierra y siempre muestra botón de cierre.
 - [x] **CA-008.4** — Dado un toast con `action` (label + callback), entonces renderiza un único botón de acción alcanzable por teclado **sin robar el foco** al aparecer; activarlo ejecuta el callback y cierra el toast.
-- [x] **CA-008.5** — Dado un toast success/info/warning, entonces se anuncia como región de estado (`role="status"`, cortés); dado un danger, como `role="alert"`; en ningún caso el foco se mueve al aparecer, y el botón de cierre tiene `aria-label`.
+- [x] **CA-008.5** — Dado un toast success/info/warning, entonces se anuncia como región de estado (cortés); dado un danger, como alerta; en ningún caso el foco se mueve al aparecer, y el botón de cierre tiene `aria-label`. _Corregido en `aaa-047` (2026-08-02): el CA se daba por cumplido con los roles puestos sobre el elemento del toast, pero ese elemento se inserta junto con su texto y una live region que aparece con su contenido no se anuncia de forma confiable — **el primer toast de la sesión podía perderse**. El anuncio pasó a regiones persistentes creadas antes del primer toast, y el elemento visual dejó de declarar rol para no duplicarlo._
 - [x] **CA-008.6** — Dados múltiples toasts activos, entonces se apilan en orden en la posición global, el contenedor vive en el **top layer** (popover manual — visibles sobre un modal abierto) y cada cierre reacomoda el stack. ✔ jsdom cubre el cableado; la superposición real sobre el modal quedó demostrable en playground (botón dentro del modal).
 - [x] **CA-008.7** — Dado el CSS del sistema, entonces todo valor sale de tokens `component.toast.*` nuevos + status semantic, y los pares de contraste por variante pasan AA por script en los 4 themes — **incluye ejecutar `tokens-fix-status-borders`** (los `border/bg` de status que arrastran fallas latentes detectadas en aaa-017). ✔ Nota: el fix real fue `*-600`/`*-700` en light (el `*-500` supuesto no alcanzaba 3:1).
 - [x] **CA-008.8** — Dada la entrada/salida de un toast, entonces usa los tokens de motion de overlay con su bloque `prefers-reduced-motion`.
