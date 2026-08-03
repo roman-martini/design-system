@@ -5,6 +5,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { DsCheckbox } from './checkbox';
 import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss } from '../../testing/css';
 
 describe('DsCheckbox', () => {
   let fixture: ComponentFixture<DsCheckbox>;
@@ -174,5 +175,47 @@ describe('a11y (axe)', () => {
     fixture.detectChanges();
 
     await expectNoAxeViolations(fixture.nativeElement);
+  });
+});
+
+// Scenario: estilos del checkbox por tokens de componente (aaa-051). El
+// checkmark vivía como `stroke='white'` dentro de un SVG en data URI —que no ve
+// las custom properties del documento— así que no seguía al theme: en dark, con
+// el fondo primario aclarado, la marca perdía contraste.
+describe('DsCheckbox — estilos por tokens', () => {
+  const css = readComponentCss('checkbox');
+
+  it('no declara literales de color, tampoco dentro del SVG embebido', () => {
+    expect(css.length).toBeGreaterThan(0);
+    expect(css).not.toMatch(/stroke='white'/);
+    expect(css).not.toMatch(/\bwhite\b/);
+    expect(css).not.toMatch(/#[0-9a-fA-F]{3,8}\b(?![^(]*\))/);
+  });
+
+  it('el color de la marca sale de su token de componente', () => {
+    expect(css).toContain('background-color: var(--ds-component-checkbox-check-color)');
+  });
+
+  it('dibuja la marca con máscara, no con background-image', () => {
+    // Con background-image el color viaja dentro del SVG y queda fuera del
+    // alcance de los tokens; con máscara lo pone CSS.
+    expect(css).toContain('mask-image');
+    expect(css).toContain('-webkit-mask-image');
+    expect(css).not.toMatch(/background-image:\s*url\("data:image\/svg/);
+  });
+
+  it('consume sus tokens de componente en vez de semantic directo', () => {
+    for (const token of [
+      '--ds-component-checkbox-bg-off',
+      '--ds-component-checkbox-bg-on',
+      '--ds-component-checkbox-border-off',
+      '--ds-component-checkbox-border-on',
+      '--ds-component-checkbox-radius',
+      '--ds-component-checkbox-size-md',
+      '--ds-component-checkbox-label-color',
+    ]) {
+      expect(css, `falta ${token}`).toContain(token);
+    }
+    expect(css).not.toMatch(/background(-color)?:\s*var\(--ds-semantic-color-bg/);
   });
 });

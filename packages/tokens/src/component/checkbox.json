@@ -7,13 +7,16 @@
       },
       "radius":       { "value": "{semantic.radius.sm}" },
       "border-width": { "value": "{dimension.2}" },
-      "bg-off":         { "value": "{color.white}" },
-      "bg-off-hover":   { "value": "{color.neutral.50}" },
+      "bg-off":         { "value": "{semantic.color.bg.surface}" },
+      "bg-off-hover":   { "value": "{semantic.color.bg.secondary-hover}" },
       "bg-on":          { "value": "{semantic.color.bg.primary}" },
       "bg-on-hover":    { "value": "{semantic.color.bg.primary-hover}" },
       "border-off":     { "value": "{semantic.color.border.strong}" },
       "border-on":      { "value": "{semantic.color.bg.primary}" },
-      "check-color":    { "value": "{color.white}" },
+      "check-color": {
+        "value": "{semantic.color.text.inverse}",
+        "comment": "Va sobre bg.primary, igual que el texto del botón primario: en dark ese fondo aclara y la marca tiene que oscurecerse para seguir legible (aaa-051)."
+      },
       "focus-ring":     { "value": "{semantic.color.focus-ring}" },
       "label-font-size":{ "value": "{font.size.sm}" },
       "label-color":    { "value": "{semantic.color.text.primary}" }

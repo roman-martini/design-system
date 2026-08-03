@@ -10,12 +10,18 @@
         "md": { "value": "{dimension.8}" }
       },
       "border-width":   { "value": "{dimension.2}" },
-      "bg-off":         { "value": "{color.white}" },
-      "bg-off-hover":   { "value": "{color.neutral.50}" },
-      "bg-on":          { "value": "{color.white}" },
+      "bg-off":         { "value": "{semantic.color.bg.surface}" },
+      "bg-off-hover":   { "value": "{semantic.color.bg.secondary-hover}" },
+      "bg-on": {
+        "value": "{semantic.color.bg.primary}",
+        "comment": "Corregido en aaa-051: decía {color.white}, el diseño opuesto al que el control marcado renderiza. El render es la verdad aprobada."
+      },
       "border-off":     { "value": "{semantic.color.border.strong}" },
       "border-on":      { "value": "{semantic.color.bg.primary}" },
-      "dot-color":      { "value": "{semantic.color.bg.primary}" },
+      "dot-color": {
+        "value": "{semantic.color.text.inverse}",
+        "comment": "Corregido en aaa-051: decía bg.primary (el mismo color del fondo marcado, invisible). Va sobre ese fondo, así que sigue la cadena de text.inverse y acompaña al theme."
+      },
       "focus-ring":     { "value": "{semantic.color.focus-ring}" },
       "label-font-size":{ "value": "{font.size.sm}" },
       "label-color":    { "value": "{semantic.color.text.primary}" }

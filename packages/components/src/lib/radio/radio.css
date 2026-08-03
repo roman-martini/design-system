@@ -20,9 +20,9 @@ input[type='radio'] {
   appearance: none;
   flex-shrink: 0;
   margin: 0;
-  border: 2px solid var(--ds-semantic-color-border-strong);
+  border: var(--ds-component-radio-border-width) solid var(--ds-component-radio-border-off);
   border-radius: 50%;
-  background: var(--ds-semantic-color-bg-surface);
+  background: var(--ds-component-radio-bg-off);
   cursor: inherit;
   transition:
     background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out),
@@ -30,25 +30,30 @@ input[type='radio'] {
     box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out);
 }
 
-/* Sizes — primitives dimensions */
+/* Sizes — el token declara sm y md; lg escala con el primitive siguiente. */
 input[type='radio'][data-size='sm'] {
-  width: var(--ds-dimension-16);
-  height: var(--ds-dimension-16);
+  width: var(--ds-component-radio-size-sm);
+  height: var(--ds-component-radio-size-sm);
 }
 input[type='radio'][data-size='md'] {
-  width: var(--ds-dimension-20);
-  height: var(--ds-dimension-20);
+  width: var(--ds-component-radio-size-md);
+  height: var(--ds-component-radio-size-md);
 }
 input[type='radio'][data-size='lg'] {
   width: var(--ds-dimension-24);
   height: var(--ds-dimension-24);
 }
 
-/* Checked — dot interno via radial gradient (sin SVG, sin children) */
+/* Checked — dot interno via radial gradient (sin SVG, sin children). Acá el
+   token sí resuelve: es CSS del documento, no un SVG embebido aislado. */
 input[type='radio']:checked {
-  background-color: var(--ds-semantic-color-bg-primary);
-  border-color: var(--ds-semantic-color-border-primary);
-  background-image: radial-gradient(circle, var(--ds-color-white) 35%, transparent 40%);
+  background-color: var(--ds-component-radio-bg-on);
+  border-color: var(--ds-component-radio-border-on);
+  background-image: radial-gradient(
+    circle,
+    var(--ds-component-radio-dot-color) 35%,
+    transparent 40%
+  );
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -63,6 +68,7 @@ input[type='radio']:disabled {
 }
 
 .radio__label {
+  color: var(--ds-component-radio-label-color);
   font-size: var(--ds-font-size-md);
   line-height: var(--ds-font-line-height-tight);
   user-select: none;

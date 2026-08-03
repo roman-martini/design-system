@@ -3,6 +3,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { DsRadio } from './radio';
 import { expectNoAxeViolations } from '../../testing/axe';
+import { readComponentCss } from '../../testing/css';
 
 describe('DsRadio (standalone, no group)', () => {
   let fixture: ComponentFixture<DsRadio>;
@@ -84,5 +85,37 @@ describe('a11y (axe)', () => {
     fixture.detectChanges();
 
     await expectNoAxeViolations(fixture.nativeElement);
+  });
+});
+
+// Scenario: estilos del radio por tokens de componente (aaa-051). El punto se
+// pintaba con el primitive `--ds-color-white`, que no sigue al theme, mientras
+// su token `dot-color` declaraba el color del propio fondo marcado — invisible.
+describe('DsRadio — estilos por tokens', () => {
+  const css = readComponentCss('radio');
+
+  it('no declara literales ni primitives de color', () => {
+    expect(css.length).toBeGreaterThan(0);
+    expect(css).not.toMatch(/var\(--ds-color-/);
+    expect(css).not.toMatch(/\bwhite\b/);
+    expect(css).not.toMatch(/#[0-9a-fA-F]{3,8}\b/);
+  });
+
+  it('el color del punto sale de su token de componente', () => {
+    expect(css).toContain('var(--ds-component-radio-dot-color)');
+  });
+
+  it('consume sus tokens de componente en vez de semantic directo', () => {
+    for (const token of [
+      '--ds-component-radio-bg-off',
+      '--ds-component-radio-bg-on',
+      '--ds-component-radio-border-off',
+      '--ds-component-radio-border-on',
+      '--ds-component-radio-size-md',
+      '--ds-component-radio-label-color',
+    ]) {
+      expect(css, `falta ${token}`).toContain(token);
+    }
+    expect(css).not.toMatch(/background(-color)?:\s*var\(--ds-semantic-color-bg/);
   });
 });
