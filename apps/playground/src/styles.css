@@ -1,6 +1,13 @@
 /* Tokens del sistema de diseño — DEBE ir primero para que --ds-* esté disponible globalmente */
 @import '@romanmartinidev/tokens/css';
 
+/* Themes: se cargan siempre y se activan por [data-theme] / [data-brand] en el
+   root. Sin esto no había forma de validar dark ni brands en el playground, y el
+   gate visual del PO previo al archive (D-022) no podía ejercerse sobre themes. */
+@import '@romanmartinidev/tokens/themes/dark';
+@import '@romanmartinidev/tokens/themes/brand-a';
+@import '@romanmartinidev/tokens/themes/brand-b';
+
 /* Estilos globales del playground */
 html,
 body {
