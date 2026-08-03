@@ -93,6 +93,54 @@ describe('DsAvatarGroup', () => {
   });
 });
 
+@Component({
+  standalone: true,
+  imports: [DsAvatar, DsAvatarGroup],
+  template: `
+    <ds-avatar-group [max]="max()" [moreLabel]="moreLabel">
+      <ds-avatar name="Sofia Davis" size="sm" />
+      <ds-avatar name="Jackson Lee" size="sm" />
+      <ds-avatar name="Isabella Nguyen" size="sm" />
+    </ds-avatar-group>
+  `,
+})
+class TranslatedGroupHost {
+  readonly max = signal<number | null>(2);
+  // El caso que motivó el input: pluralización, que un string con placeholder
+  // no cubre.
+  readonly moreLabel = (count: number): string => (count === 1 ? '1 more' : `${count} more`);
+}
+
+// Scenario: overflow "+N" accesible y traducible (components-09). Era el único
+// texto anunciado por tecnología asistiva que el consumidor no podía cambiar.
+describe('DsAvatarGroup — texto del overflow', () => {
+  const more = (fixture: ComponentFixture<unknown>): HTMLElement =>
+    fixture.nativeElement.querySelector('.ds-avatar-group__more') as HTMLElement;
+
+  it('sin configurar conserva el texto por defecto', async () => {
+    await TestBed.configureTestingModule({ imports: [GroupHost] }).compileComponents();
+    const fixture = TestBed.createComponent(GroupHost);
+    fixture.componentInstance.max.set(3);
+    fixture.detectChanges();
+    expect(more(fixture).getAttribute('aria-label')).toBe('y 2 más');
+  });
+
+  it('usa el texto del consumidor, que recibe la cantidad oculta', async () => {
+    await TestBed.configureTestingModule({ imports: [TranslatedGroupHost] }).compileComponents();
+    const fixture = TestBed.createComponent(TranslatedGroupHost);
+    fixture.detectChanges();
+    expect(more(fixture).getAttribute('aria-label')).toBe('1 more');
+  });
+
+  it('el override puede pluralizar según la cantidad', async () => {
+    await TestBed.configureTestingModule({ imports: [TranslatedGroupHost] }).compileComponents();
+    const fixture = TestBed.createComponent(TranslatedGroupHost);
+    fixture.componentInstance.max.set(1);
+    fixture.detectChanges();
+    expect(more(fixture).getAttribute('aria-label')).toBe('2 more');
+  });
+});
+
 // Fase 1 de HU-028 (aaa-042): axe sobre el render por defecto. El helper falla
 // tanto ante una violación como ante una corrida que no pudo evaluar nada.
 describe('a11y (axe)', () => {
