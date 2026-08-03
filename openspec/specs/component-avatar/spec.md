@@ -44,7 +44,7 @@ El package SHALL exponer `DsAvatar` (`ds-avatar`, naming por ADR-007) junto con 
 
 ### Requirement: Grupo de avatares (DsAvatarGroup)
 
-El package SHALL exponer `DsAvatarGroup` (`ds-avatar-group`) que apila `<ds-avatar>` proyectados con solape por `space.negative.*` (semantic, jerarquía ADR-003 intacta: la fuente referencia `semantic.space.*` sin duplicar valores) y anillo de separación tokenizado (`border-width`/`border-color`). SHALL soportar `max` (default sin límite): los avatares que exceden SHALL ocultarse y colapsar en un item "+N" con el estilo de fallback en tono neutral y nombre accesible. El host SHALL exponer `role="group"` con `aria-label` opcional por input `label`.
+El package SHALL exponer `DsAvatarGroup` (`ds-avatar-group`) que apila `<ds-avatar>` proyectados con solape por `space.negative.*` (semantic, jerarquía ADR-003 intacta: la fuente referencia `semantic.space.*` sin duplicar valores) y anillo de separación tokenizado (`border-width`/`border-color`). SHALL soportar `max` (default sin límite): los avatares que exceden SHALL ocultarse y colapsar en un item "+N" con el estilo de fallback en tono neutral y nombre accesible. El host SHALL exponer `role="group"` con `aria-label` opcional por input `label`. El nombre accesible del item "+N" SHALL ser configurable por el consumidor mediante un input que recibe la cantidad oculta, de modo que pueda traducirse y pluralizarse.
 
 #### Scenario: solape con space.negative (CA-022.3)
 
@@ -53,12 +53,16 @@ El package SHALL exponer `DsAvatarGroup` (`ds-avatar-group`) que apila `<ds-avat
 - **THEN** los avatares SHALL solaparse usando un token que referencia `semantic.space.negative.*`
 - **AND** `semantic/space.json` SHALL contener `space.negative.*` referenciando la jerarquía (sin valores duplicados fuera de ella)
 
-#### Scenario: overflow "+N" accesible (CA-022.3)
+#### Scenario: overflow "+N" accesible y traducible (CA-022.3)
 
 - **GIVEN** un grupo con `max` menor que la cantidad de avatares
 - **WHEN** se renderiza
 - **THEN** SHALL mostrarse `max` avatares y un item "+N" con el resto contabilizado
-- **AND** el "+N" SHALL exponer `role="img"` con `aria-label` "y N más"
+- **AND** el "+N" SHALL exponer `role="img"` con un nombre accesible que comunique cuántos quedan ocultos
+- **GIVEN** un consumidor que provee su propio texto para ese nombre
+- **WHEN** se renderiza el grupo con overflow
+- **THEN** el nombre accesible SHALL ser el que el consumidor definió, recibiendo la cantidad oculta para poder redactarlo en su idioma y con la pluralización que corresponda
+- **AND** sin configuración explícita SHALL usarse el texto por defecto del kit
 
 #### Scenario: exportado desde public-api.ts (CA-022.1)
 

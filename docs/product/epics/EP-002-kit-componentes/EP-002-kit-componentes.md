@@ -61,7 +61,7 @@ Componentes del kit publicable `@romanmartinidev/components`: form controls, acc
 | [HU-019](HU-019-card.md)                          | Card contenedor                                   | Dev consumidor | Hecha (2026-07-22, aaa-032 — abre la tanda 3)                                     |
 | [HU-020](HU-020-button-outline-destructive.md)    | Variantes outline y danger de Button              | Dev consumidor | Hecha (2026-07-22, aaa-033 — genera D-016)                                        |
 | [HU-021](HU-021-badge.md)                         | Badge de estado                                   | Dev consumidor | Hecha (2026-07-22, aaa-034 — estrena ADR-019)                                     |
-| [HU-022](HU-022-avatar.md)                        | Avatar y grupo de avatares                        | Dev consumidor | Hecha (2026-07-26, aaa-037)                                                       |
+| [HU-022](HU-022-avatar.md)                        | Avatar y grupo de avatares                        | Dev consumidor | Hecha (2026-07-26, aaa-037; overflow traducible en aaa-050 2026-08-03)            |
 | [HU-023](HU-023-switch.md)                        | Switch/Toggle                                     | Dev consumidor | Hecha (2026-07-23, aaa-035)                                                       |
 | [HU-024](HU-024-textarea.md)                      | Textarea                                          | Dev consumidor | Hecha (2026-07-26, aaa-036)                                                       |
 | [HU-025](HU-025-slider.md)                        | Slider (range)                                    | Dev consumidor | Hecha (2026-08-01, aaa-044 — genera ADR-023, cierra la tanda 3)                   |

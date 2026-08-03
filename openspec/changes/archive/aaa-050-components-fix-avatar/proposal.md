@@ -2,7 +2,8 @@
 id: aaa-050
 name: components-fix-avatar
 type: change
-status: proposed
+status: archived
+archived: 2026-08-03
 modifies-specs:
   - component-avatar
 related-adrs:
