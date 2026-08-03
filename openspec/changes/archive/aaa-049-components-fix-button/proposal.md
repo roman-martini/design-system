@@ -2,7 +2,8 @@
 id: aaa-049
 name: components-fix-button
 type: change
-status: proposed
+status: archived
+archived: 2026-08-03
 modifies-specs:
   - component-button
 related-adrs:
