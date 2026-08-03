@@ -6,13 +6,23 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--ds-semantic-space-sm);
-  padding: var(--ds-semantic-space-sm) var(--ds-semantic-space-md);
-  border: 1px solid transparent;
-  border-radius: var(--ds-semantic-radius-lg);
+  gap: var(--ds-component-button-gap);
+  /* Alto declarado por token, no derivado del padding: así el centrado lo
+     resuelve el flex sobre una caja conocida y el botón mide lo que su token
+     dice — que es además lo que lo alinea con select e input (aaa-049). */
+  height: var(--ds-component-button-height-md);
+  padding: 0 var(--ds-component-button-padding-x-md);
+  border: var(--ds-dimension-1) solid transparent;
+  border-radius: var(--ds-component-button-radius);
   font-family: inherit;
+  font-size: var(--ds-component-button-font-size-md);
   font-weight: var(--ds-font-weight-medium);
-  line-height: var(--ds-font-line-height-tight);
+  /* `tight` (20px a 16px de fuente) recortaba la caja de línea por debajo del
+     alto natural del texto (21px): el sobrante negativo se repartía medio píxel
+     por lado y el redondeo lo empujaba arriba — el texto descentrado que
+     reportó el PO. Con el alto ya fijado por token, subirlo no cambia el
+     tamaño del control, solo deja de recortar. */
+  line-height: var(--ds-font-line-height-normal);
   cursor: pointer;
   transition:
     background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out),
@@ -159,17 +169,22 @@ button[data-variant='danger-ghost']:active:not([aria-disabled='true']):not([data
   background-color: var(--ds-component-button-danger-ghost-bg-active);
 }
 
-/* size */
+/* size — cada uno con su alto, padding horizontal y tamaño de fuente
+   tokenizados. El bloque base ya declara los valores de `md`. */
 button[data-size='sm'] {
-  padding: var(--ds-semantic-space-2xs) var(--ds-semantic-space-sm);
-  font-size: var(--ds-font-size-sm);
+  height: var(--ds-component-button-height-sm);
+  padding: 0 var(--ds-component-button-padding-x-sm);
+  font-size: var(--ds-component-button-font-size-sm);
 }
 button[data-size='md'] {
-  font-size: var(--ds-font-size-md);
+  height: var(--ds-component-button-height-md);
+  padding: 0 var(--ds-component-button-padding-x-md);
+  font-size: var(--ds-component-button-font-size-md);
 }
 button[data-size='lg'] {
-  padding: var(--ds-semantic-space-md) var(--ds-semantic-space-lg);
-  font-size: var(--ds-font-size-lg);
+  height: var(--ds-component-button-height-lg);
+  padding: 0 var(--ds-component-button-padding-x-lg);
+  font-size: var(--ds-component-button-font-size-lg);
 }
 
 @media (prefers-reduced-motion: reduce) {

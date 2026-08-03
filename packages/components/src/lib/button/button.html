@@ -1,8 +1,10 @@
 <button
-  type="button"
+  [attr.type]="type()"
   [attr.data-variant]="variant()"
   [attr.data-size]="size()"
   [attr.data-loading]="loadingMode()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-labelledby]="ariaLabelledby()"
   [attr.aria-disabled]="ariaDisabled()"
   [attr.aria-busy]="ariaBusy()"
   [attr.aria-describedby]="describedBy()"

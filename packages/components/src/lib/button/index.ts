@@ -1,1 +1,1 @@
-export { DsButton, type DsButtonVariant, type DsButtonSize } from './button';
+export { DsButton, type DsButtonVariant, type DsButtonSize, type DsButtonType } from './button';

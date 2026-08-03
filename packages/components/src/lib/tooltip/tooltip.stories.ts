@@ -42,18 +42,20 @@ export const Placements: Story = {
 // El tooltip es DESCRIPCIÓN (aria-describedby), no label: un botón ícono-only
 // sigue necesitando su aria-label propio. El tooltip complementa, no nombra.
 export const OnIconButton: Story = {
-  decorators: [moduleMetadata({ imports: [DsTooltip, LucideX] })],
+  decorators: [moduleMetadata({ imports: [DsTooltip, DsButton, LucideX] })],
   render: () => ({
+    // Usa ds-button: hasta aaa-049 esta story armaba un <button> nativo con
+    // estilos inline porque el componente no admitía nombre accesible, y un
+    // botón ícono-only sin nombre no era publicable como ejemplo.
     template: `
       <div style="padding: 4rem;">
-        <button
-          type="button"
+        <ds-button
+          variant="ghost"
           aria-label="Cerrar panel"
           dsTooltip="Cierra el panel sin guardar los cambios"
-          style="display:inline-flex; padding: var(--ds-semantic-space-2xs); border: none; background: transparent; cursor: pointer; color: var(--ds-semantic-color-icon-default);"
         >
           <svg lucideX size="16" strokeWidth="1.5" aria-hidden="true"></svg>
-        </button>
+        </ds-button>
       </div>
     `,
   }),

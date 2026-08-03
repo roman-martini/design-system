@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
@@ -290,6 +290,169 @@ describe('a11y (axe)', () => {
     fixture.detectChanges();
 
     await expectNoAxeViolations(fixture.nativeElement);
+  });
+});
+
+@Component({
+  standalone: true,
+  imports: [DsButton],
+  template: `
+    <form (submit)="onSubmit($event)">
+      <ds-button type="submit" [disabled]="disabled()" [loading]="loading()">Enviar</ds-button>
+    </form>
+  `,
+})
+class SubmitHost {
+  readonly disabled = signal(false);
+  readonly loading = signal(false);
+  submits = 0;
+  onSubmit(event: Event): void {
+    event.preventDefault();
+    this.submits++;
+  }
+}
+
+// Scenario: type submit envía el formulario (components-06). El kit tenía la
+// familia de forms completa y no ofrecía el botón que dispara el envío.
+describe('DsButton — type', () => {
+  let fixture: ComponentFixture<SubmitHost>;
+  let host: SubmitHost;
+
+  const nativeButton = (): HTMLButtonElement =>
+    fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({ imports: [SubmitHost] }).compileComponents();
+    fixture = TestBed.createComponent(SubmitHost);
+    host = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('refleja el type en el button interno', () => {
+    expect(nativeButton().getAttribute('type')).toBe('submit');
+  });
+
+  it('el default sigue siendo button, para no enviar formularios sin pedirlo', async () => {
+    await TestBed.resetTestingModule();
+    await TestBed.configureTestingModule({ imports: [DsButton] }).compileComponents();
+    const solo = TestBed.createComponent(DsButton);
+    solo.detectChanges();
+    expect((solo.nativeElement.querySelector('button') as HTMLElement).getAttribute('type')).toBe(
+      'button',
+    );
+  });
+
+  it('envía el formulario al activarse', () => {
+    nativeButton().click();
+    fixture.detectChanges();
+    expect(host.submits).toBe(1);
+  });
+
+  it('bloqueado por disabled o loading tampoco envía el formulario', () => {
+    // Con aria-disabled el click nativo no está bloqueado: sin preventDefault
+    // el submit se dispararía igual aunque `clicked` no emita (ADR-011).
+    host.disabled.set(true);
+    fixture.detectChanges();
+    nativeButton().click();
+    fixture.detectChanges();
+    expect(host.submits).toBe(0);
+
+    host.disabled.set(false);
+    host.loading.set(true);
+    fixture.detectChanges();
+    nativeButton().click();
+    fixture.detectChanges();
+    expect(host.submits).toBe(0);
+  });
+});
+
+@Component({
+  standalone: true,
+  imports: [DsButton],
+  template: `<ds-button aria-label="Cerrar panel"
+    ><svg aria-hidden="true" width="16" height="16"></svg
+  ></ds-button>`,
+})
+class IconOnlyHost {}
+
+// Scenario: el botón ícono-only tiene nombre accesible. El gate de axe (aaa-042)
+// detectó que DsButton era el único componente del kit que necesitaba nombre
+// externo y no lo admitía.
+describe('DsButton — nombre accesible', () => {
+  let fixture: ComponentFixture<IconOnlyHost>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({ imports: [IconOnlyHost] }).compileComponents();
+    fixture = TestBed.createComponent(IconOnlyHost);
+    fixture.detectChanges();
+  });
+
+  it('reenvía el aria-label al button interno', () => {
+    const button = fixture.nativeElement.querySelector('button') as HTMLElement;
+    expect(button.getAttribute('aria-label')).toBe('Cerrar panel');
+  });
+
+  it('no deja el atributo en el host, donde sería inerte y prohibido', () => {
+    const host = fixture.nativeElement.querySelector('ds-button') as HTMLElement;
+    expect(host.hasAttribute('aria-label')).toBe(false);
+  });
+
+  it('un botón ícono-only no tiene violaciones de accesibilidad', async () => {
+    await fixture.whenStable();
+    fixture.detectChanges();
+    await expectNoAxeViolations(fixture.nativeElement);
+  });
+});
+
+// Scenario: dimensionamiento tokenizado (aaa-049). El botón declaraba tokens de
+// altura/padding/font-size que nadie consumía: medía 38 px donde su token decía
+// 40 y no alineaba con select ni input.
+describe('DsButton — dimensionamiento por tokens', () => {
+  it('declara alto, padding, fuente, gap y radius por tokens de componente', () => {
+    for (const token of [
+      '--ds-component-button-height-sm',
+      '--ds-component-button-height-md',
+      '--ds-component-button-height-lg',
+      '--ds-component-button-padding-x-md',
+      '--ds-component-button-font-size-md',
+      '--ds-component-button-gap',
+      '--ds-component-button-radius',
+    ]) {
+      expect(buttonCss, `falta ${token}`).toContain(token);
+    }
+  });
+
+  // Reglas que dimensionan el control (`button` y sus variantes por size), sin
+  // comentarios: lo que la spec exige es sobre el control, no sobre el texto
+  // auxiliar del motivo de disabled.
+  const reglasDelControl = Array.from(
+    buttonCss
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .matchAll(/(^|\n)\s*(button(\[[^\]]+\])*)\s*\{([^}]*)\}/g),
+  ).map(([, , selector, , cuerpo]) => ({ selector, cuerpo }));
+
+  it('no se dimensiona con space semántico ni con primitives de tipografía', () => {
+    // Un componente consume component.*, no semantic.* ni primitives sueltos
+    // (ADR-003, jerarquía que exige design-tokens-package).
+    expect(reglasDelControl.length).toBeGreaterThan(0);
+    for (const { selector, cuerpo } of reglasDelControl) {
+      expect(cuerpo, `regla '${selector}'`).not.toMatch(/padding:[^;]*--ds-semantic-space/);
+      expect(cuerpo, `regla '${selector}'`).not.toMatch(/font-size:\s*var\(--ds-font-size-/);
+      expect(cuerpo, `regla '${selector}'`).not.toMatch(
+        /border-radius:\s*var\(--ds-semantic-radius/,
+      );
+    }
+  });
+
+  it('la caja de línea no recorta el texto', () => {
+    // `tight` (20px a 16px de fuente) quedaba por debajo del alto natural del
+    // texto (21px) y lo descentraba: el fix del PO.
+    expect(buttonCss).toContain('line-height: var(--ds-font-line-height-normal)');
+  });
+
+  it('no hardcodea px fuera de 0', () => {
+    // Sin comentarios: las mediciones citadas en la prosa no son declaraciones.
+    expect(buttonCss.replace(/\/\*[\s\S]*?\*\//g, '')).not.toMatch(/(?<![-\w])[1-9]\d*px/);
   });
 });
 

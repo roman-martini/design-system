@@ -17,7 +17,10 @@
         "lg": { "value": "{semantic.font.size.button-lg}" }
       },
       "font-weight":  { "value": "{semantic.font.weight.button}" },
-      "radius":       { "value": "{semantic.radius.md}" },
+      "radius": {
+        "value": "{semantic.radius.lg}",
+        "comment": "Corregido en aaa-049: el token decía md (6px) mientras el CSS venía usando lg (8px), el valor aprobado visualmente. Al conectar el token había que decidir cuál de los dos era la verdad; se eligió el render."
+      },
       "gap":          { "value": "{dimension.8}" },
       "focus-ring-color": { "value": "{semantic.color.focus-ring}" },
       "focus-ring-width": { "value": "{dimension.3}" },
