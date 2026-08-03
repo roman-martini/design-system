@@ -7,9 +7,10 @@
   display: grid;
   grid-template-areas:
     'header header'
+    'prototype content'
     'nav content';
   grid-template-columns: 220px 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
@@ -42,6 +43,18 @@
 .shell__nav {
   grid-area: nav;
   padding: var(--ds-semantic-space-lg) 0;
+}
+
+/* El prototipo del hito va arriba del catálogo y separado: no es un componente. */
+.shell__nav--prototype {
+  grid-area: prototype;
+  padding: var(--ds-semantic-space-lg) 0 0;
+  border-bottom: var(--ds-dimension-1) solid var(--ds-semantic-color-border-subtle);
+  padding-bottom: var(--ds-semantic-space-md);
+}
+
+.shell__link--prototype {
+  font-weight: var(--ds-font-weight-medium);
 }
 
 .shell__list {
@@ -96,6 +109,7 @@
   .shell {
     grid-template-areas:
       'header'
+      'prototype'
       'nav'
       'content';
     grid-template-columns: 1fr;

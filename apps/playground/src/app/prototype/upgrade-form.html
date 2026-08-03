@@ -1,0 +1,62 @@
+<div class="prototype">
+  <ds-card class="prototype__card">
+    <ds-card-header>
+      <ds-card-title>Upgrade your subscription</ds-card-title>
+      <ds-card-description>
+        You are currently on the free plan. Upgrade to the pro plan to get access to all features.
+      </ds-card-description>
+    </ds-card-header>
+
+    <ds-card-content>
+      <form class="form" (ngSubmit)="submit()">
+        <div class="form__row form__row--2">
+          <ds-input label="Name" placeholder="Evil Rabbit" [(value)]="name" />
+          <ds-input label="Email" type="email" placeholder="example@acme.com" [(value)]="email" />
+        </div>
+
+        <div class="form__row form__row--card">
+          <ds-input label="Card Number" placeholder="1234 1234 1234 1234" [(value)]="cardNumber" />
+          <ds-input label="&nbsp;" placeholder="MM/YY" [(value)]="expiry" />
+          <ds-input label="&nbsp;" placeholder="CVC" [(value)]="cvc" />
+        </div>
+
+        <fieldset class="form__fieldset">
+          <legend class="form__legend">Plan</legend>
+          <p class="form__hint">Select the plan that best fits your needs.</p>
+
+          <ds-radio-group [(value)]="plan" class="form__plans">
+            <label class="plan" [class.plan--selected]="plan() === 'starter'">
+              <ds-radio value="starter" label="Starter Plan" />
+              <span class="plan__detail">Perfect for small businesses.</span>
+            </label>
+            <label class="plan" [class.plan--selected]="plan() === 'pro'">
+              <ds-radio value="pro" label="Pro Plan" />
+              <span class="plan__detail">More features and storage.</span>
+            </label>
+          </ds-radio-group>
+        </fieldset>
+
+        <ds-textarea label="Notes" placeholder="Enter notes" [rows]="4" [(value)]="notes" />
+
+        <div class="form__checks">
+          <ds-checkbox label="I agree to the terms and conditions" [(checked)]="acceptedTerms" />
+          <ds-checkbox label="Allow us to send you emails" [(checked)]="wantsEmails" />
+        </div>
+      </form>
+    </ds-card-content>
+
+    <ds-card-footer>
+      <div class="form__actions">
+        <ds-button variant="outline" (clicked)="cancel()">Cancel</ds-button>
+        <ds-button
+          type="submit"
+          [disabled]="!canSubmit()"
+          [disabledReason]="submitDisabledReason()"
+          (clicked)="submit()"
+        >
+          Upgrade Plan
+        </ds-button>
+      </div>
+    </ds-card-footer>
+  </ds-card>
+</div>

@@ -1,0 +1,102 @@
+/* Solo layout: grid, gaps y anchos, todo por tokens. Ningún estilo de
+   componente se replica acá — si algo del render necesita CSS propio, es un
+   hallazgo del hito (D-023), no algo para resolver en esta hoja. */
+
+.prototype {
+  display: flex;
+  justify-content: center;
+  padding: var(--ds-semantic-space-xl) 0;
+}
+
+.prototype__card {
+  width: 100%;
+  max-width: 34rem;
+}
+
+.form,
+.form__fieldset,
+.form__checks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-semantic-space-md);
+}
+
+.form__row {
+  display: grid;
+  gap: var(--ds-semantic-space-md);
+}
+
+.form__row--2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Número de tarjeta ancho + vencimiento y CVC angostos, como la referencia.
+   El `min-width: 0` de los items no es cosmético: sin él, `ds-input` impone un
+   ancho mínimo de ~211 px (el `<input>` interno conserva su ancho intrínseco de
+   `size=20`), el grid ignora las fracciones y la fila desborda la tarjeta.
+   Queda registrado como gap del hito — el consumidor no debería necesitar
+   saber esto para poner un campo en una columna angosta. */
+.form__row--card {
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: end;
+}
+
+.form__row--card > * {
+  min-width: 0;
+}
+
+.form__fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  gap: var(--ds-semantic-space-2xs);
+}
+
+.form__legend {
+  padding: 0;
+  color: var(--ds-semantic-color-text-primary);
+  font-size: var(--ds-font-size-sm);
+  font-weight: var(--ds-font-weight-medium);
+}
+
+.form__hint {
+  margin: 0 0 var(--ds-semantic-space-xs);
+  color: var(--ds-semantic-color-text-secondary);
+  font-size: var(--ds-font-size-sm);
+}
+
+.form__plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ds-semantic-space-md);
+}
+
+/* Tarjeta seleccionable: la referencia envuelve cada radio en un panel con
+   borde que reacciona a la selección. El kit no tiene un "radio card", así que
+   el panel se arma acá — queda registrado como gap del hito. */
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-semantic-space-2xs);
+  padding: var(--ds-semantic-space-md);
+  border: var(--ds-dimension-1) solid var(--ds-semantic-color-border-default);
+  border-radius: var(--ds-semantic-radius-md);
+  cursor: pointer;
+}
+
+.plan--selected {
+  border-color: var(--ds-semantic-color-border-primary);
+  background: var(--ds-semantic-color-bg-primary-subtle);
+}
+
+.plan__detail {
+  color: var(--ds-semantic-color-text-secondary);
+  font-size: var(--ds-font-size-sm);
+  padding-left: var(--ds-semantic-space-lg);
+}
+
+.form__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ds-semantic-space-sm);
+}

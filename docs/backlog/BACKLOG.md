@@ -109,7 +109,13 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Disparador**: activado — cierre de la tanda 3 (D-023). El PO decide cuándo agendarlo respecto del plan de la review (Partes G–N pendientes).
 
-**Estado**: pendiente (Now).
+**Estado**: **hecho** (2026-08-03) — prototipo en `/prototipo` del playground: el formulario "Upgrade your subscription" de la referencia (`docs/reference/components/moder-minimal/2.image.png`), construido con `DsCard`, `DsInput`, `DsTextarea`, `DsRadioGroup`, `DsRadio`, `DsCheckbox` y `DsButton`. **El kit lo construye entero**: el CSS del prototipo es solo layout (grid, gaps y anchos por tokens), sin replicar ningún estilo de componente. Funciona en light y dark.
+
+**Gaps del hito detectados** (ninguno bloquea la construcción; los tres van a la cola como trabajo propio):
+
+1. **`ds-input` impone ~211 px de ancho mínimo** y no entra en una columna angosta de grid: el `<input>` interno conserva su ancho intrínseco (`size=20` → 181 px), así que el `min-content` del componente domina y el grid ignora las fracciones. Se sortea con `min-width: 0` en el grid item, pero **el consumidor no debería necesitar saber eso** para poner un campo en una columna angosta. Fix esperado: `width: 100%` en el control interno de `field.css`. **Severidad: media** — afecta a todo formulario multi-columna, que es el caso de uso central del kit.
+2. **No hay "radio card"**: la referencia envuelve cada opción en un panel seleccionable con borde y fondo que reaccionan a la selección. El panel se armó en el CSS del prototipo (~15 líneas). Es un patrón frecuente en formularios de plan/pricing. **Severidad: baja** — candidato a HU, no a fix.
+3. **Los campos sin label visible obligan a un hack**: `MM/YY` y `CVC` no llevan label en la referencia, y `DsInput` sin `label` deja el control sin etiqueta visual pero también sin alineación con sus hermanos (se usó `label="&nbsp;"` para alinear). Falta una vía declarada — un input `hideLabel` que conserve el nombre accesible, o alineación por `align-items: end` documentada. **Severidad: baja**.
 
 ---
 

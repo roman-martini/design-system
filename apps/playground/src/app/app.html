@@ -10,6 +10,19 @@
     <app-theme-switcher />
   </header>
 
+  <!-- El prototipo del hito H1 va en su propio nav: no es un componente del
+       catálogo, es una pantalla construida con el kit (D-023). -->
+  <nav class="shell__nav shell__nav--prototype" aria-label="Prototipos">
+    <a
+      class="shell__link shell__link--prototype"
+      routerLink="/prototipo"
+      routerLinkActive="shell__link--active"
+      ariaCurrentWhenActive="page"
+    >
+      Prototipo (H1)
+    </a>
+  </nav>
+
   <nav class="shell__nav" aria-label="Componentes">
     <ul class="shell__list">
       @for (entry of entries; track entry.slug) {
