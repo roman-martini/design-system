@@ -2,7 +2,8 @@
 id: aaa-051
 name: components-fix-checkbox-radio
 type: change
-status: proposed
+status: archived
+archived: 2026-08-03
 modifies-specs:
   - component-checkbox
   - component-radio

@@ -41,22 +41,22 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Estado por parte** (el detalle de cada una vive en el plan; acá solo el avance):
 
-| Parte | Contenido                           | Vía                     | Estado                                                                               |
-| ----- | ----------------------------------- | ----------------------- | ------------------------------------------------------------------------------------ |
-| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                                                  |
-| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                                                               |
-| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                                                               |
-| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028                                   |
-| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022                                          |
-| F     | Gates de calidad automáticos        | OpenSpec change(s)      | **Hecha** (2026-07-31) — 4 sub-partes, ver abajo                                     |
-| G     | Fixes de componentes (7 changes)    | OpenSpec por componente | **En curso** — 6/7 (`aaa-045`…`aaa-050`: menu, select, toast, modal, button, avatar) |
-| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                                                            |
-| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                                                            |
-| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                                                            |
-| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                                                            |
-| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                                                   |
-| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada                                            |
-| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                                                   |
+| Parte | Contenido                           | Vía                     | Estado                                             |
+| ----- | ----------------------------------- | ----------------------- | -------------------------------------------------- |
+| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                |
+| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                             |
+| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                             |
+| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028 |
+| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022        |
+| F     | Gates de calidad automáticos        | OpenSpec change(s)      | **Hecha** (2026-07-31) — 4 sub-partes, ver abajo   |
+| G     | Fixes de componentes (7 changes)    | OpenSpec por componente | **Hecha** (2026-08-03) — 7/7 (`aaa-045`…`aaa-051`) |
+| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                          |
+| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                          |
+| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                          |
+| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                          |
+| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                 |
+| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada          |
+| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                 |
 
 **Detalle de la Parte F** (12 ítems; el plan autoriza partirla, el PO lo aprobó el 2026-07-29):
 
@@ -86,8 +86,8 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 | `components-fix-toast`          | **Hecha** (2026-08-02, `aaa-047`) — HU-008, anuncio del primer toast    |
 | `components-fix-modal`          | **Hecha** (2026-08-02, `aaa-048`) — nombre accesible + borde tokenizado |
 | `components-fix-button`         | Pendiente — incluye el `aria-label` que expuso `aaa-042`                |
-| `components-fix-avatar`         | Pendiente                                                               |
-| `components-fix-checkbox-radio` | Pendiente — theming de `{color.white}`                                  |
+| `components-fix-avatar`         | **Hecha** (2026-08-03, `aaa-050`) — overflow traducible                 |
+| `components-fix-checkbox-radio` | **Hecha** (2026-08-03, `aaa-051`) — cierra la Parte G                   |
 
 > **Lo que `aaa-045` dejó para el resto de la parte** (2026-08-01): tres de sus cuatro ítems no eran bugs aislados sino **convenciones que el kit ya cumplía en algún componente y nunca se escribieron** (índices con exports enumerados, el `display` del popover cerrado, el `max-height` de los overlays). Se propagaban por imitación y se rompían donde el autor no tenía un vecino a mano — `slider/index.ts`, escrito un día antes, reincidió en dos de ellas. Conviene mirar cada fix de esta parte con esa pregunta: ¿caso aislado o convención implícita? Si es lo segundo, se escribe como requirement con test en lugar de arreglar solo la instancia. El fix visual del PO además solo se diagnosticó **midiendo en un navegador real** (Playwright está en el repo): la hipótesis razonable desde el código era falsa.
 >
