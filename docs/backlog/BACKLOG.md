@@ -41,22 +41,22 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Estado por parte** (el detalle de cada una vive en el plan; acá solo el avance):
 
-| Parte | Contenido                           | Vía                     | Estado                                             |
-| ----- | ----------------------------------- | ----------------------- | -------------------------------------------------- |
-| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                |
-| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                             |
-| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                             |
-| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028 |
-| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022        |
-| F     | Gates de calidad automáticos        | OpenSpec change(s)      | **Hecha** (2026-07-31) — 4 sub-partes, ver abajo   |
-| G     | Fixes de componentes (7 changes)    | OpenSpec por componente | **Hecha** (2026-08-03) — 7/7 (`aaa-045`…`aaa-051`) |
-| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente                                          |
-| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                          |
-| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                          |
-| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                          |
-| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                 |
-| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada          |
-| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                 |
+| Parte | Contenido                           | Vía                     | Estado                                                                           |
+| ----- | ----------------------------------- | ----------------------- | -------------------------------------------------------------------------------- |
+| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                                              |
+| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                                                           |
+| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                                                           |
+| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028                               |
+| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022                                      |
+| F     | Gates de calidad automáticos        | OpenSpec change(s)      | **Hecha** (2026-07-31) — 4 sub-partes, ver abajo                                 |
+| G     | Fixes de componentes (7 changes)    | OpenSpec por componente | **Hecha** (2026-08-03) — 7/7 (`aaa-045`…`aaa-051`)                               |
+| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente — insumo: [auditoría 2026-08-04](../design/tokens/2026-08-04-audit.md) |
+| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                                                        |
+| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                                                        |
+| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                                                        |
+| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                                               |
+| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada                                        |
+| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                                               |
 
 **Detalle de la Parte F** (12 ítems; el plan autoriza partirla, el PO lo aprobó el 2026-07-29):
 
@@ -92,6 +92,8 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 > **Lo que `aaa-045` dejó para el resto de la parte** (2026-08-01): tres de sus cuatro ítems no eran bugs aislados sino **convenciones que el kit ya cumplía en algún componente y nunca se escribieron** (índices con exports enumerados, el `display` del popover cerrado, el `max-height` de los overlays). Se propagaban por imitación y se rompían donde el autor no tenía un vecino a mano — `slider/index.ts`, escrito un día antes, reincidió en dos de ellas. Conviene mirar cada fix de esta parte con esa pregunta: ¿caso aislado o convención implícita? Si es lo segundo, se escribe como requirement con test en lugar de arreglar solo la instancia. El fix visual del PO además solo se diagnosticó **midiendo en un navegador real** (Playwright está en el repo): la hipótesis razonable desde el código era falsa.
 >
 > **Dato operativo para los gates visuales**: el playground consume el `dist/` de la lib, así que un cambio de CSS o tokens **no se ve hasta rebuildear y reiniciar el dev server**. Costó una vuelta de verificación en falso.
+
+> **La auditoría formal de tokens (ex item `tokens-audit-formal`) se ejecutó el 2026-08-04**, antes de la Parte H como estaba acordado — reporte en [docs/design/tokens/2026-08-04-audit.md](../design/tokens/2026-08-04-audit.md): 0 hardcodes, 0 violaciones de jerarquía, 35 advertencias y 190 huérfanos triados (118 inventario deliberado, 6 falsos positivos del detector, 66 deuda real en la capa `component.*`). **La Parte H trabaja sobre ese reporte** — sus grupos de deuda y el orden de decisión están en § "Próximos pasos" del propio reporte — en lugar de la lista de la review del 2026-07-26.
 
 **Protocolo de ejecución**: una parte por sesión, con `/ds:handoff` → `/clear` → `/ds:resume` entre partes. El modelo y el effort de cada parte están declarados en el plan (§ "Modelo por parte" y § "Cuándo cortar sesión"); no se alterna modelo dentro de una sesión.
 
@@ -132,24 +134,6 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 **Disparador**: decisión del PO (diferido el 2026-07-23) — se retoma con la Parte K del plan de la review, o antes de un release para QA visual multi-theme.
 
 **Nota**: el gate visual del PO previo al archive ([D-022](../product/decisiones.md)) sube el valor de este item — es la herramienta con la que ese gate se ejerce sobre themes.
-
-**Estado**: pendiente (Next).
-
----
-
-### `tokens-audit-formal` — Auditoría formal de tokens y triage de huérfanos
-
-**Tipo**: skill (`/ds:audit-tokens`) + sesión de triage. **Producto**: [EP-001](../product/epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md) y [EP-005](../product/epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md).
-
-**La herramienta ya existe**: `/ds:audit-tokens` se entregó como [HU-032](../product/epics/EP-005-calidad-profesional/HU-032-audit-tokens-skill.md) el 2026-07-27 (Parte M) — skill + script determinista + command. **No hay nada que construir.**
-
-**Origen**: la única corrida hasta hoy fue de **verificación de los CAs de HU-032**, no una auditoría formal: `docs/design/tokens/` no existe y no hay reporte fechado persistido. Esa corrida arrojó `2` hardcodes, `0` violaciones de contrato, `44` advertencias y **219 huérfanos sobre 754 tokens** — y nadie separó todavía qué parte de esos 219 es **deuda real** (un token que quedó sin consumidor tras un refactor) y qué parte es **inventario deliberado** (una escala de color completa, los 13 niveles de z-index de `aaa-009`). El `SKILL.md` ya instruye hacer esa distinción en el reporte, así que la corrida nueva debería entregarlo clasificado, no como lista cruda.
-
-**Alcance**: (1) correr `/ds:audit-tokens` y persistir el reporte fechado; (2) sesión de triage de los huérfanos con veredicto por grupo — deuda a limpiar / inventario que se conserva y por qué; (3) lo que resulte deuda entra a la Parte H como ítem, no se corrige en la auditoría (la skill audita, no arregla).
-
-**Se ejecuta con Fable 5** (decisión del PO, 2026-07-29): el triage no es trabajo mecánico sino criterio sobre 219 ítems —cuál es deuda y cuál cobertura futura deliberada—, que es el perfil que el plan reserva para Fable (razonamiento como cuello de botella, ver § "Modelo por parte" del [plan de acción](../reviews/2026-07-26-review-integral/plan-de-accion.md)). La corrida de la skill en sí es mecánica y no necesita Fable.
-
-**Disparador**: **antes de la Parte H** (tokens: fixes y consistencia). El orden importa: los hallazgos de la auditoría son el insumo de H, así que hacerla antes convierte H en "arreglar lo que la auditoría marcó" en lugar de trabajar sobre la lista de la review del 2026-07-26. Conviene además cerrarla antes del `0.3.0` de [D-028](../product/decisiones.md), por ser un release público.
 
 **Estado**: pendiente (Next).
 
