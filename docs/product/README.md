@@ -53,17 +53,17 @@ Este espacio responde **por qué y para quién** — no reemplaza a ninguna fuen
 
 ## Índice de épicas
 
-| ID                                                                         | Épica                         | Actor principal             | HUs                                      | Estado                                                                    |
-| -------------------------------------------------------------------------- | ----------------------------- | --------------------------- | ---------------------------------------- | ------------------------------------------------------------------------- |
-| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor              | 004, 018                                 | En desarrollo (base entregada)                                            |
-| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor              | 003, 005–010, 012–017, 019–025, 033, 034 | En desarrollo (tandas 1-2-3 completas; quedan HU-033/034 fuera de tanda)  |
-| [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor              | 002                                      | En desarrollo (0.2.0 en npm; su bundle violaba APF, corregido en aaa-038) |
-| [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador                   | 001                                      | En refinamiento (aaa-012 activo y pausado, D-027)                         |
-| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor                  | 026–032                                  | En desarrollo (gates de D-021 en 5/7; HU-028 solo su fase 1)              |
-| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor              | 011, 035, 036                            | En desarrollo (HU-011 Hecha 2026-07-19)                                   |
-| [EP-007](epics/EP-007-template-lume/EP-007-template-lume.md)               | Template-lume                 | Dev consumidor · Mantenedor | 037–040                                  | Identificada (creada 2026-07-26 por D-020)                                |
+| ID                                                                         | Épica                         | Actor principal             | HUs                                           | Estado                                                                       |
+| -------------------------------------------------------------------------- | ----------------------------- | --------------------------- | --------------------------------------------- | ---------------------------------------------------------------------------- |
+| [EP-001](epics/EP-001-fundamentos-tokens/EP-001-fundamentos-tokens.md)     | Fundamentos: tokens y theming | Dev consumidor              | 004, 018                                      | En desarrollo (base entregada)                                               |
+| [EP-002](epics/EP-002-kit-componentes/EP-002-kit-componentes.md)           | Kit de componentes Angular    | Dev consumidor              | 003, 005–010, 012–017, 019–025, 033, 034, 041 | En desarrollo (tandas 1-2-3 completas; quedan HU-033/034/041 fuera de tanda) |
+| [EP-003](epics/EP-003-consumo-distribucion/EP-003-consumo-distribucion.md) | Consumo y distribución        | Dev consumidor              | 002                                           | En desarrollo (0.2.0 en npm; su bundle violaba APF, corregido en aaa-038)    |
+| [EP-004](epics/EP-004-puente-codigo-diseno/EP-004-puente-codigo-diseno.md) | Puente código ↔ diseño        | Diseñador                   | 001                                           | En refinamiento (aaa-012 activo y pausado, D-027)                            |
+| [EP-005](epics/EP-005-calidad-profesional/EP-005-calidad-profesional.md)   | Calidad profesional           | Mantenedor                  | 026–032                                       | En desarrollo (gates de D-021 en 5/7; HU-028 solo su fase 1)                 |
+| [EP-006](epics/EP-006-playground/EP-006-playground.md)                     | Playground                    | Dev consumidor              | 011, 035, 036                                 | En desarrollo (HU-011 Hecha 2026-07-19)                                      |
+| [EP-007](epics/EP-007-template-lume/EP-007-template-lume.md)               | Template-lume                 | Dev consumidor · Mantenedor | 037–040                                       | Identificada (creada 2026-07-26 por D-020)                                   |
 
-Próximos IDs libres: **EP-008**, **HU-041**, **D-033** (D-032 se usó el 2026-08-02 para topar el margen del presupuesto de bundle).
+Próximos IDs libres: **EP-008**, **HU-042**, **D-034** (D-033 se usó el 2026-08-04 para el destino de la deuda `component.*` de la auditoría de tokens; HU-041 registró Alert ese mismo día).
 
 ## Tabla de HUs
 
@@ -111,8 +111,9 @@ Vista global del avance, pedida por [D-019](decisiones.md) — antes el estado d
 | HU-038                                                                         | Research del sitio de referencia       | EP-007 | Identificada — sin archivo                                      |
 | HU-039                                                                         | Inventario de componentes faltantes    | EP-007 | Identificada — sin archivo                                      |
 | HU-040                                                                         | Web-page del template en el playground | EP-007 | Identificada — sin archivo                                      |
+| [HU-041](epics/EP-002-kit-componentes/HU-041-alert.md)                         | Alert de mensajes en página            | EP-002 | Identificada (2026-08-04)                                       |
 
-**Resumen sobre 40 HUs**: 23 Hechas, 10 Refinadas (una de ellas en pausa) y 7 Identificadas, tres de las cuales todavía no tienen archivo propio.
+**Resumen sobre 41 HUs**: 23 Hechas, 10 Refinadas (una de ellas en pausa) y 8 Identificadas, tres de las cuales todavía no tienen archivo propio.
 
 ## Roadmap
 
