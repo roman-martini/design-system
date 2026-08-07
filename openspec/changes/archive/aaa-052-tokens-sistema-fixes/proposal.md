@@ -2,7 +2,8 @@
 id: aaa-052
 name: tokens-sistema-fixes
 type: change
-status: proposed
+status: archived
+archived: 2026-08-07
 modifies-specs:
   - design-tokens-package (focus ring theme-aware, elevación en dark, tipografía de component vía semantic, motion compuesto por referencias, par inverse)
 related-adrs:

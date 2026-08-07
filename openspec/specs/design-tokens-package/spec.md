@@ -118,7 +118,7 @@ Los tokens SHALL organizarse en cuatro niveles jerárquicos en `packages/tokens/
 Las **reglas de referencia** SHALL ser:
 
 - `semantic` puede referenciar `primitives` (no al revés). Se admiten aliases intra-`semantic` no circulares.
-- `component` puede referenciar `semantic` o `primitives` (no `theme`). Cuando un valor ya existe como token semantic, el token component SHALL **referenciarlo** en vez de duplicar el valor crudo.
+- `component` puede referenciar `semantic` o `primitives` (no `theme`). Cuando un valor ya existe como token semantic, el token component SHALL **referenciarlo** en vez de duplicar el valor crudo. Para la **tipografía**, el estado objetivo es que component consuma los roles semantic (`semantic.font.*`) y no primitivas `font.*` sueltas; la transición SHALL sostenerse por **trinquete**: las referencias component→`font.*` existentes al momento de `aaa-052` quedan listadas como legado documentado en el test de jerarquía, toda referencia **nueva** SHALL fallar, y la lista de legado solo puede achicarse (una entrada saldada SHALL borrarse). El burn-down del legado es trabajo con juicio por componente — mapear por rol, no por valor — y puede terminar en excepción documentada cuando la referencia es escala dimensional sin rol (las iniciales del avatar).
 - `theme` solo redefine tokens existentes en `semantic` (no introduce tokens nuevos).
 - Ningún nivel SHALL referenciar a sí mismo en forma circular.
 
@@ -162,9 +162,34 @@ Las cuatro reglas SHALL verificarse por un test automático de la suite del pack
 - **THEN** su value SHALL ser la referencia `{semantic.color.bg.overlay}`, no el valor crudo duplicado
 - **AND** el CSS SHALL emitir `--ds-component-modal-overlay-bg: var(--ds-semantic-color-bg-overlay)`
 
+#### Scenario: una referencia tipográfica nueva de component a primitivas falla
+
+- **GIVEN** el baseline de referencias component→`font.*` congelado en el test de jerarquía
+- **WHEN** un token de `component/` fuera de ese baseline referencia `{font.size.*}`, `{font.weight.*}` o `{font.line-height.*}`
+- **THEN** el test SHALL fallar indicando el token y que la tipografía nueva referencia su rol semantic
+
+#### Scenario: el legado tipográfico solo se achica
+
+- **GIVEN** una entrada del baseline cuyo token fue remapeado a su rol semantic o retirado
+- **WHEN** corre el test de jerarquía sin que la entrada se haya borrado del baseline
+- **THEN** el test SHALL fallar exigiendo borrarla (el trinquete no admite entradas muertas)
+
+#### Scenario: los repuntes de tooltip e input quedan fijados por testigo
+
+- **WHEN** se inspeccionan `component.tooltip.font-size`, `component.input.font-size.sm/md/lg` y `component.input.helper.font-size`
+- **THEN** SHALL referenciar `{semantic.font.size.body-xs}`, `{semantic.font.size.body-sm/md/lg}` y `{semantic.font.size.label-sm}` respectivamente
+
+#### Scenario: referenciar una primitiva no tipográfica sigue siendo válido
+
+- **GIVEN** un token de `component/` que referencia `{dimension.4}`, primitiva que varios tokens `semantic.space.*` aliasean a la vez
+- **WHEN** corre el test de jerarquía
+- **THEN** SHALL pasar (fuera de la tipografía, la regla no fuerza una elección arbitraria entre semantic equivalentes)
+
 ### Requirement: Modelo de theming via CSS variables y atributos HTML
 
 El theming SHALL funcionar por cascada de variables CSS: la spec base define los semantics en `:root`; cada theme override en un selector de atributo (`[data-theme="dark"]`, `[data-brand="a"]`, etc.). El consumo SHALL ser independiente del componente que renderiza: cualquier elemento bajo el atributo recibe los overrides automáticamente.
+
+El theme dark SHALL redefinir también la **elevación**: los tokens `semantic.shadow.*` de superficies elevadas (card, dropdown, modal, toast) SHALL declarar en dark una opacidad mayor que en el scope default, de modo que la sombra siga siendo un canal de separación visible sobre fondo oscuro (D-025). La geometría de la sombra (offsets, blur, spread) SHALL permanecer igual entre scopes: el theme ajusta opacidad, no forma.
 
 #### Scenario: activar dark theme afecta toda la cascada
 
@@ -177,6 +202,48 @@ El theming SHALL funcionar por cascada de variables CSS: la spec base define los
 - **GIVEN** `<html data-theme="dark" data-brand="a">` con los tres CSS importados (base + dark + brand-a)
 - **WHEN** el browser pinta un elemento que usa `var(--ds-semantic-color-bg-primary)`
 - **THEN** el override de `brand-a` SHALL aplicar sobre el override de `dark` (cascada CSS estándar)
+
+#### Scenario: la elevación en dark es más opaca que en el default
+
+- **GIVEN** el build de tokens con su theme dark
+- **WHEN** se comparan las opacidades de `semantic.shadow.card`, `dropdown`, `modal` y `toast` entre el scope default y `[data-theme="dark"]`
+- **THEN** cada una SHALL ser estrictamente mayor en dark
+- **AND** una igualdad o inversión SHALL fallar el test
+
+#### Scenario: el theme dark no cambia la geometría de la sombra
+
+- **WHEN** se comparan los offsets, blur y spread de cada `semantic.shadow.*` entre el scope default y `[data-theme="dark"]`
+- **THEN** SHALL coincidir; solo la componente de opacidad SHALL diferir
+
+### Requirement: Matriz brand × scheme
+
+El theming SHALL sostener la combinación de marca y color scheme como una matriz modelada, no como un accidente de la cascada. Toda marca que overridee un token **lightness-dependent** (fondos subtle, colores de texto/ícono, focus ring, la escala hover/active del primary) SHALL entregar además un **overlay dark** (`src/theme/<brand>-dark.json`) emitido bajo el selector combinado `[data-theme="dark"][data-brand="<x>"]`, siguiendo la dirección tonal del theme dark (texto/íconos/focus más claros, hover que aclara, subtle profundo). Un token de marca sin dependencia de lightness no necesita entrada en el overlay.
+
+El gate de contraste SHALL evaluar cada par declarado también en los **scopes combinados** (`dark+<brand>`), componiendo la cascada completa (base → dark → marca → overlay) igual que el browser.
+
+#### Scenario: la combinación dark + marca emite el overlay
+
+- **GIVEN** `<html data-theme="dark" data-brand="a">` con base, dark, brand-a y su overlay importados
+- **WHEN** se resuelve `var(--ds-semantic-color-bg-primary-subtle)`
+- **THEN** SHALL resolver a un tono profundo de la paleta de la marca (no al subtle claro del scope light de la marca)
+- **AND** `var(--ds-semantic-color-text-primary)` sobre esa superficie SHALL mantenerse legible
+
+#### Scenario: los overlays existen para cada marca publicada
+
+- **WHEN** se inspecciona `packages/tokens/src/theme/`
+- **THEN** por cada `brand-<x>.json` que overridee tokens lightness-dependent SHALL existir `brand-<x>-dark.json`
+- **AND** el build SHALL emitir `dist/themes/brand-<x>-dark.css` bajo el selector `[data-theme="dark"][data-brand="<x>"]`, exportado por el package
+
+#### Scenario: el gate de contraste corre los scopes combinados
+
+- **WHEN** corre la suite de contraste del package
+- **THEN** cada par SHALL evaluarse además en `dark+brand-<x>` por cada marca, con la cascada base → dark → marca → overlay
+- **AND** un par que falle solo en una combinación SHALL fallar la suite (el escenario exacto del bug del 2026-08-05)
+
+#### Scenario: texto primario legible sobre el subtle de marca
+
+- **WHEN** se evalúa el par `text.primary` sobre `bg.primary-subtle`
+- **THEN** SHALL alcanzar 4.5:1 en el scope default, en cada theme y en cada scope combinado
 
 ### Requirement: Prefix de variables CSS fijo
 
@@ -219,15 +286,63 @@ Los tokens `semantic.color.border.subtle`, `semantic.color.border.default` y `se
 
 El package SHALL exponer un token `shadow.focus` (primitive) y su uso semántico vía `semantic.shadow.focus`. Este token define el box-shadow que aplica un focus ring visible para cumplir [WCAG 2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html).
 
+El color del focus ring SHALL derivarse de `semantic.color.focus-ring`, de modo que un theme que redefina ese token gobierne el anillo sin redeclarar el box-shadow completo. En consecuencia, un theme de marca que declare su propio `semantic.color.focus-ring` SHALL ver ese color en el anillo de foco, y un theme de marca nuevo SHALL heredar ese comportamiento sin declarar nada más.
+
 #### Scenario: token shadow.focus existe en primitives
 
 - **WHEN** se inspecciona `packages/tokens/src/primitives/shadow.json`
-- **THEN** existe una key `focus` con un value de tipo box-shadow CSS válido (ej. `0 0 0 3px {color.blue.500}`)
+- **THEN** existe una key `focus` con un value de tipo box-shadow CSS válido (ej. `0 0 0 2px {color.blue.500}`)
 
 #### Scenario: build emite la variable
 
 - **WHEN** se ejecuta `pnpm -F @romanmartinidev/tokens build`
 - **THEN** `dist/tokens.css` SHALL contener `--ds-shadow-focus` y `--ds-semantic-shadow-focus` con valores de box-shadow no vacíos
+
+#### Scenario: el focus ring sigue al theme de marca activo
+
+- **GIVEN** `<html data-brand="a">` con el CSS base y el de `brand-a` importados, donde `brand-a` redefine `semantic.color.focus-ring`
+- **WHEN** un elemento enfocado resuelve `var(--ds-semantic-shadow-focus)`
+- **THEN** el color del anillo SHALL ser el declarado por `brand-a`, no el del scope default
+
+#### Scenario: el focus ring compone marca sobre color scheme
+
+- **GIVEN** `<html data-theme="dark" data-brand="b">` con los tres CSS importados
+- **WHEN** un elemento enfocado resuelve `var(--ds-semantic-shadow-focus)`
+- **THEN** el color del anillo SHALL ser el de `brand-b` (cascada CSS estándar: el override de marca aplica sobre el de theme)
+
+#### Scenario: el gate de contraste cubre el focus ring en cada scope
+
+- **WHEN** corre la suite del package
+- **THEN** el contraste del focus ring contra la superficie que lo rodea SHALL verificarse en el scope default y en cada theme declarado
+- **AND** un theme cuyo focus ring no alcance el umbral `ui` (3:1) SHALL fallar el test
+
+### Requirement: Superficie semantic invertida
+
+El package SHALL exponer `semantic.color.bg.inverse` como la superficie que invierte el contraste del theme activo (tooltips, toasts de énfasis, badges sólidos neutros). El token SHALL declararse en `packages/tokens/src/semantic/color.json` y SHALL redefinirse en `packages/tokens/src/theme/dark.json`, de modo que la superficie invertida siga siendo el complemento de la superficie base en cada color scheme. Su par de texto SHALL ser el `semantic.color.text.inverse` ya existente.
+
+Un token de component que necesite una superficie invertida SHALL referenciar `bg.inverse` y `text.inverse`, en vez de referenciar un token de texto para pintar un fondo o uno de fondo para pintar un texto.
+
+#### Scenario: el token existe en semantic y se emite a CSS
+
+- **WHEN** se ejecuta `pnpm -F @romanmartinidev/tokens build`
+- **THEN** `dist/tokens.css` SHALL contener `--ds-semantic-color-bg-inverse` con un valor de color no vacío
+
+#### Scenario: la superficie se invierte con el theme
+
+- **GIVEN** `<html data-theme="dark">` con el CSS base y el de dark importados
+- **WHEN** se resuelve `var(--ds-semantic-color-bg-inverse)`
+- **THEN** SHALL resolver a un color claro, complementario del `bg.base` oscuro del theme dark
+- **AND** en el scope default (light) SHALL resolver a un color oscuro, complementario del `bg.base` claro
+
+#### Scenario: el par cumple contraste AA
+
+- **WHEN** corre el gate de contraste de la suite del package
+- **THEN** el par `text.inverse` sobre `bg.inverse` SHALL alcanzar al menos 4.5:1 en el scope default y en cada theme
+
+#### Scenario: el tooltip consume el par en vez de cruzar roles
+
+- **WHEN** se inspeccionan `component.tooltip.bg` y `component.tooltip.text` en `packages/tokens/src/component/tooltip.json`
+- **THEN** SHALL referenciar `{semantic.color.bg.inverse}` y `{semantic.color.text.inverse}` respectivamente
 
 ### Requirement: Build reproducible con Style Dictionary 4
 
@@ -290,6 +405,8 @@ El package SHALL exponer una jerarquía completa de tokens `semantic.z-index` qu
 
 El package SHALL exponer 2 tokens `semantic.motion.transition` específicos para componentes overlay (Modal, Drawer, Toast, Popover, Tooltip) que componen duration + easing en un único string CSS-shorthand. Los componentes overlay SHALL consumir estos tokens en lugar de hardcodear duration/easing para mantener consistencia visual entre overlays del sistema.
 
+Todos los tokens `semantic.motion.transition.*` SHALL declararse por **composición de primitivas** (`{motion.duration.*} {motion.easing.*}`) y no como string literal que duplique valores ya presentes en `primitives/motion.json`. Cuando una composición requiera una duración o un easing que la escala primitiva no ofrece, la primitiva faltante SHALL agregarse a la escala antes de componer, de modo que ningún preset semántico quede como literal.
+
 #### Scenario: existen los 2 tokens de transition para overlays
 
 - **WHEN** se inspecciona `semantic.motion.transition` en `packages/tokens/src/semantic/motion.json`
@@ -297,15 +414,21 @@ El package SHALL exponer 2 tokens `semantic.motion.transition` específicos para
 
 #### Scenario: enter es deliberadamente más lento que exit
 
-- **GIVEN** el valor del token `overlay-enter` con formato `<duration>ms <easing>`
+- **GIVEN** el valor resuelto del token `overlay-enter` con formato `<duration>ms <easing>`
 - **WHEN** se compara la duración con la del token `overlay-exit`
 - **THEN** el enter SHALL tener duración ≥ exit (convención UX: salidas más rápidas que entradas)
 
-#### Scenario: los tokens incluyen duration + easing en sintaxis CSS shorthand
+#### Scenario: los tokens resuelven a duration + easing en sintaxis CSS shorthand
 
-- **WHEN** se inspecciona el valor de `overlay-enter` o `overlay-exit`
+- **WHEN** se resuelve el valor de `overlay-enter` o `overlay-exit` siguiendo sus referencias hasta las primitivas
 - **THEN** SHALL ser un string con formato `<duration>ms cubic-bezier(<a>, <b>, <c>, <d>)`
 - **AND** SHALL NO incluir property (el consumidor decide qué propiedad anima)
+
+#### Scenario: ningún preset de transition es un literal duplicado
+
+- **WHEN** se inspecciona el value declarado de cada token bajo `semantic.motion.transition`
+- **THEN** cada uno SHALL estar compuesto exclusivamente por referencias a `{motion.duration.*}` y `{motion.easing.*}`
+- **AND** un value literal cuyos componentes existan en `primitives/motion.json` SHALL fallar el test
 
 #### Scenario: disponibles como CSS custom properties
 

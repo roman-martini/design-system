@@ -41,22 +41,22 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 
 **Estado por parte** (el detalle de cada una vive en el plan; acá solo el avance):
 
-| Parte | Contenido                           | Vía                     | Estado                                                                           |
-| ----- | ----------------------------------- | ----------------------- | -------------------------------------------------------------------------------- |
-| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                                              |
-| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                                                           |
-| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                                                           |
-| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028                               |
-| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022                                      |
-| F     | Gates de calidad automáticos        | OpenSpec change(s)      | **Hecha** (2026-07-31) — 4 sub-partes, ver abajo                                 |
-| G     | Fixes de componentes (7 changes)    | OpenSpec por componente | **Hecha** (2026-08-03) — 7/7 (`aaa-045`…`aaa-051`)                               |
-| H     | Tokens: fixes y consistencia        | OpenSpec change         | Pendiente — insumo: [auditoría 2026-08-04](../design/tokens/2026-08-04-audit.md) |
-| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                                                        |
-| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                                                        |
-| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                                                        |
-| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                                               |
-| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada                                        |
-| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                                               |
+| Parte | Contenido                           | Vía                     | Estado                                                                                                                                                                                                                                                                                            |
+| ----- | ----------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A     | Decisiones del PO (21)              | Sesión + D-XXX          | **Hecha** (2026-07-26, D-018…D-027)                                                                                                                                                                                                                                                               |
+| B     | Registro en producto y backlog      | Commit directo          | **Hecha** (2026-07-26)                                                                                                                                                                                                                                                                            |
+| C     | Sincronización documental           | Commit directo          | **Hecha** (2026-07-27)                                                                                                                                                                                                                                                                            |
+| D     | Release-readiness (APF + packaging) | OpenSpec change         | **Hecha** (2026-07-28, `aaa-038`) — ADR-021, D-028                                                                                                                                                                                                                                                |
+| E     | CI: correctness + hardening         | OpenSpec change         | **Hecha** (2026-07-28, `aaa-039`) — ADR-022                                                                                                                                                                                                                                                       |
+| F     | Gates de calidad automáticos        | OpenSpec change(s)      | **Hecha** (2026-07-31) — 4 sub-partes, ver abajo                                                                                                                                                                                                                                                  |
+| G     | Fixes de componentes (7 changes)    | OpenSpec por componente | **Hecha** (2026-08-03) — 7/7 (`aaa-045`…`aaa-051`)                                                                                                                                                                                                                                                |
+| H     | Tokens: fixes y consistencia        | OpenSpec change         | **En curso** — bloque de sistema Hecho (2026-08-07, `aaa-052`, + `aaa-054` matriz brand×scheme surgida en su gate); resta `aaa-053` (deuda `component.*`, propuesto y con decisiones del PO tomadas). Nota: `tokens-10` ya estaba cerrado desde `aaa-041` — la fila del plan quedó desactualizada |
+| I     | Compatibilidad SSR                  | OpenSpec change + ADR   | Pendiente                                                                                                                                                                                                                                                                                         |
+| J     | Refactors internos compartidos      | OpenSpec change         | Pendiente                                                                                                                                                                                                                                                                                         |
+| K     | Playground como QA visual           | OpenSpec + commits      | Pendiente                                                                                                                                                                                                                                                                                         |
+| L     | Storybook avanzado y docs públicas  | OpenSpec change(s)      | Pendiente — HU-031, HU-035, HU-036                                                                                                                                                                                                                                                                |
+| M     | Ecosistema `.claude/`               | Commit directo          | **Hecha** (2026-07-27) — HU-032 entregada                                                                                                                                                                                                                                                         |
+| N     | Estratégico pre-1.0                 | OpenSpec + ADRs         | Pendiente — HU-029                                                                                                                                                                                                                                                                                |
 
 **Detalle de la Parte F** (12 ítems; el plan autoriza partirla, el PO lo aprobó el 2026-07-29):
 
@@ -140,6 +140,18 @@ No confundir con las otras fuentes (regla "no mezclar" del [CLAUDE.md](../../CLA
 ---
 
 ## Later — sin urgencia
+
+### Burn-down del legado tipográfico de la capa component
+
+**Tipo**: OpenSpec (kit, un change o micro-changes por componente). **Origen**: `aaa-052` descubrió que el bypass tipográfico component→`font.*` era mucho más ancho que lo registrado (28 referencias en 11 componentes) y lo congeló por **trinquete** en `packages/tokens/test/hierarchy.spec.ts` (`LEGACY_FONT_REFS`): referencia nueva falla, el baseline solo se achica.
+
+**Trabajo**: mapear cada referencia legada a su rol semantic (`label-*`, `body-*`, …) **por rol, no por valor**, componente por componente; el avatar es candidato a excepción documentada (sus iniciales son escala dimensional sin rol). Las 3 entradas de `alert.*` las salda `aaa-053` al retirar el archivo.
+
+**Disparador**: al tocar un componente con entradas en el baseline (regla boy-scout), o decisión del PO de quemarlo de una vez antes de 1.0.
+
+**Estado**: pendiente, sin disparador activo.
+
+---
 
 ### Tokens aditivos del research Atlassian
 

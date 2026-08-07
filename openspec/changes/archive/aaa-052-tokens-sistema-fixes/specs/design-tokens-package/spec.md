@@ -39,7 +39,7 @@ El color del focus ring SHALL derivarse de `semantic.color.focus-ring`, de modo 
 #### Scenario: token shadow.focus existe en primitives
 
 - **WHEN** se inspecciona `packages/tokens/src/primitives/shadow.json`
-- **THEN** existe una key `focus` con un value de tipo box-shadow CSS válido (ej. `0 0 0 3px {color.blue.500}`)
+- **THEN** existe una key `focus` con un value de tipo box-shadow CSS válido (ej. `0 0 0 2px {color.blue.500}`)
 
 #### Scenario: build emite la variable
 

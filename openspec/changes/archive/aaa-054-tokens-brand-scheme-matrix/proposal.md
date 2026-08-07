@@ -2,7 +2,8 @@
 id: aaa-054
 name: tokens-brand-scheme-matrix
 type: change
-status: proposed
+status: archived
+archived: 2026-08-07
 modifies-specs:
   - design-tokens-package (matriz brand × scheme: overlays dark por marca + contraste en scopes combinados)
 related-adrs:
