@@ -7,7 +7,10 @@
       "modal":   { "value": "{shadow.xl}" },
       "toast":   { "value": "{shadow.lg}" },
       "input":   { "value": "{shadow.inner}" },
-      "focus":   { "value": "{shadow.focus}" }
+      "focus": {
+        "value": "0 0 0 2px {semantic.color.focus-ring}",
+        "comment": "Compone desde el color semantic para que el override de un theme o una marca gobierne el anillo sin redeclarar el box-shadow (aaa-052). WCAG 2.4.7. Grosor 2px = estándar Material 3/Primer; con el border de los fields queda parejo al border de las cards (feedback del PO en el gate)."
+      }
     }
   }
 }

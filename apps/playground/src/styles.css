@@ -7,6 +7,10 @@
 @import '@romanmartinidev/tokens/themes/dark';
 @import '@romanmartinidev/tokens/themes/brand-a';
 @import '@romanmartinidev/tokens/themes/brand-b';
+/* Overlays de la matriz brand × scheme (aaa-054): tonos de marca para dark.
+   Sin ellos, dark + marca hereda los valores light de la marca (texto ilegible). */
+@import '@romanmartinidev/tokens/themes/brand-a-dark';
+@import '@romanmartinidev/tokens/themes/brand-b-dark';
 
 /* Estilos globales del playground */
 html,

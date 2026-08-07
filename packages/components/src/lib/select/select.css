@@ -43,12 +43,19 @@
   font-size: var(--ds-component-select-trigger-font-size-lg);
 }
 
-.ds-select__trigger:hover:not([aria-disabled='true']) {
+/* :not(:focus-visible) y :not(--open): el foco y el estado abierto le ganan al
+   hover (mismo caso que field.css; el abierto ya perdía contra hover por
+   especificidad desde siempre, tapado por el ring). */
+.ds-select__trigger:hover:not([aria-disabled='true']):not(:focus-visible):not(
+    .ds-select__trigger--open
+  ) {
   border-color: var(--ds-component-select-trigger-border-hover);
 }
 
+/* Mismo patrón de foco que field.css: solo cambio de color del border, sin ring
+   (aaa-054). border-focus sigue la cadena focus-ring, gateada ≥3:1 en los 6 scopes. */
 .ds-select__trigger:focus-visible {
-  box-shadow: var(--ds-semantic-shadow-focus);
+  border-color: var(--ds-component-select-trigger-border-focus);
   outline: none;
 }
 

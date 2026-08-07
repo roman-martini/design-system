@@ -18,6 +18,10 @@
         "base":              { "value": "{color.neutral.50}" },
         "surface":           { "value": "{color.white}" },
         "elevated":          { "value": "{color.white}" },
+        "inverse": {
+          "value": "{color.neutral.900}",
+          "comment": "Superficie que invierte el contraste del theme (tooltip, énfasis). Su par de texto es text.inverse (aaa-052)."
+        },
         "overlay":           { "value": "rgba(0, 0, 0, 0.5)" },
         "disabled":          { "value": "{color.neutral.100}" },
         "primary":           { "value": "{color.blue.600}" },
@@ -62,7 +66,10 @@
         "warning": { "value": "{color.yellow.500}" },
         "info":    { "value": "{color.teal.500}" }
       },
-      "focus-ring": { "value": "{color.blue.200}" }
+      "focus-ring": {
+        "value": "{color.blue.500}",
+        "comment": "Color del anillo de foco; semantic.shadow.focus lo compone (aaa-052). Realineado al render real — el blue.200 declarado antes nunca se pintó."
+      }
     }
   }
 }

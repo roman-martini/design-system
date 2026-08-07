@@ -31,6 +31,10 @@
         "border":           { "value": "{semantic.color.border.strong}" },
         "border-hover":     { "value": "{semantic.color.border.strong}" },
         "border-open":      { "value": "{semantic.color.border.primary}" },
+        "border-focus": {
+          "value": "{semantic.color.focus-ring}",
+          "comment": "Único indicador de foco del trigger (sin ring, aaa-054): cadena focus-ring, gateada ≥3:1 en los 6 scopes."
+        },
         "icon":             { "value": "{semantic.color.icon.default}" }
       },
       "listbox": {

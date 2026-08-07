@@ -58,9 +58,34 @@ export function loadScopes(tokensDir) {
 
   const themesDir = join(tokensDir, 'themes');
   if (existsSync(themesDir)) {
+    const overridesByTheme = new Map();
     for (const file of readdirSync(themesDir).filter((f) => f.endsWith('.css'))) {
-      const overrides = parseCustomProperties(readFileSync(join(themesDir, file), 'utf8'));
-      scopes[basename(file, '.css')] = new Map([...baseVars, ...overrides]);
+      overridesByTheme.set(
+        basename(file, '.css'),
+        parseCustomProperties(readFileSync(join(themesDir, file), 'utf8')),
+      );
+    }
+
+    // Los overlays `brand-<x>-dark` (matriz brand × scheme, aaa-054) no son un scope
+    // propio: ningún browser aplica un overlay sin su marca y su theme debajo. Solo
+    // componen los scopes combinados.
+    const isOverlay = (name) => /^brand-.+-dark$/.test(name);
+
+    for (const [name, overrides] of overridesByTheme) {
+      if (isOverlay(name)) continue;
+      scopes[name] = new Map([...baseVars, ...overrides]);
+    }
+
+    // Scopes combinados: `dark+brand-<x>` = base ∪ dark ∪ marca ∪ overlay, en el
+    // orden de la cascada real. Detección por convención de nombres — una marca
+    // nueva entra al gate sin tocar este archivo.
+    const dark = overridesByTheme.get('dark');
+    if (dark) {
+      for (const [name, overrides] of overridesByTheme) {
+        if (!/^brand-/.test(name) || isOverlay(name)) continue;
+        const overlay = overridesByTheme.get(`${name}-dark`) ?? new Map();
+        scopes[`dark+${name}`] = new Map([...baseVars, ...dark, ...overrides, ...overlay]);
+      }
     }
   }
 

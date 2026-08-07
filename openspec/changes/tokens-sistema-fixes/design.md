@@ -30,7 +30,7 @@ Dos movimientos en el mismo ítem:
 
 Los tonos exactos de marca **los fija el gate**, no el ojo: se suma el par focus-ring → superficie a `packages/tokens/test/contrast-pairs.json` con umbral `ui` (3:1), y como el gate corre cada par contra cada scope, el número lo decide el test. Hoy **no existe ningún par de focus ring** en el archivo — por eso el desajuste sobrevivió.
 
-**Efecto visual**: el anillo pasa a verde en `brand-a` y violeta en `brand-b` (hoy azul). En default y dark no cambia — el realineamiento se hizo hacia el render existente, no al revés.
+**Efecto visual**: el anillo pasa a verde en `brand-a` y violeta en `brand-b` (hoy azul). En default y dark el color no cambia. **Ajuste del gate (PO, 2026-08-05)**: el grosor del composite baja de 3px a **2px** — con el border de los fields, el foco quedaba en 4px visuales contra los ~2px del border de las cards de referencia; 2px es además el estándar de Material 3 y Primer. Aplica a todos los scopes.
 
 La primitiva `shadow.focus` queda sin consumidor. Se conserva: la spec la exige y la auditoría ya clasifica las primitivas sin consumidor como inventario deliberado. Se documenta acá para que la próxima corrida no la vuelva a triar.
 
@@ -98,11 +98,19 @@ Repuntes concretos (todos preservan el valor resuelto):
 
 El criterio es el **rol**, no el valor: `body-xs` y `label-sm` resuelven ambos a `{font.size.xs}`, y el helper de un campo es una anotación del campo — hermano del label, que ya usa `{semantic.font.size.label-md}`. Elegir por valor haría el mapeo arbitrario.
 
-### Cómo se verifica
+### Cómo se verifica — trinquete sobre el legado (ajustado durante el apply)
 
-`packages/tokens/test/hierarchy.spec.ts` gana una regla: un token de `component/` que referencia una primitiva **`font.*`** para la que existe un semantic que la aliasea directamente, falla.
+La implementación destapó que el bypass tipográfico era mucho más ancho que lo que la review registró: **28 referencias component→`font.*` en 11 componentes**, no solo tooltip/input/alert. Y no todas son mapeables sin juicio: las iniciales del avatar usan `font.size.xs…xl` como escala dimensional — su alias de igual valor para `xl` sería `heading-4`, un mapeo absurdo. Una regla automática "existe alias semantic → falla" daría falsos positivos o forzaría elecciones arbitrarias.
 
-La regla se limita a `font.*` a propósito. En `dimension.*` y `space.*` la relación es muchos-a-uno (varios semantic aliasean la misma primitiva, y `{dimension.4}` no tiene un "equivalente semántico" único), así que una regla universal forzaría elecciones arbitrarias y produciría falsos positivos. Extenderla a otra categoría exige primero que esa categoría tenga mapeo unívoco.
+Resolución (PO, 2026-08-05, aplicando el criterio de recomendación de CLAUDE.md): **trinquete/baseline**, el patrón estándar de la industria para imponer una invariante nueva sobre legado existente (ESLint baselines, large-scale changes). `packages/tokens/test/hierarchy.spec.ts` congela las 28 referencias como `LEGACY_FONT_REFS`:
+
+- Una referencia **nueva** de component a `{font.*}` falla el test.
+- El baseline **solo se achica**: una entrada saldada que no se borra, falla el test.
+- Los repuntes de tooltip/input quedan fijados por aserción testigo.
+
+El burn-down del legado (mapear por rol componente por componente; avatar como probable excepción documentada) es un ítem de backlog que se registra al archivar este change. Las 3 entradas de `alert.*` las salda `aaa-053` al retirar el archivo.
+
+Fuera de la tipografía la regla no aplica: en `dimension.*`/`space.*` la relación es muchos-a-uno y una regla universal forzaría elecciones arbitrarias.
 
 ---
 

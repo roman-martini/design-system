@@ -1,13 +1,16 @@
 {
   "component": {
     "tooltip": {
-      "bg":        { "value": "{semantic.color.text.primary}" },
-      "text":      { "value": "{semantic.color.bg.surface}" },
+      "bg": {
+        "value": "{semantic.color.bg.inverse}",
+        "comment": "Superficie invertida del sistema (aaa-052): antes cruzaba roles usando text.primary como fondo."
+      },
+      "text":      { "value": "{semantic.color.text.inverse}" },
       "delay":     { "value": "{motion.duration.slower}" },
       "padding-x": { "value": "{dimension.8}" },
       "padding-y": { "value": "{dimension.4}" },
       "radius":    { "value": "{semantic.radius.sm}" },
-      "font-size": { "value": "{font.size.xs}" },
+      "font-size": { "value": "{semantic.font.size.body-xs}" },
       "max-width": { "value": "240px" },
       "shadow":    { "value": "{semantic.shadow.dropdown}" },
       "offset":    { "value": "{dimension.4}" }

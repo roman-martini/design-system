@@ -17,7 +17,7 @@
       "icon": {
         "primary": { "value": "{color.purple.600}" }
       },
-      "focus-ring": { "value": "{color.purple.200}" }
+      "focus-ring": { "value": "{color.purple.500}" }
     }
   }
 }

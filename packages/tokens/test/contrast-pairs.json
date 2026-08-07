@@ -35,6 +35,27 @@
     "specRef": "design-tokens-package"
   },
   {
+    "id": "semantic/text-primary-on-bg-primary-subtle",
+    "fg": "--ds-semantic-color-text-primary",
+    "bg": "--ds-semantic-color-bg-primary-subtle",
+    "level": "text",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "semantic/focus-ring-on-bg-surface",
+    "fg": "--ds-semantic-color-focus-ring",
+    "bg": "--ds-semantic-color-bg-surface",
+    "level": "ui",
+    "specRef": "design-tokens-package"
+  },
+  {
+    "id": "semantic/text-inverse-on-bg-inverse",
+    "fg": "--ds-semantic-color-text-inverse",
+    "bg": "--ds-semantic-color-bg-inverse",
+    "level": "text",
+    "specRef": "design-tokens-package"
+  },
+  {
     "id": "semantic/text-inverse-on-bg-primary",
     "fg": "--ds-semantic-color-text-inverse",
     "bg": "--ds-semantic-color-bg-primary",

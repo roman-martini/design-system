@@ -12,9 +12,9 @@
         "lg": { "value": "{dimension.14}" }
       },
       "font-size": {
-        "sm": { "value": "{font.size.sm}" },
-        "md": { "value": "{font.size.md}" },
-        "lg": { "value": "{font.size.lg}" }
+        "sm": { "value": "{semantic.font.size.body-sm}" },
+        "md": { "value": "{semantic.font.size.body-md}" },
+        "lg": { "value": "{semantic.font.size.body-lg}" }
       },
       "radius":       { "value": "{semantic.radius.md}" },
       "border-width": { "value": "{dimension.1}" },
@@ -25,7 +25,10 @@
       "text-disabled":   { "value": "{semantic.color.text.disabled}" },
       "border":          { "value": "{semantic.color.border.strong}" },
       "border-hover":    { "value": "{semantic.color.border.strong}" },
-      "border-focus":    { "value": "{semantic.color.border.primary}" },
+      "border-focus": {
+        "value": "{semantic.color.focus-ring}",
+        "comment": "El border es el ÚNICO indicador de foco del field (sin ring, decisión del PO en aaa-054): sigue la cadena focus-ring, que el gate garantiza ≥3:1 en los 6 scopes — border.primary no lo cumple (green.500 de brand-a da 2.3:1 sobre blanco)."
+      },
       "border-error":    { "value": "{semantic.color.border.danger}" },
       "focus-ring":      { "value": "{semantic.color.focus-ring}" },
       "label": {
@@ -35,7 +38,10 @@
         "gap":         { "value": "{dimension.6}" }
       },
       "helper": {
-        "font-size": { "value": "{font.size.xs}" },
+        "font-size": {
+          "value": "{semantic.font.size.label-sm}",
+          "comment": "El helper es una anotación del campo, hermano del label (que usa label-md) — se mapea por rol, no por valor (aaa-052)."
+        },
         "gap":       { "value": "{dimension.4}" }
       }
     }

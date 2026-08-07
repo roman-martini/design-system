@@ -1,0 +1,20 @@
+{
+  "semantic": {
+    "color": {
+      "bg": {
+        "primary":        { "value": "{color.green.600}" },
+        "primary-hover":  { "value": "{color.green.500}" },
+        "primary-active": { "value": "{color.green.400}" },
+        "primary-subtle": { "value": "{color.green.900}" }
+      },
+      "text": {
+        "link":       { "value": "{color.green.400}" },
+        "link-hover": { "value": "{color.green.300}" }
+      },
+      "icon": {
+        "primary": { "value": "{color.green.400}" }
+      },
+      "focus-ring": { "value": "{color.green.500}" }
+    }
+  }
+}

@@ -46,13 +46,24 @@
   font-size: var(--ds-component-input-font-size-lg);
 }
 
-.ds-field__control:hover:not(.ds-field__control--disabled):not(.ds-field__control--invalid) {
+/* :not(:focus-within): el foco le gana al hover. Sin esta exclusión, la
+   especificidad de los :not() hacía que hoverear un field enfocado repintara el
+   border al gris de hover — invisible mientras el foco tenía ring, evidente al
+   quedar el border como único indicador (aaa-054). */
+.ds-field__control:hover:not(.ds-field__control--disabled):not(.ds-field__control--invalid):not(
+    :focus-within
+  ) {
   border-color: var(--ds-component-input-border-hover);
 }
 
+/* Foco del field: solo cambio de color del border, sin ring (decisión del PO en el
+   gate de aaa-054: cualquier shadow se leía más ancho que el border de 1px de las
+   cards de referencia). AA se sostiene porque border-focus sigue la cadena
+   semantic.color.focus-ring, que el gate de contraste garantiza ≥3:1 contra la
+   superficie en los 6 scopes — el border ES el indicador, con contraste verificado.
+   El anillo semantic.shadow.focus queda para los controles sin border propio. */
 .ds-field__control:focus-within {
   border-color: var(--ds-component-input-border-focus);
-  box-shadow: var(--ds-semantic-shadow-focus);
 }
 
 .ds-field__control--invalid {

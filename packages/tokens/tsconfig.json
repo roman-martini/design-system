@@ -1,5 +1,6 @@
 {
-  // Este package no compila TypeScript: su build es Style Dictionary (sd.config.mjs)
+  // Este package no compila TypeScript: su build es Style Dictionary (build.mjs
+  // ejecuta la definición de sd.config.mjs)
   // y su salida es CSS + JS generados. Este tsconfig existe sólo para typechequear
   // los specs, que el runner de tests transpila sin verificar tipos.
   "compilerOptions": {

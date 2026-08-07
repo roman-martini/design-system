@@ -23,7 +23,7 @@ Cuando `<bloque>-999` se llena, el siguiente change arranca el bloque siguiente 
 
 ### Próximo ID disponible
 
-**`aaa-054`**
+**`aaa-055`**
 
 Actualizar al crear un change nuevo.
 
@@ -34,6 +34,8 @@ IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change
 > `aaa-052` asignado a `tokens-sistema-fixes` (status `proposed`; modifica `design-tokens-package`). Bloque de sistema de la Parte H de la review del 2026-07-26; ejecuta D-025.
 >
 > `aaa-053` asignado a `tokens-deuda-component` (status `proposed`; modifica las specs de button, checkbox, radio, card y switch). Segundo bloque de la Parte H: ejecuta D-033 sobre la deuda de la capa `component.*` triada por la auditoría del 2026-08-04, con las tres decisiones visuales del PO ya tomadas (2026-08-05: botón semibold, thumb del switch theme-aware, hovers implementados).
+>
+> `aaa-054` asignado a `tokens-brand-scheme-matrix` (status `proposed`; modifica `design-tokens-package`). Overlays dark por marca + gate de contraste en scopes combinados; nace del bug dark+marca reportado por el PO el 2026-08-05 sobre el prototipo H1.
 >
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
 >

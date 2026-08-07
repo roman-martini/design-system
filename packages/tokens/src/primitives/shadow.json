@@ -7,7 +7,10 @@
     "xl":    { "value": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" },
     "2xl":   { "value": "0 25px 50px -12px rgba(0, 0, 0, 0.25)" },
     "inner": { "value": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)" },
-    "focus": { "value": "0 0 0 3px {color.blue.500}" },
+    "focus": {
+      "value": "0 0 0 2px {color.blue.500}",
+      "comment": "Sin consumidor interno a propósito desde aaa-052: semantic.shadow.focus compone desde semantic.color.focus-ring. Se conserva porque la spec exige la primitiva; inventario deliberado, no deuda. Grosor alineado al semantic (2px)."
+    },
     "none":  { "value": "none" }
   }
 }

@@ -106,7 +106,7 @@ Los tokens SHALL organizarse en cuatro niveles jerárquicos en `packages/tokens/
 Las **reglas de referencia** SHALL ser:
 
 - `semantic` puede referenciar `primitives` (no al revés). Se admiten aliases intra-`semantic` no circulares.
-- `component` puede referenciar `semantic` o `primitives` (no `theme`). Cuando existe un token semantic **unívocamente** equivalente, el token component SHALL **referenciarlo**, tanto si la alternativa es duplicar el valor crudo como si es saltear la capa y referenciar directamente la primitiva que ese semantic aliasea. Referenciar una primitiva desde `component` SHALL quedar reservado a los casos sin semantic equivalente, o en los que varios semantic aliasean la misma primitiva y la elección sería arbitraria.
+- `component` puede referenciar `semantic` o `primitives` (no `theme`). Cuando un valor ya existe como token semantic, el token component SHALL **referenciarlo** en vez de duplicar el valor crudo. Para la **tipografía**, el estado objetivo es que component consuma los roles semantic (`semantic.font.*`) y no primitivas `font.*` sueltas; la transición SHALL sostenerse por **trinquete**: las referencias component→`font.*` existentes al momento de `aaa-052` quedan listadas como legado documentado en el test de jerarquía, toda referencia **nueva** SHALL fallar, y la lista de legado solo puede achicarse (una entrada saldada SHALL borrarse). El burn-down del legado es trabajo con juicio por componente — mapear por rol, no por valor — y puede terminar en excepción documentada cuando la referencia es escala dimensional sin rol (las iniciales del avatar).
 - `theme` solo redefine tokens existentes en `semantic` (no introduce tokens nuevos).
 - Ningún nivel SHALL referenciar a sí mismo en forma circular.
 
@@ -150,17 +150,28 @@ Las cuatro reglas SHALL verificarse por un test automático de la suite del pack
 - **THEN** su value SHALL ser la referencia `{semantic.color.bg.overlay}`, no el valor crudo duplicado
 - **AND** el CSS SHALL emitir `--ds-component-modal-overlay-bg: var(--ds-semantic-color-bg-overlay)`
 
-#### Scenario: component no saltea la capa semantic cuando existe el equivalente
+#### Scenario: una referencia tipográfica nueva de component a primitivas falla
 
-- **GIVEN** `semantic.font.size.body-xs` definido como alias de `{font.size.xs}`
-- **WHEN** se inspecciona un token tipográfico de `component/` cuyo value es `{font.size.xs}`
-- **THEN** el test de jerarquía SHALL fallar señalando el token y los semantic candidatos que debía referenciar
+- **GIVEN** el baseline de referencias component→`font.*` congelado en el test de jerarquía
+- **WHEN** un token de `component/` fuera de ese baseline referencia `{font.size.*}`, `{font.weight.*}` o `{font.line-height.*}`
+- **THEN** el test SHALL fallar indicando el token y que la tipografía nueva referencia su rol semantic
 
-#### Scenario: referenciar una primitiva sin equivalente unívoco es válido
+#### Scenario: el legado tipográfico solo se achica
+
+- **GIVEN** una entrada del baseline cuyo token fue remapeado a su rol semantic o retirado
+- **WHEN** corre el test de jerarquía sin que la entrada se haya borrado del baseline
+- **THEN** el test SHALL fallar exigiendo borrarla (el trinquete no admite entradas muertas)
+
+#### Scenario: los repuntes de tooltip e input quedan fijados por testigo
+
+- **WHEN** se inspeccionan `component.tooltip.font-size`, `component.input.font-size.sm/md/lg` y `component.input.helper.font-size`
+- **THEN** SHALL referenciar `{semantic.font.size.body-xs}`, `{semantic.font.size.body-sm/md/lg}` y `{semantic.font.size.label-sm}` respectivamente
+
+#### Scenario: referenciar una primitiva no tipográfica sigue siendo válido
 
 - **GIVEN** un token de `component/` que referencia `{dimension.4}`, primitiva que varios tokens `semantic.space.*` aliasean a la vez
 - **WHEN** corre el test de jerarquía
-- **THEN** SHALL pasar (la regla no fuerza una elección arbitraria entre semantic equivalentes)
+- **THEN** SHALL pasar (fuera de la tipografía, la regla no fuerza una elección arbitraria entre semantic equivalentes)
 
 ### Requirement: Tokens semantic de motion para overlays
 

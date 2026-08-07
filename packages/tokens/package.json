@@ -35,6 +35,8 @@
     "./themes/dark": "./dist/themes/dark.css",
     "./themes/brand-a": "./dist/themes/brand-a.css",
     "./themes/brand-b": "./dist/themes/brand-b.css",
+    "./themes/brand-a-dark": "./dist/themes/brand-a-dark.css",
+    "./themes/brand-b-dark": "./dist/themes/brand-b-dark.css",
     "./package.json": "./package.json"
   },
   "sideEffects": [
@@ -48,8 +50,8 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "node sd.config.mjs",
-    "watch": "node --watch sd.config.mjs",
+    "build": "node build.mjs",
+    "watch": "node --watch build.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",

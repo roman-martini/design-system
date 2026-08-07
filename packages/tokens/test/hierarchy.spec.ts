@@ -220,3 +220,87 @@ describe('component no duplica valores que ya existen en semantic', () => {
     expect(overlay!.value).toBe('{semantic.color.bg.overlay}');
   });
 });
+
+describe('component consume la capa semantic para tipografía (aaa-052)', () => {
+  /**
+   * Trinquete sobre las referencias component → primitivas `font.*`.
+   *
+   * El estado final es el de los design systems maduros: la tipografía de component
+   * gobernada por roles semantic (`semantic.font.size.body-*`, `label-*`, …), no por
+   * primitivas sueltas. El mecanismo es un baseline congelado — el patrón estándar
+   * para imponer una invariante nueva sobre legado existente sin bloquear el gate:
+   *
+   * - Una referencia NUEVA de component a `{font.*}` falla el test.
+   * - El legado listado abajo solo puede ACHICARSE: cada entrada saldada (remapeada a
+   *   su rol semantic, o retirada) debe borrarse de la lista o el test falla.
+   *
+   * El burn-down del legado es trabajo con juicio por componente (mapear por rol, no
+   * por valor — y el avatar demuestra que no todo `font.*` tiene rol: sus iniciales
+   * son escala dimensional). Queda como ítem de backlog registrado al archivar aaa-052.
+   */
+  const LEGACY_FONT_REFS = new Set([
+    'component.accordion.header.font-weight',
+    'component.alert.body-font-size', // se retira con alert.json en aaa-053
+    'component.alert.title-font-size', // se retira con alert.json en aaa-053
+    'component.alert.title-font-weight', // se retira con alert.json en aaa-053
+    'component.avatar.font-size.lg', // candidato a excepción documentada: escala dimensional, no rol
+    'component.avatar.font-size.md',
+    'component.avatar.font-size.sm',
+    'component.avatar.font-size.xl',
+    'component.avatar.font-size.xs',
+    'component.avatar.font-weight',
+    'component.breadcrumbs.current.font-weight',
+    'component.checkbox.label-font-size',
+    'component.menu.item.font-size',
+    'component.pagination.current.font-weight',
+    'component.radio.label-font-size',
+    'component.select.option.font-size',
+    'component.select.trigger.font-size.lg',
+    'component.select.trigger.font-size.md',
+    'component.select.trigger.font-size.sm',
+    'component.slider.label-font-size',
+    'component.slider.tick.label-font-size',
+    'component.slider.tooltip.font-size',
+    'component.switch.label-font-size',
+    'component.tabs.font-weight',
+    'component.tabs.line-height',
+    'component.tabs.size.lg.font-size',
+    'component.tabs.size.md.font-size',
+    'component.tabs.size.sm.font-size',
+  ]);
+
+  const fontEdges = edges.filter((e) => e.from.level === 'component' && e.ref.startsWith('font.'));
+
+  it('ninguna referencia nueva de component a primitivas font.* fuera del legado', () => {
+    const offenders = fontEdges
+      .filter((e) => !LEGACY_FONT_REFS.has(e.from.path))
+      .map((e) => `${e.from.file}: ${e.from.path} → {${e.ref}}`);
+
+    expect(
+      offenders,
+      `tipografía nueva de component debe referenciar su rol semantic (semantic.font.*), no la primitiva:\n  ${offenders.join('\n  ')}`,
+    ).toEqual([]);
+  });
+
+  it('el legado solo se achica: toda entrada saldada se borra de la lista', () => {
+    const active = new Set(fontEdges.map((e) => e.from.path));
+    const stale = [...LEGACY_FONT_REFS].filter((path) => !active.has(path));
+
+    expect(
+      stale,
+      `estas entradas del baseline ya no referencian font.* — borrarlas de LEGACY_FONT_REFS:\n  ${stale.join('\n  ')}`,
+    ).toEqual([]);
+  });
+
+  it.each([
+    ['component.tooltip.font-size', '{semantic.font.size.body-xs}'],
+    ['component.input.font-size.sm', '{semantic.font.size.body-sm}'],
+    ['component.input.font-size.md', '{semantic.font.size.body-md}'],
+    ['component.input.font-size.lg', '{semantic.font.size.body-lg}'],
+    ['component.input.helper.font-size', '{semantic.font.size.label-sm}'],
+  ])('testigo del remapeo: %s → %s', (tokenPath, expected) => {
+    const token = index.get(tokenPath)?.[0];
+    expect(token, `${tokenPath} no existe`).toBeDefined();
+    expect(token!.value).toBe(expected);
+  });
+});

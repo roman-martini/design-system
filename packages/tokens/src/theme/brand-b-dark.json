@@ -1,0 +1,23 @@
+{
+  "semantic": {
+    "color": {
+      "bg": {
+        "primary":        { "value": "{color.purple.500}" },
+        "primary-hover":  { "value": "{color.purple.400}" },
+        "primary-active": { "value": "{color.purple.300}" },
+        "primary-subtle": { "value": "{color.purple.900}" }
+      },
+      "text": {
+        "link": {
+          "value": "{color.purple.300}",
+          "comment": "Un peldaño más claro que el patrón blue.400 de dark: purple.400 da 2.96:1 sobre bg.secondary-active (track de progress/slider vía fill) y el umbral ui es 3:1."
+        },
+        "link-hover": { "value": "{color.purple.200}" }
+      },
+      "icon": {
+        "primary": { "value": "{color.purple.400}" }
+      },
+      "focus-ring": { "value": "{color.purple.400}" }
+    }
+  }
+}

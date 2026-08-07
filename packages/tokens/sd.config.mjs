@@ -1,8 +1,13 @@
 import StyleDictionary from 'style-dictionary';
 
+// Módulo de DEFINICIÓN: declara las plataformas y los themes, sin efectos de
+// import. La ejecución vive en build.mjs (aaa-052) — importar este archivo no
+// escribe nada en dist/, lo que permite que los tests hagan aserciones sobre
+// la configuración declarada.
+
 // ─── Base build (light, default brand) ───────────────────────────────────────
 
-const sdBase = new StyleDictionary({
+export const sdBase = new StyleDictionary({
   source: [
     'src/primitives/*.json',
     'src/semantic/*.json',
@@ -45,13 +50,17 @@ const sdBase = new StyleDictionary({
 //   <html data-theme="dark" data-brand="b">
 //   → dark backgrounds + violet primary, zero component code changes.
 
-const themes = [
+export const themes = [
   { name: 'dark',    source: ['src/theme/dark.json'],    selector: '[data-theme="dark"]' },
   { name: 'brand-a', source: ['src/theme/brand-a.json'], selector: '[data-brand="a"]' },
   { name: 'brand-b', source: ['src/theme/brand-b.json'], selector: '[data-brand="b"]' },
+  // Overlays de la matriz brand × scheme (aaa-054): una marca activa junto al theme
+  // dark necesita sus tonos oscuros — el selector combinado gana a ambos por especificidad.
+  { name: 'brand-a-dark', source: ['src/theme/brand-a-dark.json'], selector: '[data-theme="dark"][data-brand="a"]' },
+  { name: 'brand-b-dark', source: ['src/theme/brand-b-dark.json'], selector: '[data-theme="dark"][data-brand="b"]' },
 ];
 
-const themeBuilds = themes.map(({ name, source, selector }) =>
+export const themeBuilds = themes.map(({ name, source, selector }) =>
   new StyleDictionary({
     include: ['src/primitives/*.json'],
     source,
@@ -73,8 +82,3 @@ const themeBuilds = themes.map(({ name, source, selector }) =>
     },
   }),
 );
-
-await sdBase.buildAllPlatforms();
-for (const build of themeBuilds) {
-  await build.buildAllPlatforms();
-}

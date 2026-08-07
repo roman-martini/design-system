@@ -2,12 +2,18 @@
   "semantic": {
     "motion": {
       "transition": {
-        "fast":          { "value": "100ms cubic-bezier(0, 0, 0.2, 1)" },
-        "normal":        { "value": "200ms cubic-bezier(0, 0, 0.2, 1)" },
-        "slow":          { "value": "300ms cubic-bezier(0, 0, 0.2, 1)" },
-        "spring":        { "value": "200ms cubic-bezier(0.34, 1.56, 0.64, 1)" },
-        "overlay-enter": { "value": "250ms cubic-bezier(0, 0, 0.2, 1)" },
-        "overlay-exit":  { "value": "150ms cubic-bezier(0.4, 0, 1, 1)" }
+        "fast":          { "value": "{motion.duration.fast} {motion.easing.ease-out}" },
+        "normal":        { "value": "{motion.duration.normal} {motion.easing.ease-out}" },
+        "slow":          { "value": "{motion.duration.slow} {motion.easing.ease-out}" },
+        "spring":        { "value": "{motion.duration.normal} {motion.easing.spring}" },
+        "overlay-enter": {
+          "value": "{motion.duration.normal} {motion.easing.ease-out}",
+          "comment": "Alineado a la escala primitiva en aaa-052 (antes 250ms literal, fuera de escala). Convención: enter ≥ exit."
+        },
+        "overlay-exit": {
+          "value": "{motion.duration.fast} {motion.easing.ease-in}",
+          "comment": "Alineado a la escala primitiva en aaa-052 (antes 150ms literal, fuera de escala)."
+        }
       }
     }
   }
