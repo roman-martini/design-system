@@ -269,17 +269,23 @@ Orden sugerido por severidad:
 
 ---
 
-## Parte H — Tokens: fixes y consistencia
+## Parte H — Tokens: fixes y consistencia — bloque de sistema ✅ (2026-08-07); resta la deuda `component.*`
 
 **Modelo: Opus 5 · Effort: medium** · Vía: OpenSpec change (modifica `design-tokens-package`) · Depende de: A18/A19 para dos ítems.
 
-1. **Focus ring en brands** (bug visual): override de `semantic.shadow.focus` en brand-a/b + recomposición del composite desde `semantic.color.focus-ring` [tokens-01]
-2. Tipografía de component vía semantic (alert/tooltip/input) [tokens-08]
-3. `semantic/motion` compuesto por referencias, no strings duplicados [tokens-09]
-4. Delta de spec: autorizar referencias intra-nivel no circulares (space.negative ya publicado) [tokens-10]
-5. `bg.inverse`/`text.on-inverse` + repunte de tooltip [tokens-11]
-6. Separar `sd.config.mjs` (definición) de `build.mjs` (ejecución) [tokens-13]
-7. Sombras dark si A18 decide [tokens-07]
+> **Reencuadre del 2026-08-04**: la [auditoría formal de tokens](../../design/tokens/2026-08-04-audit.md) reemplazó a esta lista como insumo y la parte se partió en dos bloques: **sistema** (los ítems de abajo, sin decisiones abiertas) y **deuda `component.*`** (66 tokens triados, detrás de las 4 decisiones que [D-033] resolvió el 2026-08-05). El bloque de sistema se ejecutó como **`aaa-052`** (+ `aaa-054`, ver abajo) y se archivó el 2026-08-07; la deuda es **`aaa-053`**, propuesto y pendiente de apply.
+
+1. **Focus ring en brands** [tokens-01] — **Hecho** (`aaa-052`). La ejecución corrigió la evidencia: el token y el render discrepaban **en los cuatro scopes**, no solo en las marcas (declaraba tonos `200` pálidos que nunca se pintaron), así que hubo que realinear valores además de recomponer. La raíz de que sobreviviera: el gate de contraste no tenía **ningún par de focus ring** — se agregó. Anillo a 2px por feedback del PO en el gate.
+2. Tipografía de component vía semantic [tokens-08] — **Hecho parcial con trinquete** (`aaa-052`): el bypass real eran **28 referencias en 11 componentes**, no 3 archivos; una regla automática daba falsos positivos (el avatar usa `font.*` como escala dimensional sin rol). Tooltip/input remapeados + baseline congelado (`LEGACY_FONT_REFS`); el burn-down quedó como ítem Later del BACKLOG.
+3. Motion por referencias [tokens-09] — **Hecho** (`aaa-052`), con corrección: `overlay-enter/exit` (250/150 ms) estaban **fuera de la escala primitiva**; se alinearon a 200/100 ms — cambio visual, no neutro como asumía la fila.
+4. Referencias intra-nivel [tokens-10] — **Ya estaba cerrado desde `aaa-041`** (spec y test lo autorizan desde entonces); la fila nació desactualizada.
+5. `bg.inverse` + repunte de tooltip [tokens-11] — **Hecho** (`aaa-052`), sin `text.on-inverse`: `semantic.color.text.inverse` ya existía con ese significado exacto; crear el segundo era un sinónimo.
+6. Split `sd.config.mjs` / `build.mjs` [tokens-13] — **Hecho** (`aaa-052`), dist byte-a-byte idéntico.
+7. Sombras dark [tokens-07] — **Hecho** (`aaa-052`) según [D-025]: opacidad 0.1→0.4, paridad de geometría por test.
+
+> **`aaa-054` (matriz brand × scheme) nació durante el gate visual de `aaa-052`** — no estaba entre los 140 hallazgos: el PO detectó que dark + marca rompía el radio card del prototipo H1, y la causa era estructural (todo token que una marca overridea perdía su variante oscura por cascada; el gate de contraste evaluaba los scopes **por separado, nunca combinados** — el mismo tipo de agujero que tokens-01). Overlays `brand-*-dark` + gate en scopes combinados, que en su primera corrida cazó 2 violaciones más (fill de progress/slider en dark+brand-b). En el mismo gate el PO iteró el foco de fields: quedó **solo por border** sobre la cadena `focus-ring` (sin ring apilado), con la precedencia foco>hover corregida.
+>
+> **Lección de la parte**: un gate que evalúa dimensiones por separado no ve los bugs de combinación — al instalar un gate multi-eje (themes × marcas, y lo que venga), correr también el producto cartesiano de ejes que el browser compone en la realidad.
 
 ---
 

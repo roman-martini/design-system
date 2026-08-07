@@ -205,6 +205,8 @@ El primitive shadow.focus embebe el color de marca azul: '0 0 0 3px {color.blue.
 
 **Nota de verificación**: Verificado en sesión: brand-a.json solo overridea semantic.color.\* (incl. focus-ring); no overridea semantic.shadow.focus.
 
+**Cierre (2026-08-07, `aaa-052`)**: ejecutado por la vía estructural (composite desde `semantic.color.focus-ring`), con una corrección a la evidencia: la discrepancia token↔render existía **en los cuatro scopes**, no solo en las marcas — `focus-ring` declaraba tonos `200` pálidos (y `blue.700` en dark) que nunca se pintaron; leen como el halo de un anillo de dos capas jamás implementado. Hubo que **realinear los valores al render** (blue.500/400; marcas a green.600/purple.500, fijadas por gate) además de recomponer. La causa de que el bug sobreviviera: `contrast-pairs.json` no tenía ningún par de focus ring — se agregó con umbral `ui` en todos los scopes. El anillo bajó además a 2px (feedback del PO en el gate). Derivado: el gate destapó en vivo la familia hermana de este bug —dark+marca sin variante oscura— que se modeló como matriz brand × scheme en `aaa-054`.
+
 ### tokens-02 — README documenta tokens.DsColorBlue500 pero el build exporta ColorBlue500 (plataforma JS sin prefix)
 
 - **Archivo**: `packages/tokens/README.md:63`
@@ -295,6 +297,8 @@ dark.json solo overridea semantic.shadow.focus; las demás sombras semánticas (
 
 **Recomendación**: Decisión de diseño del PO sobre la estrategia (sombras más opacas en dark vs reforzar con border.subtle en superficies elevadas — bg.elevated ya existe y ayuda); luego agregar los overrides de semantic.shadow.\* a dark.json. Considerar incluir el par en los tests de theme-coverage del gate de jerarquía.
 
+**Cierre (2026-08-07, `aaa-052`)**: hecho según [D-025] (sombras más opacas, 0.1→0.4, en card/card-hover/dropdown/modal/toast; `input` y `focus` fuera por no ser elevación). El "test de theme-coverage" sugerido se materializó como `elevation.spec.ts`: paridad de geometría entre scopes + opacidad estrictamente mayor en dark. OK visual del PO en el gate.
+
 ### tokens-08 — Componentes referencian tipografía de primitives salteando el nivel semantic, de forma inconsistente entre sí
 
 - **Archivo**: `packages/tokens/src/component/alert.json:10`
@@ -308,6 +312,8 @@ alert usa '{font.size.sm}' y '{font.weight.semibold}' directo de primitives cuan
 **Impacto**: Todo lo que se referencia desde primitives queda fuera del alcance del theming: un theme que ajuste la tipografía semantic (ej. escala densa) re-tematiza button pero no alert/tooltip/input. La inconsistencia entre componentes además vuelve impredecible dónde tocar para un cambio tipográfico global.
 
 **Recomendación**: Normalizar las referencias tipográficas de component a los tokens semantic existentes (alert→body-sm/subhead, tooltip→body-xs, input→body-_/label-_). El CSS emitido cambia solo el var() intermedio (mismo valor computado): patch changeset. Documentar el criterio 'semantic primero, primitive solo si no existe equivalente' en el README del package.
+
+**Cierre parcial (2026-08-07, `aaa-052`)**: la evidencia se quedaba corta — el bypass real son **28 referencias en 11 componentes** (avatar, checkbox, menu, radio, select, slider, switch, tabs, accordion, breadcrumbs, pagination, además de los 3 citados), y **no todas son mapeables**: las iniciales del avatar usan `font.size.*` como escala dimensional sin rol semantic (su alias de igual valor para `xl` sería `heading-4` — absurdo). Una regla automática "existe alias → falla" daba falsos positivos o forzaba mapeos arbitrarios. Resolución (criterio de recomendación de CLAUDE.md): **trinquete** — tooltip/input remapeados por rol + baseline `LEGACY_FONT_REFS` congelado en `hierarchy.spec.ts` (referencia nueva falla; el baseline solo se achica). Alert lo salda `aaa-053` al retirar el archivo; el resto es el ítem "burn-down del legado tipográfico" (Later, BACKLOG).
 
 ### tokens-09 — semantic/motion.json duplica valores de primitives como strings crudos en vez de interpolar referencias
 
@@ -323,6 +329,8 @@ Las 6 transitions componen duration+easing con literales: '100ms cubic-bezier(0,
 
 **Recomendación**: Reescribir los values como composición de referencias a primitives. Nota: con referencias parciales SD emite el valor resuelto (no var()), así que el CSS final no cambia; los tests existentes de overlay-motion (formato '<n>ms cubic-bezier') deben pasar sin cambios contra dist en vez de contra src, o validar el valor resuelto.
 
+**Cierre (2026-08-07, `aaa-052`)**: hecho, con una corrección al "el CSS final no cambia": `overlay-enter` (250 ms) y `overlay-exit` (150 ms) **no existían en la escala primitiva** (100/200/300/500) — el hallazgo era también un defecto de escala, no solo de duplicación. Se alinearon a `duration.normal`/`duration.fast` (200/100 ms) en vez de agregar peldaños innombrables entre los existentes: **cambio visual acotado**, aprobado por el PO en el gate. `overlay-motion.spec.ts` valida ahora el valor resuelto siguiendo referencias + la regla "ningún preset es literal".
+
 ### tokens-10 — semantic.space.negative referencia tokens del propio nivel semantic: la regla escrita en ADR-003/spec quedó desactualizada
 
 - **Archivo**: `packages/tokens/src/semantic/space.json:13`
@@ -337,6 +345,8 @@ Los 6 tokens de space.negative usan 'calc(-1 _ {semantic.space._})' — referenc
 
 **Recomendación**: Delta chico del spec design-tokens-package: autorizar explícitamente referencias intra-nivel no circulares en semantic (y decidir si también en component), manteniendo la prohibición de ciclos. ADR-003 es inmutable: dejar constancia en el proposal del change que la tabla del ADR queda matizada por el spec.
 
+**Cierre (2026-08-07, sin trabajo)**: **ya estaba resuelto por `aaa-041`** (2026-07-30, Parte F1-b): la regla "se admiten aliases intra-`semantic` no circulares" entró a la spec en ese change y `hierarchy.spec.ts` la verifica desde entonces. El hallazgo era correcto al escribirse; la fila del plan quedó desactualizada al no tacharse cuando F1-b la cerró de pasada.
+
 ### tokens-11 — Tooltip usa text.primary como fondo: falta el concepto bg.inverse en el nivel semantic
 
 - **Archivo**: `packages/tokens/src/component/tooltip.json:4`
@@ -350,6 +360,8 @@ tooltip.bg = '{semantic.color.text.primary}' y tooltip.text = '{semantic.color.b
 **Impacto**: El próximo componente con superficie invertida (toast oscuro, badge invertido, popover de onboarding) repetirá el hack o inventará otro; ajustar text.primary por razones tipográficas arrastraría los fondos de tooltips. Rompe la legibilidad de la capa semantic como vocabulario de intenciones.
 
 **Recomendación**: Agregar semantic.color.bg.inverse y semantic.color.text.on-inverse (referenciando los mismos primitives que hoy resuelven text.primary/bg.surface, para no cambiar el render) y repuntar tooltip. Overridear ambos en dark.json. Cambio aditivo + patch de tooltip: changeset minor.
+
+**Cierre (2026-08-07, `aaa-052`)**: hecho **sin `text.on-inverse`** — `semantic.color.text.inverse` ya existía con exactamente ese significado (white en light, neutral.900 en dark); crear el segundo era un sinónimo con costo de migración. Se agregó solo `bg.inverse`, el tooltip se repuntó al par y el par entró al gate de contraste (4.5:1 en todos los scopes). Render idéntico, como preveía la recomendación.
 
 ### tokens-12 — El tarball publicado no incluye LICENSE: files solo declara dist y README, y no hay LICENSE en el directorio del package
 
@@ -378,6 +390,8 @@ El archivo llamado 'config' ejecuta el build con top-level await al importarse (
 **Impacto**: Bloquea reutilizar la definición para los gates pendientes (el validador de jerarquía y el test de contraste se beneficiarían de importar la lista de themes/selectors en vez de duplicarla) y para el target DTCG de aaa-012, que va a necesitar extender esta misma estructura. Costo de mantenibilidad menor hoy, pero es el momento barato de separarlo porque aaa-012 ya lo va a tocar.
 
 **Recomendación**: Separar en sd.config.mjs (exporta la definición: base, themes, plataformas) y build.mjs (importa y ejecuta), actualizando los scripts build/watch. Aprovechar el paso por aaa-012 para hacerlo en el mismo change y que el target DTCG nazca sobre la estructura limpia.
+
+**Cierre (2026-08-07, `aaa-052`)**: hecho tal cual (sin esperar a `aaa-012`, que sigue pausado por [D-027]): `sd.config.mjs` exporta `sdBase`/`themes`/`themeBuilds` sin efectos de import y `build.mjs` ejecuta; `dist` verificado byte-a-byte idéntico. El beneficio ya se cobró en el mismo change: los tests importan la definición sin disparar escrituras.
 
 ---
 
