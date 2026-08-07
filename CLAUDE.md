@@ -12,6 +12,16 @@ Todo artefacto del repo (docs, commits, ADRs, specs) se escribe en español; có
 
 Toda decisión arquitectónica o de proceso debe poder justificarse contra estas prioridades. Frente a una disyuntiva, no elegir por velocidad; ofrecer 2-3 opciones evaluadas con pros/contras y recomendación.
 
+### Criterio de recomendación (PO, 2026-08-05)
+
+Seguir ofreciendo opciones ante toda pregunta abierta — pero la **recomendación** se fundamenta siempre en estos criterios, no en la conveniencia del momento:
+
+1. **Lo que mejor escala**: la opción que sigue siendo correcta cuando el kit crece en componentes, themes y consumidores — no la que solo funciona con el tamaño de hoy.
+2. **La práctica profesional establecida**: lo que aplican los design systems maduros (Material, Carbon, Polaris, Radix) y la ingeniería a gran escala. Patrones probados por la industria antes que invención propia.
+3. **La adaptabilidad de las libs**: la opción que deja a los packages sirviendo a la mayor variedad de requerimientos de apps consumidoras sin rediseño.
+
+Nunca recomendar por tamaño del diff, velocidad de implementación o comodidad. Si la opción profesional es más trabajo, se recomienda igual y se explicita el costo.
+
 ## Fuentes de verdad
 
 Cada artefacto del repo responde una pregunta distinta. **No mezclarlos**. Si tenés una duda, mirá la tabla:
