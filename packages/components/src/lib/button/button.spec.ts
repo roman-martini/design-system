@@ -456,6 +456,54 @@ describe('DsButton — dimensionamiento por tokens', () => {
   });
 });
 
+// Scenario: colores de variante y peso tipográfico por la capa component (aaa-053).
+// La capa component.button.* declaraba los colores de cada variante y el CSS
+// consumía los semantic directamente: cualquier divergencia futura entre token y
+// render quedaba sin gate (la clase de bug de aaa-049).
+describe('DsButton — capa component conectada (aaa-053)', () => {
+  const sinComentarios = buttonCss.replace(/\/\*[\s\S]*?\*\//g, '');
+
+  // Toda regla cuyo selector arranca en `button` (variantes, hover, active, sizes).
+  const reglasDelBoton = Array.from(
+    sinComentarios.matchAll(/(^|\n)\s*(button[^{]*)\{([^}]*)\}/g),
+  ).map(([, , selector, cuerpo]) => ({ selector: selector.trim(), cuerpo }));
+
+  it('cada variante consume su capa component', () => {
+    for (const token of [
+      '--ds-component-button-primary-bg',
+      '--ds-component-button-primary-bg-hover',
+      '--ds-component-button-primary-bg-active',
+      '--ds-component-button-primary-text',
+      '--ds-component-button-primary-border',
+      '--ds-component-button-secondary-bg',
+      '--ds-component-button-secondary-bg-hover',
+      '--ds-component-button-secondary-bg-active',
+      '--ds-component-button-secondary-text',
+      '--ds-component-button-secondary-border',
+      '--ds-component-button-ghost-bg',
+      '--ds-component-button-ghost-bg-hover',
+      '--ds-component-button-ghost-bg-active',
+      '--ds-component-button-ghost-text',
+      '--ds-component-button-danger-border',
+      '--ds-component-button-danger-ghost-bg',
+    ]) {
+      expect(buttonCss, `falta ${token}`).toContain(token);
+    }
+  });
+
+  it('el control no consume semantic.color directamente para valores que su capa declara', () => {
+    expect(reglasDelBoton.length).toBeGreaterThan(0);
+    for (const { selector, cuerpo } of reglasDelBoton) {
+      expect(cuerpo, `regla '${selector}'`).not.toMatch(/--ds-semantic-color-/);
+    }
+  });
+
+  it('el peso del texto sale del token component (semibold 600, la verdad del token)', () => {
+    expect(buttonCss).toContain('font-weight: var(--ds-component-button-font-weight)');
+    expect(sinComentarios).not.toContain('--ds-font-weight-medium');
+  });
+});
+
 // Scenario de la spec `component-button` que no tenía test: CA-017.7, estilos del
 // estado loading por tokens y sin pares de contraste propios (testing-05, aaa-042).
 describe('loading — estilos por tokens (CA-017.7)', () => {

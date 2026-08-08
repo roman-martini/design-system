@@ -24,11 +24,13 @@
           "md": { "value": "{dimension.20}" },
           "lg": { "value": "{dimension.24}" }
         },
-        "bg":     { "value": "{color.white}" },
+        "bg": {
+          "value": "{semantic.color.text.inverse}",
+          "comment": "Va sobre bg.primary, igual que la marca del checkbox y el punto del radio (cadena de aaa-051): blanco en light, se oscurece en dark donde ese fondo aclara."
+        },
         "shadow": { "value": "{shadow.sm}" }
       },
       "padding":  { "value": "{dimension.2}" },
-      "focus-ring":     { "value": "{semantic.color.focus-ring}" },
       "label-font-size":{ "value": "{font.size.sm}" },
       "label-color":    { "value": "{semantic.color.text.primary}" }
     }

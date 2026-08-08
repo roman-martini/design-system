@@ -6,7 +6,7 @@ Cinco decisiones. Las tres que eran del PO ya están tomadas (sesión de playgro
 
 ## D1 — Conectar la capa de color del botón, no retirarla
 
-Los 23 tokens de color de `primary`/`secondary`/`ghost`/`link`/`danger-ghost`/`danger.border` alias a los mismos semantic que `button.css` consume directo, así que la conexión es mecánica y sin cambio visual. El punto no es estético sino estructural: con la capa conectada, la cadena emitida es
+Los 18 tokens de color de `primary`/`secondary`/`ghost`/`danger-ghost`/`danger.border` alias a los mismos semantic que `button.css` consume directo (los 5 de `link` resultaron describir una variante que `DsButtonVariant` no tiene: se retiran por D5, no se conectan), así que la conexión es mecánica y sin cambio visual. El punto no es estético sino estructural: con la capa conectada, la cadena emitida es
 
 ```css
 --ds-component-button-primary-bg: var(--ds-semantic-color-bg-primary);
@@ -46,7 +46,7 @@ Los tokens hover ya declaran valores correctos (`bg-off-hover` → `bg.secondary
 
 ## D5 — Retiros: borrar es el fix
 
-36 tokens sin estado real que describir. Mecánica: `alert.json` se elimina como archivo; el resto son claves borradas de sus JSON. Nada los consume (verificado por la auditoría), así que ni el build ni la suite cambian de output — la verificación es que `pnpm build` + tests sigan verdes y que la re-corrida de `/ds:audit-tokens` deje la deuda de `component.*` en 0 (los 6 falsos positivos del detector TS no son deuda y siguen hasta el fix del script, que va por commit directo).
+41 tokens sin estado real que describir (los 36 triados por la auditoría + los 5 de `button.link.*` que el apply descubrió sin variante que los respalde). Mecánica: `alert.json` se elimina como archivo; el resto son claves borradas de sus JSON. Nada los consume (verificado por la auditoría), así que ni el build ni la suite cambian de output — la verificación es que `pnpm build` + tests sigan verdes y que la re-corrida de `/ds:audit-tokens` deje la deuda de `component.*` en 0 (los 6 falsos positivos del detector TS no son deuda y siguen hasta el fix del script, que va por commit directo).
 
 `alert.json` no se "migra" a ningún lado: HU-041 registra la capacidad sin heredar los tokens como contrato (decisión explícita del PO en D-033a).
 

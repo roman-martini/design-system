@@ -28,7 +28,7 @@ Es el segundo y último bloque de la Parte H de la review del 2026-07-26; el pri
 
 ## What Changes
 
-**A. Retiros — 36 tokens que no describen nada real:**
+**A. Retiros — 41 tokens que no describen nada real:**
 
 - `component/alert.json` completo (24): componente inexistente. La capacidad no se pierde: HU-041 la registra en el roadmap y sus tokens se rediseñarán con el componente [D-033a].
 - Capa de focus ring per-componente (6): `button.focus-ring-color`, `button.focus-ring-width`, `checkbox.focus-ring`, `input.focus-ring`, `radio.focus-ring`, `switch.focus-ring`. El modelo del sistema es el anillo único `semantic.shadow.focus` (que `aaa-052` vuelve theme-aware) [D-033b].
@@ -36,10 +36,11 @@ Es el segundo y último bloque de la Parte H de la review del 2026-07-26; el pri
 - `component.modal.z-index` (1): el modal usa el top layer del `<dialog>` nativo; el token es engañoso.
 - `component.avatar.status-border`, `status-size` (2): feature "indicador de status" no implementada; si aparece su disparador, entra como HU propia (D-015).
 - `component.card.padding.lg` (1): la spec de card fija el contrato en `padding.md`/`padding.sm`; `lg` quedó fuera del diseño real.
+- `component.button.link.*` (5, descubierto en el apply): `DsButtonVariant` no incluye `link` — la variante no existe en el componente, así que no hay nada a qué conectar estos tokens. Mismo criterio que `avatar.status`: si aparece el disparador de una variante link, entra como HU propia (D-015).
 
 **B. Botón — la capa component deja de estar muerta (cambio visual):**
 
-- Las variantes `primary`, `secondary`, `ghost`, `link`, `danger-ghost` y el borde de `danger` (23 tokens) están declaradas en `component/button.json` pero `button.css` consume los semantic directamente — inconsistente con `danger` y `outline`, que sí pasan por la capa. El CSS se conecta a su capa component. **Sin cambio visual** (los tokens alias los mismos semantic; el theming cascadea igual con `outputReferences`).
+- Las variantes `primary`, `secondary`, `ghost`, `danger-ghost` y el borde de `danger` (18 tokens) están declaradas en `component/button.json` pero `button.css` consume los semantic directamente — inconsistente con `danger` y `outline`, que sí pasan por la capa. El CSS se conecta a su capa component. **Sin cambio visual** (los tokens alias los mismos semantic; el theming cascadea igual con `outputReferences`).
 - `component.button.font-weight` (600, semibold) pasa a consumirse: **el token era la verdad y el CSS se desvió a 500** (PO, 2026-08-05, gate visual pendiente). **Cambio visual en todos los botones del kit.**
 
 **C. Switch — thumb theme-aware (cambio visual en dark):**

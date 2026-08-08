@@ -118,4 +118,19 @@ describe('DsRadio — estilos por tokens', () => {
     }
     expect(css).not.toMatch(/background(-color)?:\s*var\(--ds-semantic-color-bg/);
   });
+
+  // Scenario: el control comunica hover en ambos estados (aaa-053) — el mismo
+  // par que checkbox, para que la familia de controles reaccione igual.
+  it('pinta los hovers desde sus tokens y solo fuera de disabled', () => {
+    expect(css).toMatch(
+      /:hover:not\(:disabled\)[^{]*\{[^}]*var\(--ds-component-radio-bg-off-hover\)/,
+    );
+    expect(css).toMatch(
+      /:hover:not\(:disabled\):checked[^{]*\{[^}]*var\(--ds-component-radio-bg-on-hover\)/,
+    );
+    // ninguna regla hover aplica sin la guarda de disabled
+    for (const match of css.matchAll(/^[^{}]*:hover[^{]*\{/gm)) {
+      expect(match[0]).toContain(':not(:disabled)');
+    }
+  });
 });

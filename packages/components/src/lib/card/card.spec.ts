@@ -81,6 +81,17 @@ describe('DsCard (familia)', () => {
     expect(css).toContain('--ds-component-card-border');
   });
 
+  // Scenario: las variantes con sombra elevan al hover (aaa-053); flat es plana
+  // por contrato. jsdom no computa :hover, así que se asserta sobre la fuente.
+  it('eleva al hover en outline/elevated con transición de motion; flat no', () => {
+    expect(css).toMatch(
+      /:host\(\[data-variant='outline'\]:hover\),\s*:host\(\[data-variant='elevated'\]:hover\)\s*\{[^}]*var\(--ds-component-card-shadow-hover\)/,
+    );
+    expect(css).toMatch(/transition:\s*box-shadow\s+var\(--ds-motion-duration-/);
+    expect(css).toMatch(/prefers-reduced-motion[^{]*\{\s*:host\s*\{\s*transition:\s*none/);
+    expect(css).not.toMatch(/\[data-variant='flat'\]:hover/);
+  });
+
   it('maps padding modes to tokens (CA-019.3)', () => {
     expect(css).toContain('--ds-component-card-padding-md');
 

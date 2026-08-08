@@ -7,7 +7,7 @@ Los colores de cada variante de `DsButton` SHALL salir de sus tokens `component.
 #### Scenario: cada variante consume su capa component
 
 - **WHEN** se inspecciona `button.css`
-- **THEN** los colores de `primary`, `secondary`, `ghost`, `link`, `danger` y `danger-ghost` SHALL referenciarse vía `var(--ds-component-button-<variant>-*)`
+- **THEN** los colores de `primary`, `secondary`, `ghost`, `danger` y `danger-ghost` SHALL referenciarse vía `var(--ds-component-button-<variant>-*)`
 - **AND** SHALL NO consumirse `--ds-semantic-color-*` directamente para colores que `component/button.json` declara
 - **AND** el theming por atributo (`data-theme`, `data-brand`) SHALL seguir cascadeando a través de la capa component (referencias emitidas con `outputReferences`)
 

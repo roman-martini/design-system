@@ -3,8 +3,7 @@
     "card": {
       "padding": {
         "sm": { "value": "{dimension.16}" },
-        "md": { "value": "{dimension.24}" },
-        "lg": { "value": "{dimension.32}" }
+        "md": { "value": "{dimension.24}" }
       },
       "header-gap":  { "value": "{dimension.4}" },
       "footer-gap":  { "value": "{dimension.16}" },

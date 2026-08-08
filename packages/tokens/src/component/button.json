@@ -22,8 +22,6 @@
         "comment": "Corregido en aaa-049: el token decía md (6px) mientras el CSS venía usando lg (8px), el valor aprobado visualmente. Al conectar el token había que decidir cuál de los dos era la verdad; se eligió el render."
       },
       "gap":          { "value": "{dimension.8}" },
-      "focus-ring-color": { "value": "{semantic.color.focus-ring}" },
-      "focus-ring-width": { "value": "{dimension.3}" },
       "primary": {
         "bg":        { "value": "{semantic.color.bg.primary}" },
         "bg-hover":  { "value": "{semantic.color.bg.primary-hover}" },
@@ -72,13 +70,6 @@
         "bg-active": { "value": "{semantic.color.bg.danger-subtle}" },
         "text":      { "value": "{semantic.color.text.danger}" },
         "border":    { "value": "transparent" }
-      },
-      "link": {
-        "bg":           { "value": "transparent" },
-        "bg-hover":     { "value": "transparent" },
-        "text":         { "value": "{semantic.color.text.link}" },
-        "text-hover":   { "value": "{semantic.color.text.link-hover}" },
-        "border":       { "value": "transparent" }
       }
     }
   }

@@ -7,6 +7,14 @@
   border: var(--ds-component-card-border-width) solid var(--ds-component-card-border);
   border-radius: var(--ds-component-card-radius);
   box-shadow: var(--ds-component-card-shadow);
+  transition: box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-ease-out);
+}
+
+/* Hover — las variantes con sombra elevan según su token (aaa-053);
+   flat es plana por contrato y no reacciona. */
+:host([data-variant='outline']:hover),
+:host([data-variant='elevated']:hover) {
+  box-shadow: var(--ds-component-card-shadow-hover);
 }
 
 :host([data-padding='compact']) {
@@ -23,4 +31,10 @@
 /* variant: flat — borde sin sombra */
 :host([data-variant='flat']) {
   box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    transition: none;
+  }
 }

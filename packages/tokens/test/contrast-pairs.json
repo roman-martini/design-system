@@ -350,20 +350,6 @@
     "specRef": "component-button"
   },
   {
-    "id": "button/link-hover",
-    "fg": "--ds-component-button-link-text-hover",
-    "bg": "--ds-semantic-color-bg-surface",
-    "level": "text",
-    "specRef": "component-button"
-  },
-  {
-    "id": "button/link-rest",
-    "fg": "--ds-component-button-link-text",
-    "bg": "--ds-semantic-color-bg-surface",
-    "level": "text",
-    "specRef": "component-button"
-  },
-  {
     "id": "button/outline-active",
     "fg": "--ds-component-button-outline-text",
     "bg": "--ds-component-button-outline-bg-active",

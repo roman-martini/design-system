@@ -53,6 +53,16 @@ input[type='checkbox']:indeterminate {
   border-color: var(--ds-component-checkbox-border-on);
 }
 
+/* Hover — el control comunica el puntero en ambos estados, como el track del
+   switch (aaa-053); indeterminate cuenta como marcado. Disabled no reacciona. */
+input[type='checkbox']:hover:not(:disabled) {
+  background-color: var(--ds-component-checkbox-bg-off-hover);
+}
+input[type='checkbox']:hover:not(:disabled):checked,
+input[type='checkbox']:hover:not(:disabled):indeterminate {
+  background-color: var(--ds-component-checkbox-bg-on-hover);
+}
+
 /* La marca se dibuja con el SVG como MÁSCARA y el color por token. Un SVG
    embebido en url("data:…") se resuelve como documento aislado y no ve las
    custom properties del documento que lo referencia, así que un `stroke`

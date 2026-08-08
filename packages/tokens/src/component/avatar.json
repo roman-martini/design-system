@@ -101,12 +101,6 @@
         "overlap": {
           "value": "{semantic.space.negative.sm}"
         }
-      },
-      "status-size": {
-        "value": "{dimension.10}"
-      },
-      "status-border": {
-        "value": "{dimension.2}"
       }
     }
   }

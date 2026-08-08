@@ -58,6 +58,15 @@ input[type='radio']:checked {
   background-position: center;
 }
 
+/* Hover — el mismo par que checkbox, para que la familia reaccione igual
+   (aaa-053). Disabled no reacciona. */
+input[type='radio']:hover:not(:disabled) {
+  background-color: var(--ds-component-radio-bg-off-hover);
+}
+input[type='radio']:hover:not(:disabled):checked {
+  background-color: var(--ds-component-radio-bg-on-hover);
+}
+
 input[type='radio']:focus-visible {
   box-shadow: var(--ds-semantic-shadow-focus);
   outline: none;

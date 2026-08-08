@@ -240,9 +240,6 @@ describe('component consume la capa semantic para tipografía (aaa-052)', () => 
    */
   const LEGACY_FONT_REFS = new Set([
     'component.accordion.header.font-weight',
-    'component.alert.body-font-size', // se retira con alert.json en aaa-053
-    'component.alert.title-font-size', // se retira con alert.json en aaa-053
-    'component.alert.title-font-weight', // se retira con alert.json en aaa-053
     'component.avatar.font-size.lg', // candidato a excepción documentada: escala dimensional, no rol
     'component.avatar.font-size.md',
     'component.avatar.font-size.sm',

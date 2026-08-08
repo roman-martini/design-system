@@ -30,7 +30,6 @@
         "comment": "El border es el ÚNICO indicador de foco del field (sin ring, decisión del PO en aaa-054): sigue la cadena focus-ring, que el gate garantiza ≥3:1 en los 6 scopes — border.primary no lo cumple (green.500 de brand-a da 2.3:1 sobre blanco)."
       },
       "border-error":    { "value": "{semantic.color.border.danger}" },
-      "focus-ring":      { "value": "{semantic.color.focus-ring}" },
       "label": {
         "font-size":   { "value": "{semantic.font.size.label-md}" },
         "font-weight": { "value": "{semantic.font.weight.label}" },

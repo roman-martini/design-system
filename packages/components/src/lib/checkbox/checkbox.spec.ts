@@ -218,4 +218,22 @@ describe('DsCheckbox — estilos por tokens', () => {
     }
     expect(css).not.toMatch(/background(-color)?:\s*var\(--ds-semantic-color-bg/);
   });
+
+  // Scenario: el control comunica hover en ambos estados (aaa-053). Los tokens
+  // hover existían desde el bootstrap sin consumidor: el CSS los pinta bajo
+  // :hover:not(:disabled), así disabled queda inmutable por selector.
+  it('pinta los hovers desde sus tokens y solo fuera de disabled', () => {
+    expect(css).toMatch(
+      /:hover:not\(:disabled\)[^{]*\{[^}]*var\(--ds-component-checkbox-bg-off-hover\)/,
+    );
+    expect(css).toMatch(
+      /:hover:not\(:disabled\):checked[^{]*\{[^}]*var\(--ds-component-checkbox-bg-on-hover\)/,
+    );
+    // indeterminate cuenta como estado marcado
+    expect(css).toMatch(/:hover:not\(:disabled\):indeterminate/);
+    // ninguna regla hover aplica sin la guarda de disabled
+    for (const match of css.matchAll(/^[^{}]*:hover[^{]*\{/gm)) {
+      expect(match[0]).toContain(':not(:disabled)');
+    }
+  });
 });
