@@ -31,8 +31,6 @@ Actualizar al crear un change nuevo.
 
 IDs asignados a changes **no archivados** (en `changes/`). Al archivar un change, su línea se borra de acá — su historia queda en el catálogo de `docs/architecture/catalog.md` y en `archive/`. Esta lista audita el hueco entre el último ID archivado y el próximo disponible; no es un historial.
 
-> `aaa-053` asignado a `tokens-deuda-component` (status `proposed`; modifica las specs de button, checkbox, radio, card y switch). Segundo bloque de la Parte H: ejecuta D-033 sobre la deuda de la capa `component.*` triada por la auditoría del 2026-08-04, con las tres decisiones visuales del PO ya tomadas (2026-08-05: botón semibold, thumb del switch theme-aware, hovers implementados).
->
 > `aaa-012` asignado a `tokens-figma-export` (status `proposed`; genera ADR-009).
 >
 > ⏸️ **En pausa desde el 2026-07-03 por decisión del PO**, ratificada por [D-027](../docs/product/decisiones.md): el change queda activo acá con sus 4 artefactos intactos, pero **no se debe aplicar**. Sus 29 tasks están sin ejecutar a propósito — que estén "listas para apply" no es una invitación. Condición de reactivación: que el PO lo pida explícitamente; su validación final depende además de conectar Tokens Studio en Figma, trabajo del PO. Coordinar con la migración a formato DTCG de la fuente de tokens ([D-024](../docs/product/decisiones.md)).

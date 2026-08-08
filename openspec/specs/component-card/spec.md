@@ -15,7 +15,7 @@ Contrato de la familia `DsCard`: contenedor con variantes de elevación y paddin
 
 ### Requirement: Card contenedor (familia DsCard)
 
-El package SHALL exponer la familia `DsCard` (`ds-card`, naming por ADR-007) con las sub-partes opcionales `DsCardHeader` (`ds-card-header`), `DsCardContent` (`ds-card-content`), `DsCardFooter` (`ds-card-footer`), `DsCardTitle` (`ds-card-title`, `[dsCardTitle]`) y `DsCardDescription` (`ds-card-description`, `[dsCardDescription]`), junto con los types `DsCardVariant` y `DsCardPadding`. El contenedor SHALL soportar `variant` (`outline | elevated | flat`, default `outline`) y `padding` (`comfortable | compact`, default `comfortable`), con todos los estilos desde tokens `component.card.*`. Las sub-partes usadas como atributo SHALL preservar la semántica del elemento del consumidor.
+El package SHALL exponer la familia `DsCard` (`ds-card`, naming por ADR-007) con las sub-partes opcionales `DsCardHeader` (`ds-card-header`), `DsCardContent` (`ds-card-content`), `DsCardFooter` (`ds-card-footer`), `DsCardTitle` (`ds-card-title`, `[dsCardTitle]`) y `DsCardDescription` (`ds-card-description`, `[dsCardDescription]`), junto con los types `DsCardVariant` y `DsCardPadding`. El contenedor SHALL soportar `variant` (`outline | elevated | flat`, default `outline`) y `padding` (`comfortable | compact`, default `comfortable`), con todos los estilos desde tokens `component.card.*`. Las sub-partes usadas como atributo SHALL preservar la semántica del elemento del consumidor. Las variantes con sombra (`outline`, `elevated`) SHALL elevar al hover según `component.card.shadow-hover`; `flat` SHALL permanecer plana también bajo el puntero.
 
 #### Scenario: variantes tokenizadas con default de la referencia (CA-019.1)
 
@@ -23,6 +23,14 @@ El package SHALL exponer la familia `DsCard` (`ds-card`, naming por ADR-007) con
 - **WHEN** se renderiza
 - **THEN** borde, radius, sombra y fondo SHALL salir de tokens `component.card.*` vía `var(--ds-*)`
 - **AND** el default `outline` SHALL combinar borde y sombra sutil (la apariencia de la referencia)
+
+#### Scenario: las variantes con sombra elevan al hover
+
+- **GIVEN** una card `outline` o `elevated` bajo el puntero
+- **WHEN** se inspecciona su sombra
+- **THEN** SHALL ser la que resuelve `component.card.shadow-hover`, con la transición desde tokens de motion
+- **GIVEN** una card `flat` bajo el puntero
+- **THEN** SHALL conservar su ausencia de sombra
 
 #### Scenario: sub-partes opcionales con spacing del contenedor (CA-019.2)
 
@@ -68,4 +76,4 @@ El package SHALL exponer la familia `DsCard` (`ds-card`, naming por ADR-007) con
 #### Scenario: tests del comportamiento con Vitest (CA-019.1–019.5)
 
 - **WHEN** se ejecuta `pnpm -F @romanmartinidev/components test`
-- **THEN** Vitest SHALL cubrir: variantes y padding por `data-*` + tokens, sub-partes opcionales, uso híbrido elemento/atributo con re-proyección, preservación del heading y ausencia de hardcodes en el CSS fuente
+- **THEN** Vitest SHALL cubrir: variantes y padding por `data-*` + tokens, elevación al hover por variante, sub-partes opcionales, uso híbrido elemento/atributo con re-proyección, preservación del heading y ausencia de hardcodes en el CSS fuente

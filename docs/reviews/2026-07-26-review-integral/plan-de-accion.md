@@ -269,11 +269,11 @@ Orden sugerido por severidad:
 
 ---
 
-## Parte H — Tokens: fixes y consistencia — bloque de sistema ✅ (2026-08-07); resta la deuda `component.*`
+## Parte H — Tokens: fixes y consistencia ✅ COMPLETA (2026-08-08)
 
 **Modelo: Opus 5 · Effort: medium** · Vía: OpenSpec change (modifica `design-tokens-package`) · Depende de: A18/A19 para dos ítems.
 
-> **Reencuadre del 2026-08-04**: la [auditoría formal de tokens](../../design/tokens/2026-08-04-audit.md) reemplazó a esta lista como insumo y la parte se partió en dos bloques: **sistema** (los ítems de abajo, sin decisiones abiertas) y **deuda `component.*`** (66 tokens triados, detrás de las 4 decisiones que [D-033] resolvió el 2026-08-05). El bloque de sistema se ejecutó como **`aaa-052`** (+ `aaa-054`, ver abajo) y se archivó el 2026-08-07; la deuda es **`aaa-053`**, propuesto y pendiente de apply.
+> **Reencuadre del 2026-08-04**: la [auditoría formal de tokens](../../design/tokens/2026-08-04-audit.md) reemplazó a esta lista como insumo y la parte se partió en dos bloques: **sistema** (los ítems de abajo, sin decisiones abiertas) y **deuda `component.*`** (66 tokens triados, detrás de las 4 decisiones que [D-033] resolvió el 2026-08-05). El bloque de sistema se ejecutó como **`aaa-052`** (+ `aaa-054`, ver abajo) y se archivó el 2026-08-07; la deuda `component.*` se ejecutó como **`aaa-053`** y se archivó el 2026-08-08, **cerrando la parte**: 41 tokens retirados (los 36 triados + `button.link.*`, descubierto en el apply sin variante que lo respalde), botón conectado a su capa (semibold 600 — el token era la verdad), thumb del switch theme-aware, hovers de checkbox/radio/card. La re-auditoría del 2026-08-07 verificó deuda `component.*` en 0. Camino propio: fixes chicos del detector TS y `badge.solid-*` (ítem Now del BACKLOG), Alert como HU-041, burn-down tipográfico como ítem Later (con los 2 `label-font-size` de checkbox/radio sumados como prioridad).
 
 1. **Focus ring en brands** [tokens-01] — **Hecho** (`aaa-052`). La ejecución corrigió la evidencia: el token y el render discrepaban **en los cuatro scopes**, no solo en las marcas (declaraba tonos `200` pálidos que nunca se pintaron), así que hubo que realinear valores además de recomponer. La raíz de que sobreviviera: el gate de contraste no tenía **ningún par de focus ring** — se agregó. Anillo a 2px por feedback del PO en el gate.
 2. Tipografía de component vía semantic [tokens-08] — **Hecho parcial con trinquete** (`aaa-052`): el bypass real eran **28 referencias en 11 componentes**, no 3 archivos; una regla automática daba falsos positivos (el avatar usa `font.*` como escala dimensional sin rol). Tooltip/input remapeados + baseline congelado (`LEGACY_FONT_REFS`); el burn-down quedó como ítem Later del BACKLOG.

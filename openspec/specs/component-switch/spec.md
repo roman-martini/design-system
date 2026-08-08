@@ -15,7 +15,7 @@ Contrato de `DsSwitch`: toggle on/off de acción inmediata integrado a Angular F
 
 ### Requirement: Switch/Toggle (DsSwitch)
 
-El package SHALL exponer `DsSwitch` (`ds-switch`, naming por ADR-007) junto con el type `DsSwitchSize`. El componente SHALL implementar `ControlValueAccessor` sobre un `<input type="checkbox" role="switch">`, con `model` `checked` (default `false`) y `disabled` (default `false`), input `label` (default `''`) y `size` (`sm | md | lg`, default `md`). El toggle SHALL responder a click y Space; el `disabled` SHALL ser nativo (form control, ADR-011). Track y thumb SHALL salir de tokens `component.switch.*` por size, con la transición respetando `prefers-reduced-motion`. El estado on/off SHALL comunicarse por la posición del thumb (indicador no-cromático), con el thumb sobre el track encendido cumpliendo ≥3:1 (WCAG 1.4.11) verificado por gate.
+El package SHALL exponer `DsSwitch` (`ds-switch`, naming por ADR-007) junto con el type `DsSwitchSize`. El componente SHALL implementar `ControlValueAccessor` sobre un `<input type="checkbox" role="switch">`, con `model` `checked` (default `false`) y `disabled` (default `false`), input `label` (default `''`) y `size` (`sm | md | lg`, default `md`). El toggle SHALL responder a click y Space; el `disabled` SHALL ser nativo (form control, ADR-011). Track y thumb SHALL salir de tokens `component.switch.*` por size, con la transición respetando `prefers-reduced-motion`. El estado on/off SHALL comunicarse por la posición del thumb (indicador no-cromático), con el thumb sobre el track encendido cumpliendo ≥3:1 (WCAG 1.4.11) verificado por gate. Tanto `bg-off` del track como `thumb.bg` SHALL ser tokens theme-aware: el thumb SHALL seguir la cadena de superficie invertida del sistema (la misma que la marca del checkbox y el punto del radio), de modo que en dark no quede blanco fijo.
 
 #### Scenario: control accesible con CVA (CA-023.1)
 
@@ -37,6 +37,13 @@ El package SHALL exponer `DsSwitch` (`ds-switch`, naming por ADR-007) junto con 
 - **THEN** `thumb.bg` vs `bg-on` SHALL cumplir ≥3:1 (gate) y el estado on/off SHALL comunicarse por la posición del thumb (indicador no-cromático); `bg-off` SHALL ser un token themable
 - **GIVEN** un switch `disabled`
 - **THEN** el toggle SHALL estar bloqueado y el control SHALL reflejarlo (opacidad reducida, `disabled` nativo)
+
+#### Scenario: el thumb se invierte con el theme
+
+- **GIVEN** el theme oscuro activo
+- **WHEN** se inspecciona el thumb
+- **THEN** su color SHALL ser el que resuelve la cadena theme-aware de `component.switch.thumb.bg` (oscuro sobre dark, claro sobre light), no un blanco literal ni una referencia a una primitiva fija
+- **AND** el gate de contraste del scenario anterior SHALL seguir cumpliéndose con los valores resueltos por theme
 
 #### Scenario: label opcional clickable (CA-023.4)
 

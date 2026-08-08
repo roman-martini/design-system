@@ -63,7 +63,7 @@ Orden de `design.md`: retiros → tokens → CSS → verificación → gate → 
 
 - [x] 8.1 Proponer el mensaje de commit y **esperar el OK explícito del PO**; staging con paths explícitos.
   - **Aceptación**: nada commiteado sin OK.
-- [ ] 8.2 Archivar según el checklist de `docs/product/README.md` § "Checklist de archive" — bloqueado hasta 7.2: promover los 5 deltas a sus specs base; verificar ausencia de links relativos en los artefactos; borrar `aaa-053` de "IDs en vuelo" y actualizar el próximo ID en `openspec/README.md`; fila en `docs/architecture/catalog.md`; registros de producto (Foto táctica, Última entrega); grooming del BACKLOG.
+- [x] 8.2 Archivar según el checklist de `docs/product/README.md` § "Checklist de archive" — bloqueado hasta 7.2: promover los 5 deltas a sus specs base; verificar ausencia de links relativos en los artefactos; borrar `aaa-053` de "IDs en vuelo" y actualizar el próximo ID en `openspec/README.md`; fila en `docs/architecture/catalog.md`; registros de producto (Foto táctica, Última entrega); grooming del BACKLOG.
   - **Aceptación**: checklist completo; `pnpm openspec validate --all` verde con el change archivado.
-- [ ] 8.3 Marcar la **Parte H completa** en `docs/backlog/BACKLOG.md` y el plan de acción (bloque de sistema `aaa-052` + deuda component `aaa-053`), dejando anotado qué siguió camino propio: fixes chicos del detector y `badge.solid-*` (commit directo pendiente), HU-041 (Alert en roadmap).
+- [x] 8.3 Marcar la **Parte H completa** en `docs/backlog/BACKLOG.md` y el plan de acción (bloque de sistema `aaa-052` + deuda component `aaa-053`), dejando anotado qué siguió camino propio: fixes chicos del detector y `badge.solid-*` (commit directo pendiente), HU-041 (Alert en roadmap).
   - **Aceptación**: backlog y plan reflejan el cierre y los remanentes.
