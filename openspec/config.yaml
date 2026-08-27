@@ -1,124 +1,67 @@
 schema: spec-driven
 
 context: |
-  design-system — monorepo pnpm con librerías de arquitectura frontend
-  bajo el scope npm `@romanmartinidev`.
+  Language: Español. All artifacts must be written in Español; code and identifiers in English.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
 
-  Packages publicables:
-    - @romanmartinidev/tokens     (packages/tokens/)     — design tokens Style Dictionary 4
-    - @romanmartinidev/components (packages/components/) — componentes Angular ng-packagr APF
+  design-system: monorepo pnpm de librerías publicables bajo `@romanmartinidev`, para apps Angular consumidoras.
+  Packages: `packages/tokens` (design tokens, Style Dictionary 4, CSS vars `--ds-*`, Figma opcional) y
+  `packages/components` (Angular 21 standalone + signals, ng-packagr/APF). `apps/playground` (zoneless +
+  Storybook 10 + Vitest 4) valida las libs; no es publicable. TypeScript 5.9, Changesets lockstep pre-1.0.
 
-  App interna no publicable:
-    - apps/playground — Angular 21 zoneless + Storybook 10 + Vitest 4
+  Naming (ADR-007): selector `ds-<name>`, clase `Ds<Name>` sin sufijo Component, types `Ds<Name><Type>`,
+  archivos kebab-case sin sufijo de rol (`button/button.ts`).
+  Tokens (ADR-003): primitives → semantic → component → theme; theme solo redefine semantic; sin ciclos.
+  Dependencias (spec monorepo-structure): tokens no depende de nada; components → tokens como peerDependency
+  `workspace:*`; playground → ambos; nunca hacia playground.
 
-  Stack:
-    - pnpm workspaces + TypeScript 5.9 + Angular 21 + ng-packagr 21
-    - Style Dictionary 4 + Vitest 4 + Storybook 10 + Changesets
-    - ESLint + Prettier + Husky + lint-staged + commitlint
+  Specs describen comportamiento observable y testable; el cómo (effect, viewChild, CSS) va a design o tasks.
+  Prefer positive SHALL statements over negative ones when both express the same contract.
 
-  Prioridades estrictas en orden:
-    1. Aplicar buenas prácticas
-    2. Diseños/arquitecturas que escalen ordenado
-    3. Mantenibilidad vía estándares y convenciones claras
-
-  Convenciones de naming (ADR-007 supersede ADR-004 §4+§5):
-    - Selector HTML con prefix `ds-` (ej. `ds-button`)
-    - Class TypeScript con prefix `Ds` sin sufijo `Component` (ej. `DsButton`)
-    - Types públicos con prefix `Ds<Name><TypeName>` (ej. `DsButtonSize`)
-    - CSS custom properties con prefix `--ds-*`
-    - Folder y file kebab-case sin sufijo de rol (`button/`, `button.ts`)
-
-  Jerarquía de tokens (ADR-003):
-    primitives → semantic → component → theme.
-    semantic referencia primitives. component referencia semantic o primitives.
-    theme solo redefine semantic. Sin referencias circulares.
-
-  Reglas de dependencia (DAG sin ciclos, spec monorepo-structure):
-    - tokens no depende del monorepo
-    - components depende de tokens como peerDependency con workspace:*
-    - playground depende de tokens y components como dependencies
-    - nunca dependencia de tokens o components hacia playground
-
-  Surface de libs publicables (ADR-004):
-    - peerDependencies para @angular/core y @angular/common; @angular/forms si hay ControlValueAccessor
-    - public-api.ts es el único barrel
-    - ng-packagr produce Angular Package Format (FESM2022 + types)
-    - Tarballs no incluyen *.stories.ts ni *.spec.ts
-
-  Product language for specs:
-    - Specs describen comportamiento testable observable, no implementación
-    - Requirements con SHALL/MUST expresan contratos del producto
-    - Detalles de cómo (effect, viewChild, etc.) van en design.md o tasks.md
-    - Evitar SHALL negativos cuando una formulación positiva expresa lo mismo
-
-  Cambios e IDs (ADR-008):
-    - Changes con ID aaa-NNN permanente en frontmatter
-    - Specs identificadas por carpeta sin ID
-    - Cambios significativos arrancan como propuesta OpenSpec
-    - Cambios triviales o de implementación local van por commit directo
-
-  Fuentes de verdad canónicas:
-    - CLAUDE.md                          contrato Claude ↔ repo
-    - docs/architecture/ARCHITECTURE.md  síntesis arquitectónica
-    - docs/architecture/catalog.md       catálogo de specs y changes
-    - docs/architecture/decisions-log.md índice de ADRs
-    - docs/architecture/adr/             ADRs aceptados inmutables
-    - openspec/README.md                 convención + próximo ID disponible
-    - docs/backlog/BACKLOG.md            cola operativa Now/Next/Later con disparadores
-    - docs/product/                      épicas, HUs y decisiones de producto (D-XXX)
-
-  Referencias dentro de artefactos de change (transversal a proposal, design, tasks y deltas):
-    - Sin links markdown relativos; referenciar por ID (ADR-NNN, D-NNN, HU-NNN, EP-NNN, CA-NNN.Y, aaa-NNN) y specs por nombre de carpeta
-    - Archivos sin ID: citar el path desde el root del repo en código inline, no como link
-    - Motivo: archivar mueve el change un nivel y rompe toda ruta relativa (110 links rotos corregidos el 2026-07-28)
-    - Los links markdown sí se usan dentro de docs/, donde los archivos no se mueven
+  Changes llevan `id: aaa-NNN` permanente en el frontmatter y `status: proposed` mientras están en curso
+  (con `active`, `validate --all` de CI los ignora). Próximo ID, IDs en vuelo y frontmatter: `openspec/README.md`.
+  Dentro de artefactos de change nunca usar links markdown relativos (archivar los rompe): referenciar por ID
+  (ADR-NNN, D-NNN, HU-NNN, EP-NNN, CA-NNN.Y, aaa-NNN), specs por carpeta, y archivos sin ID por path en código inline.
 
 rules:
-  # Solo claves por artefacto del schema spec-driven: proposal, specs, design, tasks.
-  # Una clave "all-artifacts" NO existe — el CLI la ignora con warning y sus reglas no llegan
-  # a ningún artefacto. Las reglas transversales van en `context` (se inyecta en todos).
-  # Verificado con `pnpm openspec instructions` el 2026-08-01.
+  # Claves válidas: solo ids de artefactos del schema (proposal, specs, design, tasks). Una clave como
+  # "all-artifacts" no existe: el CLI la ignora con warning. Lo transversal va en `context`.
   proposal:
-    - Antes de redactar leer CLAUDE.md, architecture/ARCHITECTURE.md, decisions-log.md, openspec/README.md y docs/backlog/BACKLOG.md
-    - Declarar cuál de las 3 prioridades del repo respalda la propuesta
-    - Incluir sección "Alternativas evaluadas" con al menos 2 opciones descartadas
-    - Si toca 2 o más packages o es one-way door, indicar que generará un ADR al cerrarse
-    - No contradecir ADRs aceptados sin declarar supersede explícito
+    - Antes de redactar leer docs/architecture/ARCHITECTURE.md, decisions-log.md, openspec/README.md y docs/backlog/BACKLOG.md
+    - Declarar cuál de las 3 prioridades del repo respalda la propuesta (buenas prácticas > escala ordenada > mantenibilidad)
+    - Incluir sección "Alternativas evaluadas" con al menos 2 opciones descartadas y su porqué
+    - Si toca 2 o más packages o es one-way door, declarar que generará un ADR al cerrarse; nunca contradecir un ADR aceptado sin supersede explícito
+    - Si nace de una decisión o HU, enlazarla en el frontmatter con related-decisions (D-NNN) y citar la HU en el texto
 
   specs:
     - Antes de redactar leer la spec base correspondiente
-    - Usar lenguaje de comportamiento observable, no de implementación interna
-    - Naming siempre con prefijos actuales `Ds<Name>` y `ds-<name>`, no históricos
-    - Para deltas usar ADDED, MODIFIED (contenido completo), REMOVED (con Reason+Migration) o RENAMED
+    - Componente nuevo → introduces-specs component-<name> con ADDED; existente → modifies-specs component-<name> con MODIFIED; transversal al package o a 2+ componentes → components-package (ADR-018)
+    - Para deltas usar ADDED, MODIFIED (contenido completo del requirement), REMOVED (con Reason + Migration) o RENAMED
+    - Naming siempre con los prefijos vigentes Ds<Name> / ds-<name>, nunca los históricos
 
   design:
-    - Antes de redactar leer proposal.md y los ADRs en related-adrs
-    - Solo crear design.md cuando hay cross-cutting, dep externa nueva, complejidad de seguridad o ambigüedad técnica
-    - Documentar alternativas evaluadas con por-qué explícito por cada decisión
-    - Promover decisiones one-way door a ADR al archivar el change
+    - Antes de redactar leer proposal.md y los ADRs listados en related-adrs
+    - Por cada decisión documentar las alternativas evaluadas con su porqué; las one-way door se promueven a ADR al archivar
 
   tasks:
-    # Cada regla debe parsear como string YAML: una línea con ": " sin comillas se vuelve
-    # mapping y el CLI descarta TODAS las reglas del artefacto ("must be an array of strings").
+    # Cada regla debe ser un string YAML: una línea con ": " sin comillas se vuelve mapping y el CLI
+    # descarta todas las reglas del artefacto ("must be an array of strings").
     - Antes de redactar leer proposal.md, design.md y los deltas en specs/
     - Tareas en chunks de hasta 2 horas con criterio de aceptación binario
-    - Marcar tareas que afectan config compartida como "afecta-todo-el-repo"
-    - Última tarea de implementación siempre es proponer mensaje de commit y esperar OK
-    - Incluir tarea de validación final con openspec validate, lint, format, build, tests, storybook, npm pack
-    - 'Incluir tarea final de archive con el checklist completo de docs/product/README.md § "Checklist de archive": spec base, artefactos del change sin links relativos, openspec/README.md (próximo ID e IDs en vuelo), catálogo en docs/architecture/catalog.md, HU a Hecha, doc de la épica (contador y valor entregado), README de producto (Foto táctica y Última entrega), grooming del BACKLOG'
-    - 'En changes de componente, el archive requiere el gate visual del PO antes de ejecutarse (D-022): la tarea de archive queda bloqueada hasta su OK explícito'
+    - Última tarea de implementación siempre es proponer el mensaje de commit y esperar OK explícito del PO
+    - Incluir tarea de validación final con openspec validate --all, lint, format:check, typecheck, build, tests, storybook build y npm pack
+    - 'Incluir tarea final de archive con el checklist completo de docs/product/README.md § "Checklist de archive" (spec base, sin links relativos, openspec/README.md, catalog.md, HU y épica, README de producto, BACKLOG)'
+    - 'En changes de componente la tarea de archive queda bloqueada hasta el OK visual explícito del PO (D-022)'
 
-# Guidance por operación (clave soportada desde el CLI 1.7.0): el CLI la inyecta al
-# ejecutar apply y archive. Es advisory — refuerza, no reemplaza, las tasks del change.
 operations:
   apply:
     guidance:
       - Implementar las tasks en orden marcando checkboxes; no marcar una task sin cumplir su criterio binario
-      - Nunca commitear sin proponer el mensaje y esperar OK explícito del PO; staging solo con paths explícitos (nunca git add -A)
+      - Nunca commitear sin proponer el mensaje y esperar OK explícito del PO; stagear solo paths explícitos
       - Si una task pide apartarse de un ADR aceptado, parar y decirlo (el camino es un ADR nuevo, no una excepción silenciosa)
   archive:
     guidance:
-      - Seguir el checklist completo de archive de docs/product/README.md (sección "Checklist de archive")
+      - Seguir el checklist completo de docs/product/README.md § "Checklist de archive"
       - Renombrar el directorio a <id>-<name> al moverlo a openspec/changes/archive/ (ADR-008) y sincronizar la spec base con los deltas
       - Verificar que los artefactos archivados no tengan links markdown relativos (referencias por ID)
       - Actualizar openspec/README.md (próximo ID e IDs en vuelo), docs/architecture/catalog.md, la HU y su épica, el README de producto y el BACKLOG
